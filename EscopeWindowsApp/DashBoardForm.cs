@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class Form1 : Form
+    public partial class DashBoardForm : Form
     {
-        public Form1()
+        public DashBoardForm()
         {
             InitializeComponent();
         }
