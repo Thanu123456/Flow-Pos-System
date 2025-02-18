@@ -16,5 +16,12 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        // Close the form
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
