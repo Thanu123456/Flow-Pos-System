@@ -1,6 +1,6 @@
 ﻿namespace EscopeWindowsApp
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.loginBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.loginPictureBox2 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.loginPictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
@@ -99,7 +99,7 @@
             this.loginFormLabel1.AutoSize = true;
             this.loginFormLabel1.BackColor = System.Drawing.Color.Transparent;
             this.loginFormLabel1.Font = new System.Drawing.Font("Franklin Gothic Medium", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginFormLabel1.Location = new System.Drawing.Point(27, 39);
+            this.loginFormLabel1.Location = new System.Drawing.Point(27, 41);
             this.loginFormLabel1.Name = "loginFormLabel1";
             this.loginFormLabel1.Size = new System.Drawing.Size(383, 43);
             this.loginFormLabel1.TabIndex = 9;
@@ -264,7 +264,7 @@
             this.loginMinimizeControlBtn.Size = new System.Drawing.Size(29, 29);
             this.loginMinimizeControlBtn.TabIndex = 20;
             // 
-            // Login
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -284,7 +284,7 @@
             this.Controls.Add(this.loginPictureBox2);
             this.Controls.Add(this.loginPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox1)).EndInit();
