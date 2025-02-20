@@ -26,5 +26,80 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void userGinfoPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void addUserNameText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserCodeText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserMobileText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserEmailText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserGenderCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserDOBText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserStreetText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserCityText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserPostalText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserDateText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserStatusCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUserEPFText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userSaveBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userResetBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
