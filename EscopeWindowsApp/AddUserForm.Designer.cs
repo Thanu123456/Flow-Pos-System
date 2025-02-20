@@ -148,6 +148,7 @@
             this.userGinfoPanel.Name = "userGinfoPanel";
             this.userGinfoPanel.Size = new System.Drawing.Size(810, 208);
             this.userGinfoPanel.TabIndex = 3;
+            this.userGinfoPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.userGinfoPanel_Paint);
             // 
             // addUserGenderCombo
             // 
@@ -170,6 +171,7 @@
             this.addUserGenderCombo.Size = new System.Drawing.Size(247, 36);
             this.addUserGenderCombo.StartIndex = 0;
             this.addUserGenderCombo.TabIndex = 8;
+            this.addUserGenderCombo.SelectedIndexChanged += new System.EventHandler(this.addUserGenderCombo_SelectedIndexChanged);
             // 
             // addUserRoleCombo
             // 
@@ -214,6 +216,7 @@
             this.addUserDOBText.SelectedText = "";
             this.addUserDOBText.Size = new System.Drawing.Size(247, 36);
             this.addUserDOBText.TabIndex = 5;
+            this.addUserDOBText.TextChanged += new System.EventHandler(this.addUserDOBText_TextChanged);
             // 
             // addUserEmailText
             // 
@@ -235,6 +238,7 @@
             this.addUserEmailText.SelectedText = "";
             this.addUserEmailText.Size = new System.Drawing.Size(247, 36);
             this.addUserEmailText.TabIndex = 4;
+            this.addUserEmailText.TextChanged += new System.EventHandler(this.addUserEmailText_TextChanged);
             // 
             // addUserMobileText
             // 
@@ -256,6 +260,7 @@
             this.addUserMobileText.SelectedText = "";
             this.addUserMobileText.Size = new System.Drawing.Size(247, 36);
             this.addUserMobileText.TabIndex = 3;
+            this.addUserMobileText.TextChanged += new System.EventHandler(this.addUserMobileText_TextChanged);
             // 
             // addUserCodeText
             // 
@@ -277,6 +282,7 @@
             this.addUserCodeText.SelectedText = "";
             this.addUserCodeText.Size = new System.Drawing.Size(247, 36);
             this.addUserCodeText.TabIndex = 2;
+            this.addUserCodeText.TextChanged += new System.EventHandler(this.addUserCodeText_TextChanged);
             // 
             // addUserNameText
             // 
@@ -298,6 +304,7 @@
             this.addUserNameText.SelectedText = "";
             this.addUserNameText.Size = new System.Drawing.Size(247, 36);
             this.addUserNameText.TabIndex = 1;
+            this.addUserNameText.TextChanged += new System.EventHandler(this.addUserNameText_TextChanged);
             // 
             // generalinfoLabel
             // 
@@ -352,6 +359,7 @@
             this.addUserPostalText.SelectedText = "";
             this.addUserPostalText.Size = new System.Drawing.Size(247, 36);
             this.addUserPostalText.TabIndex = 3;
+            this.addUserPostalText.TextChanged += new System.EventHandler(this.addUserPostalText_TextChanged);
             // 
             // addUserCityText
             // 
@@ -373,6 +381,7 @@
             this.addUserCityText.SelectedText = "";
             this.addUserCityText.Size = new System.Drawing.Size(247, 36);
             this.addUserCityText.TabIndex = 2;
+            this.addUserCityText.TextChanged += new System.EventHandler(this.addUserCityText_TextChanged);
             // 
             // addUserStreetText
             // 
@@ -394,6 +403,7 @@
             this.addUserStreetText.SelectedText = "";
             this.addUserStreetText.Size = new System.Drawing.Size(247, 36);
             this.addUserStreetText.TabIndex = 1;
+            this.addUserStreetText.TextChanged += new System.EventHandler(this.addUserStreetText_TextChanged);
             // 
             // label2
             // 
@@ -439,6 +449,7 @@
             this.addUserStatusCombo.Size = new System.Drawing.Size(247, 36);
             this.addUserStatusCombo.StartIndex = 0;
             this.addUserStatusCombo.TabIndex = 8;
+            this.addUserStatusCombo.SelectedIndexChanged += new System.EventHandler(this.addUserStatusCombo_SelectedIndexChanged);
             // 
             // addUserEPFText
             // 
@@ -460,6 +471,7 @@
             this.addUserEPFText.SelectedText = "";
             this.addUserEPFText.Size = new System.Drawing.Size(247, 36);
             this.addUserEPFText.TabIndex = 3;
+            this.addUserEPFText.TextChanged += new System.EventHandler(this.addUserEPFText_TextChanged);
             // 
             // addUserDateText
             // 
@@ -481,6 +493,7 @@
             this.addUserDateText.SelectedText = "";
             this.addUserDateText.Size = new System.Drawing.Size(247, 36);
             this.addUserDateText.TabIndex = 1;
+            this.addUserDateText.TextChanged += new System.EventHandler(this.addUserDateText_TextChanged);
             // 
             // userSaveBtn
             // 
@@ -497,6 +510,7 @@
             this.userSaveBtn.Size = new System.Drawing.Size(106, 45);
             this.userSaveBtn.TabIndex = 9;
             this.userSaveBtn.Text = "Save";
+            this.userSaveBtn.Click += new System.EventHandler(this.userSaveBtn_Click);
             // 
             // userResetBtn
             // 
@@ -513,6 +527,7 @@
             this.userResetBtn.Size = new System.Drawing.Size(106, 45);
             this.userResetBtn.TabIndex = 10;
             this.userResetBtn.Text = "Reset";
+            this.userResetBtn.Click += new System.EventHandler(this.userResetBtn_Click);
             // 
             // addUserBorderlessForm
             // 
