@@ -78,7 +78,7 @@
             this.userSearchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userSearchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.userSearchBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userSearchBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.userSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.userSearchBtn.ForeColor = System.Drawing.Color.White;
             this.userSearchBtn.Location = new System.Drawing.Point(679, 84);
             this.userSearchBtn.Name = "userSearchBtn";
@@ -94,7 +94,7 @@
             this.userAddBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userAddBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.userAddBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userAddBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.userAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.userAddBtn.ForeColor = System.Drawing.Color.White;
             this.userAddBtn.Location = new System.Drawing.Point(550, 84);
             this.userAddBtn.Name = "userAddBtn";
@@ -115,7 +115,7 @@
             this.userStatusText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userStatusText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.userStatusText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userStatusText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.userStatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.userStatusText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.userStatusText.Location = new System.Drawing.Point(14, 84);
             this.userStatusText.Name = "userStatusText";
@@ -137,7 +137,7 @@
             this.userRoleText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userRoleText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.userRoleText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userRoleText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.userRoleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.userRoleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.userRoleText.Location = new System.Drawing.Point(550, 20);
             this.userRoleText.Name = "userRoleText";
@@ -160,7 +160,7 @@
             this.userEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userEmailText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.userEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.userEmailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.userEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.userEmailText.Location = new System.Drawing.Point(282, 20);
             this.userEmailText.Name = "userEmailText";
@@ -183,7 +183,7 @@
             this.userNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userNameText.FillColor = System.Drawing.Color.WhiteSmoke;
             this.userNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.userNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.userNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.userNameText.Location = new System.Drawing.Point(14, 20);
             this.userNameText.Name = "userNameText";
@@ -200,7 +200,7 @@
             this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -238,7 +238,7 @@
             this.userDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.userDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.userDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.userDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.userDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.userDataGridView.ThemeStyle.HeaderStyle.Height = 25;
@@ -295,7 +295,7 @@
             this.userNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.userNextBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userNextBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
+            this.userNextBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.userNextBtn.ForeColor = System.Drawing.Color.White;
             this.userNextBtn.Location = new System.Drawing.Point(125, 3);
             this.userNextBtn.Name = "userNextBtn";
@@ -311,7 +311,7 @@
             this.userCurrentBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userCurrentBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.userCurrentBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userCurrentBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
+            this.userCurrentBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.userCurrentBtn.ForeColor = System.Drawing.Color.White;
             this.userCurrentBtn.Location = new System.Drawing.Point(64, 3);
             this.userCurrentBtn.Name = "userCurrentBtn";
@@ -327,7 +327,7 @@
             this.userPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.userPrevBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userPrevBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
+            this.userPrevBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.userPrevBtn.ForeColor = System.Drawing.Color.White;
             this.userPrevBtn.Location = new System.Drawing.Point(3, 3);
             this.userPrevBtn.Name = "userPrevBtn";
@@ -339,10 +339,10 @@
             // usersListLabel
             // 
             this.usersListLabel.AutoSize = true;
-            this.usersListLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usersListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usersListLabel.Location = new System.Drawing.Point(12, 9);
             this.usersListLabel.Name = "usersListLabel";
-            this.usersListLabel.Size = new System.Drawing.Size(81, 17);
+            this.usersListLabel.Size = new System.Drawing.Size(75, 18);
             this.usersListLabel.TabIndex = 3;
             this.usersListLabel.Text = "Users List";
             this.usersListLabel.Click += new System.EventHandler(this.addUserLabel_Click);
@@ -351,7 +351,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 592);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.usersListLabel);
             this.Controls.Add(this.userPagiPanel);
             this.Controls.Add(this.userDataGridView);
@@ -359,6 +360,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserForm";
             this.Text = "User";
+            this.Load += new System.EventHandler(this.UserForm_Load);
             this.userSearchPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
             this.userPagiPanel.ResumeLayout(false);
