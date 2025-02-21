@@ -62,5 +62,10 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            this.Size = new Size(1920, 1080); // Set window size
+        }
     }
 }
