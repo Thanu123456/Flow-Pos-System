@@ -38,17 +38,17 @@
             this.sideBarSubPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.logoBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.masterContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.masterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.supplierBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.customerBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supplierBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.inventoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.productBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.masterTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.productBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.inventoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.sidebar.SuspendLayout();
@@ -68,7 +68,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(800, 34);
+            this.headerPanel.Size = new System.Drawing.Size(1920, 34);
             this.headerPanel.TabIndex = 0;
             // 
             // controlPanel
@@ -122,7 +122,7 @@
             this.sideBarSubPanel.FillColor = System.Drawing.Color.LightGray;
             this.sideBarSubPanel.Location = new System.Drawing.Point(0, 34);
             this.sideBarSubPanel.Name = "sideBarSubPanel";
-            this.sideBarSubPanel.Size = new System.Drawing.Size(800, 63);
+            this.sideBarSubPanel.Size = new System.Drawing.Size(1920, 63);
             this.sideBarSubPanel.TabIndex = 2;
             // 
             // sidebar
@@ -135,7 +135,7 @@
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 97);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(211, 353);
+            this.sidebar.Size = new System.Drawing.Size(211, 983);
             this.sidebar.TabIndex = 3;
             this.sidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.sidebar_Paint);
             // 
@@ -154,6 +154,23 @@
             this.logoBtn.TabIndex = 4;
             this.logoBtn.Text = "LOGO";
             this.logoBtn.Click += new System.EventHandler(this.logoBtn_Click);
+            // 
+            // dashboardBtn
+            // 
+            this.dashboardBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.dashboardBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.dashboardBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.dashboardBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.dashboardBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.dashboardBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
+            this.dashboardBtn.Location = new System.Drawing.Point(0, 48);
+            this.dashboardBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.dashboardBtn.Name = "dashboardBtn";
+            this.dashboardBtn.Size = new System.Drawing.Size(211, 48);
+            this.dashboardBtn.TabIndex = 5;
+            this.dashboardBtn.Text = "Dashboard";
+            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
             // 
             // masterContainer
             // 
@@ -206,24 +223,6 @@
             this.userBtn.Text = "User";
             this.userBtn.Click += new System.EventHandler(this.userBtn_Click);
             // 
-            // supplierBtn
-            // 
-            this.supplierBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.supplierBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.supplierBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.supplierBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.supplierBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supplierBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.supplierBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.supplierBtn.ForeColor = System.Drawing.Color.White;
-            this.supplierBtn.Location = new System.Drawing.Point(0, 144);
-            this.supplierBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.supplierBtn.Name = "supplierBtn";
-            this.supplierBtn.Size = new System.Drawing.Size(211, 48);
-            this.supplierBtn.TabIndex = 7;
-            this.supplierBtn.Text = "Supplier";
-            this.supplierBtn.Click += new System.EventHandler(this.supplierBtn_Click);
-            // 
             // customerBtn
             // 
             this.customerBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
@@ -242,49 +241,23 @@
             this.customerBtn.Text = "Customer";
             this.customerBtn.Click += new System.EventHandler(this.customerBtn_Click);
             // 
-            // dashboardBtn
+            // supplierBtn
             // 
-            this.dashboardBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.dashboardBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.dashboardBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.dashboardBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.dashboardBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dashboardBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardBtn.ForeColor = System.Drawing.Color.White;
-            this.dashboardBtn.Location = new System.Drawing.Point(0, 48);
-            this.dashboardBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.dashboardBtn.Name = "dashboardBtn";
-            this.dashboardBtn.Size = new System.Drawing.Size(211, 48);
-            this.dashboardBtn.TabIndex = 5;
-            this.dashboardBtn.Text = "Dashboard";
-            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
-            // 
-            // masterTransition
-            // 
-            this.masterTransition.Interval = 50;
-            this.masterTransition.Tick += new System.EventHandler(this.masterTransition_Tick);
-            // 
-            // sidebarTransition
-            // 
-            this.sidebarTransition.Interval = 10;
-            this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
-            // 
-            // productBtn
-            // 
-            this.productBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.productBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.productBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.productBtn.ForeColor = System.Drawing.Color.White;
-            this.productBtn.Location = new System.Drawing.Point(0, 240);
-            this.productBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.productBtn.Name = "productBtn";
-            this.productBtn.Size = new System.Drawing.Size(211, 48);
-            this.productBtn.TabIndex = 8;
-            this.productBtn.Text = "Products";
+            this.supplierBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.supplierBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supplierBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supplierBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supplierBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supplierBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.supplierBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.supplierBtn.ForeColor = System.Drawing.Color.White;
+            this.supplierBtn.Location = new System.Drawing.Point(0, 144);
+            this.supplierBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.supplierBtn.Name = "supplierBtn";
+            this.supplierBtn.Size = new System.Drawing.Size(211, 48);
+            this.supplierBtn.TabIndex = 7;
+            this.supplierBtn.Text = "Supplier";
+            this.supplierBtn.Click += new System.EventHandler(this.supplierBtn_Click);
             // 
             // inventoryBtn
             // 
@@ -304,6 +277,23 @@
             this.inventoryBtn.Text = "Inventory";
             this.inventoryBtn.Click += new System.EventHandler(this.inventoryBtn_Click);
             // 
+            // productBtn
+            // 
+            this.productBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.productBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.productBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.productBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.productBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.productBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.productBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.productBtn.ForeColor = System.Drawing.Color.White;
+            this.productBtn.Location = new System.Drawing.Point(0, 240);
+            this.productBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.productBtn.Name = "productBtn";
+            this.productBtn.Size = new System.Drawing.Size(211, 48);
+            this.productBtn.TabIndex = 8;
+            this.productBtn.Text = "Products";
+            // 
             // siticoneButton1
             // 
             this.siticoneButton1.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
@@ -320,11 +310,21 @@
             this.siticoneButton1.TabIndex = 6;
             this.siticoneButton1.Text = "Dashboard";
             // 
+            // masterTransition
+            // 
+            this.masterTransition.Interval = 50;
+            this.masterTransition.Tick += new System.EventHandler(this.masterTransition_Tick);
+            // 
+            // sidebarTransition
+            // 
+            this.sidebarTransition.Interval = 10;
+            this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
+            // 
             // sideBarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.sideBarSubPanel);
             this.Controls.Add(this.headerPanel);
