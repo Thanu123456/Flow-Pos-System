@@ -141,6 +141,7 @@
             this.loginUserNameTextBox.SelectedText = "";
             this.loginUserNameTextBox.Size = new System.Drawing.Size(305, 43);
             this.loginUserNameTextBox.TabIndex = 12;
+            this.loginUserNameTextBox.TextChanged += new System.EventHandler(this.loginUserNameTextBox_TextChanged);
             // 
             // loginLabel
             // 
@@ -176,6 +177,7 @@
             this.loginPasswordTextbox.SelectedText = "";
             this.loginPasswordTextbox.Size = new System.Drawing.Size(305, 43);
             this.loginPasswordTextbox.TabIndex = 14;
+            this.loginPasswordTextbox.TextChanged += new System.EventHandler(this.loginPasswordTextbox_TextChanged);
             // 
             // loginForgotPasswordlinkLabel
             // 
@@ -190,6 +192,7 @@
             this.loginForgotPasswordlinkLabel.TabIndex = 15;
             this.loginForgotPasswordlinkLabel.TabStop = true;
             this.loginForgotPasswordlinkLabel.Text = "Forgot Password";
+            this.loginForgotPasswordlinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.loginForgotPasswordlinkLabel_LinkClicked);
             // 
             // loginToggleSwitch
             // 
@@ -211,6 +214,7 @@
             this.loginToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.loginToggleSwitch.UncheckedState.InnerBorderRadius = 2;
             this.loginToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.loginToggleSwitch.CheckedChanged += new System.EventHandler(this.loginToggleSwitch_CheckedChanged);
             // 
             // loginKeepMeLoggedlLabel
             // 
@@ -240,6 +244,7 @@
             this.loginBtn.Size = new System.Drawing.Size(110, 45);
             this.loginBtn.TabIndex = 18;
             this.loginBtn.Text = "Login";
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // loginCloseControlBtn
             // 
