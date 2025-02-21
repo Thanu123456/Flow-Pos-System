@@ -107,6 +107,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SideBar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
@@ -185,6 +192,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-supplier-50 %281%29.png" />
+    <None Include="Resources\icons8-supplier-50.png" />
+    <None Include="Resources\icons8-inventory-50 %281%29.png" />
+    <None Include="Resources\icons8-inventory-50.png" />
+    <None Include="Resources\icons8-group-48 %281%29.png" />
+    <None Include="Resources\icons8-group-48.png" />
+    <None Include="Resources\icons8-user-48 %281%29.png" />
+    <None Include="Resources\icons8-user-48.png" />
+    <None Include="Resources\icons8-product-48 %281%29.png" />
+    <None Include="Resources\icons8-product-48.png" />
+    <None Include="Resources\icons8-shop-50 %281%29.png" />
+    <None Include="Resources\icons8-shop-50.png" />
+    <None Include="Resources\icons8-dashboard-48.png" />
+    <None Include="Resources\My new logo b-05.png" />
+    <None Include="Resources\icons8-forward-50 %283%29.png" />
+    <None Include="Resources\icons8-forward-50 %282%29.png" />
+    <None Include="Resources\icons8-forward-50.png" />
+    <None Include="Resources\icons8-search-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
