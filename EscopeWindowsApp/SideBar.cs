@@ -17,6 +17,8 @@ namespace EscopeWindowsApp
         SupplierForm supplier;
         CustomerForm customer;
         InventoryForm inventory;
+        ProductForm product;
+        
 
 
         public sideBarForm()
@@ -59,49 +61,9 @@ namespace EscopeWindowsApp
 
         private void logoBtn_Click(object sender, EventArgs e)
         {
-            sidebarTransition.Start();
+     
         }
 
-        bool sidebarExpand = true;
-        private void sidebarTransition_Tick(object sender, EventArgs e)
-        {
-            if (sidebarExpand)
-            {
-                sidebar.Width -= 5;
-                if (sidebar.Width <= 50)
-                {
-                    sidebarTransition.Stop();
-                    sidebarExpand = false;
-                    this.Refresh();
-
-                    logoBtn.Width = sidebar.Width;
-                    dashboardBtn.Width = sidebar.Width;
-                    masterBtn.Width = sidebar.Width;
-                    userBtn.Width = sidebar.Width;
-                    supplierBtn.Width = sidebar.Width;
-                    inventoryBtn.Width = sidebar.Width;
-                    customerBtn.Width = sidebar.Width;
-                }
-            }
-            else
-            {
-                sidebar.Width += 5;
-                if (sidebar.Width >= 211)
-                {
-                    sidebarTransition.Stop();
-                    sidebarExpand = true;
-                    this.Refresh();
-
-                    logoBtn.Width = sidebar.Width;
-                    dashboardBtn.Width = sidebar.Width;
-                    masterBtn.Width = sidebar.Width;
-                    userBtn.Width = sidebar.Width;
-                    supplierBtn.Width = sidebar.Width;
-                    inventoryBtn.Width = sidebar.Width;
-                    customerBtn.Width = sidebar.Width;
-                }
-            }
-        }
 
         private void sideBarForm_Load(object sender, EventArgs e)
         {
@@ -221,6 +183,64 @@ namespace EscopeWindowsApp
         private void Inventory_FormClosed(object sender, FormClosedEventArgs e)
         {
             inventory = null;
+        }
+
+        private void sideBarLogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sideBarMinimizeBtn_Click(object sender, EventArgs e)
+        {
+            sidebarTransition.Start();
+        }
+
+        bool sidebarExpand = true;
+        private void sidebarTransition_Tick(object sender, EventArgs e)
+        {
+            if (sidebarExpand)
+            {
+                sidebar.Width -= 5;
+                if (sidebar.Width <= 50)
+                {
+                    sidebarTransition.Stop();
+                    sidebarExpand = false;
+                    this.Refresh();
+
+                    sideBarMinimizeBtn.Width = 211;
+                    dashboardBtn.Width = sidebar.Width;
+                    masterBtn.Width = sidebar.Width;
+                    userBtn.Width = sidebar.Width;
+                    supplierBtn.Width = sidebar.Width;
+                    inventoryBtn.Width = sidebar.Width;
+                    customerBtn.Width = sidebar.Width;
+                    productBtn.Width = sidebar.Width;
+                }
+            }
+            else
+            {
+                sidebar.Width += 5;
+                if (sidebar.Width >= 211)
+                {
+                    sidebarTransition.Stop();
+                    sidebarExpand = true;
+                    this.Refresh();
+
+                    sideBarMinimizeBtn.Width = sidebar.Width;
+                    dashboardBtn.Width = sidebar.Width;
+                    masterBtn.Width = sidebar.Width;
+                    userBtn.Width = sidebar.Width;
+                    supplierBtn.Width = sidebar.Width;
+                    inventoryBtn.Width = sidebar.Width;
+                    customerBtn.Width = sidebar.Width;
+                    productBtn.Width = sidebar.Width;
+                }
+            }
+        }
+
+        private void productBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
