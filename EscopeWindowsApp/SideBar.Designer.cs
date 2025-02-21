@@ -33,7 +33,6 @@
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
-            this.maximumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.sideBarSubPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
@@ -49,8 +48,10 @@
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.masterTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
+            this.morningLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
+            this.sideBarSubPanel.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.masterContainer.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +66,7 @@
             // 
             this.headerPanel.Controls.Add(this.controlPanel);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1920, 34);
@@ -73,12 +74,13 @@
             // 
             // controlPanel
             // 
+            this.controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlPanel.BackColor = System.Drawing.Color.White;
             this.controlPanel.Controls.Add(this.minimumBtn);
-            this.controlPanel.Controls.Add(this.maximumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
-            this.controlPanel.Location = new System.Drawing.Point(655, 1);
+            this.controlPanel.Location = new System.Drawing.Point(1836, 2);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(142, 30);
+            this.controlPanel.Size = new System.Drawing.Size(81, 30);
             this.controlPanel.TabIndex = 1;
             // 
             // minimumBtn
@@ -86,43 +88,33 @@
             this.minimumBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimumBtn.BorderRadius = 8;
             this.minimumBtn.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
-            this.minimumBtn.FillColor = System.Drawing.Color.Silver;
+            this.minimumBtn.FillColor = System.Drawing.Color.Green;
             this.minimumBtn.IconColor = System.Drawing.Color.White;
-            this.minimumBtn.Location = new System.Drawing.Point(4, 3);
+            this.minimumBtn.Location = new System.Drawing.Point(4, 2);
             this.minimumBtn.Name = "minimumBtn";
-            this.minimumBtn.Size = new System.Drawing.Size(41, 25);
+            this.minimumBtn.Size = new System.Drawing.Size(33, 25);
             this.minimumBtn.TabIndex = 2;
-            // 
-            // maximumBtn
-            // 
-            this.maximumBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maximumBtn.BorderRadius = 8;
-            this.maximumBtn.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
-            this.maximumBtn.FillColor = System.Drawing.Color.Silver;
-            this.maximumBtn.IconColor = System.Drawing.Color.White;
-            this.maximumBtn.Location = new System.Drawing.Point(51, 2);
-            this.maximumBtn.Name = "maximumBtn";
-            this.maximumBtn.Size = new System.Drawing.Size(41, 26);
-            this.maximumBtn.TabIndex = 2;
             // 
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.BorderRadius = 8;
-            this.closeBtn.FillColor = System.Drawing.Color.Silver;
+            this.closeBtn.FillColor = System.Drawing.Color.Firebrick;
             this.closeBtn.IconColor = System.Drawing.Color.White;
-            this.closeBtn.Location = new System.Drawing.Point(98, 2);
+            this.closeBtn.Location = new System.Drawing.Point(44, 2);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(41, 26);
+            this.closeBtn.Size = new System.Drawing.Size(33, 25);
             this.closeBtn.TabIndex = 0;
             // 
             // sideBarSubPanel
             // 
+            this.sideBarSubPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.sideBarSubPanel.Controls.Add(this.morningLabel);
             this.sideBarSubPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.sideBarSubPanel.FillColor = System.Drawing.Color.LightGray;
             this.sideBarSubPanel.Location = new System.Drawing.Point(0, 34);
             this.sideBarSubPanel.Name = "sideBarSubPanel";
-            this.sideBarSubPanel.Size = new System.Drawing.Size(1920, 63);
+            this.sideBarSubPanel.Size = new System.Drawing.Size(1920, 71);
             this.sideBarSubPanel.TabIndex = 2;
             // 
             // sidebar
@@ -133,9 +125,9 @@
             this.sidebar.Controls.Add(this.masterContainer);
             this.sidebar.Controls.Add(this.siticoneButton1);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidebar.Location = new System.Drawing.Point(0, 97);
+            this.sidebar.Location = new System.Drawing.Point(0, 105);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(211, 983);
+            this.sidebar.Size = new System.Drawing.Size(211, 975);
             this.sidebar.TabIndex = 3;
             this.sidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.sidebar_Paint);
             // 
@@ -320,6 +312,16 @@
             this.sidebarTransition.Interval = 10;
             this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
             // 
+            // morningLabel
+            // 
+            this.morningLabel.AutoSize = true;
+            this.morningLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.morningLabel.Location = new System.Drawing.Point(245, 26);
+            this.morningLabel.Name = "morningLabel";
+            this.morningLabel.Size = new System.Drawing.Size(80, 13);
+            this.morningLabel.TabIndex = 0;
+            this.morningLabel.Text = "Good Morning !";
+            // 
             // sideBarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,12 +332,15 @@
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "sideBarForm";
-            this.Text = "Form1";
+            this.Text = "Side Bar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.sideBarForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
+            this.sideBarSubPanel.ResumeLayout(false);
+            this.sideBarSubPanel.PerformLayout();
             this.sidebar.ResumeLayout(false);
             this.masterContainer.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -348,7 +353,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel headerPanel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneControlBox maximumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel sideBarSubPanel;
         private System.Windows.Forms.FlowLayoutPanel sidebar;
@@ -364,6 +368,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton productBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton inventoryBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
+        private System.Windows.Forms.Label morningLabel;
     }
 }
 
