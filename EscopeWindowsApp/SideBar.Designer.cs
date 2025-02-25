@@ -35,6 +35,7 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.sideBarSubPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.morningLabel = new System.Windows.Forms.Label();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.logoBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -48,7 +49,7 @@
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.masterTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.morningLabel = new System.Windows.Forms.Label();
+            this.adjustmentBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.sideBarSubPanel.SuspendLayout();
@@ -117,6 +118,16 @@
             this.sideBarSubPanel.Size = new System.Drawing.Size(1920, 71);
             this.sideBarSubPanel.TabIndex = 2;
             // 
+            // morningLabel
+            // 
+            this.morningLabel.AutoSize = true;
+            this.morningLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
+            this.morningLabel.Location = new System.Drawing.Point(245, 26);
+            this.morningLabel.Name = "morningLabel";
+            this.morningLabel.Size = new System.Drawing.Size(80, 13);
+            this.morningLabel.TabIndex = 0;
+            this.morningLabel.Text = "Good Morning !";
+            // 
             // sidebar
             // 
             this.sidebar.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -124,6 +135,7 @@
             this.sidebar.Controls.Add(this.dashboardBtn);
             this.sidebar.Controls.Add(this.masterContainer);
             this.sidebar.Controls.Add(this.siticoneButton1);
+            this.sidebar.Controls.Add(this.adjustmentBtn);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 105);
             this.sidebar.Name = "sidebar";
@@ -312,15 +324,22 @@
             this.sidebarTransition.Interval = 10;
             this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
             // 
-            // morningLabel
+            // adjustmentBtn
             // 
-            this.morningLabel.AutoSize = true;
-            this.morningLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.morningLabel.Location = new System.Drawing.Point(245, 26);
-            this.morningLabel.Name = "morningLabel";
-            this.morningLabel.Size = new System.Drawing.Size(80, 13);
-            this.morningLabel.TabIndex = 0;
-            this.morningLabel.Text = "Good Morning !";
+            this.adjustmentBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.adjustmentBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.adjustmentBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.adjustmentBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.adjustmentBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.adjustmentBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.adjustmentBtn.ForeColor = System.Drawing.Color.White;
+            this.adjustmentBtn.Location = new System.Drawing.Point(0, 192);
+            this.adjustmentBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.adjustmentBtn.Name = "adjustmentBtn";
+            this.adjustmentBtn.Size = new System.Drawing.Size(211, 48);
+            this.adjustmentBtn.TabIndex = 7;
+            this.adjustmentBtn.Text = "Adjustments";
+            this.adjustmentBtn.Click += new System.EventHandler(this.adjustmentBtn_Click);
             // 
             // sideBarForm
             // 
@@ -369,6 +388,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton inventoryBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
         private System.Windows.Forms.Label morningLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton adjustmentBtn;
     }
 }
 

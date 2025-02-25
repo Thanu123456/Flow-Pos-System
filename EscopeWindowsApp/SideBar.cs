@@ -17,6 +17,7 @@ namespace EscopeWindowsApp
         SupplierForm supplier;
         CustomerForm customer;
         InventoryForm inventory;
+        Adjustments adjustments;
 
 
         public sideBarForm()
@@ -81,6 +82,7 @@ namespace EscopeWindowsApp
                     supplierBtn.Width = sidebar.Width;
                     inventoryBtn.Width = sidebar.Width;
                     customerBtn.Width = sidebar.Width;
+                    adjustmentBtn.Width = sidebar.Width;
                 }
             }
             else
@@ -99,6 +101,7 @@ namespace EscopeWindowsApp
                     supplierBtn.Width = sidebar.Width;
                     inventoryBtn.Width = sidebar.Width;
                     customerBtn.Width = sidebar.Width;
+                    adjustmentBtn.Width = sidebar.Width;
                 }
             }
         }
@@ -221,6 +224,27 @@ namespace EscopeWindowsApp
         private void Inventory_FormClosed(object sender, FormClosedEventArgs e)
         {
             inventory = null;
+        }
+
+        private void adjustmentBtn_Click(object sender, EventArgs e)
+        {
+            if (adjustments == null)
+            {
+                adjustments = new Adjustments();
+                adjustments.FormClosed += Adjustments_FormClosed;
+                adjustments.MdiParent = this;
+                adjustments.Dock = DockStyle.Fill;
+                adjustments.Show();
+            }
+            else
+            {
+                adjustments.Activate();
+            }
+        }
+
+        private void Adjustments_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            adjustments = null;
         }
     }
 }
