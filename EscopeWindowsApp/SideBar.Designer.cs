@@ -35,14 +35,6 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.sideBarSubPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.sideBarMinimizeBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.sideBarAdminBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.sideBarAdminUserLabel = new System.Windows.Forms.Label();
-            this.sideBarUserNameLabel = new System.Windows.Forms.Label();
-            this.sideBarProfile = new Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox();
-            this.sideBarNotifyBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.sideBarSearchPanel = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.morningLabel = new System.Windows.Forms.Label();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -53,20 +45,12 @@
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.masterTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.userBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.masterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.productBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.adjustmentBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.sideBarSubPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sideBarProfile)).BeginInit();
-            this.sidebar.SuspendLayout();
-            this.masterContainer.SuspendLayout();
-            this.SuspendLayout();
             // 
-            // sideBarlessForm
-            // 
-            this.sideBarlessForm.ContainerControl = this;
             this.sideBarlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.sideBarlessForm.TransparentWhileDrag = true;
             // 
@@ -133,139 +117,15 @@
             this.sideBarSubPanel.Size = new System.Drawing.Size(1386, 71);
             this.sideBarSubPanel.TabIndex = 2;
             // 
-            // sideBarMinimizeBtn
-            // 
-            this.sideBarMinimizeBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarMinimizeBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarMinimizeBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.sideBarMinimizeBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.sideBarMinimizeBtn.FillColor = System.Drawing.Color.Transparent;
-            this.sideBarMinimizeBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.sideBarMinimizeBtn.ForeColor = System.Drawing.Color.White;
-            this.sideBarMinimizeBtn.Image = global::EscopeWindowsApp.Properties.Resources.My_new_logo_b_05;
-            this.sideBarMinimizeBtn.ImageSize = new System.Drawing.Size(165, 50);
-            this.sideBarMinimizeBtn.Location = new System.Drawing.Point(12, 9);
-            this.sideBarMinimizeBtn.Name = "sideBarMinimizeBtn";
-            this.sideBarMinimizeBtn.Size = new System.Drawing.Size(180, 45);
-            this.sideBarMinimizeBtn.TabIndex = 8;
-            this.sideBarMinimizeBtn.Click += new System.EventHandler(this.sideBarMinimizeBtn_Click);
-            // 
-            // sideBarAdminBtn
-            // 
-            this.sideBarAdminBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarAdminBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarAdminBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.sideBarAdminBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.sideBarAdminBtn.FillColor = System.Drawing.Color.Transparent;
-            this.sideBarAdminBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.sideBarAdminBtn.ForeColor = System.Drawing.Color.White;
-            this.sideBarAdminBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_forward_50__3_;
-            this.sideBarAdminBtn.Location = new System.Drawing.Point(1320, 19);
-            this.sideBarAdminBtn.Name = "sideBarAdminBtn";
-            this.sideBarAdminBtn.Size = new System.Drawing.Size(39, 33);
-            this.sideBarAdminBtn.TabIndex = 5;
-            // 
-            // sideBarAdminUserLabel
-            // 
-            this.sideBarAdminUserLabel.AutoSize = true;
-            this.sideBarAdminUserLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.sideBarAdminUserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sideBarAdminUserLabel.Location = new System.Drawing.Point(1252, 37);
-            this.sideBarAdminUserLabel.Name = "sideBarAdminUserLabel";
-            this.sideBarAdminUserLabel.Size = new System.Drawing.Size(61, 13);
-            this.sideBarAdminUserLabel.TabIndex = 6;
-            this.sideBarAdminUserLabel.Text = "Admin User";
-            // 
-            // sideBarUserNameLabel
-            // 
-            this.sideBarUserNameLabel.AutoSize = true;
-            this.sideBarUserNameLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.sideBarUserNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sideBarUserNameLabel.Location = new System.Drawing.Point(1250, 17);
-            this.sideBarUserNameLabel.Name = "sideBarUserNameLabel";
-            this.sideBarUserNameLabel.Size = new System.Drawing.Size(69, 20);
-            this.sideBarUserNameLabel.TabIndex = 5;
-            this.sideBarUserNameLabel.Text = "Dilshan";
-            // 
-            // sideBarProfile
-            // 
-            this.sideBarProfile.FillColor = System.Drawing.Color.Transparent;
-            this.sideBarProfile.Image = global::EscopeWindowsApp.Properties.Resources.userIcon;
-            this.sideBarProfile.ImageRotate = 0F;
-            this.sideBarProfile.Location = new System.Drawing.Point(1208, 16);
-            this.sideBarProfile.Name = "sideBarProfile";
-            this.sideBarProfile.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.sideBarProfile.Size = new System.Drawing.Size(36, 36);
-            this.sideBarProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.sideBarProfile.TabIndex = 4;
-            this.sideBarProfile.TabStop = false;
-            // 
-            // sideBarNotifyBtn
-            // 
-            this.sideBarNotifyBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarNotifyBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.sideBarNotifyBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.sideBarNotifyBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.sideBarNotifyBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.sideBarNotifyBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.sideBarNotifyBtn.ForeColor = System.Drawing.Color.White;
-            this.sideBarNotifyBtn.Image = global::EscopeWindowsApp.Properties.Resources.bell;
-            this.sideBarNotifyBtn.ImageSize = new System.Drawing.Size(30, 30);
-            this.sideBarNotifyBtn.Location = new System.Drawing.Point(1153, 17);
-            this.sideBarNotifyBtn.Name = "sideBarNotifyBtn";
-            this.sideBarNotifyBtn.Size = new System.Drawing.Size(36, 36);
-            this.sideBarNotifyBtn.TabIndex = 3;
-            // 
-            // sideBarSearchPanel
-            // 
-            this.sideBarSearchPanel.BorderRadius = 8;
-            this.sideBarSearchPanel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.sideBarSearchPanel.DefaultText = "";
-            this.sideBarSearchPanel.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.sideBarSearchPanel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.sideBarSearchPanel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.sideBarSearchPanel.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.sideBarSearchPanel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.sideBarSearchPanel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sideBarSearchPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.sideBarSearchPanel.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.sideBarSearchPanel.IconLeft = global::EscopeWindowsApp.Properties.Resources.icons8_search_50;
-            this.sideBarSearchPanel.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.sideBarSearchPanel.Location = new System.Drawing.Point(856, 17);
-            this.sideBarSearchPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.sideBarSearchPanel.Name = "sideBarSearchPanel";
-            this.sideBarSearchPanel.PasswordChar = '\0';
-            this.sideBarSearchPanel.PlaceholderForeColor = System.Drawing.Color.DimGray;
-            this.sideBarSearchPanel.PlaceholderText = "Search";
-            this.sideBarSearchPanel.SelectedText = "";
-            this.sideBarSearchPanel.Size = new System.Drawing.Size(275, 35);
-            this.sideBarSearchPanel.TabIndex = 2;
-            this.sideBarSearchPanel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(245, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Date";
-            // 
             // morningLabel
             // 
-            this.morningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.morningLabel.AutoSize = true;
             this.morningLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
-            this.morningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.morningLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.morningLabel.Location = new System.Drawing.Point(242, 13);
+            this.morningLabel.Location = new System.Drawing.Point(245, 26);
             this.morningLabel.Name = "morningLabel";
-            this.morningLabel.Size = new System.Drawing.Size(284, 20);
+            this.morningLabel.Size = new System.Drawing.Size(80, 13);
             this.morningLabel.TabIndex = 0;
-            this.morningLabel.Text = "Good Morning!  |   09 : 18 : 25 AM ";
+            this.morningLabel.Text = "Good Morning !";
             // 
             // sidebar
             // 
@@ -273,6 +133,7 @@
             this.sidebar.Controls.Add(this.dashboardBtn);
             this.sidebar.Controls.Add(this.masterContainer);
             this.sidebar.Controls.Add(this.siticoneButton1);
+            this.sidebar.Controls.Add(this.adjustmentBtn);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 105);
             this.sidebar.Name = "sidebar";
@@ -420,80 +281,22 @@
             this.sidebarTransition.Interval = 10;
             this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
             // 
-            // userBtn
+            // adjustmentBtn
             // 
-            this.userBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.userBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
-            this.userBtn.CheckedState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userBtn.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.userBtn.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.icons8_user_48__1_;
-            this.userBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.userBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.userBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.userBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.userBtn.FillColor = System.Drawing.Color.White;
-            this.userBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.userBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.userBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_user_48;
-            this.userBtn.ImageOffset = new System.Drawing.Point(-22, 0);
-            this.userBtn.Location = new System.Drawing.Point(0, 96);
-            this.userBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.userBtn.Name = "userBtn";
-            this.userBtn.Size = new System.Drawing.Size(233, 48);
-            this.userBtn.TabIndex = 6;
-            this.userBtn.Text = "User";
-            this.userBtn.Click += new System.EventHandler(this.userBtn_Click);
-            // 
-            // masterBtn
-            // 
-            this.masterBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.masterBtn.CheckedState.BorderColor = System.Drawing.Color.Transparent;
-            this.masterBtn.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.masterBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
-            this.masterBtn.CheckedState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.masterBtn.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.masterBtn.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.icons8_shop_50__1_;
-            this.masterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.masterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.masterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.masterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.masterBtn.FillColor = System.Drawing.Color.White;
-            this.masterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.masterBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.masterBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_shop_50;
-            this.masterBtn.ImageOffset = new System.Drawing.Point(-23, 0);
-            this.masterBtn.ImageSize = new System.Drawing.Size(30, 30);
-            this.masterBtn.Location = new System.Drawing.Point(0, 0);
-            this.masterBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.masterBtn.Name = "masterBtn";
-            this.masterBtn.Size = new System.Drawing.Size(233, 48);
-            this.masterBtn.TabIndex = 5;
-            this.masterBtn.Text = "Master";
-            this.masterBtn.Click += new System.EventHandler(this.masterBtn_Click);
-            // 
-            // productBtn
-            // 
-            this.productBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.productBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
-            this.productBtn.CheckedState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productBtn.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.productBtn.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.icons8_product_48__1_;
-            this.productBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productBtn.FillColor = System.Drawing.Color.White;
-            this.productBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.productBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.productBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_product_48;
-            this.productBtn.ImageOffset = new System.Drawing.Point(-17, 0);
-            this.productBtn.Location = new System.Drawing.Point(0, 48);
-            this.productBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.productBtn.Name = "productBtn";
-            this.productBtn.Size = new System.Drawing.Size(233, 48);
-            this.productBtn.TabIndex = 9;
-            this.productBtn.Text = "Product";
-            this.productBtn.Click += new System.EventHandler(this.productBtn_Click);
+            this.adjustmentBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.adjustmentBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.adjustmentBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.adjustmentBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.adjustmentBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.adjustmentBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.adjustmentBtn.ForeColor = System.Drawing.Color.White;
+            this.adjustmentBtn.Location = new System.Drawing.Point(0, 192);
+            this.adjustmentBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.adjustmentBtn.Name = "adjustmentBtn";
+            this.adjustmentBtn.Size = new System.Drawing.Size(211, 48);
+            this.adjustmentBtn.TabIndex = 7;
+            this.adjustmentBtn.Text = "Adjustments";
+            this.adjustmentBtn.Click += new System.EventHandler(this.adjustmentBtn_Click);
             // 
             // sideBarForm
             // 
@@ -541,15 +344,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton inventoryBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
         private System.Windows.Forms.Label morningLabel;
-        private System.Windows.Forms.Label label1;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox sideBarSearchPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton sideBarNotifyBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneCirclePictureBox sideBarProfile;
-        private System.Windows.Forms.Label sideBarUserNameLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton sideBarAdminBtn;
-        private System.Windows.Forms.Label sideBarAdminUserLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton sideBarMinimizeBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton productBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton adjustmentBtn;
     }
 }
 

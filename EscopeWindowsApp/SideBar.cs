@@ -17,8 +17,7 @@ namespace EscopeWindowsApp
         SupplierForm supplier;
         CustomerForm customer;
         InventoryForm inventory;
-        ProductForm product;
-        
+        Adjustments adjustments;
 
 
         public sideBarForm()
@@ -64,6 +63,48 @@ namespace EscopeWindowsApp
      
         }
 
+        bool sidebarExpand = true;
+        private void sidebarTransition_Tick(object sender, EventArgs e)
+        {
+            if (sidebarExpand)
+            {
+                sidebar.Width -= 5;
+                if (sidebar.Width <= 50)
+                {
+                    sidebarTransition.Stop();
+                    sidebarExpand = false;
+                    this.Refresh();
+
+                    logoBtn.Width = sidebar.Width;
+                    dashboardBtn.Width = sidebar.Width;
+                    masterBtn.Width = sidebar.Width;
+                    userBtn.Width = sidebar.Width;
+                    supplierBtn.Width = sidebar.Width;
+                    inventoryBtn.Width = sidebar.Width;
+                    customerBtn.Width = sidebar.Width;
+                    adjustmentBtn.Width = sidebar.Width;
+                }
+            }
+            else
+            {
+                sidebar.Width += 5;
+                if (sidebar.Width >= 211)
+                {
+                    sidebarTransition.Stop();
+                    sidebarExpand = true;
+                    this.Refresh();
+
+                    logoBtn.Width = sidebar.Width;
+                    dashboardBtn.Width = sidebar.Width;
+                    masterBtn.Width = sidebar.Width;
+                    userBtn.Width = sidebar.Width;
+                    supplierBtn.Width = sidebar.Width;
+                    inventoryBtn.Width = sidebar.Width;
+                    customerBtn.Width = sidebar.Width;
+                    adjustmentBtn.Width = sidebar.Width;
+                }
+            }
+        }
 
         private void sideBarForm_Load(object sender, EventArgs e)
         {
@@ -185,62 +226,25 @@ namespace EscopeWindowsApp
             inventory = null;
         }
 
-        private void sideBarLogo_Click(object sender, EventArgs e)
+        private void adjustmentBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void sideBarMinimizeBtn_Click(object sender, EventArgs e)
-        {
-            sidebarTransition.Start();
-        }
-
-        bool sidebarExpand = true;
-        private void sidebarTransition_Tick(object sender, EventArgs e)
-        {
-            if (sidebarExpand)
+            if (adjustments == null)
             {
-                sidebar.Width -= 5;
-                if (sidebar.Width <= 50)
-                {
-                    sidebarTransition.Stop();
-                    sidebarExpand = false;
-                    this.Refresh();
-
-                    sideBarMinimizeBtn.Width = 211;
-                    dashboardBtn.Width = sidebar.Width;
-                    masterBtn.Width = sidebar.Width;
-                    userBtn.Width = sidebar.Width;
-                    supplierBtn.Width = sidebar.Width;
-                    inventoryBtn.Width = sidebar.Width;
-                    customerBtn.Width = sidebar.Width;
-                    productBtn.Width = sidebar.Width;
-                }
+                adjustments = new Adjustments();
+                adjustments.FormClosed += Adjustments_FormClosed;
+                adjustments.MdiParent = this;
+                adjustments.Dock = DockStyle.Fill;
+                adjustments.Show();
             }
             else
             {
-                sidebar.Width += 5;
-                if (sidebar.Width >= 211)
-                {
-                    sidebarTransition.Stop();
-                    sidebarExpand = true;
-                    this.Refresh();
-
-                    sideBarMinimizeBtn.Width = sidebar.Width;
-                    dashboardBtn.Width = sidebar.Width;
-                    masterBtn.Width = sidebar.Width;
-                    userBtn.Width = sidebar.Width;
-                    supplierBtn.Width = sidebar.Width;
-                    inventoryBtn.Width = sidebar.Width;
-                    customerBtn.Width = sidebar.Width;
-                    productBtn.Width = sidebar.Width;
-                }
+                adjustments.Activate();
             }
         }
 
-        private void productBtn_Click(object sender, EventArgs e)
+        private void Adjustments_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            adjustments = null;
         }
     }
 }

@@ -77,6 +77,12 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Adjustments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adjustments.Designer.cs">
+      <DependentUpon>Adjustments.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adjustments.resx">
+      <DependentUpon>Adjustments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
@@ -210,6 +219,16 @@
     <None Include="Resources\icons8-forward-50 %282%29.png" />
     <None Include="Resources\icons8-forward-50.png" />
     <None Include="Resources\icons8-search-50.png" />
+    <None Include="Resources\backBtn.png" />
+    <None Include="Resources\lastoBtn1.png" />
+    <None Include="Resources\firstBtn1.png" />
+    <None Include="Resources\lastoBtn.png" />
+    <None Include="Resources\firstBtn.png" />
+    <None Include="Resources\endBtn.png" />
+    <None Include="Resources\nextBtn.png" />
+    <None Include="Resources\whitefilter.png" />
+    <None Include="Resources\filter-b.png" />
+    <None Include="Resources\filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
