@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.userSearchPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userSearchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userAddBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -69,7 +69,7 @@
             this.userSearchPanel.Controls.Add(this.userNameText);
             this.userSearchPanel.Location = new System.Drawing.Point(12, 42);
             this.userSearchPanel.Name = "userSearchPanel";
-            this.userSearchPanel.Size = new System.Drawing.Size(1896, 148);
+            this.userSearchPanel.Size = new System.Drawing.Size(1362, 148);
             this.userSearchPanel.TabIndex = 0;
             // 
             // userSearchBtn
@@ -149,7 +149,7 @@
             this.userRoleText.PasswordChar = '\0';
             this.userRoleText.PlaceholderText = "Enter Role";
             this.userRoleText.SelectedText = "";
-            this.userRoleText.Size = new System.Drawing.Size(400, 40);
+            this.userRoleText.Size = new System.Drawing.Size(300, 40);
             this.userRoleText.TabIndex = 2;
             this.userRoleText.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged_2);
             // 
@@ -175,7 +175,7 @@
             this.userEmailText.PasswordChar = '\0';
             this.userEmailText.PlaceholderText = "Enter Email";
             this.userEmailText.SelectedText = "";
-            this.userEmailText.Size = new System.Drawing.Size(400, 40);
+            this.userEmailText.Size = new System.Drawing.Size(300, 40);
             this.userEmailText.TabIndex = 1;
             this.userEmailText.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged_1);
             // 
@@ -201,22 +201,22 @@
             this.userNameText.PasswordChar = '\0';
             this.userNameText.PlaceholderText = "Enter Name";
             this.userNameText.SelectedText = "";
-            this.userNameText.Size = new System.Drawing.Size(400, 40);
+            this.userNameText.Size = new System.Drawing.Size(300, 40);
             this.userNameText.TabIndex = 0;
             this.userNameText.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged);
             // 
             // userDataGridView
             // 
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.userDataGridView.ColumnHeadersHeight = 25;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -225,14 +225,14 @@
             this.role,
             this.status,
             this.action});
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.userDataGridView.GridColor = System.Drawing.Color.White;
             this.userDataGridView.Location = new System.Drawing.Point(12, 232);
             this.userDataGridView.Name = "userDataGridView";
@@ -362,7 +362,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.usersListLabel);
             this.Controls.Add(this.userPagiPanel);
             this.Controls.Add(this.userDataGridView);
