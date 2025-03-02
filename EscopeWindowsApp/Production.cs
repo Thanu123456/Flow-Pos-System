@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class ProductForm : Form
+    public partial class Production : Form
     {
-        public ProductForm()
+        public Production()
         {
             InitializeComponent();
+        }
+
+        private void adjPageCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
