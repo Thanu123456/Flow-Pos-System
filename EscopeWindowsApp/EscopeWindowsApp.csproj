@@ -45,7 +45,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -83,6 +85,60 @@
     <Compile Include="Adjustments.Designer.cs">
       <DependentUpon>Adjustments.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUnit.Designer.cs">
+      <DependentUpon>BaseUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Brands.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Brands.Designer.cs">
+      <DependentUpon>Brands.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Category.Designer.cs">
+      <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateBaseUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateBaseUnit.Designer.cs">
+      <DependentUpon>CreateBaseUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateBrand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateBrand.Designer.cs">
+      <DependentUpon>CreateBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCategory.Designer.cs">
+      <DependentUpon>CreateCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateProduct.Designer.cs">
+      <DependentUpon>CreateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateUnits.Designer.cs">
+      <DependentUpon>CreateUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateVariations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateVariations.Designer.cs">
+      <DependentUpon>CreateVariations.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,17 +169,11 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductForm.cs">
+    <Compile Include="Production.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductForm.Designer.cs">
-      <DependentUpon>ProductForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SideBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SideBar.Designer.cs">
-      <DependentUpon>SideBar.cs</DependentUpon>
+    <Compile Include="Production.Designer.cs">
+      <DependentUpon>Production.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,11 +183,23 @@
     <Compile Include="SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Units.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Units.Designer.cs">
+      <DependentUpon>Units.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Variations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variations.Designer.cs">
+      <DependentUpon>Variations.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
@@ -150,6 +212,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Adjustments.resx">
       <DependentUpon>Adjustments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUnit.resx">
+      <DependentUpon>BaseUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Brands.resx">
+      <DependentUpon>Brands.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Category.resx">
+      <DependentUpon>Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateBaseUnit.resx">
+      <DependentUpon>CreateBaseUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateBrand.resx">
+      <DependentUpon>CreateBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCategory.resx">
+      <DependentUpon>CreateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateProduct.resx">
+      <DependentUpon>CreateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateUnits.resx">
+      <DependentUpon>CreateUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateVariations.resx">
+      <DependentUpon>CreateVariations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
@@ -166,8 +255,8 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SideBar.resx">
-      <DependentUpon>SideBar.cs</DependentUpon>
+    <EmbeddedResource Include="Production.resx">
+      <DependentUpon>Production.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -182,8 +271,14 @@
     <EmbeddedResource Include="SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Units.resx">
+      <DependentUpon>Units.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variations.resx">
+      <DependentUpon>Variations.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
