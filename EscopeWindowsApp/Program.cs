@@ -16,7 +16,7 @@ namespace EscopeWindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new sideBarForm());
+            Application.Run(new AddUserForm());
         }
     }
 }

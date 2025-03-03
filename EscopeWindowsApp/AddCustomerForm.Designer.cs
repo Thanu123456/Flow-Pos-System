@@ -34,22 +34,27 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.maximumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
-            this.generalinfoLabel = new System.Windows.Forms.Label();
-            this.cusGinfoPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.cusResetBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.addCusCreatedText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addCusAddressText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addCusDescText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createCusCityText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createCusAddressText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.addCusEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addCusPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addCusNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addCusLabel = new System.Windows.Forms.Label();
+            this.CreateCusPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createCusNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.addCusBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.cusAnimateWindow = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
+            this.createCusLabel = new System.Windows.Forms.Label();
+            this.createCusPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.createCusNameLabel = new System.Windows.Forms.Label();
+            this.createCusEmailLabel = new System.Windows.Forms.Label();
+            this.createCusPhoneLabel = new System.Windows.Forms.Label();
+            this.createCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
+            this.createCusDOB = new System.Windows.Forms.Label();
+            this.createCusCityLabel = new System.Windows.Forms.Label();
+            this.createCusAddress = new System.Windows.Forms.Label();
+            this.cusCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
-            this.cusGinfoPanel.SuspendLayout();
+            this.createCusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -59,7 +64,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(838, 34);
+            this.headerPanel.Size = new System.Drawing.Size(1000, 34);
             this.headerPanel.TabIndex = 2;
             this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
@@ -70,7 +75,7 @@
             this.controlPanel.Controls.Add(this.maximumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.SystemColors.Control;
-            this.controlPanel.Location = new System.Drawing.Point(693, 1);
+            this.controlPanel.Location = new System.Drawing.Point(855, 1);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(142, 30);
             this.controlPanel.TabIndex = 1;
@@ -110,128 +115,47 @@
             this.closeBtn.Size = new System.Drawing.Size(41, 26);
             this.closeBtn.TabIndex = 0;
             // 
-            // generalinfoLabel
+            // createCusCityText
             // 
-            this.generalinfoLabel.AutoSize = true;
-            this.generalinfoLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generalinfoLabel.Location = new System.Drawing.Point(41, 78);
-            this.generalinfoLabel.Name = "generalinfoLabel";
-            this.generalinfoLabel.Size = new System.Drawing.Size(122, 14);
-            this.generalinfoLabel.TabIndex = 7;
-            this.generalinfoLabel.Text = "General Information";
+            this.createCusCityText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createCusCityText.BorderRadius = 8;
+            this.createCusCityText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createCusCityText.DefaultText = "";
+            this.createCusCityText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createCusCityText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createCusCityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusCityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusCityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusCityText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusCityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusCityText.Location = new System.Drawing.Point(23, 282);
+            this.createCusCityText.Name = "createCusCityText";
+            this.createCusCityText.PasswordChar = '\0';
+            this.createCusCityText.PlaceholderText = "Enter Customer City";
+            this.createCusCityText.SelectedText = "";
+            this.createCusCityText.Size = new System.Drawing.Size(400, 42);
+            this.createCusCityText.TabIndex = 8;
             // 
-            // cusGinfoPanel
+            // createCusAddressText
             // 
-            this.cusGinfoPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cusGinfoPanel.BorderRadius = 8;
-            this.cusGinfoPanel.BorderThickness = 1;
-            this.cusGinfoPanel.Controls.Add(this.cusResetBtn);
-            this.cusGinfoPanel.Controls.Add(this.cusSaveBtn);
-            this.cusGinfoPanel.Controls.Add(this.addCusCreatedText);
-            this.cusGinfoPanel.Controls.Add(this.addCusAddressText);
-            this.cusGinfoPanel.Controls.Add(this.addCusDescText);
-            this.cusGinfoPanel.Controls.Add(this.addCusEmailText);
-            this.cusGinfoPanel.Controls.Add(this.addCusPhoneText);
-            this.cusGinfoPanel.Controls.Add(this.addCusNameText);
-            this.cusGinfoPanel.Location = new System.Drawing.Point(16, 84);
-            this.cusGinfoPanel.Name = "cusGinfoPanel";
-            this.cusGinfoPanel.Size = new System.Drawing.Size(810, 395);
-            this.cusGinfoPanel.TabIndex = 6;
-            // 
-            // cusResetBtn
-            // 
-            this.cusResetBtn.BorderRadius = 8;
-            this.cusResetBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusResetBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusResetBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusResetBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusResetBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cusResetBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.cusResetBtn.ForeColor = System.Drawing.Color.White;
-            this.cusResetBtn.Location = new System.Drawing.Point(691, 330);
-            this.cusResetBtn.Name = "cusResetBtn";
-            this.cusResetBtn.Size = new System.Drawing.Size(106, 45);
-            this.cusResetBtn.TabIndex = 12;
-            this.cusResetBtn.Text = "Reset";
-            // 
-            // cusSaveBtn
-            // 
-            this.cusSaveBtn.BorderRadius = 8;
-            this.cusSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.cusSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.cusSaveBtn.Location = new System.Drawing.Point(556, 330);
-            this.cusSaveBtn.Name = "cusSaveBtn";
-            this.cusSaveBtn.Size = new System.Drawing.Size(106, 45);
-            this.cusSaveBtn.TabIndex = 11;
-            this.cusSaveBtn.Text = "Save";
-            // 
-            // addCusCreatedText
-            // 
-            this.addCusCreatedText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addCusCreatedText.BorderRadius = 8;
-            this.addCusCreatedText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addCusCreatedText.DefaultText = "";
-            this.addCusCreatedText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addCusCreatedText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addCusCreatedText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusCreatedText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusCreatedText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusCreatedText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addCusCreatedText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusCreatedText.Location = new System.Drawing.Point(430, 256);
-            this.addCusCreatedText.Name = "addCusCreatedText";
-            this.addCusCreatedText.PasswordChar = '\0';
-            this.addCusCreatedText.PlaceholderText = "Enter Customer Created At";
-            this.addCusCreatedText.SelectedText = "";
-            this.addCusCreatedText.Size = new System.Drawing.Size(367, 36);
-            this.addCusCreatedText.TabIndex = 8;
-            // 
-            // addCusAddressText
-            // 
-            this.addCusAddressText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addCusAddressText.BorderRadius = 8;
-            this.addCusAddressText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addCusAddressText.DefaultText = "";
-            this.addCusAddressText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addCusAddressText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addCusAddressText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusAddressText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusAddressText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusAddressText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addCusAddressText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusAddressText.Location = new System.Drawing.Point(12, 256);
-            this.addCusAddressText.Name = "addCusAddressText";
-            this.addCusAddressText.PasswordChar = '\0';
-            this.addCusAddressText.PlaceholderText = "Enter Customer Address";
-            this.addCusAddressText.SelectedText = "";
-            this.addCusAddressText.Size = new System.Drawing.Size(367, 36);
-            this.addCusAddressText.TabIndex = 6;
-            // 
-            // addCusDescText
-            // 
-            this.addCusDescText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addCusDescText.BorderRadius = 8;
-            this.addCusDescText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addCusDescText.DefaultText = "";
-            this.addCusDescText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addCusDescText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addCusDescText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusDescText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusDescText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusDescText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addCusDescText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusDescText.Location = new System.Drawing.Point(12, 97);
-            this.addCusDescText.Name = "addCusDescText";
-            this.addCusDescText.PasswordChar = '\0';
-            this.addCusDescText.PlaceholderText = "Enter Description";
-            this.addCusDescText.SelectedText = "";
-            this.addCusDescText.Size = new System.Drawing.Size(785, 110);
-            this.addCusDescText.TabIndex = 5;
+            this.createCusAddressText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createCusAddressText.BorderRadius = 8;
+            this.createCusAddressText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createCusAddressText.DefaultText = "";
+            this.createCusAddressText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createCusAddressText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createCusAddressText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusAddressText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusAddressText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusAddressText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusAddressText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusAddressText.Location = new System.Drawing.Point(504, 282);
+            this.createCusAddressText.Name = "createCusAddressText";
+            this.createCusAddressText.PasswordChar = '\0';
+            this.createCusAddressText.PlaceholderText = "Enter Customer Address";
+            this.createCusAddressText.SelectedText = "";
+            this.createCusAddressText.Size = new System.Drawing.Size(400, 42);
+            this.createCusAddressText.TabIndex = 6;
             // 
             // addCusEmailText
             // 
@@ -246,65 +170,55 @@
             this.addCusEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.addCusEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
             this.addCusEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusEmailText.Location = new System.Drawing.Point(281, 22);
+            this.addCusEmailText.Location = new System.Drawing.Point(504, 60);
             this.addCusEmailText.Name = "addCusEmailText";
             this.addCusEmailText.PasswordChar = '\0';
             this.addCusEmailText.PlaceholderText = "Enter Customer Email";
             this.addCusEmailText.SelectedText = "";
-            this.addCusEmailText.Size = new System.Drawing.Size(247, 36);
+            this.addCusEmailText.Size = new System.Drawing.Size(400, 42);
             this.addCusEmailText.TabIndex = 4;
             // 
-            // addCusPhoneText
+            // CreateCusPhoneText
             // 
-            this.addCusPhoneText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addCusPhoneText.BorderRadius = 8;
-            this.addCusPhoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addCusPhoneText.DefaultText = "";
-            this.addCusPhoneText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addCusPhoneText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addCusPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addCusPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusPhoneText.Location = new System.Drawing.Point(550, 22);
-            this.addCusPhoneText.Name = "addCusPhoneText";
-            this.addCusPhoneText.PasswordChar = '\0';
-            this.addCusPhoneText.PlaceholderText = "Enter Customer Phone";
-            this.addCusPhoneText.SelectedText = "";
-            this.addCusPhoneText.Size = new System.Drawing.Size(247, 36);
-            this.addCusPhoneText.TabIndex = 3;
+            this.CreateCusPhoneText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CreateCusPhoneText.BorderRadius = 8;
+            this.CreateCusPhoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.CreateCusPhoneText.DefaultText = "";
+            this.CreateCusPhoneText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.CreateCusPhoneText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.CreateCusPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.CreateCusPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.CreateCusPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CreateCusPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.CreateCusPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CreateCusPhoneText.Location = new System.Drawing.Point(23, 171);
+            this.CreateCusPhoneText.Name = "CreateCusPhoneText";
+            this.CreateCusPhoneText.PasswordChar = '\0';
+            this.CreateCusPhoneText.PlaceholderText = "Enter Customer Phone";
+            this.CreateCusPhoneText.SelectedText = "";
+            this.CreateCusPhoneText.Size = new System.Drawing.Size(400, 42);
+            this.CreateCusPhoneText.TabIndex = 3;
             // 
-            // addCusNameText
+            // createCusNameText
             // 
-            this.addCusNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addCusNameText.BorderRadius = 8;
-            this.addCusNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addCusNameText.DefaultText = "";
-            this.addCusNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addCusNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addCusNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addCusNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addCusNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusNameText.Location = new System.Drawing.Point(12, 22);
-            this.addCusNameText.Name = "addCusNameText";
-            this.addCusNameText.PasswordChar = '\0';
-            this.addCusNameText.PlaceholderText = "Enter Customer Name";
-            this.addCusNameText.SelectedText = "";
-            this.addCusNameText.Size = new System.Drawing.Size(247, 36);
-            this.addCusNameText.TabIndex = 1;
-            // 
-            // addCusLabel
-            // 
-            this.addCusLabel.AutoSize = true;
-            this.addCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addCusLabel.Location = new System.Drawing.Point(13, 44);
-            this.addCusLabel.Name = "addCusLabel";
-            this.addCusLabel.Size = new System.Drawing.Size(169, 17);
-            this.addCusLabel.TabIndex = 5;
-            this.addCusLabel.Text = "Create New Customer";
+            this.createCusNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createCusNameText.BorderRadius = 8;
+            this.createCusNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createCusNameText.DefaultText = "";
+            this.createCusNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createCusNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createCusNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createCusNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createCusNameText.Location = new System.Drawing.Point(23, 60);
+            this.createCusNameText.Name = "createCusNameText";
+            this.createCusNameText.PasswordChar = '\0';
+            this.createCusNameText.PlaceholderText = "Enter Customer Name";
+            this.createCusNameText.SelectedText = "";
+            this.createCusNameText.Size = new System.Drawing.Size(400, 42);
+            this.createCusNameText.TabIndex = 1;
             // 
             // addCusBorderlessForm
             // 
@@ -317,21 +231,168 @@
             // 
             this.cusAnimateWindow.TargetForm = this;
             // 
+            // createCusLabel
+            // 
+            this.createCusLabel.AutoSize = true;
+            this.createCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusLabel.Location = new System.Drawing.Point(26, 53);
+            this.createCusLabel.Name = "createCusLabel";
+            this.createCusLabel.Size = new System.Drawing.Size(210, 28);
+            this.createCusLabel.TabIndex = 18;
+            this.createCusLabel.Text = "Create Customer";
+            // 
+            // createCusPanel
+            // 
+            this.createCusPanel.BorderRadius = 8;
+            this.createCusPanel.Controls.Add(this.cusCancelBtn);
+            this.createCusPanel.Controls.Add(this.cusSaveBtn);
+            this.createCusPanel.Controls.Add(this.createCusAddress);
+            this.createCusPanel.Controls.Add(this.createCusCityLabel);
+            this.createCusPanel.Controls.Add(this.createCusDOB);
+            this.createCusPanel.Controls.Add(this.createCusDateTime);
+            this.createCusPanel.Controls.Add(this.createCusPhoneLabel);
+            this.createCusPanel.Controls.Add(this.createCusAddressText);
+            this.createCusPanel.Controls.Add(this.createCusEmailLabel);
+            this.createCusPanel.Controls.Add(this.createCusCityText);
+            this.createCusPanel.Controls.Add(this.createCusNameText);
+            this.createCusPanel.Controls.Add(this.createCusNameLabel);
+            this.createCusPanel.Controls.Add(this.addCusEmailText);
+            this.createCusPanel.Controls.Add(this.CreateCusPhoneText);
+            this.createCusPanel.FillColor = System.Drawing.Color.White;
+            this.createCusPanel.Location = new System.Drawing.Point(31, 105);
+            this.createCusPanel.Name = "createCusPanel";
+            this.createCusPanel.Size = new System.Drawing.Size(928, 480);
+            this.createCusPanel.TabIndex = 19;
+            // 
+            // createCusNameLabel
+            // 
+            this.createCusNameLabel.AutoSize = true;
+            this.createCusNameLabel.BackColor = System.Drawing.Color.White;
+            this.createCusNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusNameLabel.Location = new System.Drawing.Point(19, 25);
+            this.createCusNameLabel.Name = "createCusNameLabel";
+            this.createCusNameLabel.Size = new System.Drawing.Size(60, 23);
+            this.createCusNameLabel.TabIndex = 19;
+            this.createCusNameLabel.Text = "Name:";
+            // 
+            // createCusEmailLabel
+            // 
+            this.createCusEmailLabel.AutoSize = true;
+            this.createCusEmailLabel.BackColor = System.Drawing.Color.White;
+            this.createCusEmailLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusEmailLabel.Location = new System.Drawing.Point(500, 25);
+            this.createCusEmailLabel.Name = "createCusEmailLabel";
+            this.createCusEmailLabel.Size = new System.Drawing.Size(56, 23);
+            this.createCusEmailLabel.TabIndex = 21;
+            this.createCusEmailLabel.Text = "Email:";
+            // 
+            // createCusPhoneLabel
+            // 
+            this.createCusPhoneLabel.AutoSize = true;
+            this.createCusPhoneLabel.BackColor = System.Drawing.Color.White;
+            this.createCusPhoneLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusPhoneLabel.Location = new System.Drawing.Point(19, 136);
+            this.createCusPhoneLabel.Name = "createCusPhoneLabel";
+            this.createCusPhoneLabel.Size = new System.Drawing.Size(131, 23);
+            this.createCusPhoneLabel.TabIndex = 22;
+            this.createCusPhoneLabel.Text = "Phone Number:";
+            // 
+            // createCusDateTime
+            // 
+            this.createCusDateTime.BorderRadius = 8;
+            this.createCusDateTime.Checked = true;
+            this.createCusDateTime.FillColor = System.Drawing.Color.LightGreen;
+            this.createCusDateTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.createCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.createCusDateTime.Location = new System.Drawing.Point(504, 171);
+            this.createCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.createCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.createCusDateTime.Name = "createCusDateTime";
+            this.createCusDateTime.Size = new System.Drawing.Size(400, 42);
+            this.createCusDateTime.TabIndex = 23;
+            this.createCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            // 
+            // createCusDOB
+            // 
+            this.createCusDOB.AutoSize = true;
+            this.createCusDOB.BackColor = System.Drawing.Color.White;
+            this.createCusDOB.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusDOB.Location = new System.Drawing.Point(500, 136);
+            this.createCusDOB.Name = "createCusDOB";
+            this.createCusDOB.Size = new System.Drawing.Size(50, 23);
+            this.createCusDOB.TabIndex = 24;
+            this.createCusDOB.Text = "DOB:";
+            // 
+            // createCusCityLabel
+            // 
+            this.createCusCityLabel.AutoSize = true;
+            this.createCusCityLabel.BackColor = System.Drawing.Color.White;
+            this.createCusCityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusCityLabel.Location = new System.Drawing.Point(19, 246);
+            this.createCusCityLabel.Name = "createCusCityLabel";
+            this.createCusCityLabel.Size = new System.Drawing.Size(44, 23);
+            this.createCusCityLabel.TabIndex = 25;
+            this.createCusCityLabel.Text = "City:";
+            // 
+            // createCusAddress
+            // 
+            this.createCusAddress.AutoSize = true;
+            this.createCusAddress.BackColor = System.Drawing.Color.White;
+            this.createCusAddress.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusAddress.Location = new System.Drawing.Point(500, 246);
+            this.createCusAddress.Name = "createCusAddress";
+            this.createCusAddress.Size = new System.Drawing.Size(78, 23);
+            this.createCusAddress.TabIndex = 26;
+            this.createCusAddress.Text = "Address:";
+            // 
+            // cusCancelBtn
+            // 
+            this.cusCancelBtn.BorderRadius = 8;
+            this.cusCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusCancelBtn.FillColor = System.Drawing.Color.DarkGray;
+            this.cusCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.cusCancelBtn.ForeColor = System.Drawing.Color.White;
+            this.cusCancelBtn.Location = new System.Drawing.Point(802, 389);
+            this.cusCancelBtn.Name = "cusCancelBtn";
+            this.cusCancelBtn.Size = new System.Drawing.Size(93, 47);
+            this.cusCancelBtn.TabIndex = 30;
+            this.cusCancelBtn.Text = "Cancel";
+            // 
+            // cusSaveBtn
+            // 
+            this.cusSaveBtn.BorderRadius = 8;
+            this.cusSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.cusSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSaveBtn.ForeColor = System.Drawing.Color.White;
+            this.cusSaveBtn.Location = new System.Drawing.Point(686, 389);
+            this.cusSaveBtn.Name = "cusSaveBtn";
+            this.cusSaveBtn.Size = new System.Drawing.Size(93, 47);
+            this.cusSaveBtn.TabIndex = 29;
+            this.cusSaveBtn.Text = "Save";
+            // 
             // AddCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 519);
-            this.Controls.Add(this.generalinfoLabel);
-            this.Controls.Add(this.cusGinfoPanel);
-            this.Controls.Add(this.addCusLabel);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.ClientSize = new System.Drawing.Size(1000, 620);
+            this.Controls.Add(this.createCusPanel);
+            this.Controls.Add(this.createCusLabel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddCustomerForm";
             this.Text = "AddCustomerForm";
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
-            this.cusGinfoPanel.ResumeLayout(false);
+            this.createCusPanel.ResumeLayout(false);
+            this.createCusPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,18 +405,23 @@
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox maximumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
-        private System.Windows.Forms.Label generalinfoLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel cusGinfoPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusDescText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusEmailText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusPhoneText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusNameText;
-        private System.Windows.Forms.Label addCusLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusCreatedText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addCusAddressText;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusResetBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusSaveBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox CreateCusPhoneText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createCusNameText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createCusCityText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createCusAddressText;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm addCusBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow cusAnimateWindow;
+        private System.Windows.Forms.Label createCusLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel createCusPanel;
+        private System.Windows.Forms.Label createCusNameLabel;
+        private System.Windows.Forms.Label createCusEmailLabel;
+        private System.Windows.Forms.Label createCusPhoneLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker createCusDateTime;
+        private System.Windows.Forms.Label createCusDOB;
+        private System.Windows.Forms.Label createCusAddress;
+        private System.Windows.Forms.Label createCusCityLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusCancelBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusSaveBtn;
     }
 }

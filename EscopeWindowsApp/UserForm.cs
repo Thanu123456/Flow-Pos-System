@@ -32,27 +32,6 @@ namespace EscopeWindowsApp
 
         }
 
-        private void siticoneButton1_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is AddUserForm)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-
-                }
-
-            }
-            AddUserForm addUserForm = new AddUserForm();
-            addUserForm.Show();
-        }
-
         private void siticoneButton1_Click_1(object sender, EventArgs e)
         {
 
@@ -66,6 +45,25 @@ namespace EscopeWindowsApp
         private void UserForm_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1920, 1080); // Set window size
+        }
+
+        private void createUserBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is AddUserForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            AddUserForm addUserForm = new AddUserForm();
+            addUserForm.Show();
         }
     }
 }

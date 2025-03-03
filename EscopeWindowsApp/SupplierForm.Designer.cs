@@ -31,241 +31,77 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.suppliersListLabel = new System.Windows.Forms.Label();
-            this.supSearchPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.supSearchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.supAddBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.supPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.supEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.supNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.supIDText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.userPagiPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.userNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.userCurrentBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.userPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.userDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supSearchPanel.SuspendLayout();
-            this.userPagiPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
+            this.supSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createSupBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.supFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supAllPgLabel = new System.Windows.Forms.Label();
+            this.supOfLabel = new System.Windows.Forms.Label();
+            this.supPgRangeLabel = new System.Windows.Forms.Label();
+            this.supPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.supRecordsPerLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).BeginInit();
+            this.supBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // suppliersListLabel
+            // supSearchText
             // 
-            this.suppliersListLabel.AutoSize = true;
-            this.suppliersListLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.suppliersListLabel.Location = new System.Drawing.Point(12, 10);
-            this.suppliersListLabel.Name = "suppliersListLabel";
-            this.suppliersListLabel.Size = new System.Drawing.Size(107, 17);
-            this.suppliersListLabel.TabIndex = 5;
-            this.suppliersListLabel.Text = "Suppliers List";
+            this.supSearchText.BorderRadius = 8;
+            this.supSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.supSearchText.DefaultText = "";
+            this.supSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.supSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.supSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.supSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.supSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.supSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.supSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.supSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.supSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.supSearchText.Location = new System.Drawing.Point(40, 13);
+            this.supSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.supSearchText.Name = "supSearchText";
+            this.supSearchText.PasswordChar = '\0';
+            this.supSearchText.PlaceholderText = "Search";
+            this.supSearchText.SelectedText = "";
+            this.supSearchText.Size = new System.Drawing.Size(400, 42);
+            this.supSearchText.TabIndex = 7;
             // 
-            // supSearchPanel
+            // createSupBtn
             // 
-            this.supSearchPanel.BorderColor = System.Drawing.Color.Black;
-            this.supSearchPanel.BorderRadius = 10;
-            this.supSearchPanel.BorderThickness = 1;
-            this.supSearchPanel.Controls.Add(this.supSearchBtn);
-            this.supSearchPanel.Controls.Add(this.supAddBtn);
-            this.supSearchPanel.Controls.Add(this.supPhoneText);
-            this.supSearchPanel.Controls.Add(this.supEmailText);
-            this.supSearchPanel.Controls.Add(this.supNameText);
-            this.supSearchPanel.Controls.Add(this.supIDText);
-            this.supSearchPanel.Location = new System.Drawing.Point(12, 43);
-            this.supSearchPanel.Name = "supSearchPanel";
-            this.supSearchPanel.Size = new System.Drawing.Size(810, 148);
-            this.supSearchPanel.TabIndex = 4;
+            this.createSupBtn.BorderRadius = 8;
+            this.createSupBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createSupBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createSupBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createSupBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createSupBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createSupBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.createSupBtn.ForeColor = System.Drawing.Color.White;
+            this.createSupBtn.Location = new System.Drawing.Point(1668, 13);
+            this.createSupBtn.Name = "createSupBtn";
+            this.createSupBtn.Size = new System.Drawing.Size(209, 42);
+            this.createSupBtn.TabIndex = 8;
+            this.createSupBtn.Text = "Craete Supplier";
+            this.createSupBtn.Click += new System.EventHandler(this.createSupBtn_Click);
             // 
-            // supSearchBtn
-            // 
-            this.supSearchBtn.BorderRadius = 8;
-            this.supSearchBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.supSearchBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.supSearchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.supSearchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supSearchBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.supSearchBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.supSearchBtn.ForeColor = System.Drawing.Color.White;
-            this.supSearchBtn.Location = new System.Drawing.Point(679, 84);
-            this.supSearchBtn.Name = "supSearchBtn";
-            this.supSearchBtn.Size = new System.Drawing.Size(106, 45);
-            this.supSearchBtn.TabIndex = 4;
-            this.supSearchBtn.Text = "Search";
-            // 
-            // supAddBtn
-            // 
-            this.supAddBtn.BorderRadius = 8;
-            this.supAddBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.supAddBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.supAddBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.supAddBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supAddBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.supAddBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.supAddBtn.ForeColor = System.Drawing.Color.White;
-            this.supAddBtn.Location = new System.Drawing.Point(550, 84);
-            this.supAddBtn.Name = "supAddBtn";
-            this.supAddBtn.Size = new System.Drawing.Size(106, 45);
-            this.supAddBtn.TabIndex = 0;
-            this.supAddBtn.Text = "Add";
-            this.supAddBtn.Click += new System.EventHandler(this.supAddBtn_Click);
-            // 
-            // supPhoneText
-            // 
-            this.supPhoneText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supPhoneText.BorderRadius = 8;
-            this.supPhoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.supPhoneText.DefaultText = "";
-            this.supPhoneText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.supPhoneText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.supPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supPhoneText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.supPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.supPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supPhoneText.Location = new System.Drawing.Point(14, 84);
-            this.supPhoneText.Name = "supPhoneText";
-            this.supPhoneText.PasswordChar = '\0';
-            this.supPhoneText.PlaceholderText = "Enter Supplier Phone";
-            this.supPhoneText.SelectedText = "";
-            this.supPhoneText.Size = new System.Drawing.Size(247, 40);
-            this.supPhoneText.TabIndex = 3;
-            // 
-            // supEmailText
-            // 
-            this.supEmailText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supEmailText.BorderRadius = 8;
-            this.supEmailText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.supEmailText.DefaultText = "";
-            this.supEmailText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.supEmailText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.supEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supEmailText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.supEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.supEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supEmailText.Location = new System.Drawing.Point(550, 20);
-            this.supEmailText.Name = "supEmailText";
-            this.supEmailText.PasswordChar = '\0';
-            this.supEmailText.PlaceholderText = "Enter Supplier Email";
-            this.supEmailText.SelectedText = "";
-            this.supEmailText.Size = new System.Drawing.Size(247, 40);
-            this.supEmailText.TabIndex = 2;
-            // 
-            // supNameText
-            // 
-            this.supNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supNameText.BorderRadius = 8;
-            this.supNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.supNameText.DefaultText = "";
-            this.supNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.supNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.supNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supNameText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.supNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.supNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supNameText.Location = new System.Drawing.Point(282, 20);
-            this.supNameText.Name = "supNameText";
-            this.supNameText.PasswordChar = '\0';
-            this.supNameText.PlaceholderText = "Enter Supplier Name";
-            this.supNameText.SelectedText = "";
-            this.supNameText.Size = new System.Drawing.Size(247, 40);
-            this.supNameText.TabIndex = 1;
-            // 
-            // supIDText
-            // 
-            this.supIDText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supIDText.BorderRadius = 8;
-            this.supIDText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.supIDText.DefaultText = "";
-            this.supIDText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.supIDText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.supIDText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supIDText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.supIDText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.supIDText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supIDText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.supIDText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.supIDText.Location = new System.Drawing.Point(14, 20);
-            this.supIDText.Name = "supIDText";
-            this.supIDText.PasswordChar = '\0';
-            this.supIDText.PlaceholderText = "Enter Supplier ID";
-            this.supIDText.SelectedText = "";
-            this.supIDText.Size = new System.Drawing.Size(247, 40);
-            this.supIDText.TabIndex = 0;
-            // 
-            // userPagiPanel
-            // 
-            this.userPagiPanel.Controls.Add(this.userNextBtn);
-            this.userPagiPanel.Controls.Add(this.userCurrentBtn);
-            this.userPagiPanel.Controls.Add(this.userPrevBtn);
-            this.userPagiPanel.FillColor = System.Drawing.Color.White;
-            this.userPagiPanel.Location = new System.Drawing.Point(348, 499);
-            this.userPagiPanel.Name = "userPagiPanel";
-            this.userPagiPanel.Size = new System.Drawing.Size(183, 39);
-            this.userPagiPanel.TabIndex = 7;
-            // 
-            // userNextBtn
-            // 
-            this.userNextBtn.BorderRadius = 10;
-            this.userNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.userNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.userNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.userNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.userNextBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userNextBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.userNextBtn.ForeColor = System.Drawing.Color.White;
-            this.userNextBtn.Location = new System.Drawing.Point(125, 3);
-            this.userNextBtn.Name = "userNextBtn";
-            this.userNextBtn.Size = new System.Drawing.Size(55, 33);
-            this.userNextBtn.TabIndex = 4;
-            this.userNextBtn.Text = "Next";
-            // 
-            // userCurrentBtn
-            // 
-            this.userCurrentBtn.BorderRadius = 10;
-            this.userCurrentBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.userCurrentBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.userCurrentBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.userCurrentBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.userCurrentBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userCurrentBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.userCurrentBtn.ForeColor = System.Drawing.Color.White;
-            this.userCurrentBtn.Location = new System.Drawing.Point(64, 3);
-            this.userCurrentBtn.Name = "userCurrentBtn";
-            this.userCurrentBtn.Size = new System.Drawing.Size(55, 33);
-            this.userCurrentBtn.TabIndex = 4;
-            this.userCurrentBtn.Text = "1";
-            // 
-            // userPrevBtn
-            // 
-            this.userPrevBtn.BorderRadius = 10;
-            this.userPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.userPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.userPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.userPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.userPrevBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.userPrevBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.userPrevBtn.ForeColor = System.Drawing.Color.White;
-            this.userPrevBtn.Location = new System.Drawing.Point(3, 3);
-            this.userPrevBtn.Name = "userPrevBtn";
-            this.userPrevBtn.Size = new System.Drawing.Size(55, 33);
-            this.userPrevBtn.TabIndex = 3;
-            this.userPrevBtn.Text = "Prev";
-            // 
-            // userDataGridView
+            // supDataGridView
             // 
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -273,17 +109,17 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.userDataGridView.ColumnHeadersHeight = 25;
-            this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierID,
-            this.supName,
-            this.supDesc,
-            this.supEmail,
-            this.supPhone,
-            this.createdAt,
-            this.action});
+            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.supDataGridView.ColumnHeadersHeight = 25;
+            this.supDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.supDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -291,113 +127,261 @@
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
-            this.userDataGridView.GridColor = System.Drawing.Color.White;
-            this.userDataGridView.Location = new System.Drawing.Point(12, 232);
-            this.userDataGridView.Name = "userDataGridView";
-            this.userDataGridView.RowHeadersVisible = false;
-            this.userDataGridView.Size = new System.Drawing.Size(810, 306);
-            this.userDataGridView.TabIndex = 6;
-            this.userDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.userDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.userDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.userDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.userDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.userDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.userDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.userDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.userDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.userDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.userDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.userDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.userDataGridView.ThemeStyle.ReadOnly = false;
-            this.userDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.userDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.userDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.userDataGridView.ThemeStyle.RowsStyle.Height = 22;
-            this.userDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.userDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDataGridView_CellContentClick);
+            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            this.supDataGridView.GridColor = System.Drawing.Color.White;
+            this.supDataGridView.Location = new System.Drawing.Point(40, 97);
+            this.supDataGridView.Name = "supDataGridView";
+            this.supDataGridView.RowHeadersVisible = false;
+            this.supDataGridView.Size = new System.Drawing.Size(1837, 775);
+            this.supDataGridView.TabIndex = 10;
+            this.supDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.supDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.supDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.supDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.supDataGridView.ThemeStyle.HeaderStyle.Height = 25;
+            this.supDataGridView.ThemeStyle.ReadOnly = false;
+            this.supDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.supDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.supDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.ThemeStyle.RowsStyle.Height = 22;
+            this.supDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.supDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
-            // supplierID
+            // dataGridViewTextBoxColumn1
             // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Supplier ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
-            // supName
+            // dataGridViewTextBoxColumn2
             // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // supDesc
+            // dataGridViewTextBoxColumn3
             // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Description";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // supEmail
+            // dataGridViewTextBoxColumn4
             // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
-            // supPhone
+            // dataGridViewTextBoxColumn5
             // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // createdAt
+            // dataGridViewTextBoxColumn6
             // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Create At";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // action
+            // dataGridViewTextBoxColumn7
             // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Action";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // supBtnPanel
+            // 
+            this.supBtnPanel.BorderRadius = 8;
+            this.supBtnPanel.Controls.Add(this.supFirstBtn);
+            this.supBtnPanel.Controls.Add(this.supPrevBtn);
+            this.supBtnPanel.Controls.Add(this.supNextBtn);
+            this.supBtnPanel.Controls.Add(this.supLastBtn);
+            this.supBtnPanel.Location = new System.Drawing.Point(1723, 937);
+            this.supBtnPanel.Name = "supBtnPanel";
+            this.supBtnPanel.Size = new System.Drawing.Size(154, 37);
+            this.supBtnPanel.TabIndex = 23;
+            // 
+            // supFirstBtn
+            // 
+            this.supFirstBtn.BorderRadius = 6;
+            this.supFirstBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supFirstBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supFirstBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supFirstBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supFirstBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.supFirstBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.supFirstBtn.ForeColor = System.Drawing.Color.White;
+            this.supFirstBtn.Image = global::EscopeWindowsApp.Properties.Resources.firstBtn1;
+            this.supFirstBtn.Location = new System.Drawing.Point(3, 8);
+            this.supFirstBtn.Name = "supFirstBtn";
+            this.supFirstBtn.Size = new System.Drawing.Size(26, 26);
+            this.supFirstBtn.TabIndex = 11;
+            // 
+            // supPrevBtn
+            // 
+            this.supPrevBtn.BorderRadius = 6;
+            this.supPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supPrevBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.supPrevBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.supPrevBtn.ForeColor = System.Drawing.Color.White;
+            this.supPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
+            this.supPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.supPrevBtn.Location = new System.Drawing.Point(45, 8);
+            this.supPrevBtn.Name = "supPrevBtn";
+            this.supPrevBtn.Size = new System.Drawing.Size(26, 26);
+            this.supPrevBtn.TabIndex = 11;
+            // 
+            // supNextBtn
+            // 
+            this.supNextBtn.BorderRadius = 6;
+            this.supNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supNextBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.supNextBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.supNextBtn.ForeColor = System.Drawing.Color.White;
+            this.supNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
+            this.supNextBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.supNextBtn.Location = new System.Drawing.Point(87, 8);
+            this.supNextBtn.Name = "supNextBtn";
+            this.supNextBtn.Size = new System.Drawing.Size(26, 26);
+            this.supNextBtn.TabIndex = 9;
+            // 
+            // supLastBtn
+            // 
+            this.supLastBtn.BorderRadius = 6;
+            this.supLastBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supLastBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supLastBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supLastBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supLastBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.supLastBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.supLastBtn.ForeColor = System.Drawing.Color.White;
+            this.supLastBtn.Image = global::EscopeWindowsApp.Properties.Resources.lastoBtn1;
+            this.supLastBtn.Location = new System.Drawing.Point(130, 8);
+            this.supLastBtn.Name = "supLastBtn";
+            this.supLastBtn.Size = new System.Drawing.Size(26, 26);
+            this.supLastBtn.TabIndex = 8;
+            // 
+            // supAllPgLabel
+            // 
+            this.supAllPgLabel.AutoSize = true;
+            this.supAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.supAllPgLabel.Location = new System.Drawing.Point(373, 946);
+            this.supAllPgLabel.Name = "supAllPgLabel";
+            this.supAllPgLabel.Size = new System.Drawing.Size(40, 23);
+            this.supAllPgLabel.TabIndex = 32;
+            this.supAllPgLabel.Text = "500";
+            // 
+            // supOfLabel
+            // 
+            this.supOfLabel.AutoSize = true;
+            this.supOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.supOfLabel.Location = new System.Drawing.Point(348, 946);
+            this.supOfLabel.Name = "supOfLabel";
+            this.supOfLabel.Size = new System.Drawing.Size(26, 23);
+            this.supOfLabel.TabIndex = 31;
+            this.supOfLabel.Text = "of";
+            // 
+            // supPgRangeLabel
+            // 
+            this.supPgRangeLabel.AutoSize = true;
+            this.supPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.supPgRangeLabel.Location = new System.Drawing.Point(306, 946);
+            this.supPgRangeLabel.Name = "supPgRangeLabel";
+            this.supPgRangeLabel.Size = new System.Drawing.Size(46, 23);
+            this.supPgRangeLabel.TabIndex = 30;
+            this.supPgRangeLabel.Text = "0-50";
+            // 
+            // supPageCombo
+            // 
+            this.supPageCombo.BackColor = System.Drawing.Color.Transparent;
+            this.supPageCombo.BorderColor = System.Drawing.Color.Black;
+            this.supPageCombo.BorderRadius = 8;
+            this.supPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.supPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.supPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.supPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.supPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supPageCombo.ForeColor = System.Drawing.Color.Black;
+            this.supPageCombo.ItemHeight = 30;
+            this.supPageCombo.Items.AddRange(new object[] {
+            "0-10",
+            "0-15",
+            "0-50",
+            "0-80"});
+            this.supPageCombo.Location = new System.Drawing.Point(192, 938);
+            this.supPageCombo.Name = "supPageCombo";
+            this.supPageCombo.Size = new System.Drawing.Size(85, 36);
+            this.supPageCombo.StartIndex = 0;
+            this.supPageCombo.TabIndex = 29;
+            // 
+            // supRecordsPerLabel
+            // 
+            this.supRecordsPerLabel.AutoSize = true;
+            this.supRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.supRecordsPerLabel.Location = new System.Drawing.Point(41, 946);
+            this.supRecordsPerLabel.Name = "supRecordsPerLabel";
+            this.supRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
+            this.supRecordsPerLabel.TabIndex = 28;
+            this.supRecordsPerLabel.Text = "Records per page";
             // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 618);
-            this.Controls.Add(this.userPagiPanel);
-            this.Controls.Add(this.userDataGridView);
-            this.Controls.Add(this.suppliersListLabel);
-            this.Controls.Add(this.supSearchPanel);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.supAllPgLabel);
+            this.Controls.Add(this.supOfLabel);
+            this.Controls.Add(this.supPgRangeLabel);
+            this.Controls.Add(this.supPageCombo);
+            this.Controls.Add(this.supRecordsPerLabel);
+            this.Controls.Add(this.supBtnPanel);
+            this.Controls.Add(this.supDataGridView);
+            this.Controls.Add(this.createSupBtn);
+            this.Controls.Add(this.supSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SupplierForm";
             this.Text = "SupplierForm";
-            this.supSearchPanel.ResumeLayout(false);
-            this.userPagiPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).EndInit();
+            this.supBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label suppliersListLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel supSearchPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton supSearchBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton supAddBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supPhoneText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supEmailText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supNameText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supIDText;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel userPagiPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton userNextBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton userCurrentBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton userPrevBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox supSearchText;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton createSupBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView supDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel supBtnPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supFirstBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supPrevBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supNextBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supLastBtn;
+        private System.Windows.Forms.Label supAllPgLabel;
+        private System.Windows.Forms.Label supOfLabel;
+        private System.Windows.Forms.Label supPgRangeLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox supPageCombo;
+        private System.Windows.Forms.Label supRecordsPerLabel;
     }
 }

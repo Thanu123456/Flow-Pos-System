@@ -59,11 +59,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAdjustments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAdjustments.Designer.cs">
+      <DependentUpon>AddAdjustments.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddCustomerForm.Designer.cs">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddQuotationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQuotationForm.Designer.cs">
+      <DependentUpon>AddQuotationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSaleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSaleForm.Designer.cs">
+      <DependentUpon>AddSaleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddSupplierForm.cs">
       <SubType>Form</SubType>
@@ -77,11 +95,17 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Adjustments.cs">
+    <Compile Include="AddWarehouseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Adjustments.Designer.cs">
-      <DependentUpon>Adjustments.cs</DependentUpon>
+    <Compile Include="AddWarehouseForm.Designer.cs">
+      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustmentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustmentsForm.Designer.cs">
+      <DependentUpon>AdjustmentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
@@ -113,11 +137,23 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SideBar.cs">
+    <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SideBar.Designer.cs">
-      <DependentUpon>SideBar.cs</DependentUpon>
+    <Compile Include="QuotationsForm.Designer.cs">
+      <DependentUpon>QuotationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaleReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleReturnForm.Designer.cs">
+      <DependentUpon>SaleReturnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,8 +169,23 @@
     <Compile Include="UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WarehouseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseForm.Designer.cs">
+      <DependentUpon>WarehouseForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddAdjustments.resx">
+      <DependentUpon>AddAdjustments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddQuotationForm.resx">
+      <DependentUpon>AddQuotationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSaleForm.resx">
+      <DependentUpon>AddSaleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddSupplierForm.resx">
       <DependentUpon>AddSupplierForm.cs</DependentUpon>
@@ -142,8 +193,11 @@
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Adjustments.resx">
-      <DependentUpon>Adjustments.cs</DependentUpon>
+    <EmbeddedResource Include="AddWarehouseForm.resx">
+      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustmentsForm.resx">
+      <DependentUpon>AdjustmentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
@@ -160,8 +214,14 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SideBar.resx">
-      <DependentUpon>SideBar.cs</DependentUpon>
+    <EmbeddedResource Include="QuotationsForm.resx">
+      <DependentUpon>QuotationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleReturnForm.resx">
+      <DependentUpon>SaleReturnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesForm.resx">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseForm.resx">
+      <DependentUpon>WarehouseForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
