@@ -97,12 +97,6 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddWarehouseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddWarehouseForm.Designer.cs">
-      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdjustmentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,12 +132,6 @@
     </Compile>
     <Compile Include="CreateBrand.Designer.cs">
       <DependentUpon>CreateBrand.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CreateCategory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateCategory.Designer.cs">
-      <DependentUpon>CreateCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateProduct.cs">
       <SubType>Form</SubType>
@@ -198,6 +186,7 @@
     </Compile>
     <Compile Include="Production.Designer.cs">
       <DependentUpon>Production.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,9 +255,6 @@
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddWarehouseForm.resx">
-      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdjustmentsForm.resx">
       <DependentUpon>AdjustmentsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,9 +272,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBrand.resx">
       <DependentUpon>CreateBrand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateCategory.resx">
-      <DependentUpon>CreateCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateProduct.resx">
       <DependentUpon>CreateProduct.cs</DependentUpon>
@@ -316,6 +299,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production.resx">
       <DependentUpon>Production.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuotationsForm.resx">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +330,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Variations.resx">
       <DependentUpon>Variations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WarehouseForm.resx">
       <DependentUpon>WarehouseForm.cs</DependentUpon>
     </EmbeddedResource>
