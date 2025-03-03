@@ -34,22 +34,27 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.maximumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
-            this.addSupLabel = new System.Windows.Forms.Label();
-            this.generalinfoLabel = new System.Windows.Forms.Label();
-            this.supGinfoPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.addSupEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addSupPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addSupNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addSupIDText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addSupDateText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.addSupDescText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.supResetBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.supSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.createSupEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createSupPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createSupNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.addSupBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.supAnimateWindow = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
+            this.createSupLabel = new System.Windows.Forms.Label();
+            this.createSupPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.supCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.createSupItemText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.craeteSupItemLabel = new System.Windows.Forms.Label();
+            this.createSupAddressText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createSupAddressLabel = new System.Windows.Forms.Label();
+            this.createSupCityText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createSupCityLabel = new System.Windows.Forms.Label();
+            this.createSupPhoneLabel = new System.Windows.Forms.Label();
+            this.createSupEmailLabel = new System.Windows.Forms.Label();
+            this.createSupNameLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
-            this.supGinfoPanel.SuspendLayout();
+            this.createSupPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -59,7 +64,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(837, 34);
+            this.headerPanel.Size = new System.Drawing.Size(1000, 34);
             this.headerPanel.TabIndex = 2;
             // 
             // controlPanel
@@ -69,7 +74,7 @@
             this.controlPanel.Controls.Add(this.maximumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.SystemColors.Control;
-            this.controlPanel.Location = new System.Drawing.Point(693, 1);
+            this.controlPanel.Location = new System.Drawing.Point(855, 1);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(142, 30);
             this.controlPanel.TabIndex = 1;
@@ -109,200 +114,68 @@
             this.closeBtn.Size = new System.Drawing.Size(41, 26);
             this.closeBtn.TabIndex = 0;
             // 
-            // addSupLabel
+            // createSupEmailText
             // 
-            this.addSupLabel.AutoSize = true;
-            this.addSupLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addSupLabel.Location = new System.Drawing.Point(12, 47);
-            this.addSupLabel.Name = "addSupLabel";
-            this.addSupLabel.Size = new System.Drawing.Size(159, 17);
-            this.addSupLabel.TabIndex = 3;
-            this.addSupLabel.Text = "Create New Supplier";
+            this.createSupEmailText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupEmailText.BorderRadius = 8;
+            this.createSupEmailText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupEmailText.DefaultText = "";
+            this.createSupEmailText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupEmailText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupEmailText.Location = new System.Drawing.Point(507, 64);
+            this.createSupEmailText.Name = "createSupEmailText";
+            this.createSupEmailText.PasswordChar = '\0';
+            this.createSupEmailText.PlaceholderText = "Enter Supplier Email";
+            this.createSupEmailText.SelectedText = "";
+            this.createSupEmailText.Size = new System.Drawing.Size(400, 42);
+            this.createSupEmailText.TabIndex = 5;
             // 
-            // generalinfoLabel
+            // createSupPhoneText
             // 
-            this.generalinfoLabel.AutoSize = true;
-            this.generalinfoLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generalinfoLabel.Location = new System.Drawing.Point(40, 87);
-            this.generalinfoLabel.Name = "generalinfoLabel";
-            this.generalinfoLabel.Size = new System.Drawing.Size(122, 14);
-            this.generalinfoLabel.TabIndex = 6;
-            this.generalinfoLabel.Text = "General Information";
+            this.createSupPhoneText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupPhoneText.BorderRadius = 8;
+            this.createSupPhoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupPhoneText.DefaultText = "";
+            this.createSupPhoneText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupPhoneText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupPhoneText.Location = new System.Drawing.Point(21, 200);
+            this.createSupPhoneText.Name = "createSupPhoneText";
+            this.createSupPhoneText.PasswordChar = '\0';
+            this.createSupPhoneText.PlaceholderText = "Enter Supplier Phone";
+            this.createSupPhoneText.SelectedText = "";
+            this.createSupPhoneText.Size = new System.Drawing.Size(400, 42);
+            this.createSupPhoneText.TabIndex = 4;
             // 
-            // supGinfoPanel
+            // createSupNameText
             // 
-            this.supGinfoPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supGinfoPanel.BorderRadius = 8;
-            this.supGinfoPanel.BorderThickness = 1;
-            this.supGinfoPanel.Controls.Add(this.addSupDescText);
-            this.supGinfoPanel.Controls.Add(this.addSupDateText);
-            this.supGinfoPanel.Controls.Add(this.addSupEmailText);
-            this.supGinfoPanel.Controls.Add(this.addSupPhoneText);
-            this.supGinfoPanel.Controls.Add(this.addSupNameText);
-            this.supGinfoPanel.Controls.Add(this.addSupIDText);
-            this.supGinfoPanel.Location = new System.Drawing.Point(15, 93);
-            this.supGinfoPanel.Name = "supGinfoPanel";
-            this.supGinfoPanel.Size = new System.Drawing.Size(810, 331);
-            this.supGinfoPanel.TabIndex = 5;
-            // 
-            // addSupEmailText
-            // 
-            this.addSupEmailText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupEmailText.BorderRadius = 8;
-            this.addSupEmailText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupEmailText.DefaultText = "";
-            this.addSupEmailText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupEmailText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupEmailText.Location = new System.Drawing.Point(12, 278);
-            this.addSupEmailText.Name = "addSupEmailText";
-            this.addSupEmailText.PasswordChar = '\0';
-            this.addSupEmailText.PlaceholderText = "Enter Supplier Email";
-            this.addSupEmailText.SelectedText = "";
-            this.addSupEmailText.Size = new System.Drawing.Size(247, 36);
-            this.addSupEmailText.TabIndex = 5;
-            // 
-            // addSupPhoneText
-            // 
-            this.addSupPhoneText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupPhoneText.BorderRadius = 8;
-            this.addSupPhoneText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupPhoneText.DefaultText = "";
-            this.addSupPhoneText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupPhoneText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupPhoneText.Location = new System.Drawing.Point(281, 278);
-            this.addSupPhoneText.Name = "addSupPhoneText";
-            this.addSupPhoneText.PasswordChar = '\0';
-            this.addSupPhoneText.PlaceholderText = "Enter Supplier Phone";
-            this.addSupPhoneText.SelectedText = "";
-            this.addSupPhoneText.Size = new System.Drawing.Size(247, 36);
-            this.addSupPhoneText.TabIndex = 4;
-            // 
-            // addSupNameText
-            // 
-            this.addSupNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupNameText.BorderRadius = 8;
-            this.addSupNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupNameText.DefaultText = "";
-            this.addSupNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupNameText.Location = new System.Drawing.Point(281, 22);
-            this.addSupNameText.Name = "addSupNameText";
-            this.addSupNameText.PasswordChar = '\0';
-            this.addSupNameText.PlaceholderText = "Enter Supplier Name";
-            this.addSupNameText.SelectedText = "";
-            this.addSupNameText.Size = new System.Drawing.Size(247, 36);
-            this.addSupNameText.TabIndex = 2;
-            // 
-            // addSupIDText
-            // 
-            this.addSupIDText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupIDText.BorderRadius = 8;
-            this.addSupIDText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupIDText.DefaultText = "";
-            this.addSupIDText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupIDText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupIDText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupIDText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupIDText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupIDText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupIDText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupIDText.Location = new System.Drawing.Point(12, 22);
-            this.addSupIDText.Name = "addSupIDText";
-            this.addSupIDText.PasswordChar = '\0';
-            this.addSupIDText.PlaceholderText = "Enter Supplier ID";
-            this.addSupIDText.SelectedText = "";
-            this.addSupIDText.Size = new System.Drawing.Size(247, 36);
-            this.addSupIDText.TabIndex = 1;
-            // 
-            // addSupDateText
-            // 
-            this.addSupDateText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupDateText.BorderRadius = 8;
-            this.addSupDateText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupDateText.DefaultText = "";
-            this.addSupDateText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupDateText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupDateText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupDateText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupDateText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupDateText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupDateText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupDateText.Location = new System.Drawing.Point(550, 278);
-            this.addSupDateText.Name = "addSupDateText";
-            this.addSupDateText.PasswordChar = '\0';
-            this.addSupDateText.PlaceholderText = "Enter Created At Date";
-            this.addSupDateText.SelectedText = "";
-            this.addSupDateText.Size = new System.Drawing.Size(247, 36);
-            this.addSupDateText.TabIndex = 6;
-            // 
-            // addSupDescText
-            // 
-            this.addSupDescText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.addSupDescText.BorderRadius = 8;
-            this.addSupDescText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.addSupDescText.DefaultText = "";
-            this.addSupDescText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.addSupDescText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.addSupDescText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupDescText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.addSupDescText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupDescText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.addSupDescText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addSupDescText.Location = new System.Drawing.Point(12, 100);
-            this.addSupDescText.Name = "addSupDescText";
-            this.addSupDescText.PasswordChar = '\0';
-            this.addSupDescText.PlaceholderText = "Enter Supplier Description";
-            this.addSupDescText.SelectedText = "";
-            this.addSupDescText.Size = new System.Drawing.Size(785, 142);
-            this.addSupDescText.TabIndex = 7;
-            this.addSupDescText.TextChanged += new System.EventHandler(this.siticoneTextBox2_TextChanged);
-            // 
-            // supResetBtn
-            // 
-            this.supResetBtn.BorderRadius = 8;
-            this.supResetBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.supResetBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.supResetBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.supResetBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supResetBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.supResetBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.supResetBtn.ForeColor = System.Drawing.Color.White;
-            this.supResetBtn.Location = new System.Drawing.Point(719, 458);
-            this.supResetBtn.Name = "supResetBtn";
-            this.supResetBtn.Size = new System.Drawing.Size(106, 45);
-            this.supResetBtn.TabIndex = 12;
-            this.supResetBtn.Text = "Reset";
-            // 
-            // supSaveBtn
-            // 
-            this.supSaveBtn.BorderRadius = 8;
-            this.supSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.supSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.supSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.supSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.supSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.supSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.supSaveBtn.Location = new System.Drawing.Point(584, 458);
-            this.supSaveBtn.Name = "supSaveBtn";
-            this.supSaveBtn.Size = new System.Drawing.Size(106, 45);
-            this.supSaveBtn.TabIndex = 11;
-            this.supSaveBtn.Text = "Save";
+            this.createSupNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupNameText.BorderRadius = 8;
+            this.createSupNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupNameText.DefaultText = "";
+            this.createSupNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupNameText.Location = new System.Drawing.Point(21, 64);
+            this.createSupNameText.Name = "createSupNameText";
+            this.createSupNameText.PasswordChar = '\0';
+            this.createSupNameText.PlaceholderText = "Enter Supplier Name";
+            this.createSupNameText.SelectedText = "";
+            this.createSupNameText.Size = new System.Drawing.Size(400, 42);
+            this.createSupNameText.TabIndex = 2;
             // 
             // addSupBorderlessForm
             // 
@@ -315,23 +188,216 @@
             // 
             this.supAnimateWindow.TargetForm = this;
             // 
+            // createSupLabel
+            // 
+            this.createSupLabel.AutoSize = true;
+            this.createSupLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupLabel.Location = new System.Drawing.Point(26, 56);
+            this.createSupLabel.Name = "createSupLabel";
+            this.createSupLabel.Size = new System.Drawing.Size(196, 28);
+            this.createSupLabel.TabIndex = 18;
+            this.createSupLabel.Text = "Create Supplier";
+            // 
+            // createSupPanel
+            // 
+            this.createSupPanel.BorderRadius = 8;
+            this.createSupPanel.Controls.Add(this.supCancelBtn);
+            this.createSupPanel.Controls.Add(this.supSaveBtn);
+            this.createSupPanel.Controls.Add(this.createSupItemText);
+            this.createSupPanel.Controls.Add(this.craeteSupItemLabel);
+            this.createSupPanel.Controls.Add(this.createSupAddressText);
+            this.createSupPanel.Controls.Add(this.createSupAddressLabel);
+            this.createSupPanel.Controls.Add(this.createSupCityText);
+            this.createSupPanel.Controls.Add(this.createSupCityLabel);
+            this.createSupPanel.Controls.Add(this.createSupPhoneLabel);
+            this.createSupPanel.Controls.Add(this.createSupEmailLabel);
+            this.createSupPanel.Controls.Add(this.createSupNameLabel);
+            this.createSupPanel.Controls.Add(this.createSupPhoneText);
+            this.createSupPanel.Controls.Add(this.createSupNameText);
+            this.createSupPanel.Controls.Add(this.createSupEmailText);
+            this.createSupPanel.FillColor = System.Drawing.Color.White;
+            this.createSupPanel.Location = new System.Drawing.Point(31, 103);
+            this.createSupPanel.Name = "createSupPanel";
+            this.createSupPanel.Size = new System.Drawing.Size(928, 517);
+            this.createSupPanel.TabIndex = 19;
+            // 
+            // supCancelBtn
+            // 
+            this.supCancelBtn.BorderRadius = 8;
+            this.supCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supCancelBtn.FillColor = System.Drawing.Color.DarkGray;
+            this.supCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.supCancelBtn.ForeColor = System.Drawing.Color.White;
+            this.supCancelBtn.Location = new System.Drawing.Point(814, 448);
+            this.supCancelBtn.Name = "supCancelBtn";
+            this.supCancelBtn.Size = new System.Drawing.Size(93, 47);
+            this.supCancelBtn.TabIndex = 30;
+            this.supCancelBtn.Text = "Cancel";
+            // 
+            // supSaveBtn
+            // 
+            this.supSaveBtn.BorderRadius = 8;
+            this.supSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.supSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supSaveBtn.ForeColor = System.Drawing.Color.White;
+            this.supSaveBtn.Location = new System.Drawing.Point(698, 448);
+            this.supSaveBtn.Name = "supSaveBtn";
+            this.supSaveBtn.Size = new System.Drawing.Size(93, 47);
+            this.supSaveBtn.TabIndex = 29;
+            this.supSaveBtn.Text = "Save";
+            // 
+            // createSupItemText
+            // 
+            this.createSupItemText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupItemText.BorderRadius = 8;
+            this.createSupItemText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupItemText.DefaultText = "";
+            this.createSupItemText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupItemText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupItemText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupItemText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupItemText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupItemText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupItemText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupItemText.Location = new System.Drawing.Point(507, 327);
+            this.createSupItemText.Name = "createSupItemText";
+            this.createSupItemText.PasswordChar = '\0';
+            this.createSupItemText.PlaceholderText = "Enter Supplier Item";
+            this.createSupItemText.SelectedText = "";
+            this.createSupItemText.Size = new System.Drawing.Size(400, 42);
+            this.createSupItemText.TabIndex = 28;
+            // 
+            // craeteSupItemLabel
+            // 
+            this.craeteSupItemLabel.AutoSize = true;
+            this.craeteSupItemLabel.BackColor = System.Drawing.Color.White;
+            this.craeteSupItemLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.craeteSupItemLabel.Location = new System.Drawing.Point(503, 292);
+            this.craeteSupItemLabel.Name = "craeteSupItemLabel";
+            this.craeteSupItemLabel.Size = new System.Drawing.Size(100, 23);
+            this.craeteSupItemLabel.TabIndex = 27;
+            this.craeteSupItemLabel.Text = "Item Name:";
+            // 
+            // createSupAddressText
+            // 
+            this.createSupAddressText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupAddressText.BorderRadius = 8;
+            this.createSupAddressText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupAddressText.DefaultText = "";
+            this.createSupAddressText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupAddressText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupAddressText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupAddressText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupAddressText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupAddressText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupAddressText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupAddressText.Location = new System.Drawing.Point(21, 327);
+            this.createSupAddressText.Name = "createSupAddressText";
+            this.createSupAddressText.PasswordChar = '\0';
+            this.createSupAddressText.PlaceholderText = "Enter Supplier Address";
+            this.createSupAddressText.SelectedText = "";
+            this.createSupAddressText.Size = new System.Drawing.Size(400, 42);
+            this.createSupAddressText.TabIndex = 26;
+            // 
+            // createSupAddressLabel
+            // 
+            this.createSupAddressLabel.AutoSize = true;
+            this.createSupAddressLabel.BackColor = System.Drawing.Color.White;
+            this.createSupAddressLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupAddressLabel.Location = new System.Drawing.Point(17, 292);
+            this.createSupAddressLabel.Name = "createSupAddressLabel";
+            this.createSupAddressLabel.Size = new System.Drawing.Size(78, 23);
+            this.createSupAddressLabel.TabIndex = 25;
+            this.createSupAddressLabel.Text = "Address:";
+            // 
+            // createSupCityText
+            // 
+            this.createSupCityText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSupCityText.BorderRadius = 8;
+            this.createSupCityText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createSupCityText.DefaultText = "";
+            this.createSupCityText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createSupCityText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createSupCityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupCityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createSupCityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupCityText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createSupCityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSupCityText.Location = new System.Drawing.Point(507, 200);
+            this.createSupCityText.Name = "createSupCityText";
+            this.createSupCityText.PasswordChar = '\0';
+            this.createSupCityText.PlaceholderText = "Enter Supplier City";
+            this.createSupCityText.SelectedText = "";
+            this.createSupCityText.Size = new System.Drawing.Size(400, 42);
+            this.createSupCityText.TabIndex = 24;
+            // 
+            // createSupCityLabel
+            // 
+            this.createSupCityLabel.AutoSize = true;
+            this.createSupCityLabel.BackColor = System.Drawing.Color.White;
+            this.createSupCityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupCityLabel.Location = new System.Drawing.Point(503, 163);
+            this.createSupCityLabel.Name = "createSupCityLabel";
+            this.createSupCityLabel.Size = new System.Drawing.Size(44, 23);
+            this.createSupCityLabel.TabIndex = 23;
+            this.createSupCityLabel.Text = "City:";
+            // 
+            // createSupPhoneLabel
+            // 
+            this.createSupPhoneLabel.AutoSize = true;
+            this.createSupPhoneLabel.BackColor = System.Drawing.Color.White;
+            this.createSupPhoneLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupPhoneLabel.Location = new System.Drawing.Point(17, 163);
+            this.createSupPhoneLabel.Name = "createSupPhoneLabel";
+            this.createSupPhoneLabel.Size = new System.Drawing.Size(131, 23);
+            this.createSupPhoneLabel.TabIndex = 22;
+            this.createSupPhoneLabel.Text = "Phone Number:";
+            // 
+            // createSupEmailLabel
+            // 
+            this.createSupEmailLabel.AutoSize = true;
+            this.createSupEmailLabel.BackColor = System.Drawing.Color.White;
+            this.createSupEmailLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupEmailLabel.Location = new System.Drawing.Point(503, 25);
+            this.createSupEmailLabel.Name = "createSupEmailLabel";
+            this.createSupEmailLabel.Size = new System.Drawing.Size(56, 23);
+            this.createSupEmailLabel.TabIndex = 21;
+            this.createSupEmailLabel.Text = "Email:";
+            // 
+            // createSupNameLabel
+            // 
+            this.createSupNameLabel.AutoSize = true;
+            this.createSupNameLabel.BackColor = System.Drawing.Color.White;
+            this.createSupNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSupNameLabel.Location = new System.Drawing.Point(17, 25);
+            this.createSupNameLabel.Name = "createSupNameLabel";
+            this.createSupNameLabel.Size = new System.Drawing.Size(60, 23);
+            this.createSupNameLabel.TabIndex = 19;
+            this.createSupNameLabel.Text = "Name:";
+            // 
             // AddSupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 515);
-            this.Controls.Add(this.supResetBtn);
-            this.Controls.Add(this.supSaveBtn);
-            this.Controls.Add(this.generalinfoLabel);
-            this.Controls.Add(this.supGinfoPanel);
-            this.Controls.Add(this.addSupLabel);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.ClientSize = new System.Drawing.Size(1000, 648);
+            this.Controls.Add(this.createSupPanel);
+            this.Controls.Add(this.createSupLabel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddSupplierForm";
             this.Text = "AddSupplierForm";
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
-            this.supGinfoPanel.ResumeLayout(false);
+            this.createSupPanel.ResumeLayout(false);
+            this.createSupPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,18 +410,23 @@
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox maximumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
-        private System.Windows.Forms.Label addSupLabel;
-        private System.Windows.Forms.Label generalinfoLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel supGinfoPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupEmailText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupPhoneText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupNameText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupIDText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupDescText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox addSupDateText;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton supResetBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton supSaveBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupEmailText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupPhoneText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupNameText;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm addSupBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow supAnimateWindow;
+        private System.Windows.Forms.Label createSupLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel createSupPanel;
+        private System.Windows.Forms.Label createSupNameLabel;
+        private System.Windows.Forms.Label createSupEmailLabel;
+        private System.Windows.Forms.Label createSupPhoneLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupAddressText;
+        private System.Windows.Forms.Label createSupAddressLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupCityText;
+        private System.Windows.Forms.Label createSupCityLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createSupItemText;
+        private System.Windows.Forms.Label craeteSupItemLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supCancelBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supSaveBtn;
     }
 }

@@ -10,20 +10,23 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class CustomerForm : Form
+    public partial class Quotations : Form
     {
-        public CustomerForm()
+        public Quotations()
         {
             InitializeComponent();
         }
 
+        private void Quotations_Load(object sender, EventArgs e)
+        {
 
+        }
 
-        private void createCusBtn_Click(object sender, EventArgs e)
+        private void createQuotaBtn_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is AddCustomerForm)
+                if (form is AddQuotationForm)
                 {
                     if (form.WindowState == FormWindowState.Minimized)
                     {
@@ -34,8 +37,8 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            AddCustomerForm addCustomerForm = new AddCustomerForm();
-            addCustomerForm.Show();
+            AddQuotationForm addQuotation = new AddQuotationForm();
+            addQuotation.Show();
         }
     }
 }

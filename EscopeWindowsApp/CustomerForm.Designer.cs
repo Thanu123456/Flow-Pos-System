@@ -31,193 +31,77 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.customersListLabel = new System.Windows.Forms.Label();
-            this.cusSearchPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.cusSearchBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusAddBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.cusNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.cusPagiPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.cusNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusCurrentBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.cusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusAddres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusCreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusSearchPanel.SuspendLayout();
-            this.cusPagiPanel.SuspendLayout();
+            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusAllPgLabel = new System.Windows.Forms.Label();
+            this.cusOfLabel = new System.Windows.Forms.Label();
+            this.cusPgRangeLabel = new System.Windows.Forms.Label();
+            this.cusPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.cusRecordsPerLabel = new System.Windows.Forms.Label();
+            this.cusBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.cusFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).BeginInit();
+            this.cusBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // customersListLabel
+            // cusSearchText
             // 
-            this.customersListLabel.AutoSize = true;
-            this.customersListLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customersListLabel.Location = new System.Drawing.Point(12, 10);
-            this.customersListLabel.Name = "customersListLabel";
-            this.customersListLabel.Size = new System.Drawing.Size(117, 17);
-            this.customersListLabel.TabIndex = 5;
-            this.customersListLabel.Text = "Customers List";
+            this.cusSearchText.BorderRadius = 8;
+            this.cusSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.cusSearchText.DefaultText = "";
+            this.cusSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.cusSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.cusSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.cusSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.cusSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cusSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cusSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.cusSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.cusSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.cusSearchText.Location = new System.Drawing.Point(41, 13);
+            this.cusSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cusSearchText.Name = "cusSearchText";
+            this.cusSearchText.PasswordChar = '\0';
+            this.cusSearchText.PlaceholderText = "Search";
+            this.cusSearchText.SelectedText = "";
+            this.cusSearchText.Size = new System.Drawing.Size(400, 42);
+            this.cusSearchText.TabIndex = 3;
             // 
-            // cusSearchPanel
+            // createCusBtn
             // 
-            this.cusSearchPanel.BorderColor = System.Drawing.Color.Black;
-            this.cusSearchPanel.BorderRadius = 10;
-            this.cusSearchPanel.BorderThickness = 1;
-            this.cusSearchPanel.Controls.Add(this.cusSearchBtn);
-            this.cusSearchPanel.Controls.Add(this.cusAddBtn);
-            this.cusSearchPanel.Controls.Add(this.cusEmailText);
-            this.cusSearchPanel.Controls.Add(this.cusNameText);
-            this.cusSearchPanel.Location = new System.Drawing.Point(12, 43);
-            this.cusSearchPanel.Name = "cusSearchPanel";
-            this.cusSearchPanel.Size = new System.Drawing.Size(810, 148);
-            this.cusSearchPanel.TabIndex = 4;
-            // 
-            // cusSearchBtn
-            // 
-            this.cusSearchBtn.BorderRadius = 8;
-            this.cusSearchBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusSearchBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusSearchBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusSearchBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusSearchBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusSearchBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.cusSearchBtn.ForeColor = System.Drawing.Color.White;
-            this.cusSearchBtn.Location = new System.Drawing.Point(679, 84);
-            this.cusSearchBtn.Name = "cusSearchBtn";
-            this.cusSearchBtn.Size = new System.Drawing.Size(106, 45);
-            this.cusSearchBtn.TabIndex = 4;
-            this.cusSearchBtn.Text = "Search";
-            // 
-            // cusAddBtn
-            // 
-            this.cusAddBtn.BorderRadius = 8;
-            this.cusAddBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusAddBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusAddBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusAddBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusAddBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusAddBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.cusAddBtn.ForeColor = System.Drawing.Color.White;
-            this.cusAddBtn.Location = new System.Drawing.Point(550, 84);
-            this.cusAddBtn.Name = "cusAddBtn";
-            this.cusAddBtn.Size = new System.Drawing.Size(106, 45);
-            this.cusAddBtn.TabIndex = 0;
-            this.cusAddBtn.Text = "Add";
-            this.cusAddBtn.Click += new System.EventHandler(this.cusAddBtn_Click);
-            // 
-            // cusEmailText
-            // 
-            this.cusEmailText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cusEmailText.BorderRadius = 8;
-            this.cusEmailText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.cusEmailText.DefaultText = "";
-            this.cusEmailText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.cusEmailText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.cusEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.cusEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.cusEmailText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.cusEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.cusEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusEmailText.Location = new System.Drawing.Point(428, 20);
-            this.cusEmailText.Name = "cusEmailText";
-            this.cusEmailText.PasswordChar = '\0';
-            this.cusEmailText.PlaceholderText = "Enter Email";
-            this.cusEmailText.SelectedText = "";
-            this.cusEmailText.Size = new System.Drawing.Size(357, 40);
-            this.cusEmailText.TabIndex = 1;
-            // 
-            // cusNameText
-            // 
-            this.cusNameText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cusNameText.BorderRadius = 8;
-            this.cusNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.cusNameText.DefaultText = "";
-            this.cusNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.cusNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.cusNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.cusNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.cusNameText.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.cusNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.cusNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusNameText.Location = new System.Drawing.Point(14, 20);
-            this.cusNameText.Name = "cusNameText";
-            this.cusNameText.PasswordChar = '\0';
-            this.cusNameText.PlaceholderText = "Enter Name";
-            this.cusNameText.SelectedText = "";
-            this.cusNameText.Size = new System.Drawing.Size(357, 40);
-            this.cusNameText.TabIndex = 0;
-            // 
-            // cusPagiPanel
-            // 
-            this.cusPagiPanel.Controls.Add(this.cusNextBtn);
-            this.cusPagiPanel.Controls.Add(this.cusCurrentBtn);
-            this.cusPagiPanel.Controls.Add(this.cusPrevBtn);
-            this.cusPagiPanel.FillColor = System.Drawing.Color.White;
-            this.cusPagiPanel.Location = new System.Drawing.Point(342, 500);
-            this.cusPagiPanel.Name = "cusPagiPanel";
-            this.cusPagiPanel.Size = new System.Drawing.Size(183, 39);
-            this.cusPagiPanel.TabIndex = 7;
-            // 
-            // cusNextBtn
-            // 
-            this.cusNextBtn.BorderRadius = 10;
-            this.cusNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusNextBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusNextBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.cusNextBtn.ForeColor = System.Drawing.Color.White;
-            this.cusNextBtn.Location = new System.Drawing.Point(125, 3);
-            this.cusNextBtn.Name = "cusNextBtn";
-            this.cusNextBtn.Size = new System.Drawing.Size(55, 33);
-            this.cusNextBtn.TabIndex = 4;
-            this.cusNextBtn.Text = "Next";
-            // 
-            // cusCurrentBtn
-            // 
-            this.cusCurrentBtn.BorderRadius = 10;
-            this.cusCurrentBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusCurrentBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusCurrentBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusCurrentBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusCurrentBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusCurrentBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.cusCurrentBtn.ForeColor = System.Drawing.Color.White;
-            this.cusCurrentBtn.Location = new System.Drawing.Point(64, 3);
-            this.cusCurrentBtn.Name = "cusCurrentBtn";
-            this.cusCurrentBtn.Size = new System.Drawing.Size(55, 33);
-            this.cusCurrentBtn.TabIndex = 4;
-            this.cusCurrentBtn.Text = "1";
-            // 
-            // cusPrevBtn
-            // 
-            this.cusPrevBtn.BorderRadius = 10;
-            this.cusPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusPrevBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(54)))), ((int)(((byte)(92)))));
-            this.cusPrevBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F);
-            this.cusPrevBtn.ForeColor = System.Drawing.Color.White;
-            this.cusPrevBtn.Location = new System.Drawing.Point(3, 3);
-            this.cusPrevBtn.Name = "cusPrevBtn";
-            this.cusPrevBtn.Size = new System.Drawing.Size(55, 33);
-            this.cusPrevBtn.TabIndex = 3;
-            this.cusPrevBtn.Text = "Prev";
+            this.createCusBtn.BorderRadius = 8;
+            this.createCusBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createCusBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createCusBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createCusBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createCusBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createCusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.createCusBtn.ForeColor = System.Drawing.Color.White;
+            this.createCusBtn.Location = new System.Drawing.Point(1670, 13);
+            this.createCusBtn.Name = "createCusBtn";
+            this.createCusBtn.Size = new System.Drawing.Size(209, 42);
+            this.createCusBtn.TabIndex = 5;
+            this.createCusBtn.Text = "Craete Customer";
+            this.createCusBtn.Click += new System.EventHandler(this.createCusBtn_Click);
             // 
             // cusDataGridView
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cusDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.cusDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -229,13 +113,13 @@
             this.cusDataGridView.ColumnHeadersHeight = 25;
             this.cusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.cusDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cusId,
-            this.cusName,
-            this.cusEmail,
-            this.cusPhone,
-            this.cusAddres,
-            this.cusCreatedDate,
-            this.cusAction});
+            this.supplierID,
+            this.supName,
+            this.supDesc,
+            this.supEmail,
+            this.supPhone,
+            this.createdAt,
+            this.action});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,11 +129,11 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.cusDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.cusDataGridView.GridColor = System.Drawing.Color.White;
-            this.cusDataGridView.Location = new System.Drawing.Point(12, 233);
+            this.cusDataGridView.Location = new System.Drawing.Point(41, 98);
             this.cusDataGridView.Name = "cusDataGridView";
             this.cusDataGridView.RowHeadersVisible = false;
-            this.cusDataGridView.Size = new System.Drawing.Size(810, 306);
-            this.cusDataGridView.TabIndex = 6;
+            this.cusDataGridView.Size = new System.Drawing.Size(1833, 775);
+            this.cusDataGridView.TabIndex = 10;
             this.cusDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -273,56 +157,206 @@
             this.cusDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.cusDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
-            // cusId
+            // supplierID
             // 
-            this.cusId.HeaderText = "ID";
-            this.cusId.Name = "cusId";
+            this.supplierID.HeaderText = "Supplier ID";
+            this.supplierID.Name = "supplierID";
             // 
-            // cusName
+            // supName
             // 
-            this.cusName.HeaderText = "Name";
-            this.cusName.Name = "cusName";
+            this.supName.HeaderText = "Name";
+            this.supName.Name = "supName";
             // 
-            // cusEmail
+            // supDesc
             // 
-            this.cusEmail.HeaderText = "Email";
-            this.cusEmail.Name = "cusEmail";
+            this.supDesc.HeaderText = "Description";
+            this.supDesc.Name = "supDesc";
             // 
-            // cusPhone
+            // supEmail
             // 
-            this.cusPhone.HeaderText = "Phone";
-            this.cusPhone.Name = "cusPhone";
+            this.supEmail.HeaderText = "Email";
+            this.supEmail.Name = "supEmail";
             // 
-            // cusAddres
+            // supPhone
             // 
-            this.cusAddres.HeaderText = "Address";
-            this.cusAddres.Name = "cusAddres";
+            this.supPhone.HeaderText = "Phone";
+            this.supPhone.Name = "supPhone";
             // 
-            // cusCreatedDate
+            // createdAt
             // 
-            this.cusCreatedDate.HeaderText = "Created At";
-            this.cusCreatedDate.Name = "cusCreatedDate";
+            this.createdAt.HeaderText = "Create At";
+            this.createdAt.Name = "createdAt";
             // 
-            // cusAction
+            // action
             // 
-            this.cusAction.HeaderText = "Action";
-            this.cusAction.Name = "cusAction";
+            this.action.HeaderText = "Action";
+            this.action.Name = "action";
+            // 
+            // cusAllPgLabel
+            // 
+            this.cusAllPgLabel.AutoSize = true;
+            this.cusAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cusAllPgLabel.Location = new System.Drawing.Point(371, 954);
+            this.cusAllPgLabel.Name = "cusAllPgLabel";
+            this.cusAllPgLabel.Size = new System.Drawing.Size(40, 23);
+            this.cusAllPgLabel.TabIndex = 32;
+            this.cusAllPgLabel.Text = "500";
+            // 
+            // cusOfLabel
+            // 
+            this.cusOfLabel.AutoSize = true;
+            this.cusOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cusOfLabel.Location = new System.Drawing.Point(346, 954);
+            this.cusOfLabel.Name = "cusOfLabel";
+            this.cusOfLabel.Size = new System.Drawing.Size(26, 23);
+            this.cusOfLabel.TabIndex = 31;
+            this.cusOfLabel.Text = "of";
+            // 
+            // cusPgRangeLabel
+            // 
+            this.cusPgRangeLabel.AutoSize = true;
+            this.cusPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cusPgRangeLabel.Location = new System.Drawing.Point(304, 954);
+            this.cusPgRangeLabel.Name = "cusPgRangeLabel";
+            this.cusPgRangeLabel.Size = new System.Drawing.Size(46, 23);
+            this.cusPgRangeLabel.TabIndex = 30;
+            this.cusPgRangeLabel.Text = "0-50";
+            // 
+            // cusPageCombo
+            // 
+            this.cusPageCombo.BackColor = System.Drawing.Color.Transparent;
+            this.cusPageCombo.BorderColor = System.Drawing.Color.Black;
+            this.cusPageCombo.BorderRadius = 8;
+            this.cusPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cusPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cusPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cusPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cusPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusPageCombo.ForeColor = System.Drawing.Color.Black;
+            this.cusPageCombo.ItemHeight = 30;
+            this.cusPageCombo.Items.AddRange(new object[] {
+            "0-10",
+            "0-15",
+            "0-50",
+            "0-80"});
+            this.cusPageCombo.Location = new System.Drawing.Point(190, 946);
+            this.cusPageCombo.Name = "cusPageCombo";
+            this.cusPageCombo.Size = new System.Drawing.Size(85, 36);
+            this.cusPageCombo.StartIndex = 0;
+            this.cusPageCombo.TabIndex = 29;
+            // 
+            // cusRecordsPerLabel
+            // 
+            this.cusRecordsPerLabel.AutoSize = true;
+            this.cusRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cusRecordsPerLabel.Location = new System.Drawing.Point(39, 954);
+            this.cusRecordsPerLabel.Name = "cusRecordsPerLabel";
+            this.cusRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
+            this.cusRecordsPerLabel.TabIndex = 28;
+            this.cusRecordsPerLabel.Text = "Records per page";
+            // 
+            // cusBtnPanel
+            // 
+            this.cusBtnPanel.BorderRadius = 8;
+            this.cusBtnPanel.Controls.Add(this.cusFirstBtn);
+            this.cusBtnPanel.Controls.Add(this.cusPrevBtn);
+            this.cusBtnPanel.Controls.Add(this.cusNextBtn);
+            this.cusBtnPanel.Controls.Add(this.cusLastBtn);
+            this.cusBtnPanel.Location = new System.Drawing.Point(1710, 940);
+            this.cusBtnPanel.Name = "cusBtnPanel";
+            this.cusBtnPanel.Size = new System.Drawing.Size(154, 37);
+            this.cusBtnPanel.TabIndex = 33;
+            // 
+            // cusFirstBtn
+            // 
+            this.cusFirstBtn.BorderRadius = 6;
+            this.cusFirstBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusFirstBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusFirstBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusFirstBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusFirstBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.cusFirstBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cusFirstBtn.ForeColor = System.Drawing.Color.White;
+            this.cusFirstBtn.Image = global::EscopeWindowsApp.Properties.Resources.firstBtn1;
+            this.cusFirstBtn.Location = new System.Drawing.Point(3, 8);
+            this.cusFirstBtn.Name = "cusFirstBtn";
+            this.cusFirstBtn.Size = new System.Drawing.Size(26, 26);
+            this.cusFirstBtn.TabIndex = 11;
+            // 
+            // cusPrevBtn
+            // 
+            this.cusPrevBtn.BorderRadius = 6;
+            this.cusPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusPrevBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.cusPrevBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cusPrevBtn.ForeColor = System.Drawing.Color.White;
+            this.cusPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
+            this.cusPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.cusPrevBtn.Location = new System.Drawing.Point(45, 8);
+            this.cusPrevBtn.Name = "cusPrevBtn";
+            this.cusPrevBtn.Size = new System.Drawing.Size(26, 26);
+            this.cusPrevBtn.TabIndex = 11;
+            // 
+            // cusNextBtn
+            // 
+            this.cusNextBtn.BorderRadius = 6;
+            this.cusNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusNextBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.cusNextBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cusNextBtn.ForeColor = System.Drawing.Color.White;
+            this.cusNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
+            this.cusNextBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.cusNextBtn.Location = new System.Drawing.Point(87, 8);
+            this.cusNextBtn.Name = "cusNextBtn";
+            this.cusNextBtn.Size = new System.Drawing.Size(26, 26);
+            this.cusNextBtn.TabIndex = 9;
+            // 
+            // cusLastBtn
+            // 
+            this.cusLastBtn.BorderRadius = 6;
+            this.cusLastBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusLastBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusLastBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusLastBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusLastBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.cusLastBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cusLastBtn.ForeColor = System.Drawing.Color.White;
+            this.cusLastBtn.Image = global::EscopeWindowsApp.Properties.Resources.lastoBtn1;
+            this.cusLastBtn.Location = new System.Drawing.Point(130, 8);
+            this.cusLastBtn.Name = "cusLastBtn";
+            this.cusLastBtn.Size = new System.Drawing.Size(26, 26);
+            this.cusLastBtn.TabIndex = 8;
             // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 599);
-            this.Controls.Add(this.cusPagiPanel);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.cusBtnPanel);
+            this.Controls.Add(this.cusAllPgLabel);
+            this.Controls.Add(this.cusOfLabel);
+            this.Controls.Add(this.cusPgRangeLabel);
+            this.Controls.Add(this.cusPageCombo);
+            this.Controls.Add(this.cusRecordsPerLabel);
             this.Controls.Add(this.cusDataGridView);
-            this.Controls.Add(this.customersListLabel);
-            this.Controls.Add(this.cusSearchPanel);
+            this.Controls.Add(this.createCusBtn);
+            this.Controls.Add(this.cusSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomerForm";
             this.Text = "CustomerForm";
-            this.cusSearchPanel.ResumeLayout(false);
-            this.cusPagiPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();
+            this.cusBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,23 +364,25 @@
 
         #endregion
 
-        private System.Windows.Forms.Label customersListLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel cusSearchPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusSearchBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusAddBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox cusEmailText;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox cusNameText;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel cusPagiPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusNextBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusCurrentBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusPrevBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox cusSearchText;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton createCusBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView cusDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusAddres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusCreatedDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusAction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn action;
+        private System.Windows.Forms.Label cusAllPgLabel;
+        private System.Windows.Forms.Label cusOfLabel;
+        private System.Windows.Forms.Label cusPgRangeLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cusPageCombo;
+        private System.Windows.Forms.Label cusRecordsPerLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel cusBtnPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusFirstBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusPrevBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusNextBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusLastBtn;
     }
 }
