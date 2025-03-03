@@ -22,7 +22,7 @@ namespace EscopeWindowsApp
 
         }
 
-        private void supAddBtn_Click(object sender, EventArgs e)
+        private void createSupBtn_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
@@ -37,7 +37,8 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            AddSupplierForm addSupplierForm = new AddSupplierForm();
+
+            AddSupplierForm addSupplierForm = new AddSupplierForm(); 
             addSupplierForm.Show();
         }
     }

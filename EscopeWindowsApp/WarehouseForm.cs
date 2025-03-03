@@ -10,20 +10,18 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class CustomerForm : Form
+    public partial class WarehouseForm : Form
     {
-        public CustomerForm()
+        public WarehouseForm()
         {
             InitializeComponent();
         }
 
-
-
-        private void createCusBtn_Click(object sender, EventArgs e)
+        private void createWareBtn_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is AddCustomerForm)
+                if (form is AddWarehouseForm)
                 {
                     if (form.WindowState == FormWindowState.Minimized)
                     {
@@ -34,8 +32,8 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            AddCustomerForm addCustomerForm = new AddCustomerForm();
-            addCustomerForm.Show();
+            AddWarehouseForm addWarehouseForm = new AddWarehouseForm();
+            addWarehouseForm.Show();
         }
     }
 }

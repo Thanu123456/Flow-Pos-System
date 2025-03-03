@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class Adjustments : Form
+    public partial class SaleReturnForm : Form
     {
-        public Adjustments()
+        public SaleReturnForm()
         {
             InitializeComponent();
         }
