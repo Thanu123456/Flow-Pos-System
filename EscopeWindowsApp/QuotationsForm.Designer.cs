@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createQuotaBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.quotaDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -67,7 +67,7 @@
             this.createQuotaBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createQuotaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createQuotaBtn.ForeColor = System.Drawing.Color.White;
-            this.createQuotaBtn.Location = new System.Drawing.Point(1668, 14);
+            this.createQuotaBtn.Location = new System.Drawing.Point(618, 49);
             this.createQuotaBtn.Name = "createQuotaBtn";
             this.createQuotaBtn.Size = new System.Drawing.Size(209, 42);
             this.createQuotaBtn.TabIndex = 3;
@@ -92,7 +92,7 @@
             "Last Week",
             "This Month",
             "Last Month"});
-            this.quotaDataComboBox1.Location = new System.Drawing.Point(1110, 21);
+            this.quotaDataComboBox1.Location = new System.Drawing.Point(60, 56);
             this.quotaDataComboBox1.Name = "quotaDataComboBox1";
             this.quotaDataComboBox1.Size = new System.Drawing.Size(400, 36);
             this.quotaDataComboBox1.StartIndex = 0;
@@ -100,18 +100,18 @@
             // 
             // quotaDataGridView
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.quotaDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.quotaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.quotaDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.quotaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.quotaDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.quotaDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.quotaDataGridView.ColumnHeadersHeight = 25;
             this.quotaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.quotaDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -122,14 +122,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.quotaDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.quotaDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.quotaDataGridView.GridColor = System.Drawing.Color.White;
             this.quotaDataGridView.Location = new System.Drawing.Point(44, 97);
             this.quotaDataGridView.Name = "quotaDataGridView";
@@ -199,7 +199,7 @@
             this.quotAllPgLabel.AutoSize = true;
             this.quotAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotAllPgLabel.Location = new System.Drawing.Point(370, 963);
+            this.quotAllPgLabel.Location = new System.Drawing.Point(423, 300);
             this.quotAllPgLabel.Name = "quotAllPgLabel";
             this.quotAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.quotAllPgLabel.TabIndex = 20;
@@ -210,7 +210,7 @@
             this.quotaOfLabel.AutoSize = true;
             this.quotaOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaOfLabel.Location = new System.Drawing.Point(345, 963);
+            this.quotaOfLabel.Location = new System.Drawing.Point(398, 300);
             this.quotaOfLabel.Name = "quotaOfLabel";
             this.quotaOfLabel.Size = new System.Drawing.Size(26, 23);
             this.quotaOfLabel.TabIndex = 19;
@@ -221,7 +221,7 @@
             this.quotaPgRangeLabel.AutoSize = true;
             this.quotaPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaPgRangeLabel.Location = new System.Drawing.Point(303, 963);
+            this.quotaPgRangeLabel.Location = new System.Drawing.Point(356, 300);
             this.quotaPgRangeLabel.Name = "quotaPgRangeLabel";
             this.quotaPgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.quotaPgRangeLabel.TabIndex = 18;
@@ -244,7 +244,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.quotaPageCombo.Location = new System.Drawing.Point(189, 955);
+            this.quotaPageCombo.Location = new System.Drawing.Point(242, 292);
             this.quotaPageCombo.Name = "quotaPageCombo";
             this.quotaPageCombo.Size = new System.Drawing.Size(85, 36);
             this.quotaPageCombo.StartIndex = 0;
@@ -255,7 +255,7 @@
             this.quotaRecordsPerLabel.AutoSize = true;
             this.quotaRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaRecordsPerLabel.Location = new System.Drawing.Point(38, 963);
+            this.quotaRecordsPerLabel.Location = new System.Drawing.Point(91, 300);
             this.quotaRecordsPerLabel.Name = "quotaRecordsPerLabel";
             this.quotaRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.quotaRecordsPerLabel.TabIndex = 16;
@@ -268,7 +268,7 @@
             this.quotaBtnPanel.Controls.Add(this.quotaPrevBtn);
             this.quotaBtnPanel.Controls.Add(this.quotaNextBtn);
             this.quotaBtnPanel.Controls.Add(this.quotaLastBtn);
-            this.quotaBtnPanel.Location = new System.Drawing.Point(1712, 949);
+            this.quotaBtnPanel.Location = new System.Drawing.Point(427, 248);
             this.quotaBtnPanel.Name = "quotaBtnPanel";
             this.quotaBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.quotaBtnPanel.TabIndex = 21;
@@ -350,7 +350,7 @@
             this.quotaFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.quotaFilterBtn.ForeColor = System.Drawing.Color.White;
             this.quotaFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.quotaFilterBtn.Location = new System.Drawing.Point(1604, 14);
+            this.quotaFilterBtn.Location = new System.Drawing.Point(554, 49);
             this.quotaFilterBtn.Name = "quotaFilterBtn";
             this.quotaFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.quotaFilterBtn.TabIndex = 2;
@@ -370,7 +370,7 @@
             this.quotaSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.quotaSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.quotaSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.quotaSearchText.Location = new System.Drawing.Point(44, 14);
+            this.quotaSearchText.Location = new System.Drawing.Point(100, 7);
             this.quotaSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.quotaSearchText.Name = "quotaSearchText";
             this.quotaSearchText.PasswordChar = '\0';

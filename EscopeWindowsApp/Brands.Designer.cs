@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.brandsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.createBrandsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brandsProductCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brandsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createBrandsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.brandsRecordsPerLabel = new System.Windows.Forms.Label();
             this.brandsAllPgLabel = new System.Windows.Forms.Label();
@@ -54,32 +54,32 @@
             // 
             // brandsDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.brandsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.brandsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.brandsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.brandsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.brandsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.brandsDataGridView.ColumnHeadersHeight = 25;
             this.brandsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.brandsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.brandsCategory,
             this.brandsProductCount,
             this.brandsAction});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.brandsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.brandsDataGridView.DefaultCellStyle = dataGridViewCellStyle18;
             this.brandsDataGridView.GridColor = System.Drawing.Color.White;
             this.brandsDataGridView.Location = new System.Drawing.Point(-9, 106);
             this.brandsDataGridView.Name = "brandsDataGridView";
@@ -110,6 +110,21 @@
             this.brandsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.brandsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // brandsCategory
+            // 
+            this.brandsCategory.HeaderText = "Brands Name";
+            this.brandsCategory.Name = "brandsCategory";
+            // 
+            // brandsProductCount
+            // 
+            this.brandsProductCount.HeaderText = "Product Count";
+            this.brandsProductCount.Name = "brandsProductCount";
+            // 
+            // brandsAction
+            // 
+            this.brandsAction.HeaderText = "Action";
+            this.brandsAction.Name = "brandsAction";
+            // 
             // createBrandsBtn
             // 
             this.createBrandsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -128,21 +143,6 @@
             this.createBrandsBtn.TabIndex = 22;
             this.createBrandsBtn.Text = "Create Brand";
             this.createBrandsBtn.Click += new System.EventHandler(this.createBrandsBtn_Click);
-            // 
-            // brandsCategory
-            // 
-            this.brandsCategory.HeaderText = "Brands Name";
-            this.brandsCategory.Name = "brandsCategory";
-            // 
-            // brandsProductCount
-            // 
-            this.brandsProductCount.HeaderText = "Product Count";
-            this.brandsProductCount.Name = "brandsProductCount";
-            // 
-            // brandsAction
-            // 
-            this.brandsAction.HeaderText = "Action";
-            this.brandsAction.Name = "brandsAction";
             // 
             // brandsPageCombo
             // 
@@ -250,6 +250,7 @@
             this.brandsFirstBtn.Name = "brandsFirstBtn";
             this.brandsFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.brandsFirstBtn.TabIndex = 11;
+            this.brandsFirstBtn.Click += new System.EventHandler(this.brandsFirstBtn_Click);
             // 
             // brandsPrevBtn
             // 
@@ -267,6 +268,7 @@
             this.brandsPrevBtn.Name = "brandsPrevBtn";
             this.brandsPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.brandsPrevBtn.TabIndex = 11;
+            this.brandsPrevBtn.Click += new System.EventHandler(this.brandsPrevBtn_Click);
             // 
             // brandsNextBtn
             // 
@@ -284,6 +286,7 @@
             this.brandsNextBtn.Name = "brandsNextBtn";
             this.brandsNextBtn.Size = new System.Drawing.Size(26, 26);
             this.brandsNextBtn.TabIndex = 9;
+            this.brandsNextBtn.Click += new System.EventHandler(this.brandsNextBtn_Click);
             // 
             // brandsLastBtn
             // 
@@ -300,6 +303,7 @@
             this.brandsLastBtn.Name = "brandsLastBtn";
             this.brandsLastBtn.Size = new System.Drawing.Size(26, 26);
             this.brandsLastBtn.TabIndex = 8;
+            this.brandsLastBtn.Click += new System.EventHandler(this.brandsLastBtn_Click);
             // 
             // brandsFilterBtn
             // 
@@ -318,6 +322,7 @@
             this.brandsFilterBtn.Name = "brandsFilterBtn";
             this.brandsFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.brandsFilterBtn.TabIndex = 21;
+            this.brandsFilterBtn.Click += new System.EventHandler(this.brandsFilterBtn_Click);
             // 
             // brandsSearchText
             // 
@@ -344,6 +349,7 @@
             this.brandsSearchText.SelectedText = "";
             this.brandsSearchText.Size = new System.Drawing.Size(309, 41);
             this.brandsSearchText.TabIndex = 20;
+            this.brandsSearchText.TextChanged += new System.EventHandler(this.brandsSearchText_TextChanged);
             // 
             // Brands
             // 

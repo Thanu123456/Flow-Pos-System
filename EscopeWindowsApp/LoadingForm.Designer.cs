@@ -39,6 +39,7 @@
             this.loadingDetailsLabel = new System.Windows.Forms.Label();
             this.loadingProgressBar = new Siticone.Desktop.UI.WinForms.SiticoneProgressBar();
             this.loadingPictureBoxLogo = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.loadingTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox3)).BeginInit();
@@ -77,6 +78,7 @@
             this.loadingPictureBox2.TabIndex = 1;
             this.loadingPictureBox2.TabStop = false;
             this.loadingPictureBox2.UseTransparentBackground = true;
+            this.loadingPictureBox2.Click += new System.EventHandler(this.loadingPictureBox2_Click);
             // 
             // loadingPictureBox3
             // 
@@ -136,6 +138,7 @@
             this.loadingProgressBar.TabIndex = 6;
             this.loadingProgressBar.Text = "Loading Bar";
             this.loadingProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.loadingProgressBar.ValueChanged += new System.EventHandler(this.loadingProgressBar_ValueChanged);
             // 
             // loadingPictureBoxLogo
             // 
@@ -148,6 +151,10 @@
             this.loadingPictureBoxLogo.TabIndex = 7;
             this.loadingPictureBoxLogo.TabStop = false;
             this.loadingPictureBoxLogo.UseTransparentBackground = true;
+            // 
+            // loadingTimer
+            // 
+            this.loadingTimer.Tick += new System.EventHandler(this.loadingTimer_Tick);
             // 
             // LoadingForm
             // 
@@ -166,6 +173,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoadingForm";
             this.Text = "LoadingForm";
+            this.Load += new System.EventHandler(this.LoadingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox3)).EndInit();
@@ -186,5 +194,6 @@
         private System.Windows.Forms.Label loadingFormLabel1;
         private Siticone.Desktop.UI.WinForms.SiticoneProgressBar loadingProgressBar;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox loadingPictureBoxLogo;
+        private System.Windows.Forms.Timer loadingTimer;
     }
 }

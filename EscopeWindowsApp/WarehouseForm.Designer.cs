@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.wareSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createWareBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.wareDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -89,7 +89,7 @@
             this.createWareBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createWareBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createWareBtn.ForeColor = System.Drawing.Color.White;
-            this.createWareBtn.Location = new System.Drawing.Point(1668, 13);
+            this.createWareBtn.Location = new System.Drawing.Point(450, 43);
             this.createWareBtn.Name = "createWareBtn";
             this.createWareBtn.Size = new System.Drawing.Size(209, 42);
             this.createWareBtn.TabIndex = 5;
@@ -98,18 +98,18 @@
             // 
             // wareDataGridView
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.wareDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.wareDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.wareDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.wareDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.wareDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.wareDataGridView.ColumnHeadersHeight = 25;
             this.wareDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.wareDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -120,14 +120,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.wareDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.wareDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.wareDataGridView.GridColor = System.Drawing.Color.White;
             this.wareDataGridView.Location = new System.Drawing.Point(44, 101);
             this.wareDataGridView.Name = "wareDataGridView";
@@ -199,7 +199,7 @@
             this.wareBtnPanel.Controls.Add(this.warePrevBtn);
             this.wareBtnPanel.Controls.Add(this.wareNextBtn);
             this.wareBtnPanel.Controls.Add(this.wareLastBtn);
-            this.wareBtnPanel.Location = new System.Drawing.Point(1714, 987);
+            this.wareBtnPanel.Location = new System.Drawing.Point(475, 212);
             this.wareBtnPanel.Name = "wareBtnPanel";
             this.wareBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.wareBtnPanel.TabIndex = 23;
@@ -275,7 +275,7 @@
             this.wareAllPgLabel.AutoSize = true;
             this.wareAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareAllPgLabel.Location = new System.Drawing.Point(377, 993);
+            this.wareAllPgLabel.Location = new System.Drawing.Point(379, 183);
             this.wareAllPgLabel.Name = "wareAllPgLabel";
             this.wareAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.wareAllPgLabel.TabIndex = 32;
@@ -286,7 +286,7 @@
             this.wareOfLabel.AutoSize = true;
             this.wareOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareOfLabel.Location = new System.Drawing.Point(352, 993);
+            this.wareOfLabel.Location = new System.Drawing.Point(354, 183);
             this.wareOfLabel.Name = "wareOfLabel";
             this.wareOfLabel.Size = new System.Drawing.Size(26, 23);
             this.wareOfLabel.TabIndex = 31;
@@ -297,7 +297,7 @@
             this.warePgRangeLabel.AutoSize = true;
             this.warePgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warePgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.warePgRangeLabel.Location = new System.Drawing.Point(310, 993);
+            this.warePgRangeLabel.Location = new System.Drawing.Point(312, 183);
             this.warePgRangeLabel.Name = "warePgRangeLabel";
             this.warePgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.warePgRangeLabel.TabIndex = 30;
@@ -320,7 +320,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.warePageCombo.Location = new System.Drawing.Point(196, 985);
+            this.warePageCombo.Location = new System.Drawing.Point(198, 175);
             this.warePageCombo.Name = "warePageCombo";
             this.warePageCombo.Size = new System.Drawing.Size(85, 36);
             this.warePageCombo.StartIndex = 0;
@@ -331,7 +331,7 @@
             this.wareRecordsPerLabel.AutoSize = true;
             this.wareRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareRecordsPerLabel.Location = new System.Drawing.Point(45, 993);
+            this.wareRecordsPerLabel.Location = new System.Drawing.Point(47, 183);
             this.wareRecordsPerLabel.Name = "wareRecordsPerLabel";
             this.wareRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.wareRecordsPerLabel.TabIndex = 28;

@@ -16,5 +16,35 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        private void loadingProgressBar_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadingPictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadingForm_Load(object sender, EventArgs e)
+        {
+            loadingTimer.Start();
+        }
+
+        private void loadingTimer_Tick(object sender, EventArgs e)
+        {
+            if (loadingProgressBar.Value < 100)
+            {
+                loadingProgressBar.Value += 2;
+            }
+            else
+            {
+                loadingTimer.Stop();
+                this.Hide();
+                AddUserForm mainForm = new AddUserForm();
+                mainForm.Show();
+            }
+        }
     }
 }

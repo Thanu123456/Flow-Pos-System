@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.createSaleBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -75,7 +75,7 @@
             "Last Week",
             "This Month",
             "Last Month"});
-            this.saleDataComboBox1.Location = new System.Drawing.Point(1101, 19);
+            this.saleDataComboBox1.Location = new System.Drawing.Point(152, 49);
             this.saleDataComboBox1.Name = "saleDataComboBox1";
             this.saleDataComboBox1.Size = new System.Drawing.Size(400, 36);
             this.saleDataComboBox1.StartIndex = 0;
@@ -91,7 +91,7 @@
             this.createSaleBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createSaleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createSaleBtn.ForeColor = System.Drawing.Color.White;
-            this.createSaleBtn.Location = new System.Drawing.Point(1659, 12);
+            this.createSaleBtn.Location = new System.Drawing.Point(710, 42);
             this.createSaleBtn.Name = "createSaleBtn";
             this.createSaleBtn.Size = new System.Drawing.Size(209, 42);
             this.createSaleBtn.TabIndex = 6;
@@ -109,25 +109,25 @@
             this.saleFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.saleFilterBtn.ForeColor = System.Drawing.Color.White;
             this.saleFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.saleFilterBtn.Location = new System.Drawing.Point(1595, 12);
+            this.saleFilterBtn.Location = new System.Drawing.Point(646, 42);
             this.saleFilterBtn.Name = "saleFilterBtn";
             this.saleFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.saleFilterBtn.TabIndex = 5;
             // 
             // saleDataGridView
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.saleDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.saleDataGridView.ColumnHeadersHeight = 25;
             this.saleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.saleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -138,14 +138,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.saleDataGridView.GridColor = System.Drawing.Color.White;
             this.saleDataGridView.Location = new System.Drawing.Point(35, 90);
             this.saleDataGridView.Name = "saleDataGridView";
@@ -215,7 +215,7 @@
             this.saleAllPgLabel.AutoSize = true;
             this.saleAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleAllPgLabel.Location = new System.Drawing.Point(366, 997);
+            this.saleAllPgLabel.Location = new System.Drawing.Point(389, 211);
             this.saleAllPgLabel.Name = "saleAllPgLabel";
             this.saleAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.saleAllPgLabel.TabIndex = 25;
@@ -226,7 +226,7 @@
             this.saleOfLabel.AutoSize = true;
             this.saleOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleOfLabel.Location = new System.Drawing.Point(341, 997);
+            this.saleOfLabel.Location = new System.Drawing.Point(364, 211);
             this.saleOfLabel.Name = "saleOfLabel";
             this.saleOfLabel.Size = new System.Drawing.Size(26, 23);
             this.saleOfLabel.TabIndex = 24;
@@ -237,7 +237,7 @@
             this.salePgRangeLabel.AutoSize = true;
             this.salePgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.salePgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.salePgRangeLabel.Location = new System.Drawing.Point(299, 997);
+            this.salePgRangeLabel.Location = new System.Drawing.Point(322, 211);
             this.salePgRangeLabel.Name = "salePgRangeLabel";
             this.salePgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.salePgRangeLabel.TabIndex = 23;
@@ -260,7 +260,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.salePageCombo.Location = new System.Drawing.Point(185, 989);
+            this.salePageCombo.Location = new System.Drawing.Point(208, 203);
             this.salePageCombo.Name = "salePageCombo";
             this.salePageCombo.Size = new System.Drawing.Size(85, 36);
             this.salePageCombo.StartIndex = 0;
@@ -271,7 +271,7 @@
             this.saleRecordsPerLabel.AutoSize = true;
             this.saleRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleRecordsPerLabel.Location = new System.Drawing.Point(34, 997);
+            this.saleRecordsPerLabel.Location = new System.Drawing.Point(57, 211);
             this.saleRecordsPerLabel.Name = "saleRecordsPerLabel";
             this.saleRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.saleRecordsPerLabel.TabIndex = 21;
@@ -284,7 +284,7 @@
             this.saleBtnPanel.Controls.Add(this.salePrevBtn);
             this.saleBtnPanel.Controls.Add(this.saleNextBtn);
             this.saleBtnPanel.Controls.Add(this.saleLastBtn);
-            this.saleBtnPanel.Location = new System.Drawing.Point(1714, 991);
+            this.saleBtnPanel.Location = new System.Drawing.Point(519, 163);
             this.saleBtnPanel.Name = "saleBtnPanel";
             this.saleBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.saleBtnPanel.TabIndex = 26;

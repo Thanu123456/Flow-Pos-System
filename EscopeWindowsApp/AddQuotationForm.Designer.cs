@@ -172,6 +172,7 @@
             this.createQuotaPanel.Name = "createQuotaPanel";
             this.createQuotaPanel.Size = new System.Drawing.Size(933, 1038);
             this.createQuotaPanel.TabIndex = 17;
+            this.createQuotaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createQuotaPanel_Paint);
             // 
             // quotaCancelBtn
             // 
@@ -188,6 +189,7 @@
             this.quotaCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.quotaCancelBtn.TabIndex = 26;
             this.quotaCancelBtn.Text = "Cancel";
+            this.quotaCancelBtn.Click += new System.EventHandler(this.quotaCancelBtn_Click);
             // 
             // quotaSaveBtn
             // 
@@ -204,6 +206,7 @@
             this.quotaSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.quotaSaveBtn.TabIndex = 25;
             this.quotaSaveBtn.Text = "Save";
+            this.quotaSaveBtn.Click += new System.EventHandler(this.quotaSaveBtn_Click);
             // 
             // createQuotaNoteLabel
             // 
@@ -236,6 +239,7 @@
             this.createQuotaNoteText.SelectedText = "";
             this.createQuotaNoteText.Size = new System.Drawing.Size(900, 75);
             this.createQuotaNoteText.TabIndex = 23;
+            this.createQuotaNoteText.TextChanged += new System.EventHandler(this.createQuotaNoteText_TextChanged);
             // 
             // createQuotaStatusCombo
             // 
@@ -257,6 +261,7 @@
             this.createQuotaStatusCombo.Size = new System.Drawing.Size(400, 36);
             this.createQuotaStatusCombo.StartIndex = 0;
             this.createQuotaStatusCombo.TabIndex = 22;
+            this.createQuotaStatusCombo.SelectedIndexChanged += new System.EventHandler(this.createQuotaStatusCombo_SelectedIndexChanged);
             // 
             // createQuotaStatusLabel
             // 
@@ -322,6 +327,7 @@
             this.createQuotaDisText.SelectedText = "";
             this.createQuotaDisText.Size = new System.Drawing.Size(400, 42);
             this.createQuotaDisText.TabIndex = 18;
+            this.createQuotaDisText.TextChanged += new System.EventHandler(this.createQuotaDisText_TextChanged);
             // 
             // createQuotaDisLabel
             // 
@@ -354,6 +360,7 @@
             this.createQuoOderTaxText.SelectedText = "";
             this.createQuoOderTaxText.Size = new System.Drawing.Size(400, 42);
             this.createQuoOderTaxText.TabIndex = 16;
+            this.createQuoOderTaxText.TextChanged += new System.EventHandler(this.createQuoOderTaxText_TextChanged);
             // 
             // createQuotaOdTaxLabel
             // 
@@ -424,6 +431,7 @@
             this.quotaOrderDataGrid.ThemeStyle.RowsStyle.Height = 22;
             this.quotaOrderDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.quotaOrderDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaOrderDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.quotaOrderDataGrid_CellContentClick);
             // 
             // supplierID
             // 
@@ -494,6 +502,7 @@
             this.createQuoSearchText.SelectedText = "";
             this.createQuoSearchText.Size = new System.Drawing.Size(400, 42);
             this.createQuoSearchText.TabIndex = 12;
+            this.createQuoSearchText.TextChanged += new System.EventHandler(this.createQuoSearchText_TextChanged);
             // 
             // createQuoProductLabel
             // 
@@ -527,6 +536,7 @@
             this.createQuoText.SelectedText = "";
             this.createQuoText.Size = new System.Drawing.Size(400, 42);
             this.createQuoText.TabIndex = 10;
+            this.createQuoText.TextChanged += new System.EventHandler(this.createQuoText_TextChanged);
             // 
             // createQuoCusLabel
             // 
@@ -560,6 +570,7 @@
             this.createQuoWareCombo.Size = new System.Drawing.Size(400, 36);
             this.createQuoWareCombo.StartIndex = 0;
             this.createQuoWareCombo.TabIndex = 8;
+            this.createQuoWareCombo.SelectedIndexChanged += new System.EventHandler(this.createQuoWareCombo_SelectedIndexChanged);
             // 
             // CreateQuowarehouseLabel
             // 
@@ -586,6 +597,7 @@
             this.createQuotaDateTime.Size = new System.Drawing.Size(400, 42);
             this.createQuotaDateTime.TabIndex = 6;
             this.createQuotaDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.createQuotaDateTime.ValueChanged += new System.EventHandler(this.createQuotaDateTime_ValueChanged);
             // 
             // createQuotaDateLabel
             // 
@@ -610,6 +622,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddQuotationForm";
             this.Text = "AddQuotation";
+            this.Load += new System.EventHandler(this.AddQuotationForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.createQuotaPanel.ResumeLayout(false);

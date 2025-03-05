@@ -43,15 +43,15 @@
             this.cusAnimateWindow = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
             this.createCusLabel = new System.Windows.Forms.Label();
             this.createCusPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.createCusNameLabel = new System.Windows.Forms.Label();
-            this.createCusEmailLabel = new System.Windows.Forms.Label();
-            this.createCusPhoneLabel = new System.Windows.Forms.Label();
-            this.createCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
-            this.createCusDOB = new System.Windows.Forms.Label();
-            this.createCusCityLabel = new System.Windows.Forms.Label();
-            this.createCusAddress = new System.Windows.Forms.Label();
             this.cusCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.createCusAddress = new System.Windows.Forms.Label();
+            this.createCusCityLabel = new System.Windows.Forms.Label();
+            this.createCusDOB = new System.Windows.Forms.Label();
+            this.createCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
+            this.createCusPhoneLabel = new System.Windows.Forms.Label();
+            this.createCusEmailLabel = new System.Windows.Forms.Label();
+            this.createCusNameLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.createCusPanel.SuspendLayout();
@@ -135,6 +135,7 @@
             this.createCusCityText.SelectedText = "";
             this.createCusCityText.Size = new System.Drawing.Size(400, 42);
             this.createCusCityText.TabIndex = 8;
+            this.createCusCityText.TextChanged += new System.EventHandler(this.createCusCityText_TextChanged);
             // 
             // createCusAddressText
             // 
@@ -156,6 +157,7 @@
             this.createCusAddressText.SelectedText = "";
             this.createCusAddressText.Size = new System.Drawing.Size(400, 42);
             this.createCusAddressText.TabIndex = 6;
+            this.createCusAddressText.TextChanged += new System.EventHandler(this.createCusAddressText_TextChanged);
             // 
             // addCusEmailText
             // 
@@ -177,6 +179,7 @@
             this.addCusEmailText.SelectedText = "";
             this.addCusEmailText.Size = new System.Drawing.Size(400, 42);
             this.addCusEmailText.TabIndex = 4;
+            this.addCusEmailText.TextChanged += new System.EventHandler(this.addCusEmailText_TextChanged);
             // 
             // CreateCusPhoneText
             // 
@@ -198,6 +201,7 @@
             this.CreateCusPhoneText.SelectedText = "";
             this.CreateCusPhoneText.Size = new System.Drawing.Size(400, 42);
             this.CreateCusPhoneText.TabIndex = 3;
+            this.CreateCusPhoneText.TextChanged += new System.EventHandler(this.CreateCusPhoneText_TextChanged);
             // 
             // createCusNameText
             // 
@@ -219,6 +223,7 @@
             this.createCusNameText.SelectedText = "";
             this.createCusNameText.Size = new System.Drawing.Size(400, 42);
             this.createCusNameText.TabIndex = 1;
+            this.createCusNameText.TextChanged += new System.EventHandler(this.createCusNameText_TextChanged);
             // 
             // addCusBorderlessForm
             // 
@@ -263,87 +268,7 @@
             this.createCusPanel.Name = "createCusPanel";
             this.createCusPanel.Size = new System.Drawing.Size(928, 480);
             this.createCusPanel.TabIndex = 19;
-            // 
-            // createCusNameLabel
-            // 
-            this.createCusNameLabel.AutoSize = true;
-            this.createCusNameLabel.BackColor = System.Drawing.Color.White;
-            this.createCusNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusNameLabel.Location = new System.Drawing.Point(19, 25);
-            this.createCusNameLabel.Name = "createCusNameLabel";
-            this.createCusNameLabel.Size = new System.Drawing.Size(60, 23);
-            this.createCusNameLabel.TabIndex = 19;
-            this.createCusNameLabel.Text = "Name:";
-            // 
-            // createCusEmailLabel
-            // 
-            this.createCusEmailLabel.AutoSize = true;
-            this.createCusEmailLabel.BackColor = System.Drawing.Color.White;
-            this.createCusEmailLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusEmailLabel.Location = new System.Drawing.Point(500, 25);
-            this.createCusEmailLabel.Name = "createCusEmailLabel";
-            this.createCusEmailLabel.Size = new System.Drawing.Size(56, 23);
-            this.createCusEmailLabel.TabIndex = 21;
-            this.createCusEmailLabel.Text = "Email:";
-            // 
-            // createCusPhoneLabel
-            // 
-            this.createCusPhoneLabel.AutoSize = true;
-            this.createCusPhoneLabel.BackColor = System.Drawing.Color.White;
-            this.createCusPhoneLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusPhoneLabel.Location = new System.Drawing.Point(19, 136);
-            this.createCusPhoneLabel.Name = "createCusPhoneLabel";
-            this.createCusPhoneLabel.Size = new System.Drawing.Size(131, 23);
-            this.createCusPhoneLabel.TabIndex = 22;
-            this.createCusPhoneLabel.Text = "Phone Number:";
-            // 
-            // createCusDateTime
-            // 
-            this.createCusDateTime.BorderRadius = 8;
-            this.createCusDateTime.Checked = true;
-            this.createCusDateTime.FillColor = System.Drawing.Color.LightGreen;
-            this.createCusDateTime.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.createCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.createCusDateTime.Location = new System.Drawing.Point(504, 171);
-            this.createCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.createCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.createCusDateTime.Name = "createCusDateTime";
-            this.createCusDateTime.Size = new System.Drawing.Size(400, 42);
-            this.createCusDateTime.TabIndex = 23;
-            this.createCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
-            // 
-            // createCusDOB
-            // 
-            this.createCusDOB.AutoSize = true;
-            this.createCusDOB.BackColor = System.Drawing.Color.White;
-            this.createCusDOB.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusDOB.Location = new System.Drawing.Point(500, 136);
-            this.createCusDOB.Name = "createCusDOB";
-            this.createCusDOB.Size = new System.Drawing.Size(50, 23);
-            this.createCusDOB.TabIndex = 24;
-            this.createCusDOB.Text = "DOB:";
-            // 
-            // createCusCityLabel
-            // 
-            this.createCusCityLabel.AutoSize = true;
-            this.createCusCityLabel.BackColor = System.Drawing.Color.White;
-            this.createCusCityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusCityLabel.Location = new System.Drawing.Point(19, 246);
-            this.createCusCityLabel.Name = "createCusCityLabel";
-            this.createCusCityLabel.Size = new System.Drawing.Size(44, 23);
-            this.createCusCityLabel.TabIndex = 25;
-            this.createCusCityLabel.Text = "City:";
-            // 
-            // createCusAddress
-            // 
-            this.createCusAddress.AutoSize = true;
-            this.createCusAddress.BackColor = System.Drawing.Color.White;
-            this.createCusAddress.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCusAddress.Location = new System.Drawing.Point(500, 246);
-            this.createCusAddress.Name = "createCusAddress";
-            this.createCusAddress.Size = new System.Drawing.Size(78, 23);
-            this.createCusAddress.TabIndex = 26;
-            this.createCusAddress.Text = "Address:";
+            this.createCusPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createCusPanel_Paint);
             // 
             // cusCancelBtn
             // 
@@ -360,6 +285,7 @@
             this.cusCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.cusCancelBtn.TabIndex = 30;
             this.cusCancelBtn.Text = "Cancel";
+            this.cusCancelBtn.Click += new System.EventHandler(this.cusCancelBtn_Click);
             // 
             // cusSaveBtn
             // 
@@ -376,6 +302,89 @@
             this.cusSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.cusSaveBtn.TabIndex = 29;
             this.cusSaveBtn.Text = "Save";
+            this.cusSaveBtn.Click += new System.EventHandler(this.cusSaveBtn_Click);
+            // 
+            // createCusAddress
+            // 
+            this.createCusAddress.AutoSize = true;
+            this.createCusAddress.BackColor = System.Drawing.Color.White;
+            this.createCusAddress.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusAddress.Location = new System.Drawing.Point(500, 246);
+            this.createCusAddress.Name = "createCusAddress";
+            this.createCusAddress.Size = new System.Drawing.Size(78, 23);
+            this.createCusAddress.TabIndex = 26;
+            this.createCusAddress.Text = "Address:";
+            // 
+            // createCusCityLabel
+            // 
+            this.createCusCityLabel.AutoSize = true;
+            this.createCusCityLabel.BackColor = System.Drawing.Color.White;
+            this.createCusCityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusCityLabel.Location = new System.Drawing.Point(19, 246);
+            this.createCusCityLabel.Name = "createCusCityLabel";
+            this.createCusCityLabel.Size = new System.Drawing.Size(44, 23);
+            this.createCusCityLabel.TabIndex = 25;
+            this.createCusCityLabel.Text = "City:";
+            // 
+            // createCusDOB
+            // 
+            this.createCusDOB.AutoSize = true;
+            this.createCusDOB.BackColor = System.Drawing.Color.White;
+            this.createCusDOB.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusDOB.Location = new System.Drawing.Point(500, 136);
+            this.createCusDOB.Name = "createCusDOB";
+            this.createCusDOB.Size = new System.Drawing.Size(50, 23);
+            this.createCusDOB.TabIndex = 24;
+            this.createCusDOB.Text = "DOB:";
+            // 
+            // createCusDateTime
+            // 
+            this.createCusDateTime.BorderRadius = 8;
+            this.createCusDateTime.Checked = true;
+            this.createCusDateTime.FillColor = System.Drawing.Color.LightGreen;
+            this.createCusDateTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.createCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.createCusDateTime.Location = new System.Drawing.Point(504, 171);
+            this.createCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.createCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.createCusDateTime.Name = "createCusDateTime";
+            this.createCusDateTime.Size = new System.Drawing.Size(400, 42);
+            this.createCusDateTime.TabIndex = 23;
+            this.createCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.createCusDateTime.ValueChanged += new System.EventHandler(this.createCusDateTime_ValueChanged);
+            // 
+            // createCusPhoneLabel
+            // 
+            this.createCusPhoneLabel.AutoSize = true;
+            this.createCusPhoneLabel.BackColor = System.Drawing.Color.White;
+            this.createCusPhoneLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusPhoneLabel.Location = new System.Drawing.Point(19, 136);
+            this.createCusPhoneLabel.Name = "createCusPhoneLabel";
+            this.createCusPhoneLabel.Size = new System.Drawing.Size(131, 23);
+            this.createCusPhoneLabel.TabIndex = 22;
+            this.createCusPhoneLabel.Text = "Phone Number:";
+            // 
+            // createCusEmailLabel
+            // 
+            this.createCusEmailLabel.AutoSize = true;
+            this.createCusEmailLabel.BackColor = System.Drawing.Color.White;
+            this.createCusEmailLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusEmailLabel.Location = new System.Drawing.Point(500, 25);
+            this.createCusEmailLabel.Name = "createCusEmailLabel";
+            this.createCusEmailLabel.Size = new System.Drawing.Size(56, 23);
+            this.createCusEmailLabel.TabIndex = 21;
+            this.createCusEmailLabel.Text = "Email:";
+            // 
+            // createCusNameLabel
+            // 
+            this.createCusNameLabel.AutoSize = true;
+            this.createCusNameLabel.BackColor = System.Drawing.Color.White;
+            this.createCusNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusNameLabel.Location = new System.Drawing.Point(19, 25);
+            this.createCusNameLabel.Name = "createCusNameLabel";
+            this.createCusNameLabel.Size = new System.Drawing.Size(60, 23);
+            this.createCusNameLabel.TabIndex = 19;
+            this.createCusNameLabel.Text = "Name:";
             // 
             // AddCustomerForm
             // 
@@ -389,6 +398,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddCustomerForm";
             this.Text = "AddCustomerForm";
+            this.Load += new System.EventHandler(this.AddCustomerForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.createCusPanel.ResumeLayout(false);
