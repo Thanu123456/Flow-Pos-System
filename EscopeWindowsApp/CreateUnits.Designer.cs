@@ -78,6 +78,7 @@
             this.shortUnitNameTextBox.SelectedText = "";
             this.shortUnitNameTextBox.Size = new System.Drawing.Size(349, 42);
             this.shortUnitNameTextBox.TabIndex = 77;
+            this.shortUnitNameTextBox.TextChanged += new System.EventHandler(this.shortUnitNameTextBox_TextChanged);
             // 
             // creCatSaveBtn
             // 
@@ -171,6 +172,7 @@
             this.createUnitNameText.SelectedText = "";
             this.createUnitNameText.Size = new System.Drawing.Size(348, 42);
             this.createUnitNameText.TabIndex = 72;
+            this.createUnitNameText.TextChanged += new System.EventHandler(this.createUnitNameText_TextChanged);
             // 
             // createUnitsLabel
             // 
@@ -251,6 +253,7 @@
             this.baseUnitComboBox.Size = new System.Drawing.Size(348, 36);
             this.baseUnitComboBox.StartIndex = 0;
             this.baseUnitComboBox.TabIndex = 81;
+            this.baseUnitComboBox.SelectedIndexChanged += new System.EventHandler(this.baseUnitComboBox_SelectedIndexChanged);
             // 
             // CreateUnits
             // 

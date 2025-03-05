@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createAdjBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.adjustDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +66,7 @@
             this.createAdjBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createAdjBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F);
             this.createAdjBtn.ForeColor = System.Drawing.Color.White;
-            this.createAdjBtn.Location = new System.Drawing.Point(1671, 17);
+            this.createAdjBtn.Location = new System.Drawing.Point(562, 31);
             this.createAdjBtn.Name = "createAdjBtn";
             this.createAdjBtn.Size = new System.Drawing.Size(209, 42);
             this.createAdjBtn.TabIndex = 2;
@@ -75,18 +75,18 @@
             // 
             // adjustDataGridView
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.adjustDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.adjustDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.adjustDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.adjustDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.adjustDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.adjustDataGridView.ColumnHeadersHeight = 25;
             this.adjustDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.adjustDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -97,14 +97,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.adjustDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.adjustDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.adjustDataGridView.GridColor = System.Drawing.Color.White;
             this.adjustDataGridView.Location = new System.Drawing.Point(43, 98);
             this.adjustDataGridView.Name = "adjustDataGridView";
@@ -176,7 +176,7 @@
             this.btnPanel.Controls.Add(this.adjPrevBtn);
             this.btnPanel.Controls.Add(this.adjNextBtn);
             this.btnPanel.Controls.Add(this.adjLastBtn);
-            this.btnPanel.Location = new System.Drawing.Point(1716, 918);
+            this.btnPanel.Location = new System.Drawing.Point(209, 284);
             this.btnPanel.Name = "btnPanel";
             this.btnPanel.Size = new System.Drawing.Size(154, 37);
             this.btnPanel.TabIndex = 10;
@@ -252,7 +252,7 @@
             this.adjRecordsPerLabel.AutoSize = true;
             this.adjRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjRecordsPerLabel.Location = new System.Drawing.Point(42, 932);
+            this.adjRecordsPerLabel.Location = new System.Drawing.Point(58, 191);
             this.adjRecordsPerLabel.Name = "adjRecordsPerLabel";
             this.adjRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.adjRecordsPerLabel.TabIndex = 11;
@@ -275,7 +275,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.adjPageCombo.Location = new System.Drawing.Point(193, 924);
+            this.adjPageCombo.Location = new System.Drawing.Point(209, 183);
             this.adjPageCombo.Name = "adjPageCombo";
             this.adjPageCombo.Size = new System.Drawing.Size(85, 36);
             this.adjPageCombo.StartIndex = 0;
@@ -286,7 +286,7 @@
             this.adjPgRangeLabel.AutoSize = true;
             this.adjPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjPgRangeLabel.Location = new System.Drawing.Point(307, 932);
+            this.adjPgRangeLabel.Location = new System.Drawing.Point(323, 191);
             this.adjPgRangeLabel.Name = "adjPgRangeLabel";
             this.adjPgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.adjPgRangeLabel.TabIndex = 13;
@@ -297,7 +297,7 @@
             this.adjOfLabel.AutoSize = true;
             this.adjOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjOfLabel.Location = new System.Drawing.Point(349, 932);
+            this.adjOfLabel.Location = new System.Drawing.Point(365, 191);
             this.adjOfLabel.Name = "adjOfLabel";
             this.adjOfLabel.Size = new System.Drawing.Size(26, 23);
             this.adjOfLabel.TabIndex = 14;
@@ -308,7 +308,7 @@
             this.adjAllPgLabel.AutoSize = true;
             this.adjAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjAllPgLabel.Location = new System.Drawing.Point(374, 932);
+            this.adjAllPgLabel.Location = new System.Drawing.Point(390, 191);
             this.adjAllPgLabel.Name = "adjAllPgLabel";
             this.adjAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.adjAllPgLabel.TabIndex = 15;
@@ -325,7 +325,7 @@
             this.adjustFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.adjustFilterBtn.ForeColor = System.Drawing.Color.White;
             this.adjustFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.adjustFilterBtn.Location = new System.Drawing.Point(1611, 17);
+            this.adjustFilterBtn.Location = new System.Drawing.Point(502, 31);
             this.adjustFilterBtn.Name = "adjustFilterBtn";
             this.adjustFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.adjustFilterBtn.TabIndex = 1;
@@ -353,7 +353,7 @@
             this.adjustSearchText.Size = new System.Drawing.Size(309, 42);
             this.adjustSearchText.TabIndex = 0;
             // 
-            // Adjustments
+            // AdjustmentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -372,7 +372,7 @@
             this.Controls.Add(this.adjustFilterBtn);
             this.Controls.Add(this.adjustSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Adjustments";
+            this.Name = "AdjustmentsForm";
             this.Text = "Adjustments";
             ((System.ComponentModel.ISupportInitialize)(this.adjustDataGridView)).EndInit();
             this.btnPanel.ResumeLayout(false);

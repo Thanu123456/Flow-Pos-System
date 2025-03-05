@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleReDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleReFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleReSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -74,7 +74,7 @@
             "Last Week",
             "This Month",
             "Last Month"});
-            this.saleReDataComboBox1.Location = new System.Drawing.Point(1482, 19);
+            this.saleReDataComboBox1.Location = new System.Drawing.Point(376, 61);
             this.saleReDataComboBox1.Name = "saleReDataComboBox1";
             this.saleReDataComboBox1.Size = new System.Drawing.Size(400, 36);
             this.saleReDataComboBox1.StartIndex = 0;
@@ -91,7 +91,7 @@
             this.saleReFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.saleReFilterBtn.ForeColor = System.Drawing.Color.White;
             this.saleReFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.saleReFilterBtn.Location = new System.Drawing.Point(1410, 19);
+            this.saleReFilterBtn.Location = new System.Drawing.Point(304, 61);
             this.saleReFilterBtn.Name = "saleReFilterBtn";
             this.saleReFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.saleReFilterBtn.TabIndex = 8;
@@ -122,18 +122,18 @@
             // 
             // saleReDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleReDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleReDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.saleReDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleReDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleReDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.saleReDataGridView.ColumnHeadersHeight = 25;
             this.saleReDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.saleReDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -144,14 +144,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleReDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleReDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.saleReDataGridView.GridColor = System.Drawing.Color.White;
             this.saleReDataGridView.Location = new System.Drawing.Point(39, 93);
             this.saleReDataGridView.Name = "saleReDataGridView";
@@ -221,7 +221,7 @@
             this.saleReAllPgLabel.AutoSize = true;
             this.saleReAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleReAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleReAllPgLabel.Location = new System.Drawing.Point(372, 997);
+            this.saleReAllPgLabel.Location = new System.Drawing.Point(374, 208);
             this.saleReAllPgLabel.Name = "saleReAllPgLabel";
             this.saleReAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.saleReAllPgLabel.TabIndex = 34;
@@ -232,7 +232,7 @@
             this.saleReOfLabel.AutoSize = true;
             this.saleReOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleReOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleReOfLabel.Location = new System.Drawing.Point(347, 997);
+            this.saleReOfLabel.Location = new System.Drawing.Point(349, 208);
             this.saleReOfLabel.Name = "saleReOfLabel";
             this.saleReOfLabel.Size = new System.Drawing.Size(26, 23);
             this.saleReOfLabel.TabIndex = 33;
@@ -243,7 +243,7 @@
             this.saleRePgRangeLabel.AutoSize = true;
             this.saleRePgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleRePgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleRePgRangeLabel.Location = new System.Drawing.Point(305, 997);
+            this.saleRePgRangeLabel.Location = new System.Drawing.Point(307, 208);
             this.saleRePgRangeLabel.Name = "saleRePgRangeLabel";
             this.saleRePgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.saleRePgRangeLabel.TabIndex = 32;
@@ -266,7 +266,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.saleRePageCombo.Location = new System.Drawing.Point(191, 989);
+            this.saleRePageCombo.Location = new System.Drawing.Point(193, 200);
             this.saleRePageCombo.Name = "saleRePageCombo";
             this.saleRePageCombo.Size = new System.Drawing.Size(85, 36);
             this.saleRePageCombo.StartIndex = 0;
@@ -277,7 +277,7 @@
             this.saleReRecordsPerLabel.AutoSize = true;
             this.saleReRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleReRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleReRecordsPerLabel.Location = new System.Drawing.Point(40, 997);
+            this.saleReRecordsPerLabel.Location = new System.Drawing.Point(42, 208);
             this.saleReRecordsPerLabel.Name = "saleReRecordsPerLabel";
             this.saleReRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.saleReRecordsPerLabel.TabIndex = 30;
@@ -290,7 +290,7 @@
             this.saleReBtnPanel.Controls.Add(this.saleRePrevBtn);
             this.saleReBtnPanel.Controls.Add(this.saleReNextBtn);
             this.saleReBtnPanel.Controls.Add(this.saleReLastBtn);
-            this.saleReBtnPanel.Location = new System.Drawing.Point(1718, 983);
+            this.saleReBtnPanel.Location = new System.Drawing.Point(537, 194);
             this.saleReBtnPanel.Name = "saleReBtnPanel";
             this.saleReBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.saleReBtnPanel.TabIndex = 35;
