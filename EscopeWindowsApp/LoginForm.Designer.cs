@@ -291,6 +291,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox3)).EndInit();

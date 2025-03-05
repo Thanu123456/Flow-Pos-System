@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseUnitDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.baseUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.baseUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baseUnitAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.baseUnitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.baseUnitsRecordsPerLabel = new System.Windows.Forms.Label();
             this.baseUnitsAllPgLabel = new System.Windows.Forms.Label();
@@ -53,31 +53,31 @@
             // 
             // baseUnitDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.baseUnitDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.baseUnitDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.baseUnitDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.baseUnitDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.baseUnitDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.baseUnitDataGridView.ColumnHeadersHeight = 25;
             this.baseUnitDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.baseUnitDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.baseUnitName,
             this.baseUnitAction});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.baseUnitDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.baseUnitDataGridView.DefaultCellStyle = dataGridViewCellStyle18;
             this.baseUnitDataGridView.GridColor = System.Drawing.Color.White;
             this.baseUnitDataGridView.Location = new System.Drawing.Point(15, 100);
             this.baseUnitDataGridView.Name = "baseUnitDataGridView";
@@ -108,6 +108,16 @@
             this.baseUnitDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.baseUnitDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // baseUnitName
+            // 
+            this.baseUnitName.HeaderText = "Name";
+            this.baseUnitName.Name = "baseUnitName";
+            // 
+            // baseUnitAction
+            // 
+            this.baseUnitAction.HeaderText = "Action";
+            this.baseUnitAction.Name = "baseUnitAction";
+            // 
             // baseUnitsBtn
             // 
             this.baseUnitsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -126,16 +136,6 @@
             this.baseUnitsBtn.TabIndex = 30;
             this.baseUnitsBtn.Text = "Create Base Unit";
             this.baseUnitsBtn.Click += new System.EventHandler(this.baseUnitsBtn_Click);
-            // 
-            // baseUnitName
-            // 
-            this.baseUnitName.HeaderText = "Name";
-            this.baseUnitName.Name = "baseUnitName";
-            // 
-            // baseUnitAction
-            // 
-            this.baseUnitAction.HeaderText = "Action";
-            this.baseUnitAction.Name = "baseUnitAction";
             // 
             // baseUnitsPageCombo
             // 
@@ -243,6 +243,7 @@
             this.baseUnitsFirstBtn.Name = "baseUnitsFirstBtn";
             this.baseUnitsFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.baseUnitsFirstBtn.TabIndex = 11;
+            this.baseUnitsFirstBtn.Click += new System.EventHandler(this.baseUnitsFirstBtn_Click);
             // 
             // baseUnitsPrevBtn
             // 
@@ -260,6 +261,7 @@
             this.baseUnitsPrevBtn.Name = "baseUnitsPrevBtn";
             this.baseUnitsPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.baseUnitsPrevBtn.TabIndex = 11;
+            this.baseUnitsPrevBtn.Click += new System.EventHandler(this.baseUnitsPrevBtn_Click);
             // 
             // baseUnitsNextBtn
             // 
@@ -277,6 +279,7 @@
             this.baseUnitsNextBtn.Name = "baseUnitsNextBtn";
             this.baseUnitsNextBtn.Size = new System.Drawing.Size(26, 26);
             this.baseUnitsNextBtn.TabIndex = 9;
+            this.baseUnitsNextBtn.Click += new System.EventHandler(this.baseUnitsNextBtn_Click);
             // 
             // baseUnitsLastBtn
             // 
@@ -293,6 +296,7 @@
             this.baseUnitsLastBtn.Name = "baseUnitsLastBtn";
             this.baseUnitsLastBtn.Size = new System.Drawing.Size(26, 26);
             this.baseUnitsLastBtn.TabIndex = 8;
+            this.baseUnitsLastBtn.Click += new System.EventHandler(this.baseUnitsLastBtn_Click);
             // 
             // baseUnitFilterBtn
             // 
@@ -311,6 +315,7 @@
             this.baseUnitFilterBtn.Name = "baseUnitFilterBtn";
             this.baseUnitFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.baseUnitFilterBtn.TabIndex = 29;
+            this.baseUnitFilterBtn.Click += new System.EventHandler(this.baseUnitFilterBtn_Click);
             // 
             // baseUnitSearchText
             // 
@@ -337,6 +342,7 @@
             this.baseUnitSearchText.SelectedText = "";
             this.baseUnitSearchText.Size = new System.Drawing.Size(309, 41);
             this.baseUnitSearchText.TabIndex = 28;
+            this.baseUnitSearchText.TextChanged += new System.EventHandler(this.baseUnitSearchText_TextChanged);
             // 
             // BaseUnit
             // 

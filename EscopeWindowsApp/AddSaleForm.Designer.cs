@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createSalePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.createSalePySLabel = new System.Windows.Forms.Label();
+            this.createSalePaySCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.createSaleNoteLabel = new System.Windows.Forms.Label();
@@ -62,8 +64,7 @@
             this.createSaleDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.createSaleDateLabel = new System.Windows.Forms.Label();
             this.createSaleLabel = new System.Windows.Forms.Label();
-            this.createSalePaySCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.createSalePySLabel = new System.Windows.Forms.Label();
+            this.totalAmountLabel = new System.Windows.Forms.Label();
             this.createSalePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleOrderDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             this.createSalePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.createSalePanel.BorderRadius = 8;
+            this.createSalePanel.Controls.Add(this.totalAmountLabel);
             this.createSalePanel.Controls.Add(this.createSalePySLabel);
             this.createSalePanel.Controls.Add(this.createSalePaySCombo);
             this.createSalePanel.Controls.Add(this.saleCancelBtn);
@@ -104,6 +106,40 @@
             this.createSalePanel.TabIndex = 18;
             this.createSalePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createSalePanel_Paint);
             // 
+            // createSalePySLabel
+            // 
+            this.createSalePySLabel.AutoSize = true;
+            this.createSalePySLabel.BackColor = System.Drawing.Color.Transparent;
+            this.createSalePySLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSalePySLabel.Location = new System.Drawing.Point(12, 780);
+            this.createSalePySLabel.Name = "createSalePySLabel";
+            this.createSalePySLabel.Size = new System.Drawing.Size(135, 23);
+            this.createSalePySLabel.TabIndex = 29;
+            this.createSalePySLabel.Text = "Payment Status:";
+            // 
+            // createSalePaySCombo
+            // 
+            this.createSalePaySCombo.BackColor = System.Drawing.Color.Transparent;
+            this.createSalePaySCombo.BorderColor = System.Drawing.Color.Gray;
+            this.createSalePaySCombo.BorderRadius = 8;
+            this.createSalePaySCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.createSalePaySCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.createSalePaySCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSalePaySCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createSalePaySCombo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.createSalePaySCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createSalePaySCombo.ItemHeight = 30;
+            this.createSalePaySCombo.Items.AddRange(new object[] {
+            "Select Payment Status",
+            "Paid",
+            "Unpaid"});
+            this.createSalePaySCombo.Location = new System.Drawing.Point(15, 811);
+            this.createSalePaySCombo.Name = "createSalePaySCombo";
+            this.createSalePaySCombo.Size = new System.Drawing.Size(400, 36);
+            this.createSalePaySCombo.StartIndex = 0;
+            this.createSalePaySCombo.TabIndex = 28;
+            this.createSalePaySCombo.SelectedIndexChanged += new System.EventHandler(this.createSalePaySCombo_SelectedIndexChanged);
+            // 
             // saleCancelBtn
             // 
             this.saleCancelBtn.BorderRadius = 8;
@@ -119,6 +155,7 @@
             this.saleCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.saleCancelBtn.TabIndex = 26;
             this.saleCancelBtn.Text = "Cancel";
+            this.saleCancelBtn.Click += new System.EventHandler(this.saleCancelBtn_Click);
             // 
             // saleSaveBtn
             // 
@@ -135,6 +172,7 @@
             this.saleSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.saleSaveBtn.TabIndex = 25;
             this.saleSaveBtn.Text = "Save";
+            this.saleSaveBtn.Click += new System.EventHandler(this.saleSaveBtn_Click);
             // 
             // createSaleNoteLabel
             // 
@@ -167,6 +205,7 @@
             this.createSaleNoteText.SelectedText = "";
             this.createSaleNoteText.Size = new System.Drawing.Size(900, 75);
             this.createSaleNoteText.TabIndex = 23;
+            this.createSaleNoteText.TextChanged += new System.EventHandler(this.createSaleNoteText_TextChanged);
             // 
             // createSaleStatusCombo
             // 
@@ -188,6 +227,7 @@
             this.createSaleStatusCombo.Size = new System.Drawing.Size(400, 36);
             this.createSaleStatusCombo.StartIndex = 0;
             this.createSaleStatusCombo.TabIndex = 22;
+            this.createSaleStatusCombo.SelectedIndexChanged += new System.EventHandler(this.createSaleStatusCombo_SelectedIndexChanged);
             // 
             // createSaleStatusLabel
             // 
@@ -220,6 +260,7 @@
             this.createSaleShipText.SelectedText = "";
             this.createSaleShipText.Size = new System.Drawing.Size(400, 42);
             this.createSaleShipText.TabIndex = 20;
+            this.createSaleShipText.TextChanged += new System.EventHandler(this.createSaleShipText_TextChanged);
             // 
             // createSaleShiLabel
             // 
@@ -252,6 +293,7 @@
             this.createSaleDisText.SelectedText = "";
             this.createSaleDisText.Size = new System.Drawing.Size(400, 42);
             this.createSaleDisText.TabIndex = 18;
+            this.createSaleDisText.TextChanged += new System.EventHandler(this.createSaleDisText_TextChanged);
             // 
             // createSaleDisLabel
             // 
@@ -284,6 +326,7 @@
             this.createSaleOderTaxText.SelectedText = "";
             this.createSaleOderTaxText.Size = new System.Drawing.Size(400, 42);
             this.createSaleOderTaxText.TabIndex = 16;
+            this.createSaleOderTaxText.TextChanged += new System.EventHandler(this.createSaleOderTaxText_TextChanged);
             // 
             // createSaleOdTaxLabel
             // 
@@ -298,16 +341,16 @@
             // 
             // saleOrderDataGrid
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.saleOrderDataGrid.ColumnHeadersHeight = 25;
             this.saleOrderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.saleOrderDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -318,14 +361,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.saleOrderDataGrid.GridColor = System.Drawing.Color.White;
             this.saleOrderDataGrid.Location = new System.Drawing.Point(16, 315);
             this.saleOrderDataGrid.Name = "saleOrderDataGrid";
@@ -354,6 +397,7 @@
             this.saleOrderDataGrid.ThemeStyle.RowsStyle.Height = 22;
             this.saleOrderDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.saleOrderDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleOrderDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleOrderDataGrid_CellContentClick);
             // 
             // supplierID
             // 
@@ -424,6 +468,7 @@
             this.createSaleSearchText.SelectedText = "";
             this.createSaleSearchText.Size = new System.Drawing.Size(400, 42);
             this.createSaleSearchText.TabIndex = 12;
+            this.createSaleSearchText.TextChanged += new System.EventHandler(this.createSaleSearchText_TextChanged);
             // 
             // createSaleProdtLabel
             // 
@@ -457,6 +502,7 @@
             this.createSaleText.SelectedText = "";
             this.createSaleText.Size = new System.Drawing.Size(400, 42);
             this.createSaleText.TabIndex = 10;
+            this.createSaleText.TextChanged += new System.EventHandler(this.createSaleText_TextChanged);
             // 
             // createSaleCusLabel
             // 
@@ -490,6 +536,7 @@
             this.createSaleWareCombo.Size = new System.Drawing.Size(400, 36);
             this.createSaleWareCombo.StartIndex = 0;
             this.createSaleWareCombo.TabIndex = 8;
+            this.createSaleWareCombo.SelectedIndexChanged += new System.EventHandler(this.createSaleWareCombo_SelectedIndexChanged);
             // 
             // CreateSaleWarehouseLabel
             // 
@@ -516,6 +563,7 @@
             this.createSaleDateTime.Size = new System.Drawing.Size(400, 42);
             this.createSaleDateTime.TabIndex = 6;
             this.createSaleDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.createSaleDateTime.ValueChanged += new System.EventHandler(this.createSaleDateTime_ValueChanged);
             // 
             // createSaleDateLabel
             // 
@@ -538,38 +586,14 @@
             this.createSaleLabel.TabIndex = 19;
             this.createSaleLabel.Text = "Create Sale";
             // 
-            // createSalePaySCombo
+            // totalAmountLabel
             // 
-            this.createSalePaySCombo.BackColor = System.Drawing.Color.Transparent;
-            this.createSalePaySCombo.BorderColor = System.Drawing.Color.Gray;
-            this.createSalePaySCombo.BorderRadius = 8;
-            this.createSalePaySCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.createSalePaySCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.createSalePaySCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createSalePaySCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createSalePaySCombo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.createSalePaySCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createSalePaySCombo.ItemHeight = 30;
-            this.createSalePaySCombo.Items.AddRange(new object[] {
-            "Select Payment Status",
-            "Paid",
-            "Unpaid"});
-            this.createSalePaySCombo.Location = new System.Drawing.Point(15, 811);
-            this.createSalePaySCombo.Name = "createSalePaySCombo";
-            this.createSalePaySCombo.Size = new System.Drawing.Size(400, 36);
-            this.createSalePaySCombo.StartIndex = 0;
-            this.createSalePaySCombo.TabIndex = 28;
-            // 
-            // createSalePySLabel
-            // 
-            this.createSalePySLabel.AutoSize = true;
-            this.createSalePySLabel.BackColor = System.Drawing.Color.Transparent;
-            this.createSalePySLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSalePySLabel.Location = new System.Drawing.Point(12, 780);
-            this.createSalePySLabel.Name = "createSalePySLabel";
-            this.createSalePySLabel.Size = new System.Drawing.Size(135, 23);
-            this.createSalePySLabel.TabIndex = 29;
-            this.createSalePySLabel.Text = "Payment Status:";
+            this.totalAmountLabel.AutoSize = true;
+            this.totalAmountLabel.Location = new System.Drawing.Point(612, 839);
+            this.totalAmountLabel.Name = "totalAmountLabel";
+            this.totalAmountLabel.Size = new System.Drawing.Size(76, 13);
+            this.totalAmountLabel.TabIndex = 30;
+            this.totalAmountLabel.Text = "Totale Amount";
             // 
             // AddSaleForm
             // 
@@ -581,6 +605,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddSaleForm";
             this.Text = "AddSaleForm";
+            this.Load += new System.EventHandler(this.AddSaleForm_Load);
             this.createSalePanel.ResumeLayout(false);
             this.createSalePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleOrderDataGrid)).EndInit();
@@ -624,5 +649,6 @@
         private System.Windows.Forms.Label createSaleLabel;
         private System.Windows.Forms.Label createSalePySLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox createSalePaySCombo;
+        private System.Windows.Forms.Label totalAmountLabel;
     }
 }

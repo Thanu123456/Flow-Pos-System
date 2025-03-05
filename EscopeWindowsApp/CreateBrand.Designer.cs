@@ -94,6 +94,7 @@
             this.creBrandsSaveBtn.Size = new System.Drawing.Size(91, 42);
             this.creBrandsSaveBtn.TabIndex = 67;
             this.creBrandsSaveBtn.Text = "Save";
+            this.creBrandsSaveBtn.Click += new System.EventHandler(this.creBrandsSaveBtn_Click);
             // 
             // creBrandsCancelBtn
             // 
@@ -112,6 +113,7 @@
             this.creBrandsCancelBtn.Size = new System.Drawing.Size(91, 42);
             this.creBrandsCancelBtn.TabIndex = 66;
             this.creBrandsCancelBtn.Text = "Cancel";
+            this.creBrandsCancelBtn.Click += new System.EventHandler(this.creBrandsCancelBtn_Click);
             // 
             // creteBrandsLogoChangelabel
             // 
@@ -166,6 +168,7 @@
             this.createBrandsNameText.SelectedText = "";
             this.createBrandsNameText.Size = new System.Drawing.Size(348, 42);
             this.createBrandsNameText.TabIndex = 62;
+            this.createBrandsNameText.TextChanged += new System.EventHandler(this.createBrandsNameText_TextChanged);
             // 
             // createBrandsLabel
             // 
@@ -193,6 +196,7 @@
             this.creBrandsLogoBox.Size = new System.Drawing.Size(109, 99);
             this.creBrandsLogoBox.TabIndex = 65;
             this.creBrandsLogoBox.TabStop = false;
+            this.creBrandsLogoBox.Click += new System.EventHandler(this.creBrandsLogoBox_Click);
             // 
             // CreateBrand
             // 
@@ -213,6 +217,7 @@
             this.Name = "CreateBrand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateBrand";
+            this.Load += new System.EventHandler(this.CreateBrand_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.creBrandsLogoBox)).EndInit();

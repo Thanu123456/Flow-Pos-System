@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -160,6 +160,7 @@
             this.createAdjWareCombo.Size = new System.Drawing.Size(400, 36);
             this.createAdjWareCombo.StartIndex = 0;
             this.createAdjWareCombo.TabIndex = 6;
+            this.createAdjWareCombo.SelectedIndexChanged += new System.EventHandler(this.createAdjWareCombo_SelectedIndexChanged);
             // 
             // dateLabel
             // 
@@ -187,6 +188,7 @@
             this.createAdjDate.Size = new System.Drawing.Size(400, 42);
             this.createAdjDate.TabIndex = 8;
             this.createAdjDate.Value = new System.DateTime(2025, 2, 26, 20, 24, 46, 676);
+            this.createAdjDate.ValueChanged += new System.EventHandler(this.createAdjDate_ValueChanged);
             // 
             // productLabel
             // 
@@ -223,6 +225,7 @@
             this.adProductSearchText.SelectedText = "";
             this.adProductSearchText.Size = new System.Drawing.Size(830, 42);
             this.adProductSearchText.TabIndex = 10;
+            this.adProductSearchText.TextChanged += new System.EventHandler(this.adProductSearchText_TextChanged);
             // 
             // orderItemLabel
             // 
@@ -237,16 +240,16 @@
             // 
             // adjOrderDataGrid
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.adjOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.adjOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.adjOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.adjOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.adjOrderDataGrid.ColumnHeadersHeight = 25;
             this.adjOrderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.adjOrderDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -257,14 +260,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.adjOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.adjOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle9;
             this.adjOrderDataGrid.GridColor = System.Drawing.Color.White;
             this.adjOrderDataGrid.Location = new System.Drawing.Point(13, 275);
             this.adjOrderDataGrid.Name = "adjOrderDataGrid";
@@ -293,6 +296,7 @@
             this.adjOrderDataGrid.ThemeStyle.RowsStyle.Height = 22;
             this.adjOrderDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.adjOrderDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.adjOrderDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.adjOrderDataGrid_CellContentClick);
             // 
             // supplierID
             // 
@@ -344,6 +348,7 @@
             this.adjSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.adjSaveBtn.TabIndex = 13;
             this.adjSaveBtn.Text = "Save";
+            this.adjSaveBtn.Click += new System.EventHandler(this.adjSaveBtn_Click);
             // 
             // adjCancelBtn
             // 
@@ -360,6 +365,7 @@
             this.adjCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.adjCancelBtn.TabIndex = 14;
             this.adjCancelBtn.Text = "Cancel";
+            this.adjCancelBtn.Click += new System.EventHandler(this.adjCancelBtn_Click);
             // 
             // adjAnimateWindow
             // 
@@ -410,6 +416,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddAdjustments";
             this.Text = "AddAdjustments";
+            this.Load += new System.EventHandler(this.AddAdjustments_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.adjOrderDataGrid)).EndInit();

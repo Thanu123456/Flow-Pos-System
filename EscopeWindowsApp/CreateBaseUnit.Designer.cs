@@ -98,6 +98,7 @@
             this.creCatSaveBtn.Size = new System.Drawing.Size(91, 42);
             this.creCatSaveBtn.TabIndex = 87;
             this.creCatSaveBtn.Text = "Save";
+            this.creCatSaveBtn.Click += new System.EventHandler(this.creCatSaveBtn_Click);
             // 
             // creCatCancelBtn
             // 
@@ -116,6 +117,7 @@
             this.creCatCancelBtn.Size = new System.Drawing.Size(91, 42);
             this.creCatCancelBtn.TabIndex = 86;
             this.creCatCancelBtn.Text = "Cancel";
+            this.creCatCancelBtn.Click += new System.EventHandler(this.creCatCancelBtn_Click);
             // 
             // createBaseUnitNameLabel
             // 
@@ -156,6 +158,7 @@
             this.createBaseUnitNameText.SelectedText = "";
             this.createBaseUnitNameText.Size = new System.Drawing.Size(348, 42);
             this.createBaseUnitNameText.TabIndex = 83;
+            this.createBaseUnitNameText.TextChanged += new System.EventHandler(this.createBaseUnitNameText_TextChanged);
             // 
             // createBaseUnitsLabel
             // 
@@ -184,6 +187,7 @@
             this.Name = "CreateBaseUnit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateBaseUnit";
+            this.Load += new System.EventHandler(this.CreateBaseUnit_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.ResumeLayout(false);

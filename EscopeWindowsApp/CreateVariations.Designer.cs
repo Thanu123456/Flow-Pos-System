@@ -94,6 +94,7 @@
             this.creCatSaveBtn.Size = new System.Drawing.Size(91, 42);
             this.creCatSaveBtn.TabIndex = 67;
             this.creCatSaveBtn.Text = "Save";
+            this.creCatSaveBtn.Click += new System.EventHandler(this.creCatSaveBtn_Click);
             // 
             // creCatCancelBtn
             // 
@@ -112,6 +113,7 @@
             this.creCatCancelBtn.Size = new System.Drawing.Size(91, 42);
             this.creCatCancelBtn.TabIndex = 66;
             this.creCatCancelBtn.Text = "Cancel";
+            this.creCatCancelBtn.Click += new System.EventHandler(this.creCatCancelBtn_Click);
             // 
             // creteVarTypeChangelabel
             // 

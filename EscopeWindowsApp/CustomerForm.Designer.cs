@@ -89,7 +89,7 @@
             this.createCusBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createCusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createCusBtn.ForeColor = System.Drawing.Color.White;
-            this.createCusBtn.Location = new System.Drawing.Point(1670, 13);
+            this.createCusBtn.Location = new System.Drawing.Point(494, 13);
             this.createCusBtn.Name = "createCusBtn";
             this.createCusBtn.Size = new System.Drawing.Size(209, 42);
             this.createCusBtn.TabIndex = 5;
@@ -197,7 +197,7 @@
             this.cusAllPgLabel.AutoSize = true;
             this.cusAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusAllPgLabel.Location = new System.Drawing.Point(371, 954);
+            this.cusAllPgLabel.Location = new System.Drawing.Point(399, 223);
             this.cusAllPgLabel.Name = "cusAllPgLabel";
             this.cusAllPgLabel.Size = new System.Drawing.Size(40, 23);
             this.cusAllPgLabel.TabIndex = 32;
@@ -208,7 +208,7 @@
             this.cusOfLabel.AutoSize = true;
             this.cusOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusOfLabel.Location = new System.Drawing.Point(346, 954);
+            this.cusOfLabel.Location = new System.Drawing.Point(374, 223);
             this.cusOfLabel.Name = "cusOfLabel";
             this.cusOfLabel.Size = new System.Drawing.Size(26, 23);
             this.cusOfLabel.TabIndex = 31;
@@ -219,7 +219,7 @@
             this.cusPgRangeLabel.AutoSize = true;
             this.cusPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusPgRangeLabel.Location = new System.Drawing.Point(304, 954);
+            this.cusPgRangeLabel.Location = new System.Drawing.Point(332, 223);
             this.cusPgRangeLabel.Name = "cusPgRangeLabel";
             this.cusPgRangeLabel.Size = new System.Drawing.Size(46, 23);
             this.cusPgRangeLabel.TabIndex = 30;
@@ -242,7 +242,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.cusPageCombo.Location = new System.Drawing.Point(190, 946);
+            this.cusPageCombo.Location = new System.Drawing.Point(218, 215);
             this.cusPageCombo.Name = "cusPageCombo";
             this.cusPageCombo.Size = new System.Drawing.Size(85, 36);
             this.cusPageCombo.StartIndex = 0;
@@ -253,7 +253,7 @@
             this.cusRecordsPerLabel.AutoSize = true;
             this.cusRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusRecordsPerLabel.Location = new System.Drawing.Point(39, 954);
+            this.cusRecordsPerLabel.Location = new System.Drawing.Point(67, 223);
             this.cusRecordsPerLabel.Name = "cusRecordsPerLabel";
             this.cusRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
             this.cusRecordsPerLabel.TabIndex = 28;
@@ -266,7 +266,7 @@
             this.cusBtnPanel.Controls.Add(this.cusPrevBtn);
             this.cusBtnPanel.Controls.Add(this.cusNextBtn);
             this.cusBtnPanel.Controls.Add(this.cusLastBtn);
-            this.cusBtnPanel.Location = new System.Drawing.Point(1710, 940);
+            this.cusBtnPanel.Location = new System.Drawing.Point(494, 196);
             this.cusBtnPanel.Name = "cusBtnPanel";
             this.cusBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.cusBtnPanel.TabIndex = 33;

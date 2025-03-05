@@ -134,6 +134,7 @@
             this.createSupEmailText.SelectedText = "";
             this.createSupEmailText.Size = new System.Drawing.Size(400, 42);
             this.createSupEmailText.TabIndex = 5;
+            this.createSupEmailText.TextChanged += new System.EventHandler(this.createSupEmailText_TextChanged);
             // 
             // createSupPhoneText
             // 
@@ -155,6 +156,7 @@
             this.createSupPhoneText.SelectedText = "";
             this.createSupPhoneText.Size = new System.Drawing.Size(400, 42);
             this.createSupPhoneText.TabIndex = 4;
+            this.createSupPhoneText.TextChanged += new System.EventHandler(this.createSupPhoneText_TextChanged);
             // 
             // createSupNameText
             // 
@@ -176,6 +178,7 @@
             this.createSupNameText.SelectedText = "";
             this.createSupNameText.Size = new System.Drawing.Size(400, 42);
             this.createSupNameText.TabIndex = 2;
+            this.createSupNameText.TextChanged += new System.EventHandler(this.createSupNameText_TextChanged);
             // 
             // addSupBorderlessForm
             // 
@@ -236,6 +239,7 @@
             this.supCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.supCancelBtn.TabIndex = 30;
             this.supCancelBtn.Text = "Cancel";
+            this.supCancelBtn.Click += new System.EventHandler(this.supCancelBtn_Click);
             // 
             // supSaveBtn
             // 
@@ -252,6 +256,7 @@
             this.supSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.supSaveBtn.TabIndex = 29;
             this.supSaveBtn.Text = "Save";
+            this.supSaveBtn.Click += new System.EventHandler(this.supSaveBtn_Click);
             // 
             // createSupItemText
             // 
@@ -273,6 +278,7 @@
             this.createSupItemText.SelectedText = "";
             this.createSupItemText.Size = new System.Drawing.Size(400, 42);
             this.createSupItemText.TabIndex = 28;
+            this.createSupItemText.TextChanged += new System.EventHandler(this.createSupItemText_TextChanged);
             // 
             // craeteSupItemLabel
             // 
@@ -305,6 +311,7 @@
             this.createSupAddressText.SelectedText = "";
             this.createSupAddressText.Size = new System.Drawing.Size(400, 42);
             this.createSupAddressText.TabIndex = 26;
+            this.createSupAddressText.TextChanged += new System.EventHandler(this.createSupAddressText_TextChanged);
             // 
             // createSupAddressLabel
             // 
@@ -337,6 +344,7 @@
             this.createSupCityText.SelectedText = "";
             this.createSupCityText.Size = new System.Drawing.Size(400, 42);
             this.createSupCityText.TabIndex = 24;
+            this.createSupCityText.TextChanged += new System.EventHandler(this.createSupCityText_TextChanged);
             // 
             // createSupCityLabel
             // 
@@ -394,6 +402,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddSupplierForm";
             this.Text = "AddSupplierForm";
+            this.Load += new System.EventHandler(this.AddSupplierForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.createSupPanel.ResumeLayout(false);
