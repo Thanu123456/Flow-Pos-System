@@ -65,5 +65,10 @@ namespace EscopeWindowsApp
             AddUserForm addUserForm = new AddUserForm();
             addUserForm.Show();
         }
+
+        private void userDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -295,7 +295,7 @@ namespace EscopeWindowsApp
 
             // Display the total amount
             // Assume you have a label or textbox to show the total
-            totalAmountLabel.Text = total.ToString("C");
+            addSaleTotAmoLabel.Text = total.ToString("C");
         }
 
         private decimal CalculateSubtotal()
@@ -309,6 +309,11 @@ namespace EscopeWindowsApp
                 }
             }
             return subtotal;
+        }
+
+        private void totalAmountLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

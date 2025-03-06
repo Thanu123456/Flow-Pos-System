@@ -51,12 +51,14 @@
             this.warePgRangeLabel = new System.Windows.Forms.Label();
             this.warePageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.wareRecordsPerLabel = new System.Windows.Forms.Label();
+            this.wareFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.wareDataGridView)).BeginInit();
             this.wareBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // wareSearchText
             // 
+            this.wareSearchText.BorderColor = System.Drawing.Color.Gray;
             this.wareSearchText.BorderRadius = 8;
             this.wareSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.wareSearchText.DefaultText = "";
@@ -65,15 +67,17 @@
             this.wareSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.wareSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.wareSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.wareSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wareSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.wareSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.wareSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.wareSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.wareSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.wareSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.wareSearchText.Location = new System.Drawing.Point(44, 13);
+            this.wareSearchText.Location = new System.Drawing.Point(17, 30);
             this.wareSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wareSearchText.Name = "wareSearchText";
             this.wareSearchText.PasswordChar = '\0';
+            this.wareSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.wareSearchText.PlaceholderText = "Search";
             this.wareSearchText.SelectedText = "";
             this.wareSearchText.Size = new System.Drawing.Size(400, 42);
@@ -81,6 +85,8 @@
             // 
             // createWareBtn
             // 
+            this.createWareBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createWareBtn.Animated = true;
             this.createWareBtn.BorderRadius = 8;
             this.createWareBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.createWareBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -89,7 +95,8 @@
             this.createWareBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createWareBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createWareBtn.ForeColor = System.Drawing.Color.White;
-            this.createWareBtn.Location = new System.Drawing.Point(450, 43);
+            this.createWareBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.createWareBtn.Location = new System.Drawing.Point(1158, 30);
             this.createWareBtn.Name = "createWareBtn";
             this.createWareBtn.Size = new System.Drawing.Size(209, 42);
             this.createWareBtn.TabIndex = 5;
@@ -100,7 +107,8 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.wareDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.wareDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.wareDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -129,10 +137,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.wareDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.wareDataGridView.GridColor = System.Drawing.Color.White;
-            this.wareDataGridView.Location = new System.Drawing.Point(44, 101);
+            this.wareDataGridView.Location = new System.Drawing.Point(17, 100);
             this.wareDataGridView.Name = "wareDataGridView";
             this.wareDataGridView.RowHeadersVisible = false;
-            this.wareDataGridView.Size = new System.Drawing.Size(1833, 775);
+            this.wareDataGridView.Size = new System.Drawing.Size(1352, 614);
             this.wareDataGridView.TabIndex = 10;
             this.wareDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.wareDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -194,12 +202,13 @@
             // 
             // wareBtnPanel
             // 
+            this.wareBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.wareBtnPanel.BorderRadius = 8;
             this.wareBtnPanel.Controls.Add(this.wareFirstBtn);
             this.wareBtnPanel.Controls.Add(this.warePrevBtn);
             this.wareBtnPanel.Controls.Add(this.wareNextBtn);
             this.wareBtnPanel.Controls.Add(this.wareLastBtn);
-            this.wareBtnPanel.Location = new System.Drawing.Point(475, 212);
+            this.wareBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.wareBtnPanel.Name = "wareBtnPanel";
             this.wareBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.wareBtnPanel.TabIndex = 23;
@@ -272,39 +281,43 @@
             // 
             // wareAllPgLabel
             // 
+            this.wareAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.wareAllPgLabel.AutoSize = true;
-            this.wareAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wareAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareAllPgLabel.Location = new System.Drawing.Point(379, 183);
+            this.wareAllPgLabel.Location = new System.Drawing.Point(295, 742);
             this.wareAllPgLabel.Name = "wareAllPgLabel";
-            this.wareAllPgLabel.Size = new System.Drawing.Size(40, 23);
+            this.wareAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.wareAllPgLabel.TabIndex = 32;
             this.wareAllPgLabel.Text = "500";
             // 
             // wareOfLabel
             // 
+            this.wareOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.wareOfLabel.AutoSize = true;
-            this.wareOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wareOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareOfLabel.Location = new System.Drawing.Point(354, 183);
+            this.wareOfLabel.Location = new System.Drawing.Point(274, 742);
             this.wareOfLabel.Name = "wareOfLabel";
-            this.wareOfLabel.Size = new System.Drawing.Size(26, 23);
+            this.wareOfLabel.Size = new System.Drawing.Size(22, 19);
             this.wareOfLabel.TabIndex = 31;
             this.wareOfLabel.Text = "of";
             // 
             // warePgRangeLabel
             // 
+            this.warePgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.warePgRangeLabel.AutoSize = true;
-            this.warePgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warePgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warePgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.warePgRangeLabel.Location = new System.Drawing.Point(312, 183);
+            this.warePgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.warePgRangeLabel.Name = "warePgRangeLabel";
-            this.warePgRangeLabel.Size = new System.Drawing.Size(46, 23);
+            this.warePgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.warePgRangeLabel.TabIndex = 30;
             this.warePgRangeLabel.Text = "0-50";
             // 
             // warePageCombo
             // 
+            this.warePageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.warePageCombo.BackColor = System.Drawing.Color.Transparent;
             this.warePageCombo.BorderColor = System.Drawing.Color.Black;
             this.warePageCombo.BorderRadius = 8;
@@ -320,7 +333,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.warePageCombo.Location = new System.Drawing.Point(198, 175);
+            this.warePageCombo.Location = new System.Drawing.Point(141, 734);
             this.warePageCombo.Name = "warePageCombo";
             this.warePageCombo.Size = new System.Drawing.Size(85, 36);
             this.warePageCombo.StartIndex = 0;
@@ -328,21 +341,43 @@
             // 
             // wareRecordsPerLabel
             // 
+            this.wareRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.wareRecordsPerLabel.AutoSize = true;
-            this.wareRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wareRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wareRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.wareRecordsPerLabel.Location = new System.Drawing.Point(47, 183);
+            this.wareRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.wareRecordsPerLabel.Name = "wareRecordsPerLabel";
-            this.wareRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
+            this.wareRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.wareRecordsPerLabel.TabIndex = 28;
             this.wareRecordsPerLabel.Text = "Records per page";
+            // 
+            // wareFilterBtn
+            // 
+            this.wareFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.wareFilterBtn.Animated = true;
+            this.wareFilterBtn.BorderRadius = 8;
+            this.wareFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.wareFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.wareFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.wareFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.wareFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.wareFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.wareFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.wareFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.wareFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
+            this.wareFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.wareFilterBtn.Name = "wareFilterBtn";
+            this.wareFilterBtn.Size = new System.Drawing.Size(43, 42);
+            this.wareFilterBtn.TabIndex = 33;
             // 
             // WarehouseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.wareFilterBtn);
             this.Controls.Add(this.wareAllPgLabel);
             this.Controls.Add(this.wareOfLabel);
             this.Controls.Add(this.warePgRangeLabel);
@@ -355,6 +390,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WarehouseForm";
             this.Text = "WarehouseForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.wareDataGridView)).EndInit();
             this.wareBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -384,5 +420,6 @@
         private System.Windows.Forms.Label warePgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox warePageCombo;
         private System.Windows.Forms.Label wareRecordsPerLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton wareFilterBtn;
     }
 }
