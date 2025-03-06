@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseUnitDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.baseUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baseUnitAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,37 +53,38 @@
             // 
             // baseUnitDataGridView
             // 
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.baseUnitDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.baseUnitDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.baseUnitDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.baseUnitDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.baseUnitDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.baseUnitDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.baseUnitDataGridView.ColumnHeadersHeight = 25;
             this.baseUnitDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.baseUnitDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.baseUnitName,
             this.baseUnitAction});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.baseUnitDataGridView.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.baseUnitDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.baseUnitDataGridView.GridColor = System.Drawing.Color.White;
-            this.baseUnitDataGridView.Location = new System.Drawing.Point(15, 100);
+            this.baseUnitDataGridView.Location = new System.Drawing.Point(17, 100);
             this.baseUnitDataGridView.Name = "baseUnitDataGridView";
             this.baseUnitDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.baseUnitDataGridView.RowHeadersVisible = false;
-            this.baseUnitDataGridView.Size = new System.Drawing.Size(1352, 614);
+            this.baseUnitDataGridView.Size = new System.Drawing.Size(1352, 615);
             this.baseUnitDataGridView.TabIndex = 31;
             this.baseUnitDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.baseUnitDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -120,8 +121,8 @@
             // 
             // baseUnitsBtn
             // 
-            this.baseUnitsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsBtn.Animated = true;
             this.baseUnitsBtn.BorderRadius = 8;
             this.baseUnitsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.baseUnitsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -130,7 +131,8 @@
             this.baseUnitsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.baseUnitsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitsBtn.ForeColor = System.Drawing.Color.White;
-            this.baseUnitsBtn.Location = new System.Drawing.Point(1156, 27);
+            this.baseUnitsBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.baseUnitsBtn.Location = new System.Drawing.Point(1158, 30);
             this.baseUnitsBtn.Name = "baseUnitsBtn";
             this.baseUnitsBtn.Size = new System.Drawing.Size(209, 41);
             this.baseUnitsBtn.TabIndex = 30;
@@ -139,8 +141,7 @@
             // 
             // baseUnitsPageCombo
             // 
-            this.baseUnitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.baseUnitsPageCombo.BackColor = System.Drawing.Color.Transparent;
             this.baseUnitsPageCombo.BorderColor = System.Drawing.Color.Black;
             this.baseUnitsPageCombo.BorderRadius = 8;
@@ -156,7 +157,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.baseUnitsPageCombo.Location = new System.Drawing.Point(141, 720);
+            this.baseUnitsPageCombo.Location = new System.Drawing.Point(141, 734);
             this.baseUnitsPageCombo.Name = "baseUnitsPageCombo";
             this.baseUnitsPageCombo.Size = new System.Drawing.Size(85, 36);
             this.baseUnitsPageCombo.StartIndex = 0;
@@ -164,12 +165,11 @@
             // 
             // baseUnitsRecordsPerLabel
             // 
-            this.baseUnitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.baseUnitsRecordsPerLabel.AutoSize = true;
             this.baseUnitsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsRecordsPerLabel.Location = new System.Drawing.Point(13, 728);
+            this.baseUnitsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.baseUnitsRecordsPerLabel.Name = "baseUnitsRecordsPerLabel";
             this.baseUnitsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.baseUnitsRecordsPerLabel.TabIndex = 50;
@@ -177,12 +177,11 @@
             // 
             // baseUnitsAllPgLabel
             // 
-            this.baseUnitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.baseUnitsAllPgLabel.AutoSize = true;
             this.baseUnitsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsAllPgLabel.Location = new System.Drawing.Point(306, 728);
+            this.baseUnitsAllPgLabel.Location = new System.Drawing.Point(297, 742);
             this.baseUnitsAllPgLabel.Name = "baseUnitsAllPgLabel";
             this.baseUnitsAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.baseUnitsAllPgLabel.TabIndex = 49;
@@ -190,25 +189,24 @@
             // 
             // baseUnitsOfLabel
             // 
-            this.baseUnitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.baseUnitsOfLabel.AutoSize = true;
             this.baseUnitsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsOfLabel.Location = new System.Drawing.Point(281, 728);
+            this.baseUnitsOfLabel.Location = new System.Drawing.Point(276, 742);
             this.baseUnitsOfLabel.Name = "baseUnitsOfLabel";
             this.baseUnitsOfLabel.Size = new System.Drawing.Size(22, 19);
             this.baseUnitsOfLabel.TabIndex = 48;
             this.baseUnitsOfLabel.Text = "of";
+            this.baseUnitsOfLabel.Click += new System.EventHandler(this.baseUnitsOfLabel_Click);
             // 
             // baseUnitsPgRangeLabel
             // 
-            this.baseUnitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.baseUnitsPgRangeLabel.AutoSize = true;
             this.baseUnitsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsPgRangeLabel.Location = new System.Drawing.Point(239, 728);
+            this.baseUnitsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.baseUnitsPgRangeLabel.Name = "baseUnitsPgRangeLabel";
             this.baseUnitsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.baseUnitsPgRangeLabel.TabIndex = 47;
@@ -216,14 +214,13 @@
             // 
             // baseUnitsBtnPanel
             // 
-            this.baseUnitsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.baseUnitsBtnPanel.BorderRadius = 8;
             this.baseUnitsBtnPanel.Controls.Add(this.baseUnitsFirstBtn);
             this.baseUnitsBtnPanel.Controls.Add(this.baseUnitsPrevBtn);
             this.baseUnitsBtnPanel.Controls.Add(this.baseUnitsNextBtn);
             this.baseUnitsBtnPanel.Controls.Add(this.baseUnitsLastBtn);
-            this.baseUnitsBtnPanel.Location = new System.Drawing.Point(1213, 720);
+            this.baseUnitsBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.baseUnitsBtnPanel.Name = "baseUnitsBtnPanel";
             this.baseUnitsBtnPanel.Size = new System.Drawing.Size(154, 42);
             this.baseUnitsBtnPanel.TabIndex = 46;
@@ -300,8 +297,8 @@
             // 
             // baseUnitFilterBtn
             // 
-            this.baseUnitFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitFilterBtn.Animated = true;
             this.baseUnitFilterBtn.BorderRadius = 8;
             this.baseUnitFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.baseUnitFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -310,8 +307,9 @@
             this.baseUnitFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.baseUnitFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.baseUnitFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.baseUnitFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.baseUnitFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.baseUnitFilterBtn.Location = new System.Drawing.Point(1096, 27);
+            this.baseUnitFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.baseUnitFilterBtn.Name = "baseUnitFilterBtn";
             this.baseUnitFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.baseUnitFilterBtn.TabIndex = 29;
@@ -319,8 +317,7 @@
             // 
             // baseUnitSearchText
             // 
-            this.baseUnitSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseUnitSearchText.BorderColor = System.Drawing.Color.Gray;
             this.baseUnitSearchText.BorderRadius = 8;
             this.baseUnitSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.baseUnitSearchText.DefaultText = "";
@@ -334,13 +331,14 @@
             this.baseUnitSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.baseUnitSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.baseUnitSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.baseUnitSearchText.Location = new System.Drawing.Point(15, 27);
+            this.baseUnitSearchText.Location = new System.Drawing.Point(17, 30);
             this.baseUnitSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.baseUnitSearchText.Name = "baseUnitSearchText";
             this.baseUnitSearchText.PasswordChar = '\0';
+            this.baseUnitSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.baseUnitSearchText.PlaceholderText = "Search";
             this.baseUnitSearchText.SelectedText = "";
-            this.baseUnitSearchText.Size = new System.Drawing.Size(309, 41);
+            this.baseUnitSearchText.Size = new System.Drawing.Size(400, 42);
             this.baseUnitSearchText.TabIndex = 28;
             this.baseUnitSearchText.TextChanged += new System.EventHandler(this.baseUnitSearchText_TextChanged);
             // 
@@ -348,6 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.baseUnitsPageCombo);
             this.Controls.Add(this.baseUnitsRecordsPerLabel);
@@ -360,8 +359,10 @@
             this.Controls.Add(this.baseUnitFilterBtn);
             this.Controls.Add(this.baseUnitSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "BaseUnit";
             this.Text = "BaseUnit";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.baseUnitDataGridView)).EndInit();
             this.baseUnitsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

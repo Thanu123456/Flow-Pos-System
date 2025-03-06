@@ -58,6 +58,8 @@
             // 
             // createAdjBtn
             // 
+            this.createAdjBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createAdjBtn.Animated = true;
             this.createAdjBtn.BorderRadius = 8;
             this.createAdjBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.createAdjBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -66,7 +68,8 @@
             this.createAdjBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createAdjBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F);
             this.createAdjBtn.ForeColor = System.Drawing.Color.White;
-            this.createAdjBtn.Location = new System.Drawing.Point(562, 31);
+            this.createAdjBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.createAdjBtn.Location = new System.Drawing.Point(1158, 30);
             this.createAdjBtn.Name = "createAdjBtn";
             this.createAdjBtn.Size = new System.Drawing.Size(209, 42);
             this.createAdjBtn.TabIndex = 2;
@@ -77,7 +80,8 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.adjustDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.adjustDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.adjustDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -106,10 +110,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.adjustDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.adjustDataGridView.GridColor = System.Drawing.Color.White;
-            this.adjustDataGridView.Location = new System.Drawing.Point(43, 98);
+            this.adjustDataGridView.Location = new System.Drawing.Point(17, 100);
             this.adjustDataGridView.Name = "adjustDataGridView";
             this.adjustDataGridView.RowHeadersVisible = false;
-            this.adjustDataGridView.Size = new System.Drawing.Size(1837, 782);
+            this.adjustDataGridView.Size = new System.Drawing.Size(1352, 615);
             this.adjustDataGridView.TabIndex = 7;
             this.adjustDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.adjustDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -171,12 +175,13 @@
             // 
             // btnPanel
             // 
+            this.btnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPanel.BorderRadius = 8;
             this.btnPanel.Controls.Add(this.adjFirstBtn);
             this.btnPanel.Controls.Add(this.adjPrevBtn);
             this.btnPanel.Controls.Add(this.adjNextBtn);
             this.btnPanel.Controls.Add(this.adjLastBtn);
-            this.btnPanel.Location = new System.Drawing.Point(209, 284);
+            this.btnPanel.Location = new System.Drawing.Point(1213, 734);
             this.btnPanel.Name = "btnPanel";
             this.btnPanel.Size = new System.Drawing.Size(154, 37);
             this.btnPanel.TabIndex = 10;
@@ -249,17 +254,19 @@
             // 
             // adjRecordsPerLabel
             // 
+            this.adjRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.adjRecordsPerLabel.AutoSize = true;
-            this.adjRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjRecordsPerLabel.Location = new System.Drawing.Point(58, 191);
+            this.adjRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.adjRecordsPerLabel.Name = "adjRecordsPerLabel";
-            this.adjRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
+            this.adjRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.adjRecordsPerLabel.TabIndex = 11;
             this.adjRecordsPerLabel.Text = "Records per page";
             // 
             // adjPageCombo
             // 
+            this.adjPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.adjPageCombo.BackColor = System.Drawing.Color.Transparent;
             this.adjPageCombo.BorderColor = System.Drawing.Color.Black;
             this.adjPageCombo.BorderRadius = 8;
@@ -275,7 +282,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.adjPageCombo.Location = new System.Drawing.Point(209, 183);
+            this.adjPageCombo.Location = new System.Drawing.Point(141, 734);
             this.adjPageCombo.Name = "adjPageCombo";
             this.adjPageCombo.Size = new System.Drawing.Size(85, 36);
             this.adjPageCombo.StartIndex = 0;
@@ -283,39 +290,44 @@
             // 
             // adjPgRangeLabel
             // 
+            this.adjPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.adjPgRangeLabel.AutoSize = true;
-            this.adjPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjPgRangeLabel.Location = new System.Drawing.Point(323, 191);
+            this.adjPgRangeLabel.Location = new System.Drawing.Point(239, 742);
             this.adjPgRangeLabel.Name = "adjPgRangeLabel";
-            this.adjPgRangeLabel.Size = new System.Drawing.Size(46, 23);
+            this.adjPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.adjPgRangeLabel.TabIndex = 13;
             this.adjPgRangeLabel.Text = "0-50";
             // 
             // adjOfLabel
             // 
+            this.adjOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.adjOfLabel.AutoSize = true;
-            this.adjOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjOfLabel.Location = new System.Drawing.Point(365, 191);
+            this.adjOfLabel.Location = new System.Drawing.Point(276, 742);
             this.adjOfLabel.Name = "adjOfLabel";
-            this.adjOfLabel.Size = new System.Drawing.Size(26, 23);
+            this.adjOfLabel.Size = new System.Drawing.Size(22, 19);
             this.adjOfLabel.TabIndex = 14;
             this.adjOfLabel.Text = "of";
             // 
             // adjAllPgLabel
             // 
+            this.adjAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.adjAllPgLabel.AutoSize = true;
-            this.adjAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.adjAllPgLabel.Location = new System.Drawing.Point(390, 191);
+            this.adjAllPgLabel.Location = new System.Drawing.Point(297, 742);
             this.adjAllPgLabel.Name = "adjAllPgLabel";
-            this.adjAllPgLabel.Size = new System.Drawing.Size(40, 23);
+            this.adjAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.adjAllPgLabel.TabIndex = 15;
             this.adjAllPgLabel.Text = "500";
             // 
             // adjustFilterBtn
             // 
+            this.adjustFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.adjustFilterBtn.Animated = true;
             this.adjustFilterBtn.BorderRadius = 8;
             this.adjustFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.adjustFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -324,14 +336,16 @@
             this.adjustFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.adjustFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.adjustFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.adjustFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.adjustFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.adjustFilterBtn.Location = new System.Drawing.Point(502, 31);
+            this.adjustFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.adjustFilterBtn.Name = "adjustFilterBtn";
             this.adjustFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.adjustFilterBtn.TabIndex = 1;
             // 
             // adjustSearchText
             // 
+            this.adjustSearchText.BorderColor = System.Drawing.Color.Gray;
             this.adjustSearchText.BorderRadius = 8;
             this.adjustSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.adjustSearchText.DefaultText = "";
@@ -340,17 +354,20 @@
             this.adjustSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.adjustSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.adjustSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.adjustSearchText.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.adjustSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.adjustSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.adjustSearchText.IconRight = global::EscopeWindowsApp.Properties.Resources.search;
+            this.adjustSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.adjustSearchText.IconLeftOffset = new System.Drawing.Point(5, 0);
             this.adjustSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.adjustSearchText.Location = new System.Drawing.Point(43, 17);
+            this.adjustSearchText.Location = new System.Drawing.Point(17, 30);
             this.adjustSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.adjustSearchText.Name = "adjustSearchText";
             this.adjustSearchText.PasswordChar = '\0';
+            this.adjustSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.adjustSearchText.PlaceholderText = "Search";
             this.adjustSearchText.SelectedText = "";
-            this.adjustSearchText.Size = new System.Drawing.Size(309, 42);
+            this.adjustSearchText.Size = new System.Drawing.Size(400, 42);
             this.adjustSearchText.TabIndex = 0;
             // 
             // AdjustmentsForm
@@ -359,8 +376,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.adjAllPgLabel);
             this.Controls.Add(this.adjOfLabel);
             this.Controls.Add(this.adjPgRangeLabel);
@@ -372,8 +389,10 @@
             this.Controls.Add(this.adjustFilterBtn);
             this.Controls.Add(this.adjustSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "AdjustmentsForm";
             this.Text = "Adjustments";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.adjustDataGridView)).EndInit();
             this.btnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
