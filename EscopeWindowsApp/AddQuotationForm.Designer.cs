@@ -184,7 +184,7 @@
             this.quotaCancelBtn.FillColor = System.Drawing.Color.DarkGray;
             this.quotaCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
             this.quotaCancelBtn.ForeColor = System.Drawing.Color.White;
-            this.quotaCancelBtn.Location = new System.Drawing.Point(822, 947);
+            this.quotaCancelBtn.Location = new System.Drawing.Point(657, 476);
             this.quotaCancelBtn.Name = "quotaCancelBtn";
             this.quotaCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.quotaCancelBtn.TabIndex = 26;
@@ -201,7 +201,7 @@
             this.quotaSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.quotaSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.quotaSaveBtn.Location = new System.Drawing.Point(706, 947);
+            this.quotaSaveBtn.Location = new System.Drawing.Point(522, 485);
             this.quotaSaveBtn.Name = "quotaSaveBtn";
             this.quotaSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.quotaSaveBtn.TabIndex = 25;
@@ -213,7 +213,7 @@
             this.createQuotaNoteLabel.AutoSize = true;
             this.createQuotaNoteLabel.BackColor = System.Drawing.Color.Transparent;
             this.createQuotaNoteLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaNoteLabel.Location = new System.Drawing.Point(12, 776);
+            this.createQuotaNoteLabel.Location = new System.Drawing.Point(11, 349);
             this.createQuotaNoteLabel.Name = "createQuotaNoteLabel";
             this.createQuotaNoteLabel.Size = new System.Drawing.Size(52, 23);
             this.createQuotaNoteLabel.TabIndex = 24;
@@ -232,7 +232,7 @@
             this.createQuotaNoteText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createQuotaNoteText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createQuotaNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaNoteText.Location = new System.Drawing.Point(16, 812);
+            this.createQuotaNoteText.Location = new System.Drawing.Point(15, 385);
             this.createQuotaNoteText.Name = "createQuotaNoteText";
             this.createQuotaNoteText.PasswordChar = '\0';
             this.createQuotaNoteText.PlaceholderText = "";
@@ -256,7 +256,7 @@
             this.createQuotaStatusCombo.Items.AddRange(new object[] {
             "Sent",
             "Pending"});
-            this.createQuotaStatusCombo.Location = new System.Drawing.Point(516, 704);
+            this.createQuotaStatusCombo.Location = new System.Drawing.Point(515, 277);
             this.createQuotaStatusCombo.Name = "createQuotaStatusCombo";
             this.createQuotaStatusCombo.Size = new System.Drawing.Size(400, 36);
             this.createQuotaStatusCombo.StartIndex = 0;
@@ -268,7 +268,7 @@
             this.createQuotaStatusLabel.AutoSize = true;
             this.createQuotaStatusLabel.BackColor = System.Drawing.Color.Transparent;
             this.createQuotaStatusLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaStatusLabel.Location = new System.Drawing.Point(512, 669);
+            this.createQuotaStatusLabel.Location = new System.Drawing.Point(511, 242);
             this.createQuotaStatusLabel.Name = "createQuotaStatusLabel";
             this.createQuotaStatusLabel.Size = new System.Drawing.Size(63, 23);
             this.createQuotaStatusLabel.TabIndex = 21;
@@ -287,7 +287,7 @@
             this.createQuotaShipText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createQuotaShipText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createQuotaShipText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaShipText.Location = new System.Drawing.Point(16, 704);
+            this.createQuotaShipText.Location = new System.Drawing.Point(15, 277);
             this.createQuotaShipText.Name = "createQuotaShipText";
             this.createQuotaShipText.PasswordChar = '\0';
             this.createQuotaShipText.PlaceholderText = "";
@@ -301,7 +301,7 @@
             this.createQuotaShiLabel.AutoSize = true;
             this.createQuotaShiLabel.BackColor = System.Drawing.Color.Transparent;
             this.createQuotaShiLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaShiLabel.Location = new System.Drawing.Point(12, 669);
+            this.createQuotaShiLabel.Location = new System.Drawing.Point(11, 242);
             this.createQuotaShiLabel.Name = "createQuotaShiLabel";
             this.createQuotaShiLabel.Size = new System.Drawing.Size(81, 23);
             this.createQuotaShiLabel.TabIndex = 19;
