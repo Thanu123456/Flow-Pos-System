@@ -16,5 +16,10 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        private void SaleReturnForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

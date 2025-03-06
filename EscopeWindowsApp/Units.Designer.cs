@@ -32,12 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.unitsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.createUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.unitsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baseUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitCreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.unitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.unitsRecordsPerLabel = new System.Windows.Forms.Label();
             this.unitsAllPgLabel = new System.Windows.Forms.Label();
@@ -58,7 +58,8 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.unitsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.unitsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -85,7 +86,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.unitsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.unitsDataGridView.GridColor = System.Drawing.Color.White;
-            this.unitsDataGridView.Location = new System.Drawing.Point(15, 100);
+            this.unitsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.unitsDataGridView.Name = "unitsDataGridView";
             this.unitsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.unitsDataGridView.RowHeadersVisible = false;
@@ -114,25 +115,6 @@
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
-            // createUnitsBtn
-            // 
-            this.createUnitsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createUnitsBtn.BorderRadius = 8;
-            this.createUnitsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.createUnitsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.createUnitsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.createUnitsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.createUnitsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createUnitsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createUnitsBtn.ForeColor = System.Drawing.Color.White;
-            this.createUnitsBtn.Location = new System.Drawing.Point(1156, 27);
-            this.createUnitsBtn.Name = "createUnitsBtn";
-            this.createUnitsBtn.Size = new System.Drawing.Size(209, 41);
-            this.createUnitsBtn.TabIndex = 26;
-            this.createUnitsBtn.Text = "Create Unit";
-            this.createUnitsBtn.Click += new System.EventHandler(this.createUnitsBtn_Click);
-            // 
             // unitsName
             // 
             this.unitsName.HeaderText = "Name";
@@ -158,10 +140,28 @@
             this.unitsAction.HeaderText = "Action";
             this.unitsAction.Name = "unitsAction";
             // 
+            // createUnitsBtn
+            // 
+            this.createUnitsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createUnitsBtn.BorderRadius = 8;
+            this.createUnitsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createUnitsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createUnitsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createUnitsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createUnitsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createUnitsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createUnitsBtn.ForeColor = System.Drawing.Color.White;
+            this.createUnitsBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.createUnitsBtn.Location = new System.Drawing.Point(1158, 30);
+            this.createUnitsBtn.Name = "createUnitsBtn";
+            this.createUnitsBtn.Size = new System.Drawing.Size(209, 42);
+            this.createUnitsBtn.TabIndex = 26;
+            this.createUnitsBtn.Text = "Create Unit";
+            this.createUnitsBtn.Click += new System.EventHandler(this.createUnitsBtn_Click);
+            // 
             // unitsPageCombo
             // 
-            this.unitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsPageCombo.BackColor = System.Drawing.Color.Transparent;
             this.unitsPageCombo.BorderColor = System.Drawing.Color.Black;
             this.unitsPageCombo.BorderRadius = 8;
@@ -177,7 +177,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.unitsPageCombo.Location = new System.Drawing.Point(139, 726);
+            this.unitsPageCombo.Location = new System.Drawing.Point(141, 734);
             this.unitsPageCombo.Name = "unitsPageCombo";
             this.unitsPageCombo.Size = new System.Drawing.Size(85, 36);
             this.unitsPageCombo.StartIndex = 0;
@@ -185,12 +185,11 @@
             // 
             // unitsRecordsPerLabel
             // 
-            this.unitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsRecordsPerLabel.AutoSize = true;
             this.unitsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsRecordsPerLabel.Location = new System.Drawing.Point(11, 734);
+            this.unitsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.unitsRecordsPerLabel.Name = "unitsRecordsPerLabel";
             this.unitsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.unitsRecordsPerLabel.TabIndex = 44;
@@ -198,12 +197,11 @@
             // 
             // unitsAllPgLabel
             // 
-            this.unitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsAllPgLabel.AutoSize = true;
             this.unitsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsAllPgLabel.Location = new System.Drawing.Point(304, 734);
+            this.unitsAllPgLabel.Location = new System.Drawing.Point(295, 742);
             this.unitsAllPgLabel.Name = "unitsAllPgLabel";
             this.unitsAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.unitsAllPgLabel.TabIndex = 43;
@@ -211,12 +209,11 @@
             // 
             // unitsOfLabel
             // 
-            this.unitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsOfLabel.AutoSize = true;
             this.unitsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsOfLabel.Location = new System.Drawing.Point(279, 734);
+            this.unitsOfLabel.Location = new System.Drawing.Point(274, 742);
             this.unitsOfLabel.Name = "unitsOfLabel";
             this.unitsOfLabel.Size = new System.Drawing.Size(22, 19);
             this.unitsOfLabel.TabIndex = 42;
@@ -224,12 +221,11 @@
             // 
             // unitsPgRangeLabel
             // 
-            this.unitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsPgRangeLabel.AutoSize = true;
             this.unitsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsPgRangeLabel.Location = new System.Drawing.Point(237, 734);
+            this.unitsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.unitsPgRangeLabel.Name = "unitsPgRangeLabel";
             this.unitsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.unitsPgRangeLabel.TabIndex = 41;
@@ -237,14 +233,13 @@
             // 
             // unitsBtnPanel
             // 
-            this.unitsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.unitsBtnPanel.BorderRadius = 8;
             this.unitsBtnPanel.Controls.Add(this.unitsFirstBtn);
             this.unitsBtnPanel.Controls.Add(this.unitsPrevBtn);
             this.unitsBtnPanel.Controls.Add(this.unitsNextBtn);
             this.unitsBtnPanel.Controls.Add(this.unitsLastBtn);
-            this.unitsBtnPanel.Location = new System.Drawing.Point(1211, 726);
+            this.unitsBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.unitsBtnPanel.Name = "unitsBtnPanel";
             this.unitsBtnPanel.Size = new System.Drawing.Size(154, 42);
             this.unitsBtnPanel.TabIndex = 40;
@@ -317,8 +312,7 @@
             // 
             // unitsFilterBtn
             // 
-            this.unitsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.unitsFilterBtn.BorderRadius = 8;
             this.unitsFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.unitsFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -327,16 +321,15 @@
             this.unitsFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.unitsFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.unitsFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.unitsFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.unitsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.unitsFilterBtn.Location = new System.Drawing.Point(1096, 27);
+            this.unitsFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.unitsFilterBtn.Name = "unitsFilterBtn";
-            this.unitsFilterBtn.Size = new System.Drawing.Size(43, 42);
+            this.unitsFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.unitsFilterBtn.TabIndex = 25;
             // 
             // unitsSearchText
             // 
-            this.unitsSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.unitsSearchText.BorderRadius = 8;
             this.unitsSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.unitsSearchText.DefaultText = "";
@@ -350,19 +343,20 @@
             this.unitsSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.unitsSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.unitsSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.unitsSearchText.Location = new System.Drawing.Point(15, 27);
+            this.unitsSearchText.Location = new System.Drawing.Point(17, 30);
             this.unitsSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.unitsSearchText.Name = "unitsSearchText";
             this.unitsSearchText.PasswordChar = '\0';
             this.unitsSearchText.PlaceholderText = "Search";
             this.unitsSearchText.SelectedText = "";
-            this.unitsSearchText.Size = new System.Drawing.Size(309, 41);
+            this.unitsSearchText.Size = new System.Drawing.Size(400, 42);
             this.unitsSearchText.TabIndex = 24;
             // 
             // Units
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.unitsPageCombo);
             this.Controls.Add(this.unitsRecordsPerLabel);
@@ -375,8 +369,10 @@
             this.Controls.Add(this.unitsFilterBtn);
             this.Controls.Add(this.unitsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "Units";
             this.Text = "Units";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.unitsDataGridView)).EndInit();
             this.unitsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

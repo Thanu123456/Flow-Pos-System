@@ -41,5 +41,15 @@ namespace EscopeWindowsApp
             AddSupplierForm addSupplierForm = new AddSupplierForm(); 
             addSupplierForm.Show();
         }
+
+        private void SupplierForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void supFilterBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -40,5 +40,10 @@ namespace EscopeWindowsApp
             AddQuotationForm addQuotation = new AddQuotationForm();
             addQuotation.Show();
         }
+
+        private void quotaFilterBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

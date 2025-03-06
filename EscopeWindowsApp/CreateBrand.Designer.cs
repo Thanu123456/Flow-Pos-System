@@ -79,6 +79,7 @@
             // 
             // creBrandsSaveBtn
             // 
+            this.creBrandsSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.creBrandsSaveBtn.Animated = true;
             this.creBrandsSaveBtn.BorderRadius = 8;
             this.creBrandsSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -88,29 +89,30 @@
             this.creBrandsSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.creBrandsSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creBrandsSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.creBrandsSaveBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.creBrandsSaveBtn.Location = new System.Drawing.Point(174, 363);
+            this.creBrandsSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.creBrandsSaveBtn.Location = new System.Drawing.Point(170, 364);
             this.creBrandsSaveBtn.Name = "creBrandsSaveBtn";
-            this.creBrandsSaveBtn.Size = new System.Drawing.Size(91, 42);
+            this.creBrandsSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creBrandsSaveBtn.TabIndex = 67;
             this.creBrandsSaveBtn.Text = "Save";
             this.creBrandsSaveBtn.Click += new System.EventHandler(this.creBrandsSaveBtn_Click);
             // 
             // creBrandsCancelBtn
             // 
+            this.creBrandsCancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.creBrandsCancelBtn.Animated = true;
             this.creBrandsCancelBtn.BorderRadius = 8;
             this.creBrandsCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.creBrandsCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.creBrandsCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creBrandsCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.creBrandsCancelBtn.FillColor = System.Drawing.Color.Red;
+            this.creBrandsCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.creBrandsCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creBrandsCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creBrandsCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.creBrandsCancelBtn.Location = new System.Drawing.Point(282, 363);
+            this.creBrandsCancelBtn.Location = new System.Drawing.Point(278, 364);
             this.creBrandsCancelBtn.Name = "creBrandsCancelBtn";
-            this.creBrandsCancelBtn.Size = new System.Drawing.Size(91, 42);
+            this.creBrandsCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creBrandsCancelBtn.TabIndex = 66;
             this.creBrandsCancelBtn.Text = "Cancel";
             this.creBrandsCancelBtn.Click += new System.EventHandler(this.creBrandsCancelBtn_Click);

@@ -67,5 +67,10 @@ namespace EscopeWindowsApp
         {
             // Last page button click
         }
+
+        private void baseUnitsOfLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

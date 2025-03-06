@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.variationsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.variationsCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.variationTypes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.variationsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createVariationsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.variationsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -45,43 +48,41 @@
             this.variationsLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.variationsCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.variationTypes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.variationsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).BeginInit();
             this.variationsBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // variationsDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.variationsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.variationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.variationsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this.variationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.variationsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.variationsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.variationsDataGridView.ColumnHeadersHeight = 25;
             this.variationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.variationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.variationsCategory,
             this.variationTypes,
             this.variationsAction});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.variationsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.variationsDataGridView.DefaultCellStyle = dataGridViewCellStyle21;
             this.variationsDataGridView.GridColor = System.Drawing.Color.White;
-            this.variationsDataGridView.Location = new System.Drawing.Point(15, 98);
+            this.variationsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.variationsDataGridView.Name = "variationsDataGridView";
             this.variationsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.variationsDataGridView.RowHeadersVisible = false;
@@ -110,10 +111,24 @@
             this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // variationsCategory
+            // 
+            this.variationsCategory.HeaderText = "Variations Name";
+            this.variationsCategory.Name = "variationsCategory";
+            // 
+            // variationTypes
+            // 
+            this.variationTypes.HeaderText = "Variations Types";
+            this.variationTypes.Name = "variationTypes";
+            // 
+            // variationsAction
+            // 
+            this.variationsAction.HeaderText = "Action";
+            this.variationsAction.Name = "variationsAction";
+            // 
             // createVariationsBtn
             // 
-            this.createVariationsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.createVariationsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createVariationsBtn.BorderRadius = 8;
             this.createVariationsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.createVariationsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -122,7 +137,7 @@
             this.createVariationsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createVariationsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createVariationsBtn.ForeColor = System.Drawing.Color.White;
-            this.createVariationsBtn.Location = new System.Drawing.Point(1156, 25);
+            this.createVariationsBtn.Location = new System.Drawing.Point(1158, 30);
             this.createVariationsBtn.Name = "createVariationsBtn";
             this.createVariationsBtn.Size = new System.Drawing.Size(209, 41);
             this.createVariationsBtn.TabIndex = 18;
@@ -148,7 +163,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.variationsPageCombo.Location = new System.Drawing.Point(139, 722);
+            this.variationsPageCombo.Location = new System.Drawing.Point(141, 734);
             this.variationsPageCombo.Name = "variationsPageCombo";
             this.variationsPageCombo.Size = new System.Drawing.Size(85, 36);
             this.variationsPageCombo.StartIndex = 0;
@@ -161,7 +176,7 @@
             this.variationsRecordsPerLabel.AutoSize = true;
             this.variationsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.variationsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.variationsRecordsPerLabel.Location = new System.Drawing.Point(11, 730);
+            this.variationsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.variationsRecordsPerLabel.Name = "variationsRecordsPerLabel";
             this.variationsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.variationsRecordsPerLabel.TabIndex = 32;
@@ -174,7 +189,7 @@
             this.variationsAllPgLabel.AutoSize = true;
             this.variationsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.variationsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.variationsAllPgLabel.Location = new System.Drawing.Point(304, 730);
+            this.variationsAllPgLabel.Location = new System.Drawing.Point(295, 742);
             this.variationsAllPgLabel.Name = "variationsAllPgLabel";
             this.variationsAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.variationsAllPgLabel.TabIndex = 31;
@@ -187,7 +202,7 @@
             this.variationsOfLabel.AutoSize = true;
             this.variationsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.variationsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.variationsOfLabel.Location = new System.Drawing.Point(279, 730);
+            this.variationsOfLabel.Location = new System.Drawing.Point(274, 742);
             this.variationsOfLabel.Name = "variationsOfLabel";
             this.variationsOfLabel.Size = new System.Drawing.Size(22, 19);
             this.variationsOfLabel.TabIndex = 30;
@@ -200,7 +215,7 @@
             this.variationsPgRangeLabel.AutoSize = true;
             this.variationsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.variationsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.variationsPgRangeLabel.Location = new System.Drawing.Point(237, 730);
+            this.variationsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.variationsPgRangeLabel.Name = "variationsPgRangeLabel";
             this.variationsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.variationsPgRangeLabel.TabIndex = 29;
@@ -208,14 +223,13 @@
             // 
             // variationsBtnPanel
             // 
-            this.variationsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.variationsBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.variationsBtnPanel.BorderRadius = 8;
             this.variationsBtnPanel.Controls.Add(this.variationsFirstBtn);
             this.variationsBtnPanel.Controls.Add(this.variationsPrevBtn);
             this.variationsBtnPanel.Controls.Add(this.variationsNextBtn);
             this.variationsBtnPanel.Controls.Add(this.variationsLastBtn);
-            this.variationsBtnPanel.Location = new System.Drawing.Point(1211, 722);
+            this.variationsBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.variationsBtnPanel.Name = "variationsBtnPanel";
             this.variationsBtnPanel.Size = new System.Drawing.Size(154, 42);
             this.variationsBtnPanel.TabIndex = 28;
@@ -288,8 +302,7 @@
             // 
             // variationsFilterBtn
             // 
-            this.variationsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.variationsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variationsFilterBtn.BorderRadius = 8;
             this.variationsFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.variationsFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -299,7 +312,7 @@
             this.variationsFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.variationsFilterBtn.ForeColor = System.Drawing.Color.White;
             this.variationsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.variationsFilterBtn.Location = new System.Drawing.Point(1096, 25);
+            this.variationsFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.variationsFilterBtn.Name = "variationsFilterBtn";
             this.variationsFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.variationsFilterBtn.TabIndex = 17;
@@ -308,6 +321,7 @@
             // 
             this.variationsSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.variationsSearchText.BorderColor = System.Drawing.Color.Gray;
             this.variationsSearchText.BorderRadius = 8;
             this.variationsSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.variationsSearchText.DefaultText = "";
@@ -321,29 +335,15 @@
             this.variationsSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.variationsSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.variationsSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.variationsSearchText.Location = new System.Drawing.Point(15, 25);
+            this.variationsSearchText.Location = new System.Drawing.Point(17, 30);
             this.variationsSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.variationsSearchText.Name = "variationsSearchText";
             this.variationsSearchText.PasswordChar = '\0';
+            this.variationsSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.variationsSearchText.PlaceholderText = "Search";
             this.variationsSearchText.SelectedText = "";
-            this.variationsSearchText.Size = new System.Drawing.Size(309, 41);
+            this.variationsSearchText.Size = new System.Drawing.Size(400, 42);
             this.variationsSearchText.TabIndex = 16;
-            // 
-            // variationsCategory
-            // 
-            this.variationsCategory.HeaderText = "Variations Name";
-            this.variationsCategory.Name = "variationsCategory";
-            // 
-            // variationTypes
-            // 
-            this.variationTypes.HeaderText = "Variations Types";
-            this.variationTypes.Name = "variationTypes";
-            // 
-            // variationsAction
-            // 
-            this.variationsAction.HeaderText = "Action";
-            this.variationsAction.Name = "variationsAction";
             // 
             // Variations
             // 

@@ -37,5 +37,10 @@ namespace EscopeWindowsApp
             AddCustomerForm addCustomerForm = new AddCustomerForm();
             addCustomerForm.Show();
         }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

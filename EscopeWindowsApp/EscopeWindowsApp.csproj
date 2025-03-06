@@ -350,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\Vector 1.png" />
     <None Include="Resources\icons8-supplier-50 %281%29.png" />
     <None Include="Resources\icons8-supplier-50.png" />
     <None Include="Resources\icons8-inventory-50 %281%29.png" />

@@ -128,6 +128,11 @@ namespace EscopeWindowsApp
             // int lastIndex = brandsDataGridView.Rows.Count - 1;
             // brandsDataGridView.CurrentCell = brandsDataGridView.Rows[lastIndex].Cells[0];
         }
+
+        private void brandsRecordsPerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

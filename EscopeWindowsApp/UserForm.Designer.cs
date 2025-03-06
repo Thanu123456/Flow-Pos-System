@@ -129,10 +129,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.userDataGridView.GridColor = System.Drawing.Color.White;
-            this.userDataGridView.Location = new System.Drawing.Point(44, 97);
+            this.userDataGridView.Location = new System.Drawing.Point(12, 96);
             this.userDataGridView.Name = "userDataGridView";
             this.userDataGridView.RowHeadersVisible = false;
-            this.userDataGridView.Size = new System.Drawing.Size(1833, 775);
+            this.userDataGridView.Size = new System.Drawing.Size(1299, 775);
             this.userDataGridView.TabIndex = 9;
             this.userDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.userDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -342,7 +342,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.userAllPgLabel);
             this.Controls.Add(this.userOfLabel);
             this.Controls.Add(this.userPgRangeLabel);
