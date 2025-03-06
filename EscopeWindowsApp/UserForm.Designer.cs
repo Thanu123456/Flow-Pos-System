@@ -34,13 +34,6 @@
             this.userSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -51,12 +44,21 @@
             this.userPgRangeLabel = new System.Windows.Forms.Label();
             this.userPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.userRecordsPerLabel = new System.Windows.Forms.Label();
+            this.userFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
             this.userBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // userSearchText
             // 
+            this.userSearchText.BorderColor = System.Drawing.Color.Gray;
             this.userSearchText.BorderRadius = 8;
             this.userSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.userSearchText.DefaultText = "";
@@ -65,15 +67,17 @@
             this.userSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.userSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.userSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.userSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.userSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.userSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.userSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.userSearchText.Location = new System.Drawing.Point(44, 13);
+            this.userSearchText.Location = new System.Drawing.Point(17, 30);
             this.userSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userSearchText.Name = "userSearchText";
             this.userSearchText.PasswordChar = '\0';
+            this.userSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.userSearchText.PlaceholderText = "Search";
             this.userSearchText.SelectedText = "";
             this.userSearchText.Size = new System.Drawing.Size(400, 42);
@@ -81,6 +85,8 @@
             // 
             // createUserBtn
             // 
+            this.createUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createUserBtn.Animated = true;
             this.createUserBtn.BorderRadius = 8;
             this.createUserBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.createUserBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -89,7 +95,8 @@
             this.createUserBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.createUserBtn.ForeColor = System.Drawing.Color.White;
-            this.createUserBtn.Location = new System.Drawing.Point(568, 37);
+            this.createUserBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.createUserBtn.Location = new System.Drawing.Point(1158, 30);
             this.createUserBtn.Name = "createUserBtn";
             this.createUserBtn.Size = new System.Drawing.Size(209, 42);
             this.createUserBtn.TabIndex = 4;
@@ -100,7 +107,8 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.userDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.userDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -129,10 +137,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.userDataGridView.GridColor = System.Drawing.Color.White;
-            this.userDataGridView.Location = new System.Drawing.Point(12, 96);
+            this.userDataGridView.Location = new System.Drawing.Point(17, 100);
             this.userDataGridView.Name = "userDataGridView";
             this.userDataGridView.RowHeadersVisible = false;
-            this.userDataGridView.Size = new System.Drawing.Size(1299, 775);
+            this.userDataGridView.Size = new System.Drawing.Size(1352, 614);
             this.userDataGridView.TabIndex = 9;
             this.userDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.userDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -156,50 +164,17 @@
             this.userDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.userDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.userDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // supplierID
-            // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
-            // 
-            // supName
-            // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
-            // 
-            // supDesc
-            // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
-            // 
-            // supEmail
-            // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
-            // 
-            // supPhone
-            // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
+            this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDataGridView_CellContentClick);
             // 
             // userBtnPanel
             // 
+            this.userBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.userBtnPanel.BorderRadius = 8;
             this.userBtnPanel.Controls.Add(this.userFirstBtn);
             this.userBtnPanel.Controls.Add(this.userPrevBtn);
             this.userBtnPanel.Controls.Add(this.userNextBtn);
             this.userBtnPanel.Controls.Add(this.userLastBtn);
-            this.userBtnPanel.Location = new System.Drawing.Point(334, 186);
+            this.userBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.userBtnPanel.Name = "userBtnPanel";
             this.userBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.userBtnPanel.TabIndex = 22;
@@ -272,39 +247,43 @@
             // 
             // userAllPgLabel
             // 
+            this.userAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userAllPgLabel.AutoSize = true;
-            this.userAllPgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userAllPgLabel.Location = new System.Drawing.Point(439, 250);
+            this.userAllPgLabel.Location = new System.Drawing.Point(295, 742);
             this.userAllPgLabel.Name = "userAllPgLabel";
-            this.userAllPgLabel.Size = new System.Drawing.Size(40, 23);
+            this.userAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.userAllPgLabel.TabIndex = 27;
             this.userAllPgLabel.Text = "500";
             // 
             // userOfLabel
             // 
+            this.userOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userOfLabel.AutoSize = true;
-            this.userOfLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userOfLabel.Location = new System.Drawing.Point(414, 250);
+            this.userOfLabel.Location = new System.Drawing.Point(274, 742);
             this.userOfLabel.Name = "userOfLabel";
-            this.userOfLabel.Size = new System.Drawing.Size(26, 23);
+            this.userOfLabel.Size = new System.Drawing.Size(22, 19);
             this.userOfLabel.TabIndex = 26;
             this.userOfLabel.Text = "of";
             // 
             // userPgRangeLabel
             // 
+            this.userPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userPgRangeLabel.AutoSize = true;
-            this.userPgRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userPgRangeLabel.Location = new System.Drawing.Point(372, 250);
+            this.userPgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.userPgRangeLabel.Name = "userPgRangeLabel";
-            this.userPgRangeLabel.Size = new System.Drawing.Size(46, 23);
+            this.userPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.userPgRangeLabel.TabIndex = 25;
             this.userPgRangeLabel.Text = "0-50";
             // 
             // userPageCombo
             // 
+            this.userPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userPageCombo.BackColor = System.Drawing.Color.Transparent;
             this.userPageCombo.BorderColor = System.Drawing.Color.Black;
             this.userPageCombo.BorderRadius = 8;
@@ -320,7 +299,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.userPageCombo.Location = new System.Drawing.Point(258, 242);
+            this.userPageCombo.Location = new System.Drawing.Point(141, 734);
             this.userPageCombo.Name = "userPageCombo";
             this.userPageCombo.Size = new System.Drawing.Size(85, 36);
             this.userPageCombo.StartIndex = 0;
@@ -328,21 +307,78 @@
             // 
             // userRecordsPerLabel
             // 
+            this.userRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.userRecordsPerLabel.AutoSize = true;
-            this.userRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userRecordsPerLabel.Location = new System.Drawing.Point(107, 250);
+            this.userRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.userRecordsPerLabel.Name = "userRecordsPerLabel";
-            this.userRecordsPerLabel.Size = new System.Drawing.Size(143, 23);
+            this.userRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.userRecordsPerLabel.TabIndex = 23;
             this.userRecordsPerLabel.Text = "Records per page";
+            // 
+            // userFilterBtn
+            // 
+            this.userFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.userFilterBtn.Animated = true;
+            this.userFilterBtn.BorderRadius = 8;
+            this.userFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.userFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.userFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.userFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.userFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.userFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.userFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.userFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.userFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
+            this.userFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.userFilterBtn.Name = "userFilterBtn";
+            this.userFilterBtn.Size = new System.Drawing.Size(43, 42);
+            this.userFilterBtn.TabIndex = 28;
+            // 
+            // action
+            // 
+            this.action.HeaderText = "Action";
+            this.action.Name = "action";
+            // 
+            // createdAt
+            // 
+            this.createdAt.HeaderText = "Create At";
+            this.createdAt.Name = "createdAt";
+            // 
+            // supPhone
+            // 
+            this.supPhone.HeaderText = "Phone";
+            this.supPhone.Name = "supPhone";
+            // 
+            // supEmail
+            // 
+            this.supEmail.HeaderText = "Email";
+            this.supEmail.Name = "supEmail";
+            // 
+            // supDesc
+            // 
+            this.supDesc.HeaderText = "Description";
+            this.supDesc.Name = "supDesc";
+            // 
+            // supName
+            // 
+            this.supName.HeaderText = "Name";
+            this.supName.Name = "supName";
+            // 
+            // supplierID
+            // 
+            this.supplierID.HeaderText = "Supplier ID";
+            this.supplierID.Name = "supplierID";
             // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.userFilterBtn);
             this.Controls.Add(this.userAllPgLabel);
             this.Controls.Add(this.userOfLabel);
             this.Controls.Add(this.userPgRangeLabel);
@@ -355,6 +391,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserForm";
             this.Text = "User";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.UserForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
             this.userBtnPanel.ResumeLayout(false);
@@ -368,13 +405,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox userSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createUserBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
         private Siticone.Desktop.UI.WinForms.SiticonePanel userBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userPrevBtn;
@@ -385,5 +415,13 @@
         private System.Windows.Forms.Label userPgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox userPageCombo;
         private System.Windows.Forms.Label userRecordsPerLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton userFilterBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn action;
     }
 }

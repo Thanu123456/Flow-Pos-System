@@ -259,5 +259,20 @@ namespace EscopeWindowsApp
             // Handle adding/removing products to/from the quotation
             ValidateProductSelection();
         }
+
+        private void CreateQuowarehouseLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void orderItemLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createQuotaNoteLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
