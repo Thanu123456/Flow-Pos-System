@@ -83,6 +83,7 @@
             // 
             // creCatSaveBtn
             // 
+            this.creCatSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.creCatSaveBtn.Animated = true;
             this.creCatSaveBtn.BorderRadius = 8;
             this.creCatSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -92,29 +93,30 @@
             this.creCatSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.creCatSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creCatSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.creCatSaveBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.creCatSaveBtn.Location = new System.Drawing.Point(170, 201);
+            this.creCatSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.creCatSaveBtn.Location = new System.Drawing.Point(166, 201);
             this.creCatSaveBtn.Name = "creCatSaveBtn";
-            this.creCatSaveBtn.Size = new System.Drawing.Size(91, 42);
+            this.creCatSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creCatSaveBtn.TabIndex = 87;
             this.creCatSaveBtn.Text = "Save";
             this.creCatSaveBtn.Click += new System.EventHandler(this.creCatSaveBtn_Click);
             // 
             // creCatCancelBtn
             // 
+            this.creCatCancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.creCatCancelBtn.Animated = true;
             this.creCatCancelBtn.BorderRadius = 8;
             this.creCatCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.creCatCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.creCatCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creCatCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.creCatCancelBtn.FillColor = System.Drawing.Color.Red;
+            this.creCatCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.creCatCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creCatCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creCatCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.creCatCancelBtn.Location = new System.Drawing.Point(278, 201);
+            this.creCatCancelBtn.Location = new System.Drawing.Point(274, 201);
             this.creCatCancelBtn.Name = "creCatCancelBtn";
-            this.creCatCancelBtn.Size = new System.Drawing.Size(91, 42);
+            this.creCatCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creCatCancelBtn.TabIndex = 86;
             this.creCatCancelBtn.Text = "Cancel";
             this.creCatCancelBtn.Click += new System.EventHandler(this.creCatCancelBtn_Click);

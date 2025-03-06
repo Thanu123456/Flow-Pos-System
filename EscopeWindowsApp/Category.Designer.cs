@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.categoryDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.createCategoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createCategoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categoryPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.categorytRecordsPerLabel = new System.Windows.Forms.Label();
             this.categoryAllPgLabel = new System.Windows.Forms.Label();
@@ -54,34 +54,35 @@
             // 
             // categoryDataGridView
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.categoryDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.categoryDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.categoryDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.categoryDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoryDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoryDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.categoryDataGridView.ColumnHeadersHeight = 25;
             this.categoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.categoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.productCategory,
             this.productCount,
             this.categoryAction});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.categoryDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoryDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.categoryDataGridView.GridColor = System.Drawing.Color.White;
-            this.categoryDataGridView.Location = new System.Drawing.Point(17, 98);
+            this.categoryDataGridView.Location = new System.Drawing.Point(17, 100);
             this.categoryDataGridView.Name = "categoryDataGridView";
             this.categoryDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.categoryDataGridView.RowHeadersVisible = false;
@@ -110,25 +111,6 @@
             this.categoryDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.categoryDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
-            // createCategoryBtn
-            // 
-            this.createCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createCategoryBtn.BorderRadius = 8;
-            this.createCategoryBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.createCategoryBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.createCategoryBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.createCategoryBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.createCategoryBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createCategoryBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createCategoryBtn.ForeColor = System.Drawing.Color.White;
-            this.createCategoryBtn.Location = new System.Drawing.Point(1158, 25);
-            this.createCategoryBtn.Name = "createCategoryBtn";
-            this.createCategoryBtn.Size = new System.Drawing.Size(209, 41);
-            this.createCategoryBtn.TabIndex = 14;
-            this.createCategoryBtn.Text = "Create Category";
-            this.createCategoryBtn.Click += new System.EventHandler(this.createCategoryBtn_Click);
-            // 
             // productCategory
             // 
             this.productCategory.HeaderText = "Product Category";
@@ -144,10 +126,30 @@
             this.categoryAction.HeaderText = "Action";
             this.categoryAction.Name = "categoryAction";
             // 
+            // createCategoryBtn
+            // 
+            this.createCategoryBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createCategoryBtn.Animated = true;
+            this.createCategoryBtn.BackColor = System.Drawing.Color.Transparent;
+            this.createCategoryBtn.BorderRadius = 8;
+            this.createCategoryBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createCategoryBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createCategoryBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createCategoryBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createCategoryBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createCategoryBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCategoryBtn.ForeColor = System.Drawing.Color.White;
+            this.createCategoryBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.createCategoryBtn.Location = new System.Drawing.Point(1158, 30);
+            this.createCategoryBtn.Name = "createCategoryBtn";
+            this.createCategoryBtn.Size = new System.Drawing.Size(209, 41);
+            this.createCategoryBtn.TabIndex = 14;
+            this.createCategoryBtn.Text = "Create Category";
+            this.createCategoryBtn.Click += new System.EventHandler(this.createCategoryBtn_Click);
+            // 
             // categoryPageCombo
             // 
-            this.categoryPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.categoryPageCombo.BackColor = System.Drawing.Color.Transparent;
             this.categoryPageCombo.BorderColor = System.Drawing.Color.Black;
             this.categoryPageCombo.BorderRadius = 8;
@@ -163,7 +165,7 @@
             "0-15",
             "0-50",
             "0-80"});
-            this.categoryPageCombo.Location = new System.Drawing.Point(141, 730);
+            this.categoryPageCombo.Location = new System.Drawing.Point(141, 734);
             this.categoryPageCombo.Name = "categoryPageCombo";
             this.categoryPageCombo.Size = new System.Drawing.Size(85, 36);
             this.categoryPageCombo.StartIndex = 0;
@@ -171,12 +173,11 @@
             // 
             // categorytRecordsPerLabel
             // 
-            this.categorytRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categorytRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.categorytRecordsPerLabel.AutoSize = true;
             this.categorytRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categorytRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categorytRecordsPerLabel.Location = new System.Drawing.Point(13, 738);
+            this.categorytRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
             this.categorytRecordsPerLabel.Name = "categorytRecordsPerLabel";
             this.categorytRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
             this.categorytRecordsPerLabel.TabIndex = 26;
@@ -184,12 +185,11 @@
             // 
             // categoryAllPgLabel
             // 
-            this.categoryAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.categoryAllPgLabel.AutoSize = true;
             this.categoryAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryAllPgLabel.Location = new System.Drawing.Point(306, 738);
+            this.categoryAllPgLabel.Location = new System.Drawing.Point(297, 742);
             this.categoryAllPgLabel.Name = "categoryAllPgLabel";
             this.categoryAllPgLabel.Size = new System.Drawing.Size(33, 19);
             this.categoryAllPgLabel.TabIndex = 25;
@@ -197,12 +197,11 @@
             // 
             // categoryOfLabel
             // 
-            this.categoryOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.categoryOfLabel.AutoSize = true;
             this.categoryOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryOfLabel.Location = new System.Drawing.Point(281, 738);
+            this.categoryOfLabel.Location = new System.Drawing.Point(276, 742);
             this.categoryOfLabel.Name = "categoryOfLabel";
             this.categoryOfLabel.Size = new System.Drawing.Size(22, 19);
             this.categoryOfLabel.TabIndex = 24;
@@ -210,12 +209,11 @@
             // 
             // categoryPgRangeLabel
             // 
-            this.categoryPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.categoryPgRangeLabel.AutoSize = true;
             this.categoryPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryPgRangeLabel.Location = new System.Drawing.Point(239, 738);
+            this.categoryPgRangeLabel.Location = new System.Drawing.Point(237, 742);
             this.categoryPgRangeLabel.Name = "categoryPgRangeLabel";
             this.categoryPgRangeLabel.Size = new System.Drawing.Size(38, 19);
             this.categoryPgRangeLabel.TabIndex = 23;
@@ -223,14 +221,13 @@
             // 
             // categoryBtnPanel
             // 
-            this.categoryBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryBtnPanel.BorderRadius = 8;
             this.categoryBtnPanel.Controls.Add(this.categoryFirstBtn);
             this.categoryBtnPanel.Controls.Add(this.categoryPrevBtn);
             this.categoryBtnPanel.Controls.Add(this.categoryNextBtn);
             this.categoryBtnPanel.Controls.Add(this.categoryLastBtn);
-            this.categoryBtnPanel.Location = new System.Drawing.Point(1213, 730);
+            this.categoryBtnPanel.Location = new System.Drawing.Point(1213, 734);
             this.categoryBtnPanel.Name = "categoryBtnPanel";
             this.categoryBtnPanel.Size = new System.Drawing.Size(154, 42);
             this.categoryBtnPanel.TabIndex = 22;
@@ -303,8 +300,9 @@
             // 
             // categoryFilterBtn
             // 
-            this.categoryFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryFilterBtn.Animated = true;
+            this.categoryFilterBtn.BackColor = System.Drawing.Color.Transparent;
             this.categoryFilterBtn.BorderRadius = 8;
             this.categoryFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.categoryFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -313,16 +311,17 @@
             this.categoryFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.categoryFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.categoryFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.categoryFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.categoryFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.categoryFilterBtn.Location = new System.Drawing.Point(1098, 25);
+            this.categoryFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.categoryFilterBtn.Name = "categoryFilterBtn";
             this.categoryFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.categoryFilterBtn.TabIndex = 13;
             // 
             // categorySearchText
             // 
-            this.categorySearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.categorySearchText.AutoSize = true;
+            this.categorySearchText.BorderColor = System.Drawing.Color.Gray;
             this.categorySearchText.BorderRadius = 8;
             this.categorySearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.categorySearchText.DefaultText = "";
@@ -336,13 +335,14 @@
             this.categorySearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.categorySearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.categorySearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.categorySearchText.Location = new System.Drawing.Point(17, 25);
+            this.categorySearchText.Location = new System.Drawing.Point(17, 30);
             this.categorySearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.categorySearchText.Name = "categorySearchText";
             this.categorySearchText.PasswordChar = '\0';
+            this.categorySearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.categorySearchText.PlaceholderText = "Search";
             this.categorySearchText.SelectedText = "";
-            this.categorySearchText.Size = new System.Drawing.Size(309, 41);
+            this.categorySearchText.Size = new System.Drawing.Size(400, 41);
             this.categorySearchText.TabIndex = 12;
             // 
             // Category
@@ -361,8 +361,10 @@
             this.Controls.Add(this.categoryFilterBtn);
             this.Controls.Add(this.categorySearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "Category";
             this.Text = "Category";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).EndInit();
             this.categoryBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

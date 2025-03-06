@@ -176,5 +176,10 @@ namespace EscopeWindowsApp
         {
             this.Close();
         }
+
+        private void craeteSupItemLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

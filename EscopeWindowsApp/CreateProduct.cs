@@ -37,5 +37,15 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void creProCreUnitBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void creProAddStocklabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
