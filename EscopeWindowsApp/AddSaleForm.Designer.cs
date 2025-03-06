@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createSalePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.totalAmountLabel = new System.Windows.Forms.Label();
             this.createSalePySLabel = new System.Windows.Forms.Label();
             this.createSalePaySCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -64,7 +65,6 @@
             this.createSaleDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.createSaleDateLabel = new System.Windows.Forms.Label();
             this.createSaleLabel = new System.Windows.Forms.Label();
-            this.totalAmountLabel = new System.Windows.Forms.Label();
             this.createSalePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleOrderDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -106,12 +106,21 @@
             this.createSalePanel.TabIndex = 18;
             this.createSalePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createSalePanel_Paint);
             // 
+            // totalAmountLabel
+            // 
+            this.totalAmountLabel.AutoSize = true;
+            this.totalAmountLabel.Location = new System.Drawing.Point(611, 515);
+            this.totalAmountLabel.Name = "totalAmountLabel";
+            this.totalAmountLabel.Size = new System.Drawing.Size(76, 13);
+            this.totalAmountLabel.TabIndex = 30;
+            this.totalAmountLabel.Text = "Totale Amount";
+            // 
             // createSalePySLabel
             // 
             this.createSalePySLabel.AutoSize = true;
             this.createSalePySLabel.BackColor = System.Drawing.Color.Transparent;
             this.createSalePySLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSalePySLabel.Location = new System.Drawing.Point(12, 780);
+            this.createSalePySLabel.Location = new System.Drawing.Point(11, 456);
             this.createSalePySLabel.Name = "createSalePySLabel";
             this.createSalePySLabel.Size = new System.Drawing.Size(135, 23);
             this.createSalePySLabel.TabIndex = 29;
@@ -133,7 +142,7 @@
             "Select Payment Status",
             "Paid",
             "Unpaid"});
-            this.createSalePaySCombo.Location = new System.Drawing.Point(15, 811);
+            this.createSalePaySCombo.Location = new System.Drawing.Point(14, 487);
             this.createSalePaySCombo.Name = "createSalePaySCombo";
             this.createSalePaySCombo.Size = new System.Drawing.Size(400, 36);
             this.createSalePaySCombo.StartIndex = 0;
@@ -150,7 +159,7 @@
             this.saleCancelBtn.FillColor = System.Drawing.Color.DarkGray;
             this.saleCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
             this.saleCancelBtn.ForeColor = System.Drawing.Color.White;
-            this.saleCancelBtn.Location = new System.Drawing.Point(822, 1048);
+            this.saleCancelBtn.Location = new System.Drawing.Point(862, 528);
             this.saleCancelBtn.Name = "saleCancelBtn";
             this.saleCancelBtn.Size = new System.Drawing.Size(93, 47);
             this.saleCancelBtn.TabIndex = 26;
@@ -167,7 +176,7 @@
             this.saleSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.saleSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.saleSaveBtn.Location = new System.Drawing.Point(706, 1048);
+            this.saleSaveBtn.Location = new System.Drawing.Point(746, 528);
             this.saleSaveBtn.Name = "saleSaveBtn";
             this.saleSaveBtn.Size = new System.Drawing.Size(93, 47);
             this.saleSaveBtn.TabIndex = 25;
@@ -179,7 +188,7 @@
             this.createSaleNoteLabel.AutoSize = true;
             this.createSaleNoteLabel.BackColor = System.Drawing.Color.Transparent;
             this.createSaleNoteLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSaleNoteLabel.Location = new System.Drawing.Point(11, 888);
+            this.createSaleNoteLabel.Location = new System.Drawing.Point(111, 378);
             this.createSaleNoteLabel.Name = "createSaleNoteLabel";
             this.createSaleNoteLabel.Size = new System.Drawing.Size(52, 23);
             this.createSaleNoteLabel.TabIndex = 24;
@@ -198,7 +207,7 @@
             this.createSaleNoteText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createSaleNoteText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createSaleNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createSaleNoteText.Location = new System.Drawing.Point(15, 924);
+            this.createSaleNoteText.Location = new System.Drawing.Point(55, 404);
             this.createSaleNoteText.Name = "createSaleNoteText";
             this.createSaleNoteText.PasswordChar = '\0';
             this.createSaleNoteText.PlaceholderText = "";
@@ -222,7 +231,7 @@
             this.createSaleStatusCombo.Items.AddRange(new object[] {
             "Sent",
             "Pending"});
-            this.createSaleStatusCombo.Location = new System.Drawing.Point(516, 704);
+            this.createSaleStatusCombo.Location = new System.Drawing.Point(515, 380);
             this.createSaleStatusCombo.Name = "createSaleStatusCombo";
             this.createSaleStatusCombo.Size = new System.Drawing.Size(400, 36);
             this.createSaleStatusCombo.StartIndex = 0;
@@ -234,7 +243,7 @@
             this.createSaleStatusLabel.AutoSize = true;
             this.createSaleStatusLabel.BackColor = System.Drawing.Color.Transparent;
             this.createSaleStatusLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSaleStatusLabel.Location = new System.Drawing.Point(512, 669);
+            this.createSaleStatusLabel.Location = new System.Drawing.Point(511, 345);
             this.createSaleStatusLabel.Name = "createSaleStatusLabel";
             this.createSaleStatusLabel.Size = new System.Drawing.Size(63, 23);
             this.createSaleStatusLabel.TabIndex = 21;
@@ -253,7 +262,7 @@
             this.createSaleShipText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createSaleShipText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createSaleShipText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createSaleShipText.Location = new System.Drawing.Point(16, 704);
+            this.createSaleShipText.Location = new System.Drawing.Point(15, 380);
             this.createSaleShipText.Name = "createSaleShipText";
             this.createSaleShipText.PasswordChar = '\0';
             this.createSaleShipText.PlaceholderText = "";
@@ -267,7 +276,7 @@
             this.createSaleShiLabel.AutoSize = true;
             this.createSaleShiLabel.BackColor = System.Drawing.Color.Transparent;
             this.createSaleShiLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSaleShiLabel.Location = new System.Drawing.Point(12, 669);
+            this.createSaleShiLabel.Location = new System.Drawing.Point(11, 345);
             this.createSaleShiLabel.Name = "createSaleShiLabel";
             this.createSaleShiLabel.Size = new System.Drawing.Size(81, 23);
             this.createSaleShiLabel.TabIndex = 19;
@@ -341,16 +350,16 @@
             // 
             // saleOrderDataGrid
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.saleOrderDataGrid.ColumnHeadersHeight = 25;
             this.saleOrderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.saleOrderDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -361,14 +370,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.saleOrderDataGrid.GridColor = System.Drawing.Color.White;
             this.saleOrderDataGrid.Location = new System.Drawing.Point(16, 315);
             this.saleOrderDataGrid.Name = "saleOrderDataGrid";
@@ -585,15 +594,6 @@
             this.createSaleLabel.Size = new System.Drawing.Size(148, 28);
             this.createSaleLabel.TabIndex = 19;
             this.createSaleLabel.Text = "Create Sale";
-            // 
-            // totalAmountLabel
-            // 
-            this.totalAmountLabel.AutoSize = true;
-            this.totalAmountLabel.Location = new System.Drawing.Point(612, 839);
-            this.totalAmountLabel.Name = "totalAmountLabel";
-            this.totalAmountLabel.Size = new System.Drawing.Size(76, 13);
-            this.totalAmountLabel.TabIndex = 30;
-            this.totalAmountLabel.Text = "Totale Amount";
             // 
             // AddSaleForm
             // 
