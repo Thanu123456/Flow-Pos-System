@@ -196,6 +196,7 @@
             // 
             // loginToggleSwitch
             // 
+            this.loginToggleSwitch.Animated = true;
             this.loginToggleSwitch.AutoRoundedCorners = true;
             this.loginToggleSwitch.BackColor = System.Drawing.Color.White;
             this.loginToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -228,6 +229,7 @@
             // 
             // loginBtn
             // 
+            this.loginBtn.Animated = true;
             this.loginBtn.BorderRadius = 5;
             this.loginBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.loginBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -239,9 +241,11 @@
             this.loginBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.ForeColor = System.Drawing.Color.White;
             this.loginBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
-            this.loginBtn.Location = new System.Drawing.Point(153, 352);
+            this.loginBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.loginBtn.HoverState.FillColor2 = System.Drawing.Color.Navy;
+            this.loginBtn.Location = new System.Drawing.Point(163, 355);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(110, 45);
+            this.loginBtn.Size = new System.Drawing.Size(95, 45);
             this.loginBtn.TabIndex = 18;
             this.loginBtn.Text = "Login";
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
@@ -290,6 +294,7 @@
             this.Controls.Add(this.loginPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox2)).EndInit();

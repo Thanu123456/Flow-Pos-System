@@ -16,7 +16,7 @@ namespace EscopeWindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddSaleForm());
+            Application.Run(new Production());
         }
     }
 }

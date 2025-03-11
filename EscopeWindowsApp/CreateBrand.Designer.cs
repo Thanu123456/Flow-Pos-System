@@ -39,6 +39,7 @@
             this.createBrandsNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createBrandsLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.brandsBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.creBrandImgUploadBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             this.creBrandsLogoBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -150,6 +151,7 @@
             this.createBrandsNameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.createBrandsNameText.BackColor = System.Drawing.Color.Transparent;
+            this.createBrandsNameText.BorderColor = System.Drawing.Color.Gray;
             this.createBrandsNameText.BorderRadius = 8;
             this.createBrandsNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.createBrandsNameText.DefaultText = "";
@@ -166,6 +168,7 @@
             this.createBrandsNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createBrandsNameText.Name = "createBrandsNameText";
             this.createBrandsNameText.PasswordChar = '\0';
+            this.createBrandsNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createBrandsNameText.PlaceholderText = "Name";
             this.createBrandsNameText.SelectedText = "";
             this.createBrandsNameText.Size = new System.Drawing.Size(348, 42);
@@ -189,26 +192,50 @@
             this.brandsBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.brandsBorderlessForm.TransparentWhileDrag = true;
             // 
+            // creBrandImgUploadBtn
+            // 
+            this.creBrandImgUploadBtn.Animated = true;
+            this.creBrandImgUploadBtn.BackColor = System.Drawing.Color.Transparent;
+            this.creBrandImgUploadBtn.BorderColor = System.Drawing.Color.Transparent;
+            this.creBrandImgUploadBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.creBrandImgUploadBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.creBrandImgUploadBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.creBrandImgUploadBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.creBrandImgUploadBtn.FillColor = System.Drawing.Color.DarkGray;
+            this.creBrandImgUploadBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.creBrandImgUploadBtn.ForeColor = System.Drawing.Color.White;
+            this.creBrandImgUploadBtn.Image = global::EscopeWindowsApp.Properties.Resources.ImgUpload_Icon;
+            this.creBrandImgUploadBtn.ImageOffset = new System.Drawing.Point(0, -2);
+            this.creBrandImgUploadBtn.Location = new System.Drawing.Point(110, 317);
+            this.creBrandImgUploadBtn.Name = "creBrandImgUploadBtn";
+            this.creBrandImgUploadBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.creBrandImgUploadBtn.Size = new System.Drawing.Size(30, 30);
+            this.creBrandImgUploadBtn.TabIndex = 69;
+            this.creBrandImgUploadBtn.UseTransparentBackground = true;
+            this.creBrandImgUploadBtn.Click += new System.EventHandler(this.creBrandImgUploadBtn_Click);
+            // 
             // creBrandsLogoBox
             // 
+            this.creBrandsLogoBox.BackColor = System.Drawing.Color.Transparent;
             this.creBrandsLogoBox.BorderRadius = 8;
             this.creBrandsLogoBox.ImageRotate = 0F;
-            this.creBrandsLogoBox.Location = new System.Drawing.Point(25, 235);
+            this.creBrandsLogoBox.Location = new System.Drawing.Point(24, 235);
             this.creBrandsLogoBox.Name = "creBrandsLogoBox";
-            this.creBrandsLogoBox.Size = new System.Drawing.Size(109, 99);
-            this.creBrandsLogoBox.TabIndex = 65;
+            this.creBrandsLogoBox.Size = new System.Drawing.Size(106, 106);
+            this.creBrandsLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.creBrandsLogoBox.TabIndex = 70;
             this.creBrandsLogoBox.TabStop = false;
-            this.creBrandsLogoBox.Click += new System.EventHandler(this.creBrandsLogoBox_Click);
             // 
             // CreateBrand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 440);
+            this.Controls.Add(this.creBrandImgUploadBtn);
+            this.Controls.Add(this.creBrandsLogoBox);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.creBrandsSaveBtn);
             this.Controls.Add(this.creBrandsCancelBtn);
-            this.Controls.Add(this.creBrandsLogoBox);
             this.Controls.Add(this.creteBrandsLogoChangelabel);
             this.Controls.Add(this.createBrandsNameLabel);
             this.Controls.Add(this.createBrandsNameText);
@@ -235,11 +262,12 @@
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox createBrandsCloseBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creBrandsSaveBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creBrandsCancelBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox creBrandsLogoBox;
         private System.Windows.Forms.Label creteBrandsLogoChangelabel;
         private System.Windows.Forms.Label createBrandsNameLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createBrandsNameText;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel createBrandsLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm brandsBorderlessForm;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton creBrandImgUploadBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox creBrandsLogoBox;
     }
 }

@@ -44,21 +44,26 @@ namespace EscopeWindowsApp
 
         private void createWareBtn_Click(object sender, EventArgs e)
         {
-            //foreach (Form form in Application.OpenForms)
-            //{
-            //    if (form is AddWarehouseForm)
-            //    {
-            //        if (form.WindowState == FormWindowState.Minimized)
-            //        {
-            //            form.WindowState = FormWindowState.Normal;
-            //        }
-            //        form.BringToFront();
-            //        form.Activate();
-            //        return;
-            //    }
-            //}
-            //AddWarehouseForm addWarehouseForm = new AddWarehouseForm();
-            //addWarehouseForm.Show();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is AddWarehouseForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            AddWarehouseForm addWarehouseForm = new AddWarehouseForm();
+            addWarehouseForm.Show();
+        }
+
+        private void WarehouseForm_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void wareSearchText_TextChanged(object sender, EventArgs e)

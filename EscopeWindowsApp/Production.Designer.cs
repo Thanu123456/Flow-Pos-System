@@ -172,6 +172,7 @@
             this.createProductBtn.Size = new System.Drawing.Size(209, 42);
             this.createProductBtn.TabIndex = 10;
             this.createProductBtn.Text = "Create Product";
+            this.createProductBtn.Click += new System.EventHandler(this.createProductBtn_Click);
             // 
             // productFilterBtn
             // 
