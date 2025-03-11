@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.unitsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.unitsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,19 +56,19 @@
             // 
             // unitsDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.unitsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.unitsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.unitsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.unitsDataGridView.ColumnHeadersHeight = 25;
             this.unitsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.unitsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -77,14 +77,14 @@
             this.baseUnit,
             this.unitCreatedOn,
             this.unitsAction});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.unitsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.unitsDataGridView.DefaultCellStyle = dataGridViewCellStyle15;
             this.unitsDataGridView.GridColor = System.Drawing.Color.White;
             this.unitsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.unitsDataGridView.Name = "unitsDataGridView";
@@ -114,6 +114,7 @@
             this.unitsDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.unitsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.unitsDataGridView_CellContentClick);
             // 
             // unitsName
             // 
@@ -259,6 +260,7 @@
             this.unitsFirstBtn.Name = "unitsFirstBtn";
             this.unitsFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.unitsFirstBtn.TabIndex = 11;
+            this.unitsFirstBtn.Click += new System.EventHandler(this.unitsFirstBtn_Click);
             // 
             // unitsPrevBtn
             // 
@@ -276,6 +278,7 @@
             this.unitsPrevBtn.Name = "unitsPrevBtn";
             this.unitsPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.unitsPrevBtn.TabIndex = 11;
+            this.unitsPrevBtn.Click += new System.EventHandler(this.unitsPrevBtn_Click);
             // 
             // unitsNextBtn
             // 
@@ -293,6 +296,7 @@
             this.unitsNextBtn.Name = "unitsNextBtn";
             this.unitsNextBtn.Size = new System.Drawing.Size(26, 26);
             this.unitsNextBtn.TabIndex = 9;
+            this.unitsNextBtn.Click += new System.EventHandler(this.unitsNextBtn_Click);
             // 
             // unitsLastBtn
             // 
@@ -309,6 +313,7 @@
             this.unitsLastBtn.Name = "unitsLastBtn";
             this.unitsLastBtn.Size = new System.Drawing.Size(26, 26);
             this.unitsLastBtn.TabIndex = 8;
+            this.unitsLastBtn.Click += new System.EventHandler(this.unitsLastBtn_Click);
             // 
             // unitsFilterBtn
             // 
@@ -327,6 +332,7 @@
             this.unitsFilterBtn.Name = "unitsFilterBtn";
             this.unitsFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.unitsFilterBtn.TabIndex = 25;
+            this.unitsFilterBtn.Click += new System.EventHandler(this.unitsFilterBtn_Click);
             // 
             // unitsSearchText
             // 
@@ -351,6 +357,7 @@
             this.unitsSearchText.SelectedText = "";
             this.unitsSearchText.Size = new System.Drawing.Size(400, 42);
             this.unitsSearchText.TabIndex = 24;
+            this.unitsSearchText.TextChanged += new System.EventHandler(this.unitsSearchText_TextChanged);
             // 
             // Units
             // 
@@ -373,6 +380,7 @@
             this.Name = "Units";
             this.Text = "Units";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Units_Load);
             ((System.ComponentModel.ISupportInitialize)(this.unitsDataGridView)).EndInit();
             this.unitsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
