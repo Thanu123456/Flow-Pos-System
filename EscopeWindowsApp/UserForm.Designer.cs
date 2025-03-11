@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.userSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createUserBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -45,13 +52,6 @@
             this.userPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.userRecordsPerLabel = new System.Windows.Forms.Label();
             this.userFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
             this.userBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,7 @@
             this.userSearchText.SelectedText = "";
             this.userSearchText.Size = new System.Drawing.Size(400, 42);
             this.userSearchText.TabIndex = 2;
+            this.userSearchText.TextChanged += new System.EventHandler(this.userSearchText_TextChanged);
             // 
             // createUserBtn
             // 
@@ -105,19 +106,19 @@
             // 
             // userDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.userDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.userDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.userDataGridView.ColumnHeadersHeight = 25;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -128,14 +129,14 @@
             this.supPhone,
             this.createdAt,
             this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.userDataGridView.DefaultCellStyle = dataGridViewCellStyle18;
             this.userDataGridView.GridColor = System.Drawing.Color.White;
             this.userDataGridView.Location = new System.Drawing.Point(17, 100);
             this.userDataGridView.Name = "userDataGridView";
@@ -166,6 +167,41 @@
             this.userDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.userDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDataGridView_CellContentClick);
             // 
+            // supplierID
+            // 
+            this.supplierID.HeaderText = "Supplier ID";
+            this.supplierID.Name = "supplierID";
+            // 
+            // supName
+            // 
+            this.supName.HeaderText = "Name";
+            this.supName.Name = "supName";
+            // 
+            // supDesc
+            // 
+            this.supDesc.HeaderText = "Description";
+            this.supDesc.Name = "supDesc";
+            // 
+            // supEmail
+            // 
+            this.supEmail.HeaderText = "Email";
+            this.supEmail.Name = "supEmail";
+            // 
+            // supPhone
+            // 
+            this.supPhone.HeaderText = "Phone";
+            this.supPhone.Name = "supPhone";
+            // 
+            // createdAt
+            // 
+            this.createdAt.HeaderText = "Create At";
+            this.createdAt.Name = "createdAt";
+            // 
+            // action
+            // 
+            this.action.HeaderText = "Action";
+            this.action.Name = "action";
+            // 
             // userBtnPanel
             // 
             this.userBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -194,6 +230,7 @@
             this.userFirstBtn.Name = "userFirstBtn";
             this.userFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.userFirstBtn.TabIndex = 11;
+            this.userFirstBtn.Click += new System.EventHandler(this.userFirstBtn_Click);
             // 
             // userPrevBtn
             // 
@@ -211,6 +248,7 @@
             this.userPrevBtn.Name = "userPrevBtn";
             this.userPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.userPrevBtn.TabIndex = 11;
+            this.userPrevBtn.Click += new System.EventHandler(this.userPrevBtn_Click);
             // 
             // userNextBtn
             // 
@@ -228,6 +266,7 @@
             this.userNextBtn.Name = "userNextBtn";
             this.userNextBtn.Size = new System.Drawing.Size(26, 26);
             this.userNextBtn.TabIndex = 9;
+            this.userNextBtn.Click += new System.EventHandler(this.userNextBtn_Click);
             // 
             // userLastBtn
             // 
@@ -244,6 +283,7 @@
             this.userLastBtn.Name = "userLastBtn";
             this.userLastBtn.Size = new System.Drawing.Size(26, 26);
             this.userLastBtn.TabIndex = 8;
+            this.userLastBtn.Click += new System.EventHandler(this.userLastBtn_Click);
             // 
             // userAllPgLabel
             // 
@@ -335,41 +375,7 @@
             this.userFilterBtn.Name = "userFilterBtn";
             this.userFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.userFilterBtn.TabIndex = 28;
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // supPhone
-            // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
-            // 
-            // supEmail
-            // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
-            // 
-            // supDesc
-            // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
-            // 
-            // supName
-            // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
-            // 
-            // supplierID
-            // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
+            this.userFilterBtn.Click += new System.EventHandler(this.userFilterBtn_Click);
             // 
             // UserForm
             // 
