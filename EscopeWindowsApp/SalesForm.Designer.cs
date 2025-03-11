@@ -35,6 +35,13 @@
             this.createSaleBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.salesReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesPayStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleAllPgLabel = new System.Windows.Forms.Label();
             this.saleOfLabel = new System.Windows.Forms.Label();
             this.salePgRangeLabel = new System.Windows.Forms.Label();
@@ -46,13 +53,6 @@
             this.saleNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.salesReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesPayStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
             this.saleBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,7 @@
             this.saleDataComboBox1.Size = new System.Drawing.Size(209, 36);
             this.saleDataComboBox1.StartIndex = 0;
             this.saleDataComboBox1.TabIndex = 7;
+            this.saleDataComboBox1.SelectedIndexChanged += new System.EventHandler(this.saleDataComboBox1_SelectedIndexChanged);
             // 
             // createSaleBtn
             // 
@@ -119,6 +120,7 @@
             this.saleFilterBtn.Name = "saleFilterBtn";
             this.saleFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.saleFilterBtn.TabIndex = 5;
+            this.saleFilterBtn.Click += new System.EventHandler(this.saleFilterBtn_Click);
             // 
             // saleDataGridView
             // 
@@ -181,6 +183,42 @@
             this.saleDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.saleDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.saleDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDataGridView_CellContentClick);
+            // 
+            // salesReference
+            // 
+            this.salesReference.HeaderText = "Reference";
+            this.salesReference.Name = "salesReference";
+            // 
+            // salesCusName
+            // 
+            this.salesCusName.HeaderText = "Customer";
+            this.salesCusName.Name = "salesCusName";
+            // 
+            // salesWarehouse
+            // 
+            this.salesWarehouse.HeaderText = "Warehouse";
+            this.salesWarehouse.Name = "salesWarehouse";
+            // 
+            // salesStatus
+            // 
+            this.salesStatus.HeaderText = "Status";
+            this.salesStatus.Name = "salesStatus";
+            // 
+            // salesGrandTotal
+            // 
+            this.salesGrandTotal.HeaderText = "Grand Total";
+            this.salesGrandTotal.Name = "salesGrandTotal";
+            // 
+            // salesPaid
+            // 
+            this.salesPaid.HeaderText = "Paid";
+            this.salesPaid.Name = "salesPaid";
+            // 
+            // salesPayStatus
+            // 
+            this.salesPayStatus.HeaderText = "Payment Status";
+            this.salesPayStatus.Name = "salesPayStatus";
             // 
             // saleAllPgLabel
             // 
@@ -282,6 +320,7 @@
             this.saleFirstBtn.Name = "saleFirstBtn";
             this.saleFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.saleFirstBtn.TabIndex = 11;
+            this.saleFirstBtn.Click += new System.EventHandler(this.saleFirstBtn_Click);
             // 
             // salePrevBtn
             // 
@@ -299,6 +338,7 @@
             this.salePrevBtn.Name = "salePrevBtn";
             this.salePrevBtn.Size = new System.Drawing.Size(26, 26);
             this.salePrevBtn.TabIndex = 11;
+            this.salePrevBtn.Click += new System.EventHandler(this.salePrevBtn_Click);
             // 
             // saleNextBtn
             // 
@@ -316,6 +356,7 @@
             this.saleNextBtn.Name = "saleNextBtn";
             this.saleNextBtn.Size = new System.Drawing.Size(26, 26);
             this.saleNextBtn.TabIndex = 9;
+            this.saleNextBtn.Click += new System.EventHandler(this.saleNextBtn_Click);
             // 
             // saleLastBtn
             // 
@@ -332,6 +373,7 @@
             this.saleLastBtn.Name = "saleLastBtn";
             this.saleLastBtn.Size = new System.Drawing.Size(26, 26);
             this.saleLastBtn.TabIndex = 8;
+            this.saleLastBtn.Click += new System.EventHandler(this.saleLastBtn_Click);
             // 
             // saleSearchText
             // 
@@ -359,41 +401,7 @@
             this.saleSearchText.SelectedText = "";
             this.saleSearchText.Size = new System.Drawing.Size(400, 42);
             this.saleSearchText.TabIndex = 27;
-            // 
-            // salesReference
-            // 
-            this.salesReference.HeaderText = "Reference";
-            this.salesReference.Name = "salesReference";
-            // 
-            // salesCusName
-            // 
-            this.salesCusName.HeaderText = "Customer";
-            this.salesCusName.Name = "salesCusName";
-            // 
-            // salesWarehouse
-            // 
-            this.salesWarehouse.HeaderText = "Warehouse";
-            this.salesWarehouse.Name = "salesWarehouse";
-            // 
-            // salesStatus
-            // 
-            this.salesStatus.HeaderText = "Status";
-            this.salesStatus.Name = "salesStatus";
-            // 
-            // salesGrandTotal
-            // 
-            this.salesGrandTotal.HeaderText = "Grand Total";
-            this.salesGrandTotal.Name = "salesGrandTotal";
-            // 
-            // salesPaid
-            // 
-            this.salesPaid.HeaderText = "Paid";
-            this.salesPaid.Name = "salesPaid";
-            // 
-            // salesPayStatus
-            // 
-            this.salesPayStatus.HeaderText = "Payment Status";
-            this.salesPayStatus.Name = "salesPayStatus";
+            this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
             // 
             // SalesForm
             // 
