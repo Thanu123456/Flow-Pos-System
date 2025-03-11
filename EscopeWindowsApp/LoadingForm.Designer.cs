@@ -172,6 +172,7 @@
             this.Controls.Add(this.loadingPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoadingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoadingForm";
             this.Load += new System.EventHandler(this.LoadingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox1)).EndInit();

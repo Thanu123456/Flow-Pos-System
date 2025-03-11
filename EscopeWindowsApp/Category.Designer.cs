@@ -365,6 +365,7 @@
             this.Name = "Category";
             this.Text = "Category";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Category_Load);
             ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).EndInit();
             this.categoryBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -107,5 +107,48 @@ namespace EscopeWindowsApp
         {
             this.Close();
         }
-    }
+
+        private void creBrandImgUploadBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                using (OpenFileDialog dialog = new OpenFileDialog())
+                {
+                    dialog.Title = "Select Image";
+                    dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp;)|*.jpg;*.jpeg;*.png;*.bmp;|All Files (*.*)|*.*";
+                    dialog.FilterIndex = 1; 
+                    dialog.RestoreDirectory = true; 
+
+                    
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        
+                        using (Image originalImage = Image.FromFile(dialog.FileName))
+                        {
+                           Image resizedImage = ResizeImage(originalImage, creBrandsLogoBox.Width, creBrandsLogoBox.Height);
+                            creBrandsLogoBox.Image = resizedImage;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Image ResizeImage(Image image, int width, int height)
+        {
+            Bitmap resizedBitmap = new Bitmap(width, height);
+
+            using (Graphics graphics = Graphics.FromImage(resizedBitmap))
+            {
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(image, 0, 0, width, height);
+            }
+
+            return resizedBitmap;
+        }
+      }
 }

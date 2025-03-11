@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.creatProductLabel = new System.Windows.Forms.Label();
             this.createProductMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creProTypeComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProTypeLabel = new System.Windows.Forms.Label();
             this.creProCreUnitBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -70,7 +71,7 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.addProBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
-            this.siticoneVScrollBar1 = new Siticone.Desktop.UI.WinForms.SiticoneVScrollBar();
+            this.creProVScrollBar1 = new Siticone.Desktop.UI.WinForms.SiticoneVScrollBar();
             this.createProductMainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -96,6 +97,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.createProductMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.createProductMainPanel.BorderRadius = 8;
+            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgBtn);
             this.createProductMainPanel.Controls.Add(this.creProTypeComboBox);
             this.createProductMainPanel.Controls.Add(this.creProTypeLabel);
             this.createProductMainPanel.Controls.Add(this.creProCreUnitBtn);
@@ -134,6 +136,25 @@
             this.createProductMainPanel.Size = new System.Drawing.Size(1043, 602);
             this.createProductMainPanel.TabIndex = 23;
             // 
+            // createProductMultipleImgBtn
+            // 
+            this.createProductMultipleImgBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
+            this.createProductMultipleImgBtn.BorderRadius = 8;
+            this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createProductMultipleImgBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
+            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(957, 48);
+            this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
+            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(65, 38);
+            this.createProductMultipleImgBtn.TabIndex = 56;
+            this.createProductMultipleImgBtn.Text = "+";
+            this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
+            // 
             // creProTypeComboBox
             // 
             this.creProTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -147,14 +168,12 @@
             this.creProTypeComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creProTypeComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creProTypeComboBox.ItemHeight = 30;
-            this.creProTypeComboBox.Items.AddRange(new object[] {
-            "Single",
-            "Varation"});
             this.creProTypeComboBox.Location = new System.Drawing.Point(22, 538);
             this.creProTypeComboBox.Name = "creProTypeComboBox";
             this.creProTypeComboBox.Size = new System.Drawing.Size(327, 36);
             this.creProTypeComboBox.StartIndex = 0;
             this.creProTypeComboBox.TabIndex = 55;
+            this.creProTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.creProTypeComboBox_SelectedIndexChanged);
             // 
             // creProTypeLabel
             // 
@@ -646,6 +665,7 @@
             this.createProductMultipleImgText.PasswordChar = '\0';
             this.createProductMultipleImgText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createProductMultipleImgText.PlaceholderText = "Choose File";
+            this.createProductMultipleImgText.ReadOnly = true;
             this.createProductMultipleImgText.SelectedText = "";
             this.createProductMultipleImgText.Size = new System.Drawing.Size(327, 42);
             this.createProductMultipleImgText.TabIndex = 27;
@@ -776,6 +796,7 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1100, 34);
             this.headerPanel.TabIndex = 24;
+            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // controlPanel
             // 
@@ -819,17 +840,22 @@
             this.addProBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.addProBorderlessForm.TransparentWhileDrag = true;
             // 
-            // siticoneVScrollBar1
+            // creProVScrollBar1
             // 
-            this.siticoneVScrollBar1.BorderRadius = 4;
-            this.siticoneVScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.siticoneVScrollBar1.InUpdate = false;
-            this.siticoneVScrollBar1.LargeChange = 90;
-            this.siticoneVScrollBar1.Location = new System.Drawing.Point(1090, 34);
-            this.siticoneVScrollBar1.Name = "siticoneVScrollBar1";
-            this.siticoneVScrollBar1.ScrollbarSize = 10;
-            this.siticoneVScrollBar1.Size = new System.Drawing.Size(10, 746);
-            this.siticoneVScrollBar1.TabIndex = 58;
+            this.creProVScrollBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.creProVScrollBar1.BorderRadius = 4;
+            this.creProVScrollBar1.InUpdate = false;
+            this.creProVScrollBar1.LargeChange = 80;
+            this.creProVScrollBar1.Location = new System.Drawing.Point(1090, 34);
+            this.creProVScrollBar1.MouseWheelBarPartitions = 20;
+            this.creProVScrollBar1.Name = "creProVScrollBar1";
+            this.creProVScrollBar1.ScrollbarSize = 10;
+            this.creProVScrollBar1.Size = new System.Drawing.Size(10, 745);
+            this.creProVScrollBar1.TabIndex = 58;
+            this.creProVScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.creProVScrollBar1.Value = 10;
+            this.creProVScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.creProVScrollBar1_Scroll);
             // 
             // CreateProduct
             // 
@@ -839,7 +865,7 @@
             this.ClientSize = new System.Drawing.Size(1100, 780);
             this.Controls.Add(this.creProCancelBtn);
             this.Controls.Add(this.creProSaveBtn);
-            this.Controls.Add(this.siticoneVScrollBar1);
+            this.Controls.Add(this.creProVScrollBar1);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.createProductMainPanel);
             this.Controls.Add(this.creatProductLabel);
@@ -850,6 +876,7 @@
             this.Name = "CreateProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateProduct";
+            this.Load += new System.EventHandler(this.CreateProduct_Load);
             this.createProductMainPanel.ResumeLayout(false);
             this.createProductMainPanel.PerformLayout();
             this.headerPanel.ResumeLayout(false);
@@ -901,6 +928,7 @@
         private System.Windows.Forms.Label creProTypeLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creProCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creProSaveBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneVScrollBar siticoneVScrollBar1;
+        private Siticone.Desktop.UI.WinForms.SiticoneVScrollBar creProVScrollBar1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton createProductMultipleImgBtn;
     }
 }

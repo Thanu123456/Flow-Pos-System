@@ -148,5 +148,26 @@ namespace EscopeWindowsApp
                 ProductDataGridView.CurrentCell = ProductDataGridView.Rows[currentIndex].Cells[0];
             }
         }
+
+        private void createProductBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CreateProduct)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+
+                }
+
+            }
+            CreateProduct createProduct = new CreateProduct();
+            createProduct.Show();
+        }
     }
 }

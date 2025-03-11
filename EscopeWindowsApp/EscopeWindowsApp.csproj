@@ -98,6 +98,18 @@
     <Compile Include="AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddVariationItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddVariationItem.Designer.cs">
+      <DependentUpon>AddVariationItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddWarehouseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWarehouseForm.Designer.cs">
+      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustmentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +145,12 @@
     </Compile>
     <Compile Include="CreateBrand.Designer.cs">
       <DependentUpon>CreateBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCategory.Designer.cs">
+      <DependentUpon>CreateCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateProduct.cs">
       <SubType>Form</SubType>
@@ -256,6 +274,12 @@
     <EmbeddedResource Include="AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddVariationItem.resx">
+      <DependentUpon>AddVariationItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddWarehouseForm.resx">
+      <DependentUpon>AddWarehouseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustmentsForm.resx">
       <DependentUpon>AdjustmentsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBrand.resx">
       <DependentUpon>CreateBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCategory.resx">
+      <DependentUpon>CreateCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateProduct.resx">
       <DependentUpon>CreateProduct.cs</DependentUpon>
@@ -351,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\ImgUpload Icon.png" />
     <None Include="Resources\Vector 1.png" />
     <None Include="Resources\icons8-supplier-50 %281%29.png" />
     <None Include="Resources\icons8-supplier-50.png" />
