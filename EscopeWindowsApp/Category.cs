@@ -19,23 +19,28 @@ namespace EscopeWindowsApp
 
         private void createCategoryBtn_Click(object sender, EventArgs e)
         {
-            //foreach (Form form in Application.OpenForms)
-            //{
-            //    if (form is CreateCategory)
-            //    {
-            //        if (form.WindowState == FormWindowState.Minimized)
-            //        {
-            //            form.WindowState = FormWindowState.Normal;
-            //        }
-            //        form.BringToFront();
-            //        form.Activate();
-            //        return;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CreateCategory)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
 
-            //    }
+                }
 
-            //}
-            //CreateCategory createCategory = new CreateCategory();
-            //createCategory.Show();
+            }
+            CreateCategory createCategory = new CreateCategory();
+            createCategory.Show();
+        }
+
+        private void Category_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

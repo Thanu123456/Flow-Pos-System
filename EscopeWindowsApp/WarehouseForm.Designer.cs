@@ -391,6 +391,7 @@
             this.Name = "WarehouseForm";
             this.Text = "WarehouseForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.WarehouseForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.wareDataGridView)).EndInit();
             this.wareBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
