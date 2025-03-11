@@ -47,8 +47,8 @@
             this.Last30DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.thisMonthBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.numOfOrderPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.numberOrderLabel = new System.Windows.Forms.Label();
             this.orderCountLabel = new System.Windows.Forms.Label();
+            this.numberOrderLabel = new System.Windows.Forms.Label();
             this.totalRevenuePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.reveCountLabel = new System.Windows.Forms.Label();
             this.numberTrevenueLabel = new System.Windows.Forms.Label();
@@ -58,19 +58,19 @@
             this.grossRevenueChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.topProductsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.totalCounterPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.countOFCusLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tNOCLabel = new System.Windows.Forms.Label();
-            this.tNOSLabel = new System.Windows.Forms.Label();
-            this.countOFSupLabel = new System.Windows.Forms.Label();
             this.tNOPLabel = new System.Windows.Forms.Label();
             this.countOfProductLabel = new System.Windows.Forms.Label();
+            this.tNOSLabel = new System.Windows.Forms.Label();
+            this.countOFSupLabel = new System.Windows.Forms.Label();
+            this.tNOCLabel = new System.Windows.Forms.Label();
+            this.countOFCusLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.proUnderPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.label20 = new System.Windows.Forms.Label();
             this.underStockDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label20 = new System.Windows.Forms.Label();
             this.numOfOrderPanel.SuspendLayout();
             this.totalRevenuePanel.SuspendLayout();
             this.totalProfitPanel.SuspendLayout();
@@ -163,7 +163,7 @@
             this.Last30DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.Last30DaysBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Last30DaysBtn.ForeColor = System.Drawing.Color.White;
-            this.Last30DaysBtn.Location = new System.Drawing.Point(1498, 12);
+            this.Last30DaysBtn.Location = new System.Drawing.Point(940, 222);
             this.Last30DaysBtn.Name = "Last30DaysBtn";
             this.Last30DaysBtn.Size = new System.Drawing.Size(121, 28);
             this.Last30DaysBtn.TabIndex = 5;
@@ -178,7 +178,7 @@
             this.thisMonthBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.thisMonthBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.thisMonthBtn.ForeColor = System.Drawing.Color.White;
-            this.thisMonthBtn.Location = new System.Drawing.Point(1644, 12);
+            this.thisMonthBtn.Location = new System.Drawing.Point(1133, 222);
             this.thisMonthBtn.Name = "thisMonthBtn";
             this.thisMonthBtn.Size = new System.Drawing.Size(121, 28);
             this.thisMonthBtn.TabIndex = 6;
@@ -195,17 +195,6 @@
             this.numOfOrderPanel.Size = new System.Drawing.Size(229, 125);
             this.numOfOrderPanel.TabIndex = 7;
             // 
-            // numberOrderLabel
-            // 
-            this.numberOrderLabel.AutoSize = true;
-            this.numberOrderLabel.BackColor = System.Drawing.Color.Transparent;
-            this.numberOrderLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numberOrderLabel.Location = new System.Drawing.Point(21, 11);
-            this.numberOrderLabel.Name = "numberOrderLabel";
-            this.numberOrderLabel.Size = new System.Drawing.Size(188, 24);
-            this.numberOrderLabel.TabIndex = 0;
-            this.numberOrderLabel.Text = "Number Of Oders";
-            // 
             // orderCountLabel
             // 
             this.orderCountLabel.AutoSize = true;
@@ -216,6 +205,17 @@
             this.orderCountLabel.Size = new System.Drawing.Size(94, 32);
             this.orderCountLabel.TabIndex = 1;
             this.orderCountLabel.Text = "10000";
+            // 
+            // numberOrderLabel
+            // 
+            this.numberOrderLabel.AutoSize = true;
+            this.numberOrderLabel.BackColor = System.Drawing.Color.Transparent;
+            this.numberOrderLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numberOrderLabel.Location = new System.Drawing.Point(21, 11);
+            this.numberOrderLabel.Name = "numberOrderLabel";
+            this.numberOrderLabel.Size = new System.Drawing.Size(188, 24);
+            this.numberOrderLabel.TabIndex = 0;
+            this.numberOrderLabel.Text = "Number Of Oders";
             // 
             // totalRevenuePanel
             // 
@@ -347,38 +347,27 @@
             this.totalCounterPanel.Size = new System.Drawing.Size(262, 284);
             this.totalCounterPanel.TabIndex = 12;
             // 
-            // countOFCusLabel
+            // tNOPLabel
             // 
-            this.countOFCusLabel.AutoSize = true;
-            this.countOFCusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.countOFCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countOFCusLabel.Location = new System.Drawing.Point(22, 82);
-            this.countOFCusLabel.Name = "countOFCusLabel";
-            this.countOFCusLabel.Size = new System.Drawing.Size(65, 22);
-            this.countOFCusLabel.TabIndex = 1;
-            this.countOFCusLabel.Text = "10000";
+            this.tNOPLabel.AutoSize = true;
+            this.tNOPLabel.BackColor = System.Drawing.Color.Transparent;
+            this.tNOPLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tNOPLabel.Location = new System.Drawing.Point(22, 191);
+            this.tNOPLabel.Name = "tNOPLabel";
+            this.tNOPLabel.Size = new System.Drawing.Size(197, 22);
+            this.tNOPLabel.TabIndex = 14;
+            this.tNOPLabel.Text = "Number Of Products";
             // 
-            // label8
+            // countOfProductLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(169, 28);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Total Counter";
-            // 
-            // tNOCLabel
-            // 
-            this.tNOCLabel.AutoSize = true;
-            this.tNOCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tNOCLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tNOCLabel.Location = new System.Drawing.Point(22, 53);
-            this.tNOCLabel.Name = "tNOCLabel";
-            this.tNOCLabel.Size = new System.Drawing.Size(213, 22);
-            this.tNOCLabel.TabIndex = 2;
-            this.tNOCLabel.Text = "Number Of Customers";
+            this.countOfProductLabel.AutoSize = true;
+            this.countOfProductLabel.BackColor = System.Drawing.Color.Transparent;
+            this.countOfProductLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countOfProductLabel.Location = new System.Drawing.Point(22, 220);
+            this.countOfProductLabel.Name = "countOfProductLabel";
+            this.countOfProductLabel.Size = new System.Drawing.Size(65, 22);
+            this.countOfProductLabel.TabIndex = 13;
+            this.countOfProductLabel.Text = "10000";
             // 
             // tNOSLabel
             // 
@@ -402,27 +391,38 @@
             this.countOFSupLabel.TabIndex = 13;
             this.countOFSupLabel.Text = "10000";
             // 
-            // tNOPLabel
+            // tNOCLabel
             // 
-            this.tNOPLabel.AutoSize = true;
-            this.tNOPLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tNOPLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tNOPLabel.Location = new System.Drawing.Point(22, 191);
-            this.tNOPLabel.Name = "tNOPLabel";
-            this.tNOPLabel.Size = new System.Drawing.Size(197, 22);
-            this.tNOPLabel.TabIndex = 14;
-            this.tNOPLabel.Text = "Number Of Products";
+            this.tNOCLabel.AutoSize = true;
+            this.tNOCLabel.BackColor = System.Drawing.Color.Transparent;
+            this.tNOCLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tNOCLabel.Location = new System.Drawing.Point(22, 53);
+            this.tNOCLabel.Name = "tNOCLabel";
+            this.tNOCLabel.Size = new System.Drawing.Size(213, 22);
+            this.tNOCLabel.TabIndex = 2;
+            this.tNOCLabel.Text = "Number Of Customers";
             // 
-            // countOfProductLabel
+            // countOFCusLabel
             // 
-            this.countOfProductLabel.AutoSize = true;
-            this.countOfProductLabel.BackColor = System.Drawing.Color.Transparent;
-            this.countOfProductLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countOfProductLabel.Location = new System.Drawing.Point(22, 220);
-            this.countOfProductLabel.Name = "countOfProductLabel";
-            this.countOfProductLabel.Size = new System.Drawing.Size(65, 22);
-            this.countOfProductLabel.TabIndex = 13;
-            this.countOfProductLabel.Text = "10000";
+            this.countOFCusLabel.AutoSize = true;
+            this.countOFCusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.countOFCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.countOFCusLabel.Location = new System.Drawing.Point(22, 82);
+            this.countOFCusLabel.Name = "countOFCusLabel";
+            this.countOFCusLabel.Size = new System.Drawing.Size(65, 22);
+            this.countOFCusLabel.TabIndex = 1;
+            this.countOFCusLabel.Text = "10000";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(10, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(169, 28);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Total Counter";
             // 
             // proUnderPanel
             // 
@@ -434,17 +434,6 @@
             this.proUnderPanel.Name = "proUnderPanel";
             this.proUnderPanel.Size = new System.Drawing.Size(447, 284);
             this.proUnderPanel.TabIndex = 13;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(10, 9);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(258, 28);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Products Understock";
             // 
             // underStockDataGridView
             // 
@@ -459,7 +448,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.underStockDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.underStockDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.underStockDataGridView.ColumnHeadersHeight = 15;
+            this.underStockDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.underStockDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
@@ -489,7 +479,7 @@
             this.underStockDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.underStockDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.underStockDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.underStockDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.underStockDataGridView.ThemeStyle.HeaderStyle.Height = 15;
             this.underStockDataGridView.ThemeStyle.ReadOnly = false;
             this.underStockDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -514,6 +504,17 @@
             // 
             this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(10, 9);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(258, 28);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Products Understock";
             // 
             // DashBoardForm
             // 
