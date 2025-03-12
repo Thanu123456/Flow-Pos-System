@@ -387,6 +387,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\profitIcon.png" />
+    <None Include="Resources\return-purchase.png" />
+    <None Include="Resources\purchaseIcon.png" />
+    <None Include="Resources\SalesReturnIcon.png" />
+    <None Include="Resources\total-sales1.png" />
+    <None Include="Resources\total-sales.png" />
     <None Include="Resources\ImgUpload Icon.png" />
     <None Include="Resources\Vector 1.png" />
     <None Include="Resources\icons8-supplier-50 %281%29.png" />

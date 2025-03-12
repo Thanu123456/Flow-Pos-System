@@ -382,6 +382,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.wareFilterBtn);
@@ -395,6 +396,7 @@
             this.Controls.Add(this.createWareBtn);
             this.Controls.Add(this.wareSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "WarehouseForm";
             this.Text = "WarehouseForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
