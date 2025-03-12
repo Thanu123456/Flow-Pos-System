@@ -61,11 +61,6 @@ namespace EscopeWindowsApp
             addWarehouseForm.Show();
         }
 
-        private void WarehouseForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void wareSearchText_TextChanged(object sender, EventArgs e)
         {
             // Search warehouses as text changes
@@ -160,6 +155,11 @@ namespace EscopeWindowsApp
                 currentIndex = wareDataGridView.Rows.Count - 1;
                 wareDataGridView.CurrentCell = wareDataGridView.Rows[currentIndex].Cells[0];
             }
+        }
+
+        private void WarehouseForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
