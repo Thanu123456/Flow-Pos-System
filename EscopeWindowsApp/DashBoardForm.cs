@@ -16,5 +16,30 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        private void numberOrderLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grossRevenueChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void topProductsPieChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numberTrevenueLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void last7DaysBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
