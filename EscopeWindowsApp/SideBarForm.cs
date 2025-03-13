@@ -108,5 +108,15 @@ namespace EscopeWindowsApp
         {
             dashBoardForm = null;
         }
+
+        private void siticoneButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneButton6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

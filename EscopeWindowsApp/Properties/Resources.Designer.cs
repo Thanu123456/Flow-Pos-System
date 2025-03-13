@@ -83,6 +83,16 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap customersIcon {
+            get {
+                object obj = ResourceManager.GetObject("customersIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap endBtn {
             get {
                 object obj = ResourceManager.GetObject("endBtn", resourceCulture);
@@ -193,6 +203,26 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap orderIcon {
+            get {
+                object obj = ResourceManager.GetObject("orderIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap productsIcon {
+            get {
+                object obj = ResourceManager.GetObject("productsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap profitIcon {
             get {
                 object obj = ResourceManager.GetObject("profitIcon", resourceCulture);
@@ -236,6 +266,16 @@ namespace EscopeWindowsApp.Properties {
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap supplierIcon {
+            get {
+                object obj = ResourceManager.GetObject("supplierIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
