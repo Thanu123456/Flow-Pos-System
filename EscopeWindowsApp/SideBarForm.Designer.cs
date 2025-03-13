@@ -34,16 +34,17 @@
             this.siticoneButton2 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.manuLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.siticoneButton3 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.unitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.manuBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.unitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton3 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticoneButton4 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sidebarBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sideBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.siticoneControlBox1 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.siticoneControlBox2 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticoneControlBox3 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.siticoneControlBox2 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.manuLayoutPanel.SuspendLayout();
             this.sideBarPanel.SuspendLayout();
             this.siticonePanel1.SuspendLayout();
@@ -104,35 +105,21 @@
             this.manuLayoutPanel.Size = new System.Drawing.Size(218, 45);
             this.manuLayoutPanel.TabIndex = 2;
             // 
-            // siticoneButton4
+            // manuBtn
             // 
-            this.siticoneButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneButton4.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton4.Location = new System.Drawing.Point(0, 135);
-            this.siticoneButton4.Margin = new System.Windows.Forms.Padding(0);
-            this.siticoneButton4.Name = "siticoneButton4";
-            this.siticoneButton4.Size = new System.Drawing.Size(218, 45);
-            this.siticoneButton4.TabIndex = 4;
-            this.siticoneButton4.Text = "Settings";
-            // 
-            // siticoneButton3
-            // 
-            this.siticoneButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneButton3.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton3.Location = new System.Drawing.Point(0, 90);
-            this.siticoneButton3.Margin = new System.Windows.Forms.Padding(0);
-            this.siticoneButton3.Name = "siticoneButton3";
-            this.siticoneButton3.Size = new System.Drawing.Size(218, 45);
-            this.siticoneButton3.TabIndex = 3;
-            this.siticoneButton3.Text = "Settings";
+            this.manuBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.manuBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.manuBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.manuBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.manuBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F);
+            this.manuBtn.ForeColor = System.Drawing.Color.White;
+            this.manuBtn.Location = new System.Drawing.Point(0, 0);
+            this.manuBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.manuBtn.Name = "manuBtn";
+            this.manuBtn.Size = new System.Drawing.Size(218, 45);
+            this.manuBtn.TabIndex = 5;
+            this.manuBtn.Text = "Manu";
+            this.manuBtn.Click += new System.EventHandler(this.manuBtn_Click);
             // 
             // unitsBtn
             // 
@@ -150,21 +137,35 @@
             this.unitsBtn.Text = "Settings";
             this.unitsBtn.Click += new System.EventHandler(this.siticoneButton6_Click);
             // 
-            // manuBtn
+            // siticoneButton3
             // 
-            this.manuBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.manuBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.manuBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.manuBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.manuBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F);
-            this.manuBtn.ForeColor = System.Drawing.Color.White;
-            this.manuBtn.Location = new System.Drawing.Point(0, 0);
-            this.manuBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.manuBtn.Name = "manuBtn";
-            this.manuBtn.Size = new System.Drawing.Size(218, 45);
-            this.manuBtn.TabIndex = 5;
-            this.manuBtn.Text = "Manu";
-            this.manuBtn.Click += new System.EventHandler(this.manuBtn_Click);
+            this.siticoneButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneButton3.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton3.Location = new System.Drawing.Point(0, 90);
+            this.siticoneButton3.Margin = new System.Windows.Forms.Padding(0);
+            this.siticoneButton3.Name = "siticoneButton3";
+            this.siticoneButton3.Size = new System.Drawing.Size(218, 45);
+            this.siticoneButton3.TabIndex = 3;
+            this.siticoneButton3.Text = "Settings";
+            // 
+            // siticoneButton4
+            // 
+            this.siticoneButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneButton4.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton4.Location = new System.Drawing.Point(0, 135);
+            this.siticoneButton4.Margin = new System.Windows.Forms.Padding(0);
+            this.siticoneButton4.Name = "siticoneButton4";
+            this.siticoneButton4.Size = new System.Drawing.Size(218, 45);
+            this.siticoneButton4.TabIndex = 4;
+            this.siticoneButton4.Text = "Settings";
             // 
             // sidebarBtn
             // 
@@ -185,6 +186,7 @@
             // sideBarPanel
             // 
             this.sideBarPanel.BackColor = System.Drawing.Color.Silver;
+            this.sideBarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sideBarPanel.Controls.Add(this.sidebarBtn);
             this.sideBarPanel.Controls.Add(this.manuLayoutPanel);
             this.sideBarPanel.Controls.Add(this.dashboardBtn);
@@ -221,18 +223,6 @@
             this.siticonePanel1.Size = new System.Drawing.Size(1386, 34);
             this.siticonePanel1.TabIndex = 0;
             // 
-            // siticoneControlBox2
-            // 
-            this.siticoneControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneControlBox2.BorderRadius = 8;
-            this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
-            this.siticoneControlBox2.FillColor = System.Drawing.Color.Gold;
-            this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
-            this.siticoneControlBox2.Location = new System.Drawing.Point(1316, 4);
-            this.siticoneControlBox2.Name = "siticoneControlBox2";
-            this.siticoneControlBox2.Size = new System.Drawing.Size(26, 26);
-            this.siticoneControlBox2.TabIndex = 3;
-            // 
             // siticoneControlBox3
             // 
             this.siticoneControlBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -245,6 +235,26 @@
             this.siticoneControlBox3.Size = new System.Drawing.Size(26, 26);
             this.siticoneControlBox3.TabIndex = 4;
             // 
+            // siticoneControlBox2
+            // 
+            this.siticoneControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneControlBox2.BorderRadius = 8;
+            this.siticoneControlBox2.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
+            this.siticoneControlBox2.FillColor = System.Drawing.Color.Gold;
+            this.siticoneControlBox2.IconColor = System.Drawing.Color.White;
+            this.siticoneControlBox2.Location = new System.Drawing.Point(1316, 4);
+            this.siticoneControlBox2.Name = "siticoneControlBox2";
+            this.siticoneControlBox2.Size = new System.Drawing.Size(26, 26);
+            this.siticoneControlBox2.TabIndex = 3;
+            // 
+            // siticonePanel2
+            // 
+            this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.siticonePanel2.Location = new System.Drawing.Point(218, 34);
+            this.siticonePanel2.Name = "siticonePanel2";
+            this.siticonePanel2.Size = new System.Drawing.Size(1168, 73);
+            this.siticonePanel2.TabIndex = 6;
+            // 
             // SideBarForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -252,6 +262,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.sideBarPanel);
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -262,7 +273,6 @@
             this.MinimumSize = new System.Drawing.Size(1300, 700);
             this.Name = "SideBarForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SideBarForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -290,5 +300,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox siticoneControlBox3;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox siticoneControlBox2;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
     }
 }
