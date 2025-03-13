@@ -41,5 +41,82 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void DashBoardForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tNOCLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tNOPLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dashNOCBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is AddCustomerForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            AddCustomerForm addCustomerForm = new AddCustomerForm();
+            addCustomerForm.Show();
+        }
+
+        private void dashNOSBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is AddSupplierForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            AddSupplierForm addSupplierForm = new AddSupplierForm();
+            addSupplierForm.Show();
+        }
+
+        private void dashNOPBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CreateProduct)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            CreateProduct createProduct = new CreateProduct();
+            createProduct.Show();
+        }
     }
 }
