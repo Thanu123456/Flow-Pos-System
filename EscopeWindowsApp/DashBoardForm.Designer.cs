@@ -97,7 +97,6 @@
             this.dashNOPIconLabel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dashNOPPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.dashOverallPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashOverInfoPieChart = new LiveCharts.WinForms.PieChart();
             this.dashOverInfoLabel = new System.Windows.Forms.Label();
             this.dashNOOPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dashNOOIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -928,7 +927,6 @@
             // dashOverallPanel
             // 
             this.dashOverallPanel.BorderRadius = 8;
-            this.dashOverallPanel.Controls.Add(this.dashOverInfoPieChart);
             this.dashOverallPanel.Controls.Add(this.dashOverInfoLabel);
             this.dashOverallPanel.Controls.Add(this.dashNOOPanel);
             this.dashOverallPanel.Controls.Add(this.totalCounterPanel);
@@ -942,13 +940,8 @@
             // 
             // dashOverInfoPieChart
             // 
-            this.dashOverInfoPieChart.BackColor = System.Drawing.Color.Transparent;
-            this.dashOverInfoPieChart.BackColorTransparent = true;
-            this.dashOverInfoPieChart.Location = new System.Drawing.Point(274, 127);
-            this.dashOverInfoPieChart.Name = "dashOverInfoPieChart";
-            this.dashOverInfoPieChart.Size = new System.Drawing.Size(248, 221);
-            this.dashOverInfoPieChart.TabIndex = 20;
-            this.dashOverInfoPieChart.Text = "Overall Infomation";
+            
+            
             // 
             // dashOverInfoLabel
             // 
@@ -1196,7 +1189,6 @@
         private System.Windows.Forms.Label dashNOOCountLabel;
         private System.Windows.Forms.Label dasNOOLabel;
         private System.Windows.Forms.Label dashOverInfoLabel;
-        private LiveCharts.WinForms.PieChart dashOverInfoPieChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart topProductsPieChart;
     }
 }
