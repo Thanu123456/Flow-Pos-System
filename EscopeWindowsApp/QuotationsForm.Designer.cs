@@ -408,10 +408,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.quotaBtnPanel);
             this.Controls.Add(this.quotAllPgLabel);
             this.Controls.Add(this.quotaOfLabel);
@@ -424,11 +423,13 @@
             this.Controls.Add(this.quotaFilterBtn);
             this.Controls.Add(this.quotaSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "Quotations";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quotations";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Quotations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).EndInit();
             this.quotaBtnPanel.ResumeLayout(false);

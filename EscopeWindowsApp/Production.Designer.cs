@@ -167,7 +167,7 @@
             this.createProductBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createProductBtn.ForeColor = System.Drawing.Color.White;
             this.createProductBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.createProductBtn.Location = new System.Drawing.Point(1158, 30);
+            this.createProductBtn.Location = new System.Drawing.Point(1164, 30);
             this.createProductBtn.Name = "createProductBtn";
             this.createProductBtn.Size = new System.Drawing.Size(209, 42);
             this.createProductBtn.TabIndex = 10;
@@ -187,7 +187,7 @@
             this.productFilterBtn.ForeColor = System.Drawing.Color.White;
             this.productFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.productFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.productFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.productFilterBtn.Location = new System.Drawing.Point(1104, 30);
             this.productFilterBtn.Name = "productFilterBtn";
             this.productFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.productFilterBtn.TabIndex = 9;
@@ -380,9 +380,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.productPageCombo);
             this.Controls.Add(this.productRecordsPerLabel);
             this.Controls.Add(this.productAllPgLabel);
@@ -394,10 +393,14 @@
             this.Controls.Add(this.productFilterBtn);
             this.Controls.Add(this.productionSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "Production";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Production";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
             this.productBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

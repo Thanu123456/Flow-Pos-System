@@ -381,10 +381,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.wareFilterBtn);
             this.Controls.Add(this.wareAllPgLabel);
             this.Controls.Add(this.wareOfLabel);
@@ -396,10 +395,13 @@
             this.Controls.Add(this.createWareBtn);
             this.Controls.Add(this.wareSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "WarehouseForm";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WarehouseForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.WarehouseForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.wareDataGridView)).EndInit();
             this.wareBtnPanel.ResumeLayout(false);
