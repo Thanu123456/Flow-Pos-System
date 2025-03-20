@@ -407,10 +407,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.saleSearchText);
             this.Controls.Add(this.saleBtnPanel);
             this.Controls.Add(this.saleAllPgLabel);
@@ -423,10 +422,13 @@
             this.Controls.Add(this.createSaleBtn);
             this.Controls.Add(this.saleFilterBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "SalesForm";
+            this.ShowInTaskbar = false;
             this.Text = "SalesForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.SalesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).EndInit();
             this.saleBtnPanel.ResumeLayout(false);

@@ -351,8 +351,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.variationsPageCombo);
             this.Controls.Add(this.variationsRecordsPerLabel);
             this.Controls.Add(this.variationsAllPgLabel);
@@ -364,8 +364,13 @@
             this.Controls.Add(this.variationsFilterBtn);
             this.Controls.Add(this.variationsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "Variations";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Variations";
             this.Load += new System.EventHandler(this.Variations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).EndInit();

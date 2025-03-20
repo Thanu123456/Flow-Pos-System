@@ -353,9 +353,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.brandsPageCombo);
             this.Controls.Add(this.brandsRecordsPerLabel);
             this.Controls.Add(this.brandsAllPgLabel);
@@ -367,10 +366,14 @@
             this.Controls.Add(this.brandsFilterBtn);
             this.Controls.Add(this.brandsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "Brands";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brands";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.brandsDataGridView)).EndInit();
             this.brandsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
