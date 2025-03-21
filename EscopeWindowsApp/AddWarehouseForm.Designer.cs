@@ -156,6 +156,7 @@
             this.addWarehouseZipCodeText.SelectedText = "";
             this.addWarehouseZipCodeText.Size = new System.Drawing.Size(443, 42);
             this.addWarehouseZipCodeText.TabIndex = 28;
+            this.addWarehouseZipCodeText.TextChanged += new System.EventHandler(this.addWarehouseZipCodeText_TextChanged);
             // 
             // addWarehouseZipCodeLabel
             // 
@@ -165,9 +166,9 @@
             this.addWarehouseZipCodeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addWarehouseZipCodeLabel.Location = new System.Drawing.Point(491, 215);
             this.addWarehouseZipCodeLabel.Name = "addWarehouseZipCodeLabel";
-            this.addWarehouseZipCodeLabel.Size = new System.Drawing.Size(100, 23);
+            this.addWarehouseZipCodeLabel.Size = new System.Drawing.Size(81, 23);
             this.addWarehouseZipCodeLabel.TabIndex = 27;
-            this.addWarehouseZipCodeLabel.Text = "Item Name:";
+            this.addWarehouseZipCodeLabel.Text = "Zip Code:";
             // 
             // addWarehouseAddressText
             // 
@@ -192,6 +193,7 @@
             this.addWarehouseAddressText.SelectedText = "";
             this.addWarehouseAddressText.Size = new System.Drawing.Size(441, 42);
             this.addWarehouseAddressText.TabIndex = 26;
+            this.addWarehouseAddressText.TextChanged += new System.EventHandler(this.addWarehouseAddressText_TextChanged);
             // 
             // addWarehouseAddressLabel
             // 
@@ -228,6 +230,7 @@
             this.addWarehouseCityText.SelectedText = "";
             this.addWarehouseCityText.Size = new System.Drawing.Size(443, 42);
             this.addWarehouseCityText.TabIndex = 24;
+            this.addWarehouseCityText.TextChanged += new System.EventHandler(this.addWarehouseCityText_TextChanged);
             // 
             // addWarehouseCityLabel
             // 
@@ -298,6 +301,7 @@
             this.addWarehousePhoneText.SelectedText = "";
             this.addWarehousePhoneText.Size = new System.Drawing.Size(441, 42);
             this.addWarehousePhoneText.TabIndex = 4;
+            this.addWarehousePhoneText.TextChanged += new System.EventHandler(this.addWarehousePhoneText_TextChanged);
             // 
             // addWarehouseNameText
             // 
@@ -322,6 +326,7 @@
             this.addWarehouseNameText.SelectedText = "";
             this.addWarehouseNameText.Size = new System.Drawing.Size(443, 42);
             this.addWarehouseNameText.TabIndex = 2;
+            this.addWarehouseNameText.TextChanged += new System.EventHandler(this.addWarehouseNameText_TextChanged);
             // 
             // addWarehouseEmailText
             // 
@@ -343,10 +348,11 @@
             this.addWarehouseEmailText.Name = "addWarehouseEmailText";
             this.addWarehouseEmailText.PasswordChar = '\0';
             this.addWarehouseEmailText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.addWarehouseEmailText.PlaceholderText = "Enter Warehouse Email";
+            this.addWarehouseEmailText.PlaceholderText = "Enter Manager\'s Email";
             this.addWarehouseEmailText.SelectedText = "";
             this.addWarehouseEmailText.Size = new System.Drawing.Size(443, 42);
             this.addWarehouseEmailText.TabIndex = 5;
+            this.addWarehouseEmailText.TextChanged += new System.EventHandler(this.addWarehouseEmailText_TextChanged);
             // 
             // addWarehouseLabel
             // 
@@ -377,6 +383,7 @@
             this.addWarehouseCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.addWarehouseCancelBtn.TabIndex = 32;
             this.addWarehouseCancelBtn.Text = "Cancel";
+            this.addWarehouseCancelBtn.Click += new System.EventHandler(this.addWarehouseCancelBtn_Click);
             // 
             // addWarehouseSaveBtn
             // 
@@ -397,6 +404,7 @@
             this.addWarehouseSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.addWarehouseSaveBtn.TabIndex = 31;
             this.addWarehouseSaveBtn.Text = "Save";
+            this.addWarehouseSaveBtn.Click += new System.EventHandler(this.addWarehouseSaveBtn_Click);
             // 
             // AddWarehouseForm
             // 

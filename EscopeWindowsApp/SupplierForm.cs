@@ -260,8 +260,24 @@ namespace EscopeWindowsApp
                     string email = row.Cells["email"].Value.ToString();
                     string phone = row.Cells["phone"].Value.ToString();
                     string city = row.Cells["city"].Value.ToString();
-                    string address = row.Cells["address"].Value.ToString();
                     string item = row.Cells["item"].Value.ToString();
+
+                    // Fetch the address from the database since it's not shown in the grid
+                    string address = "";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string query = "SELECT address FROM suppliers WHERE id = @supplierId";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@supplierId", supplierId);
+                            object result = command.ExecuteScalar();
+                            if (result != null)
+                            {
+                                address = result.ToString();
+                            }
+                        }
+                    }
 
                     AddSupplierForm editForm = new AddSupplierForm(supplierId, name, email, phone, city, address, item);
                     editForm.FormClosed += (s, args) => LoadSuppliersData();
@@ -307,6 +323,7 @@ namespace EscopeWindowsApp
                 }
             }
         }
+
 
         private void supFirstBtn_Click(object sender, EventArgs e)
         {

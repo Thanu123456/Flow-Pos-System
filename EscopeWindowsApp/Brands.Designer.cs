@@ -32,9 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.brandsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.brandsCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandsProductCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createBrandsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.brandsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -46,7 +43,7 @@
             this.brandsPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.brandsFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.brandsRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.brandsDataGridView)).BeginInit();
             this.brandsBtnPanel.SuspendLayout();
@@ -54,6 +51,8 @@
             // 
             // brandsDataGridView
             // 
+            this.brandsDataGridView.AllowUserToAddRows = false;
+            this.brandsDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.brandsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.brandsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -69,10 +68,6 @@
             this.brandsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.brandsDataGridView.ColumnHeadersHeight = 25;
             this.brandsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.brandsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.brandsCategory,
-            this.brandsProductCount,
-            this.brandsAction});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -84,6 +79,7 @@
             this.brandsDataGridView.GridColor = System.Drawing.Color.White;
             this.brandsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.brandsDataGridView.Name = "brandsDataGridView";
+            this.brandsDataGridView.ReadOnly = true;
             this.brandsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.brandsDataGridView.RowHeadersVisible = false;
             this.brandsDataGridView.Size = new System.Drawing.Size(1352, 614);
@@ -102,7 +98,7 @@
             this.brandsDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.brandsDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.brandsDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.brandsDataGridView.ThemeStyle.ReadOnly = false;
+            this.brandsDataGridView.ThemeStyle.ReadOnly = true;
             this.brandsDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.brandsDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.brandsDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,21 +106,7 @@
             this.brandsDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.brandsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.brandsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // brandsCategory
-            // 
-            this.brandsCategory.HeaderText = "Brands Name";
-            this.brandsCategory.Name = "brandsCategory";
-            // 
-            // brandsProductCount
-            // 
-            this.brandsProductCount.HeaderText = "Product Count";
-            this.brandsProductCount.Name = "brandsProductCount";
-            // 
-            // brandsAction
-            // 
-            this.brandsAction.HeaderText = "Action";
-            this.brandsAction.Name = "brandsAction";
+            this.brandsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.brandsDataGridView_CellContentClick);
             // 
             // createBrandsBtn
             // 
@@ -302,25 +284,25 @@
             this.brandsLastBtn.TabIndex = 8;
             this.brandsLastBtn.Click += new System.EventHandler(this.brandsLastBtn_Click);
             // 
-            // brandsFilterBtn
+            // brandsRefreshBtn
             // 
-            this.brandsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.brandsFilterBtn.Animated = true;
-            this.brandsFilterBtn.BorderRadius = 8;
-            this.brandsFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.brandsFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.brandsFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.brandsFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.brandsFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.brandsFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.brandsFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.brandsFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.brandsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.brandsFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.brandsFilterBtn.Name = "brandsFilterBtn";
-            this.brandsFilterBtn.Size = new System.Drawing.Size(43, 42);
-            this.brandsFilterBtn.TabIndex = 21;
-            this.brandsFilterBtn.Click += new System.EventHandler(this.brandsFilterBtn_Click);
+            this.brandsRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.brandsRefreshBtn.Animated = true;
+            this.brandsRefreshBtn.BorderRadius = 8;
+            this.brandsRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.brandsRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.brandsRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.brandsRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.brandsRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.brandsRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.brandsRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.brandsRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.brandsRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
+            this.brandsRefreshBtn.Location = new System.Drawing.Point(1098, 30);
+            this.brandsRefreshBtn.Name = "brandsRefreshBtn";
+            this.brandsRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.brandsRefreshBtn.TabIndex = 21;
+            this.brandsRefreshBtn.Click += new System.EventHandler(this.brandsFilterBtn_Click);
             // 
             // brandsSearchText
             // 
@@ -364,13 +346,14 @@
             this.Controls.Add(this.brandsBtnPanel);
             this.Controls.Add(this.brandsDataGridView);
             this.Controls.Add(this.createBrandsBtn);
-            this.Controls.Add(this.brandsFilterBtn);
+            this.Controls.Add(this.brandsRefreshBtn);
             this.Controls.Add(this.brandsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.Name = "Brands";
             this.Text = "Brands";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Brands_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.brandsDataGridView)).EndInit();
             this.brandsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -381,11 +364,8 @@
         #endregion
 
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView brandsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandsCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandsProductCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandsAction;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createBrandsBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton brandsFilterBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton brandsRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox brandsSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox brandsPageCombo;
         private System.Windows.Forms.Label brandsRecordsPerLabel;
