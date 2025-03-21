@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createSupBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.supDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -52,8 +52,12 @@
             this.supPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.supRecordsPerLabel = new System.Windows.Forms.Label();
             this.supFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.supFilterPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.selectSupDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
+            this.supRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).BeginInit();
             this.supBtnPanel.SuspendLayout();
+            this.supFilterPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // supSearchText
@@ -106,19 +110,19 @@
             // 
             // supDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.supDataGridView.ColumnHeadersHeight = 25;
             this.supDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.supDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -129,14 +133,14 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
             this.supDataGridView.GridColor = System.Drawing.Color.White;
             this.supDataGridView.Location = new System.Drawing.Point(17, 100);
             this.supDataGridView.Name = "supDataGridView";
@@ -371,11 +375,62 @@
             this.supFilterBtn.ForeColor = System.Drawing.Color.White;
             this.supFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.supFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.supFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.supFilterBtn.Location = new System.Drawing.Point(292, 17);
             this.supFilterBtn.Name = "supFilterBtn";
             this.supFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.supFilterBtn.TabIndex = 33;
             this.supFilterBtn.Click += new System.EventHandler(this.supFilterBtn_Click);
+            // 
+            // supFilterPanel
+            // 
+            this.supFilterPanel.BorderRadius = 8;
+            this.supFilterPanel.Controls.Add(this.selectSupDateTime);
+            this.supFilterPanel.Controls.Add(this.supFilterBtn);
+            this.supFilterPanel.Location = new System.Drawing.Point(798, 12);
+            this.supFilterPanel.Name = "supFilterPanel";
+            this.supFilterPanel.Size = new System.Drawing.Size(338, 72);
+            this.supFilterPanel.TabIndex = 37;
+            // 
+            // selectSupDateTime
+            // 
+            this.selectSupDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectSupDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.selectSupDateTime.BorderColor = System.Drawing.Color.Gray;
+            this.selectSupDateTime.BorderRadius = 8;
+            this.selectSupDateTime.BorderThickness = 1;
+            this.selectSupDateTime.Checked = true;
+            this.selectSupDateTime.FillColor = System.Drawing.Color.LightCyan;
+            this.selectSupDateTime.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectSupDateTime.ForeColor = System.Drawing.Color.Gray;
+            this.selectSupDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.selectSupDateTime.Location = new System.Drawing.Point(3, 18);
+            this.selectSupDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.selectSupDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.selectSupDateTime.Name = "selectSupDateTime";
+            this.selectSupDateTime.Size = new System.Drawing.Size(268, 42);
+            this.selectSupDateTime.TabIndex = 37;
+            this.selectSupDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.selectSupDateTime.ValueChanged += new System.EventHandler(this.selectSupDateTime_ValueChanged);
+            // 
+            // supRefreshBtn
+            // 
+            this.supRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.supRefreshBtn.Animated = true;
+            this.supRefreshBtn.BorderRadius = 8;
+            this.supRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.supRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.supRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.supRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.supRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.supRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.supRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.supRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.supRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
+            this.supRefreshBtn.Location = new System.Drawing.Point(433, 30);
+            this.supRefreshBtn.Name = "supRefreshBtn";
+            this.supRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.supRefreshBtn.TabIndex = 38;
+            this.supRefreshBtn.Click += new System.EventHandler(this.supRefreshBtn_Click);
             // 
             // SupplierForm
             // 
@@ -405,6 +460,7 @@
             this.Load += new System.EventHandler(this.SupplierForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).EndInit();
             this.supBtnPanel.ResumeLayout(false);
+            this.supFilterPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,5 +488,8 @@
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox supPageCombo;
         private System.Windows.Forms.Label supRecordsPerLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton supFilterBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel supFilterPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectSupDateTime;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton supRefreshBtn;
     }
 }

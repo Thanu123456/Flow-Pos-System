@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace EscopeWindowsApp
 {
     public partial class CreateBrand : Form
     {
-        // Error providers for validation
         private ErrorProvider brandNameErrorProvider = new ErrorProvider();
-        private ErrorProvider brandLogoErrorProvider = new ErrorProvider();
-
-        // Variable to hold the selected brand logo image path
-        private string brandLogoPath = string.Empty;
 
         public CreateBrand()
         {
@@ -28,17 +20,10 @@ namespace EscopeWindowsApp
         private void SetupErrorProviders()
         {
             brandNameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            brandLogoErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
         private void CreateBrand_Load(object sender, EventArgs e)
         {
-            // Initialization code here if needed
-        }
-
-        private void createBrandsNameText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateBrandName();
         }
 
         private bool ValidateBrandName()
@@ -48,6 +33,11 @@ namespace EscopeWindowsApp
             {
                 brandNameErrorProvider.SetError(createBrandsNameText, "Brand name is required.");
             }
+            else if (createBrandsNameText.Text.Length < 2)
+            {
+                brandNameErrorProvider.SetError(createBrandsNameText, "Brand name must be at least 2 characters.");
+                isValid = false;
+            }
             else
             {
                 brandNameErrorProvider.SetError(createBrandsNameText, string.Empty);
@@ -55,78 +45,27 @@ namespace EscopeWindowsApp
             return isValid;
         }
 
-        private void creBrandsLogoBox_Click(object sender, EventArgs e)
+        private void createBrandsNameText_TextChanged(object sender, EventArgs e)
         {
-            // Open file dialog to select the brand logo (only .jpg files allowed)
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "JPEG files (*.jpg)|*.jpg",
-                Title = "Select Brand Logo"
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                brandLogoPath = openFileDialog.FileName;
-                // Display the selected image in the PictureBox
-                creBrandsLogoBox.Image = Image.FromFile(brandLogoPath);
-                brandLogoErrorProvider.SetError(creBrandsLogoBox, string.Empty);
-            }
-        }
-
-        private bool ValidateBrandLogo()
-        {
-            bool isValid = !string.IsNullOrEmpty(brandLogoPath);
-            if (!isValid)
-            {
-                brandLogoErrorProvider.SetError(creBrandsLogoBox, "Brand logo is required.");
-            }
-            else
-            {
-                brandLogoErrorProvider.SetError(creBrandsLogoBox, string.Empty);
-            }
-            return isValid;
-        }
-
-        private void creBrandsSaveBtn_Click(object sender, EventArgs e)
-        {
-            bool isValid = ValidateBrandName() & ValidateBrandLogo();
-
-            if (isValid)
-            {
-                // Save the brand to the database
-                // Add your code to save the brand here
-                MessageBox.Show("Brand created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void creBrandsCancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            ValidateBrandName();
         }
 
         private void creBrandImgUploadBtn_Click(object sender, EventArgs e)
         {
             try
             {
-               
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
                     dialog.Title = "Select Image";
                     dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp;)|*.jpg;*.jpeg;*.png;*.bmp;|All Files (*.*)|*.*";
-                    dialog.FilterIndex = 1; 
-                    dialog.RestoreDirectory = true; 
+                    dialog.FilterIndex = 1;
+                    dialog.RestoreDirectory = true;
 
-                    
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        
                         using (Image originalImage = Image.FromFile(dialog.FileName))
                         {
-                           Image resizedImage = ResizeImage(originalImage, creBrandsLogoBox.Width, creBrandsLogoBox.Height);
+                            Image resizedImage = ResizeImage(originalImage, creBrandsLogoBox.Width, creBrandsLogoBox.Height);
                             creBrandsLogoBox.Image = resizedImage;
                         }
                     }
@@ -141,14 +80,78 @@ namespace EscopeWindowsApp
         private Image ResizeImage(Image image, int width, int height)
         {
             Bitmap resizedBitmap = new Bitmap(width, height);
-
             using (Graphics graphics = Graphics.FromImage(resizedBitmap))
             {
                 graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(image, 0, 0, width, height);
             }
-
             return resizedBitmap;
         }
-      }
+
+        private void creBrandsSaveBtn_Click(object sender, EventArgs e)
+        {
+            if (ValidateBrandName())
+            {
+                try
+                {
+                    byte[] imageBytes = null;
+                    if (creBrandsLogoBox.Image != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            creBrandsLogoBox.Image.Save(ms, ImageFormat.Png);
+                            imageBytes = ms.ToArray();
+                        }
+                    }
+
+                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string query = "INSERT INTO brands (name, logo) VALUES (@name, @logo)";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
+                            if (imageBytes != null)
+                            {
+                                command.Parameters.AddWithValue("@logo", imageBytes);
+                            }
+                            else
+                            {
+                                command.Parameters.AddWithValue("@logo", DBNull.Value);
+                            }
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Brand created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error creating brand: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void creBrandsCancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // Remove unused methods
+        private void creBrandsLogoBox_Click(object sender, EventArgs e)
+        {
+            // This method is redundant since creBrandImgUploadBtn_Click handles image upload
+        }
+
+        private void creBrandsLogoBox_Click_1(object sender, EventArgs e)
+        {
+            // This method is empty and can be removed
+        }
+    }
 }

@@ -414,6 +414,7 @@
             this.Name = "AddWarehouseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddWarehouseForm";
+            this.Load += new System.EventHandler(this.AddWarehouseForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.addWarehousePanel.ResumeLayout(false);

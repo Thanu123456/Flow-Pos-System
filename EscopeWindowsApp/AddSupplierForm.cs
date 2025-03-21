@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace EscopeWindowsApp
 {
     public partial class AddSupplierForm : Form
     {
+        private bool isEditMode = false;
+        private int editSupplierId = -1;
+
         // Error providers for validation
         private ErrorProvider nameErrorProvider = new ErrorProvider();
         private ErrorProvider emailErrorProvider = new ErrorProvider();
@@ -20,15 +18,32 @@ namespace EscopeWindowsApp
         private ErrorProvider addressErrorProvider = new ErrorProvider();
         private ErrorProvider itemErrorProvider = new ErrorProvider();
 
-        public AddSupplierForm()
+        public AddSupplierForm(int supplierId = -1, string name = "", string email = "", string phone = "", string city = "", string address = "", string item = "")
         {
             InitializeComponent();
             SetupErrorProviders();
+
+            if (supplierId != -1)
+            {
+                isEditMode = true;
+                editSupplierId = supplierId;
+                this.Text = "Edit Supplier";
+                supSaveBtn.Text = "Update";
+            }
+
+            // Pre-fill form fields
+            createSupNameText.Text = name;
+            createSupEmailText.Text = email;
+            createSupPhoneText.Text = phone;
+            createSupCityText.Text = city;
+            createSupAddressText.Text = address;
+            createSupItemText.Text = item;
+
+            UpdateSaveButtonState();
         }
 
         private void SetupErrorProviders()
         {
-            // Set the blink style to never blink.
             nameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             emailErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             phoneErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -39,132 +54,186 @@ namespace EscopeWindowsApp
 
         private void AddSupplierForm_Load(object sender, EventArgs e)
         {
-            // Initialization code here
+            UpdateSaveButtonState();
         }
 
         private bool ValidateSupplierName()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupNameText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupNameText.Text))
             {
                 nameErrorProvider.SetError(createSupNameText, "Supplier name is required.");
+                return false;
             }
-            else
+            if (createSupNameText.Text.Length < 2)
             {
-                nameErrorProvider.SetError(createSupNameText, string.Empty);
+                nameErrorProvider.SetError(createSupNameText, "Name must be at least 2 characters.");
+                return false;
             }
-            return isValid;
+            nameErrorProvider.SetError(createSupNameText, string.Empty);
+            return true;
         }
 
         private bool ValidateEmail()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupEmailText.Text) && createSupEmailText.Text.Contains("@");
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupEmailText.Text))
             {
-                emailErrorProvider.SetError(createSupEmailText, "Valid email is required.");
+                emailErrorProvider.SetError(createSupEmailText, "Email is required.");
+                return false;
             }
-            else
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(createSupEmailText.Text, emailPattern))
             {
-                emailErrorProvider.SetError(createSupEmailText, string.Empty);
+                emailErrorProvider.SetError(createSupEmailText, "Invalid email format.");
+                return false;
             }
-            return isValid;
+            emailErrorProvider.SetError(createSupEmailText, string.Empty);
+            return true;
         }
 
         private bool ValidatePhoneNumber()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupPhoneText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupPhoneText.Text))
             {
                 phoneErrorProvider.SetError(createSupPhoneText, "Phone number is required.");
+                return false;
             }
-            else
+            string phonePattern = @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$";
+            if (!Regex.IsMatch(createSupPhoneText.Text, phonePattern))
             {
-                phoneErrorProvider.SetError(createSupPhoneText, string.Empty);
+                phoneErrorProvider.SetError(createSupPhoneText, "Invalid phone number format.");
+                return false;
             }
-            return isValid;
+            phoneErrorProvider.SetError(createSupPhoneText, string.Empty);
+            return true;
         }
 
         private bool ValidateCity()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupCityText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupCityText.Text))
             {
                 cityErrorProvider.SetError(createSupCityText, "City is required.");
+                return false;
             }
-            else
-            {
-                cityErrorProvider.SetError(createSupCityText, string.Empty);
-            }
-            return isValid;
+            cityErrorProvider.SetError(createSupCityText, string.Empty);
+            return true;
         }
 
         private bool ValidateAddress()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupAddressText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupAddressText.Text))
             {
                 addressErrorProvider.SetError(createSupAddressText, "Address is required.");
+                return false;
             }
-            else
-            {
-                addressErrorProvider.SetError(createSupAddressText, string.Empty);
-            }
-            return isValid;
+            addressErrorProvider.SetError(createSupAddressText, string.Empty);
+            return true;
         }
 
         private bool ValidateItem()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createSupItemText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createSupItemText.Text))
             {
                 itemErrorProvider.SetError(createSupItemText, "Item is required.");
+                return false;
             }
-            else
-            {
-                itemErrorProvider.SetError(createSupItemText, string.Empty);
-            }
-            return isValid;
+            itemErrorProvider.SetError(createSupItemText, string.Empty);
+            return true;
+        }
+
+        private void UpdateSaveButtonState()
+        {
+            bool isValid = ValidateSupplierName() && ValidateEmail() && ValidatePhoneNumber() &&
+                           ValidateCity() && ValidateAddress() && ValidateItem();
+            supSaveBtn.Enabled = isValid;
         }
 
         private void createSupNameText_TextChanged(object sender, EventArgs e)
         {
             ValidateSupplierName();
+            UpdateSaveButtonState();
         }
 
         private void createSupEmailText_TextChanged(object sender, EventArgs e)
         {
             ValidateEmail();
+            UpdateSaveButtonState();
         }
 
         private void createSupPhoneText_TextChanged(object sender, EventArgs e)
         {
             ValidatePhoneNumber();
+            UpdateSaveButtonState();
         }
 
         private void createSupCityText_TextChanged(object sender, EventArgs e)
         {
             ValidateCity();
+            UpdateSaveButtonState();
         }
 
         private void createSupAddressText_TextChanged(object sender, EventArgs e)
         {
             ValidateAddress();
+            UpdateSaveButtonState();
         }
 
         private void createSupItemText_TextChanged(object sender, EventArgs e)
         {
             ValidateItem();
+            UpdateSaveButtonState();
         }
 
         private void supSaveBtn_Click(object sender, EventArgs e)
         {
-            bool isValid = ValidateSupplierName() & ValidateEmail() & ValidatePhoneNumber() & ValidateCity() & ValidateAddress() & ValidateItem();
+            bool isValid = ValidateSupplierName() && ValidateEmail() && ValidatePhoneNumber() &&
+                           ValidateCity() && ValidateAddress() && ValidateItem();
             if (isValid)
             {
-                // Save the supplier information
-                // Add your supplier registration code here
-                MessageBox.Show("Supplier registered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                try
+                {
+                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        if (isEditMode)
+                        {
+                            string query = "UPDATE suppliers SET name = @name, email = @email, phone = @phone, city = @city, address = @address, item = @item WHERE id = @supplierId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createSupNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@email", createSupEmailText.Text.Trim());
+                                command.Parameters.AddWithValue("@phone", createSupPhoneText.Text.Trim());
+                                command.Parameters.AddWithValue("@city", createSupCityText.Text.Trim());
+                                command.Parameters.AddWithValue("@address", createSupAddressText.Text.Trim());
+                                command.Parameters.AddWithValue("@item", createSupItemText.Text.Trim());
+                                command.Parameters.AddWithValue("@supplierId", editSupplierId);
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Supplier updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string query = "INSERT INTO suppliers (name, email, phone, city, address, item) " +
+                                           "VALUES (@name, @email, @phone, @city, @address, @item)";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createSupNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@email", createSupEmailText.Text.Trim());
+                                command.Parameters.AddWithValue("@phone", createSupPhoneText.Text.Trim());
+                                command.Parameters.AddWithValue("@city", createSupCityText.Text.Trim());
+                                command.Parameters.AddWithValue("@address", createSupAddressText.Text.Trim());
+                                command.Parameters.AddWithValue("@item", createSupItemText.Text.Trim());
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Supplier registered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving supplier: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

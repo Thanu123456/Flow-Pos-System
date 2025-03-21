@@ -39,7 +39,7 @@
             this.creteCategoryLogoChangelabel = new System.Windows.Forms.Label();
             this.createCategoryNameLabel = new System.Windows.Forms.Label();
             this.createCategoryNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.createBrandsLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.createCategoryLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.creCategoryImgUploadBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -103,6 +103,7 @@
             this.creCategorySaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creCategorySaveBtn.TabIndex = 76;
             this.creCategorySaveBtn.Text = "Save";
+            this.creCategorySaveBtn.Click += new System.EventHandler(this.creCategorySaveBtn_Click);
             // 
             // creCategoryCancelBtn
             // 
@@ -122,6 +123,7 @@
             this.creCategoryCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creCategoryCancelBtn.TabIndex = 75;
             this.creCategoryCancelBtn.Text = "Cancel";
+            this.creCategoryCancelBtn.Click += new System.EventHandler(this.creCategoryCancelBtn_Click);
             // 
             // creCategoryLogoBox
             // 
@@ -186,16 +188,17 @@
             this.createCategoryNameText.SelectedText = "";
             this.createCategoryNameText.Size = new System.Drawing.Size(348, 42);
             this.createCategoryNameText.TabIndex = 71;
+            this.createCategoryNameText.TextChanged += new System.EventHandler(this.createCategoryNameText_TextChanged);
             // 
-            // createBrandsLabel
+            // createCategoryLabel
             // 
-            this.createBrandsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.createBrandsLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createBrandsLabel.Location = new System.Drawing.Point(24, 51);
-            this.createBrandsLabel.Name = "createBrandsLabel";
-            this.createBrandsLabel.Size = new System.Drawing.Size(126, 25);
-            this.createBrandsLabel.TabIndex = 70;
-            this.createBrandsLabel.Text = "CREATE BRAND";
+            this.createCategoryLabel.BackColor = System.Drawing.Color.Transparent;
+            this.createCategoryLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCategoryLabel.Location = new System.Drawing.Point(24, 51);
+            this.createCategoryLabel.Name = "createCategoryLabel";
+            this.createCategoryLabel.Size = new System.Drawing.Size(153, 25);
+            this.createCategoryLabel.TabIndex = 70;
+            this.createCategoryLabel.Text = "CREATE CATEGORY";
             // 
             // creCategoryImgUploadBtn
             // 
@@ -231,7 +234,7 @@
             this.Controls.Add(this.creteCategoryLogoChangelabel);
             this.Controls.Add(this.createCategoryNameLabel);
             this.Controls.Add(this.createCategoryNameText);
-            this.Controls.Add(this.createBrandsLabel);
+            this.Controls.Add(this.createCategoryLabel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(400, 440);
@@ -239,6 +242,7 @@
             this.Name = "CreateCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateCategory";
+            this.Load += new System.EventHandler(this.CreateCategory_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.creCategoryLogoBox)).EndInit();
@@ -259,7 +263,7 @@
         private System.Windows.Forms.Label creteCategoryLogoChangelabel;
         private System.Windows.Forms.Label createCategoryNameLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createCategoryNameText;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel createBrandsLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel createCategoryLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneCircleButton creCategoryImgUploadBtn;
     }
 }

@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace EscopeWindowsApp
 {
     public partial class AddCustomerForm : Form
     {
+        private bool isEditMode = false;
+        private int editCustomerId = -1;
+
         // Error providers for validation
         private ErrorProvider nameErrorProvider = new ErrorProvider();
         private ErrorProvider emailErrorProvider = new ErrorProvider();
@@ -20,15 +18,32 @@ namespace EscopeWindowsApp
         private ErrorProvider cityErrorProvider = new ErrorProvider();
         private ErrorProvider addressErrorProvider = new ErrorProvider();
 
-        public AddCustomerForm()
+        public AddCustomerForm(int customerId = -1, string name = "", string email = "", string phone = "", DateTime? dob = null, string city = "", string address = "")
         {
             InitializeComponent();
             SetupErrorProviders();
+
+            if (customerId != -1)
+            {
+                isEditMode = true;
+                editCustomerId = customerId;
+                this.Text = "Edit Customer";
+                cusSaveBtn.Text = "Update";
+            }
+
+            // Pre-fill form fields
+            createCusNameText.Text = name;
+            addCusEmailText.Text = email;
+            CreateCusPhoneText.Text = phone;
+            createCusDateTime.Value = dob.HasValue ? dob.Value : DateTime.Now.AddYears(-18);
+            createCusCityText.Text = city;
+            createCusAddressText.Text = address;
+
+            UpdateSaveButtonState();
         }
 
         private void SetupErrorProviders()
         {
-            // Set the blink style to never blink.
             nameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             emailErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             phoneErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -39,91 +54,139 @@ namespace EscopeWindowsApp
 
         private void AddCustomerForm_Load(object sender, EventArgs e)
         {
-            // Initialization code here
+            UpdateSaveButtonState();
         }
 
         private bool ValidateCustomerName()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createCusNameText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createCusNameText.Text))
             {
-                nameErrorProvider.SetError(createCusNameText, "Customer name is required.");
+                nameErrorProvider.SetError(createCusNameText, "Name is required.");
+                return false;
             }
-            else
+            if (createCusNameText.Text.Length < 2)
             {
-                nameErrorProvider.SetError(createCusNameText, string.Empty);
+                nameErrorProvider.SetError(createCusNameText, "Name must be at least 2 characters.");
+                return false;
             }
-            return isValid;
+            nameErrorProvider.SetError(createCusNameText, string.Empty);
+            return true;
         }
 
         private bool ValidateEmail()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(addCusEmailText.Text) && addCusEmailText.Text.Contains("@");
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(addCusEmailText.Text))
             {
-                emailErrorProvider.SetError(addCusEmailText, "Valid email is required.");
+                emailErrorProvider.SetError(addCusEmailText, "Email is required.");
+                return false;
             }
-            else
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(addCusEmailText.Text, emailPattern))
             {
-                emailErrorProvider.SetError(addCusEmailText, string.Empty);
+                emailErrorProvider.SetError(addCusEmailText, "Invalid email format.");
+                return false;
             }
-            return isValid;
+            emailErrorProvider.SetError(addCusEmailText, string.Empty);
+            return true;
         }
 
         private bool ValidatePhoneNumber()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(CreateCusPhoneText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(CreateCusPhoneText.Text))
             {
                 phoneErrorProvider.SetError(CreateCusPhoneText, "Phone number is required.");
+                return false;
             }
-            else
+            string phonePattern = @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$";
+            if (!Regex.IsMatch(CreateCusPhoneText.Text, phonePattern))
             {
-                phoneErrorProvider.SetError(CreateCusPhoneText, string.Empty);
+                phoneErrorProvider.SetError(CreateCusPhoneText, "Invalid phone number format.");
+                return false;
             }
-            return isValid;
+            phoneErrorProvider.SetError(CreateCusPhoneText, string.Empty);
+            return true;
         }
 
         private bool ValidateDOB()
         {
-            bool isValid = createCusDateTime.Value < DateTime.Now;
-            if (!isValid)
+            DateTime minDate = DateTime.Now.AddYears(-18);
+            if (createCusDateTime.Value >= DateTime.Now)
             {
                 dobErrorProvider.SetError(createCusDateTime, "Date of birth must be in the past.");
+                return false;
             }
-            else
+            if (createCusDateTime.Value > minDate)
             {
-                dobErrorProvider.SetError(createCusDateTime, string.Empty);
+                dobErrorProvider.SetError(createCusDateTime, "Customer must be at least 18 years old.");
+                return false;
             }
-            return isValid;
+            dobErrorProvider.SetError(createCusDateTime, string.Empty);
+            return true;
         }
 
         private bool ValidateCity()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createCusCityText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createCusCityText.Text))
             {
                 cityErrorProvider.SetError(createCusCityText, "City is required.");
+                return false;
             }
-            else
-            {
-                cityErrorProvider.SetError(createCusCityText, string.Empty);
-            }
-            return isValid;
+            cityErrorProvider.SetError(createCusCityText, string.Empty);
+            return true;
         }
 
         private bool ValidateAddress()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createCusAddressText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createCusAddressText.Text))
             {
                 addressErrorProvider.SetError(createCusAddressText, "Address is required.");
+                return false;
             }
-            else
-            {
-                addressErrorProvider.SetError(createCusAddressText, string.Empty);
-            }
-            return isValid;
+            addressErrorProvider.SetError(createCusAddressText, string.Empty);
+            return true;
+        }
+
+        private void UpdateSaveButtonState()
+        {
+            bool isValid = ValidateCustomerName() && ValidateEmail() && ValidatePhoneNumber() &&
+                           ValidateDOB() && ValidateCity() && ValidateAddress();
+            cusSaveBtn.Enabled = isValid;
+        }
+
+        private void createCusNameText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateCustomerName();
+            UpdateSaveButtonState();
+        }
+
+        private void addCusEmailText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateEmail();
+            UpdateSaveButtonState();
+        }
+
+        private void CreateCusPhoneText_TextChanged(object sender, EventArgs e)
+        {
+            ValidatePhoneNumber();
+            UpdateSaveButtonState();
+        }
+
+        private void createCusDateTime_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDOB();
+            UpdateSaveButtonState();
+        }
+
+        private void createCusCityText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateCity();
+            UpdateSaveButtonState();
+        }
+
+        private void createCusAddressText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateAddress();
+            UpdateSaveButtonState();
         }
 
         private void createCusPanel_Paint(object sender, PaintEventArgs e)
@@ -136,45 +199,57 @@ namespace EscopeWindowsApp
 
         }
 
-        private void createCusNameText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateCustomerName();
-        }
-
-        private void addCusEmailText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateEmail();
-        }
-
-        private void CreateCusPhoneText_TextChanged(object sender, EventArgs e)
-        {
-            ValidatePhoneNumber();
-        }
-
-        private void createCusDateTime_ValueChanged(object sender, EventArgs e)
-        {
-            ValidateDOB();
-        }
-
-        private void createCusCityText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateCity();
-        }
-
-        private void createCusAddressText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateAddress();
-        }
-
         private void cusSaveBtn_Click(object sender, EventArgs e)
         {
-            bool isValid = ValidateCustomerName() & ValidateEmail() & ValidatePhoneNumber() & ValidateDOB() & ValidateCity() & ValidateAddress();
+            bool isValid = ValidateCustomerName() && ValidateEmail() && ValidatePhoneNumber() &&
+                           ValidateDOB() && ValidateCity() && ValidateAddress();
             if (isValid)
             {
-                // Save the customer information
-                // Add your customer registration code here
-                MessageBox.Show("Customer registered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                try
+                {
+                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        if (isEditMode)
+                        {
+                            string query = "UPDATE customers SET name = @name, email = @email, phone = @phone, dob = @dob, city = @city, address = @address WHERE id = @customerId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createCusNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@email", addCusEmailText.Text.Trim());
+                                command.Parameters.AddWithValue("@phone", CreateCusPhoneText.Text.Trim());
+                                command.Parameters.AddWithValue("@dob", createCusDateTime.Value.ToString("yyyy-MM-dd"));
+                                command.Parameters.AddWithValue("@city", createCusCityText.Text.Trim());
+                                command.Parameters.AddWithValue("@address", createCusAddressText.Text.Trim());
+                                command.Parameters.AddWithValue("@customerId", editCustomerId);
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Customer updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string query = "INSERT INTO customers (name, email, phone, dob, city, address) " +
+                                           "VALUES (@name, @email, @phone, @dob, @city, @address)";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createCusNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@email", addCusEmailText.Text.Trim());
+                                command.Parameters.AddWithValue("@phone", CreateCusPhoneText.Text.Trim());
+                                command.Parameters.AddWithValue("@dob", createCusDateTime.Value.ToString("yyyy-MM-dd"));
+                                command.Parameters.AddWithValue("@city", createCusCityText.Text.Trim());
+                                command.Parameters.AddWithValue("@address", createCusAddressText.Text.Trim());
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Customer registered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
