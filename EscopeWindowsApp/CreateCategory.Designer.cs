@@ -134,6 +134,7 @@
             this.creCategoryLogoBox.Size = new System.Drawing.Size(106, 106);
             this.creCategoryLogoBox.TabIndex = 74;
             this.creCategoryLogoBox.TabStop = false;
+            this.creCategoryLogoBox.Click += new System.EventHandler(this.creCategoryLogoBox_Click);
             // 
             // creteCategoryLogoChangelabel
             // 

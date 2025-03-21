@@ -34,13 +34,6 @@
             this.wareSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createWareBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.wareDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wareBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.wareFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.warePrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -121,14 +114,6 @@
             this.wareDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.wareDataGridView.ColumnHeadersHeight = 25;
             this.wareDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.wareDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierID,
-            this.supName,
-            this.supDesc,
-            this.supEmail,
-            this.supPhone,
-            this.createdAt,
-            this.action});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -166,41 +151,6 @@
             this.wareDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.wareDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.wareDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.wareDataGridView_CellContentClick);
-            // 
-            // supplierID
-            // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
-            // 
-            // supName
-            // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
-            // 
-            // supDesc
-            // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
-            // 
-            // supEmail
-            // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
-            // 
-            // supPhone
-            // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
             // 
             // wareBtnPanel
             // 
@@ -370,7 +320,7 @@
             this.wareFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.wareFilterBtn.ForeColor = System.Drawing.Color.White;
             this.wareFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.wareFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
+            this.wareFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
             this.wareFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.wareFilterBtn.Name = "wareFilterBtn";
             this.wareFilterBtn.Size = new System.Drawing.Size(43, 42);
@@ -415,13 +365,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox wareSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createWareBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView wareDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
         private Siticone.Desktop.UI.WinForms.SiticonePanel wareBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton wareFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton warePrevBtn;

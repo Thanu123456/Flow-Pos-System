@@ -4,50 +4,79 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 
 namespace EscopeWindowsApp
 {
     public partial class CreateBrand : Form
     {
-        private ErrorProvider brandNameErrorProvider = new ErrorProvider();
+        private bool isEditMode = false;
+        private int editBrandId = -1;
 
-        public CreateBrand()
+        // Error providers for validation
+        private ErrorProvider nameErrorProvider = new ErrorProvider();
+
+        public CreateBrand(int brandId = -1, string name = "", byte[] logo = null)
         {
             InitializeComponent();
             SetupErrorProviders();
+
+            if (brandId != -1)
+            {
+                isEditMode = true;
+                editBrandId = brandId;
+                this.Text = "Edit Brand";
+                creBrandsSaveBtn.Text = "Update";
+            }
+
+            // Pre-fill form fields
+            createBrandsNameText.Text = name;
+            if (logo != null)
+            {
+                using (MemoryStream ms = new MemoryStream(logo))
+                {
+                    creBrandsLogoBox.Image = Image.FromStream(ms);
+                }
+            }
+
+            UpdateSaveButtonState();
         }
 
         private void SetupErrorProviders()
         {
-            brandNameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            nameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
         private void CreateBrand_Load(object sender, EventArgs e)
         {
+            UpdateSaveButtonState();
         }
 
         private bool ValidateBrandName()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(createBrandsNameText.Text);
-            if (!isValid)
+            if (string.IsNullOrWhiteSpace(createBrandsNameText.Text))
             {
-                brandNameErrorProvider.SetError(createBrandsNameText, "Brand name is required.");
+                nameErrorProvider.SetError(createBrandsNameText, "Brand name is required.");
+                return false;
             }
-            else if (createBrandsNameText.Text.Length < 2)
+            if (createBrandsNameText.Text.Length < 2)
             {
-                brandNameErrorProvider.SetError(createBrandsNameText, "Brand name must be at least 2 characters.");
-                isValid = false;
+                nameErrorProvider.SetError(createBrandsNameText, "Brand name must be at least 2 characters.");
+                return false;
             }
-            else
-            {
-                brandNameErrorProvider.SetError(createBrandsNameText, string.Empty);
-            }
-            return isValid;
+            nameErrorProvider.SetError(createBrandsNameText, string.Empty);
+            return true;
+        }
+
+        private void UpdateSaveButtonState()
+        {
+            creBrandsSaveBtn.Enabled = ValidateBrandName();
         }
 
         private void createBrandsNameText_TextChanged(object sender, EventArgs e)
         {
             ValidateBrandName();
+            UpdateSaveButtonState();
         }
 
         private void creBrandImgUploadBtn_Click(object sender, EventArgs e)
@@ -56,8 +85,8 @@ namespace EscopeWindowsApp
             {
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    dialog.Title = "Select Image";
-                    dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp;)|*.jpg;*.jpeg;*.png;*.bmp;|All Files (*.*)|*.*";
+                    dialog.Title = "Select Brand Logo";
+                    dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All Files (*.*)|*.*";
                     dialog.FilterIndex = 1;
                     dialog.RestoreDirectory = true;
 
@@ -73,7 +102,7 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -108,28 +137,35 @@ namespace EscopeWindowsApp
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "INSERT INTO brands (name, logo) VALUES (@name, @logo)";
-                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        if (isEditMode)
                         {
-                            command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
-                            if (imageBytes != null)
+                            string query = "UPDATE brands SET name = @name, logo = @logo WHERE id = @brandId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@logo", imageBytes);
+                                command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@brandId", editBrandId);
+                                command.ExecuteNonQuery();
                             }
-                            else
+                            MessageBox.Show("Brand updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string query = "INSERT INTO brands (name, logo) VALUES (@name, @logo)";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@logo", DBNull.Value);
+                                command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
+                                command.ExecuteNonQuery();
                             }
-                            command.ExecuteNonQuery();
+                            MessageBox.Show("Brand created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-
-                    MessageBox.Show("Brand created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error creating brand: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error saving brand: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -143,7 +179,6 @@ namespace EscopeWindowsApp
             this.Close();
         }
 
-        // Remove unused methods
         private void creBrandsLogoBox_Click(object sender, EventArgs e)
         {
             // This method is redundant since creBrandImgUploadBtn_Click handles image upload
