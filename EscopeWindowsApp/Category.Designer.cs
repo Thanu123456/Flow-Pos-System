@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.categoryDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.productCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createCategoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categoryPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.categorytRecordsPerLabel = new System.Windows.Forms.Label();
@@ -46,7 +43,7 @@
             this.categoryPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categoryNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categoryLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.categoryFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.categoryRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categorySearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).BeginInit();
             this.categoryBtnPanel.SuspendLayout();
@@ -54,36 +51,35 @@
             // 
             // categoryDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.categoryDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.categoryDataGridView.AllowUserToAddRows = false;
+            this.categoryDataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.categoryDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.categoryDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoryDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoryDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.categoryDataGridView.ColumnHeadersHeight = 25;
             this.categoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.categoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.productCategory,
-            this.productCount,
-            this.categoryAction});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.categoryDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoryDataGridView.DefaultCellStyle = dataGridViewCellStyle15;
             this.categoryDataGridView.GridColor = System.Drawing.Color.White;
             this.categoryDataGridView.Location = new System.Drawing.Point(17, 100);
             this.categoryDataGridView.Name = "categoryDataGridView";
+            this.categoryDataGridView.ReadOnly = true;
             this.categoryDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.categoryDataGridView.RowHeadersVisible = false;
             this.categoryDataGridView.Size = new System.Drawing.Size(1352, 614);
@@ -102,7 +98,7 @@
             this.categoryDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.categoryDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.categoryDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.categoryDataGridView.ThemeStyle.ReadOnly = false;
+            this.categoryDataGridView.ThemeStyle.ReadOnly = true;
             this.categoryDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.categoryDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.categoryDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,21 +106,7 @@
             this.categoryDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.categoryDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.categoryDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // productCategory
-            // 
-            this.productCategory.HeaderText = "Product Category";
-            this.productCategory.Name = "productCategory";
-            // 
-            // productCount
-            // 
-            this.productCount.HeaderText = "Product Count";
-            this.productCount.Name = "productCount";
-            // 
-            // categoryAction
-            // 
-            this.categoryAction.HeaderText = "Action";
-            this.categoryAction.Name = "categoryAction";
+            this.categoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.categoryDataGridView_CellContentClick);
             // 
             // createCategoryBtn
             // 
@@ -247,6 +229,7 @@
             this.categoryFirstBtn.Name = "categoryFirstBtn";
             this.categoryFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.categoryFirstBtn.TabIndex = 11;
+            this.categoryFirstBtn.Click += new System.EventHandler(this.categoryFirstBtn_Click);
             // 
             // categoryPrevBtn
             // 
@@ -264,6 +247,7 @@
             this.categoryPrevBtn.Name = "categoryPrevBtn";
             this.categoryPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.categoryPrevBtn.TabIndex = 11;
+            this.categoryPrevBtn.Click += new System.EventHandler(this.categoryPrevBtn_Click);
             // 
             // categoryNextBtn
             // 
@@ -281,6 +265,7 @@
             this.categoryNextBtn.Name = "categoryNextBtn";
             this.categoryNextBtn.Size = new System.Drawing.Size(26, 26);
             this.categoryNextBtn.TabIndex = 9;
+            this.categoryNextBtn.Click += new System.EventHandler(this.categoryNextBtn_Click);
             // 
             // categoryLastBtn
             // 
@@ -297,26 +282,28 @@
             this.categoryLastBtn.Name = "categoryLastBtn";
             this.categoryLastBtn.Size = new System.Drawing.Size(26, 26);
             this.categoryLastBtn.TabIndex = 8;
+            this.categoryLastBtn.Click += new System.EventHandler(this.categoryLastBtn_Click);
             // 
-            // categoryFilterBtn
+            // categoryRefreshBtn
             // 
-            this.categoryFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.categoryFilterBtn.Animated = true;
-            this.categoryFilterBtn.BackColor = System.Drawing.Color.Transparent;
-            this.categoryFilterBtn.BorderRadius = 8;
-            this.categoryFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.categoryFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.categoryFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.categoryFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.categoryFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.categoryFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.categoryFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.categoryFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.categoryFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.categoryFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.categoryFilterBtn.Name = "categoryFilterBtn";
-            this.categoryFilterBtn.Size = new System.Drawing.Size(43, 42);
-            this.categoryFilterBtn.TabIndex = 13;
+            this.categoryRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.categoryRefreshBtn.Animated = true;
+            this.categoryRefreshBtn.BackColor = System.Drawing.Color.Transparent;
+            this.categoryRefreshBtn.BorderRadius = 8;
+            this.categoryRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.categoryRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.categoryRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.categoryRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.categoryRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.categoryRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.categoryRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.categoryRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.categoryRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
+            this.categoryRefreshBtn.Location = new System.Drawing.Point(1098, 30);
+            this.categoryRefreshBtn.Name = "categoryRefreshBtn";
+            this.categoryRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.categoryRefreshBtn.TabIndex = 13;
+            this.categoryRefreshBtn.Click += new System.EventHandler(this.categoryRefreshBtn_Click);
             // 
             // categorySearchText
             // 
@@ -344,6 +331,7 @@
             this.categorySearchText.SelectedText = "";
             this.categorySearchText.Size = new System.Drawing.Size(400, 41);
             this.categorySearchText.TabIndex = 12;
+            this.categorySearchText.TextChanged += new System.EventHandler(this.categorySearchText_TextChanged);
             // 
             // Category
             // 
@@ -359,7 +347,7 @@
             this.Controls.Add(this.categoryBtnPanel);
             this.Controls.Add(this.categoryDataGridView);
             this.Controls.Add(this.createCategoryBtn);
-            this.Controls.Add(this.categoryFilterBtn);
+            this.Controls.Add(this.categoryRefreshBtn);
             this.Controls.Add(this.categorySearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -382,11 +370,8 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView categoryDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createCategoryBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton categoryFilterBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton categoryRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox categorySearchText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryAction;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox categoryPageCombo;
         private System.Windows.Forms.Label categorytRecordsPerLabel;
         private System.Windows.Forms.Label categoryAllPgLabel;
