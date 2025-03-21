@@ -28,17 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.customerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cusPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusAllPgLabel = new System.Windows.Forms.Label();
             this.cusOfLabel = new System.Windows.Forms.Label();
             this.cusPgRangeLabel = new System.Windows.Forms.Label();
@@ -50,8 +45,12 @@
             this.cusNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.selectCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).BeginInit();
             this.cusBtnPanel.SuspendLayout();
+            this.siticonePanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cusSearchText
@@ -77,6 +76,7 @@
             this.cusSearchText.SelectedText = "";
             this.cusSearchText.Size = new System.Drawing.Size(400, 42);
             this.cusSearchText.TabIndex = 3;
+            this.cusSearchText.TextChanged += new System.EventHandler(this.cusSearchText_TextChanged);
             // 
             // createCusBtn
             // 
@@ -100,35 +100,29 @@
             // 
             // cusDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cusDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cusDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.cusDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cusDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cusDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.cusDataGridView.ColumnHeadersHeight = 25;
             this.cusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.cusDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.customerName,
-            this.cusEmail,
-            this.cusPhone,
-            this.createdAt,
-            this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.cusDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cusDataGridView.DefaultCellStyle = dataGridViewCellStyle12;
             this.cusDataGridView.GridColor = System.Drawing.Color.White;
             this.cusDataGridView.Location = new System.Drawing.Point(17, 100);
             this.cusDataGridView.Name = "cusDataGridView";
@@ -157,31 +151,7 @@
             this.cusDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.cusDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.cusDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // customerName
-            // 
-            this.customerName.HeaderText = "Customer";
-            this.customerName.Name = "customerName";
-            // 
-            // cusEmail
-            // 
-            this.cusEmail.HeaderText = "Email";
-            this.cusEmail.Name = "cusEmail";
-            // 
-            // cusPhone
-            // 
-            this.cusPhone.HeaderText = "Phone";
-            this.cusPhone.Name = "cusPhone";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
+            this.cusDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cusDataGridView_CellContentClick);
             // 
             // cusAllPgLabel
             // 
@@ -243,6 +213,7 @@
             this.cusPageCombo.Size = new System.Drawing.Size(85, 36);
             this.cusPageCombo.StartIndex = 0;
             this.cusPageCombo.TabIndex = 29;
+            this.cusPageCombo.SelectedIndexChanged += new System.EventHandler(this.cusPageCombo_SelectedIndexChanged);
             // 
             // cusRecordsPerLabel
             // 
@@ -285,6 +256,7 @@
             this.cusFirstBtn.Name = "cusFirstBtn";
             this.cusFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.cusFirstBtn.TabIndex = 11;
+            this.cusFirstBtn.Click += new System.EventHandler(this.cusFirstBtn_Click);
             // 
             // cusPrevBtn
             // 
@@ -302,6 +274,7 @@
             this.cusPrevBtn.Name = "cusPrevBtn";
             this.cusPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.cusPrevBtn.TabIndex = 11;
+            this.cusPrevBtn.Click += new System.EventHandler(this.cusPrevBtn_Click);
             // 
             // cusNextBtn
             // 
@@ -319,6 +292,7 @@
             this.cusNextBtn.Name = "cusNextBtn";
             this.cusNextBtn.Size = new System.Drawing.Size(26, 26);
             this.cusNextBtn.TabIndex = 9;
+            this.cusNextBtn.Click += new System.EventHandler(this.cusNextBtn_Click);
             // 
             // cusLastBtn
             // 
@@ -335,6 +309,7 @@
             this.cusLastBtn.Name = "cusLastBtn";
             this.cusLastBtn.Size = new System.Drawing.Size(26, 26);
             this.cusLastBtn.TabIndex = 8;
+            this.cusLastBtn.Click += new System.EventHandler(this.cusLastBtn_Click);
             // 
             // cusFilterBtn
             // 
@@ -350,10 +325,62 @@
             this.cusFilterBtn.ForeColor = System.Drawing.Color.White;
             this.cusFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.cusFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.cusFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.cusFilterBtn.Location = new System.Drawing.Point(292, 18);
             this.cusFilterBtn.Name = "cusFilterBtn";
             this.cusFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.cusFilterBtn.TabIndex = 34;
+            this.cusFilterBtn.Click += new System.EventHandler(this.cusFilterBtn_Click);
+            // 
+            // cusRefreshBtn
+            // 
+            this.cusRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cusRefreshBtn.Animated = true;
+            this.cusRefreshBtn.BorderRadius = 8;
+            this.cusRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.cusRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cusRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.cusRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.cusRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
+            this.cusRefreshBtn.Location = new System.Drawing.Point(440, 30);
+            this.cusRefreshBtn.Name = "cusRefreshBtn";
+            this.cusRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.cusRefreshBtn.TabIndex = 35;
+            this.cusRefreshBtn.Click += new System.EventHandler(this.cusRefreshBtn_Click);
+            // 
+            // siticonePanel1
+            // 
+            this.siticonePanel1.BorderRadius = 8;
+            this.siticonePanel1.Controls.Add(this.selectCusDateTime);
+            this.siticonePanel1.Controls.Add(this.cusFilterBtn);
+            this.siticonePanel1.Location = new System.Drawing.Point(801, 12);
+            this.siticonePanel1.Name = "siticonePanel1";
+            this.siticonePanel1.Size = new System.Drawing.Size(338, 72);
+            this.siticonePanel1.TabIndex = 36;
+            // 
+            // selectCusDateTime
+            // 
+            this.selectCusDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectCusDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.selectCusDateTime.BorderColor = System.Drawing.Color.Gray;
+            this.selectCusDateTime.BorderRadius = 8;
+            this.selectCusDateTime.BorderThickness = 1;
+            this.selectCusDateTime.Checked = true;
+            this.selectCusDateTime.FillColor = System.Drawing.Color.LightCyan;
+            this.selectCusDateTime.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectCusDateTime.ForeColor = System.Drawing.Color.Gray;
+            this.selectCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.selectCusDateTime.Location = new System.Drawing.Point(3, 18);
+            this.selectCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.selectCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.selectCusDateTime.Name = "selectCusDateTime";
+            this.selectCusDateTime.Size = new System.Drawing.Size(268, 42);
+            this.selectCusDateTime.TabIndex = 37;
+            this.selectCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.selectCusDateTime.ValueChanged += new System.EventHandler(this.selectCusDateTime_ValueChanged);
             // 
             // CustomerForm
             // 
@@ -363,7 +390,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
-            this.Controls.Add(this.cusFilterBtn);
+            this.Controls.Add(this.cusRefreshBtn);
+            this.Controls.Add(this.siticonePanel1);
             this.Controls.Add(this.cusBtnPanel);
             this.Controls.Add(this.cusAllPgLabel);
             this.Controls.Add(this.cusOfLabel);
@@ -381,6 +409,7 @@
             this.Load += new System.EventHandler(this.CustomerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();
             this.cusBtnPanel.ResumeLayout(false);
+            this.siticonePanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,10 +431,8 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusFilterBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cusPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton cusRefreshBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectCusDateTime;
     }
 }

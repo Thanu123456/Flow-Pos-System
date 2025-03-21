@@ -16,5 +16,10 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        private void AddWarehouseForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

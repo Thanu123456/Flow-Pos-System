@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.createSaleBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.salesReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salesCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,11 +47,12 @@
             this.salePageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleRecordsPerLabel = new System.Windows.Forms.Label();
             this.saleBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.saleFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.salePrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
             this.saleBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -102,25 +102,6 @@
             this.createSaleBtn.TabIndex = 6;
             this.createSaleBtn.Text = "Create Sale";
             this.createSaleBtn.Click += new System.EventHandler(this.createSaleBtn_Click);
-            // 
-            // saleFilterBtn
-            // 
-            this.saleFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleFilterBtn.Animated = true;
-            this.saleFilterBtn.BorderRadius = 8;
-            this.saleFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.saleFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.saleFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.saleFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.saleFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.saleFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.saleFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.saleFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.saleFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.saleFilterBtn.Name = "saleFilterBtn";
-            this.saleFilterBtn.Size = new System.Drawing.Size(43, 43);
-            this.saleFilterBtn.TabIndex = 5;
-            this.saleFilterBtn.Click += new System.EventHandler(this.saleFilterBtn_Click);
             // 
             // saleDataGridView
             // 
@@ -305,6 +286,34 @@
             this.saleBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.saleBtnPanel.TabIndex = 26;
             // 
+            // saleSearchText
+            // 
+            this.saleSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.saleSearchText.BorderRadius = 8;
+            this.saleSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.saleSearchText.DefaultText = "";
+            this.saleSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.saleSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.saleSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.saleSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.saleSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.saleSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.saleSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.saleSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.saleSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.saleSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.saleSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.saleSearchText.Location = new System.Drawing.Point(17, 30);
+            this.saleSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.saleSearchText.Name = "saleSearchText";
+            this.saleSearchText.PasswordChar = '\0';
+            this.saleSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.saleSearchText.PlaceholderText = "Search";
+            this.saleSearchText.SelectedText = "";
+            this.saleSearchText.Size = new System.Drawing.Size(400, 42);
+            this.saleSearchText.TabIndex = 27;
+            this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
+            // 
             // saleFirstBtn
             // 
             this.saleFirstBtn.BorderRadius = 6;
@@ -375,33 +384,24 @@
             this.saleLastBtn.TabIndex = 8;
             this.saleLastBtn.Click += new System.EventHandler(this.saleLastBtn_Click);
             // 
-            // saleSearchText
+            // saleFilterBtn
             // 
-            this.saleSearchText.BorderColor = System.Drawing.Color.Gray;
-            this.saleSearchText.BorderRadius = 8;
-            this.saleSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.saleSearchText.DefaultText = "";
-            this.saleSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.saleSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.saleSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.saleSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.saleSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.saleSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.saleSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.saleSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.saleSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.saleSearchText.Location = new System.Drawing.Point(17, 30);
-            this.saleSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.saleSearchText.Name = "saleSearchText";
-            this.saleSearchText.PasswordChar = '\0';
-            this.saleSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.saleSearchText.PlaceholderText = "Search";
-            this.saleSearchText.SelectedText = "";
-            this.saleSearchText.Size = new System.Drawing.Size(400, 42);
-            this.saleSearchText.TabIndex = 27;
-            this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
+            this.saleFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saleFilterBtn.Animated = true;
+            this.saleFilterBtn.BorderRadius = 8;
+            this.saleFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.saleFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.saleFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saleFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.saleFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.saleFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.saleFilterBtn.ForeColor = System.Drawing.Color.White;
+            this.saleFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
+            this.saleFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.saleFilterBtn.Name = "saleFilterBtn";
+            this.saleFilterBtn.Size = new System.Drawing.Size(43, 43);
+            this.saleFilterBtn.TabIndex = 5;
+            this.saleFilterBtn.Click += new System.EventHandler(this.saleFilterBtn_Click);
             // 
             // SalesForm
             // 

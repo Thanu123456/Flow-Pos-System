@@ -227,8 +227,7 @@
             this.CreateUserRoleCombo.Items.AddRange(new object[] {
             "Select your Role",
             "Cashier",
-            "Owner",
-            "Manger"});
+            "Owner"});
             this.CreateUserRoleCombo.Location = new System.Drawing.Point(19, 346);
             this.CreateUserRoleCombo.Name = "CreateUserRoleCombo";
             this.CreateUserRoleCombo.Size = new System.Drawing.Size(443, 36);

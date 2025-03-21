@@ -225,6 +225,7 @@
             this.creBrandsLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.creBrandsLogoBox.TabIndex = 70;
             this.creBrandsLogoBox.TabStop = false;
+            this.creBrandsLogoBox.Click += new System.EventHandler(this.creBrandsLogoBox_Click_1);
             // 
             // CreateBrand
             // 

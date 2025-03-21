@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace EscopeWindowsApp
 {
     public partial class CreateUnits : Form
     {
-        // Error providers for validation
         private ErrorProvider unitNameErrorProvider = new ErrorProvider();
         private ErrorProvider shortNameErrorProvider = new ErrorProvider();
         private ErrorProvider baseUnitErrorProvider = new ErrorProvider();
@@ -32,13 +26,11 @@ namespace EscopeWindowsApp
 
         private void CreateUnits_Load(object sender, EventArgs e)
         {
-            // Load base units into the combo box
             LoadBaseUnits();
         }
 
         private void LoadBaseUnits()
         {
-            // Replace this with actual code to load base units from your data source
             List<string> baseUnits = new List<string> { "Select Base Unit", "Meter", "Kilogram", "Piece", "Liter" };
             baseUnitComboBox.DataSource = baseUnits;
         }
@@ -73,7 +65,7 @@ namespace EscopeWindowsApp
 
         private bool ValidateBaseUnit()
         {
-            bool isValid = baseUnitComboBox.SelectedIndex > 0; // Assuming first item is a placeholder
+            bool isValid = baseUnitComboBox.SelectedIndex > 0;
             if (!isValid)
             {
                 baseUnitErrorProvider.SetError(baseUnitComboBox, "Please select a base unit.");
@@ -105,10 +97,30 @@ namespace EscopeWindowsApp
             bool isValid = ValidateUnitName() & ValidateShortName() & ValidateBaseUnit();
             if (isValid)
             {
-                // Save the unit
-                // Add your code to save the unit here
-                MessageBox.Show("Unit created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                try
+                {
+                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string query = "INSERT INTO units (unit_name, short_name, base_unit) " +
+                                       "VALUES (@unitName, @shortName, @baseUnit)";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@unitName", createUnitNameText.Text.Trim());
+                            command.Parameters.AddWithValue("@shortName", shortUnitNameTextBox.Text.Trim());
+                            command.Parameters.AddWithValue("@baseUnit", baseUnitComboBox.SelectedItem.ToString());
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Unit created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error creating unit: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
