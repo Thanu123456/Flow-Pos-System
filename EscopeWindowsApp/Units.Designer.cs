@@ -363,9 +363,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.unitsPageCombo);
             this.Controls.Add(this.unitsRecordsPerLabel);
             this.Controls.Add(this.unitsAllPgLabel);
@@ -377,10 +376,14 @@
             this.Controls.Add(this.unitsFilterBtn);
             this.Controls.Add(this.unitsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "Units";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Units";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Units_Load);
             ((System.ComponentModel.ISupportInitialize)(this.unitsDataGridView)).EndInit();
             this.unitsBtnPanel.ResumeLayout(false);

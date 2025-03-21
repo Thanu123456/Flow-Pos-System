@@ -184,6 +184,12 @@
     <Compile Include="AdjustmentsForm.Designer.cs">
       <DependentUpon>AdjustmentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Barcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Barcode.Designer.cs">
+      <DependentUpon>Barcode.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,11 +280,29 @@
     <Compile Include="Production.Designer.cs">
       <DependentUpon>Production.cs</DependentUpon>
     </Compile>
+    <Compile Include="PurchesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchesList.Designer.cs">
+      <DependentUpon>PurchesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PurchesReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchesReturn.Designer.cs">
+      <DependentUpon>PurchesReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuotationsForm.Designer.cs">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
     <Compile Include="SaleReturnForm.cs">
       <SubType>Form</SubType>
@@ -294,6 +318,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="SideBarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +335,12 @@
     </Compile>
     <Compile Include="SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfer.Designer.cs">
+      <DependentUpon>Transfer.cs</DependentUpon>
     </Compile>
     <Compile Include="Units.cs">
       <SubType>Form</SubType>
@@ -458,6 +494,36 @@
     <None Include="Resources\refresh.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\edit.png" />
+    <None Include="Resources\Pos 12.png" />
+    <None Include="Resources\Pos 11.png" />
+    <None Include="Resources\Pos 1.png" />
+    <None Include="Resources\POS.png" />
+    <None Include="Resources\My new logo b-051.png" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\reports.png" />
+    <None Include="Resources\transfer.png" />
+    <None Include="Resources\warehouse.png" />
+    <None Include="Resources\Role.png" />
+    <None Include="Resources\UserIcon1.png" />
+    <None Include="Resources\peoples.png" />
+    <None Include="Resources\productIcon.png" />
+    <None Include="Resources\category.png" />
+    <None Include="Resources\Variation.png" />
+    <None Include="Resources\brandIcon.png" />
+    <None Include="Resources\Units.png" />
+    <None Include="Resources\baseunit.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\Adjustments.png" />
+    <None Include="Resources\quotation.png" />
+    <None Include="Resources\purchases.png" />
+    <None Include="Resources\purchases box.png" />
+    <None Include="Resources\Return.png" />
+    <None Include="Resources\sales cart.png" />
+    <None Include="Resources\RightArrow.png" />
+    <None Include="Resources\Down.png" />
+    <None Include="Resources\sales.png" />
+    <None Include="Resources\Dashboard.png" />
+    <None Include="Resources\sidebarIcon.png" />
     <None Include="Resources\orderIcon.png" />
     <None Include="Resources\productsIcon.png" />
     <None Include="Resources\supplierIcon.png" />
