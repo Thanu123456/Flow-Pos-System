@@ -74,16 +74,16 @@
             this.supBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.qutationBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.quatationBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.wareHouseBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.wareHouseBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.adjBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.adjBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.transferBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.transferBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.qutationBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.quatationBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.reportsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.reportsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.wareHouseBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.wareHouseBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.transferBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.transferBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.settingBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.settingBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sidebarBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -128,11 +128,11 @@
             this.cusBtnPanel.SuspendLayout();
             this.supBtnPanel.SuspendLayout();
             this.userBtnPanel.SuspendLayout();
-            this.qutationBtnPanel.SuspendLayout();
-            this.wareHouseBtnPanel.SuspendLayout();
             this.adjBtnPanel.SuspendLayout();
-            this.transferBtnPanel.SuspendLayout();
+            this.qutationBtnPanel.SuspendLayout();
             this.reportsBtnPanel.SuspendLayout();
+            this.wareHouseBtnPanel.SuspendLayout();
+            this.transferBtnPanel.SuspendLayout();
             this.settingBtnPanel.SuspendLayout();
             this.sidebarBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
@@ -880,6 +880,41 @@
             this.userBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.userBtn.Click += new System.EventHandler(this.userBtn_Click);
             // 
+            // adjBtnPanel
+            // 
+            this.adjBtnPanel.Controls.Add(this.adjBtn);
+            this.adjBtnPanel.Location = new System.Drawing.Point(0, 205);
+            this.adjBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.adjBtnPanel.Name = "adjBtnPanel";
+            this.adjBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.adjBtnPanel.TabIndex = 12;
+            // 
+            // adjBtn
+            // 
+            this.adjBtn.BackColor = System.Drawing.Color.Transparent;
+            this.adjBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.adjBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.adjBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.adjBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.adjBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.adjBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.adjBtn.FillColor = System.Drawing.Color.White;
+            this.adjBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.adjBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.adjBtn.Image = global::EscopeWindowsApp.Properties.Resources.Adjustments;
+            this.adjBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.adjBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.adjBtn.Location = new System.Drawing.Point(-7, -4);
+            this.adjBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.adjBtn.Name = "adjBtn";
+            this.adjBtn.PressedColor = System.Drawing.Color.Navy;
+            this.adjBtn.Size = new System.Drawing.Size(266, 48);
+            this.adjBtn.TabIndex = 3;
+            this.adjBtn.Text = "          Adjusments";
+            this.adjBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.adjBtn.UseTransparentBackground = true;
+            this.adjBtn.Click += new System.EventHandler(this.adjBtn_Click);
+            // 
             // qutationBtnPanel
             // 
             this.qutationBtnPanel.Controls.Add(this.quatationBtn);
@@ -903,7 +938,7 @@
             this.quatationBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.quatationBtn.Image = global::EscopeWindowsApp.Properties.Resources.quotation;
             this.quatationBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.quatationBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.quatationBtn.ImageOffset = new System.Drawing.Point(11, 0);
             this.quatationBtn.ImageSize = new System.Drawing.Size(25, 25);
             this.quatationBtn.Location = new System.Drawing.Point(-7, -4);
             this.quatationBtn.Margin = new System.Windows.Forms.Padding(0);
@@ -915,6 +950,41 @@
             this.quatationBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.quatationBtn.UseTransparentBackground = true;
             this.quatationBtn.Click += new System.EventHandler(this.quatationBtn_Click);
+            // 
+            // reportsBtnPanel
+            // 
+            this.reportsBtnPanel.Controls.Add(this.reportsBtn);
+            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 287);
+            this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.reportsBtnPanel.Name = "reportsBtnPanel";
+            this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.reportsBtnPanel.TabIndex = 16;
+            // 
+            // reportsBtn
+            // 
+            this.reportsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.reportsBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.reportsBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.reportsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.reportsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.reportsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.reportsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.reportsBtn.FillColor = System.Drawing.Color.White;
+            this.reportsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.reportsBtn.Image = global::EscopeWindowsApp.Properties.Resources.reports;
+            this.reportsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.reportsBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.reportsBtn.Location = new System.Drawing.Point(-7, -4);
+            this.reportsBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.reportsBtn.Name = "reportsBtn";
+            this.reportsBtn.PressedColor = System.Drawing.Color.Navy;
+            this.reportsBtn.Size = new System.Drawing.Size(266, 48);
+            this.reportsBtn.TabIndex = 3;
+            this.reportsBtn.Text = "          Reports";
+            this.reportsBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.reportsBtn.UseTransparentBackground = true;
+            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
             // 
             // wareHouseBtnPanel
             // 
@@ -951,41 +1021,6 @@
             this.wareHouseBtn.UseTransparentBackground = true;
             this.wareHouseBtn.Click += new System.EventHandler(this.wareHouseBtn_Click);
             // 
-            // adjBtnPanel
-            // 
-            this.adjBtnPanel.Controls.Add(this.adjBtn);
-            this.adjBtnPanel.Location = new System.Drawing.Point(0, 205);
-            this.adjBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.adjBtnPanel.Name = "adjBtnPanel";
-            this.adjBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.adjBtnPanel.TabIndex = 12;
-            // 
-            // adjBtn
-            // 
-            this.adjBtn.BackColor = System.Drawing.Color.Transparent;
-            this.adjBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.adjBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.adjBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.adjBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.adjBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.adjBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.adjBtn.FillColor = System.Drawing.Color.White;
-            this.adjBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.adjBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.adjBtn.Image = global::EscopeWindowsApp.Properties.Resources.Adjustments;
-            this.adjBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.adjBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.adjBtn.Location = new System.Drawing.Point(-7, -4);
-            this.adjBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.adjBtn.Name = "adjBtn";
-            this.adjBtn.PressedColor = System.Drawing.Color.Navy;
-            this.adjBtn.Size = new System.Drawing.Size(266, 48);
-            this.adjBtn.TabIndex = 3;
-            this.adjBtn.Text = "          Adjusments";
-            this.adjBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.adjBtn.UseTransparentBackground = true;
-            this.adjBtn.Click += new System.EventHandler(this.adjBtn_Click);
-            // 
             // transferBtnPanel
             // 
             this.transferBtnPanel.Controls.Add(this.transferBtn);
@@ -1020,41 +1055,6 @@
             this.transferBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.transferBtn.UseTransparentBackground = true;
             this.transferBtn.Click += new System.EventHandler(this.transferBtn_Click);
-            // 
-            // reportsBtnPanel
-            // 
-            this.reportsBtnPanel.Controls.Add(this.reportsBtn);
-            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 287);
-            this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.reportsBtnPanel.Name = "reportsBtnPanel";
-            this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.reportsBtnPanel.TabIndex = 16;
-            // 
-            // reportsBtn
-            // 
-            this.reportsBtn.BackColor = System.Drawing.Color.Transparent;
-            this.reportsBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.reportsBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.reportsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.reportsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.reportsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.reportsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.reportsBtn.FillColor = System.Drawing.Color.White;
-            this.reportsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.reportsBtn.Image = global::EscopeWindowsApp.Properties.Resources.reports;
-            this.reportsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.reportsBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.reportsBtn.Location = new System.Drawing.Point(-7, -4);
-            this.reportsBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.reportsBtn.Name = "reportsBtn";
-            this.reportsBtn.PressedColor = System.Drawing.Color.Navy;
-            this.reportsBtn.Size = new System.Drawing.Size(266, 48);
-            this.reportsBtn.TabIndex = 3;
-            this.reportsBtn.Text = "          Reports";
-            this.reportsBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.reportsBtn.UseTransparentBackground = true;
-            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
             // 
             // settingBtnPanel
             // 
@@ -1366,11 +1366,11 @@
             this.cusBtnPanel.ResumeLayout(false);
             this.supBtnPanel.ResumeLayout(false);
             this.userBtnPanel.ResumeLayout(false);
-            this.qutationBtnPanel.ResumeLayout(false);
-            this.wareHouseBtnPanel.ResumeLayout(false);
             this.adjBtnPanel.ResumeLayout(false);
-            this.transferBtnPanel.ResumeLayout(false);
+            this.qutationBtnPanel.ResumeLayout(false);
             this.reportsBtnPanel.ResumeLayout(false);
+            this.wareHouseBtnPanel.ResumeLayout(false);
+            this.transferBtnPanel.ResumeLayout(false);
             this.settingBtnPanel.ResumeLayout(false);
             this.sidebarBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();

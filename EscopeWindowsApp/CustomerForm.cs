@@ -18,8 +18,10 @@ namespace EscopeWindowsApp
             InitializeComponent();
             bindingSource = new BindingSource();
             LoadCustomersData();
+            // Explicitly wire all events
             cusDataGridView.CellPainting += CustomerDataGridView_CellPainting;
             cusDataGridView.CellFormatting += CustomerDataGridView_CellFormatting;
+            cusDataGridView.CellContentClick += cusDataGridView_CellContentClick; // Ensure click event is hooked
         }
 
         private void CustomerForm_Load(object sender, EventArgs e)
@@ -37,49 +39,49 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Customer ID"
+                HeaderText = "CUSTOMER ID"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "email",
                 Name = "email",
-                HeaderText = "Email"
+                HeaderText = "EMAIL"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "phone",
                 Name = "phone",
-                HeaderText = "Phone"
+                HeaderText = "PHONE"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "city",
                 Name = "city",
-                HeaderText = "City"
+                HeaderText = "CITY"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "address",
                 Name = "address",
-                HeaderText = "Address"
+                HeaderText = "ADDRESS"
             });
             cusDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "created_at",
                 Name = "created_at",
-                HeaderText = "Created At"
+                HeaderText = "CREATED AT"
             });
 
             cusDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this customer"
             });
@@ -87,7 +89,7 @@ namespace EscopeWindowsApp
             cusDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this customer"
             });
@@ -115,28 +117,35 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex >= 0)
             {
-                if (cusDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                try
                 {
-                    e.PaintBackground(e.CellBounds, true);
-                    Image editIcon = Properties.Resources.edit;
-                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                    if (iconSize <= 0) iconSize = 16;
-                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                    e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
-                    e.Handled = true;
-                }
+                    if (cusDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image editIcon = Properties.Resources.edit ?? SystemIcons.Question.ToBitmap(); // Fallback if resource is missing
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
 
-                if (cusDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                    if (cusDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap(); // Fallback if resource is missing
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
+                }
+                catch (Exception ex)
                 {
-                    e.PaintBackground(e.CellBounds, true);
-                    Image deleteIcon = Properties.Resources.delete;
-                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                    if (iconSize <= 0) iconSize = 16;
-                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                    e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                    e.Handled = true;
+                    MessageBox.Show($"Error rendering icons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -215,25 +224,41 @@ namespace EscopeWindowsApp
 
         private void cusSearchText_TextChanged(object sender, EventArgs e)
         {
-            string searchText = cusSearchText.Text.Trim().ToLower();
-            if (!string.IsNullOrEmpty(searchText))
+            try
             {
-                bindingSource.Filter = $"name LIKE '%{searchText}%' OR " +
-                                       $"email LIKE '%{searchText}%' OR " +
-                                       $"phone LIKE '%{searchText}%' OR " +
-                                       $"city LIKE '%{searchText}%' OR " +
-                                       $"address LIKE '%{searchText}%'";
+                string searchText = cusSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    bindingSource.Filter = $"name LIKE '%{searchText}%' OR " +
+                                           $"email LIKE '%{searchText}%' OR " +
+                                           $"phone LIKE '%{searchText}%' OR " +
+                                           $"city LIKE '%{searchText}%' OR " +
+                                           $"address LIKE '%{searchText}%'";
+                }
+                else
+                {
+                    bindingSource.Filter = null;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
             }
         }
 
         private void cusFilterBtn_Click(object sender, EventArgs e)
         {
-            DateTime selectedDate = selectCusDateTime.Value.Date;
-            bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+            try
+            {
+                DateTime selectedDate = selectCusDateTime.Value.Date;
+                bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying date filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
+            }
         }
 
         private void cusRefreshBtn_Click(object sender, EventArgs e)
@@ -249,35 +274,48 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = cusDataGridView.Rows[e.RowIndex];
+                string columnName = cusDataGridView.Columns[e.ColumnIndex].Name;
 
-                if (cusDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                // Debugging: Confirm the column clicked
+                Console.WriteLine($"Clicked column: {columnName}");
+
+                if (columnName == "EditColumn")
                 {
-                    int customerId = Convert.ToInt32(row.Cells["id"].Value);
-                    string name = row.Cells["name"].Value.ToString();
-                    string email = row.Cells["email"].Value.ToString();
-                    string phone = row.Cells["phone"].Value.ToString();
-                    string city = row.Cells["city"].Value.ToString();
-                    string address = row.Cells["address"].Value.ToString();
-
-                    // Fetch DOB from the database since it's not in the grid
-                    DateTime dob;
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    try
                     {
-                        connection.Open();
-                        string query = "SELECT dob FROM customers WHERE id = @customerId";
-                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        int customerId = Convert.ToInt32(row.Cells["id"].Value);
+                        string name = row.Cells["name"].Value.ToString();
+                        string email = row.Cells["email"].Value.ToString();
+                        string phone = row.Cells["phone"].Value.ToString();
+                        string city = row.Cells["city"].Value.ToString();
+                        string address = row.Cells["address"].Value.ToString();
+
+                        // Fetch DOB from the database since it's not in the grid
+                        DateTime dob;
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            command.Parameters.AddWithValue("@customerId", customerId);
-                            dob = Convert.ToDateTime(command.ExecuteScalar());
+                            connection.Open();
+                            string query = "SELECT dob FROM customers WHERE id = @customerId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@customerId", customerId);
+                                object result = command.ExecuteScalar();
+                                dob = result == null || result == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(result);
+                            }
                         }
+
+                        AddCustomerForm editForm = new AddCustomerForm(customerId, name, email, phone, dob, city, address);
+                        editForm.FormClosed += (s, args) => LoadCustomersData();
+                        editForm.Show();
+
+                        Console.WriteLine($"Edit button clicked for customer ID: {customerId}");
                     }
-
-                    AddCustomerForm editForm = new AddCustomerForm(customerId, name, email, phone, dob, city, address);
-                    editForm.FormClosed += (s, args) => LoadCustomersData();
-                    editForm.Show();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                if (cusDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (columnName == "DeleteColumn")
                 {
                     int customerId = Convert.ToInt32(row.Cells["id"].Value);
                     string formattedId = $"cus{customerId:D3}";
@@ -313,6 +351,8 @@ namespace EscopeWindowsApp
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+
+                    Console.WriteLine($"Delete button clicked for customer ID: {customerId}");
                 }
             }
         }

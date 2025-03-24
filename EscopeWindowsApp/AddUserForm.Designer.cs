@@ -223,14 +223,14 @@
             this.CreateUserRoleCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CreateUserRoleCombo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CreateUserRoleCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CreateUserRoleCombo.ItemHeight = 30;
+            this.CreateUserRoleCombo.ItemHeight = 36;
             this.CreateUserRoleCombo.Items.AddRange(new object[] {
             "Select your Role",
             "Cashier",
             "Owner"});
             this.CreateUserRoleCombo.Location = new System.Drawing.Point(19, 346);
             this.CreateUserRoleCombo.Name = "CreateUserRoleCombo";
-            this.CreateUserRoleCombo.Size = new System.Drawing.Size(443, 36);
+            this.CreateUserRoleCombo.Size = new System.Drawing.Size(443, 48);
             this.CreateUserRoleCombo.StartIndex = 0;
             this.CreateUserRoleCombo.TabIndex = 30;
             this.CreateUserRoleCombo.SelectedIndexChanged += new System.EventHandler(this.CreateUserRoleCombo_SelectedIndexChanged);
