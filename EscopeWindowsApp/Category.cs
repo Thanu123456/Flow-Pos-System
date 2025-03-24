@@ -17,8 +17,10 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             bindingSource = new BindingSource();
+            // Explicitly wire all events
             categoryDataGridView.CellPainting += CategoryDataGridView_CellPainting;
             categoryDataGridView.CellFormatting += CategoryDataGridView_CellFormatting;
+            categoryDataGridView.CellContentClick += categoryDataGridView_CellContentClick; // Ensure click event is hooked
         }
 
         private void Category_Load(object sender, EventArgs e)
@@ -43,19 +45,19 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Category ID"
+                HeaderText = "CATEGORY ID"
             });
             categoryDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME"
             });
 
             categoryDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this category"
             });
@@ -63,7 +65,7 @@ namespace EscopeWindowsApp
             categoryDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this category"
             });
@@ -210,15 +212,19 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = categoryDataGridView.Rows[e.RowIndex];
+                string columnName = categoryDataGridView.Columns[e.ColumnIndex].Name;
 
-                if (categoryDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                // Debugging: Confirm the column clicked
+                Console.WriteLine($"Clicked column: {columnName}");
+
+                if (columnName == "EditColumn")
                 {
-                    int categoryId = Convert.ToInt32(row.Cells["id"].Value);
-                    string name = row.Cells["name"].Value.ToString();
-                    byte[] logo = null;
-
                     try
                     {
+                        int categoryId = Convert.ToInt32(row.Cells["id"].Value);
+                        string name = row.Cells["name"].Value.ToString();
+                        byte[] logo = null;
+
                         using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
                             connection.Open();
@@ -233,18 +239,19 @@ namespace EscopeWindowsApp
                                 }
                             }
                         }
+
+                        CreateCategory editForm = new CreateCategory(categoryId, name, logo);
+                        editForm.FormClosed += (s, args) => LoadCategoriesData();
+                        editForm.Show();
+
+                        Console.WriteLine($"Edit button clicked for category ID: {categoryId}");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error fetching logo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    CreateCategory editForm = new CreateCategory(categoryId, name, logo);
-                    editForm.FormClosed += (s, args) => LoadCategoriesData();
-                    editForm.Show();
                 }
-
-                if (categoryDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (columnName == "DeleteColumn")
                 {
                     int categoryId = Convert.ToInt32(row.Cells["id"].Value);
                     string formattedId = $"cat{categoryId:D3}";
@@ -280,6 +287,8 @@ namespace EscopeWindowsApp
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+
+                    Console.WriteLine($"Delete button clicked for category ID: {categoryId}");
                 }
             }
         }

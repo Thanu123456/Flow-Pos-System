@@ -18,8 +18,10 @@ namespace EscopeWindowsApp
             InitializeComponent();
             bindingSource = new BindingSource();
             LoadUsersData();
+            // Ensure all events are properly wired
             userDataGridView.CellPainting += UserDataGridView_CellPainting;
             userDataGridView.CellFormatting += UserDataGridView_CellFormatting;
+            userDataGridView.CellContentClick += userDataGridView_CellContentClick; // Explicitly wire the click event
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -37,47 +39,47 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "User ID"
+                HeaderText = "USER ID"
             });
             userDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "first_name",
                 Name = "first_name",
-                HeaderText = "First Name"
+                HeaderText = "FIRST STAT"
             });
             userDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "last_name",
                 Name = "last_name",
-                HeaderText = "Last Name"
+                HeaderText = "LAST NAME"
             });
             userDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "email",
                 Name = "email",
-                HeaderText = "Email"
+                HeaderText = "EMAIL"
             });
             userDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "phone_number",
                 Name = "phone_number",
-                HeaderText = "Phone Number"
+                HeaderText = "PHONE"
             });
             userDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "role",
                 Name = "role",
-                HeaderText = "Role"
+                HeaderText = "ROLE"
             });
 
-            // Hide password column
+            // Hide password column if it exists (though not added here)
             if (userDataGridView.Columns["password"] != null)
                 userDataGridView.Columns["password"].Visible = false;
 
             userDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this user"
             });
@@ -85,7 +87,7 @@ namespace EscopeWindowsApp
             userDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this user"
             });
@@ -230,40 +232,53 @@ namespace EscopeWindowsApp
 
         private void userFilterBtn_Click(object sender, EventArgs e)
         {
-            //// Assuming you have a DateTimePicker named selectUserDateTime for filtering by date
-            //DateTime selectedDate = selectUserDateTime.Value.Date; // You may need to add this control to your form
-            //bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+            // Uncomment and implement if you add a DateTimePicker for filtering
+            // DateTime selectedDate = selectUserDateTime.Value.Date;
+            // bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
         }
 
         private void userRefreshBtn_Click(object sender, EventArgs e)
         {
             LoadUsersData();
             userSearchText.Text = string.Empty;
-            // Reset DateTimePicker if you add one (e.g., selectUserDateTime.Value = DateTime.Now;)
+            // Reset DateTimePicker if added (e.g., selectUserDateTime.Value = DateTime.Now;)
             bindingSource.Filter = null; // Explicitly clear any existing filter
         }
 
         private void userDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0) // Ensure a valid row is clicked
             {
                 DataGridViewRow row = userDataGridView.Rows[e.RowIndex];
+                string columnName = userDataGridView.Columns[e.ColumnIndex].Name;
 
-                if (userDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                // Debugging: Confirm the column clicked
+                Console.WriteLine($"Clicked column: {columnName}");
+
+                if (columnName == "EditColumn")
                 {
-                    int userId = Convert.ToInt32(row.Cells["id"].Value);
-                    string firstName = row.Cells["first_name"].Value.ToString();
-                    string lastName = row.Cells["last_name"].Value.ToString();
-                    string email = row.Cells["email"].Value.ToString();
-                    string phoneNumber = row.Cells["phone_number"].Value.ToString();
-                    string role = row.Cells["role"].Value.ToString();
+                    try
+                    {
+                        int userId = Convert.ToInt32(row.Cells["id"].Value);
+                        string firstName = row.Cells["first_name"].Value.ToString();
+                        string lastName = row.Cells["last_name"].Value.ToString();
+                        string email = row.Cells["email"].Value.ToString();
+                        string phoneNumber = row.Cells["phone_number"].Value.ToString();
+                        string role = row.Cells["role"].Value.ToString();
 
-                    AddUserForm editUserForm = new AddUserForm(userId, firstName, lastName, email, phoneNumber, role);
-                    editUserForm.FormClosed += (s, args) => LoadUsersData();
-                    editUserForm.Show();
+                        AddUserForm editUserForm = new AddUserForm(userId, firstName, lastName, email, phoneNumber, role);
+                        editUserForm.FormClosed += (s, args) => LoadUsersData();
+                        editUserForm.Show();
+
+                        Console.WriteLine($"Edit button clicked for user ID: {userId}");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                if (userDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (columnName == "DeleteColumn")
                 {
                     int userId = Convert.ToInt32(row.Cells["id"].Value);
                     string formattedId = $"user{userId:D3}";
@@ -299,6 +314,8 @@ namespace EscopeWindowsApp
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+
+                    Console.WriteLine($"Delete button clicked for user ID: {userId}");
                 }
             }
         }
@@ -341,7 +358,7 @@ namespace EscopeWindowsApp
 
         private void selectUserDateTime_ValueChanged(object sender, EventArgs e)
         {
-            // No action needed; filtering is handled by userFilterBtn_Click
+            // No action needed unless you implement filtering in userFilterBtn_Click
         }
     }
 }
