@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.cusAllPgLabel = new System.Windows.Forms.Label();
             this.cusOfLabel = new System.Windows.Forms.Label();
             this.cusPgRangeLabel = new System.Windows.Forms.Label();
@@ -48,13 +47,14 @@
             this.cusRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.selectCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).BeginInit();
+            this.cusDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.cusBtnPanel.SuspendLayout();
-            this.siticonePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // cusSearchText
             // 
+            this.cusSearchText.BorderColor = System.Drawing.Color.Gray;
             this.cusSearchText.BorderRadius = 8;
             this.cusSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.cusSearchText.DefaultText = "";
@@ -63,7 +63,8 @@
             this.cusSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cusSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cusSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSearchText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSearchText.ForeColor = System.Drawing.Color.Gray;
             this.cusSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cusSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.cusSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -72,6 +73,7 @@
             this.cusSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cusSearchText.Name = "cusSearchText";
             this.cusSearchText.PasswordChar = '\0';
+            this.cusSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.cusSearchText.PlaceholderText = "Search";
             this.cusSearchText.SelectedText = "";
             this.cusSearchText.Size = new System.Drawing.Size(400, 42);
@@ -327,13 +329,12 @@
             this.cusFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
             this.cusFilterBtn.Location = new System.Drawing.Point(498, 30);
             this.cusFilterBtn.Name = "cusFilterBtn";
-            this.cusFilterBtn.Size = new System.Drawing.Size(43, 42);
+            this.cusFilterBtn.Size = new System.Drawing.Size(42, 42);
             this.cusFilterBtn.TabIndex = 34;
             this.cusFilterBtn.Click += new System.EventHandler(this.cusFilterBtn_Click);
             // 
             // cusRefreshBtn
             // 
-            this.cusRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cusRefreshBtn.Animated = true;
             this.cusRefreshBtn.BorderRadius = 8;
             this.cusRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -344,10 +345,10 @@
             this.cusRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cusRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.cusRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.cusRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh;
-            this.cusRefreshBtn.Location = new System.Drawing.Point(440, 30);
+            this.cusRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.cusRefreshBtn.Location = new System.Drawing.Point(427, 30);
             this.cusRefreshBtn.Name = "cusRefreshBtn";
-            this.cusRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.cusRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.cusRefreshBtn.TabIndex = 35;
             this.cusRefreshBtn.Click += new System.EventHandler(this.cusRefreshBtn_Click);
             // 
@@ -368,11 +369,11 @@
             this.selectCusDateTime.BorderRadius = 8;
             this.selectCusDateTime.BorderThickness = 1;
             this.selectCusDateTime.Checked = true;
-            this.selectCusDateTime.FillColor = System.Drawing.Color.LightCyan;
+            this.selectCusDateTime.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.selectCusDateTime.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectCusDateTime.ForeColor = System.Drawing.Color.Gray;
+            this.selectCusDateTime.ForeColor = System.Drawing.Color.Black;
             this.selectCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.selectCusDateTime.Location = new System.Drawing.Point(3, 18);
+            this.selectCusDateTime.Location = new System.Drawing.Point(827, 30);
             this.selectCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.selectCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.selectCusDateTime.Name = "selectCusDateTime";
@@ -381,6 +382,84 @@
             this.selectCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
             this.selectCusDateTime.ValueChanged += new System.EventHandler(this.selectCusDateTime_ValueChanged);
             // 
+            // cusDataGridView
+            // 
+            this.cusDataGridView.AllowUserToAddRows = false;
+            this.cusDataGridView.AllowUserToDeleteRows = false;
+            this.cusDataGridView.AllowUserToResizeColumns = false;
+            this.cusDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.cusDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.cusDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cusDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.cusDataGridView.ColumnHeadersHeight = 45;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cusDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cusDataGridView.GridColor = System.Drawing.Color.White;
+            this.cusDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.cusDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.cusDataGridView.Name = "cusDataGridView";
+            this.cusDataGridView.ReadOnly = true;
+            this.cusDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cusDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.cusDataGridView.RowHeadersVisible = false;
+            this.cusDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.cusDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cusDataGridView.RowTemplate.Height = 35;
+            this.cusDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.cusDataGridView.Size = new System.Drawing.Size(1352, 615);
+            this.cusDataGridView.TabIndex = 38;
+            this.cusDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.cusDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.cusDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.cusDataGridView.ThemeStyle.ReadOnly = true;
+            this.cusDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.cusDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.cusDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.cusDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.cusDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.cusDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,6 +467,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.cusDataGridView);
+            this.Controls.Add(this.cusRefreshBtn);
+            this.Controls.Add(this.selectCusDateTime);
             this.Controls.Add(this.cusFilterBtn);
             this.Controls.Add(this.cusBtnPanel);
             this.Controls.Add(this.cusAllPgLabel);
@@ -395,7 +477,6 @@
             this.Controls.Add(this.cusPgRangeLabel);
             this.Controls.Add(this.cusPageCombo);
             this.Controls.Add(this.cusRecordsPerLabel);
-            this.Controls.Add(this.cusDataGridView);
             this.Controls.Add(this.createCusBtn);
             this.Controls.Add(this.cusSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -407,9 +488,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerForm";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();
             this.cusBtnPanel.ResumeLayout(false);
-            this.siticonePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,7 +499,6 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox cusSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createCusBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView cusDataGridView;
         private System.Windows.Forms.Label cusAllPgLabel;
         private System.Windows.Forms.Label cusOfLabel;
         private System.Windows.Forms.Label cusPgRangeLabel;
@@ -434,5 +513,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectCusDateTime;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView cusDataGridView;
     }
 }

@@ -19,8 +19,10 @@ namespace EscopeWindowsApp
             InitializeComponent();
             bindingSource = new BindingSource();
             LoadSuppliersData();
+            // Explicitly wire all events
             supDataGridView.CellPainting += SupDataGridView_CellPainting;
             supDataGridView.CellFormatting += SupDataGridView_CellFormatting;
+            supDataGridView.CellContentClick += supDataGridView_CellContentClick; // Ensure click event is hooked
         }
 
         private void SupplierForm_Load(object sender, EventArgs e)
@@ -38,50 +40,49 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Supplier ID"
+                HeaderText = "SUPPLIER ID"
             });
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME"
             });
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "email",
                 Name = "email",
-                HeaderText = "Email"
+                HeaderText = "EMAIL"
             });
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "phone",
                 Name = "phone",
-                HeaderText = "Phone"
+                HeaderText = "PHONE"
             });
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "city",
                 Name = "city",
-                HeaderText = "City"
+                HeaderText = "CITY"
             });
-            
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "item",
                 Name = "item",
-                HeaderText = "Item"
+                HeaderText = "ITEM"
             });
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "created_at",
                 Name = "created_at",
-                HeaderText = "Created At"
+                HeaderText = "CREATED AT"
             });
 
             supDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this supplier"
             });
@@ -89,7 +90,7 @@ namespace EscopeWindowsApp
             supDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this supplier"
             });
@@ -117,28 +118,35 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex >= 0)
             {
-                if (supDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                try
                 {
-                    e.PaintBackground(e.CellBounds, true);
-                    Image editIcon = Properties.Resources.edit;
-                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                    if (iconSize <= 0) iconSize = 16;
-                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                    e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
-                    e.Handled = true;
-                }
+                    if (supDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image editIcon = Properties.Resources.edit ?? SystemIcons.Question.ToBitmap(); // Fallback if resource is missing
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
 
-                if (supDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                    if (supDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap(); // Fallback if resource is missing
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
+                }
+                catch (Exception ex)
                 {
-                    e.PaintBackground(e.CellBounds, true);
-                    Image deleteIcon = Properties.Resources.delete;
-                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                    if (iconSize <= 0) iconSize = 16;
-                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                    e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                    e.Handled = true;
+                    MessageBox.Show($"Error rendering icons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -218,25 +226,41 @@ namespace EscopeWindowsApp
 
         private void supSearchText_TextChanged(object sender, EventArgs e)
         {
-            string searchText = supSearchText.Text.Trim().ToLower();
-            if (!string.IsNullOrEmpty(searchText))
+            try
             {
-                bindingSource.Filter = $"name LIKE '%{searchText}%' OR " +
-                                       $"email LIKE '%{searchText}%' OR " +
-                                       $"phone LIKE '%{searchText}%' OR " +
-                                       $"city LIKE '%{searchText}%' OR " +
-                                       $"item LIKE '%{searchText}%'";
+                string searchText = supSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    bindingSource.Filter = $"name LIKE '%{searchText}%' OR " +
+                                           $"email LIKE '%{searchText}%' OR " +
+                                           $"phone LIKE '%{searchText}%' OR " +
+                                           $"city LIKE '%{searchText}%' OR " +
+                                           $"item LIKE '%{searchText}%'";
+                }
+                else
+                {
+                    bindingSource.Filter = null;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
             }
         }
 
         private void supFilterBtn_Click(object sender, EventArgs e)
         {
-            DateTime selectedDate = selectSupDateTime.Value.Date;
-            bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+            try
+            {
+                DateTime selectedDate = selectSupDateTime.Value.Date;
+                bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying date filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
+            }
         }
 
         private void supRefreshBtn_Click(object sender, EventArgs e)
@@ -252,39 +276,48 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = supDataGridView.Rows[e.RowIndex];
+                string columnName = supDataGridView.Columns[e.ColumnIndex].Name;
 
-                if (supDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                // Debugging: Confirm the column clicked
+                Console.WriteLine($"Clicked column: {columnName}");
+
+                if (columnName == "EditColumn")
                 {
-                    int supplierId = Convert.ToInt32(row.Cells["id"].Value);
-                    string name = row.Cells["name"].Value.ToString();
-                    string email = row.Cells["email"].Value.ToString();
-                    string phone = row.Cells["phone"].Value.ToString();
-                    string city = row.Cells["city"].Value.ToString();
-                    string item = row.Cells["item"].Value.ToString();
-
-                    // Fetch the address from the database since it's not shown in the grid
-                    string address = "";
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    try
                     {
-                        connection.Open();
-                        string query = "SELECT address FROM suppliers WHERE id = @supplierId";
-                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        int supplierId = Convert.ToInt32(row.Cells["id"].Value);
+                        string name = row.Cells["name"].Value.ToString();
+                        string email = row.Cells["email"].Value.ToString();
+                        string phone = row.Cells["phone"].Value.ToString();
+                        string city = row.Cells["city"].Value.ToString();
+                        string item = row.Cells["item"].Value.ToString();
+
+                        // Fetch the address from the database since it's not shown in the grid
+                        string address = "";
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            command.Parameters.AddWithValue("@supplierId", supplierId);
-                            object result = command.ExecuteScalar();
-                            if (result != null)
+                            connection.Open();
+                            string query = "SELECT address FROM suppliers WHERE id = @supplierId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                address = result.ToString();
+                                command.Parameters.AddWithValue("@supplierId", supplierId);
+                                object result = command.ExecuteScalar();
+                                address = result == null || result == DBNull.Value ? "" : result.ToString();
                             }
                         }
+
+                        AddSupplierForm editForm = new AddSupplierForm(supplierId, name, email, phone, city, address, item);
+                        editForm.FormClosed += (s, args) => LoadSuppliersData();
+                        editForm.Show();
+
+                        Console.WriteLine($"Edit button clicked for supplier ID: {supplierId}");
                     }
-
-                    AddSupplierForm editForm = new AddSupplierForm(supplierId, name, email, phone, city, address, item);
-                    editForm.FormClosed += (s, args) => LoadSuppliersData();
-                    editForm.Show();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                if (supDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (columnName == "DeleteColumn")
                 {
                     int supplierId = Convert.ToInt32(row.Cells["id"].Value);
                     string formattedId = $"sup{supplierId:D3}";
@@ -320,10 +353,11 @@ namespace EscopeWindowsApp
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+
+                    Console.WriteLine($"Delete button clicked for supplier ID: {supplierId}");
                 }
             }
         }
-
 
         private void supFirstBtn_Click(object sender, EventArgs e)
         {
@@ -364,6 +398,11 @@ namespace EscopeWindowsApp
         private void selectSupDateTime_ValueChanged(object sender, EventArgs e)
         {
             // No action needed; filtering is handled by supFilterBtn_Click
+        }
+
+        private void supDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
