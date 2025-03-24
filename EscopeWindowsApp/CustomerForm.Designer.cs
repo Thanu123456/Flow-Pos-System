@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusAllPgLabel = new System.Windows.Forms.Label();
@@ -100,6 +99,61 @@
             this.createCusBtn.TabIndex = 5;
             this.createCusBtn.Text = "Craete Customer";
             this.createCusBtn.Click += new System.EventHandler(this.createCusBtn_Click);
+            // 
+            // cusDataGridView
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cusDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.cusDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cusDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.cusDataGridView.ColumnHeadersHeight = 25;
+            this.cusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cusDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            this.cusDataGridView.GridColor = System.Drawing.Color.White;
+            this.cusDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.cusDataGridView.Name = "cusDataGridView";
+            this.cusDataGridView.RowHeadersVisible = false;
+            this.cusDataGridView.Size = new System.Drawing.Size(1352, 615);
+            this.cusDataGridView.TabIndex = 10;
+            this.cusDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.cusDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.cusDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.cusDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.cusDataGridView.ThemeStyle.HeaderStyle.Height = 25;
+            this.cusDataGridView.ThemeStyle.ReadOnly = false;
+            this.cusDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.cusDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.cusDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.cusDataGridView.ThemeStyle.RowsStyle.Height = 22;
+            this.cusDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.cusDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.cusDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cusDataGridView_CellContentClick);
             // 
             // cusAllPgLabel
             // 
@@ -273,7 +327,7 @@
             this.cusFilterBtn.ForeColor = System.Drawing.Color.White;
             this.cusFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.cusFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.cusFilterBtn.Location = new System.Drawing.Point(1106, 29);
+            this.cusFilterBtn.Location = new System.Drawing.Point(498, 30);
             this.cusFilterBtn.Name = "cusFilterBtn";
             this.cusFilterBtn.Size = new System.Drawing.Size(42, 42);
             this.cusFilterBtn.TabIndex = 34;
@@ -301,6 +355,7 @@
             // siticonePanel1
             // 
             this.siticonePanel1.BorderRadius = 8;
+            this.siticonePanel1.Controls.Add(this.selectCusDateTime);
             this.siticonePanel1.Location = new System.Drawing.Point(801, 12);
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(338, 72);
