@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseUnitDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.baseUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseUnitAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baseUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.baseUnitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.baseUnitsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -53,6 +51,7 @@
             // 
             // baseUnitDataGridView
             // 
+            this.baseUnitDataGridView.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.baseUnitDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.baseUnitDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -68,9 +67,6 @@
             this.baseUnitDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.baseUnitDataGridView.ColumnHeadersHeight = 25;
             this.baseUnitDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.baseUnitDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.baseUnitName,
-            this.baseUnitAction});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -108,16 +104,7 @@
             this.baseUnitDataGridView.ThemeStyle.RowsStyle.Height = 22;
             this.baseUnitDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.baseUnitDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // baseUnitName
-            // 
-            this.baseUnitName.HeaderText = "Name";
-            this.baseUnitName.Name = "baseUnitName";
-            // 
-            // baseUnitAction
-            // 
-            this.baseUnitAction.HeaderText = "Action";
-            this.baseUnitAction.Name = "baseUnitAction";
+            this.baseUnitDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.baseUnitDataGridView_CellContentClick);
             // 
             // baseUnitsBtn
             // 
@@ -365,6 +352,7 @@
             this.Name = "BaseUnit";
             this.ShowInTaskbar = false;
             this.Text = "BaseUnit";
+            this.Load += new System.EventHandler(this.BaseUnit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.baseUnitDataGridView)).EndInit();
             this.baseUnitsBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -378,8 +366,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox baseUnitSearchText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn baseUnitName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn baseUnitAction;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox baseUnitsPageCombo;
         private System.Windows.Forms.Label baseUnitsRecordsPerLabel;
         private System.Windows.Forms.Label baseUnitsAllPgLabel;

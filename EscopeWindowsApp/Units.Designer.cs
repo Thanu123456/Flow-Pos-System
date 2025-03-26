@@ -32,11 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.unitsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.unitsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitCreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.unitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.unitsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -56,6 +51,7 @@
             // 
             // unitsDataGridView
             // 
+            this.unitsDataGridView.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.unitsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -71,12 +67,6 @@
             this.unitsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.unitsDataGridView.ColumnHeadersHeight = 25;
             this.unitsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.unitsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.unitsName,
-            this.unitsShortName,
-            this.baseUnit,
-            this.unitCreatedOn,
-            this.unitsAction});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,31 +105,6 @@
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.unitsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.unitsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.unitsDataGridView_CellContentClick);
-            // 
-            // unitsName
-            // 
-            this.unitsName.HeaderText = "Name";
-            this.unitsName.Name = "unitsName";
-            // 
-            // unitsShortName
-            // 
-            this.unitsShortName.HeaderText = "Short Name";
-            this.unitsShortName.Name = "unitsShortName";
-            // 
-            // baseUnit
-            // 
-            this.baseUnit.HeaderText = "Base Unit";
-            this.baseUnit.Name = "baseUnit";
-            // 
-            // unitCreatedOn
-            // 
-            this.unitCreatedOn.HeaderText = "Created On";
-            this.unitCreatedOn.Name = "unitCreatedOn";
-            // 
-            // unitsAction
-            // 
-            this.unitsAction.HeaderText = "Action";
-            this.unitsAction.Name = "unitsAction";
             // 
             // createUnitsBtn
             // 
@@ -395,11 +360,6 @@
         #endregion
 
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView unitsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitsShortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn baseUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitCreatedOn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitsAction;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createUnitsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton unitsFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox unitsSearchText;
