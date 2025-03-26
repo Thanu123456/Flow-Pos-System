@@ -292,7 +292,7 @@
             this.unitsFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.unitsFilterBtn.ForeColor = System.Drawing.Color.White;
             this.unitsFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.unitsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
+            this.unitsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
             this.unitsFilterBtn.Location = new System.Drawing.Point(1098, 30);
             this.unitsFilterBtn.Name = "unitsFilterBtn";
             this.unitsFilterBtn.Size = new System.Drawing.Size(43, 43);

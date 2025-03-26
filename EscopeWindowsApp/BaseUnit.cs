@@ -152,7 +152,7 @@ namespace EscopeWindowsApp
                 baseUnitsTable = new DataTable();
                 baseUnitsTable.Columns.Add("id", typeof(int));
                 baseUnitsTable.Columns.Add("name", typeof(string));
-                
+
                 bindingSource.DataSource = baseUnitsTable;
             }
         }
@@ -205,6 +205,29 @@ namespace EscopeWindowsApp
             bindingSource.Filter = null;
         }
 
+        // Method to check if a base unit is referenced by any units
+        private int CountUnitsUsingBaseUnit(int baseUnitId)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) FROM units WHERE base_unit_id = @baseUnitId";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@baseUnitId", baseUnitId);
+                        return Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking dependent units: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Indicate an error
+            }
+        }
+
         private void baseUnitDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -226,14 +249,37 @@ namespace EscopeWindowsApp
                     int baseUnitId = Convert.ToInt32(row.Cells["id"].Value);
                     string formattedId = $"bu{baseUnitId:D3}";
 
-                    DialogResult result = MessageBox.Show(
+                    // Check if the base unit is referenced by any units
+                    int dependentUnitCount = CountUnitsUsingBaseUnit(baseUnitId);
+                    if (dependentUnitCount == -1)
+                    {
+                        // Error already shown in CountUnitsUsingBaseUnit
+                        return;
+                    }
+
+                    // If the base unit is in use, show a warning dialog with only a "Cancel" button (labeled as "OK")
+                    if (dependentUnitCount > 0)
+                    {
+                        MessageBox.Show(
+                            $"Warning: Base unit {formattedId} is currently used by {dependentUnitCount} unit(s). " +
+                            "You cannot delete this base unit until the dependent units are deleted or reassigned.",
+                            "Warning",
+                            MessageBoxButtons.OK, // Only one button, labeled "OK" but acts as "Cancel"
+                            MessageBoxIcon.Warning
+                        );
+                        // Abort the deletion process
+                        return;
+                    }
+
+                    // Proceed to the confirmation dialog if there are no dependent units
+                    DialogResult confirmResult = MessageBox.Show(
                         $"Are you sure you want to delete base unit {formattedId}?",
                         "Confirm Delete",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning
                     );
 
-                    if (result == DialogResult.Yes)
+                    if (confirmResult == DialogResult.Yes)
                     {
                         try
                         {
