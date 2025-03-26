@@ -226,13 +226,21 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = unitsDataGridView.Rows[e.RowIndex];
+                DataRow dataRow = (row.DataBoundItem as DataRowView)?.Row; // Get the underlying DataRow
+
+                if (dataRow == null)
+                {
+                    MessageBox.Show("Error accessing row data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (unitsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
                 {
                     int unitId = Convert.ToInt32(row.Cells["id"].Value);
                     string unitName = row.Cells["unit_name"].Value.ToString();
                     string shortName = row.Cells["short_name"].Value.ToString();
-                    int baseUnitId = row.Cells["base_unit_id"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["base_unit_id"].Value) : 0;
+                    // Access base_unit_id directly from the DataRow instead of the DataGridView
+                    int baseUnitId = dataRow["base_unit_id"] != DBNull.Value ? Convert.ToInt32(dataRow["base_unit_id"]) : 0;
 
                     using (CreateUnits editForm = new CreateUnits(unitId, unitName, shortName, baseUnitId))
                     {
