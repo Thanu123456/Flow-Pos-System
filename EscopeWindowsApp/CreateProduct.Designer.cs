@@ -80,7 +80,7 @@
             this.creatProductLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.creatProductLabel.Location = new System.Drawing.Point(22, 47);
             this.creatProductLabel.Name = "creatProductLabel";
-            this.creatProductLabel.Size = new System.Drawing.Size(189, 28);
+            this.creatProductLabel.Size = new System.Drawing.Size(203, 28);
             this.creatProductLabel.TabIndex = 21;
             this.creatProductLabel.Text = "Create Product";
             // 
@@ -111,6 +111,7 @@
             this.createProductMainPanel.Name = "createProductMainPanel";
             this.createProductMainPanel.Size = new System.Drawing.Size(713, 358);
             this.createProductMainPanel.TabIndex = 23;
+            this.createProductMainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createProductMainPanel_Paint);
             // 
             // enabalVTypeCheckBox
             // 
@@ -149,6 +150,7 @@
             this.creProWareComboBox.Location = new System.Drawing.Point(363, 212);
             this.creProWareComboBox.Name = "creProWareComboBox";
             this.creProWareComboBox.Size = new System.Drawing.Size(325, 42);
+            this.creProWareComboBox.StartIndex = 0;
             this.creProWareComboBox.TabIndex = 60;
             this.creProWareComboBox.SelectedIndexChanged += new System.EventHandler(this.creProWareComboBox_SelectedIndexChanged);
             // 
@@ -182,6 +184,7 @@
             this.creProVarTypeComboBox.Location = new System.Drawing.Point(22, 303);
             this.creProVarTypeComboBox.Name = "creProVarTypeComboBox";
             this.creProVarTypeComboBox.Size = new System.Drawing.Size(327, 42);
+            this.creProVarTypeComboBox.StartIndex = 0;
             this.creProVarTypeComboBox.TabIndex = 58;
             this.creProVarTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.creProVarTypeComboBox_SelectedIndexChanged);
             // 
@@ -286,6 +289,7 @@
             this.createProductMultipleImgText.SelectedText = "";
             this.createProductMultipleImgText.Size = new System.Drawing.Size(327, 42);
             this.createProductMultipleImgText.TabIndex = 27;
+            this.createProductMultipleImgText.TextChanged += new System.EventHandler(this.createProductMultipleImgText_TextChanged);
             // 
             // creProUnitComboBox
             // 
@@ -333,6 +337,7 @@
             this.creProBrandComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creProBrandComboBox.ItemHeight = 36;
             this.creProBrandComboBox.Items.AddRange(new object[] {
+            "Choose Brand",
             "CocaCola",
             "Manchee",
             "Maliban"});
@@ -368,6 +373,7 @@
             this.ProCatComboox.ForeColor = System.Drawing.Color.Gray;
             this.ProCatComboox.ItemHeight = 36;
             this.ProCatComboox.Items.AddRange(new object[] {
+            "Choose Category",
             "Shoes",
             "fruits",
             "Electric Item"});
@@ -487,9 +493,9 @@
             this.controlPanel.Controls.Add(this.minimumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(911, 3);
+            this.controlPanel.Location = new System.Drawing.Point(930, 3);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(112, 30);
+            this.controlPanel.Size = new System.Drawing.Size(93, 30);
             this.controlPanel.TabIndex = 1;
             // 
             // minimumBtn
@@ -499,7 +505,7 @@
             this.minimumBtn.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.minimumBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.minimumBtn.IconColor = System.Drawing.Color.White;
-            this.minimumBtn.Location = new System.Drawing.Point(34, 2);
+            this.minimumBtn.Location = new System.Drawing.Point(15, 2);
             this.minimumBtn.Name = "minimumBtn";
             this.minimumBtn.Size = new System.Drawing.Size(26, 26);
             this.minimumBtn.TabIndex = 2;
@@ -510,7 +516,7 @@
             this.closeBtn.BorderRadius = 8;
             this.closeBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeBtn.IconColor = System.Drawing.Color.White;
-            this.closeBtn.Location = new System.Drawing.Point(65, 2);
+            this.closeBtn.Location = new System.Drawing.Point(46, 2);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(26, 26);
             this.closeBtn.TabIndex = 0;
