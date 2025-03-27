@@ -223,6 +223,36 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GRN {
+            get {
+                object obj = ResourceManager.GetObject("GRN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grnWhite {
+            get {
+                object obj = ResourceManager.GetObject("grnWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GrnWhite_Ori {
+            get {
+                object obj = ResourceManager.GetObject("GrnWhite Ori", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ImgUpload_Icon {
             get {
                 object obj = ResourceManager.GetObject("ImgUpload Icon", resourceCulture);

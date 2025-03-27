@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.variationsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createVariationsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.variationsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -45,68 +45,10 @@
             this.variationsLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).BeginInit();
+            this.variationsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.variationsBtnPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // variationsDataGridView
-            // 
-            this.variationsDataGridView.AllowUserToAddRows = false;
-            this.variationsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.variationsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.variationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.variationsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.variationsDataGridView.ColumnHeadersHeight = 25;
-            this.variationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.variationsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.variationsDataGridView.GridColor = System.Drawing.Color.White;
-            this.variationsDataGridView.Location = new System.Drawing.Point(17, 100);
-            this.variationsDataGridView.Name = "variationsDataGridView";
-            this.variationsDataGridView.ReadOnly = true;
-            this.variationsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.variationsDataGridView.RowHeadersVisible = false;
-            this.variationsDataGridView.Size = new System.Drawing.Size(1352, 614);
-            this.variationsDataGridView.TabIndex = 19;
-            this.variationsDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.variationsDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.variationsDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.variationsDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.variationsDataGridView.ThemeStyle.ReadOnly = true;
-            this.variationsDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.variationsDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.variationsDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.variationsDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.variationsDataGridView.ThemeStyle.RowsStyle.Height = 22;
-            this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.variationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.variationsDataGridView_CellContentClick);
             // 
             // createVariationsBtn
             // 
@@ -295,9 +237,9 @@
             this.variationsRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.variationsRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.variationsRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.variationsRefreshBtn.Location = new System.Drawing.Point(1098, 30);
+            this.variationsRefreshBtn.Location = new System.Drawing.Point(427, 30);
             this.variationsRefreshBtn.Name = "variationsRefreshBtn";
-            this.variationsRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.variationsRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.variationsRefreshBtn.TabIndex = 17;
             this.variationsRefreshBtn.Click += new System.EventHandler(this.variationsFilterBtn_Click);
             // 
@@ -328,19 +270,97 @@
             this.variationsSearchText.TabIndex = 16;
             this.variationsSearchText.TextChanged += new System.EventHandler(this.variationsSearchText_TextChanged);
             // 
+            // variationsDataGridView
+            // 
+            this.variationsDataGridView.AllowUserToAddRows = false;
+            this.variationsDataGridView.AllowUserToDeleteRows = false;
+            this.variationsDataGridView.AllowUserToResizeColumns = false;
+            this.variationsDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.variationsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.variationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.variationsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.variationsDataGridView.ColumnHeadersHeight = 45;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.variationsDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            this.variationsDataGridView.GridColor = System.Drawing.Color.White;
+            this.variationsDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.variationsDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.variationsDataGridView.Name = "variationsDataGridView";
+            this.variationsDataGridView.ReadOnly = true;
+            this.variationsDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.variationsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.variationsDataGridView.RowHeadersVisible = false;
+            this.variationsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.variationsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.variationsDataGridView.RowTemplate.Height = 35;
+            this.variationsDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.variationsDataGridView.Size = new System.Drawing.Size(1352, 615);
+            this.variationsDataGridView.TabIndex = 34;
+            this.variationsDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.variationsDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.variationsDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.variationsDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.variationsDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.variationsDataGridView.ThemeStyle.ReadOnly = true;
+            this.variationsDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.variationsDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.variationsDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.variationsDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.variationsDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
             // Variations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.variationsDataGridView);
             this.Controls.Add(this.variationsPageCombo);
             this.Controls.Add(this.variationsRecordsPerLabel);
             this.Controls.Add(this.variationsAllPgLabel);
             this.Controls.Add(this.variationsOfLabel);
             this.Controls.Add(this.variationsPgRangeLabel);
             this.Controls.Add(this.variationsBtnPanel);
-            this.Controls.Add(this.variationsDataGridView);
             this.Controls.Add(this.createVariationsBtn);
             this.Controls.Add(this.variationsRefreshBtn);
             this.Controls.Add(this.variationsSearchText);
@@ -354,16 +374,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Variations";
             this.Load += new System.EventHandler(this.Variations_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).EndInit();
             this.variationsBtnPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView variationsDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createVariationsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox variationsSearchText;
@@ -377,5 +395,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsLastBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView variationsDataGridView;
     }
 }

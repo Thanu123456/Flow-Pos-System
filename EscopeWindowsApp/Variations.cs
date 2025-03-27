@@ -18,6 +18,7 @@ namespace EscopeWindowsApp
             bindingSource = new BindingSource();
             variationsDataGridView.CellPainting += VariationsDataGridView_CellPainting;
             variationsDataGridView.CellFormatting += VariationsDataGridView_CellFormatting;
+            variationsDataGridView.CellContentClick += variationsDataGridView_CellContentClick; // Ensure event is wired
             this.Load += Variations_Load;
         }
 
@@ -43,9 +44,9 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "VariationId",
-                HeaderText = "Variation ID",
+                HeaderText = "VARIATION ID",
                 Width = 100,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             // Name column
@@ -53,9 +54,9 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "name",
                 Name = "VariationName",
-                HeaderText = "Name",
-                Width = 150,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                HeaderText = "NAME",
+                Width = 100,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             // Types column
@@ -63,29 +64,35 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "types",
                 Name = "VariationTypes",
-                HeaderText = "Types",
+                HeaderText = "VARIATION TYPES",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             // Edit button column
-            variationsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                ToolTipText = "Edit this variation"
-            });
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                ToolTipText = "Edit this variation",
+                Text = "Edit", // Text to display on the button
+                UseColumnTextForButtonValue = true // Ensures "Edit" is shown
+            };
+            variationsDataGridView.Columns.Add(editColumn);
 
             // Delete button column
-            variationsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
-                ToolTipText = "Delete this variation"
-            });
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                ToolTipText = "Delete this variation",
+                Text = "Delete", // Text to display on the button
+                UseColumnTextForButtonValue = true // Ensures "Delete" is shown
+            };
+            variationsDataGridView.Columns.Add(deleteColumn);
 
             variationsDataGridView.AllowUserToAddRows = false;
         }
@@ -98,7 +105,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    // Updated query to include individual type columns
                     string query = "SELECT id, name, type1, type2, type3, type4, type5, " +
                                    "CONCAT_WS(', ', NULLIF(type1, ''), NULLIF(type2, ''), NULLIF(type3, ''), " +
                                    "NULLIF(type4, ''), NULLIF(type5, '')) AS types " +
@@ -109,7 +115,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Handle null names
                 foreach (DataRow row in variationsTable.Rows)
                 {
                     if (row.IsNull("name"))
@@ -124,7 +129,6 @@ namespace EscopeWindowsApp
             {
                 MessageBox.Show($"Error loading variations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 variationsTable = new DataTable();
-                // Define all columns, including individual types and concatenated types
                 variationsTable.Columns.Add("id", typeof(int));
                 variationsTable.Columns.Add("name", typeof(string));
                 variationsTable.Columns.Add("type1", typeof(string));
@@ -133,7 +137,6 @@ namespace EscopeWindowsApp
                 variationsTable.Columns.Add("type4", typeof(string));
                 variationsTable.Columns.Add("type5", typeof(string));
                 variationsTable.Columns.Add("types", typeof(string));
-
                 bindingSource.DataSource = variationsTable;
             }
         }
@@ -145,7 +148,7 @@ namespace EscopeWindowsApp
             if (variationsDataGridView.Columns[e.ColumnIndex].Name == "VariationId")
             {
                 int variationId = Convert.ToInt32(e.Value);
-                e.Value = $"var{variationId:D3}"; // Format as "var001", "var002", etc.
+                e.Value = $"var{variationId:D3}";
                 e.FormattingApplied = true;
             }
         }
@@ -237,11 +240,13 @@ namespace EscopeWindowsApp
 
         private void variationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
-                DataRow row = rowView.Row;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return; // Ignore header clicks or invalid indices
 
+            DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
+            DataRow row = rowView.Row;
+
+            try
+            {
                 if (variationsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
                 {
                     int variationId = Convert.ToInt32(row["id"]);
@@ -254,10 +259,9 @@ namespace EscopeWindowsApp
 
                     AddVariationItem editForm = new AddVariationItem(variationId, name, type1, type2, type3, type4, type5);
                     editForm.FormClosed += (s, args) => LoadVariationsData();
-                    editForm.Show();
+                    editForm.ShowDialog(); // Use ShowDialog for modal behavior
                 }
-
-                if (variationsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (variationsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
                 {
                     int variationId = Convert.ToInt32(row["id"]);
                     string formattedId = $"var{variationId:D3}";
@@ -271,27 +275,24 @@ namespace EscopeWindowsApp
 
                     if (result == DialogResult.Yes)
                     {
-                        try
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                            connection.Open();
+                            string query = "DELETE FROM variations WHERE id = @variationId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                connection.Open();
-                                string query = "DELETE FROM variations WHERE id = @variationId";
-                                using (MySqlCommand command = new MySqlCommand(query, connection))
-                                {
-                                    command.Parameters.AddWithValue("@variationId", variationId);
-                                    command.ExecuteNonQuery();
-                                }
+                                command.Parameters.AddWithValue("@variationId", variationId);
+                                command.ExecuteNonQuery();
                             }
-                            LoadVariationsData();
-                            MessageBox.Show($"Variation {formattedId} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error deleting variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        LoadVariationsData();
+                        MessageBox.Show($"Variation {formattedId} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in cell action: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
