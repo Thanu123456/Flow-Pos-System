@@ -32,9 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.variationsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.variationsCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.variationTypes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.variationsAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createVariationsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.variationsRecordsPerLabel = new System.Windows.Forms.Label();
@@ -46,7 +43,7 @@
             this.variationsPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.variationsFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.variationsRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.variationsDataGridView)).BeginInit();
             this.variationsBtnPanel.SuspendLayout();
@@ -54,6 +51,8 @@
             // 
             // variationsDataGridView
             // 
+            this.variationsDataGridView.AllowUserToAddRows = false;
+            this.variationsDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.variationsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.variationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -69,10 +68,6 @@
             this.variationsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.variationsDataGridView.ColumnHeadersHeight = 25;
             this.variationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.variationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.variationsCategory,
-            this.variationTypes,
-            this.variationsAction});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -84,6 +79,7 @@
             this.variationsDataGridView.GridColor = System.Drawing.Color.White;
             this.variationsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.variationsDataGridView.Name = "variationsDataGridView";
+            this.variationsDataGridView.ReadOnly = true;
             this.variationsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.variationsDataGridView.RowHeadersVisible = false;
             this.variationsDataGridView.Size = new System.Drawing.Size(1352, 614);
@@ -102,7 +98,7 @@
             this.variationsDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.variationsDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.variationsDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.variationsDataGridView.ThemeStyle.ReadOnly = false;
+            this.variationsDataGridView.ThemeStyle.ReadOnly = true;
             this.variationsDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.variationsDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.variationsDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,21 +107,6 @@
             this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.variationsDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.variationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.variationsDataGridView_CellContentClick);
-            // 
-            // variationsCategory
-            // 
-            this.variationsCategory.HeaderText = "Variations Name";
-            this.variationsCategory.Name = "variationsCategory";
-            // 
-            // variationTypes
-            // 
-            this.variationTypes.HeaderText = "Variations Types";
-            this.variationTypes.Name = "variationTypes";
-            // 
-            // variationsAction
-            // 
-            this.variationsAction.HeaderText = "Action";
-            this.variationsAction.Name = "variationsAction";
             // 
             // createVariationsBtn
             // 
@@ -301,24 +282,24 @@
             this.variationsLastBtn.TabIndex = 8;
             this.variationsLastBtn.Click += new System.EventHandler(this.variationsLastBtn_Click);
             // 
-            // variationsFilterBtn
+            // variationsRefreshBtn
             // 
-            this.variationsFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.variationsFilterBtn.BorderRadius = 8;
-            this.variationsFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.variationsFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.variationsFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.variationsFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.variationsFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.variationsFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.variationsFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.variationsFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.variationsFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.variationsFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.variationsFilterBtn.Name = "variationsFilterBtn";
-            this.variationsFilterBtn.Size = new System.Drawing.Size(43, 42);
-            this.variationsFilterBtn.TabIndex = 17;
-            this.variationsFilterBtn.Click += new System.EventHandler(this.variationsFilterBtn_Click);
+            this.variationsRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.variationsRefreshBtn.BorderRadius = 8;
+            this.variationsRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.variationsRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.variationsRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.variationsRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.variationsRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.variationsRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.variationsRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.variationsRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.variationsRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.variationsRefreshBtn.Location = new System.Drawing.Point(1098, 30);
+            this.variationsRefreshBtn.Name = "variationsRefreshBtn";
+            this.variationsRefreshBtn.Size = new System.Drawing.Size(43, 42);
+            this.variationsRefreshBtn.TabIndex = 17;
+            this.variationsRefreshBtn.Click += new System.EventHandler(this.variationsFilterBtn_Click);
             // 
             // variationsSearchText
             // 
@@ -361,7 +342,7 @@
             this.Controls.Add(this.variationsBtnPanel);
             this.Controls.Add(this.variationsDataGridView);
             this.Controls.Add(this.createVariationsBtn);
-            this.Controls.Add(this.variationsFilterBtn);
+            this.Controls.Add(this.variationsRefreshBtn);
             this.Controls.Add(this.variationsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -384,7 +365,7 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView variationsDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createVariationsBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton variationsFilterBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton variationsRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox variationsSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox variationsPageCombo;
         private System.Windows.Forms.Label variationsRecordsPerLabel;
@@ -396,8 +377,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton variationsLastBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn variationsCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn variationTypes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn variationsAction;
     }
 }

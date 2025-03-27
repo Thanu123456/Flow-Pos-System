@@ -1,45 +1,190 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
     public partial class Variations : Form
     {
-        private DataTable variationsTable; // Data source for variations
-        private int currentIndex = 0; // Current index for navigation
+        private DataTable variationsTable;
+        private BindingSource bindingSource;
+        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
 
         public Variations()
         {
             InitializeComponent();
-            LoadVariationsData();
+            bindingSource = new BindingSource();
+            variationsDataGridView.CellPainting += VariationsDataGridView_CellPainting;
+            variationsDataGridView.CellFormatting += VariationsDataGridView_CellFormatting;
+            this.Load += Variations_Load;
         }
 
         private void Variations_Load(object sender, EventArgs e)
         {
-            // Initialize variations data on form load
-            variationsDataGridView.DataSource = variationsTable;
+            ConfigureDataGridView();
+            variationsDataGridView.DataSource = bindingSource;
+            LoadVariationsData();
+
+            if (variationsTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No variation data found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ConfigureDataGridView()
+        {
+            variationsDataGridView.AutoGenerateColumns = false;
+            variationsDataGridView.Columns.Clear();
+
+            // Variation ID column
+            variationsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "id",
+                Name = "VariationId",
+                HeaderText = "Variation ID",
+                Width = 100,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            });
+
+            // Name column
+            variationsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "name",
+                Name = "VariationName",
+                HeaderText = "Name",
+                Width = 150,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            });
+
+            // Types column
+            variationsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "types",
+                Name = "VariationTypes",
+                HeaderText = "Types",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            // Edit button column
+            variationsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "EditColumn",
+                HeaderText = "Edit",
+                Width = 50,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                ToolTipText = "Edit this variation"
+            });
+
+            // Delete button column
+            variationsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "DeleteColumn",
+                HeaderText = "Delete",
+                Width = 50,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
+                ToolTipText = "Delete this variation"
+            });
+
+            variationsDataGridView.AllowUserToAddRows = false;
         }
 
         private void LoadVariationsData()
         {
-            // Load variations data into variationsTable
-            variationsTable = new DataTable();
-            variationsTable.Columns.Add("VariationId", typeof(int));
-            variationsTable.Columns.Add("VariationName", typeof(string));
-            variationsTable.Columns.Add("Description", typeof(string));
+            try
+            {
+                variationsTable = new DataTable();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    // Updated query to include individual type columns
+                    string query = "SELECT id, name, type1, type2, type3, type4, type5, " +
+                                   "CONCAT_WS(', ', NULLIF(type1, ''), NULLIF(type2, ''), NULLIF(type3, ''), " +
+                                   "NULLIF(type4, ''), NULLIF(type5, '')) AS types " +
+                                   "FROM variations ORDER BY id ASC";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(variationsTable);
+                    }
+                }
 
-            // Sample data - replace with actual data retrieval logic
-            variationsTable.Rows.Add(1, "Color", "Different colors available");
-            variationsTable.Rows.Add(2, "Size", "Various sizes available");
-            variationsTable.Rows.Add(3, "Material", "Different materials");
-            variationsTable.Rows.Add(4, "Style", "Different styles");
+                // Handle null names
+                foreach (DataRow row in variationsTable.Rows)
+                {
+                    if (row.IsNull("name"))
+                    {
+                        row["name"] = "";
+                    }
+                }
+
+                bindingSource.DataSource = variationsTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading variations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                variationsTable = new DataTable();
+                // Define all columns, including individual types and concatenated types
+                variationsTable.Columns.Add("id", typeof(int));
+                variationsTable.Columns.Add("name", typeof(string));
+                variationsTable.Columns.Add("type1", typeof(string));
+                variationsTable.Columns.Add("type2", typeof(string));
+                variationsTable.Columns.Add("type3", typeof(string));
+                variationsTable.Columns.Add("type4", typeof(string));
+                variationsTable.Columns.Add("type5", typeof(string));
+                variationsTable.Columns.Add("types", typeof(string));
+
+                bindingSource.DataSource = variationsTable;
+            }
+        }
+
+        private void VariationsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.Value == null) return;
+
+            if (variationsDataGridView.Columns[e.ColumnIndex].Name == "VariationId")
+            {
+                int variationId = Convert.ToInt32(e.Value);
+                e.Value = $"var{variationId:D3}"; // Format as "var001", "var002", etc.
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void VariationsDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    if (variationsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image editIcon = Properties.Resources.edit ?? SystemIcons.Question.ToBitmap();
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
+
+                    if (variationsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                    {
+                        e.PaintBackground(e.CellBounds, true);
+                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
+                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                        if (iconSize <= 0) iconSize = 16;
+                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                        e.Handled = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error rendering icons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void createVariationsBtn_Click(object sender, EventArgs e)
@@ -58,104 +203,128 @@ namespace EscopeWindowsApp
                 }
             }
             AddVariationItem addVariationItem = new AddVariationItem();
+            addVariationItem.FormClosed += (s, args) => LoadVariationsData();
             addVariationItem.Show();
         }
 
         private void variationsSearchText_TextChanged(object sender, EventArgs e)
         {
-            // Filter variations data based on search text
-            string searchText = variationsSearchText.Text.Trim().ToLower();
-
-            if (!string.IsNullOrEmpty(searchText))
+            try
             {
-                var filteredRows = variationsTable.AsEnumerable()
-                    .Where(row => row.Field<string>("VariationName").ToLower().Contains(searchText)
-                               || row.Field<string>("Description").ToLower().Contains(searchText));
-
-                if (filteredRows.Any())
+                string searchText = variationsSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
                 {
-                    variationsDataGridView.DataSource = filteredRows.CopyToDataTable();
+                    bindingSource.Filter = $"name LIKE '%{searchText}%'";
                 }
                 else
                 {
-                    variationsDataGridView.DataSource = null;
+                    bindingSource.Filter = null;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                variationsDataGridView.DataSource = variationsTable;
+                MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
             }
         }
 
         private void variationsFilterBtn_Click(object sender, EventArgs e)
         {
-            // Filter variations where VariationId is greater than 2
-            var filteredRows = variationsTable.AsEnumerable()
-                .Where(row => row.Field<int>("VariationId") > 2);
-
-            if (filteredRows.Any())
-            {
-                variationsDataGridView.DataSource = filteredRows.CopyToDataTable();
-            }
-            else
-            {
-                variationsDataGridView.DataSource = null;
-            }
+            LoadVariationsData();
+            variationsSearchText.Text = string.Empty;
+            bindingSource.Filter = null;
         }
 
         private void variationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Handle cell content click event
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = variationsDataGridView.Rows[e.RowIndex];
-                int variationId = Convert.ToInt32(row.Cells["VariationId"].Value);
-                string variationName = row.Cells["VariationName"].Value.ToString();
-                string description = row.Cells["Description"].Value.ToString();
+                DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
+                DataRow row = rowView.Row;
 
-                // Implement logic to handle the cell content click event
+                if (variationsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
+                {
+                    int variationId = Convert.ToInt32(row["id"]);
+                    string name = row["name"].ToString();
+                    string type1 = row["type1"] != DBNull.Value ? row["type1"].ToString() : "";
+                    string type2 = row["type2"] != DBNull.Value ? row["type2"].ToString() : "";
+                    string type3 = row["type3"] != DBNull.Value ? row["type3"].ToString() : "";
+                    string type4 = row["type4"] != DBNull.Value ? row["type4"].ToString() : "";
+                    string type5 = row["type5"] != DBNull.Value ? row["type5"].ToString() : "";
+
+                    AddVariationItem editForm = new AddVariationItem(variationId, name, type1, type2, type3, type4, type5);
+                    editForm.FormClosed += (s, args) => LoadVariationsData();
+                    editForm.Show();
+                }
+
+                if (variationsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                {
+                    int variationId = Convert.ToInt32(row["id"]);
+                    string formattedId = $"var{variationId:D3}";
+
+                    DialogResult result = MessageBox.Show(
+                        $"Are you sure you want to delete variation {formattedId}?",
+                        "Confirm Delete",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                            {
+                                connection.Open();
+                                string query = "DELETE FROM variations WHERE id = @variationId";
+                                using (MySqlCommand command = new MySqlCommand(query, connection))
+                                {
+                                    command.Parameters.AddWithValue("@variationId", variationId);
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+                            LoadVariationsData();
+                            MessageBox.Show($"Variation {formattedId} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error deleting variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
             }
         }
 
         private void variationsFirstBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to the first record in the variations data
-            if (variationsDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = 0;
-                variationsDataGridView.CurrentCell = variationsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = 0;
             }
         }
 
         private void variationsPrevBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to the previous record in the variations data
-            if (currentIndex > 0)
+            if (bindingSource.Position > 0)
             {
-                currentIndex--;
-                variationsDataGridView.CurrentCell = variationsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position--;
             }
         }
 
         private void variationsNextBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to the next record in the variations data
-            if (currentIndex < variationsDataGridView.Rows.Count - 1)
+            if (bindingSource.Position < bindingSource.Count - 1)
             {
-                currentIndex++;
-                variationsDataGridView.CurrentCell = variationsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position++;
             }
         }
 
         private void variationsLastBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to the last record in the variations data
-            if (variationsDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = variationsDataGridView.Rows.Count - 1;
-                variationsDataGridView.CurrentCell = variationsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = bindingSource.Count - 1;
             }
         }
     }
-    
 }
