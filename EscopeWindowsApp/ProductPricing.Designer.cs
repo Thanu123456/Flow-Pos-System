@@ -36,37 +36,35 @@
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.proPriceLabel = new System.Windows.Forms.Label();
             this.productPriMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.priceVarNameLabel = new System.Windows.Forms.Label();
-            this.priceVarNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.pricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.priceLabel = new System.Windows.Forms.Label();
-            this.priVar1NameLbl = new System.Windows.Forms.Label();
-            this.ty1CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.priVarType1Lbl = new System.Windows.Forms.Label();
-            this.ty1RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty1WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty2WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty2RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.priVarType2Lbl = new System.Windows.Forms.Label();
-            this.priVar2NameLbl = new System.Windows.Forms.Label();
-            this.ty2CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty3WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty3RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.priVarType3Lbl = new System.Windows.Forms.Label();
-            this.priVar3NameLbl = new System.Windows.Forms.Label();
-            this.ty3CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty4WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty4RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.priVarType4Lbl = new System.Windows.Forms.Label();
-            this.priVar4NameLbl = new System.Windows.Forms.Label();
-            this.ty4CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.pricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.ty5WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.ty5RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.priVarType5Lbl = new System.Windows.Forms.Label();
             this.priVar5NameLbl = new System.Windows.Forms.Label();
             this.ty5CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty4WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty4RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.priVarType4Lbl = new System.Windows.Forms.Label();
+            this.priVar4NameLbl = new System.Windows.Forms.Label();
+            this.ty4CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty3WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty3RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.priVarType3Lbl = new System.Windows.Forms.Label();
+            this.priVar3NameLbl = new System.Windows.Forms.Label();
+            this.ty3CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty2WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty2RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.priVarType2Lbl = new System.Windows.Forms.Label();
+            this.priVar2NameLbl = new System.Windows.Forms.Label();
+            this.ty2CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty1WholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty1RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.priVarType1Lbl = new System.Windows.Forms.Label();
+            this.priVar1NameLbl = new System.Windows.Forms.Label();
+            this.ty1CostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.priceVarNameLabel = new System.Windows.Forms.Label();
+            this.priceVarNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.priCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.priSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
@@ -147,8 +145,6 @@
             this.productPriMainPanel.BorderRadius = 8;
             this.productPriMainPanel.Controls.Add(this.priceLabel);
             this.productPriMainPanel.Controls.Add(this.pricingPanel);
-            this.productPriMainPanel.Controls.Add(this.label1);
-            this.productPriMainPanel.Controls.Add(this.siticoneTextBox1);
             this.productPriMainPanel.Controls.Add(this.priceVarNameLabel);
             this.productPriMainPanel.Controls.Add(this.priceVarNameText);
             this.productPriMainPanel.FillColor = System.Drawing.Color.White;
@@ -157,79 +153,17 @@
             this.productPriMainPanel.Size = new System.Drawing.Size(738, 581);
             this.productPriMainPanel.TabIndex = 27;
             // 
-            // priceVarNameLabel
+            // priceLabel
             // 
-            this.priceVarNameLabel.AutoSize = true;
-            this.priceVarNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.priceVarNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceVarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priceVarNameLabel.Location = new System.Drawing.Point(18, 19);
-            this.priceVarNameLabel.Name = "priceVarNameLabel";
-            this.priceVarNameLabel.Size = new System.Drawing.Size(134, 23);
-            this.priceVarNameLabel.TabIndex = 24;
-            this.priceVarNameLabel.Text = "Variation Name:";
-            // 
-            // priceVarNameText
-            // 
-            this.priceVarNameText.BackColor = System.Drawing.Color.Transparent;
-            this.priceVarNameText.BorderRadius = 8;
-            this.priceVarNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.priceVarNameText.DefaultText = "";
-            this.priceVarNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.priceVarNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.priceVarNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.priceVarNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.priceVarNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.priceVarNameText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.priceVarNameText.ForeColor = System.Drawing.Color.Black;
-            this.priceVarNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.priceVarNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.priceVarNameText.Location = new System.Drawing.Point(22, 46);
-            this.priceVarNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.priceVarNameText.Name = "priceVarNameText";
-            this.priceVarNameText.PasswordChar = '\0';
-            this.priceVarNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.priceVarNameText.PlaceholderText = "Variation Name";
-            this.priceVarNameText.SelectedText = "";
-            this.priceVarNameText.Size = new System.Drawing.Size(327, 42);
-            this.priceVarNameText.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(370, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 23);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Variation Name:";
-            // 
-            // siticoneTextBox1
-            // 
-            this.siticoneTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneTextBox1.BorderRadius = 8;
-            this.siticoneTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.siticoneTextBox1.DefaultText = "";
-            this.siticoneTextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.siticoneTextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.siticoneTextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.siticoneTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.siticoneTextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox1.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.siticoneTextBox1.Location = new System.Drawing.Point(374, 46);
-            this.siticoneTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.siticoneTextBox1.Name = "siticoneTextBox1";
-            this.siticoneTextBox1.PasswordChar = '\0';
-            this.siticoneTextBox1.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.siticoneTextBox1.PlaceholderText = "Variation Name";
-            this.siticoneTextBox1.SelectedText = "";
-            this.siticoneTextBox1.Size = new System.Drawing.Size(327, 42);
-            this.siticoneTextBox1.TabIndex = 25;
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.BackColor = System.Drawing.Color.Transparent;
+            this.priceLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priceLabel.Location = new System.Drawing.Point(30, 102);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(53, 23);
+            this.priceLabel.TabIndex = 28;
+            this.priceLabel.Text = "Price:";
             // 
             // pricingPanel
             // 
@@ -266,414 +200,6 @@
             this.pricingPanel.Name = "pricingPanel";
             this.pricingPanel.Size = new System.Drawing.Size(695, 453);
             this.pricingPanel.TabIndex = 27;
-            // 
-            // priceLabel
-            // 
-            this.priceLabel.AutoSize = true;
-            this.priceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.priceLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priceLabel.Location = new System.Drawing.Point(30, 102);
-            this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(53, 23);
-            this.priceLabel.TabIndex = 28;
-            this.priceLabel.Text = "Price:";
-            // 
-            // priVar1NameLbl
-            // 
-            this.priVar1NameLbl.AutoSize = true;
-            this.priVar1NameLbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVar1NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVar1NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVar1NameLbl.Location = new System.Drawing.Point(8, 21);
-            this.priVar1NameLbl.Name = "priVar1NameLbl";
-            this.priVar1NameLbl.Size = new System.Drawing.Size(134, 23);
-            this.priVar1NameLbl.TabIndex = 30;
-            this.priVar1NameLbl.Text = "Variation Name:";
-            // 
-            // ty1CostPriText
-            // 
-            this.ty1CostPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty1CostPriText.BorderRadius = 8;
-            this.ty1CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty1CostPriText.DefaultText = "";
-            this.ty1CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty1CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty1CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty1CostPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty1CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty1CostPriText.Location = new System.Drawing.Point(12, 51);
-            this.ty1CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty1CostPriText.Name = "ty1CostPriText";
-            this.ty1CostPriText.PasswordChar = '\0';
-            this.ty1CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty1CostPriText.PlaceholderText = "Cost Price";
-            this.ty1CostPriText.SelectedText = "";
-            this.ty1CostPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty1CostPriText.TabIndex = 29;
-            // 
-            // priVarType1Lbl
-            // 
-            this.priVarType1Lbl.AutoSize = true;
-            this.priVarType1Lbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVarType1Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVarType1Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVarType1Lbl.Location = new System.Drawing.Point(139, 21);
-            this.priVarType1Lbl.Name = "priVarType1Lbl";
-            this.priVarType1Lbl.Size = new System.Drawing.Size(26, 23);
-            this.priVarType1Lbl.TabIndex = 31;
-            this.priVarType1Lbl.Text = "M";
-            // 
-            // ty1RetPriText
-            // 
-            this.ty1RetPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty1RetPriText.BorderRadius = 8;
-            this.ty1RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty1RetPriText.DefaultText = "";
-            this.ty1RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty1RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty1RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty1RetPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty1RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty1RetPriText.Location = new System.Drawing.Point(240, 51);
-            this.ty1RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty1RetPriText.Name = "ty1RetPriText";
-            this.ty1RetPriText.PasswordChar = '\0';
-            this.ty1RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty1RetPriText.PlaceholderText = "Retail Price";
-            this.ty1RetPriText.SelectedText = "";
-            this.ty1RetPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty1RetPriText.TabIndex = 32;
-            // 
-            // ty1WholePriText
-            // 
-            this.ty1WholePriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty1WholePriText.BorderRadius = 8;
-            this.ty1WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty1WholePriText.DefaultText = "";
-            this.ty1WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty1WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty1WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty1WholePriText.ForeColor = System.Drawing.Color.Black;
-            this.ty1WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty1WholePriText.Location = new System.Drawing.Point(469, 51);
-            this.ty1WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty1WholePriText.Name = "ty1WholePriText";
-            this.ty1WholePriText.PasswordChar = '\0';
-            this.ty1WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty1WholePriText.PlaceholderText = "Wholesell Price";
-            this.ty1WholePriText.SelectedText = "";
-            this.ty1WholePriText.Size = new System.Drawing.Size(210, 42);
-            this.ty1WholePriText.TabIndex = 33;
-            // 
-            // ty2WholePriText
-            // 
-            this.ty2WholePriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty2WholePriText.BorderRadius = 8;
-            this.ty2WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty2WholePriText.DefaultText = "";
-            this.ty2WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty2WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty2WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty2WholePriText.ForeColor = System.Drawing.Color.Black;
-            this.ty2WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty2WholePriText.Location = new System.Drawing.Point(469, 137);
-            this.ty2WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty2WholePriText.Name = "ty2WholePriText";
-            this.ty2WholePriText.PasswordChar = '\0';
-            this.ty2WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty2WholePriText.PlaceholderText = "Wholesell Price";
-            this.ty2WholePriText.SelectedText = "";
-            this.ty2WholePriText.Size = new System.Drawing.Size(210, 42);
-            this.ty2WholePriText.TabIndex = 38;
-            // 
-            // ty2RetPriText
-            // 
-            this.ty2RetPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty2RetPriText.BorderRadius = 8;
-            this.ty2RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty2RetPriText.DefaultText = "";
-            this.ty2RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty2RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty2RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty2RetPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty2RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty2RetPriText.Location = new System.Drawing.Point(240, 137);
-            this.ty2RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty2RetPriText.Name = "ty2RetPriText";
-            this.ty2RetPriText.PasswordChar = '\0';
-            this.ty2RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty2RetPriText.PlaceholderText = "Retail Price";
-            this.ty2RetPriText.SelectedText = "";
-            this.ty2RetPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty2RetPriText.TabIndex = 37;
-            // 
-            // priVarType2Lbl
-            // 
-            this.priVarType2Lbl.AutoSize = true;
-            this.priVarType2Lbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVarType2Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVarType2Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVarType2Lbl.Location = new System.Drawing.Point(139, 107);
-            this.priVarType2Lbl.Name = "priVarType2Lbl";
-            this.priVarType2Lbl.Size = new System.Drawing.Size(26, 23);
-            this.priVarType2Lbl.TabIndex = 36;
-            this.priVarType2Lbl.Text = "M";
-            // 
-            // priVar2NameLbl
-            // 
-            this.priVar2NameLbl.AutoSize = true;
-            this.priVar2NameLbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVar2NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVar2NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVar2NameLbl.Location = new System.Drawing.Point(8, 107);
-            this.priVar2NameLbl.Name = "priVar2NameLbl";
-            this.priVar2NameLbl.Size = new System.Drawing.Size(134, 23);
-            this.priVar2NameLbl.TabIndex = 35;
-            this.priVar2NameLbl.Text = "Variation Name:";
-            // 
-            // ty2CostPriText
-            // 
-            this.ty2CostPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty2CostPriText.BorderRadius = 8;
-            this.ty2CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty2CostPriText.DefaultText = "";
-            this.ty2CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty2CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty2CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty2CostPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty2CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty2CostPriText.Location = new System.Drawing.Point(12, 137);
-            this.ty2CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty2CostPriText.Name = "ty2CostPriText";
-            this.ty2CostPriText.PasswordChar = '\0';
-            this.ty2CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty2CostPriText.PlaceholderText = "Cost Price";
-            this.ty2CostPriText.SelectedText = "";
-            this.ty2CostPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty2CostPriText.TabIndex = 34;
-            // 
-            // ty3WholePriText
-            // 
-            this.ty3WholePriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty3WholePriText.BorderRadius = 8;
-            this.ty3WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty3WholePriText.DefaultText = "";
-            this.ty3WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty3WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty3WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty3WholePriText.ForeColor = System.Drawing.Color.Black;
-            this.ty3WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty3WholePriText.Location = new System.Drawing.Point(469, 225);
-            this.ty3WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty3WholePriText.Name = "ty3WholePriText";
-            this.ty3WholePriText.PasswordChar = '\0';
-            this.ty3WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty3WholePriText.PlaceholderText = "Wholesell Price";
-            this.ty3WholePriText.SelectedText = "";
-            this.ty3WholePriText.Size = new System.Drawing.Size(210, 42);
-            this.ty3WholePriText.TabIndex = 43;
-            // 
-            // ty3RetPriText
-            // 
-            this.ty3RetPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty3RetPriText.BorderRadius = 8;
-            this.ty3RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty3RetPriText.DefaultText = "";
-            this.ty3RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty3RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty3RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty3RetPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty3RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty3RetPriText.Location = new System.Drawing.Point(240, 225);
-            this.ty3RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty3RetPriText.Name = "ty3RetPriText";
-            this.ty3RetPriText.PasswordChar = '\0';
-            this.ty3RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty3RetPriText.PlaceholderText = "Retail Price";
-            this.ty3RetPriText.SelectedText = "";
-            this.ty3RetPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty3RetPriText.TabIndex = 42;
-            // 
-            // priVarType3Lbl
-            // 
-            this.priVarType3Lbl.AutoSize = true;
-            this.priVarType3Lbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVarType3Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVarType3Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVarType3Lbl.Location = new System.Drawing.Point(139, 195);
-            this.priVarType3Lbl.Name = "priVarType3Lbl";
-            this.priVarType3Lbl.Size = new System.Drawing.Size(26, 23);
-            this.priVarType3Lbl.TabIndex = 41;
-            this.priVarType3Lbl.Text = "M";
-            // 
-            // priVar3NameLbl
-            // 
-            this.priVar3NameLbl.AutoSize = true;
-            this.priVar3NameLbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVar3NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVar3NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVar3NameLbl.Location = new System.Drawing.Point(8, 195);
-            this.priVar3NameLbl.Name = "priVar3NameLbl";
-            this.priVar3NameLbl.Size = new System.Drawing.Size(134, 23);
-            this.priVar3NameLbl.TabIndex = 40;
-            this.priVar3NameLbl.Text = "Variation Name:";
-            // 
-            // ty3CostPriText
-            // 
-            this.ty3CostPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty3CostPriText.BorderRadius = 8;
-            this.ty3CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty3CostPriText.DefaultText = "";
-            this.ty3CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty3CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty3CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty3CostPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty3CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty3CostPriText.Location = new System.Drawing.Point(12, 225);
-            this.ty3CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty3CostPriText.Name = "ty3CostPriText";
-            this.ty3CostPriText.PasswordChar = '\0';
-            this.ty3CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty3CostPriText.PlaceholderText = "Cost Price";
-            this.ty3CostPriText.SelectedText = "";
-            this.ty3CostPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty3CostPriText.TabIndex = 39;
-            // 
-            // ty4WholePriText
-            // 
-            this.ty4WholePriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty4WholePriText.BorderRadius = 8;
-            this.ty4WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty4WholePriText.DefaultText = "";
-            this.ty4WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty4WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty4WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty4WholePriText.ForeColor = System.Drawing.Color.Black;
-            this.ty4WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty4WholePriText.Location = new System.Drawing.Point(469, 310);
-            this.ty4WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty4WholePriText.Name = "ty4WholePriText";
-            this.ty4WholePriText.PasswordChar = '\0';
-            this.ty4WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty4WholePriText.PlaceholderText = "Wholesell Price";
-            this.ty4WholePriText.SelectedText = "";
-            this.ty4WholePriText.Size = new System.Drawing.Size(210, 42);
-            this.ty4WholePriText.TabIndex = 48;
-            // 
-            // ty4RetPriText
-            // 
-            this.ty4RetPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty4RetPriText.BorderRadius = 8;
-            this.ty4RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty4RetPriText.DefaultText = "";
-            this.ty4RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty4RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty4RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty4RetPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty4RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty4RetPriText.Location = new System.Drawing.Point(240, 310);
-            this.ty4RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty4RetPriText.Name = "ty4RetPriText";
-            this.ty4RetPriText.PasswordChar = '\0';
-            this.ty4RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty4RetPriText.PlaceholderText = "Retail Price";
-            this.ty4RetPriText.SelectedText = "";
-            this.ty4RetPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty4RetPriText.TabIndex = 47;
-            // 
-            // priVarType4Lbl
-            // 
-            this.priVarType4Lbl.AutoSize = true;
-            this.priVarType4Lbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVarType4Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVarType4Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVarType4Lbl.Location = new System.Drawing.Point(139, 280);
-            this.priVarType4Lbl.Name = "priVarType4Lbl";
-            this.priVarType4Lbl.Size = new System.Drawing.Size(26, 23);
-            this.priVarType4Lbl.TabIndex = 46;
-            this.priVarType4Lbl.Text = "M";
-            // 
-            // priVar4NameLbl
-            // 
-            this.priVar4NameLbl.AutoSize = true;
-            this.priVar4NameLbl.BackColor = System.Drawing.Color.Transparent;
-            this.priVar4NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priVar4NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.priVar4NameLbl.Location = new System.Drawing.Point(8, 280);
-            this.priVar4NameLbl.Name = "priVar4NameLbl";
-            this.priVar4NameLbl.Size = new System.Drawing.Size(134, 23);
-            this.priVar4NameLbl.TabIndex = 45;
-            this.priVar4NameLbl.Text = "Variation Name:";
-            // 
-            // ty4CostPriText
-            // 
-            this.ty4CostPriText.BackColor = System.Drawing.Color.Transparent;
-            this.ty4CostPriText.BorderRadius = 8;
-            this.ty4CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty4CostPriText.DefaultText = "";
-            this.ty4CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty4CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty4CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.ty4CostPriText.ForeColor = System.Drawing.Color.Black;
-            this.ty4CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty4CostPriText.Location = new System.Drawing.Point(12, 310);
-            this.ty4CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty4CostPriText.Name = "ty4CostPriText";
-            this.ty4CostPriText.PasswordChar = '\0';
-            this.ty4CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty4CostPriText.PlaceholderText = "Cost Price";
-            this.ty4CostPriText.SelectedText = "";
-            this.ty4CostPriText.Size = new System.Drawing.Size(210, 42);
-            this.ty4CostPriText.TabIndex = 44;
             // 
             // ty5WholePriText
             // 
@@ -774,6 +300,439 @@
             this.ty5CostPriText.Size = new System.Drawing.Size(210, 42);
             this.ty5CostPriText.TabIndex = 49;
             // 
+            // ty4WholePriText
+            // 
+            this.ty4WholePriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty4WholePriText.BorderRadius = 8;
+            this.ty4WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty4WholePriText.DefaultText = "";
+            this.ty4WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty4WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty4WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4WholePriText.ForeColor = System.Drawing.Color.Black;
+            this.ty4WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty4WholePriText.Location = new System.Drawing.Point(469, 310);
+            this.ty4WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty4WholePriText.Name = "ty4WholePriText";
+            this.ty4WholePriText.PasswordChar = '\0';
+            this.ty4WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty4WholePriText.PlaceholderText = "Wholesell Price";
+            this.ty4WholePriText.SelectedText = "";
+            this.ty4WholePriText.Size = new System.Drawing.Size(210, 42);
+            this.ty4WholePriText.TabIndex = 48;
+            // 
+            // ty4RetPriText
+            // 
+            this.ty4RetPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty4RetPriText.BorderRadius = 8;
+            this.ty4RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty4RetPriText.DefaultText = "";
+            this.ty4RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty4RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty4RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4RetPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty4RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty4RetPriText.Location = new System.Drawing.Point(240, 310);
+            this.ty4RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty4RetPriText.Name = "ty4RetPriText";
+            this.ty4RetPriText.PasswordChar = '\0';
+            this.ty4RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty4RetPriText.PlaceholderText = "Retail Price";
+            this.ty4RetPriText.SelectedText = "";
+            this.ty4RetPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty4RetPriText.TabIndex = 47;
+            // 
+            // priVarType4Lbl
+            // 
+            this.priVarType4Lbl.AutoSize = true;
+            this.priVarType4Lbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVarType4Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVarType4Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVarType4Lbl.Location = new System.Drawing.Point(139, 280);
+            this.priVarType4Lbl.Name = "priVarType4Lbl";
+            this.priVarType4Lbl.Size = new System.Drawing.Size(26, 23);
+            this.priVarType4Lbl.TabIndex = 46;
+            this.priVarType4Lbl.Text = "M";
+            // 
+            // priVar4NameLbl
+            // 
+            this.priVar4NameLbl.AutoSize = true;
+            this.priVar4NameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVar4NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVar4NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVar4NameLbl.Location = new System.Drawing.Point(8, 280);
+            this.priVar4NameLbl.Name = "priVar4NameLbl";
+            this.priVar4NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar4NameLbl.TabIndex = 45;
+            this.priVar4NameLbl.Text = "Variation Name:";
+            // 
+            // ty4CostPriText
+            // 
+            this.ty4CostPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty4CostPriText.BorderRadius = 8;
+            this.ty4CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty4CostPriText.DefaultText = "";
+            this.ty4CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty4CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty4CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4CostPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty4CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty4CostPriText.Location = new System.Drawing.Point(12, 310);
+            this.ty4CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty4CostPriText.Name = "ty4CostPriText";
+            this.ty4CostPriText.PasswordChar = '\0';
+            this.ty4CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty4CostPriText.PlaceholderText = "Cost Price";
+            this.ty4CostPriText.SelectedText = "";
+            this.ty4CostPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty4CostPriText.TabIndex = 44;
+            // 
+            // ty3WholePriText
+            // 
+            this.ty3WholePriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty3WholePriText.BorderRadius = 8;
+            this.ty3WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty3WholePriText.DefaultText = "";
+            this.ty3WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty3WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty3WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3WholePriText.ForeColor = System.Drawing.Color.Black;
+            this.ty3WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty3WholePriText.Location = new System.Drawing.Point(469, 225);
+            this.ty3WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty3WholePriText.Name = "ty3WholePriText";
+            this.ty3WholePriText.PasswordChar = '\0';
+            this.ty3WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty3WholePriText.PlaceholderText = "Wholesell Price";
+            this.ty3WholePriText.SelectedText = "";
+            this.ty3WholePriText.Size = new System.Drawing.Size(210, 42);
+            this.ty3WholePriText.TabIndex = 43;
+            // 
+            // ty3RetPriText
+            // 
+            this.ty3RetPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty3RetPriText.BorderRadius = 8;
+            this.ty3RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty3RetPriText.DefaultText = "";
+            this.ty3RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty3RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty3RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3RetPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty3RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty3RetPriText.Location = new System.Drawing.Point(240, 225);
+            this.ty3RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty3RetPriText.Name = "ty3RetPriText";
+            this.ty3RetPriText.PasswordChar = '\0';
+            this.ty3RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty3RetPriText.PlaceholderText = "Retail Price";
+            this.ty3RetPriText.SelectedText = "";
+            this.ty3RetPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty3RetPriText.TabIndex = 42;
+            // 
+            // priVarType3Lbl
+            // 
+            this.priVarType3Lbl.AutoSize = true;
+            this.priVarType3Lbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVarType3Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVarType3Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVarType3Lbl.Location = new System.Drawing.Point(139, 195);
+            this.priVarType3Lbl.Name = "priVarType3Lbl";
+            this.priVarType3Lbl.Size = new System.Drawing.Size(26, 23);
+            this.priVarType3Lbl.TabIndex = 41;
+            this.priVarType3Lbl.Text = "M";
+            // 
+            // priVar3NameLbl
+            // 
+            this.priVar3NameLbl.AutoSize = true;
+            this.priVar3NameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVar3NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVar3NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVar3NameLbl.Location = new System.Drawing.Point(8, 195);
+            this.priVar3NameLbl.Name = "priVar3NameLbl";
+            this.priVar3NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar3NameLbl.TabIndex = 40;
+            this.priVar3NameLbl.Text = "Variation Name:";
+            // 
+            // ty3CostPriText
+            // 
+            this.ty3CostPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty3CostPriText.BorderRadius = 8;
+            this.ty3CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty3CostPriText.DefaultText = "";
+            this.ty3CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty3CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty3CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3CostPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty3CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty3CostPriText.Location = new System.Drawing.Point(12, 225);
+            this.ty3CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty3CostPriText.Name = "ty3CostPriText";
+            this.ty3CostPriText.PasswordChar = '\0';
+            this.ty3CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty3CostPriText.PlaceholderText = "Cost Price";
+            this.ty3CostPriText.SelectedText = "";
+            this.ty3CostPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty3CostPriText.TabIndex = 39;
+            // 
+            // ty2WholePriText
+            // 
+            this.ty2WholePriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty2WholePriText.BorderRadius = 8;
+            this.ty2WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty2WholePriText.DefaultText = "";
+            this.ty2WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty2WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty2WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2WholePriText.ForeColor = System.Drawing.Color.Black;
+            this.ty2WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty2WholePriText.Location = new System.Drawing.Point(469, 137);
+            this.ty2WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty2WholePriText.Name = "ty2WholePriText";
+            this.ty2WholePriText.PasswordChar = '\0';
+            this.ty2WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty2WholePriText.PlaceholderText = "Wholesell Price";
+            this.ty2WholePriText.SelectedText = "";
+            this.ty2WholePriText.Size = new System.Drawing.Size(210, 42);
+            this.ty2WholePriText.TabIndex = 38;
+            // 
+            // ty2RetPriText
+            // 
+            this.ty2RetPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty2RetPriText.BorderRadius = 8;
+            this.ty2RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty2RetPriText.DefaultText = "";
+            this.ty2RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty2RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty2RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2RetPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty2RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty2RetPriText.Location = new System.Drawing.Point(240, 137);
+            this.ty2RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty2RetPriText.Name = "ty2RetPriText";
+            this.ty2RetPriText.PasswordChar = '\0';
+            this.ty2RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty2RetPriText.PlaceholderText = "Retail Price";
+            this.ty2RetPriText.SelectedText = "";
+            this.ty2RetPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty2RetPriText.TabIndex = 37;
+            // 
+            // priVarType2Lbl
+            // 
+            this.priVarType2Lbl.AutoSize = true;
+            this.priVarType2Lbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVarType2Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVarType2Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVarType2Lbl.Location = new System.Drawing.Point(139, 107);
+            this.priVarType2Lbl.Name = "priVarType2Lbl";
+            this.priVarType2Lbl.Size = new System.Drawing.Size(26, 23);
+            this.priVarType2Lbl.TabIndex = 36;
+            this.priVarType2Lbl.Text = "M";
+            // 
+            // priVar2NameLbl
+            // 
+            this.priVar2NameLbl.AutoSize = true;
+            this.priVar2NameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVar2NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVar2NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVar2NameLbl.Location = new System.Drawing.Point(8, 107);
+            this.priVar2NameLbl.Name = "priVar2NameLbl";
+            this.priVar2NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar2NameLbl.TabIndex = 35;
+            this.priVar2NameLbl.Text = "Variation Name:";
+            // 
+            // ty2CostPriText
+            // 
+            this.ty2CostPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty2CostPriText.BorderRadius = 8;
+            this.ty2CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty2CostPriText.DefaultText = "";
+            this.ty2CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty2CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty2CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2CostPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty2CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty2CostPriText.Location = new System.Drawing.Point(12, 137);
+            this.ty2CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty2CostPriText.Name = "ty2CostPriText";
+            this.ty2CostPriText.PasswordChar = '\0';
+            this.ty2CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty2CostPriText.PlaceholderText = "Cost Price";
+            this.ty2CostPriText.SelectedText = "";
+            this.ty2CostPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty2CostPriText.TabIndex = 34;
+            // 
+            // ty1WholePriText
+            // 
+            this.ty1WholePriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty1WholePriText.BorderRadius = 8;
+            this.ty1WholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty1WholePriText.DefaultText = "";
+            this.ty1WholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty1WholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty1WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1WholePriText.ForeColor = System.Drawing.Color.Black;
+            this.ty1WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty1WholePriText.Location = new System.Drawing.Point(469, 51);
+            this.ty1WholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty1WholePriText.Name = "ty1WholePriText";
+            this.ty1WholePriText.PasswordChar = '\0';
+            this.ty1WholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty1WholePriText.PlaceholderText = "Wholesell Price";
+            this.ty1WholePriText.SelectedText = "";
+            this.ty1WholePriText.Size = new System.Drawing.Size(210, 42);
+            this.ty1WholePriText.TabIndex = 33;
+            // 
+            // ty1RetPriText
+            // 
+            this.ty1RetPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty1RetPriText.BorderRadius = 8;
+            this.ty1RetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty1RetPriText.DefaultText = "";
+            this.ty1RetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty1RetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty1RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1RetPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty1RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty1RetPriText.Location = new System.Drawing.Point(240, 51);
+            this.ty1RetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty1RetPriText.Name = "ty1RetPriText";
+            this.ty1RetPriText.PasswordChar = '\0';
+            this.ty1RetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty1RetPriText.PlaceholderText = "Retail Price";
+            this.ty1RetPriText.SelectedText = "";
+            this.ty1RetPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty1RetPriText.TabIndex = 32;
+            // 
+            // priVarType1Lbl
+            // 
+            this.priVarType1Lbl.AutoSize = true;
+            this.priVarType1Lbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVarType1Lbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVarType1Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVarType1Lbl.Location = new System.Drawing.Point(139, 21);
+            this.priVarType1Lbl.Name = "priVarType1Lbl";
+            this.priVarType1Lbl.Size = new System.Drawing.Size(26, 23);
+            this.priVarType1Lbl.TabIndex = 31;
+            this.priVarType1Lbl.Text = "M";
+            // 
+            // priVar1NameLbl
+            // 
+            this.priVar1NameLbl.AutoSize = true;
+            this.priVar1NameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVar1NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVar1NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVar1NameLbl.Location = new System.Drawing.Point(8, 21);
+            this.priVar1NameLbl.Name = "priVar1NameLbl";
+            this.priVar1NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar1NameLbl.TabIndex = 30;
+            this.priVar1NameLbl.Text = "Variation Name:";
+            // 
+            // ty1CostPriText
+            // 
+            this.ty1CostPriText.BackColor = System.Drawing.Color.Transparent;
+            this.ty1CostPriText.BorderRadius = 8;
+            this.ty1CostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty1CostPriText.DefaultText = "";
+            this.ty1CostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty1CostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty1CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1CostPriText.ForeColor = System.Drawing.Color.Black;
+            this.ty1CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty1CostPriText.Location = new System.Drawing.Point(12, 51);
+            this.ty1CostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty1CostPriText.Name = "ty1CostPriText";
+            this.ty1CostPriText.PasswordChar = '\0';
+            this.ty1CostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty1CostPriText.PlaceholderText = "Cost Price";
+            this.ty1CostPriText.SelectedText = "";
+            this.ty1CostPriText.Size = new System.Drawing.Size(210, 42);
+            this.ty1CostPriText.TabIndex = 29;
+            // 
+            // priceVarNameLabel
+            // 
+            this.priceVarNameLabel.AutoSize = true;
+            this.priceVarNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.priceVarNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceVarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priceVarNameLabel.Location = new System.Drawing.Point(18, 19);
+            this.priceVarNameLabel.Name = "priceVarNameLabel";
+            this.priceVarNameLabel.Size = new System.Drawing.Size(134, 23);
+            this.priceVarNameLabel.TabIndex = 24;
+            this.priceVarNameLabel.Text = "Variation Name:";
+            // 
+            // priceVarNameText
+            // 
+            this.priceVarNameText.BackColor = System.Drawing.Color.Transparent;
+            this.priceVarNameText.BorderRadius = 8;
+            this.priceVarNameText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.priceVarNameText.DefaultText = "";
+            this.priceVarNameText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.priceVarNameText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.priceVarNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.priceVarNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.priceVarNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.priceVarNameText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.priceVarNameText.ForeColor = System.Drawing.Color.Black;
+            this.priceVarNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.priceVarNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.priceVarNameText.Location = new System.Drawing.Point(22, 46);
+            this.priceVarNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.priceVarNameText.Name = "priceVarNameText";
+            this.priceVarNameText.PasswordChar = '\0';
+            this.priceVarNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.priceVarNameText.PlaceholderText = "Variation Name";
+            this.priceVarNameText.SelectedText = "";
+            this.priceVarNameText.Size = new System.Drawing.Size(327, 42);
+            this.priceVarNameText.TabIndex = 9;
+            // 
             // priCancelBtn
             // 
             this.priCancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -855,8 +814,6 @@
         private System.Windows.Forms.Label priVarType1Lbl;
         private System.Windows.Forms.Label priVar1NameLbl;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ty1CostPriText;
-        private System.Windows.Forms.Label label1;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ty1WholePriText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ty1RetPriText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ty2WholePriText;

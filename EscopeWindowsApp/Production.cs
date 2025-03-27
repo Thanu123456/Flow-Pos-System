@@ -169,5 +169,10 @@ namespace EscopeWindowsApp
             CreateProduct createProduct = new CreateProduct();
             createProduct.Show();
         }
+
+        private void Production_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

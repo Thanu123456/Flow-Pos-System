@@ -16,17 +16,18 @@ namespace EscopeWindowsApp
         public Brands()
         {
             InitializeComponent();
-            this.Load += Brands_Load; // Ensure the Load event is subscribed.
+            this.Load += Brands_Load;
             bindingSource = new BindingSource();
             brandsDataGridView.CellPainting += BrandsDataGridView_CellPainting;
             brandsDataGridView.CellFormatting += BrandsDataGridView_CellFormatting;
+            brandsDataGridView.CellContentClick += brandsDataGridView_CellContentClick; // Ensure event is wired
         }
 
         private void Brands_Load(object sender, EventArgs e)
         {
-            ConfigureDataGridView();     // First configure columns
-            brandsDataGridView.DataSource = bindingSource; // Then bind data source
-            LoadBrandsData();           // Finally load data
+            ConfigureDataGridView();
+            brandsDataGridView.DataSource = bindingSource;
+            LoadBrandsData();
 
             if (brandsTable.Rows.Count == 0)
             {
@@ -44,30 +45,40 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Brand ID"
+                HeaderText = "BRAND ID",
+                Width = 100,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
             brandsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME",
+                Width = 200,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            brandsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
-                ToolTipText = "Edit this brand"
-            });
+                ToolTipText = "Edit this brand",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true // Ensures "Edit" text is displayed
+            };
+            brandsDataGridView.Columns.Add(editColumn);
 
-            brandsDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
-                ToolTipText = "Delete this brand"
-            });
+                ToolTipText = "Delete this brand",
+                Text = "Delete",
+                UseColumnTextForButtonValue = true // Ensures "Delete" text is displayed
+            };
+            brandsDataGridView.Columns.Add(deleteColumn);
 
             brandsDataGridView.AllowUserToAddRows = false;
         }
@@ -79,7 +90,7 @@ namespace EscopeWindowsApp
             if (brandsDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int brandId = Convert.ToInt32(e.Value);
-                e.Value = $"br{brandId:D3}"; // Format as "br001", "br002", etc.
+                e.Value = $"br{brandId:D3}";
                 e.FormattingApplied = true;
             }
         }
@@ -152,7 +163,6 @@ namespace EscopeWindowsApp
                 brandsTable = new DataTable();
                 brandsTable.Columns.Add("id", typeof(int));
                 brandsTable.Columns.Add("name", typeof(string));
-                // Add some dummy data for testing if DB fails
                 brandsTable.Rows.Add(1, "Test Brand 1");
                 brandsTable.Rows.Add(2, "Test Brand 2");
                 bindingSource.DataSource = brandsTable;
@@ -202,53 +212,48 @@ namespace EscopeWindowsApp
 
         private void brandsFilterBtn_Click(object sender, EventArgs e)
         {
-            LoadBrandsData();                  // Reload the brands data from the database
-            brandsSearchText.Text = string.Empty;  // Clear the search textbox
+            LoadBrandsData();
+            brandsSearchText.Text = string.Empty;
             bindingSource.Filter = null;
         }
 
         private void brandsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = brandsDataGridView.Rows[e.RowIndex];
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return; // Ignore header clicks
 
+            DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
+            DataRow row = rowView.Row;
+
+            try
+            {
                 if (brandsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
                 {
-                    int brandId = Convert.ToInt32(row.Cells["id"].Value);
-                    string name = row.Cells["name"].Value.ToString();
+                    int brandId = Convert.ToInt32(row["id"]);
+                    string name = row["name"].ToString();
                     byte[] logo = null;
 
-                    try
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
-                        using (MySqlConnection connection = new MySqlConnection(connectionString))
+                        connection.Open();
+                        string query = "SELECT logo FROM brands WHERE id = @brandId";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
                         {
-                            connection.Open();
-                            string query = "SELECT logo FROM brands WHERE id = @brandId";
-                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            command.Parameters.AddWithValue("@brandId", brandId);
+                            object result = command.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
                             {
-                                command.Parameters.AddWithValue("@brandId", brandId);
-                                object result = command.ExecuteScalar();
-                                if (result != null && result != DBNull.Value)
-                                {
-                                    logo = (byte[])result;
-                                }
+                                logo = (byte[])result;
                             }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error fetching logo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     CreateBrand editForm = new CreateBrand(brandId, name, logo);
                     editForm.FormClosed += (s, args) => LoadBrandsData();
-                    editForm.Show();
+                    editForm.ShowDialog(); // Use ShowDialog for modal behavior
                 }
-
-                if (brandsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (brandsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
                 {
-                    int brandId = Convert.ToInt32(row.Cells["id"].Value);
+                    int brandId = Convert.ToInt32(row["id"]);
                     string formattedId = $"br{brandId:D3}";
 
                     DialogResult result = MessageBox.Show(
@@ -260,65 +265,57 @@ namespace EscopeWindowsApp
 
                     if (result == DialogResult.Yes)
                     {
-                        try
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                            connection.Open();
+                            string query = "DELETE FROM brands WHERE id = @brandId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                connection.Open();
-                                string query = "DELETE FROM brands WHERE id = @brandId";
-                                using (MySqlCommand command = new MySqlCommand(query, connection))
-                                {
-                                    command.Parameters.AddWithValue("@brandId", brandId);
-                                    command.ExecuteNonQuery();
-                                }
+                                command.Parameters.AddWithValue("@brandId", brandId);
+                                command.ExecuteNonQuery();
                             }
-                            LoadBrandsData();
-                            MessageBox.Show($"Brand {formattedId} deleted successfully.", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error deleting brand: {ex.Message}", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        LoadBrandsData();
+                        MessageBox.Show($"Brand {formattedId} deleted successfully.", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in cell action: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void brandsFirstBtn_Click(object sender, EventArgs e)
         {
-            if (brandsDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = 0;
-                brandsDataGridView.CurrentCell = brandsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = 0;
             }
         }
 
         private void brandsPrevBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex > 0)
+            if (bindingSource.Position > 0)
             {
-                currentIndex--;
-                brandsDataGridView.CurrentCell = brandsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position--;
             }
         }
 
         private void brandsNextBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex < brandsDataGridView.Rows.Count - 1)
+            if (bindingSource.Position < bindingSource.Count - 1)
             {
-                currentIndex++;
-                brandsDataGridView.CurrentCell = brandsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position++;
             }
         }
 
         private void brandsLastBtn_Click(object sender, EventArgs e)
         {
-            if (brandsDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = brandsDataGridView.Rows.Count - 1;
-                brandsDataGridView.CurrentCell = brandsDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = bindingSource.Count - 1;
             }
         }
 
@@ -329,7 +326,7 @@ namespace EscopeWindowsApp
 
         private void Brands_Load_1(object sender, EventArgs e)
         {
-
+            // Remove or merge with Brands_Load if not needed
         }
     }
 }

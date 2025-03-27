@@ -10,23 +10,23 @@ namespace EscopeWindowsApp
     {
         private DataTable baseUnitsTable;
         private BindingSource bindingSource;
-        private int currentIndex = 0;
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
 
         public BaseUnit()
         {
             InitializeComponent();
-            this.Load += BaseUnit_Load; // Ensure the Load event is subscribed
+            this.Load += BaseUnit_Load;
             bindingSource = new BindingSource();
             baseUnitDataGridView.CellPainting += BaseUnitDataGridView_CellPainting;
             baseUnitDataGridView.CellFormatting += BaseUnitDataGridView_CellFormatting;
+            baseUnitDataGridView.CellContentClick += baseUnitDataGridView_CellContentClick; // Ensure event is wired
         }
 
         private void BaseUnit_Load(object sender, EventArgs e)
         {
-            ConfigureDataGridView();     // First configure columns
-            baseUnitDataGridView.DataSource = bindingSource; // Then bind data source
-            LoadBaseUnitsData();        // Finally load data
+            ConfigureDataGridView();
+            baseUnitDataGridView.DataSource = bindingSource;
+            LoadBaseUnitsData();
 
             if (baseUnitsTable.Rows.Count == 0)
             {
@@ -44,30 +44,40 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Base Unit ID"
+                HeaderText = "BASEUNIT ID",
+                Width = 100,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
             baseUnitDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME",
+                Width = 200,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            baseUnitDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
-                ToolTipText = "Edit this base unit"
-            });
+                ToolTipText = "Edit this base unit",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true // Ensures "Edit" text is displayed
+            };
+            baseUnitDataGridView.Columns.Add(editColumn);
 
-            baseUnitDataGridView.Columns.Add(new DataGridViewButtonColumn
+            DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
-                ToolTipText = "Delete this base unit"
-            });
+                ToolTipText = "Delete this base unit",
+                Text = "Delete",
+                UseColumnTextForButtonValue = true // Ensures "Delete" text is displayed
+            };
+            baseUnitDataGridView.Columns.Add(deleteColumn);
 
             baseUnitDataGridView.AllowUserToAddRows = false;
         }
@@ -79,7 +89,7 @@ namespace EscopeWindowsApp
             if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int baseUnitId = Convert.ToInt32(e.Value);
-                e.Value = $"bu{baseUnitId:D3}"; // Format as "bu001", "bu002", etc.
+                e.Value = $"bu{baseUnitId:D3}";
                 e.FormattingApplied = true;
             }
         }
@@ -152,7 +162,8 @@ namespace EscopeWindowsApp
                 baseUnitsTable = new DataTable();
                 baseUnitsTable.Columns.Add("id", typeof(int));
                 baseUnitsTable.Columns.Add("name", typeof(string));
-
+                baseUnitsTable.Rows.Add(1, "Test Unit 1");
+                baseUnitsTable.Rows.Add(2, "Test Unit 2");
                 bindingSource.DataSource = baseUnitsTable;
             }
         }
@@ -200,12 +211,11 @@ namespace EscopeWindowsApp
 
         private void baseUnitFilterBtn_Click(object sender, EventArgs e)
         {
-            LoadBaseUnitsData();            // Reload the base units data from the database
-            baseUnitSearchText.Text = string.Empty;  // Clear the search textbox
+            LoadBaseUnitsData();
+            baseUnitSearchText.Text = string.Empty;
             bindingSource.Filter = null;
         }
 
-        // Method to check if a base unit is referenced by any units
         private int CountUnitsUsingBaseUnit(int baseUnitId)
         {
             try
@@ -224,54 +234,51 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error checking dependent units: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1; // Indicate an error
+                return -1;
             }
         }
 
         private void baseUnitDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = baseUnitDataGridView.Rows[e.RowIndex];
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return; // Ignore header clicks
 
+            DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
+            DataRow row = rowView.Row;
+
+            try
+            {
                 if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
                 {
-                    int baseUnitId = Convert.ToInt32(row.Cells["id"].Value);
-                    string name = row.Cells["name"].Value.ToString();
+                    int baseUnitId = Convert.ToInt32(row["id"]);
+                    string name = row["name"].ToString();
 
                     CreateBaseUnit editForm = new CreateBaseUnit(baseUnitId, name);
                     editForm.FormClosed += (s, args) => LoadBaseUnitsData();
-                    editForm.Show();
+                    editForm.ShowDialog(); // Use ShowDialog for modal behavior
                 }
-
-                if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                else if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
                 {
-                    int baseUnitId = Convert.ToInt32(row.Cells["id"].Value);
+                    int baseUnitId = Convert.ToInt32(row["id"]);
                     string formattedId = $"bu{baseUnitId:D3}";
 
-                    // Check if the base unit is referenced by any units
                     int dependentUnitCount = CountUnitsUsingBaseUnit(baseUnitId);
                     if (dependentUnitCount == -1)
                     {
-                        // Error already shown in CountUnitsUsingBaseUnit
-                        return;
+                        return; // Error already shown
                     }
 
-                    // If the base unit is in use, show a warning dialog with only a "Cancel" button (labeled as "OK")
                     if (dependentUnitCount > 0)
                     {
                         MessageBox.Show(
                             $"Warning: Base unit {formattedId} is currently used by {dependentUnitCount} unit(s). " +
                             "You cannot delete this base unit until the dependent units are deleted or reassigned.",
                             "Warning",
-                            MessageBoxButtons.OK, // Only one button, labeled "OK" but acts as "Cancel"
+                            MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
                         );
-                        // Abort the deletion process
                         return;
                     }
 
-                    // Proceed to the confirmation dialog if there are no dependent units
                     DialogResult confirmResult = MessageBox.Show(
                         $"Are you sure you want to delete base unit {formattedId}?",
                         "Confirm Delete",
@@ -281,65 +288,57 @@ namespace EscopeWindowsApp
 
                     if (confirmResult == DialogResult.Yes)
                     {
-                        try
+                        using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
-                            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                            connection.Open();
+                            string query = "DELETE FROM base_units WHERE id = @baseUnitId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                connection.Open();
-                                string query = "DELETE FROM base_units WHERE id = @baseUnitId";
-                                using (MySqlCommand command = new MySqlCommand(query, connection))
-                                {
-                                    command.Parameters.AddWithValue("@baseUnitId", baseUnitId);
-                                    command.ExecuteNonQuery();
-                                }
+                                command.Parameters.AddWithValue("@baseUnitId", baseUnitId);
+                                command.ExecuteNonQuery();
                             }
-                            LoadBaseUnitsData();
-                            MessageBox.Show($"Base unit {formattedId} deleted successfully.", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error deleting base unit: {ex.Message}", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        LoadBaseUnitsData();
+                        MessageBox.Show($"Base unit {formattedId} deleted successfully.", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in cell action: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void baseUnitsFirstBtn_Click(object sender, EventArgs e)
         {
-            if (baseUnitDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = 0;
-                baseUnitDataGridView.CurrentCell = baseUnitDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = 0;
             }
         }
 
         private void baseUnitsPrevBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex > 0)
+            if (bindingSource.Position > 0)
             {
-                currentIndex--;
-                baseUnitDataGridView.CurrentCell = baseUnitDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position--;
             }
         }
 
         private void baseUnitsNextBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex < baseUnitDataGridView.Rows.Count - 1)
+            if (bindingSource.Position < bindingSource.Count - 1)
             {
-                currentIndex++;
-                baseUnitDataGridView.CurrentCell = baseUnitDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position++;
             }
         }
 
         private void baseUnitsLastBtn_Click(object sender, EventArgs e)
         {
-            if (baseUnitDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = baseUnitDataGridView.Rows.Count - 1;
-                baseUnitDataGridView.CurrentCell = baseUnitDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = bindingSource.Count - 1;
             }
         }
 
