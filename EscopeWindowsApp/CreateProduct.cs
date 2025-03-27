@@ -1,157 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 using Siticone.Desktop.UI.WinForms;
 
 namespace EscopeWindowsApp
 {
     public partial class CreateProduct : Form
     {
-        // Dictionary to store the original Top positions of controls
+        private bool isEditMode = false;
+        private int editProductId = -1;
         private Dictionary<Control, int> originalPositions = new Dictionary<Control, int>();
 
-        public CreateProduct()
+        // Error providers for validation
+        private ErrorProvider nameErrorProvider = new ErrorProvider();
+        private ErrorProvider categoryErrorProvider = new ErrorProvider();
+
+        public CreateProduct(int productId = -1, string name = "", string category = "", string barcodeSym = "", string imagePath = "")
         {
             InitializeComponent();
+            SetupErrorProviders();
 
-            // Set up the scrollbar
-            creProVScrollBar1.Minimum = 0;
-            creProVScrollBar1.LargeChange = 50; // Scroll amount when clicking in the scrollbar track
-            creProVScrollBar1.SmallChange = 10; // Scroll amount when clicking the arrows
-            creProVScrollBar1.Scroll += new ScrollEventHandler(creProVScrollBar1_Scroll); // Handle the Scroll event
-
-            // Store the original Top positions of controls
-            StoreOriginalPositions();
-
-            // Calculate the Maximum value for the scrollbar
-            CalculateScrollBarMaximum();
-
-            // Handle form resize events
-            this.Resize += new EventHandler(Form1_Resize);
-
-            // Handle mouse wheel events
-            this.MouseWheel += new MouseEventHandler(Form1_MouseWheel);
-
-            // Add items to the ComboBox
-            creProTypeComboBox.Items.Add("Single");
-            creProTypeComboBox.Items.Add("Variation");
-
-            // Set the default selected item
-            creProTypeComboBox.SelectedIndex = 0;
-
-            // Attach the SelectedIndexChanged event handler
-            creProTypeComboBox.SelectedIndexChanged += new EventHandler(creProTypeComboBox_SelectedIndexChanged);
-        }
-
-        // Store the original Top positions of controls
-        private void StoreOriginalPositions()
-        {
-            foreach (Control control in this.Controls)
+            if (productId != -1)
             {
-                if (control != headerPanel && control != creProVScrollBar1) // Exclude the header panel and scrollbar
-                {
-                    originalPositions[control] = control.Top;
-                }
-            }
-        }
-
-        // Calculate the Maximum value for the scrollbar
-        private void CalculateScrollBarMaximum()
-        {
-            // Get the total height of the content (e.g., the height of the form)
-            int contentHeight = this.ClientSize.Height;
-
-            // Get the height of the visible area (viewport), excluding the header panel
-            int viewportHeight = this.ClientSize.Height - headerPanel.Height;
-
-            // Calculate the Maximum value for the scrollbar
-            creProVScrollBar1.Maximum = Math.Max(0, contentHeight - viewportHeight);
-        }
-
-        // Handle the Scroll event of the VScrollBar
-        private void creProVScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-            // Get the current scroll value
-            int scrollValue = creProVScrollBar1.Value;
-
-            // Move all controls (except the header panel) based on the scroll value
-            foreach (Control control in this.Controls)
-            {
-                if (control != headerPanel && control != creProVScrollBar1) // Exclude the header panel and scrollbar
-                {
-                    // Calculate the new Top position based on the original position and scroll value
-                    control.Top = originalPositions[control] - scrollValue;
-                }
+                isEditMode = true;
+                editProductId = productId;
+                this.Text = "Edit Product";
+                creProSaveBtn.Text = "Update";
             }
 
-            // Ensure the scrollbar stops at the top and bottom
-            if (scrollValue <= creProVScrollBar1.Minimum)
-            {
-                creProVScrollBar1.Value = creProVScrollBar1.Minimum;
-            }
-            else if (scrollValue >= creProVScrollBar1.Maximum)
-            {
-                creProVScrollBar1.Value = creProVScrollBar1.Maximum;
-            }
+            // Pre-fill form fields
+            createProductNameText.Text = name;
+            ProCatComboox.Text = category;
+            //creProBarcodeSymComboBox.Text = barcodeSym;
+            createProductMultipleImgText.Text = imagePath;
+
+            UpdateSaveButtonState();
         }
 
-        // Handle form resize events
-        private void Form1_Resize(object sender, EventArgs e)
+        private void SetupErrorProviders()
         {
-            // Recalculate the scrollbar's Maximum value when the form is resized
-            CalculateScrollBarMaximum();
+            nameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            categoryErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
-        // Handle mouse wheel events
-        private void Form1_MouseWheel(object sender, MouseEventArgs e)
+        private void CreateProduct_Load(object sender, EventArgs e)
         {
-            // Adjust the scrollbar's Value based on the mouse wheel delta
-            int newScrollValue = creProVScrollBar1.Value - (e.Delta / 120 * creProVScrollBar1.SmallChange);
+            UpdateSaveButtonState();
+        }
 
-            // Constrain the new scroll value to the scrollbar's Minimum and Maximum
-            newScrollValue = Math.Max(creProVScrollBar1.Minimum, Math.Min(creProVScrollBar1.Maximum, newScrollValue));
+        private bool ValidateProductName()
+        {
+            if (string.IsNullOrWhiteSpace(createProductNameText.Text))
+            {
+                nameErrorProvider.SetError(createProductNameText, "Product name is required.");
+                return false;
+            }
+            if (createProductNameText.Text.Length < 2)
+            {
+                nameErrorProvider.SetError(createProductNameText, "Product name must be at least 2 characters.");
+                return false;
+            }
+            nameErrorProvider.SetError(createProductNameText, string.Empty);
+            return true;
+        }
 
-            // Set the scrollbar's Value
-            creProVScrollBar1.Value = newScrollValue;
+        private bool ValidateCategory()
+        {
+            if (string.IsNullOrWhiteSpace(ProCatComboox.Text))
+            {
+                categoryErrorProvider.SetError(ProCatComboox, "Category is required.");
+                return false;
+            }
+            categoryErrorProvider.SetError(ProCatComboox, string.Empty);
+            return true;
+        }
 
-            // Trigger the Scroll event to update the control positions
-            creProVScrollBar1_Scroll(null, null);
+        private void UpdateSaveButtonState()
+        {
+            creProSaveBtn.Enabled = ValidateProductName() && ValidateCategory();
+        }
+
+        private void createProductNameText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateProductName();
+            UpdateSaveButtonState();
         }
 
         private void ProCatComboox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void creProBarcodeSymComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void creProSaleUnitLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void creProCreUnitBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void creProAddStocklabel_Click(object sender, EventArgs e)
-        {
-
+            ValidateCategory();
+            UpdateSaveButtonState();
         }
 
         private void createProductMultipleImgBtn_Click(object sender, EventArgs e)
@@ -160,58 +100,165 @@ namespace EscopeWindowsApp
             {
                 using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp;)|*.jpg;*.jpeg;*.png;*.bmp;|All Files (*.*)|*.*";
+                    dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All Files (*.*)|*.*";
                     dialog.FilterIndex = 1;
                     dialog.RestoreDirectory = true;
 
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = dialog.FileName;
-
                         string fileName = System.IO.Path.GetFileName(filePath);
-
                         createProductMultipleImgText.Text = fileName;
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error selecting image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error selecting image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        private void creProVarTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(creProVarTypeComboBox.Text))
+            {
+                try
+                {
+                    ProductPricing productPricing = new ProductPricing();
+                    productPricing.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error opening ProductPricing form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
-        private void CreateProduct_Load(object sender, EventArgs e)
+        private void creProSaveBtn_Click(object sender, EventArgs e)
         {
-
+            if (ValidateProductName() && ValidateCategory())
+            {
+                try
+                {
+                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        if (isEditMode)
+                        {
+                            string query = "UPDATE products SET name = @name, category = @category, barcode_sym = @barcodeSym, image_path = @imagePath WHERE id = @productId";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@category", ProCatComboox.Text);
+                                //command.Parameters.AddWithValue("@barcodeSym", creProBarcodeSymComboBox.Text ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@imagePath", createProductMultipleImgText.Text ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@productId", editProductId);
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            string query = "INSERT INTO products (name, category, barcode_sym, image_path) VALUES (@name, @category, @barcodeSym, @imagePath)";
+                            using (MySqlCommand command = new MySqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@category", ProCatComboox.Text);
+                                //command.Parameters.AddWithValue("@barcodeSym", creProBarcodeSymComboBox.Text ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@imagePath", createProductMultipleImgText.Text ?? (object)DBNull.Value);
+                                command.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Product created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        // Handle the SelectedIndexChanged event of the creProTypeComboBox
-        private void creProTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void creProCancelBtn_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
         }
 
-        // Method to open the AddVariationItem form
         private void OpenAddVariationForm()
         {
             try
             {
-                // Create an instance of the AddVariationItem form
                 AddVariationItem addVariationForm = new AddVariationItem();
-
-                // Show the form as a modal dialog
                 addVariationForm.ShowDialog();
             }
             catch (Exception ex)
             {
-                // Show an error message if something goes wrong
-                MessageBox.Show("Error opening AddVariationItem form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error opening AddVariationItem form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Missing Event Handlers Added Below
+        private void singleWholePriText_TextChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic if needed (e.g., validate wholesale price)
+        }
+
+        private void singleRetPriText_TextChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic if needed (e.g., validate retail price)
+        }
+
+        private void singleCostPriText_TextChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic if needed (e.g., validate cost price)
+        }
+
+        private void singlePricingPanel_Paint(object sender, PaintEventArgs e)
+        {
+            // Placeholder: Add custom painting logic if needed
+        }
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+            // Placeholder: Add custom painting logic if needed
+        }
+
+        private void creProWareComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic for warehouse selection if needed
+        }
+
+        private void creProUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic for unit selection if needed
+        }
+
+        private void creProSupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic for supplier selection if needed
+        }
+
+        private void creProBrandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder: Add logic for brand selection if needed
+        }
+
+        // Placeholder for ProductPricing form
+
+        private void enabalVTypeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            creProVarTypeComboBox.Enabled = enabalVTypeCheckBox.Checked;
+            singlePricingPanel.Enabled = !enabalVTypeCheckBox.Checked;
+
+            if (!enabalVTypeCheckBox.Checked)
+            {
+                creProVarTypeComboBox.SelectedIndex = -1;
             }
         }
     }

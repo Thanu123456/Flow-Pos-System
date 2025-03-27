@@ -31,37 +31,22 @@
             this.components = new System.ComponentModel.Container();
             this.creatProductLabel = new System.Windows.Forms.Label();
             this.createProductMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.enabalVTypeCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
+            this.creProWareComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.creProWareLabel = new System.Windows.Forms.Label();
+            this.creProVarTypeComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.creProVarTypeLabel = new System.Windows.Forms.Label();
             this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.creProTypeComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProTypeLabel = new System.Windows.Forms.Label();
-            this.creProCreUnitBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.creProStatusComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProStatusLabel = new System.Windows.Forms.Label();
             this.creProSupComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProSupLabel = new System.Windows.Forms.Label();
-            this.creProWarehouseComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProWarehouseLabel = new System.Windows.Forms.Label();
-            this.creProAddStocklabel = new System.Windows.Forms.Label();
-            this.creProNoteLabel = new System.Windows.Forms.Label();
-            this.creProNoteTextBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.creProQuanLabel = new System.Windows.Forms.Label();
-            this.creProQuanTextBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.creProPurUnitComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProPurUnitLabel = new System.Windows.Forms.Label();
-            this.creProSaleUnitComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProSaleUnitLabel = new System.Windows.Forms.Label();
+            this.createProductMultipleImgLabel = new System.Windows.Forms.Label();
+            this.createProductMultipleImgText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creProUnitComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProUnitLabel = new System.Windows.Forms.Label();
-            this.creProBarcodeSymComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creProBarcodeSymLabel = new System.Windows.Forms.Label();
             this.creProBrandComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProBrandLabel = new System.Windows.Forms.Label();
             this.ProCatComboox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.createProductCategoryLabel = new System.Windows.Forms.Label();
-            this.createProductMultipleImgLabel = new System.Windows.Forms.Label();
-            this.createProductMultipleImgText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.createProductSKULabel = new System.Windows.Forms.Label();
-            this.createProductSKUText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createProductNameLabel = new System.Windows.Forms.Label();
             this.createProductNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creProSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -71,10 +56,19 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.addProBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
-            this.creProVScrollBar1 = new Siticone.Desktop.UI.WinForms.SiticoneVScrollBar();
+            this.singlePricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.singleWholeLbl = new System.Windows.Forms.Label();
+            this.singleRetLbl = new System.Windows.Forms.Label();
+            this.singleCostLbl = new System.Windows.Forms.Label();
+            this.priVar2NameLbl = new System.Windows.Forms.Label();
+            this.singleWholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.singleRetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.singleTypeNameLbl = new System.Windows.Forms.Label();
+            this.singleCostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createProductMainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
+            this.singlePricingPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // creatProductLabel
@@ -92,53 +86,119 @@
             // 
             // createProductMainPanel
             // 
-            this.createProductMainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.createProductMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.createProductMainPanel.BorderRadius = 8;
+            this.createProductMainPanel.Controls.Add(this.enabalVTypeCheckBox);
+            this.createProductMainPanel.Controls.Add(this.creProWareComboBox);
+            this.createProductMainPanel.Controls.Add(this.creProWareLabel);
+            this.createProductMainPanel.Controls.Add(this.creProVarTypeComboBox);
+            this.createProductMainPanel.Controls.Add(this.creProVarTypeLabel);
             this.createProductMainPanel.Controls.Add(this.createProductMultipleImgBtn);
-            this.createProductMainPanel.Controls.Add(this.creProTypeComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProTypeLabel);
-            this.createProductMainPanel.Controls.Add(this.creProCreUnitBtn);
-            this.createProductMainPanel.Controls.Add(this.creProStatusComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProStatusLabel);
             this.createProductMainPanel.Controls.Add(this.creProSupComboBox);
             this.createProductMainPanel.Controls.Add(this.creProSupLabel);
-            this.createProductMainPanel.Controls.Add(this.creProWarehouseComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProWarehouseLabel);
-            this.createProductMainPanel.Controls.Add(this.creProAddStocklabel);
-            this.createProductMainPanel.Controls.Add(this.creProNoteLabel);
-            this.createProductMainPanel.Controls.Add(this.creProNoteTextBox);
-            this.createProductMainPanel.Controls.Add(this.creProQuanLabel);
-            this.createProductMainPanel.Controls.Add(this.creProQuanTextBox);
-            this.createProductMainPanel.Controls.Add(this.creProPurUnitComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProPurUnitLabel);
-            this.createProductMainPanel.Controls.Add(this.creProSaleUnitComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProSaleUnitLabel);
+            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgLabel);
+            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgText);
             this.createProductMainPanel.Controls.Add(this.creProUnitComboBox);
             this.createProductMainPanel.Controls.Add(this.creProUnitLabel);
-            this.createProductMainPanel.Controls.Add(this.creProBarcodeSymComboBox);
-            this.createProductMainPanel.Controls.Add(this.creProBarcodeSymLabel);
             this.createProductMainPanel.Controls.Add(this.creProBrandComboBox);
             this.createProductMainPanel.Controls.Add(this.creProBrandLabel);
             this.createProductMainPanel.Controls.Add(this.ProCatComboox);
             this.createProductMainPanel.Controls.Add(this.createProductCategoryLabel);
-            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgLabel);
-            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgText);
-            this.createProductMainPanel.Controls.Add(this.createProductSKULabel);
-            this.createProductMainPanel.Controls.Add(this.createProductSKUText);
             this.createProductMainPanel.Controls.Add(this.createProductNameLabel);
             this.createProductMainPanel.Controls.Add(this.createProductNameText);
             this.createProductMainPanel.FillColor = System.Drawing.Color.White;
             this.createProductMainPanel.Location = new System.Drawing.Point(27, 90);
             this.createProductMainPanel.Name = "createProductMainPanel";
-            this.createProductMainPanel.Size = new System.Drawing.Size(1043, 602);
+            this.createProductMainPanel.Size = new System.Drawing.Size(713, 358);
             this.createProductMainPanel.TabIndex = 23;
+            // 
+            // enabalVTypeCheckBox
+            // 
+            this.enabalVTypeCheckBox.AutoSize = true;
+            this.enabalVTypeCheckBox.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.enabalVTypeCheckBox.CheckedState.BorderRadius = 4;
+            this.enabalVTypeCheckBox.CheckedState.BorderThickness = 1;
+            this.enabalVTypeCheckBox.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.enabalVTypeCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.enabalVTypeCheckBox.Location = new System.Drawing.Point(149, 279);
+            this.enabalVTypeCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.enabalVTypeCheckBox.Name = "enabalVTypeCheckBox";
+            this.enabalVTypeCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.enabalVTypeCheckBox.TabIndex = 61;
+            this.enabalVTypeCheckBox.UncheckedState.BorderColor = System.Drawing.Color.Black;
+            this.enabalVTypeCheckBox.UncheckedState.BorderRadius = 4;
+            this.enabalVTypeCheckBox.UncheckedState.BorderThickness = 1;
+            this.enabalVTypeCheckBox.UncheckedState.FillColor = System.Drawing.Color.White;
+            this.enabalVTypeCheckBox.CheckedChanged += new System.EventHandler(this.enabalVTypeCheckBox_CheckedChanged);
+            // 
+            // creProWareComboBox
+            // 
+            this.creProWareComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.creProWareComboBox.BorderRadius = 8;
+            this.creProWareComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.creProWareComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.creProWareComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creProWareComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creProWareComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creProWareComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.creProWareComboBox.ItemHeight = 36;
+            this.creProWareComboBox.Items.AddRange(new object[] {
+            "Choose Warehouse",
+            "Supplier 1",
+            "Supplier 2"});
+            this.creProWareComboBox.Location = new System.Drawing.Point(363, 212);
+            this.creProWareComboBox.Name = "creProWareComboBox";
+            this.creProWareComboBox.Size = new System.Drawing.Size(325, 42);
+            this.creProWareComboBox.TabIndex = 60;
+            this.creProWareComboBox.SelectedIndexChanged += new System.EventHandler(this.creProWareComboBox_SelectedIndexChanged);
+            // 
+            // creProWareLabel
+            // 
+            this.creProWareLabel.AutoSize = true;
+            this.creProWareLabel.BackColor = System.Drawing.Color.Transparent;
+            this.creProWareLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creProWareLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.creProWareLabel.Location = new System.Drawing.Point(359, 183);
+            this.creProWareLabel.Name = "creProWareLabel";
+            this.creProWareLabel.Size = new System.Drawing.Size(103, 23);
+            this.creProWareLabel.TabIndex = 59;
+            this.creProWareLabel.Text = "Warehouse:";
+            // 
+            // creProVarTypeComboBox
+            // 
+            this.creProVarTypeComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.creProVarTypeComboBox.BorderRadius = 8;
+            this.creProVarTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.creProVarTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.creProVarTypeComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creProVarTypeComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creProVarTypeComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creProVarTypeComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.creProVarTypeComboBox.ItemHeight = 36;
+            this.creProVarTypeComboBox.Items.AddRange(new object[] {
+            "Select Variation Type",
+            "Meter",
+            "Kilograms"});
+            this.creProVarTypeComboBox.Location = new System.Drawing.Point(22, 303);
+            this.creProVarTypeComboBox.Name = "creProVarTypeComboBox";
+            this.creProVarTypeComboBox.Size = new System.Drawing.Size(327, 42);
+            this.creProVarTypeComboBox.TabIndex = 58;
+            this.creProVarTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.creProVarTypeComboBox_SelectedIndexChanged);
+            // 
+            // creProVarTypeLabel
+            // 
+            this.creProVarTypeLabel.AutoSize = true;
+            this.creProVarTypeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.creProVarTypeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creProVarTypeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.creProVarTypeLabel.Location = new System.Drawing.Point(18, 271);
+            this.creProVarTypeLabel.Name = "creProVarTypeLabel";
+            this.creProVarTypeLabel.Size = new System.Drawing.Size(125, 23);
+            this.creProVarTypeLabel.TabIndex = 57;
+            this.creProVarTypeLabel.Text = "Variation Type:";
             // 
             // createProductMultipleImgBtn
             // 
-            this.createProductMultipleImgBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
             this.createProductMultipleImgBtn.BorderRadius = 8;
             this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -148,107 +208,15 @@
             this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
-            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(957, 48);
+            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(625, 305);
             this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
             this.createProductMultipleImgBtn.Size = new System.Drawing.Size(65, 38);
             this.createProductMultipleImgBtn.TabIndex = 56;
             this.createProductMultipleImgBtn.Text = "+";
             this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
             // 
-            // creProTypeComboBox
-            // 
-            this.creProTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProTypeComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProTypeComboBox.BorderRadius = 8;
-            this.creProTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProTypeComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProTypeComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProTypeComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProTypeComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProTypeComboBox.ItemHeight = 30;
-            this.creProTypeComboBox.Location = new System.Drawing.Point(22, 538);
-            this.creProTypeComboBox.Name = "creProTypeComboBox";
-            this.creProTypeComboBox.Size = new System.Drawing.Size(327, 36);
-            this.creProTypeComboBox.StartIndex = 0;
-            this.creProTypeComboBox.TabIndex = 55;
-            this.creProTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.creProTypeComboBox_SelectedIndexChanged);
-            // 
-            // creProTypeLabel
-            // 
-            this.creProTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProTypeLabel.AutoSize = true;
-            this.creProTypeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProTypeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProTypeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProTypeLabel.Location = new System.Drawing.Point(18, 507);
-            this.creProTypeLabel.Name = "creProTypeLabel";
-            this.creProTypeLabel.Size = new System.Drawing.Size(116, 23);
-            this.creProTypeLabel.TabIndex = 54;
-            this.creProTypeLabel.Text = "Product Type:";
-            // 
-            // creProCreUnitBtn
-            // 
-            this.creProCreUnitBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProCreUnitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.creProCreUnitBtn.BorderRadius = 8;
-            this.creProCreUnitBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.creProCreUnitBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.creProCreUnitBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.creProCreUnitBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.creProCreUnitBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.creProCreUnitBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.creProCreUnitBtn.ForeColor = System.Drawing.Color.White;
-            this.creProCreUnitBtn.Location = new System.Drawing.Point(282, 222);
-            this.creProCreUnitBtn.Name = "creProCreUnitBtn";
-            this.creProCreUnitBtn.Size = new System.Drawing.Size(65, 32);
-            this.creProCreUnitBtn.TabIndex = 53;
-            this.creProCreUnitBtn.Text = "+";
-            this.creProCreUnitBtn.Click += new System.EventHandler(this.creProCreUnitBtn_Click);
-            // 
-            // creProStatusComboBox
-            // 
-            this.creProStatusComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProStatusComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProStatusComboBox.BorderRadius = 8;
-            this.creProStatusComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProStatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProStatusComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProStatusComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProStatusComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProStatusComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProStatusComboBox.ItemHeight = 30;
-            this.creProStatusComboBox.Items.AddRange(new object[] {
-            "Ordered",
-            "Pending",
-            "Completed"});
-            this.creProStatusComboBox.Location = new System.Drawing.Point(697, 450);
-            this.creProStatusComboBox.Name = "creProStatusComboBox";
-            this.creProStatusComboBox.Size = new System.Drawing.Size(324, 36);
-            this.creProStatusComboBox.StartIndex = 0;
-            this.creProStatusComboBox.TabIndex = 52;
-            // 
-            // creProStatusLabel
-            // 
-            this.creProStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProStatusLabel.AutoSize = true;
-            this.creProStatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProStatusLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProStatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProStatusLabel.Location = new System.Drawing.Point(693, 419);
-            this.creProStatusLabel.Name = "creProStatusLabel";
-            this.creProStatusLabel.Size = new System.Drawing.Size(63, 23);
-            this.creProStatusLabel.TabIndex = 51;
-            this.creProStatusLabel.Text = "Status:";
-            // 
             // creProSupComboBox
             // 
-            this.creProSupComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.creProSupComboBox.BackColor = System.Drawing.Color.Transparent;
             this.creProSupComboBox.BorderRadius = 8;
             this.creProSupComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -257,232 +225,67 @@
             this.creProSupComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creProSupComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creProSupComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProSupComboBox.ItemHeight = 30;
+            this.creProSupComboBox.ItemHeight = 36;
             this.creProSupComboBox.Items.AddRange(new object[] {
             "Choose Supplier",
             "Supplier 1",
             "Supplier 2"});
-            this.creProSupComboBox.Location = new System.Drawing.Point(361, 450);
+            this.creProSupComboBox.Location = new System.Drawing.Point(365, 127);
             this.creProSupComboBox.Name = "creProSupComboBox";
-            this.creProSupComboBox.Size = new System.Drawing.Size(325, 36);
+            this.creProSupComboBox.Size = new System.Drawing.Size(325, 42);
             this.creProSupComboBox.StartIndex = 0;
             this.creProSupComboBox.TabIndex = 50;
+            this.creProSupComboBox.SelectedIndexChanged += new System.EventHandler(this.creProSupComboBox_SelectedIndexChanged);
             // 
             // creProSupLabel
             // 
-            this.creProSupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.creProSupLabel.AutoSize = true;
             this.creProSupLabel.BackColor = System.Drawing.Color.Transparent;
             this.creProSupLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creProSupLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProSupLabel.Location = new System.Drawing.Point(357, 419);
+            this.creProSupLabel.Location = new System.Drawing.Point(361, 98);
             this.creProSupLabel.Name = "creProSupLabel";
             this.creProSupLabel.Size = new System.Drawing.Size(78, 23);
             this.creProSupLabel.TabIndex = 49;
             this.creProSupLabel.Text = "Supplier:";
             // 
-            // creProWarehouseComboBox
+            // createProductMultipleImgLabel
             // 
-            this.creProWarehouseComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProWarehouseComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProWarehouseComboBox.BorderRadius = 8;
-            this.creProWarehouseComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProWarehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProWarehouseComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProWarehouseComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProWarehouseComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProWarehouseComboBox.ItemHeight = 30;
-            this.creProWarehouseComboBox.Items.AddRange(new object[] {
-            "Choose Warehouse",
-            "Warehouse 1",
-            "Warehouse 2"});
-            this.creProWarehouseComboBox.Location = new System.Drawing.Point(21, 450);
-            this.creProWarehouseComboBox.Name = "creProWarehouseComboBox";
-            this.creProWarehouseComboBox.Size = new System.Drawing.Size(328, 36);
-            this.creProWarehouseComboBox.StartIndex = 0;
-            this.creProWarehouseComboBox.TabIndex = 48;
+            this.createProductMultipleImgLabel.AutoSize = true;
+            this.createProductMultipleImgLabel.BackColor = System.Drawing.Color.Transparent;
+            this.createProductMultipleImgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createProductMultipleImgLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.createProductMultipleImgLabel.Location = new System.Drawing.Point(361, 271);
+            this.createProductMultipleImgLabel.Name = "createProductMultipleImgLabel";
+            this.createProductMultipleImgLabel.Size = new System.Drawing.Size(131, 23);
+            this.createProductMultipleImgLabel.TabIndex = 28;
+            this.createProductMultipleImgLabel.Text = "Multiple Image:";
             // 
-            // creProWarehouseLabel
+            // createProductMultipleImgText
             // 
-            this.creProWarehouseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProWarehouseLabel.AutoSize = true;
-            this.creProWarehouseLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProWarehouseLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProWarehouseLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProWarehouseLabel.Location = new System.Drawing.Point(18, 419);
-            this.creProWarehouseLabel.Name = "creProWarehouseLabel";
-            this.creProWarehouseLabel.Size = new System.Drawing.Size(103, 23);
-            this.creProWarehouseLabel.TabIndex = 47;
-            this.creProWarehouseLabel.Text = "Warehouse:";
-            // 
-            // creProAddStocklabel
-            // 
-            this.creProAddStocklabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProAddStocklabel.AutoSize = true;
-            this.creProAddStocklabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProAddStocklabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProAddStocklabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProAddStocklabel.Location = new System.Drawing.Point(17, 372);
-            this.creProAddStocklabel.Name = "creProAddStocklabel";
-            this.creProAddStocklabel.Size = new System.Drawing.Size(111, 29);
-            this.creProAddStocklabel.TabIndex = 24;
-            this.creProAddStocklabel.Text = "Add Stock";
-            this.creProAddStocklabel.Click += new System.EventHandler(this.creProAddStocklabel_Click);
-            // 
-            // creProNoteLabel
-            // 
-            this.creProNoteLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProNoteLabel.AutoSize = true;
-            this.creProNoteLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProNoteLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProNoteLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProNoteLabel.Location = new System.Drawing.Point(355, 276);
-            this.creProNoteLabel.Name = "creProNoteLabel";
-            this.creProNoteLabel.Size = new System.Drawing.Size(52, 23);
-            this.creProNoteLabel.TabIndex = 46;
-            this.creProNoteLabel.Text = "Note:";
-            // 
-            // creProNoteTextBox
-            // 
-            this.creProNoteTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProNoteTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProNoteTextBox.BorderRadius = 8;
-            this.creProNoteTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.creProNoteTextBox.DefaultText = "";
-            this.creProNoteTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.creProNoteTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.creProNoteTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.creProNoteTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.creProNoteTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProNoteTextBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProNoteTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.creProNoteTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProNoteTextBox.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.creProNoteTextBox.Location = new System.Drawing.Point(361, 308);
-            this.creProNoteTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.creProNoteTextBox.Name = "creProNoteTextBox";
-            this.creProNoteTextBox.PasswordChar = '\0';
-            this.creProNoteTextBox.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.creProNoteTextBox.PlaceholderText = "Note";
-            this.creProNoteTextBox.SelectedText = "";
-            this.creProNoteTextBox.Size = new System.Drawing.Size(660, 42);
-            this.creProNoteTextBox.TabIndex = 45;
-            // 
-            // creProQuanLabel
-            // 
-            this.creProQuanLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProQuanLabel.AutoSize = true;
-            this.creProQuanLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProQuanLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProQuanLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProQuanLabel.Location = new System.Drawing.Point(18, 276);
-            this.creProQuanLabel.Name = "creProQuanLabel";
-            this.creProQuanLabel.Size = new System.Drawing.Size(164, 23);
-            this.creProQuanLabel.TabIndex = 44;
-            this.creProQuanLabel.Text = "Quantity Limitation:";
-            // 
-            // creProQuanTextBox
-            // 
-            this.creProQuanTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProQuanTextBox.BorderRadius = 8;
-            this.creProQuanTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.creProQuanTextBox.DefaultText = "";
-            this.creProQuanTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.creProQuanTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.creProQuanTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.creProQuanTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.creProQuanTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProQuanTextBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProQuanTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.creProQuanTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProQuanTextBox.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.creProQuanTextBox.Location = new System.Drawing.Point(22, 308);
-            this.creProQuanTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.creProQuanTextBox.Name = "creProQuanTextBox";
-            this.creProQuanTextBox.PasswordChar = '\0';
-            this.creProQuanTextBox.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.creProQuanTextBox.PlaceholderText = "1";
-            this.creProQuanTextBox.SelectedText = "";
-            this.creProQuanTextBox.Size = new System.Drawing.Size(327, 42);
-            this.creProQuanTextBox.TabIndex = 43;
-            // 
-            // creProPurUnitComboBox
-            // 
-            this.creProPurUnitComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProPurUnitComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProPurUnitComboBox.BorderRadius = 8;
-            this.creProPurUnitComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProPurUnitComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProPurUnitComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProPurUnitComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProPurUnitComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProPurUnitComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProPurUnitComboBox.ItemHeight = 30;
-            this.creProPurUnitComboBox.Items.AddRange(new object[] {
-            "Select Purchus Unit",
-            "haha"});
-            this.creProPurUnitComboBox.Location = new System.Drawing.Point(697, 220);
-            this.creProPurUnitComboBox.Name = "creProPurUnitComboBox";
-            this.creProPurUnitComboBox.Size = new System.Drawing.Size(327, 36);
-            this.creProPurUnitComboBox.StartIndex = 0;
-            this.creProPurUnitComboBox.TabIndex = 41;
-            // 
-            // creProPurUnitLabel
-            // 
-            this.creProPurUnitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProPurUnitLabel.AutoSize = true;
-            this.creProPurUnitLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProPurUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProPurUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProPurUnitLabel.Location = new System.Drawing.Point(693, 190);
-            this.creProPurUnitLabel.Name = "creProPurUnitLabel";
-            this.creProPurUnitLabel.Size = new System.Drawing.Size(122, 23);
-            this.creProPurUnitLabel.TabIndex = 40;
-            this.creProPurUnitLabel.Text = "Purchase Unit:";
-            // 
-            // creProSaleUnitComboBox
-            // 
-            this.creProSaleUnitComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProSaleUnitComboBox.BorderRadius = 8;
-            this.creProSaleUnitComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProSaleUnitComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProSaleUnitComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProSaleUnitComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProSaleUnitComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProSaleUnitComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProSaleUnitComboBox.ItemHeight = 30;
-            this.creProSaleUnitComboBox.Items.AddRange(new object[] {
-            "Select Sale Unit",
-            "Pieces"});
-            this.creProSaleUnitComboBox.Location = new System.Drawing.Point(359, 220);
-            this.creProSaleUnitComboBox.Name = "creProSaleUnitComboBox";
-            this.creProSaleUnitComboBox.Size = new System.Drawing.Size(327, 36);
-            this.creProSaleUnitComboBox.StartIndex = 0;
-            this.creProSaleUnitComboBox.TabIndex = 39;
-            // 
-            // creProSaleUnitLabel
-            // 
-            this.creProSaleUnitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProSaleUnitLabel.AutoSize = true;
-            this.creProSaleUnitLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProSaleUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProSaleUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProSaleUnitLabel.Location = new System.Drawing.Point(355, 190);
-            this.creProSaleUnitLabel.Name = "creProSaleUnitLabel";
-            this.creProSaleUnitLabel.Size = new System.Drawing.Size(82, 23);
-            this.creProSaleUnitLabel.TabIndex = 38;
-            this.creProSaleUnitLabel.Text = "Sale Unit:";
-            this.creProSaleUnitLabel.Click += new System.EventHandler(this.creProSaleUnitLabel_Click);
+            this.createProductMultipleImgText.BackColor = System.Drawing.Color.Transparent;
+            this.createProductMultipleImgText.BorderRadius = 8;
+            this.createProductMultipleImgText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createProductMultipleImgText.DefaultText = "";
+            this.createProductMultipleImgText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createProductMultipleImgText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createProductMultipleImgText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createProductMultipleImgText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createProductMultipleImgText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createProductMultipleImgText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.createProductMultipleImgText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createProductMultipleImgText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createProductMultipleImgText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.createProductMultipleImgText.Location = new System.Drawing.Point(365, 303);
+            this.createProductMultipleImgText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createProductMultipleImgText.Name = "createProductMultipleImgText";
+            this.createProductMultipleImgText.PasswordChar = '\0';
+            this.createProductMultipleImgText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.createProductMultipleImgText.PlaceholderText = "Choose File";
+            this.createProductMultipleImgText.ReadOnly = true;
+            this.createProductMultipleImgText.SelectedText = "";
+            this.createProductMultipleImgText.Size = new System.Drawing.Size(327, 42);
+            this.createProductMultipleImgText.TabIndex = 27;
             // 
             // creProUnitComboBox
             // 
@@ -494,68 +297,29 @@
             this.creProUnitComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creProUnitComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creProUnitComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProUnitComboBox.ItemHeight = 30;
+            this.creProUnitComboBox.ItemHeight = 36;
             this.creProUnitComboBox.Items.AddRange(new object[] {
             "Select Product Unit",
             "Meter",
             "Kilograms"});
-            this.creProUnitComboBox.Location = new System.Drawing.Point(22, 220);
+            this.creProUnitComboBox.Location = new System.Drawing.Point(22, 215);
             this.creProUnitComboBox.Name = "creProUnitComboBox";
-            this.creProUnitComboBox.Size = new System.Drawing.Size(327, 36);
+            this.creProUnitComboBox.Size = new System.Drawing.Size(327, 42);
             this.creProUnitComboBox.StartIndex = 0;
             this.creProUnitComboBox.TabIndex = 37;
+            this.creProUnitComboBox.SelectedIndexChanged += new System.EventHandler(this.creProUnitComboBox_SelectedIndexChanged);
             // 
             // creProUnitLabel
             // 
-            this.creProUnitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.creProUnitLabel.AutoSize = true;
             this.creProUnitLabel.BackColor = System.Drawing.Color.Transparent;
             this.creProUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creProUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProUnitLabel.Location = new System.Drawing.Point(18, 190);
+            this.creProUnitLabel.Location = new System.Drawing.Point(18, 183);
             this.creProUnitLabel.Name = "creProUnitLabel";
             this.creProUnitLabel.Size = new System.Drawing.Size(112, 23);
             this.creProUnitLabel.TabIndex = 36;
             this.creProUnitLabel.Text = "Product Unit:";
-            // 
-            // creProBarcodeSymComboBox
-            // 
-            this.creProBarcodeSymComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProBarcodeSymComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creProBarcodeSymComboBox.BorderRadius = 8;
-            this.creProBarcodeSymComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creProBarcodeSymComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creProBarcodeSymComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProBarcodeSymComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creProBarcodeSymComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creProBarcodeSymComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProBarcodeSymComboBox.ItemHeight = 30;
-            this.creProBarcodeSymComboBox.Items.AddRange(new object[] {
-            "Code 129",
-            "Code 17",
-            "Code 19"});
-            this.creProBarcodeSymComboBox.Location = new System.Drawing.Point(697, 134);
-            this.creProBarcodeSymComboBox.Name = "creProBarcodeSymComboBox";
-            this.creProBarcodeSymComboBox.Size = new System.Drawing.Size(327, 36);
-            this.creProBarcodeSymComboBox.StartIndex = 0;
-            this.creProBarcodeSymComboBox.TabIndex = 35;
-            this.creProBarcodeSymComboBox.SelectedIndexChanged += new System.EventHandler(this.creProBarcodeSymComboBox_SelectedIndexChanged);
-            // 
-            // creProBarcodeSymLabel
-            // 
-            this.creProBarcodeSymLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProBarcodeSymLabel.AutoSize = true;
-            this.creProBarcodeSymLabel.BackColor = System.Drawing.Color.Transparent;
-            this.creProBarcodeSymLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creProBarcodeSymLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProBarcodeSymLabel.Location = new System.Drawing.Point(693, 108);
-            this.creProBarcodeSymLabel.Name = "creProBarcodeSymLabel";
-            this.creProBarcodeSymLabel.Size = new System.Drawing.Size(167, 23);
-            this.creProBarcodeSymLabel.TabIndex = 34;
-            this.creProBarcodeSymLabel.Text = "Barcode Symbology:";
-            this.creProBarcodeSymLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // creProBrandComboBox
             // 
@@ -567,26 +331,25 @@
             this.creProBrandComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creProBrandComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creProBrandComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creProBrandComboBox.ItemHeight = 30;
+            this.creProBrandComboBox.ItemHeight = 36;
             this.creProBrandComboBox.Items.AddRange(new object[] {
             "CocaCola",
             "Manchee",
             "Maliban"});
-            this.creProBrandComboBox.Location = new System.Drawing.Point(359, 134);
+            this.creProBrandComboBox.Location = new System.Drawing.Point(22, 127);
             this.creProBrandComboBox.Name = "creProBrandComboBox";
-            this.creProBrandComboBox.Size = new System.Drawing.Size(327, 36);
+            this.creProBrandComboBox.Size = new System.Drawing.Size(327, 42);
             this.creProBrandComboBox.StartIndex = 0;
             this.creProBrandComboBox.TabIndex = 33;
+            this.creProBrandComboBox.SelectedIndexChanged += new System.EventHandler(this.creProBrandComboBox_SelectedIndexChanged);
             // 
             // creProBrandLabel
             // 
-            this.creProBrandLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.creProBrandLabel.AutoSize = true;
             this.creProBrandLabel.BackColor = System.Drawing.Color.Transparent;
             this.creProBrandLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creProBrandLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creProBrandLabel.Location = new System.Drawing.Point(355, 108);
+            this.creProBrandLabel.Location = new System.Drawing.Point(18, 98);
             this.creProBrandLabel.Name = "creProBrandLabel";
             this.creProBrandLabel.Size = new System.Drawing.Size(61, 23);
             this.creProBrandLabel.TabIndex = 32;
@@ -603,116 +366,32 @@
             this.ProCatComboox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ProCatComboox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ProCatComboox.ForeColor = System.Drawing.Color.Gray;
-            this.ProCatComboox.ItemHeight = 30;
+            this.ProCatComboox.ItemHeight = 36;
             this.ProCatComboox.Items.AddRange(new object[] {
             "Shoes",
             "fruits",
             "Electric Item"});
-            this.ProCatComboox.Location = new System.Drawing.Point(22, 134);
+            this.ProCatComboox.Location = new System.Drawing.Point(363, 46);
             this.ProCatComboox.Name = "ProCatComboox";
-            this.ProCatComboox.Size = new System.Drawing.Size(327, 36);
+            this.ProCatComboox.Size = new System.Drawing.Size(327, 42);
             this.ProCatComboox.StartIndex = 0;
             this.ProCatComboox.TabIndex = 31;
             this.ProCatComboox.SelectedIndexChanged += new System.EventHandler(this.ProCatComboox_SelectedIndexChanged);
             // 
             // createProductCategoryLabel
             // 
-            this.createProductCategoryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.createProductCategoryLabel.AutoSize = true;
             this.createProductCategoryLabel.BackColor = System.Drawing.Color.Transparent;
             this.createProductCategoryLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createProductCategoryLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.createProductCategoryLabel.Location = new System.Drawing.Point(18, 108);
+            this.createProductCategoryLabel.Location = new System.Drawing.Point(361, 19);
             this.createProductCategoryLabel.Name = "createProductCategoryLabel";
             this.createProductCategoryLabel.Size = new System.Drawing.Size(149, 23);
             this.createProductCategoryLabel.TabIndex = 30;
             this.createProductCategoryLabel.Text = "Product Category:";
             // 
-            // createProductMultipleImgLabel
-            // 
-            this.createProductMultipleImgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createProductMultipleImgLabel.AutoSize = true;
-            this.createProductMultipleImgLabel.BackColor = System.Drawing.Color.Transparent;
-            this.createProductMultipleImgLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createProductMultipleImgLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.createProductMultipleImgLabel.Location = new System.Drawing.Point(693, 19);
-            this.createProductMultipleImgLabel.Name = "createProductMultipleImgLabel";
-            this.createProductMultipleImgLabel.Size = new System.Drawing.Size(131, 23);
-            this.createProductMultipleImgLabel.TabIndex = 28;
-            this.createProductMultipleImgLabel.Text = "Multiple Image:";
-            // 
-            // createProductMultipleImgText
-            // 
-            this.createProductMultipleImgText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createProductMultipleImgText.BackColor = System.Drawing.Color.Transparent;
-            this.createProductMultipleImgText.BorderRadius = 8;
-            this.createProductMultipleImgText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.createProductMultipleImgText.DefaultText = "";
-            this.createProductMultipleImgText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.createProductMultipleImgText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.createProductMultipleImgText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductMultipleImgText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductMultipleImgText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductMultipleImgText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.createProductMultipleImgText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createProductMultipleImgText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductMultipleImgText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.createProductMultipleImgText.Location = new System.Drawing.Point(697, 46);
-            this.createProductMultipleImgText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.createProductMultipleImgText.Name = "createProductMultipleImgText";
-            this.createProductMultipleImgText.PasswordChar = '\0';
-            this.createProductMultipleImgText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createProductMultipleImgText.PlaceholderText = "Choose File";
-            this.createProductMultipleImgText.ReadOnly = true;
-            this.createProductMultipleImgText.SelectedText = "";
-            this.createProductMultipleImgText.Size = new System.Drawing.Size(327, 42);
-            this.createProductMultipleImgText.TabIndex = 27;
-            // 
-            // createProductSKULabel
-            // 
-            this.createProductSKULabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createProductSKULabel.AutoSize = true;
-            this.createProductSKULabel.BackColor = System.Drawing.Color.Transparent;
-            this.createProductSKULabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createProductSKULabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.createProductSKULabel.Location = new System.Drawing.Point(355, 19);
-            this.createProductSKULabel.Name = "createProductSKULabel";
-            this.createProductSKULabel.Size = new System.Drawing.Size(121, 23);
-            this.createProductSKULabel.TabIndex = 26;
-            this.createProductSKULabel.Text = "SKU(Barcode):";
-            // 
-            // createProductSKUText
-            // 
-            this.createProductSKUText.BackColor = System.Drawing.Color.Transparent;
-            this.createProductSKUText.BorderRadius = 8;
-            this.createProductSKUText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.createProductSKUText.DefaultText = "";
-            this.createProductSKUText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.createProductSKUText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.createProductSKUText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductSKUText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductSKUText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductSKUText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.createProductSKUText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createProductSKUText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductSKUText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.createProductSKUText.Location = new System.Drawing.Point(359, 46);
-            this.createProductSKUText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.createProductSKUText.Name = "createProductSKUText";
-            this.createProductSKUText.PasswordChar = '\0';
-            this.createProductSKUText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createProductSKUText.PlaceholderText = "Enter Code";
-            this.createProductSKUText.SelectedText = "";
-            this.createProductSKUText.Size = new System.Drawing.Size(327, 42);
-            this.createProductSKUText.TabIndex = 25;
-            // 
             // createProductNameLabel
             // 
-            this.createProductNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.createProductNameLabel.AutoSize = true;
             this.createProductNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.createProductNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -747,6 +426,7 @@
             this.createProductNameText.SelectedText = "";
             this.createProductNameText.Size = new System.Drawing.Size(327, 42);
             this.createProductNameText.TabIndex = 9;
+            this.createProductNameText.TextChanged += new System.EventHandler(this.createProductNameText_TextChanged);
             // 
             // creProSaveBtn
             // 
@@ -761,11 +441,12 @@
             this.creProSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creProSaveBtn.ForeColor = System.Drawing.Color.White;
             this.creProSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.creProSaveBtn.Location = new System.Drawing.Point(877, 709);
+            this.creProSaveBtn.Location = new System.Drawing.Point(803, 464);
             this.creProSaveBtn.Name = "creProSaveBtn";
             this.creProSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creProSaveBtn.TabIndex = 57;
             this.creProSaveBtn.Text = "Save";
+            this.creProSaveBtn.Click += new System.EventHandler(this.creProSaveBtn_Click);
             // 
             // creProCancelBtn
             // 
@@ -780,11 +461,12 @@
             this.creProCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creProCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creProCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.creProCancelBtn.Location = new System.Drawing.Point(979, 709);
+            this.creProCancelBtn.Location = new System.Drawing.Point(905, 464);
             this.creProCancelBtn.Name = "creProCancelBtn";
             this.creProCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creProCancelBtn.TabIndex = 56;
             this.creProCancelBtn.Text = "Cancel";
+            this.creProCancelBtn.Click += new System.EventHandler(this.creProCancelBtn_Click);
             // 
             // headerPanel
             // 
@@ -794,7 +476,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1100, 34);
+            this.headerPanel.Size = new System.Drawing.Size(1023, 34);
             this.headerPanel.TabIndex = 24;
             this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
@@ -805,7 +487,7 @@
             this.controlPanel.Controls.Add(this.minimumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(988, 3);
+            this.controlPanel.Location = new System.Drawing.Point(911, 3);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(112, 30);
             this.controlPanel.TabIndex = 1;
@@ -840,39 +522,179 @@
             this.addProBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.addProBorderlessForm.TransparentWhileDrag = true;
             // 
-            // creProVScrollBar1
+            // singlePricingPanel
             // 
-            this.creProVScrollBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.creProVScrollBar1.BorderRadius = 4;
-            this.creProVScrollBar1.InUpdate = false;
-            this.creProVScrollBar1.LargeChange = 80;
-            this.creProVScrollBar1.Location = new System.Drawing.Point(1090, 34);
-            this.creProVScrollBar1.MouseWheelBarPartitions = 20;
-            this.creProVScrollBar1.Name = "creProVScrollBar1";
-            this.creProVScrollBar1.ScrollbarSize = 10;
-            this.creProVScrollBar1.Size = new System.Drawing.Size(10, 745);
-            this.creProVScrollBar1.TabIndex = 58;
-            this.creProVScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.creProVScrollBar1.Value = 10;
-            this.creProVScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.creProVScrollBar1_Scroll);
+            this.singlePricingPanel.BackColor = System.Drawing.Color.Transparent;
+            this.singlePricingPanel.BorderColor = System.Drawing.Color.Gray;
+            this.singlePricingPanel.BorderRadius = 8;
+            this.singlePricingPanel.Controls.Add(this.singleWholeLbl);
+            this.singlePricingPanel.Controls.Add(this.singleRetLbl);
+            this.singlePricingPanel.Controls.Add(this.singleCostLbl);
+            this.singlePricingPanel.Controls.Add(this.priVar2NameLbl);
+            this.singlePricingPanel.Controls.Add(this.singleWholePriText);
+            this.singlePricingPanel.Controls.Add(this.singleRetPriText);
+            this.singlePricingPanel.Controls.Add(this.singleTypeNameLbl);
+            this.singlePricingPanel.Controls.Add(this.singleCostPriText);
+            this.singlePricingPanel.FillColor = System.Drawing.Color.White;
+            this.singlePricingPanel.Location = new System.Drawing.Point(757, 90);
+            this.singlePricingPanel.Name = "singlePricingPanel";
+            this.singlePricingPanel.Size = new System.Drawing.Size(241, 358);
+            this.singlePricingPanel.TabIndex = 58;
+            this.singlePricingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.singlePricingPanel_Paint);
+            // 
+            // singleWholeLbl
+            // 
+            this.singleWholeLbl.AutoSize = true;
+            this.singleWholeLbl.BackColor = System.Drawing.Color.Transparent;
+            this.singleWholeLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.singleWholeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.singleWholeLbl.Location = new System.Drawing.Point(9, 268);
+            this.singleWholeLbl.Name = "singleWholeLbl";
+            this.singleWholeLbl.Size = new System.Drawing.Size(137, 23);
+            this.singleWholeLbl.TabIndex = 38;
+            this.singleWholeLbl.Text = "Wholesale Price:";
+            // 
+            // singleRetLbl
+            // 
+            this.singleRetLbl.AutoSize = true;
+            this.singleRetLbl.BackColor = System.Drawing.Color.Transparent;
+            this.singleRetLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.singleRetLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.singleRetLbl.Location = new System.Drawing.Point(9, 169);
+            this.singleRetLbl.Name = "singleRetLbl";
+            this.singleRetLbl.Size = new System.Drawing.Size(99, 23);
+            this.singleRetLbl.TabIndex = 37;
+            this.singleRetLbl.Text = "Retail Price:";
+            // 
+            // singleCostLbl
+            // 
+            this.singleCostLbl.AutoSize = true;
+            this.singleCostLbl.BackColor = System.Drawing.Color.Transparent;
+            this.singleCostLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.singleCostLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.singleCostLbl.Location = new System.Drawing.Point(8, 73);
+            this.singleCostLbl.Name = "singleCostLbl";
+            this.singleCostLbl.Size = new System.Drawing.Size(91, 23);
+            this.singleCostLbl.TabIndex = 36;
+            this.singleCostLbl.Text = "Cost Price:";
+            // 
+            // priVar2NameLbl
+            // 
+            this.priVar2NameLbl.AutoSize = true;
+            this.priVar2NameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.priVar2NameLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priVar2NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.priVar2NameLbl.Location = new System.Drawing.Point(8, 107);
+            this.priVar2NameLbl.Name = "priVar2NameLbl";
+            this.priVar2NameLbl.Size = new System.Drawing.Size(0, 23);
+            this.priVar2NameLbl.TabIndex = 35;
+            // 
+            // singleWholePriText
+            // 
+            this.singleWholePriText.BackColor = System.Drawing.Color.Transparent;
+            this.singleWholePriText.BorderRadius = 8;
+            this.singleWholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.singleWholePriText.DefaultText = "";
+            this.singleWholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.singleWholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.singleWholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleWholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleWholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleWholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.singleWholePriText.ForeColor = System.Drawing.Color.Black;
+            this.singleWholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleWholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.singleWholePriText.Location = new System.Drawing.Point(12, 299);
+            this.singleWholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.singleWholePriText.Name = "singleWholePriText";
+            this.singleWholePriText.PasswordChar = '\0';
+            this.singleWholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.singleWholePriText.PlaceholderText = "Wholesale Price";
+            this.singleWholePriText.SelectedText = "";
+            this.singleWholePriText.Size = new System.Drawing.Size(210, 42);
+            this.singleWholePriText.TabIndex = 33;
+            this.singleWholePriText.TextChanged += new System.EventHandler(this.singleWholePriText_TextChanged);
+            // 
+            // singleRetPriText
+            // 
+            this.singleRetPriText.BackColor = System.Drawing.Color.Transparent;
+            this.singleRetPriText.BorderRadius = 8;
+            this.singleRetPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.singleRetPriText.DefaultText = "";
+            this.singleRetPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.singleRetPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.singleRetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleRetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleRetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleRetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.singleRetPriText.ForeColor = System.Drawing.Color.Black;
+            this.singleRetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleRetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.singleRetPriText.Location = new System.Drawing.Point(12, 198);
+            this.singleRetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.singleRetPriText.Name = "singleRetPriText";
+            this.singleRetPriText.PasswordChar = '\0';
+            this.singleRetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.singleRetPriText.PlaceholderText = "Retail Price";
+            this.singleRetPriText.SelectedText = "";
+            this.singleRetPriText.Size = new System.Drawing.Size(210, 42);
+            this.singleRetPriText.TabIndex = 32;
+            this.singleRetPriText.TextChanged += new System.EventHandler(this.singleRetPriText_TextChanged);
+            // 
+            // singleTypeNameLbl
+            // 
+            this.singleTypeNameLbl.AutoSize = true;
+            this.singleTypeNameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.singleTypeNameLbl.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.singleTypeNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.singleTypeNameLbl.Location = new System.Drawing.Point(8, 21);
+            this.singleTypeNameLbl.Name = "singleTypeNameLbl";
+            this.singleTypeNameLbl.Size = new System.Drawing.Size(130, 29);
+            this.singleTypeNameLbl.TabIndex = 30;
+            this.singleTypeNameLbl.Text = "Single Type:";
+            // 
+            // singleCostPriText
+            // 
+            this.singleCostPriText.BackColor = System.Drawing.Color.Transparent;
+            this.singleCostPriText.BorderRadius = 8;
+            this.singleCostPriText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.singleCostPriText.DefaultText = "";
+            this.singleCostPriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.singleCostPriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.singleCostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleCostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.singleCostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleCostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.singleCostPriText.ForeColor = System.Drawing.Color.Black;
+            this.singleCostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.singleCostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.singleCostPriText.Location = new System.Drawing.Point(12, 102);
+            this.singleCostPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.singleCostPriText.Name = "singleCostPriText";
+            this.singleCostPriText.PasswordChar = '\0';
+            this.singleCostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.singleCostPriText.PlaceholderText = "Cost Price";
+            this.singleCostPriText.SelectedText = "";
+            this.singleCostPriText.Size = new System.Drawing.Size(210, 42);
+            this.singleCostPriText.TabIndex = 29;
+            this.singleCostPriText.TextChanged += new System.EventHandler(this.singleCostPriText_TextChanged);
             // 
             // CreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1100, 780);
+            this.ClientSize = new System.Drawing.Size(1023, 526);
+            this.Controls.Add(this.singlePricingPanel);
             this.Controls.Add(this.creProCancelBtn);
             this.Controls.Add(this.creProSaveBtn);
-            this.Controls.Add(this.creProVScrollBar1);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.createProductMainPanel);
             this.Controls.Add(this.creatProductLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(100, 15);
-            this.MaximumSize = new System.Drawing.Size(1100, 780);
-            this.MinimumSize = new System.Drawing.Size(1100, 718);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(763, 463);
             this.Name = "CreateProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateProduct";
@@ -881,6 +703,8 @@
             this.createProductMainPanel.PerformLayout();
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
+            this.singlePricingPanel.ResumeLayout(false);
+            this.singlePricingPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -893,42 +717,35 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createProductNameText;
         private System.Windows.Forms.Label createProductMultipleImgLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createProductMultipleImgText;
-        private System.Windows.Forms.Label createProductSKULabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createProductSKUText;
         private System.Windows.Forms.Label createProductCategoryLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox ProCatComboox;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProBrandComboBox;
         private System.Windows.Forms.Label creProBrandLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProBarcodeSymComboBox;
-        private System.Windows.Forms.Label creProBarcodeSymLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProPurUnitComboBox;
-        private System.Windows.Forms.Label creProPurUnitLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProSaleUnitComboBox;
-        private System.Windows.Forms.Label creProSaleUnitLabel;
         private System.Windows.Forms.Label creProUnitLabel;
-        private System.Windows.Forms.Label creProNoteLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox creProNoteTextBox;
-        private System.Windows.Forms.Label creProQuanLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox creProQuanTextBox;
-        private System.Windows.Forms.Label creProAddStocklabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProStatusComboBox;
-        private System.Windows.Forms.Label creProStatusLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProSupComboBox;
         private System.Windows.Forms.Label creProSupLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProWarehouseComboBox;
-        private System.Windows.Forms.Label creProWarehouseLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel headerPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm addProBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProUnitComboBox;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton creProCreUnitBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProTypeComboBox;
-        private System.Windows.Forms.Label creProTypeLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creProCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creProSaveBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneVScrollBar creProVScrollBar1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createProductMultipleImgBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProVarTypeComboBox;
+        private System.Windows.Forms.Label creProVarTypeLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProWareComboBox;
+        private System.Windows.Forms.Label creProWareLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel singlePricingPanel;
+        private System.Windows.Forms.Label priVar2NameLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleWholePriText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleRetPriText;
+        private System.Windows.Forms.Label singleTypeNameLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleCostPriText;
+        private System.Windows.Forms.Label singleRetLbl;
+        private System.Windows.Forms.Label singleCostLbl;
+        private System.Windows.Forms.Label singleWholeLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox enabalVTypeCheckBox;
     }
 }
