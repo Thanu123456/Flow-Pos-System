@@ -268,6 +268,12 @@
     <Compile Include="Production.Designer.cs">
       <DependentUpon>Production.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductPricing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductPricing.Designer.cs">
+      <DependentUpon>ProductPricing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -424,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production.resx">
       <DependentUpon>Production.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductPricing.resx">
+      <DependentUpon>ProductPricing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuotationsForm.resx">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
