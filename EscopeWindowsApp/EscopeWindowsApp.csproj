@@ -250,6 +250,12 @@
     <Compile Include="DashBoardForm.Designer.cs">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GRNForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GRNForm.Designer.cs">
+      <DependentUpon>GRNForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +428,9 @@
     <EmbeddedResource Include="DashBoardForm.resx">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GRNForm.resx">
+      <DependentUpon>GRNForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +491,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\GrnWhite Ori.png" />
+    <None Include="Resources\grnWhite.png" />
+    <None Include="Resources\GRN.png" />
     <None Include="Resources\delete_red.png" />
     <None Include="Resources\edit_blue.png" />
     <None Include="Resources\delete-red.png" />
