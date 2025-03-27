@@ -194,12 +194,7 @@ namespace EscopeWindowsApp
         // Handle the SelectedIndexChanged event of the creProTypeComboBox
         private void creProTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Check if the selected item is "Variation"
-            if (creProTypeComboBox.SelectedItem?.ToString() == "Variation")
-            {
-                // Open the AddVariationItem form
-                OpenAddVariationForm();
-            }
+            
         }
 
         // Method to open the AddVariationItem form

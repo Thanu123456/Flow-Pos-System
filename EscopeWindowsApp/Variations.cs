@@ -46,7 +46,7 @@ namespace EscopeWindowsApp
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is CreateVariations)
+                if (form is AddVariationItem)
                 {
                     if (form.WindowState == FormWindowState.Minimized)
                     {
@@ -57,8 +57,8 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            CreateVariations createVariations = new CreateVariations();
-            createVariations.Show();
+            AddVariationItem addVariationItem = new AddVariationItem();
+            addVariationItem.Show();
         }
 
         private void variationsSearchText_TextChanged(object sender, EventArgs e)

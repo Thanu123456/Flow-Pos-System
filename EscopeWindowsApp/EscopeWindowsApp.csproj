@@ -238,12 +238,6 @@
     <Compile Include="CreateUnits.Designer.cs">
       <DependentUpon>CreateUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateVariations.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateVariations.Designer.cs">
-      <DependentUpon>CreateVariations.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,12 +249,6 @@
     </Compile>
     <Compile Include="DashBoardForm.Designer.cs">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InventoryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InventoryForm.Designer.cs">
-      <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
@@ -422,17 +410,11 @@
     <EmbeddedResource Include="CreateUnits.resx">
       <DependentUpon>CreateUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateVariations.resx">
-      <DependentUpon>CreateVariations.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashBoardForm.resx">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InventoryForm.resx">
-      <DependentUpon>InventoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>

@@ -20,6 +20,7 @@ namespace EscopeWindowsApp
             bindingSource = new BindingSource();
             unitsDataGridView.CellPainting += UnitsDataGridView_CellPainting;
             unitsDataGridView.CellFormatting += UnitsDataGridView_CellFormatting;
+            unitsDataGridView.CellContentClick += unitsDataGridView_CellContentClick; // Ensure event is subscribed
         }
 
         private void Units_Load(object sender, EventArgs e)
@@ -88,6 +89,7 @@ namespace EscopeWindowsApp
             });
 
             unitsDataGridView.AllowUserToAddRows = false;
+            unitsDataGridView.ScrollBars = ScrollBars.Horizontal; // Disable vertical scrolling, allow horizontal scrolling
         }
 
         private void UnitsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
