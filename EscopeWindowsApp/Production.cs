@@ -78,17 +78,20 @@ namespace EscopeWindowsApp
 
         private void productFilterBtn_Click(object sender, EventArgs e)
         {
-            // Filter products where ProductId is greater than 2
-            var filteredRows = productionTable.AsEnumerable()
-                .Where(row => row.Field<int>("ProductId") > 2);
-
-            if (filteredRows.Any())
+            foreach (Form form in Application.OpenForms)
             {
-                ProductDataGridView.DataSource = filteredRows.CopyToDataTable();
-            }
-            else
-            {
-                ProductDataGridView.DataSource = null;
+                if (form is GRNForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+                GRNForm gRNForm = new GRNForm();
+                gRNForm.Show();
             }
         }
 
@@ -173,6 +176,22 @@ namespace EscopeWindowsApp
         private void Production_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void proRefreshBtn_Click(object sender, EventArgs e)
+        {
+            // Filter products where ProductId is greater than 2
+            var filteredRows = productionTable.AsEnumerable()
+                .Where(row => row.Field<int>("ProductId") > 2);
+
+            if (filteredRows.Any())
+            {
+                ProductDataGridView.DataSource = filteredRows.CopyToDataTable();
+            }
+            else
+            {
+                ProductDataGridView.DataSource = null;
+            }
         }
     }
 }
