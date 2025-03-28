@@ -491,13 +491,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\grnimage.png" />
     <None Include="Resources\GrnWhite Ori.png" />
     <None Include="Resources\grnWhite.png" />
     <None Include="Resources\GRN.png" />
     <None Include="Resources\delete_red.png" />
     <None Include="Resources\edit_blue.png" />
-    <None Include="Resources\delete-red.png" />
-    <None Include="Resources\edit-blue.png" />
     <None Include="Resources\refresh1.png" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\delete.png" />
