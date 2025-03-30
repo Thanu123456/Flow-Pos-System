@@ -41,6 +41,7 @@
             this.grnNoLabelPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.grnNoLabel = new System.Windows.Forms.Label();
             this.grnNoFixLabel = new System.Windows.Forms.Label();
+            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.paymentMethPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.ceaditPayementLabel = new System.Windows.Forms.Label();
             this.creaditPayementRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
@@ -49,7 +50,6 @@
             this.cashPaymentLabel = new System.Windows.Forms.Label();
             this.cashPaymentRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
             this.paymentMethLabel = new System.Windows.Forms.Label();
-            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.previousGRNBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -68,10 +68,10 @@
             this.grnQuantityText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnVarTypCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.grnVarTypLabel = new System.Windows.Forms.Label();
-            this.grnVarLabel = new System.Windows.Forms.Label();
-            this.grnVarText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnStockText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnStockLabel = new System.Windows.Forms.Label();
+            this.grnVarLabel = new System.Windows.Forms.Label();
+            this.grnVarText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.expireDateText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.expireDateLabel = new System.Windows.Forms.Label();
             this.grnProCatLabel = new System.Windows.Forms.Label();
@@ -85,11 +85,12 @@
             this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.grnExpireDatePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
-            this.paymentMethPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
+            this.paymentMethPanel.SuspendLayout();
             this.grnMainPanel.SuspendLayout();
             this.grnPricingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).BeginInit();
@@ -168,7 +169,7 @@
             this.grnNoLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
             this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
+            this.grnNoLabel.Size = new System.Drawing.Size(41, 18);
             this.grnNoLabel.TabIndex = 28;
             this.grnNoLabel.Text = "001";
             this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
@@ -180,10 +181,25 @@
             this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
             this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
+            this.grnNoFixLabel.Size = new System.Drawing.Size(91, 18);
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
+            // 
+            // grnPictureBox
+            // 
+            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
+            this.grnPictureBox.ImageRotate = 0F;
+            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
+            this.grnPictureBox.Name = "grnPictureBox";
+            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
+            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.grnPictureBox.TabIndex = 28;
+            this.grnPictureBox.TabStop = false;
+            this.grnPictureBox.UseTransparentBackground = true;
+            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
             // 
             // paymentMethPanel
             // 
@@ -210,7 +226,7 @@
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
             this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(153, 18);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -239,7 +255,7 @@
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(76, 18);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -267,9 +283,10 @@
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(53, 18);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
+            this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
             // 
             // cashPaymentRadioBtn
             // 
@@ -296,24 +313,9 @@
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
             this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
+            this.paymentMethLabel.Size = new System.Drawing.Size(174, 17);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
-            // 
-            // grnPictureBox
-            // 
-            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
-            this.grnPictureBox.ImageRotate = 0F;
-            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
-            this.grnPictureBox.Name = "grnPictureBox";
-            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
-            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.grnPictureBox.TabIndex = 28;
-            this.grnPictureBox.TabStop = false;
-            this.grnPictureBox.UseTransparentBackground = true;
-            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
             // 
             // grnProSearchText
             // 
@@ -367,6 +369,7 @@
             // 
             this.grnMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.grnMainPanel.BorderRadius = 8;
+            this.grnMainPanel.Controls.Add(this.grnExpireDatePicker);
             this.grnMainPanel.Controls.Add(this.addToListBtn);
             this.grnMainPanel.Controls.Add(this.grnPriceLabel);
             this.grnMainPanel.Controls.Add(this.grnPricingPanel);
@@ -378,7 +381,6 @@
             this.grnMainPanel.Controls.Add(this.grnStockLabel);
             this.grnMainPanel.Controls.Add(this.grnVarLabel);
             this.grnMainPanel.Controls.Add(this.grnVarText);
-            this.grnMainPanel.Controls.Add(this.expireDateText);
             this.grnMainPanel.Controls.Add(this.expireDateLabel);
             this.grnMainPanel.Controls.Add(this.grnProCatLabel);
             this.grnMainPanel.Controls.Add(this.grnProCatText);
@@ -423,7 +425,7 @@
             this.grnPriceLabel.ForeColor = System.Drawing.Color.Black;
             this.grnPriceLabel.Location = new System.Drawing.Point(38, 179);
             this.grnPriceLabel.Name = "grnPriceLabel";
-            this.grnPriceLabel.Size = new System.Drawing.Size(87, 18);
+            this.grnPriceLabel.Size = new System.Drawing.Size(96, 18);
             this.grnPriceLabel.TabIndex = 34;
             this.grnPriceLabel.Text = "PRICING :";
             this.grnPriceLabel.Click += new System.EventHandler(this.grnPriceLabel_Click);
@@ -609,7 +611,7 @@
             this.grnQuantityLabel.BackColor = System.Drawing.Color.Transparent;
             this.grnQuantityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnQuantityLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnQuantityLabel.Location = new System.Drawing.Point(526, 93);
+            this.grnQuantityLabel.Location = new System.Drawing.Point(694, 89);
             this.grnQuantityLabel.Name = "grnQuantityLabel";
             this.grnQuantityLabel.Size = new System.Drawing.Size(83, 23);
             this.grnQuantityLabel.TabIndex = 77;
@@ -630,7 +632,7 @@
             this.grnQuantityText.ForeColor = System.Drawing.Color.Black;
             this.grnQuantityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnQuantityText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnQuantityText.Location = new System.Drawing.Point(530, 120);
+            this.grnQuantityText.Location = new System.Drawing.Point(698, 116);
             this.grnQuantityText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnQuantityText.Name = "grnQuantityText";
             this.grnQuantityText.PasswordChar = '\0';
@@ -676,6 +678,44 @@
             this.grnVarTypLabel.TabIndex = 74;
             this.grnVarTypLabel.Text = "Variation Type:";
             // 
+            // grnStockText
+            // 
+            this.grnStockText.BackColor = System.Drawing.Color.Transparent;
+            this.grnStockText.BorderRadius = 8;
+            this.grnStockText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.grnStockText.DefaultText = "";
+            this.grnStockText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.grnStockText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.grnStockText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnStockText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnStockText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnStockText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnStockText.ForeColor = System.Drawing.Color.Black;
+            this.grnStockText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnStockText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.grnStockText.Location = new System.Drawing.Point(530, 118);
+            this.grnStockText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grnStockText.Name = "grnStockText";
+            this.grnStockText.PasswordChar = '\0';
+            this.grnStockText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.grnStockText.PlaceholderText = "Stock";
+            this.grnStockText.SelectedText = "";
+            this.grnStockText.Size = new System.Drawing.Size(150, 42);
+            this.grnStockText.TabIndex = 71;
+            this.grnStockText.TextChanged += new System.EventHandler(this.grnStockText_TextChanged);
+            // 
+            // grnStockLabel
+            // 
+            this.grnStockLabel.AutoSize = true;
+            this.grnStockLabel.BackColor = System.Drawing.Color.Transparent;
+            this.grnStockLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnStockLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grnStockLabel.Location = new System.Drawing.Point(526, 89);
+            this.grnStockLabel.Name = "grnStockLabel";
+            this.grnStockLabel.Size = new System.Drawing.Size(57, 23);
+            this.grnStockLabel.TabIndex = 70;
+            this.grnStockLabel.Text = "Stock:";
+            // 
             // grnVarLabel
             // 
             this.grnVarLabel.AutoSize = true;
@@ -714,44 +754,6 @@
             this.grnVarText.TabIndex = 72;
             this.grnVarText.TextChanged += new System.EventHandler(this.grnVarText_TextChanged);
             // 
-            // grnStockText
-            // 
-            this.grnStockText.BackColor = System.Drawing.Color.Transparent;
-            this.grnStockText.BorderRadius = 8;
-            this.grnStockText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.grnStockText.DefaultText = "";
-            this.grnStockText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.grnStockText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.grnStockText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnStockText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnStockText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnStockText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.grnStockText.ForeColor = System.Drawing.Color.Black;
-            this.grnStockText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnStockText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnStockText.Location = new System.Drawing.Point(362, 122);
-            this.grnStockText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grnStockText.Name = "grnStockText";
-            this.grnStockText.PasswordChar = '\0';
-            this.grnStockText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.grnStockText.PlaceholderText = "Stock";
-            this.grnStockText.SelectedText = "";
-            this.grnStockText.Size = new System.Drawing.Size(150, 42);
-            this.grnStockText.TabIndex = 71;
-            this.grnStockText.TextChanged += new System.EventHandler(this.grnStockText_TextChanged);
-            // 
-            // grnStockLabel
-            // 
-            this.grnStockLabel.AutoSize = true;
-            this.grnStockLabel.BackColor = System.Drawing.Color.Transparent;
-            this.grnStockLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnStockLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnStockLabel.Location = new System.Drawing.Point(358, 93);
-            this.grnStockLabel.Name = "grnStockLabel";
-            this.grnStockLabel.Size = new System.Drawing.Size(57, 23);
-            this.grnStockLabel.TabIndex = 70;
-            this.grnStockLabel.Text = "Stock:";
-            // 
             // expireDateText
             // 
             this.expireDateText.BackColor = System.Drawing.Color.Transparent;
@@ -767,7 +769,7 @@
             this.expireDateText.ForeColor = System.Drawing.Color.Black;
             this.expireDateText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.expireDateText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.expireDateText.Location = new System.Drawing.Point(193, 122);
+            this.expireDateText.Location = new System.Drawing.Point(33, 405);
             this.expireDateText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expireDateText.Name = "expireDateText";
             this.expireDateText.PasswordChar = '\0';
@@ -1017,6 +1019,7 @@
             this.grnDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.grnDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.grnDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grnDataGridView_CellContentClick);
             // 
             // grnCancelBtn
             // 
@@ -1037,6 +1040,7 @@
             this.grnCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.grnCancelBtn.TabIndex = 80;
             this.grnCancelBtn.Text = "Cancel";
+            this.grnCancelBtn.Click += new System.EventHandler(this.grnCancelBtn_Click);
             // 
             // grnSaveBtn
             // 
@@ -1057,6 +1061,22 @@
             this.grnSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.grnSaveBtn.TabIndex = 79;
             this.grnSaveBtn.Text = "Save";
+            this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
+            // 
+            // grnExpireDatePicker
+            // 
+            this.grnExpireDatePicker.BorderRadius = 8;
+            this.grnExpireDatePicker.Checked = true;
+            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.grnExpireDatePicker.Location = new System.Drawing.Point(192, 122);
+            this.grnExpireDatePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.grnExpireDatePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.grnExpireDatePicker.Name = "grnExpireDatePicker";
+            this.grnExpireDatePicker.Size = new System.Drawing.Size(320, 36);
+            this.grnExpireDatePicker.TabIndex = 78;
+            this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 20, 59, 35, 137);
+            this.grnExpireDatePicker.ValueChanged += new System.EventHandler(this.siticoneDateTimePicker1_ValueChanged);
             // 
             // GRNForm
             // 
@@ -1073,6 +1093,7 @@
             this.Controls.Add(this.paymentMethPanel);
             this.Controls.Add(this.grnNoLabelPanel);
             this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.expireDateText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GRNForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1082,9 +1103,9 @@
             this.controlPanel.ResumeLayout(false);
             this.grnNoLabelPanel.ResumeLayout(false);
             this.grnNoLabelPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.paymentMethPanel.ResumeLayout(false);
             this.paymentMethPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.grnMainPanel.ResumeLayout(false);
             this.grnMainPanel.PerformLayout();
             this.grnPricingPanel.ResumeLayout(false);
@@ -1149,5 +1170,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView grnDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker grnExpireDatePicker;
     }
 }
