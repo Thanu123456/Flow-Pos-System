@@ -8,6 +8,7 @@ namespace EscopeWindowsApp
 {
     public partial class CreateProduct : Form
     {
+        private List<PricingDetail> pricingDetails;
         private bool isEditMode = false;
         private int editProductId = -1;
 
@@ -301,6 +302,9 @@ namespace EscopeWindowsApp
                     using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
+                        int productId;
+
+                        // Step 1: Save or update the product
                         string query = isEditMode
                             ? "UPDATE products SET name = @name, category = @category, image_path = @imagePath, " +
                               "unit_id = @unitId, warehouse_id = @warehouseId, supplier_id = @supplierId, " +
@@ -321,15 +325,94 @@ namespace EscopeWindowsApp
                             cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
 
                             if (isEditMode)
+                            {
                                 cmd.Parameters.AddWithValue("@productId", editProductId);
-
-                            cmd.ExecuteNonQuery();
+                                cmd.ExecuteNonQuery();
+                                productId = editProductId;
+                            }
+                            else
+                            {
+                                cmd.ExecuteNonQuery();
+                                productId = (int)cmd.LastInsertedId; // Get the new product ID
+                            }
                         }
+
+                        // Step 2: Handle pricing based on variation selection
+                        if (creProVarTypeComboBox.SelectedIndex > 0 && pricingDetails != null && pricingDetails.Count > 0)
+                        {
+                            // Variation-based pricing from ProductPricing form
+                            // Delete existing pricing for this product and variation to avoid duplicates
+                            string deleteQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_id = @variationId";
+                            using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn))
+                            {
+                                deleteCmd.Parameters.AddWithValue("@productId", productId);
+                                deleteCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
+                                deleteCmd.ExecuteNonQuery();
+                            }
+
+                            // Insert new pricing details for each variation
+                            foreach (var detail in pricingDetails)
+                            {
+                                string insertQuery = "INSERT INTO pricing (product_id, variation_id, variation_type, cost_price, retail_price, wholesale_price) " +
+                                                    "VALUES (@productId, @variationId, @variationType, @costPrice, @retailPrice, @wholesalePrice)";
+                                using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                                {
+                                    insertCmd.Parameters.AddWithValue("@productId", productId);
+                                    insertCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
+                                    insertCmd.Parameters.AddWithValue("@variationType", detail.VariationType);
+                                    insertCmd.Parameters.AddWithValue("@costPrice", detail.CostPrice);
+                                    insertCmd.Parameters.AddWithValue("@retailPrice", detail.RetailPrice);
+                                    insertCmd.Parameters.AddWithValue("@wholesalePrice", detail.WholesalePrice);
+                                    insertCmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                        else if (creProVarTypeComboBox.SelectedIndex == 0 && singlePricingPanel.Enabled)
+                        {
+                            // Single pricing for products without variations
+                            // Validate that all pricing fields are filled
+                            if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
+                                string.IsNullOrWhiteSpace(singleRetPriText.Text) ||
+                                string.IsNullOrWhiteSpace(singleWholePriText.Text))
+                            {
+                                MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            // Delete any existing single pricing for this product
+                            string deleteQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_id IS NULL";
+                            using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn))
+                            {
+                                deleteCmd.Parameters.AddWithValue("@productId", productId);
+                                deleteCmd.ExecuteNonQuery();
+                            }
+
+                            // Insert new single pricing
+                            string insertQuery = "INSERT INTO pricing (product_id, variation_id, variation_type, cost_price, retail_price, wholesale_price) " +
+                                                "VALUES (@productId, NULL, NULL, @costPrice, @retailPrice, @wholesalePrice)";
+                            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@productId", productId);
+                                insertCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
+                                insertCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
+                                insertCmd.Parameters.AddWithValue("@wholesalePrice", decimal.Parse(singleWholePriText.Text));
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please provide pricing details.", "Validation Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        // Step 3: Notify user of success
+                        MessageBox.Show($"Product {(isEditMode ? "updated" : "created")} successfully.",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
-                    MessageBox.Show($"Product {(isEditMode ? "updated" : "created")} successfully.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -366,10 +449,22 @@ namespace EscopeWindowsApp
 
         private void creProVarTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (creProVarTypeComboBox.SelectedIndex > 0)
+            if (creProVarTypeComboBox.SelectedIndex > 0) // Assuming index 0 is "None" or similar
             {
-                ProductPricing productPricing = new ProductPricing();
-                productPricing.ShowDialog();
+                int variationId = (int)creProVarTypeComboBox.SelectedValue;
+                int productId = isEditMode ? editProductId : -1; // Assuming isEditMode and editProductId exist
+
+                using (ProductPricing productPricing = new ProductPricing(variationId, productId))
+                {
+                    if (productPricing.ShowDialog() == DialogResult.OK)
+                    {
+                        pricingDetails = productPricing.PricingDetails;
+                    }
+                    else
+                    {
+                        pricingDetails = null; // Reset if cancelled
+                    }
+                }
             }
         }
 
