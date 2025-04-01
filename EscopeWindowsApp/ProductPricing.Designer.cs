@@ -135,7 +135,7 @@
             this.proPriceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.proPriceLabel.Location = new System.Drawing.Point(22, 47);
             this.proPriceLabel.Name = "proPriceLabel";
-            this.proPriceLabel.Size = new System.Drawing.Size(194, 28);
+            this.proPriceLabel.Size = new System.Drawing.Size(209, 28);
             this.proPriceLabel.TabIndex = 26;
             this.proPriceLabel.Text = "Product Pricing";
             // 
@@ -751,6 +751,7 @@
             this.priCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.priCancelBtn.TabIndex = 58;
             this.priCancelBtn.Text = "Cancel";
+            this.priCancelBtn.Click += new System.EventHandler(this.priCancelBtn_Click_1);
             // 
             // priSaveBtn
             // 
@@ -770,6 +771,7 @@
             this.priSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.priSaveBtn.TabIndex = 59;
             this.priSaveBtn.Text = "Save";
+            this.priSaveBtn.Click += new System.EventHandler(this.priSaveBtn_Click_2);
             // 
             // ProductPricing
             // 
