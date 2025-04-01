@@ -84,13 +84,13 @@ namespace EscopeWindowsApp
                 HeaderText = "RETAIL PRICE",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
-            ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "wholesale_price",
-                Name = "wholesale_price",
-                HeaderText = "WHOLESALE PRICE",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
-            });
+            //ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            //{
+            //    DataPropertyName = "wholesale_price",
+            //    Name = "wholesale_price",
+            //    HeaderText = "WHOLESALE PRICE",
+            //    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+            //});
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "stock",
@@ -188,26 +188,27 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
-                            p.id,
-                            p.name AS product_name,
-                            c.name AS category_name,
-                            u.unit_name,
-                            b.name AS brand_name,
-                            v.name AS variation_name,
-                            pr.variation_type,
-                            pr.retail_price,
-                            pr.wholesale_price,
-                            COALESCE(s.stock, 0) AS stock
-                        FROM products p
-                        LEFT JOIN categories c ON p.category_id = c.id
-                        LEFT JOIN units u ON p.unit_id = u.id
-                        LEFT JOIN brands b ON p.brand_id = b.id
-                        LEFT JOIN variations v ON p.variation_type_id = v.id
-                        LEFT JOIN pricing pr ON p.id = pr.product_id
-                        LEFT JOIN stock s ON p.id = s.product_id AND 
-                            (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
-                        ORDER BY p.id, pr.variation_type";
+                SELECT 
+                    p.id,
+                    p.name AS product_name,
+                    c.name AS category_name,
+                    u.unit_name,
+                    b.name AS brand_name,
+                    v.name AS variation_name,
+                    pr.variation_type,
+                    pr.retail_price,
+                    pr.wholesale_price,
+                    SUM(COALESCE(s.stock, 0)) AS stock
+                FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+                LEFT JOIN units u ON p.unit_id = u.id
+                LEFT JOIN brands b ON p.brand_id = b.id
+                LEFT JOIN variations v ON p.variation_type_id = v.id
+                LEFT JOIN pricing pr ON p.id = pr.product_id
+                LEFT JOIN stock s ON p.id = s.product_id AND 
+                    (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
+                GROUP BY p.id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, pr.retail_price, pr.wholesale_price
+                ORDER BY p.id, pr.variation_type";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
@@ -294,41 +295,45 @@ namespace EscopeWindowsApp
 
         private void ProductDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Check if a valid row is clicked
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = ProductDataGridView.Rows[e.RowIndex];
                 string columnName = ProductDataGridView.Columns[e.ColumnIndex].Name;
 
-                if (columnName == "EditColumn")
-                {
-                    try
+                    if (columnName == "EditColumn")
                     {
+                        // Retrieve the product ID from the "id" column
                         int productId = Convert.ToInt32(row.Cells["id"].Value);
-                        string productName = row.Cells["product_name"].Value.ToString();
-                        string category = row.Cells["category_name"].Value.ToString();
-
-                        // Open edit form
-                        CreateProduct editForm = new CreateProduct(
-                            productId: productId,
-                            name: productName,
-                            category: category
-                        // Add other parameters as needed from your CreateProduct form
-                        );
+                        // Open the CreateProduct form in edit mode
+                        CreateProduct editForm = new CreateProduct(productId);
+                        // Refresh the grid when the edit form closes
                         editForm.FormClosed += (s, args) => LoadProductsData();
                         editForm.Show();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else if (columnName == "DeleteColumn")
-                {
-                    int productId = Convert.ToInt32(row.Cells["id"].Value);
-                    string formattedId = $"pro{productId:D3}";
 
+                    // Check if the delete button column was clicked
+                    if (columnName == "DeleteColumn")
+                {
+                    // Extract product ID and variation type from the selected row
+                    int productId = Convert.ToInt32(row.Cells["id"].Value);
+                    string variationType = row.Cells["variation_type"].Value.ToString();
+                    string formattedId = $"pro{productId:D3}"; // Format product ID as "pro001"
+
+                    // Customize the confirmation message based on whether it's a product or variation
+                    string deleteMessage;
+                    if (variationType == "N/A")
+                    {
+                        deleteMessage = $"Are you sure you want to delete product {formattedId} entirely?";
+                    }
+                    else
+                    {
+                        deleteMessage = $"Are you sure you want to delete variation '{variationType}' of product {formattedId}?";
+                    }
+
+                    // Show confirmation dialog
                     DialogResult result = MessageBox.Show(
-                        $"Are you sure you want to delete product {formattedId}?",
+                        deleteMessage,
                         "Confirm Delete",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning
@@ -338,61 +343,113 @@ namespace EscopeWindowsApp
                     {
                         try
                         {
+                            // Open database connection
                             using (MySqlConnection connection = new MySqlConnection(connectionString))
                             {
                                 connection.Open();
-                                // First delete related records in pricing and stock
-                                string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId";
-                                string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId";
-                                string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
 
+                                // Start a transaction for atomic operations
                                 using (MySqlTransaction transaction = connection.BeginTransaction())
                                 {
                                     try
                                     {
-                                        // Delete pricing
-                                        using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
+                                        if (variationType == "N/A")
                                         {
-                                            cmd.Parameters.AddWithValue("@productId", productId);
-                                            cmd.ExecuteNonQuery();
+                                            // Delete the entire product and all related data
+                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId";
+                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId";
+                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId";
+                                            string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
+
+                                            // Execute deletion from grn_items
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Execute deletion from pricing
+                                            using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Execute deletion from stock
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Execute deletion from products
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // Delete only the specific variation
+                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId AND variation_type = @variationType";
+                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_type = @variationType";
+                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId AND variation_type = @variationType";
+
+                                            // Execute deletion from grn_items for the specific variation
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Execute deletion from pricing for the specific variation
+                                            using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Execute deletion from stock for the specific variation
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
                                         }
 
-                                        // Delete stock
-                                        using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
-                                        {
-                                            cmd.Parameters.AddWithValue("@productId", productId);
-                                            cmd.ExecuteNonQuery();
-                                        }
-
-                                        // Delete product
-                                        using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
-                                        {
-                                            cmd.Parameters.AddWithValue("@productId", productId);
-                                            cmd.ExecuteNonQuery();
-                                        }
-
+                                        // Commit the transaction if all operations succeed
                                         transaction.Commit();
+
+                                        // Refresh the DataGridView
                                         LoadProductsData();
-                                        MessageBox.Show($"Product {formattedId} deleted successfully.", "Success",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                        // Inform the user of success
+                                        MessageBox.Show("Deletion successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
-                                    catch
+                                    catch (Exception ex)
                                     {
+                                        // Roll back the transaction on failure
                                         transaction.Rollback();
-                                        throw;
+                                        throw new Exception("Transaction failed: " + ex.Message);
                                     }
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Error deleting product: {ex.Message}", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // Display error message if deletion fails
+                            MessageBox.Show($"Error deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
+                // Note: Add existing edit logic here if applicable
             }
         }
+        
 
         private void productFirstBtn_Click(object sender, EventArgs e)
         {

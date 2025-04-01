@@ -168,7 +168,7 @@
             this.grnNoLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
             this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(41, 18);
+            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
             this.grnNoLabel.TabIndex = 28;
             this.grnNoLabel.Text = "001";
             this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
@@ -180,7 +180,7 @@
             this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
             this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(91, 18);
+            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
@@ -225,7 +225,7 @@
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
             this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(153, 18);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -254,7 +254,7 @@
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(76, 18);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -282,7 +282,7 @@
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(53, 18);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
             this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
@@ -312,7 +312,7 @@
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
             this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(174, 17);
+            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
@@ -439,7 +439,7 @@
             this.grnPriceLabel.ForeColor = System.Drawing.Color.Black;
             this.grnPriceLabel.Location = new System.Drawing.Point(38, 179);
             this.grnPriceLabel.Name = "grnPriceLabel";
-            this.grnPriceLabel.Size = new System.Drawing.Size(96, 18);
+            this.grnPriceLabel.Size = new System.Drawing.Size(87, 18);
             this.grnPriceLabel.TabIndex = 34;
             this.grnPriceLabel.Text = "PRICING :";
             this.grnPriceLabel.Click += new System.EventHandler(this.grnPriceLabel_Click);
@@ -1061,6 +1061,8 @@
             this.Controls.Add(this.grnNoLabelPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1100, 710);
+            this.MinimumSize = new System.Drawing.Size(1100, 710);
             this.Name = "GRNForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GRNForm";
