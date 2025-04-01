@@ -203,7 +203,66 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void priCancelBtn_Click(object sender, EventArgs e)
+        private void priSaveBtn_Click_2(object sender, EventArgs e)
+        {
+            try
+            {
+                // Initialize the PricingDetails list
+                PricingDetails = new List<PricingDetail>();
+
+                // Arrays of textboxes for cost, retail, and wholesale prices
+                var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
+                var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
+                var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
+
+                // Loop through the variation types (assuming variationTypes is a List<string> from the form)
+                for (int i = 0; i < variationTypes.Count; i++)
+                {
+                    // Validate that all fields are filled
+                    if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                        string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
+                        string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                    {
+                        MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        PricingDetails = null; // Reset if validation fails
+                        return;
+                    }
+
+                    // Validate that inputs are numeric
+                    if (!decimal.TryParse(costTexts[i].Text, out decimal costPrice) ||
+                        !decimal.TryParse(retailTexts[i].Text, out decimal retailPrice) ||
+                        !decimal.TryParse(wholeTexts[i].Text, out decimal wholesalePrice))
+                    {
+                        MessageBox.Show($"Please enter valid numeric values for {variationTypes[i]}.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        PricingDetails = null; // Reset if validation fails
+                        return;
+                    }
+
+                    // Add validated pricing details to the list
+                    PricingDetails.Add(new PricingDetail
+                    {
+                        VariationType = variationTypes[i],
+                        CostPrice = costPrice,
+                        RetailPrice = retailPrice,
+                        WholesalePrice = wholesalePrice
+                    });
+                }
+
+                // If we reach here, all details are valid; set DialogResult and close
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving pricing details: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PricingDetails = null; // Reset on error
+            }
+        }
+
+        private void priCancelBtn_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
