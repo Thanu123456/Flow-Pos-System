@@ -53,6 +53,7 @@
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.previousGRNBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.grnExpireDatePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.addToListBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnPriceLabel = new System.Windows.Forms.Label();
             this.grnPricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -72,7 +73,6 @@
             this.grnStockLabel = new System.Windows.Forms.Label();
             this.grnVarLabel = new System.Windows.Forms.Label();
             this.grnVarText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.expireDateText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.expireDateLabel = new System.Windows.Forms.Label();
             this.grnProCatLabel = new System.Windows.Forms.Label();
             this.grnProCatText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -85,7 +85,6 @@
             this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grnExpireDatePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
@@ -395,6 +394,21 @@
             this.grnMainPanel.Name = "grnMainPanel";
             this.grnMainPanel.Size = new System.Drawing.Size(864, 362);
             this.grnMainPanel.TabIndex = 31;
+            // 
+            // grnExpireDatePicker
+            // 
+            this.grnExpireDatePicker.BorderRadius = 8;
+            this.grnExpireDatePicker.Checked = true;
+            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.grnExpireDatePicker.Location = new System.Drawing.Point(192, 122);
+            this.grnExpireDatePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.grnExpireDatePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.grnExpireDatePicker.Name = "grnExpireDatePicker";
+            this.grnExpireDatePicker.Size = new System.Drawing.Size(320, 36);
+            this.grnExpireDatePicker.TabIndex = 78;
+            this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 20, 59, 35, 137);
+            this.grnExpireDatePicker.ValueChanged += new System.EventHandler(this.siticoneDateTimePicker1_ValueChanged);
             // 
             // addToListBtn
             // 
@@ -754,32 +768,6 @@
             this.grnVarText.TabIndex = 72;
             this.grnVarText.TextChanged += new System.EventHandler(this.grnVarText_TextChanged);
             // 
-            // expireDateText
-            // 
-            this.expireDateText.BackColor = System.Drawing.Color.Transparent;
-            this.expireDateText.BorderRadius = 8;
-            this.expireDateText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.expireDateText.DefaultText = "";
-            this.expireDateText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.expireDateText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.expireDateText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.expireDateText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.expireDateText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expireDateText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.expireDateText.ForeColor = System.Drawing.Color.Black;
-            this.expireDateText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expireDateText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.expireDateText.Location = new System.Drawing.Point(33, 405);
-            this.expireDateText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.expireDateText.Name = "expireDateText";
-            this.expireDateText.PasswordChar = '\0';
-            this.expireDateText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.expireDateText.PlaceholderText = "Expire Date";
-            this.expireDateText.SelectedText = "";
-            this.expireDateText.Size = new System.Drawing.Size(150, 42);
-            this.expireDateText.TabIndex = 67;
-            this.expireDateText.TextChanged += new System.EventHandler(this.expireDateText_TextChanged);
-            // 
             // expireDateLabel
             // 
             this.expireDateLabel.AutoSize = true;
@@ -879,15 +867,9 @@
             this.grnWarrantyComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grnWarrantyComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.grnWarrantyComboBox.ItemHeight = 36;
-            this.grnWarrantyComboBox.Items.AddRange(new object[] {
-            "Warranty",
-            "CocaCola",
-            "Manchee",
-            "Maliban"});
             this.grnWarrantyComboBox.Location = new System.Drawing.Point(362, 36);
             this.grnWarrantyComboBox.Name = "grnWarrantyComboBox";
             this.grnWarrantyComboBox.Size = new System.Drawing.Size(150, 42);
-            this.grnWarrantyComboBox.StartIndex = 0;
             this.grnWarrantyComboBox.TabIndex = 33;
             this.grnWarrantyComboBox.SelectedIndexChanged += new System.EventHandler(this.grnWarrantyComboBox_SelectedIndexChanged);
             // 
@@ -1063,21 +1045,6 @@
             this.grnSaveBtn.Text = "Save";
             this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
             // 
-            // grnExpireDatePicker
-            // 
-            this.grnExpireDatePicker.BorderRadius = 8;
-            this.grnExpireDatePicker.Checked = true;
-            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.grnExpireDatePicker.Location = new System.Drawing.Point(192, 122);
-            this.grnExpireDatePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.grnExpireDatePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.grnExpireDatePicker.Name = "grnExpireDatePicker";
-            this.grnExpireDatePicker.Size = new System.Drawing.Size(320, 36);
-            this.grnExpireDatePicker.TabIndex = 78;
-            this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 20, 59, 35, 137);
-            this.grnExpireDatePicker.ValueChanged += new System.EventHandler(this.siticoneDateTimePicker1_ValueChanged);
-            // 
             // GRNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1093,7 +1060,6 @@
             this.Controls.Add(this.paymentMethPanel);
             this.Controls.Add(this.grnNoLabelPanel);
             this.Controls.Add(this.headerPanel);
-            this.Controls.Add(this.expireDateText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GRNForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1149,7 +1115,6 @@
         private System.Windows.Forms.Label expireDateLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnStockText;
         private System.Windows.Forms.Label grnStockLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox expireDateText;
         private System.Windows.Forms.Label grnVarTypLabel;
         private System.Windows.Forms.Label grnVarLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnVarText;

@@ -42,17 +42,10 @@
             this.productLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.productRecordsPerLabel = new System.Windows.Forms.Label();
-            this.productAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.proRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grnBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productionSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.grn_Btn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -232,43 +225,10 @@
             this.productRecordsPerLabel.TabIndex = 20;
             this.productRecordsPerLabel.Text = "Records per page";
             // 
-            // productAction
-            // 
-            this.productAction.HeaderText = "Action";
-            this.productAction.Name = "productAction";
-            // 
-            // productStock
-            // 
-            this.productStock.HeaderText = "In Stock";
-            this.productStock.Name = "productStock";
-            // 
-            // productUnit
-            // 
-            this.productUnit.HeaderText = "Prouduct Unit";
-            this.productUnit.Name = "productUnit";
-            // 
-            // ProductPrice
-            // 
-            this.ProductPrice.HeaderText = "Price";
-            this.ProductPrice.Name = "ProductPrice";
-            // 
-            // ProductCode
-            // 
-            this.ProductCode.HeaderText = "Code";
-            this.ProductCode.Name = "ProductCode";
-            // 
-            // productName
-            // 
-            this.productName.HeaderText = "Name";
-            this.productName.Name = "productName";
-            // 
-            // product
-            // 
-            this.product.HeaderText = "Product";
-            this.product.Name = "product";
-            // 
             // ProductDataGridView
             // 
+            this.ProductDataGridView.AllowUserToAddRows = false;
+            this.ProductDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ProductDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ProductDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -284,14 +244,6 @@
             this.ProductDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.ProductDataGridView.ColumnHeadersHeight = 25;
             this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.ProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.product,
-            this.productName,
-            this.ProductCode,
-            this.ProductPrice,
-            this.productUnit,
-            this.productStock,
-            this.productAction});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -303,6 +255,7 @@
             this.ProductDataGridView.GridColor = System.Drawing.Color.White;
             this.ProductDataGridView.Location = new System.Drawing.Point(17, 100);
             this.ProductDataGridView.Name = "ProductDataGridView";
+            this.ProductDataGridView.ReadOnly = true;
             this.ProductDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ProductDataGridView.RowHeadersVisible = false;
             this.ProductDataGridView.Size = new System.Drawing.Size(1352, 615);
@@ -321,7 +274,7 @@
             this.ProductDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.ProductDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.ProductDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.ProductDataGridView.ThemeStyle.ReadOnly = false;
+            this.ProductDataGridView.ThemeStyle.ReadOnly = true;
             this.ProductDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.ProductDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.ProductDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -348,29 +301,6 @@
             this.proRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.proRefreshBtn.TabIndex = 22;
             this.proRefreshBtn.Click += new System.EventHandler(this.proRefreshBtn_Click);
-            // 
-            // grnBtn
-            // 
-            this.grnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnBtn.BorderRadius = 8;
-            this.grnBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.grnBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.grnBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.grnBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.grnBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.grnBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.grnBtn.ForeColor = System.Drawing.Color.White;
-            this.grnBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.grnBtn.Image = global::EscopeWindowsApp.Properties.Resources.GRN;
-            this.grnBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.grnBtn.ImageSize = new System.Drawing.Size(40, 40);
-            this.grnBtn.Location = new System.Drawing.Point(1045, 30);
-            this.grnBtn.Name = "grnBtn";
-            this.grnBtn.Size = new System.Drawing.Size(109, 43);
-            this.grnBtn.TabIndex = 9;
-            this.grnBtn.Text = "GRN";
-            this.grnBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.grnBtn.Click += new System.EventHandler(this.productFilterBtn_Click);
             // 
             // productionSearchText
             // 
@@ -399,12 +329,36 @@
             this.productionSearchText.TabIndex = 8;
             this.productionSearchText.TextChanged += new System.EventHandler(this.productionSearchText_TextChanged);
             // 
+            // grn_Btn
+            // 
+            this.grn_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grn_Btn.BorderRadius = 8;
+            this.grn_Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.grn_Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.grn_Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.grn_Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.grn_Btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.grn_Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.grn_Btn.ForeColor = System.Drawing.Color.White;
+            this.grn_Btn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.grn_Btn.Image = global::EscopeWindowsApp.Properties.Resources.GRN;
+            this.grn_Btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.grn_Btn.ImageSize = new System.Drawing.Size(40, 40);
+            this.grn_Btn.Location = new System.Drawing.Point(1026, 30);
+            this.grn_Btn.Name = "grn_Btn";
+            this.grn_Btn.Size = new System.Drawing.Size(109, 43);
+            this.grn_Btn.TabIndex = 23;
+            this.grn_Btn.Text = "GRN";
+            this.grn_Btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.grn_Btn.Click += new System.EventHandler(this.grn_Btn_Click);
+            // 
             // Production
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.grn_Btn);
             this.Controls.Add(this.proRefreshBtn);
             this.Controls.Add(this.productPageCombo);
             this.Controls.Add(this.productRecordsPerLabel);
@@ -414,7 +368,6 @@
             this.Controls.Add(this.productBtnPanel);
             this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.createProductBtn);
-            this.Controls.Add(this.grnBtn);
             this.Controls.Add(this.productionSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -435,7 +388,6 @@
 
         #endregion
         private Siticone.Desktop.UI.WinForms.SiticoneButton createProductBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton grnBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox productionSearchText;
         private System.Windows.Forms.Label productAllPgLabel;
         private System.Windows.Forms.Label productOfLabel;
@@ -447,14 +399,8 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton productLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox productPageCombo;
         private System.Windows.Forms.Label productRecordsPerLabel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productAction;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productStock;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ProductDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton proRefreshBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton grn_Btn;
     }
 }
