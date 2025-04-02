@@ -84,13 +84,7 @@ namespace EscopeWindowsApp
                 HeaderText = "RETAIL PRICE",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
-            //ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
-            //{
-            //    DataPropertyName = "wholesale_price",
-            //    Name = "wholesale_price",
-            //    HeaderText = "WHOLESALE PRICE",
-            //    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
-            //});
+            
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "stock",
