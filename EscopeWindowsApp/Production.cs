@@ -41,6 +41,15 @@ namespace EscopeWindowsApp
                 Name = "id",
                 HeaderText = "PRODUCT ID"
             });
+
+            ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "variation_type_id",
+                Name = "variation_type_id",
+                HeaderText = "Variation Type ID",
+                Visible = false // Hidden column
+            });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "product_name",
@@ -184,6 +193,7 @@ namespace EscopeWindowsApp
                     string query = @"
                 SELECT 
                     p.id,
+                    p.variation_type_id,
                     p.name AS product_name,
                     c.name AS category_name,
                     u.unit_name,
@@ -201,7 +211,7 @@ namespace EscopeWindowsApp
                 LEFT JOIN pricing pr ON p.id = pr.product_id
                 LEFT JOIN stock s ON p.id = s.product_id AND 
                     (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
-                GROUP BY p.id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, pr.retail_price, pr.wholesale_price
+                GROUP BY p.id, p.variation_type_id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, pr.retail_price, pr.wholesale_price
                 ORDER BY p.id, pr.variation_type";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
@@ -218,17 +228,11 @@ namespace EscopeWindowsApp
                         if (row.IsNull(i))
                         {
                             if (productsTable.Columns[i].DataType == typeof(string))
-                            {
                                 row[i] = "N/A";
-                            }
                             else if (productsTable.Columns[i].DataType == typeof(decimal))
-                            {
                                 row[i] = 0.00m;
-                            }
                             else if (productsTable.Columns[i].DataType == typeof(int))
-                            {
                                 row[i] = 0;
-                            }
                         }
                     }
                 }
@@ -237,20 +241,13 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading products: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Create empty table structure
+                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Create empty table structure with variation_type_id
                 productsTable = new DataTable();
                 productsTable.Columns.Add("id", typeof(int));
+                productsTable.Columns.Add("variation_type_id", typeof(int));
                 productsTable.Columns.Add("product_name", typeof(string));
-                productsTable.Columns.Add("category_name", typeof(string));
-                productsTable.Columns.Add("unit_name", typeof(string));
-                productsTable.Columns.Add("brand_name", typeof(string));
-                productsTable.Columns.Add("variation_name", typeof(string));
-                productsTable.Columns.Add("variation_type", typeof(string));
-                productsTable.Columns.Add("retail_price", typeof(decimal));
-                productsTable.Columns.Add("wholesale_price", typeof(decimal));
-                productsTable.Columns.Add("stock", typeof(int));
+                // ... (rest of the columns remain the same)
                 bindingSource.DataSource = productsTable;
             }
         }
@@ -295,19 +292,40 @@ namespace EscopeWindowsApp
                 DataGridViewRow row = ProductDataGridView.Rows[e.RowIndex];
                 string columnName = ProductDataGridView.Columns[e.ColumnIndex].Name;
 
-                    if (columnName == "EditColumn")
+                if (columnName == "EditColumn")
+                {
+                    int productId = Convert.ToInt32(row.Cells["id"].Value);
+                    string variationType = row.Cells["variation_type"].Value.ToString();
+
+                    if (variationType == "N/A")
                     {
-                        // Retrieve the product ID from the "id" column
-                        int productId = Convert.ToInt32(row.Cells["id"].Value);
-                        // Open the CreateProduct form in edit mode
+                        // No variation: Open CreateProduct directly
                         CreateProduct editForm = new CreateProduct(productId);
-                        // Refresh the grid when the edit form closes
                         editForm.FormClosed += (s, args) => LoadProductsData();
                         editForm.Show();
                     }
+                    else
+                    {
+                        // Has variation: Open ProductPricing first
+                        if (row.Cells["variation_type_id"].Value == DBNull.Value)
+                        {
+                            MessageBox.Show("Variation type ID is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        int variationId = Convert.ToInt32(row.Cells["variation_type_id"].Value);
+                        ProductPricing pricingForm = new ProductPricing(variationId, productId, variationType);
+                        if (pricingForm.ShowDialog() == DialogResult.OK)
+                        {
+                            // After saving pricing, open CreateProduct
+                            CreateProduct editForm = new CreateProduct(productId);
+                            editForm.FormClosed += (s, args) => LoadProductsData();
+                            editForm.Show();
+                        }
+                    }
+                }
 
-                    // Check if the delete button column was clicked
-                    if (columnName == "DeleteColumn")
+                // Check if the delete button column was clicked
+                if (columnName == "DeleteColumn")
                 {
                     // Extract product ID and variation type from the selected row
                     int productId = Convert.ToInt32(row.Cells["id"].Value);
