@@ -41,6 +41,10 @@
             this.preGRNLabel = new System.Windows.Forms.Label();
             this.preGRNCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.preGRNBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.preGRNRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.filterDateComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.preGRNSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.filterPaymentComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.preGRNDataGridView)).BeginInit();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -124,6 +128,7 @@
             this.preGRNDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.preGRNDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.preGRNDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.preGRNDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.preGRNDataGridView_CellContentClick);
             // 
             // headerPanel
             // 
@@ -180,7 +185,7 @@
             this.preGRNLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.preGRNLabel.Location = new System.Drawing.Point(12, 52);
             this.preGRNLabel.Name = "preGRNLabel";
-            this.preGRNLabel.Size = new System.Drawing.Size(174, 28);
+            this.preGRNLabel.Size = new System.Drawing.Size(186, 28);
             this.preGRNLabel.TabIndex = 81;
             this.preGRNLabel.Text = "Previous GRN";
             // 
@@ -202,6 +207,7 @@
             this.preGRNCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.preGRNCancelBtn.TabIndex = 82;
             this.preGRNCancelBtn.Text = "Cancel";
+            this.preGRNCancelBtn.Click += new System.EventHandler(this.preGRNCancelBtn_Click);
             // 
             // preGRNBorderlessForm
             // 
@@ -210,11 +216,94 @@
             this.preGRNBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.preGRNBorderlessForm.TransparentWhileDrag = true;
             // 
+            // preGRNRefreshBtn
+            // 
+            this.preGRNRefreshBtn.BorderRadius = 8;
+            this.preGRNRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.preGRNRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.preGRNRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.preGRNRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.preGRNRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.preGRNRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.preGRNRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.preGRNRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.preGRNRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.preGRNRefreshBtn.Location = new System.Drawing.Point(501, 52);
+            this.preGRNRefreshBtn.Name = "preGRNRefreshBtn";
+            this.preGRNRefreshBtn.Size = new System.Drawing.Size(42, 42);
+            this.preGRNRefreshBtn.TabIndex = 84;
+            this.preGRNRefreshBtn.Click += new System.EventHandler(this.preGRNRefreshBtn_Click);
+            // 
+            // filterDateComboBox
+            // 
+            this.filterDateComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.filterDateComboBox.BorderRadius = 8;
+            this.filterDateComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterDateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterDateComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterDateComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterDateComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.filterDateComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.filterDateComboBox.ItemHeight = 36;
+            this.filterDateComboBox.Location = new System.Drawing.Point(768, 52);
+            this.filterDateComboBox.Name = "filterDateComboBox";
+            this.filterDateComboBox.Size = new System.Drawing.Size(150, 42);
+            this.filterDateComboBox.TabIndex = 85;
+            this.filterDateComboBox.SelectedIndexChanged += new System.EventHandler(this.filterDateComboBox_SelectedIndexChanged);
+            // 
+            // preGRNSearchText
+            // 
+            this.preGRNSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.preGRNSearchText.BorderRadius = 8;
+            this.preGRNSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.preGRNSearchText.DefaultText = "";
+            this.preGRNSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.preGRNSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.preGRNSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.preGRNSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.preGRNSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.preGRNSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.preGRNSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.preGRNSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.preGRNSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.preGRNSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.preGRNSearchText.Location = new System.Drawing.Point(204, 52);
+            this.preGRNSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.preGRNSearchText.Name = "preGRNSearchText";
+            this.preGRNSearchText.PasswordChar = '\0';
+            this.preGRNSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.preGRNSearchText.PlaceholderText = "Search";
+            this.preGRNSearchText.SelectedText = "";
+            this.preGRNSearchText.Size = new System.Drawing.Size(276, 42);
+            this.preGRNSearchText.TabIndex = 86;
+            this.preGRNSearchText.TextChanged += new System.EventHandler(this.preGRNSearchText_TextChanged);
+            // 
+            // filterPaymentComboBox
+            // 
+            this.filterPaymentComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.filterPaymentComboBox.BorderRadius = 8;
+            this.filterPaymentComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterPaymentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterPaymentComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterPaymentComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterPaymentComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.filterPaymentComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.filterPaymentComboBox.ItemHeight = 36;
+            this.filterPaymentComboBox.Location = new System.Drawing.Point(598, 52);
+            this.filterPaymentComboBox.Name = "filterPaymentComboBox";
+            this.filterPaymentComboBox.Size = new System.Drawing.Size(150, 42);
+            this.filterPaymentComboBox.TabIndex = 87;
+            this.filterPaymentComboBox.SelectedIndexChanged += new System.EventHandler(this.filterPaymentComboBox_SelectedIndexChanged);
+            // 
             // PreviousGRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 466);
+            this.Controls.Add(this.filterPaymentComboBox);
+            this.Controls.Add(this.preGRNSearchText);
+            this.Controls.Add(this.filterDateComboBox);
+            this.Controls.Add(this.preGRNRefreshBtn);
             this.Controls.Add(this.preGRNCancelBtn);
             this.Controls.Add(this.preGRNLabel);
             this.Controls.Add(this.headerPanel);
@@ -222,6 +311,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PreviousGRN";
             this.Text = "PreviousGRN";
+            this.Load += new System.EventHandler(this.PreviousGRN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.preGRNDataGridView)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
@@ -240,5 +330,9 @@
         private System.Windows.Forms.Label preGRNLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton preGRNCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm preGRNBorderlessForm;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton preGRNRefreshBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterDateComboBox;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox preGRNSearchText;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterPaymentComboBox;
     }
 }

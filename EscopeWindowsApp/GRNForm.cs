@@ -215,7 +215,7 @@ namespace EscopeWindowsApp
                 {
                     conn.Open();
                     string query = "SELECT cost_price, retail_price, wholesale_price FROM pricing " +
-                                   "WHERE product_id = @productId AND variation_id IS NULL LIMIT 1";
+                                   "WHERE product_id = @productId AND variation_type IS NULL LIMIT 1";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@productId", productId);
@@ -243,36 +243,31 @@ namespace EscopeWindowsApp
             }
         }
 
-        //private void LoadStockForNoVariation(int productId)
-        //{
-        //    try
-        //    {
-        //        using (MySqlConnection conn = new MySqlConnection(connectionString))
-        //        {
-        //            conn.Open();
-        //            string query = "SELECT stock FROM stock WHERE product_id = @productId AND variation_type IS NULL LIMIT 1";
-        //            using (MySqlCommand cmd = new MySqlCommand(query, conn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@productId", productId);
-        //                using (MySqlDataReader reader = cmd.ExecuteReader())
-        //                {
-        //                    if (reader.Read())
-        //                    {
-        //                        grnStockText.Text = reader["stock"].ToString();
-        //                    }
-        //                    else
-        //                    {
-        //                        grnStockText.Text = "0";
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+        private void LoadStockForNoVariation(int productId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    // Fetch the total stock for the product with no variation
+                    string query = "SELECT COALESCE(SUM(stock), 0) AS total_stock " +
+                                   "FROM stock " +
+                                   "WHERE product_id = @productId AND variation_type IS NULL";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@productId", productId);
+                        object result = cmd.ExecuteScalar();
+                        grnStockText.Text = result != null ? Convert.ToInt32(result).ToString() : "0";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                grnStockText.Text = "0"; // Fallback on error
+            }
+        }
         #endregion
 
         #region Variation Type and Pricing
@@ -332,59 +327,22 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT stock FROM stock WHERE product_id = @productId AND variation_type = @variationType LIMIT 1";
+                    string query = "SELECT COALESCE(SUM(stock), 0) AS total_stock " +
+                                   "FROM stock " +
+                                   "WHERE product_id = @productId AND variation_type = @variationType";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@productId", productId);
                         cmd.Parameters.AddWithValue("@variationType", variationType);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                grnStockText.Text = reader["stock"].ToString();
-                            }
-                            else
-                            {
-                                grnStockText.Text = "0"; // If no stock entry exists yet
-                            }
-                        }
+                        object result = cmd.ExecuteScalar();
+                        grnStockText.Text = result != null ? Convert.ToInt32(result).ToString() : "0";
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading stock for variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void LoadStockForNoVariation(int productId)
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT stock FROM stock WHERE product_id = @productId AND variation_type IS NULL LIMIT 1";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@productId", productId);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                grnStockText.Text = reader["stock"].ToString();
-                            }
-                            else
-                            {
-                                grnStockText.Text = "0"; // If no stock entry exists yet
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                grnStockText.Text = "0"; // Fallback on error
             }
         }
         #endregion
@@ -537,7 +495,19 @@ namespace EscopeWindowsApp
                     }
 
                     MessageBox.Show("GRN saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+
+                    // Refresh stock display for the current product (if still selected) before closing
+                    if (currentProductId.HasValue)
+                    {
+                        if (currentVariationType == null)
+                            LoadStockForNoVariation(currentProductId.Value);
+                        else
+                            LoadStockForVariation(currentProductId.Value, currentVariationType);
+                    }
+
+                    // Clear the form and reset for a new GRN (optional: comment out this.Close() to keep form open)
+                    ResetForm();
+                    // this.Close(); // Uncomment if you want to close the form after saving
                 }
             }
             catch (Exception ex)
@@ -546,7 +516,31 @@ namespace EscopeWindowsApp
             }
         }
 
-
+        private void ResetForm()
+        {
+            grnDataGridView.Rows.Clear();
+            grnProSearchText.Text = "";
+            grnProIDText.Text = "";
+            grnProNameText.Text = "";
+            grnProCatText.Text = "";
+            grnVarText.Text = "";
+            grnStockText.Text = "";
+            grnVarTypCombo.Items.Clear();
+            grnVarTypCombo.Enabled = false;
+            grnQuantityText.Text = "";
+            grnCostPriText.Text = "";
+            grnRetPriText.Text = "";
+            grnWholePriText.Text = "";
+            grnNetPriceText.Text = "";
+            grnExpireDatePicker.Value = DateTime.Now;
+            grnWarrantyComboBox.SelectedIndex = 0;
+            paymentMethod = null;
+            cashPaymentRadioBtn.Checked = false;
+            chequePaymentRadioBtn.Checked = false;
+            creaditPayementRadioBtn.Checked = false;
+            currentProductId = null;
+            currentVariationType = null;
+        }
 
         private string GenerateGRNNumber()
         {
@@ -574,17 +568,35 @@ namespace EscopeWindowsApp
         #region Previous GRN
         private void previousGRNBtn_Click(object sender, EventArgs e)
         {
-            // Open 'previousGRN' form
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is PreviousGRN)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            PreviousGRN previousGRN = new PreviousGRN();
+            previousGRN.Show();
         }
         #endregion
 
-        #region Expiry Date
+        #region Expiry Date and Miscellaneous
         private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             // Expiry date is set by the user and saved with each GRN item
         }
 
-        private void grnNoLabel_Click(object sender, EventArgs e) { }
+        private void grnNoLabel_Click(object sender, EventArgs e) 
+        {
+            // GRN number is here, my previous GRN-ID + 1
+            // 
+        }
         private void creatProductLabel_Click(object sender, EventArgs e) { }
         private void grnPictureBox_Click(object sender, EventArgs e) { }
         private void ceaditPayementLabel_Click(object sender, EventArgs e) { }
