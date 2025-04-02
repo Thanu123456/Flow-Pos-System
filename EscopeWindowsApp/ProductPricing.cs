@@ -10,15 +10,17 @@ namespace EscopeWindowsApp
         private readonly string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
         private int variationId;
         private string variationName;
+        private string selectedVariationType;
         private List<string> variationTypes;
         private int productId;
         public List<PricingDetail> PricingDetails { get; private set; }
 
-        public ProductPricing(int variationId, int productId = -1)
+        public ProductPricing(int variationId, int productId = -1, string selectedVariationType = null)
         {
             InitializeComponent();
             this.variationId = variationId;
             this.productId = productId;
+            this.selectedVariationType = selectedVariationType;
 
             LoadVariationData();
             if (productId != -1)
@@ -26,6 +28,7 @@ namespace EscopeWindowsApp
                 LoadExistingPricing();
             }
             SetupForm();
+
         }
 
         private void LoadVariationData()
@@ -69,9 +72,6 @@ namespace EscopeWindowsApp
 
         private void SetupForm()
         {
-            // Assuming UI controls: priceVarNameText (TextBox), priVar1NameLbl to priVar5NameLbl (Labels),
-            // priVarType1Lbl to priVarType5Lbl (Labels), ty1CostPriText to ty5CostPriText (TextBoxes),
-            // ty1RetPriText to ty5RetPriText (TextBoxes), ty1WholePriText to ty5WholePriText (TextBoxes)
             priceVarNameText.Text = variationName;
             priceVarNameText.ReadOnly = true;
 
@@ -81,26 +81,59 @@ namespace EscopeWindowsApp
             var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
             var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
 
-            for (int i = 0; i < 5; i++)
+            if (selectedVariationType != null)
             {
-                if (i < variationTypes.Count)
+                int index = variationTypes.IndexOf(selectedVariationType);
+                if (index >= 0)
                 {
-                    nameLabels[i].Text = variationName;
-                    typeLabels[i].Text = variationTypes[i];
-                    costTexts[i].Enabled = true;
-                    retailTexts[i].Enabled = true;
-                    wholeTexts[i].Enabled = true;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (i == index)
+                        {
+                            nameLabels[i].Text = variationName;
+                            typeLabels[i].Text = variationTypes[i];
+                            costTexts[i].Enabled = true;
+                            retailTexts[i].Enabled = true;
+                            wholeTexts[i].Enabled = true;
+                        }
+                        else
+                        {
+                            nameLabels[i].Text = variationName;
+                            typeLabels[i].Text = i < variationTypes.Count ? variationTypes[i] : "";
+                            costTexts[i].Enabled = false;
+                            retailTexts[i].Enabled = false;
+                            wholeTexts[i].Enabled = false;
+                        }
+                    }
                 }
                 else
                 {
-                    nameLabels[i].Text = "";
-                    typeLabels[i].Text = "";
-                    costTexts[i].Enabled = false;
-                    retailTexts[i].Enabled = false;
-                    wholeTexts[i].Enabled = false;
-                    costTexts[i].Text = "";
-                    retailTexts[i].Text = "";
-                    wholeTexts[i].Text = "";
+                    MessageBox.Show("Selected variation type not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i < variationTypes.Count)
+                    {
+                        nameLabels[i].Text = variationName;
+                        typeLabels[i].Text = variationTypes[i];
+                        costTexts[i].Enabled = true;
+                        retailTexts[i].Enabled = true;
+                        wholeTexts[i].Enabled = true;
+                    }
+                    else
+                    {
+                        nameLabels[i].Text = "";
+                        typeLabels[i].Text = "";
+                        costTexts[i].Enabled = false;
+                        retailTexts[i].Enabled = false;
+                        wholeTexts[i].Enabled = false;
+                        costTexts[i].Text = "";
+                        retailTexts[i].Text = "";
+                        wholeTexts[i].Text = "";
+                    }
                 }
             }
         }
@@ -114,10 +147,18 @@ namespace EscopeWindowsApp
                     conn.Open();
                     string query = "SELECT variation_type, cost_price, retail_price, wholesale_price " +
                                    "FROM pricing WHERE product_id = @productId AND variation_id = @variationId";
+                    if (selectedVariationType != null)
+                    {
+                        query += " AND variation_type = @selectedVariationType";
+                    }
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@productId", productId);
                         cmd.Parameters.AddWithValue("@variationId", variationId);
+                        if (selectedVariationType != null)
+                        {
+                            cmd.Parameters.AddWithValue("@selectedVariationType", selectedVariationType);
+                        }
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -165,37 +206,78 @@ namespace EscopeWindowsApp
         {
             try
             {
-                PricingDetails = new List<PricingDetail>();
                 var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
                 var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
                 var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
 
-                for (int i = 0; i < variationTypes.Count; i++)
+                if (selectedVariationType != null)
                 {
-                    if (string.IsNullOrWhiteSpace(costTexts[i].Text) || string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
-                        string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                    int index = variationTypes.IndexOf(selectedVariationType);
+                    if (index >= 0)
                     {
-                        MessageBox.Show("Please fill in all pricing fields for enabled variations.", "Validation Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        if (string.IsNullOrWhiteSpace(costTexts[index].Text) ||
+                            string.IsNullOrWhiteSpace(retailTexts[index].Text) ||
+                            string.IsNullOrWhiteSpace(wholeTexts[index].Text))
+                        {
+                            MessageBox.Show("Please fill in all pricing fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        decimal costPrice = decimal.Parse(costTexts[index].Text);
+                        decimal retailPrice = decimal.Parse(retailTexts[index].Text);
+                        decimal wholesalePrice = decimal.Parse(wholeTexts[index].Text);
+
+                        using (MySqlConnection conn = new MySqlConnection(connectionString))
+                        {
+                            conn.Open();
+                            string updateQuery = "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice, wholesale_price = @wholesalePrice " +
+                                                 "WHERE product_id = @productId AND variation_id = @variationId AND variation_type = @variationType";
+                            using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@costPrice", costPrice);
+                                cmd.Parameters.AddWithValue("@retailPrice", retailPrice);
+                                cmd.Parameters.AddWithValue("@wholesalePrice", wholesalePrice);
+                                cmd.Parameters.AddWithValue("@productId", productId);
+                                cmd.Parameters.AddWithValue("@variationId", variationId);
+                                cmd.Parameters.AddWithValue("@variationType", selectedVariationType);
+                                int rowsAffected = cmd.ExecuteNonQuery();
+                                if (rowsAffected == 0)
+                                {
+                                    MessageBox.Show("No pricing record found to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+                        }
+                        DialogResult = DialogResult.OK;
+                        Close();
                     }
-
-                    PricingDetails.Add(new PricingDetail
+                    else
                     {
-                        VariationType = variationTypes[i],
-                        CostPrice = decimal.Parse(costTexts[i].Text),
-                        RetailPrice = decimal.Parse(retailTexts[i].Text),
-                        WholesalePrice = decimal.Parse(wholeTexts[i].Text)
-                    });
+                        MessageBox.Show("Selected variation type not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Please enter valid numeric values for all prices.", "Validation Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    PricingDetails = new List<PricingDetail>();
+                    for (int i = 0; i < variationTypes.Count; i++)
+                    {
+                        if (string.IsNullOrWhiteSpace(costTexts[i].Text) || string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
+                            string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                        {
+                            MessageBox.Show("Please fill in all pricing fields for enabled variations.", "Validation Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        PricingDetails.Add(new PricingDetail
+                        {
+                            VariationType = variationTypes[i],
+                            CostPrice = decimal.Parse(costTexts[i].Text),
+                            RetailPrice = decimal.Parse(retailTexts[i].Text),
+                            WholesalePrice = decimal.Parse(wholeTexts[i].Text)
+                        });
+                    }
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             catch (Exception ex)
             {
