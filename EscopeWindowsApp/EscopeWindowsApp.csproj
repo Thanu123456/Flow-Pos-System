@@ -250,6 +250,18 @@
     <Compile Include="DashBoardForm.Designer.cs">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExpensesCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpensesCategory.Designer.cs">
+      <DependentUpon>ExpensesCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesCreateCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpensesCreateCategory.Designer.cs">
+      <DependentUpon>ExpensesCreateCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="GRNForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DashBoardForm.resx">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpensesCategory.resx">
+      <DependentUpon>ExpensesCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpensesCreateCategory.resx">
+      <DependentUpon>ExpensesCreateCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GRNForm.resx">
       <DependentUpon>GRNForm.cs</DependentUpon>
