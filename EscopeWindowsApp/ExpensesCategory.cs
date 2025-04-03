@@ -356,5 +356,10 @@ namespace EscopeWindowsApp
                 expCatDataGridView.CurrentCell = expCatDataGridView.Rows[currentIndex].Cells[0];
             }
         }
+
+        private void createExpCatBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
