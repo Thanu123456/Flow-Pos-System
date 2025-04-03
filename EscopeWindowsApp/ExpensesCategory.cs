@@ -82,6 +82,8 @@ namespace EscopeWindowsApp
             }
         }
 
+
+
         private void ExpCatDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -355,11 +357,6 @@ namespace EscopeWindowsApp
                 currentIndex = expCatDataGridView.Rows.Count - 1;
                 expCatDataGridView.CurrentCell = expCatDataGridView.Rows[currentIndex].Cells[0];
             }
-        }
-
-        private void createExpCatBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
