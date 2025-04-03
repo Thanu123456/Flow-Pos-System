@@ -358,6 +358,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ControlBox = false;
             this.Controls.Add(this.expCatAllPgLabel);
             this.Controls.Add(this.expCatOfLabel);
             this.Controls.Add(this.expCatPgRangeLabel);
@@ -369,7 +370,9 @@
             this.Controls.Add(this.expCatRefreshBtn);
             this.Controls.Add(this.expCatSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimizeBox = false;
             this.Name = "ExpensesCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExpensesCategory";
