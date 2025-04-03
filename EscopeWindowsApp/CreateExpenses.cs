@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
-    public partial class ExpensesCategory : Form
+    public partial class CreateExpenses : Form
     {
-        public ExpensesCategory()
+        public CreateExpenses()
         {
             InitializeComponent();
-        }
-
-        private void createExpCatBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

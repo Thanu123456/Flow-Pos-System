@@ -226,6 +226,12 @@
     <Compile Include="CreateCategory.Designer.cs">
       <DependentUpon>CreateCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateExpenses.Designer.cs">
+      <DependentUpon>CreateExpenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,12 @@
     </Compile>
     <Compile Include="ExpensesCreateCategory.Designer.cs">
       <DependentUpon>ExpensesCreateCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpensesForm.Designer.cs">
+      <DependentUpon>ExpensesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GRNForm.cs">
       <SubType>Form</SubType>
@@ -435,6 +447,9 @@
     <EmbeddedResource Include="CreateCategory.resx">
       <DependentUpon>CreateCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateExpenses.resx">
+      <DependentUpon>CreateExpenses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateProduct.resx">
       <DependentUpon>CreateProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExpensesCreateCategory.resx">
       <DependentUpon>ExpensesCreateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpensesForm.resx">
+      <DependentUpon>ExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GRNForm.resx">
       <DependentUpon>GRNForm.cs</DependentUpon>
@@ -519,6 +537,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\expcategory.png" />
     <None Include="Resources\grnimage.png" />
     <None Include="Resources\GrnWhite Ori.png" />
     <None Include="Resources\grnWhite.png" />

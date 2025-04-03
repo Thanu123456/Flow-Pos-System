@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,8 @@ namespace EscopeWindowsApp
         SalesForm salesForm;
         SaleReturnForm salesReturnForm;
         Barcode barcodeForm;
-        PurchesList purchesForm;
-        PurchesReturn purchesReturnForm;
+        ExpensesForm expensesForm;
+        ExpensesCategory expensesCategoryForm;
         CustomerForm customerForm;
         SupplierForm supplierForm;
         UserForm userForm;
@@ -75,11 +76,11 @@ namespace EscopeWindowsApp
         {
             Control[] sidebarButtons = new Control[]
             {
-                manuBtn, purchesBtn, salesBtn, peoplesBtn, dashboardBtn,
+                manuBtn, expensesBtn, salesBtn, peoplesBtn, dashboardBtn,
                 adjBtn, quatationBtn, wareHouseBtn, transferBtn, reportsBtn,
                 settingBtn, sidebarBtn, proBtn, proCatBtn, varBtn,
                 brandBtn, unitsBtn, baseUnitBtn, salesListBtn, salesRetBtn,
-                barcodePrtBtn, purchListBtn, purchRetBtn, cusBtn, supBtn, userBtn
+                barcodePrtBtn, creExpBtn, expCatBtn, cusBtn, supBtn, userBtn
             };
 
             foreach (Control ctrl in sidebarButtons)
@@ -195,9 +196,7 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void manuBtn_Click(object sender, EventArgs
-
- e)
+        private void manuBtn_Click(object sender, EventArgs e)
         {
             CheckButton(manuBtn);
             ExpandSidebarIfCollapsed();
@@ -231,9 +230,9 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void purchesBtn_Click(object sender, EventArgs e)
+        private void ExpensesBtn_Click(object sender, EventArgs e)
         {
-            CheckButton(purchesBtn);
+            CheckButton(expensesBtn);
             ExpandSidebarIfCollapsed();
             CollapseAllPanels();
             if (!purchesesExpand)
@@ -333,9 +332,9 @@ namespace EscopeWindowsApp
                     supBtnPanel.Width = 250;
                     cusBtnPanel.Width = 250;
                     peoplesBtnPanel.Width = 250;
-                    purchesBtnPanel.Width = 250;
-                    purchRetBtnPanel.Width = 250;
-                    purchListBtnPanel.Width = 250;
+                    expPanel.Width = 250;
+                    creExpBtnPanel.Width = 250;
+                    expCatBtnPanel.Width = 250;
                     salesBtnPanel.Width = 250;
                     salesListBtnPanel.Width = 250;
                     salesRetBtnPanel.Width = 250;
@@ -369,9 +368,9 @@ namespace EscopeWindowsApp
                     supBtnPanel.Width = 56;
                     cusBtnPanel.Width = 56;
                     peoplesBtnPanel.Width = 56;
-                    purchesBtnPanel.Width = 56;
-                    purchRetBtnPanel.Width = 56;
-                    purchListBtnPanel.Width = 56;
+                    expCatBtnPanel.Width = 56;
+                    expPanel.Width = 56;
+                    creExpBtnPanel.Width = 56;
                     salesBtnPanel.Width = 56;
                     salesListBtnPanel.Width = 56;
                     salesRetBtnPanel.Width = 56;
@@ -776,50 +775,6 @@ namespace EscopeWindowsApp
             barcodeForm = null;
         }
 
-        private void purchListBtn_Click(object sender, EventArgs e)
-        {
-            if (purchesForm == null)
-            {
-                purchesForm = new PurchesList();
-                purchesForm.FormClosed += Purches_FormClosed;
-                purchesForm.MdiParent = this;
-                purchesForm.Dock = DockStyle.Fill;
-                purchesForm.Show();
-            }
-            else
-            {
-                purchesForm.Activate();
-                purchesForm.Show();
-            }
-        }
-
-        private void Purches_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            purchesForm = null;
-        }
-
-        private void purchRetBtn_Click(object sender, EventArgs e)
-        {
-            if (purchesReturnForm == null)
-            {
-                purchesReturnForm = new PurchesReturn();
-                purchesReturnForm.FormClosed += PurchesReturn_FormClosed;
-                purchesReturnForm.MdiParent = this;
-                purchesReturnForm.Dock = DockStyle.Fill;
-                purchesReturnForm.Show();
-            }
-            else
-            {
-                purchesReturnForm.Activate();
-                purchesReturnForm.Show();
-            }
-        }
-
-        private void PurchesReturn_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            purchesReturnForm = null;
-        }
-
         private void cusBtn_Click(object sender, EventArgs e)
         {
             if (customerForm == null)
@@ -884,6 +839,49 @@ namespace EscopeWindowsApp
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             userForm = null;
+        }
+
+        private void creExpBtn_Click(object sender, EventArgs e)
+        {
+            if (expensesForm == null)
+            {
+                expensesForm = new ExpensesForm();
+                expensesForm.FormClosed += ExpensesForm_FormClosed;
+                expensesForm.MdiParent = this;
+                expensesForm.Dock = DockStyle.Fill;
+                expensesForm.Show();
+            }
+            else
+            {
+                expensesForm.Activate();
+                expensesForm.Show();
+            }
+        }
+
+        private void ExpensesForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            expensesForm = null;
+        }
+
+        private void expCatBtn_Click(object sender, EventArgs e)
+        {
+            if (expensesCategoryForm == null)
+            {
+                expensesCategoryForm = new ExpensesCategory();
+                expensesCategoryForm.FormClosed += ExpensesCategoryForm_FormClosed;
+                expensesCategoryForm.MdiParent = this;
+                expensesCategoryForm.Dock = DockStyle.Fill;
+                expensesCategoryForm.Show();
+            }
+            else
+            {
+                expensesCategoryForm.Activate();
+                expensesCategoryForm.Show();
+            }
+        }
+        private void ExpensesCategoryForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            expensesCategoryForm = null;
         }
     }
 }
