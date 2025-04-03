@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.expCatDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.expCatRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expCatSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -56,48 +56,48 @@
             this.expCatDataGridView.AllowUserToDeleteRows = false;
             this.expCatDataGridView.AllowUserToResizeColumns = false;
             this.expCatDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
-            this.expCatDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.expCatDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.expCatDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.expCatDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expCatDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.expCatDataGridView.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.expCatDataGridView.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.expCatDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.expCatDataGridView.GridColor = System.Drawing.Color.White;
             this.expCatDataGridView.Location = new System.Drawing.Point(17, 100);
             this.expCatDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.expCatDataGridView.Name = "expCatDataGridView";
             this.expCatDataGridView.ReadOnly = true;
             this.expCatDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.expCatDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expCatDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.expCatDataGridView.RowHeadersVisible = false;
             this.expCatDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.expCatDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -127,6 +127,7 @@
             this.expCatDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.expCatDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.expCatDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.expCatDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expCatDataGridView_CellContentClick);
             // 
             // expCatRefreshBtn
             // 
@@ -145,6 +146,7 @@
             this.expCatRefreshBtn.Name = "expCatRefreshBtn";
             this.expCatRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.expCatRefreshBtn.TabIndex = 40;
+            this.expCatRefreshBtn.Click += new System.EventHandler(this.expCatRefreshBtn_Click);
             // 
             // expCatSearchText
             // 
@@ -172,6 +174,7 @@
             this.expCatSearchText.SelectedText = "";
             this.expCatSearchText.Size = new System.Drawing.Size(400, 42);
             this.expCatSearchText.TabIndex = 39;
+            this.expCatSearchText.TextChanged += new System.EventHandler(this.expCatSearchText_TextChanged);
             // 
             // createExpCatBtn
             // 
@@ -191,6 +194,7 @@
             this.createExpCatBtn.Size = new System.Drawing.Size(238, 42);
             this.createExpCatBtn.TabIndex = 42;
             this.createExpCatBtn.Text = "Craete Expenses Category";
+            this.createExpCatBtn.Click += new System.EventHandler(this.createExpCatBtn_Click);
             // 
             // expCatBtnPanel
             // 
@@ -221,6 +225,7 @@
             this.expCatFirstBtn.Name = "expCatFirstBtn";
             this.expCatFirstBtn.Size = new System.Drawing.Size(26, 26);
             this.expCatFirstBtn.TabIndex = 11;
+            this.expCatFirstBtn.Click += new System.EventHandler(this.expCatFirstBtn_Click);
             // 
             // expCatPrevBtn
             // 
@@ -238,6 +243,7 @@
             this.expCatPrevBtn.Name = "expCatPrevBtn";
             this.expCatPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.expCatPrevBtn.TabIndex = 11;
+            this.expCatPrevBtn.Click += new System.EventHandler(this.expCatPrevBtn_Click);
             // 
             // expCatNextBtn
             // 
@@ -255,6 +261,7 @@
             this.expCatNextBtn.Name = "expCatNextBtn";
             this.expCatNextBtn.Size = new System.Drawing.Size(26, 26);
             this.expCatNextBtn.TabIndex = 9;
+            this.expCatNextBtn.Click += new System.EventHandler(this.expCatNextBtn_Click);
             // 
             // expCatLastBtn
             // 
@@ -271,6 +278,7 @@
             this.expCatLastBtn.Name = "expCatLastBtn";
             this.expCatLastBtn.Size = new System.Drawing.Size(26, 26);
             this.expCatLastBtn.TabIndex = 8;
+            this.expCatLastBtn.Click += new System.EventHandler(this.expCatLastBtn_Click);
             // 
             // expCatAllPgLabel
             // 
@@ -365,6 +373,7 @@
             this.Name = "ExpensesCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExpensesCategory";
+            this.Load += new System.EventHandler(this.ExpensesCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.expCatDataGridView)).EndInit();
             this.expCatBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);

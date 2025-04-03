@@ -99,6 +99,7 @@
             this.creExpSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creExpSaveBtn.TabIndex = 81;
             this.creExpSaveBtn.Text = "Save";
+            this.creExpSaveBtn.Click += new System.EventHandler(this.creExpSaveBtn_Click);
             // 
             // creExpCancelBtn
             // 
@@ -118,6 +119,7 @@
             this.creExpCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creExpCancelBtn.TabIndex = 80;
             this.creExpCancelBtn.Text = "Cancel";
+            this.creExpCancelBtn.Click += new System.EventHandler(this.creExpCancelBtn_Click);
             // 
             // createExpNameLabel
             // 
@@ -158,6 +160,7 @@
             this.createExpNameText.SelectedText = "";
             this.createExpNameText.Size = new System.Drawing.Size(348, 42);
             this.createExpNameText.TabIndex = 78;
+            this.createExpNameText.TextChanged += new System.EventHandler(this.createExpNameText_TextChanged);
             // 
             // createExpCategoryLabel
             // 
@@ -169,7 +172,7 @@
             this.createExpCategoryLabel.TabIndex = 77;
             this.createExpCategoryLabel.Text = "EXPENSES CATEGORY";
             // 
-            // ExpensesCategory
+            // ExpensesCreateCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,8 +186,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(400, 275);
             this.MinimumSize = new System.Drawing.Size(400, 275);
-            this.Name = "ExpensesCategory";
+            this.Name = "ExpensesCreateCategory";
             this.Text = "Expenses Category";
+            this.Load += new System.EventHandler(this.ExpensesCreateCategory_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
