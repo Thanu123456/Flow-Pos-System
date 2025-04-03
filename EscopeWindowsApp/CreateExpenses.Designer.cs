@@ -35,6 +35,9 @@
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.creExpLabel = new System.Windows.Forms.Label();
             this.creExpPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.creExpCatComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.creExpWarehouseComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.creExpDateTimePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.creExpDetailsext = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creExpDetailsLabel = new System.Windows.Forms.Label();
             this.creExpAmountText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -47,9 +50,6 @@
             this.creExpCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creExpSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creExpBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
-            this.creExpDateTimePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
-            this.creExpWarehouseComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.creExpCatComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.creExpPanel.SuspendLayout();
@@ -135,6 +135,68 @@
             this.creExpPanel.Size = new System.Drawing.Size(956, 322);
             this.creExpPanel.TabIndex = 32;
             // 
+            // creExpCatComboBox
+            // 
+            this.creExpCatComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.creExpCatComboBox.BorderRadius = 8;
+            this.creExpCatComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.creExpCatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.creExpCatComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creExpCatComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpCatComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.creExpCatComboBox.ItemHeight = 36;
+            this.creExpCatComboBox.Items.AddRange(new object[] {
+            "Choose Category",
+            "Supplier 1",
+            "Supplier 2"});
+            this.creExpCatComboBox.Location = new System.Drawing.Point(494, 149);
+            this.creExpCatComboBox.Name = "creExpCatComboBox";
+            this.creExpCatComboBox.Size = new System.Drawing.Size(443, 42);
+            this.creExpCatComboBox.StartIndex = 0;
+            this.creExpCatComboBox.TabIndex = 52;
+            this.creExpCatComboBox.SelectedIndexChanged += new System.EventHandler(this.creExpCatComboBox_SelectedIndexChanged);
+            // 
+            // creExpWarehouseComboBox
+            // 
+            this.creExpWarehouseComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.creExpWarehouseComboBox.BorderRadius = 8;
+            this.creExpWarehouseComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.creExpWarehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.creExpWarehouseComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creExpWarehouseComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpWarehouseComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.creExpWarehouseComboBox.ItemHeight = 36;
+            this.creExpWarehouseComboBox.Items.AddRange(new object[] {
+            "Choose Warehouse",
+            "Supplier 1",
+            "Supplier 2"});
+            this.creExpWarehouseComboBox.Location = new System.Drawing.Point(21, 149);
+            this.creExpWarehouseComboBox.Name = "creExpWarehouseComboBox";
+            this.creExpWarehouseComboBox.Size = new System.Drawing.Size(443, 42);
+            this.creExpWarehouseComboBox.StartIndex = 0;
+            this.creExpWarehouseComboBox.TabIndex = 51;
+            this.creExpWarehouseComboBox.SelectedIndexChanged += new System.EventHandler(this.creExpWarehouseComboBox_SelectedIndexChanged);
+            // 
+            // creExpDateTimePicker
+            // 
+            this.creExpDateTimePicker.BackColor = System.Drawing.Color.Transparent;
+            this.creExpDateTimePicker.BorderRadius = 8;
+            this.creExpDateTimePicker.Checked = true;
+            this.creExpDateTimePicker.FillColor = System.Drawing.Color.White;
+            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpDateTimePicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.creExpDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.creExpDateTimePicker.Location = new System.Drawing.Point(21, 52);
+            this.creExpDateTimePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.creExpDateTimePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.creExpDateTimePicker.Name = "creExpDateTimePicker";
+            this.creExpDateTimePicker.Size = new System.Drawing.Size(443, 42);
+            this.creExpDateTimePicker.TabIndex = 29;
+            this.creExpDateTimePicker.Value = new System.DateTime(2025, 4, 3, 12, 15, 33, 945);
+            this.creExpDateTimePicker.ValueChanged += new System.EventHandler(this.creExpDateTimePicker_ValueChanged);
+            // 
             // creExpDetailsext
             // 
             this.creExpDetailsext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -148,17 +210,19 @@
             this.creExpDetailsext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpDetailsext.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpDetailsext.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creExpDetailsext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDetailsext.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpDetailsext.Location = new System.Drawing.Point(494, 250);
+            this.creExpDetailsext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpDetailsext.Name = "creExpDetailsext";
             this.creExpDetailsext.PasswordChar = '\0';
             this.creExpDetailsext.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.creExpDetailsext.PlaceholderText = "Enter Zip Code";
+            this.creExpDetailsext.PlaceholderText = "Enter Note About The Expense";
             this.creExpDetailsext.SelectedText = "";
             this.creExpDetailsext.Size = new System.Drawing.Size(443, 42);
             this.creExpDetailsext.TabIndex = 28;
+            this.creExpDetailsext.TextChanged += new System.EventHandler(this.creExpDetailsext_TextChanged);
             // 
             // creExpDetailsLabel
             // 
@@ -188,6 +252,7 @@
             this.creExpAmountText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpAmountText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpAmountText.Location = new System.Drawing.Point(21, 250);
+            this.creExpAmountText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpAmountText.Name = "creExpAmountText";
             this.creExpAmountText.PasswordChar = '\0';
             this.creExpAmountText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -195,6 +260,7 @@
             this.creExpAmountText.SelectedText = "";
             this.creExpAmountText.Size = new System.Drawing.Size(441, 42);
             this.creExpAmountText.TabIndex = 26;
+            this.creExpAmountText.TextChanged += new System.EventHandler(this.creExpAmountText_TextChanged);
             // 
             // creExpAmountLabel
             // 
@@ -266,17 +332,19 @@
             this.creExpTitleText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpTitleText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpTitleText.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creExpTitleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpTitleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpTitleText.Location = new System.Drawing.Point(494, 52);
+            this.creExpTitleText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpTitleText.Name = "creExpTitleText";
             this.creExpTitleText.PasswordChar = '\0';
             this.creExpTitleText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.creExpTitleText.PlaceholderText = "Enter Manager\'s Email";
+            this.creExpTitleText.PlaceholderText = "Enter Expenses Title";
             this.creExpTitleText.SelectedText = "";
             this.creExpTitleText.Size = new System.Drawing.Size(443, 42);
             this.creExpTitleText.TabIndex = 5;
+            this.creExpTitleText.TextChanged += new System.EventHandler(this.creExpTitleText_TextChanged);
             // 
             // creExpCancelBtn
             // 
@@ -297,6 +365,7 @@
             this.creExpCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creExpCancelBtn.TabIndex = 34;
             this.creExpCancelBtn.Text = "Cancel";
+            this.creExpCancelBtn.Click += new System.EventHandler(this.creExpCancelBtn_Click);
             // 
             // creExpSaveBtn
             // 
@@ -317,6 +386,7 @@
             this.creExpSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creExpSaveBtn.TabIndex = 33;
             this.creExpSaveBtn.Text = "Save";
+            this.creExpSaveBtn.Click += new System.EventHandler(this.creExpSaveBtn_Click);
             // 
             // creExpBorderlessForm
             // 
@@ -324,65 +394,6 @@
             this.creExpBorderlessForm.ContainerControl = this;
             this.creExpBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.creExpBorderlessForm.TransparentWhileDrag = true;
-            // 
-            // creExpDateTimePicker
-            // 
-            this.creExpDateTimePicker.BackColor = System.Drawing.Color.Transparent;
-            this.creExpDateTimePicker.BorderRadius = 8;
-            this.creExpDateTimePicker.Checked = true;
-            this.creExpDateTimePicker.FillColor = System.Drawing.Color.White;
-            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creExpDateTimePicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.creExpDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.creExpDateTimePicker.Location = new System.Drawing.Point(21, 52);
-            this.creExpDateTimePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.creExpDateTimePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.creExpDateTimePicker.Name = "creExpDateTimePicker";
-            this.creExpDateTimePicker.Size = new System.Drawing.Size(443, 42);
-            this.creExpDateTimePicker.TabIndex = 29;
-            this.creExpDateTimePicker.Value = new System.DateTime(2025, 4, 3, 12, 15, 33, 945);
-            // 
-            // creExpWarehouseComboBox
-            // 
-            this.creExpWarehouseComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creExpWarehouseComboBox.BorderRadius = 8;
-            this.creExpWarehouseComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creExpWarehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creExpWarehouseComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpWarehouseComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creExpWarehouseComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creExpWarehouseComboBox.ItemHeight = 36;
-            this.creExpWarehouseComboBox.Items.AddRange(new object[] {
-            "Choose Warehouse",
-            "Supplier 1",
-            "Supplier 2"});
-            this.creExpWarehouseComboBox.Location = new System.Drawing.Point(21, 149);
-            this.creExpWarehouseComboBox.Name = "creExpWarehouseComboBox";
-            this.creExpWarehouseComboBox.Size = new System.Drawing.Size(443, 42);
-            this.creExpWarehouseComboBox.StartIndex = 0;
-            this.creExpWarehouseComboBox.TabIndex = 51;
-            // 
-            // creExpCatComboBox
-            // 
-            this.creExpCatComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.creExpCatComboBox.BorderRadius = 8;
-            this.creExpCatComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.creExpCatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.creExpCatComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpCatComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.creExpCatComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.creExpCatComboBox.ItemHeight = 36;
-            this.creExpCatComboBox.Items.AddRange(new object[] {
-            "Choose Category",
-            "Supplier 1",
-            "Supplier 2"});
-            this.creExpCatComboBox.Location = new System.Drawing.Point(494, 149);
-            this.creExpCatComboBox.Name = "creExpCatComboBox";
-            this.creExpCatComboBox.Size = new System.Drawing.Size(443, 42);
-            this.creExpCatComboBox.StartIndex = 0;
-            this.creExpCatComboBox.TabIndex = 52;
             // 
             // CreateExpenses
             // 
@@ -400,6 +411,7 @@
             this.Name = "CreateExpenses";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateExpenses";
+            this.Load += new System.EventHandler(this.CreateExpenses_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.creExpPanel.ResumeLayout(false);
