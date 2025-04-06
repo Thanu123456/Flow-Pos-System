@@ -82,5 +82,25 @@ namespace EscopeWindowsApp
             // but the timer will handle continuous updates anyway
             posDateLabel.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy");
         }
+
+        private void posCreateCusBtn_Click(object sender, EventArgs e)
+        {
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is AddCustomerForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            AddCustomerForm addCustomerForm = new AddCustomerForm();
+            addCustomerForm.Show();
+        }
     }
 }
