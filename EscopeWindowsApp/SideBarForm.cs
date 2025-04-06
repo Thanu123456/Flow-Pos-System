@@ -96,6 +96,7 @@ namespace EscopeWindowsApp
 
         private void SideBarForm_Load(object sender, EventArgs e)
         {
+
         }
 
         bool manuExpand = false;
