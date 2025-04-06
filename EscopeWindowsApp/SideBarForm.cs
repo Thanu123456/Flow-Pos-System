@@ -45,6 +45,9 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
 
+            this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+
             // Disable horizontal scrolling
             sideBarPanel.AutoScroll = false;
             sideBarPanel.HorizontalScroll.Visible = false;
@@ -883,6 +886,26 @@ namespace EscopeWindowsApp
         private void ExpensesCategoryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             expensesCategoryForm = null;
+        }
+
+        private void posBtn_Click(object sender, EventArgs e)
+        {
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is POS)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            POS pOS = new POS();
+            pOS.Show();
         }
     }
 }
