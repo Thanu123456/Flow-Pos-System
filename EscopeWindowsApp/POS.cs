@@ -13,24 +13,24 @@ namespace EscopeWindowsApp
         private Timer dateTimer;       // Timer for date updates
         private DataTable productsTable;
         private BindingSource bindingSource;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;"; // Adjust as needed
+        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
         private int itemNumberCounter = 1; // To assign unique item numbers in supDataGridView
 
         public POS()
         {
             InitializeComponent();
-            posClientNameLabel.Text = "Walking Customer"; // Set default client name here
-            posClientNumLabel.Text = ""; // Set default client number here
+            posClientNameLabel.Text = "Walking Customer";
+            posClientNumLabel.Text = "";
 
             // Initialize and start the time timer
             timeTimer = new Timer();
-            timeTimer.Interval = 1000; // Update every 1 second
+            timeTimer.Interval = 1000;
             timeTimer.Tick += TimeTimer_Tick;
             timeTimer.Start();
 
             // Initialize and start the date timer
             dateTimer = new Timer();
-            dateTimer.Interval = 1000; // Update every 1 second
+            dateTimer.Interval = 1000;
             dateTimer.Tick += DateTimer_Tick;
             dateTimer.Start();
 
@@ -44,7 +44,7 @@ namespace EscopeWindowsApp
 
             // Load product data on form load
             this.Load += POS_Load;
-            ConfigureSupDataGridView(); // Configure supDataGridView during initialization
+            ConfigureSupDataGridView();
 
             // Subscribe to events
             posProductDataGrid.CellPainting += posProductDataGrid_CellPainting;
@@ -142,7 +142,6 @@ namespace EscopeWindowsApp
             };
             posProductDataGrid.Columns.Add(addColumn);
 
-            // Prevent the empty row at the end
             posProductDataGrid.AllowUserToAddRows = false;
         }
 
@@ -298,7 +297,7 @@ namespace EscopeWindowsApp
 
                     try
                     {
-                        Image addIcon = Properties.Resources.posadd_; // Updated to posplus.png if needed
+                        Image addIcon = Properties.Resources.posadd_;
                         int iconSize = 24;
                         int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
                         int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
@@ -336,18 +335,58 @@ namespace EscopeWindowsApp
                     return;
                 }
 
-                supDataGridView.Rows.Add(
-                    itemNumberCounter++,
-                    row.Cells["product_name"].Value,
-                    row.Cells["variation_type"].Value,
-                    row.Cells["unit_name"].Value,
-                    null, // Decrease button (icon will be painted)
-                    1,    // Default quantity
-                    null, // Increase button (icon will be painted)
-                    row.Cells["retail_price"].Value, // Price per unit
-                    row.Cells["retail_price"].Value, // Total price (retail_price * 1)
-                    null  // Remove button (icon will be painted)
-                );
+                // Check if the item already exists in the cart (based on product_name and variation_type)
+                bool itemExists = false;
+                DataGridViewRow existingRow = null;
+
+                foreach (DataGridViewRow cartRow in supDataGridView.Rows)
+                {
+                    string cartProductName = cartRow.Cells["product_name"].Value.ToString();
+                    string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
+                    string newProductName = row.Cells["product_name"].Value.ToString();
+                    string newVariationType = row.Cells["variation_type"].Value.ToString();
+
+                    if (cartProductName == newProductName && cartVariationType == newVariationType)
+                    {
+                        itemExists = true;
+                        existingRow = cartRow;
+                        break;
+                    }
+                }
+
+                if (itemExists && existingRow != null)
+                {
+                    // Item already exists, increase the quantity
+                    int currentQuantity = Convert.ToInt32(existingRow.Cells["quantity"].Value);
+                    int newQuantity = currentQuantity + 1;
+
+                    // Check if the new quantity exceeds available stock
+                    if (newQuantity > stock)
+                    {
+                        MessageBox.Show($"Cannot add more {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    existingRow.Cells["quantity"].Value = newQuantity;
+                    UpdateTotalPrice(existingRow);
+                }
+                else
+                {
+                    // Item does not exist, add a new row
+                    supDataGridView.Rows.Add(
+                        itemNumberCounter++,
+                        row.Cells["product_name"].Value,
+                        row.Cells["variation_type"].Value,
+                        row.Cells["unit_name"].Value,
+                        null, // Decrease button
+                        1,    // Default quantity
+                        null, // Increase button
+                        row.Cells["retail_price"].Value, // Price per unit
+                        row.Cells["retail_price"].Value, // Total price (retail_price * 1)
+                        null  // Remove button
+                    );
+                }
+
                 UpdateAllLabels();
             }
         }
@@ -431,8 +470,6 @@ namespace EscopeWindowsApp
             };
             supDataGridView.Columns.Add(increaseColumn);
 
-            // Removed stock and retail_price columns
-
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "price",
@@ -461,7 +498,6 @@ namespace EscopeWindowsApp
 
             supDataGridView.AllowUserToAddRows = false;
 
-            // Subscribe to CellPainting for icons
             supDataGridView.CellPainting += supDataGridView_CellPainting;
         }
 
@@ -474,7 +510,7 @@ namespace EscopeWindowsApp
                     e.PaintBackground(e.CellBounds, true);
                     try
                     {
-                        Image minusIcon = Properties.Resources.posminus1; // posminus.png
+                        Image minusIcon = Properties.Resources.posminus1;
                         int iconSize = 24;
                         int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
                         int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
@@ -501,7 +537,7 @@ namespace EscopeWindowsApp
                     e.PaintBackground(e.CellBounds, true);
                     try
                     {
-                        Image plusIcon = Properties.Resources.posplus1; // posplus.png
+                        Image plusIcon = Properties.Resources.posplus1;
                         int iconSize = 24;
                         int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
                         int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
@@ -528,7 +564,7 @@ namespace EscopeWindowsApp
                     e.PaintBackground(e.CellBounds, true);
                     try
                     {
-                        Image deleteIcon = Properties.Resources.delete; // delete.png
+                        Image deleteIcon = Properties.Resources.delete;
                         int iconSize = 24;
                         int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
                         int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
@@ -571,15 +607,38 @@ namespace EscopeWindowsApp
                 }
                 else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
                 {
+                    // Check stock before increasing quantity
+                    string productName = row.Cells["product_name"].Value.ToString();
+                    string variationType = row.Cells["variation_type"].Value.ToString();
+
+                    // Find the product in posProductDataGrid to get the stock
+                    int stock = 0;
+                    foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
+                    {
+                        if (productRow.Cells["product_name"].Value.ToString() == productName &&
+                            productRow.Cells["variation_type"].Value.ToString() == variationType)
+                        {
+                            stock = Convert.ToInt32(productRow.Cells["stock"].Value);
+                            break;
+                        }
+                    }
+
                     int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-                    // No stock check here since stock is not in supDataGridView
-                    quantity++;
-                    row.Cells["quantity"].Value = quantity;
+                    int newQuantity = quantity + 1;
+
+                    if (newQuantity > stock)
+                    {
+                        MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    row.Cells["quantity"].Value = newQuantity;
                     UpdateTotalPrice(row);
                 }
                 else if (supDataGridView.Columns[e.ColumnIndex].Name == "remove")
                 {
                     supDataGridView.Rows.RemoveAt(e.RowIndex);
+                    ReassignItemNumbers();
                     UpdateAllLabels();
                 }
             }
@@ -592,6 +651,15 @@ namespace EscopeWindowsApp
             decimal totalPrice = price * quantity;
             row.Cells["total_price"].Value = totalPrice;
             UpdateAllLabels();
+        }
+
+        private void ReassignItemNumbers()
+        {
+            itemNumberCounter = 1;
+            foreach (DataGridViewRow row in supDataGridView.Rows)
+            {
+                row.Cells["item_number"].Value = itemNumberCounter++;
+            }
         }
 
         private void UpdateAllLabels()
@@ -677,7 +745,7 @@ namespace EscopeWindowsApp
             decimal subTotal = CalculateSubTotal();
             decimal totalPrice = subTotal - discountAmount;
             totPriceCountLabel.Text = totalPrice >= 0 ? totalPrice.ToString("N2") : "0.00";
-            paymentText_TextChanged(null, null); // Update balance
+            paymentText_TextChanged(null, null);
         }
 
         #endregion
@@ -688,7 +756,7 @@ namespace EscopeWindowsApp
         {
             if (posCashRadioBtn.Checked)
             {
-                paymentText.Enabled = true; // Enable textbox for cash
+                paymentText.Enabled = true;
             }
         }
 
@@ -696,8 +764,8 @@ namespace EscopeWindowsApp
         {
             if (posCardRadioBtn.Checked)
             {
-                paymentText.Enabled = false; // Disable textbox for card
-                paymentText.Text = ""; // Clear the textbox
+                paymentText.Enabled = false;
+                paymentText.Text = "";
             }
         }
 
@@ -721,7 +789,7 @@ namespace EscopeWindowsApp
 
         private void totQtyCountLabel_Click(object sender, EventArgs e)
         {
-            int totalItems = supDataGridView.Rows.Count; // Count total item_numbers (rows)
+            int totalItems = supDataGridView.Rows.Count;
             totQtyCountLabel.Text = totalItems.ToString();
         }
 
@@ -764,8 +832,8 @@ namespace EscopeWindowsApp
             disPercentageRadioBtn.Checked = false;
             posCashRadioBtn.Checked = false;
             posCardRadioBtn.Checked = false;
-            itemNumberCounter = 1; // Reset item number counter
-            paymentText.Enabled = true; // Reset textbox to enabled
+            itemNumberCounter = 1;
+            paymentText.Enabled = true;
         }
 
         private void label1_Click(object sender, EventArgs e) { }

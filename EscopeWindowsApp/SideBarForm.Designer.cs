@@ -445,8 +445,8 @@
             this.sideBarPanel.Controls.Add(this.dashBtnPanel);
             this.sideBarPanel.Controls.Add(this.manuLayoutPanel);
             this.sideBarPanel.Controls.Add(this.salesLayoutPanel);
-            this.sideBarPanel.Controls.Add(this.purchLayoutPanel);
             this.sideBarPanel.Controls.Add(this.peoplesLayoutPanel);
+            this.sideBarPanel.Controls.Add(this.purchLayoutPanel);
             this.sideBarPanel.Controls.Add(this.adjBtnPanel);
             this.sideBarPanel.Controls.Add(this.reportsBtnPanel);
             this.sideBarPanel.Controls.Add(this.qutationBtnPanel);
@@ -620,10 +620,10 @@
             this.purchLayoutPanel.Controls.Add(this.expPanel);
             this.purchLayoutPanel.Controls.Add(this.creExpBtnPanel);
             this.purchLayoutPanel.Controls.Add(this.expCatBtnPanel);
-            this.purchLayoutPanel.Location = new System.Drawing.Point(0, 123);
+            this.purchLayoutPanel.Location = new System.Drawing.Point(0, 164);
             this.purchLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.purchLayoutPanel.Name = "purchLayoutPanel";
-            this.purchLayoutPanel.Size = new System.Drawing.Size(250, 42);
+            this.purchLayoutPanel.Size = new System.Drawing.Size(250, 41);
             this.purchLayoutPanel.TabIndex = 20;
             // 
             // expPanel
@@ -742,7 +742,7 @@
             this.peoplesLayoutPanel.Controls.Add(this.cusBtnPanel);
             this.peoplesLayoutPanel.Controls.Add(this.supBtnPanel);
             this.peoplesLayoutPanel.Controls.Add(this.userBtnPanel);
-            this.peoplesLayoutPanel.Location = new System.Drawing.Point(0, 165);
+            this.peoplesLayoutPanel.Location = new System.Drawing.Point(0, 123);
             this.peoplesLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.peoplesLayoutPanel.Name = "peoplesLayoutPanel";
             this.peoplesLayoutPanel.Size = new System.Drawing.Size(250, 41);
@@ -888,7 +888,7 @@
             // adjBtnPanel
             // 
             this.adjBtnPanel.Controls.Add(this.adjBtn);
-            this.adjBtnPanel.Location = new System.Drawing.Point(0, 206);
+            this.adjBtnPanel.Location = new System.Drawing.Point(0, 205);
             this.adjBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.adjBtnPanel.Name = "adjBtnPanel";
             this.adjBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -923,7 +923,7 @@
             // reportsBtnPanel
             // 
             this.reportsBtnPanel.Controls.Add(this.reportsBtn);
-            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 247);
+            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 246);
             this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.reportsBtnPanel.Name = "reportsBtnPanel";
             this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -958,7 +958,7 @@
             // qutationBtnPanel
             // 
             this.qutationBtnPanel.Controls.Add(this.quatationBtn);
-            this.qutationBtnPanel.Location = new System.Drawing.Point(0, 288);
+            this.qutationBtnPanel.Location = new System.Drawing.Point(0, 287);
             this.qutationBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.qutationBtnPanel.Name = "qutationBtnPanel";
             this.qutationBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -994,7 +994,7 @@
             // wareHouseBtnPanel
             // 
             this.wareHouseBtnPanel.Controls.Add(this.wareHouseBtn);
-            this.wareHouseBtnPanel.Location = new System.Drawing.Point(0, 329);
+            this.wareHouseBtnPanel.Location = new System.Drawing.Point(0, 328);
             this.wareHouseBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.wareHouseBtnPanel.Name = "wareHouseBtnPanel";
             this.wareHouseBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -1029,7 +1029,7 @@
             // transferBtnPanel
             // 
             this.transferBtnPanel.Controls.Add(this.transferBtn);
-            this.transferBtnPanel.Location = new System.Drawing.Point(0, 370);
+            this.transferBtnPanel.Location = new System.Drawing.Point(0, 369);
             this.transferBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.transferBtnPanel.Name = "transferBtnPanel";
             this.transferBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -1064,7 +1064,7 @@
             // settingBtnPanel
             // 
             this.settingBtnPanel.Controls.Add(this.settingBtn);
-            this.settingBtnPanel.Location = new System.Drawing.Point(0, 411);
+            this.settingBtnPanel.Location = new System.Drawing.Point(0, 410);
             this.settingBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.settingBtnPanel.Name = "settingBtnPanel";
             this.settingBtnPanel.Size = new System.Drawing.Size(250, 41);

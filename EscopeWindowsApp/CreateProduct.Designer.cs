@@ -31,11 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.creatProductLabel = new System.Windows.Forms.Label();
             this.createProductMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.productImagePictureBox = new System.Windows.Forms.PictureBox();
             this.enabalVTypeCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.creProWareComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProWareLabel = new System.Windows.Forms.Label();
             this.creProVarTypeComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProVarTypeLabel = new System.Windows.Forms.Label();
+            this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creProSupComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProSupLabel = new System.Windows.Forms.Label();
             this.createProductMultipleImgLabel = new System.Windows.Forms.Label();
@@ -63,13 +65,13 @@
             this.singleRetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.singleTypeNameLbl = new System.Windows.Forms.Label();
             this.singleCostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.productImagePictureBox = new System.Windows.Forms.PictureBox();
-            this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.creProImagePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.createProductMainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).BeginInit();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.singlePricingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).BeginInit();
+            this.creProImagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // creatProductLabel
@@ -81,7 +83,7 @@
             this.creatProductLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.creatProductLabel.Location = new System.Drawing.Point(22, 47);
             this.creatProductLabel.Name = "creatProductLabel";
-            this.creatProductLabel.Size = new System.Drawing.Size(203, 28);
+            this.creatProductLabel.Size = new System.Drawing.Size(189, 28);
             this.creatProductLabel.TabIndex = 21;
             this.creatProductLabel.Text = "Create Product";
             // 
@@ -89,13 +91,12 @@
             // 
             this.createProductMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.createProductMainPanel.BorderRadius = 8;
-            this.createProductMainPanel.Controls.Add(this.productImagePictureBox);
+            this.createProductMainPanel.Controls.Add(this.creProImagePanel);
             this.createProductMainPanel.Controls.Add(this.enabalVTypeCheckBox);
             this.createProductMainPanel.Controls.Add(this.creProWareComboBox);
             this.createProductMainPanel.Controls.Add(this.creProWareLabel);
             this.createProductMainPanel.Controls.Add(this.creProVarTypeComboBox);
             this.createProductMainPanel.Controls.Add(this.creProVarTypeLabel);
-            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgBtn);
             this.createProductMainPanel.Controls.Add(this.creProSupComboBox);
             this.createProductMainPanel.Controls.Add(this.creProSupLabel);
             this.createProductMainPanel.Controls.Add(this.createProductMultipleImgLabel);
@@ -110,9 +111,20 @@
             this.createProductMainPanel.FillColor = System.Drawing.Color.White;
             this.createProductMainPanel.Location = new System.Drawing.Point(27, 90);
             this.createProductMainPanel.Name = "createProductMainPanel";
-            this.createProductMainPanel.Size = new System.Drawing.Size(713, 358);
+            this.createProductMainPanel.Size = new System.Drawing.Size(713, 412);
             this.createProductMainPanel.TabIndex = 23;
             this.createProductMainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createProductMainPanel_Paint);
+            // 
+            // productImagePictureBox
+            // 
+            this.productImagePictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.productImagePictureBox.Location = new System.Drawing.Point(3, 3);
+            this.productImagePictureBox.Name = "productImagePictureBox";
+            this.productImagePictureBox.Size = new System.Drawing.Size(148, 95);
+            this.productImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.productImagePictureBox.TabIndex = 62;
+            this.productImagePictureBox.TabStop = false;
+            this.productImagePictureBox.Click += new System.EventHandler(this.productImagePictureBox_Click);
             // 
             // enabalVTypeCheckBox
             // 
@@ -200,6 +212,24 @@
             this.creProVarTypeLabel.Size = new System.Drawing.Size(125, 23);
             this.creProVarTypeLabel.TabIndex = 57;
             this.creProVarTypeLabel.Text = "Variation Type:";
+            // 
+            // createProductMultipleImgBtn
+            // 
+            this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
+            this.createProductMultipleImgBtn.BorderRadius = 8;
+            this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createProductMultipleImgBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
+            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(116, 65);
+            this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
+            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(36, 33);
+            this.createProductMultipleImgBtn.TabIndex = 56;
+            this.createProductMultipleImgBtn.Text = "+";
+            this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
             // 
             // creProSupComboBox
             // 
@@ -403,7 +433,7 @@
             this.creProSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creProSaveBtn.ForeColor = System.Drawing.Color.White;
             this.creProSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.creProSaveBtn.Location = new System.Drawing.Point(803, 464);
+            this.creProSaveBtn.Location = new System.Drawing.Point(803, 523);
             this.creProSaveBtn.Name = "creProSaveBtn";
             this.creProSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creProSaveBtn.TabIndex = 57;
@@ -423,7 +453,7 @@
             this.creProCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.creProCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creProCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.creProCancelBtn.Location = new System.Drawing.Point(905, 464);
+            this.creProCancelBtn.Location = new System.Drawing.Point(905, 523);
             this.creProCancelBtn.Name = "creProCancelBtn";
             this.creProCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creProCancelBtn.TabIndex = 56;
@@ -500,7 +530,7 @@
             this.singlePricingPanel.FillColor = System.Drawing.Color.White;
             this.singlePricingPanel.Location = new System.Drawing.Point(757, 90);
             this.singlePricingPanel.Name = "singlePricingPanel";
-            this.singlePricingPanel.Size = new System.Drawing.Size(241, 358);
+            this.singlePricingPanel.Size = new System.Drawing.Size(241, 412);
             this.singlePricingPanel.TabIndex = 58;
             this.singlePricingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.singlePricingPanel_Paint);
             // 
@@ -641,39 +671,25 @@
             this.singleCostPriText.TabIndex = 29;
             this.singleCostPriText.TextChanged += new System.EventHandler(this.singleCostPriText_TextChanged);
             // 
-            // productImagePictureBox
+            // creProImagePanel
             // 
-            this.productImagePictureBox.Location = new System.Drawing.Point(363, 303);
-            this.productImagePictureBox.Name = "productImagePictureBox";
-            this.productImagePictureBox.Size = new System.Drawing.Size(184, 42);
-            this.productImagePictureBox.TabIndex = 62;
-            this.productImagePictureBox.TabStop = false;
-            this.productImagePictureBox.Click += new System.EventHandler(this.productImagePictureBox_Click);
-            // 
-            // createProductMultipleImgBtn
-            // 
-            this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
-            this.createProductMultipleImgBtn.BorderRadius = 8;
-            this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.createProductMultipleImgBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.createProductMultipleImgBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.createProductMultipleImgBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
-            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(625, 305);
-            this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
-            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(65, 38);
-            this.createProductMultipleImgBtn.TabIndex = 56;
-            this.createProductMultipleImgBtn.Text = "+";
-            this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
+            this.creProImagePanel.BackColor = System.Drawing.Color.Transparent;
+            this.creProImagePanel.BorderColor = System.Drawing.Color.Silver;
+            this.creProImagePanel.BorderRadius = 8;
+            this.creProImagePanel.BorderThickness = 1;
+            this.creProImagePanel.Controls.Add(this.createProductMultipleImgBtn);
+            this.creProImagePanel.Controls.Add(this.productImagePictureBox);
+            this.creProImagePanel.Location = new System.Drawing.Point(365, 303);
+            this.creProImagePanel.Name = "creProImagePanel";
+            this.creProImagePanel.Size = new System.Drawing.Size(154, 100);
+            this.creProImagePanel.TabIndex = 63;
             // 
             // CreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1023, 526);
+            this.ClientSize = new System.Drawing.Size(1023, 585);
             this.Controls.Add(this.singlePricingPanel);
             this.Controls.Add(this.creProCancelBtn);
             this.Controls.Add(this.creProSaveBtn);
@@ -690,11 +706,12 @@
             this.Load += new System.EventHandler(this.CreateProduct_Load);
             this.createProductMainPanel.ResumeLayout(false);
             this.createProductMainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.singlePricingPanel.ResumeLayout(false);
             this.singlePricingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).EndInit();
+            this.creProImagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -737,5 +754,6 @@
         private System.Windows.Forms.Label singleWholeLbl;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox enabalVTypeCheckBox;
         private System.Windows.Forms.PictureBox productImagePictureBox;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel creProImagePanel;
     }
 }
