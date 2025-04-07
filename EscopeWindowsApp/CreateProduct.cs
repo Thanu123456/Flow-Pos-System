@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
+using System.Drawing;
 
 namespace EscopeWindowsApp
 {
@@ -13,8 +15,9 @@ namespace EscopeWindowsApp
         private ErrorProvider nameErrorProvider = new ErrorProvider();
         private ErrorProvider categoryErrorProvider = new ErrorProvider();
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private byte[] productImageData; // Field to store image data
 
-        public CreateProduct(int productId = -1, string name = "", string category = "", string imagePath = "",
+        public CreateProduct(int productId = -1, string name = "", string category = "",
             int unitId = 0, int warehouseId = 0, int supplierId = 0, int brandId = 0, string variationType = "")
         {
             InitializeComponent();
@@ -31,7 +34,6 @@ namespace EscopeWindowsApp
 
             createProductNameText.Text = name;
             ProCatComboox.Text = category;
-            createProductMultipleImgText.Text = imagePath;
             creProVarTypeComboBox.Enabled = false;
 
             this.Load += CreateProduct_Load;
@@ -98,14 +100,14 @@ namespace EscopeWindowsApp
                 {
                     conn.Open();
                     string query = @"
-                SELECT 
-                    p.name, c.name AS category, p.image_path, p.unit_id, p.warehouse_id, 
-                    p.supplier_id, p.brand_id, p.variation_type_id, 
-                    pr.cost_price, pr.retail_price, pr.wholesale_price
-                FROM products p
-                LEFT JOIN categories c ON p.category_id = c.id
-                LEFT JOIN pricing pr ON p.id = pr.product_id AND pr.variation_type IS NULL
-                WHERE p.id = @productId";
+                        SELECT 
+                            p.name, c.name AS category, p.image_path, p.unit_id, p.warehouse_id, 
+                            p.supplier_id, p.brand_id, p.variation_type_id, 
+                            pr.cost_price, pr.retail_price, pr.wholesale_price
+                        FROM products p
+                        LEFT JOIN categories c ON p.category_id = c.id
+                        LEFT JOIN pricing pr ON p.id = pr.product_id AND pr.variation_type IS NULL
+                        WHERE p.id = @productId";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@productId", editProductId);
@@ -115,7 +117,21 @@ namespace EscopeWindowsApp
                             {
                                 createProductNameText.Text = reader.GetString("name");
                                 ProCatComboox.Text = reader.IsDBNull(reader.GetOrdinal("category")) ? "Select Category" : reader.GetString("category");
-                                createProductMultipleImgText.Text = reader.IsDBNull(reader.GetOrdinal("image_path")) ? "" : reader.GetString("image_path");
+
+                                // Load image data into PictureBox
+                                if (!reader.IsDBNull(reader.GetOrdinal("image_path")))
+                                {
+                                    productImageData = (byte[])reader["image_path"];
+                                    using (MemoryStream ms = new MemoryStream(productImageData))
+                                    {
+                                        productImagePictureBox.Image = Image.FromStream(ms);
+                                    }
+                                }
+                                else
+                                {
+                                    productImageData = null;
+                                    productImagePictureBox.Image = null;
+                                }
 
                                 int unitId = reader.IsDBNull(reader.GetOrdinal("unit_id")) ? 0 : reader.GetInt32("unit_id");
                                 creProUnitComboBox.SelectedValue = unitId;
@@ -356,6 +372,25 @@ namespace EscopeWindowsApp
             UpdateSaveButtonState();
         }
 
+        private void createProductMultipleImgBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All Files (*.*)|*.*";
+                dialog.FilterIndex = 1;
+                dialog.RestoreDirectory = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    productImageData = File.ReadAllBytes(dialog.FileName);
+                    using (MemoryStream ms = new MemoryStream(productImageData))
+                    {
+                        productImagePictureBox.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+        }
+
         private void creProSaveBtn_Click(object sender, EventArgs e)
         {
             if (!ValidateProductName() || !ValidateCategory())
@@ -384,7 +419,14 @@ namespace EscopeWindowsApp
                     {
                         cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
                         cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
-                        cmd.Parameters.AddWithValue("@imagePath", string.IsNullOrEmpty(createProductMultipleImgText.Text) ? (object)DBNull.Value : createProductMultipleImgText.Text);
+                        if (productImageData != null)
+                        {
+                            cmd.Parameters.AddWithValue("@imagePath", productImageData);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@imagePath", DBNull.Value);
+                        }
                         cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
                         cmd.Parameters.AddWithValue("@warehouseId", (int)creProWareComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProWareComboBox.SelectedValue);
                         cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
@@ -475,21 +517,6 @@ namespace EscopeWindowsApp
             this.Close();
         }
 
-        private void createProductMultipleImgBtn_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog dialog = new OpenFileDialog())
-            {
-                dialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All Files (*.*)|*.*";
-                dialog.FilterIndex = 1;
-                dialog.RestoreDirectory = true;
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    createProductMultipleImgText.Text = dialog.FileName;
-                }
-            }
-        }
-
         private void creProVarTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (creProVarTypeComboBox.SelectedIndex > 0)
@@ -531,6 +558,9 @@ namespace EscopeWindowsApp
         private void creProSupComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
         private void creProBrandComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
         private void createProductMainPanel_Paint(object sender, PaintEventArgs e) { }
-        private void createProductMultipleImgText_TextChanged(object sender, EventArgs e) { }
+        private void productImagePictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
