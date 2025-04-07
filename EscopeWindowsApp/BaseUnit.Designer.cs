@@ -228,7 +228,6 @@
             // 
             // baseUnitFilterBtn
             // 
-            this.baseUnitFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.baseUnitFilterBtn.Animated = true;
             this.baseUnitFilterBtn.BorderRadius = 8;
             this.baseUnitFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -240,7 +239,7 @@
             this.baseUnitFilterBtn.ForeColor = System.Drawing.Color.White;
             this.baseUnitFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.baseUnitFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.baseUnitFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.baseUnitFilterBtn.Location = new System.Drawing.Point(427, 30);
             this.baseUnitFilterBtn.Name = "baseUnitFilterBtn";
             this.baseUnitFilterBtn.Size = new System.Drawing.Size(43, 42);
             this.baseUnitFilterBtn.TabIndex = 29;

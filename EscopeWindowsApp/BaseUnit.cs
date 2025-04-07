@@ -18,7 +18,6 @@ namespace EscopeWindowsApp
             this.Load += BaseUnit_Load;
             bindingSource = new BindingSource();
             baseUnitDataGridView.CellFormatting += BaseUnitDataGridView_CellFormatting;
-            // Removed CellPainting and CellContentClick subscriptions as they are no longer needed
         }
 
         private void BaseUnit_Load(object sender, EventArgs e)
@@ -26,12 +25,6 @@ namespace EscopeWindowsApp
             ConfigureDataGridView();
             baseUnitDataGridView.DataSource = bindingSource;
             LoadBaseUnitsData();
-
-            if (baseUnitsTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No base unit data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void ConfigureDataGridView()
@@ -56,8 +49,6 @@ namespace EscopeWindowsApp
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            // Removed EditColumn and DeleteColumn definitions
-
             baseUnitDataGridView.AllowUserToAddRows = false;
         }
 
@@ -72,8 +63,6 @@ namespace EscopeWindowsApp
                 e.FormattingApplied = true;
             }
         }
-
-        // Removed BaseUnitDataGridView_CellPainting as it’s no longer needed without Edit/Delete columns
 
         private void LoadBaseUnitsData()
         {
@@ -99,6 +88,7 @@ namespace EscopeWindowsApp
                 }
 
                 bindingSource.DataSource = baseUnitsTable;
+                UpdateCreateButtonState(); // Update button state after loading data
             }
             catch (Exception ex)
             {
@@ -109,6 +99,27 @@ namespace EscopeWindowsApp
                 baseUnitsTable.Rows.Add(1, "Test Unit 1");
                 baseUnitsTable.Rows.Add(2, "Test Unit 2");
                 bindingSource.DataSource = baseUnitsTable;
+                UpdateCreateButtonState(); // Update button state in case of error
+            }
+
+            // Show message if no data is found
+            if (baseUnitsTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No base unit data found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void UpdateCreateButtonState()
+        {
+            // Check the number of rows in the baseUnitsTable
+            int rowCount = baseUnitsTable.Rows.Count;
+            // Disable the button if there are 4 or more rows
+            baseUnitsBtn.Enabled = rowCount < 4;
+            // Optional: Add a tooltip to explain why the button is disabled
+            if (!baseUnitsBtn.Enabled)
+            {
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(baseUnitsBtn, "Maximum of 4 base units reached.");
             }
         }
 
@@ -128,7 +139,10 @@ namespace EscopeWindowsApp
                 }
             }
             CreateBaseUnit createForm = new CreateBaseUnit();
-            createForm.FormClosed += (s, args) => LoadBaseUnitsData();
+            createForm.FormClosed += (s, args) =>
+            {
+                LoadBaseUnitsData(); // This will call UpdateCreateButtonState
+            };
             createForm.Show();
         }
 
@@ -145,17 +159,19 @@ namespace EscopeWindowsApp
                 {
                     bindingSource.Filter = null;
                 }
+                UpdateCreateButtonState(); // Update button state after filtering
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
+                UpdateCreateButtonState(); // Update button state in case of error
             }
         }
 
         private void baseUnitFilterBtn_Click(object sender, EventArgs e)
         {
-            LoadBaseUnitsData();
+            LoadBaseUnitsData(); // This will call UpdateCreateButtonState
             baseUnitSearchText.Text = string.Empty;
             bindingSource.Filter = null;
         }
@@ -181,8 +197,6 @@ namespace EscopeWindowsApp
                 return -1;
             }
         }
-
-        // Removed baseUnitDataGridView_CellContentClick as it’s no longer needed without Edit/Delete columns
 
         private void baseUnitsFirstBtn_Click(object sender, EventArgs e)
         {

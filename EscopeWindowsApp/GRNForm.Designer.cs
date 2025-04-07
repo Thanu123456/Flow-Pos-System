@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -85,6 +85,8 @@
             this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.grnUnitLabel = new System.Windows.Forms.Label();
+            this.grnUnitText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
@@ -368,6 +370,8 @@
             // 
             this.grnMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.grnMainPanel.BorderRadius = 8;
+            this.grnMainPanel.Controls.Add(this.grnUnitLabel);
+            this.grnMainPanel.Controls.Add(this.grnUnitText);
             this.grnMainPanel.Controls.Add(this.grnExpireDatePicker);
             this.grnMainPanel.Controls.Add(this.addToListBtn);
             this.grnMainPanel.Controls.Add(this.grnPriceLabel);
@@ -397,17 +401,22 @@
             // 
             // grnExpireDatePicker
             // 
+            this.grnExpireDatePicker.BackColor = System.Drawing.Color.Transparent;
+            this.grnExpireDatePicker.BorderColor = System.Drawing.Color.Gray;
             this.grnExpireDatePicker.BorderRadius = 8;
+            this.grnExpireDatePicker.BorderThickness = 1;
             this.grnExpireDatePicker.Checked = true;
-            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.grnExpireDatePicker.FillColor = System.Drawing.Color.White;
+            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.grnExpireDatePicker.Location = new System.Drawing.Point(192, 122);
-            this.grnExpireDatePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.grnExpireDatePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.grnExpireDatePicker.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
+            this.grnExpireDatePicker.MinDate = new System.DateTime(2025, 1, 1, 0, 0, 0, 0);
             this.grnExpireDatePicker.Name = "grnExpireDatePicker";
-            this.grnExpireDatePicker.Size = new System.Drawing.Size(320, 36);
+            this.grnExpireDatePicker.Size = new System.Drawing.Size(150, 42);
             this.grnExpireDatePicker.TabIndex = 78;
-            this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 20, 59, 35, 137);
+            this.grnExpireDatePicker.UseTransparentBackground = true;
+            this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
             this.grnExpireDatePicker.ValueChanged += new System.EventHandler(this.siticoneDateTimePicker1_ValueChanged);
             // 
             // addToListBtn
@@ -625,7 +634,7 @@
             this.grnQuantityLabel.BackColor = System.Drawing.Color.Transparent;
             this.grnQuantityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnQuantityLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnQuantityLabel.Location = new System.Drawing.Point(694, 89);
+            this.grnQuantityLabel.Location = new System.Drawing.Point(694, 93);
             this.grnQuantityLabel.Name = "grnQuantityLabel";
             this.grnQuantityLabel.Size = new System.Drawing.Size(83, 23);
             this.grnQuantityLabel.TabIndex = 77;
@@ -646,7 +655,7 @@
             this.grnQuantityText.ForeColor = System.Drawing.Color.Black;
             this.grnQuantityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnQuantityText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnQuantityText.Location = new System.Drawing.Point(698, 116);
+            this.grnQuantityText.Location = new System.Drawing.Point(698, 122);
             this.grnQuantityText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnQuantityText.Name = "grnQuantityText";
             this.grnQuantityText.PasswordChar = '\0';
@@ -707,7 +716,7 @@
             this.grnStockText.ForeColor = System.Drawing.Color.Black;
             this.grnStockText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnStockText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnStockText.Location = new System.Drawing.Point(530, 118);
+            this.grnStockText.Location = new System.Drawing.Point(530, 122);
             this.grnStockText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnStockText.Name = "grnStockText";
             this.grnStockText.PasswordChar = '\0';
@@ -724,7 +733,7 @@
             this.grnStockLabel.BackColor = System.Drawing.Color.Transparent;
             this.grnStockLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnStockLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnStockLabel.Location = new System.Drawing.Point(526, 89);
+            this.grnStockLabel.Location = new System.Drawing.Point(526, 95);
             this.grnStockLabel.Name = "grnStockLabel";
             this.grnStockLabel.Size = new System.Drawing.Size(57, 23);
             this.grnStockLabel.TabIndex = 70;
@@ -929,48 +938,48 @@
             this.grnDataGridView.AllowUserToDeleteRows = false;
             this.grnDataGridView.AllowUserToResizeColumns = false;
             this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grnDataGridView.ColumnHeadersHeight = 25;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.grnDataGridView.GridColor = System.Drawing.Color.White;
             this.grnDataGridView.Location = new System.Drawing.Point(22, 504);
             this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnDataGridView.Name = "grnDataGridView";
             this.grnDataGridView.ReadOnly = true;
             this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.grnDataGridView.RowHeadersVisible = false;
             this.grnDataGridView.RowHeadersWidth = 22;
             this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1044,6 +1053,43 @@
             this.grnSaveBtn.TabIndex = 79;
             this.grnSaveBtn.Text = "Save";
             this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
+            // 
+            // grnUnitLabel
+            // 
+            this.grnUnitLabel.AutoSize = true;
+            this.grnUnitLabel.BackColor = System.Drawing.Color.Transparent;
+            this.grnUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grnUnitLabel.Location = new System.Drawing.Point(358, 93);
+            this.grnUnitLabel.Name = "grnUnitLabel";
+            this.grnUnitLabel.Size = new System.Drawing.Size(47, 23);
+            this.grnUnitLabel.TabIndex = 80;
+            this.grnUnitLabel.Text = "Unit:";
+            // 
+            // grnUnitText
+            // 
+            this.grnUnitText.BackColor = System.Drawing.Color.Transparent;
+            this.grnUnitText.BorderRadius = 8;
+            this.grnUnitText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.grnUnitText.DefaultText = "";
+            this.grnUnitText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.grnUnitText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.grnUnitText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnUnitText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnUnitText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnUnitText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnUnitText.ForeColor = System.Drawing.Color.Black;
+            this.grnUnitText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnUnitText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.grnUnitText.Location = new System.Drawing.Point(362, 122);
+            this.grnUnitText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grnUnitText.Name = "grnUnitText";
+            this.grnUnitText.PasswordChar = '\0';
+            this.grnUnitText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.grnUnitText.PlaceholderText = "Unit";
+            this.grnUnitText.SelectedText = "";
+            this.grnUnitText.Size = new System.Drawing.Size(150, 42);
+            this.grnUnitText.TabIndex = 79;
             // 
             // GRNForm
             // 
@@ -1138,5 +1184,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker grnExpireDatePicker;
+        private System.Windows.Forms.Label grnUnitLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnUnitText;
     }
 }
