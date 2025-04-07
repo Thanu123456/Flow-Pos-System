@@ -18,9 +18,8 @@ namespace EscopeWindowsApp
             InitializeComponent();
             this.Load += Units_Load; // Subscribe to Load event
             bindingSource = new BindingSource();
-            unitsDataGridView.CellPainting += UnitsDataGridView_CellPainting;
             unitsDataGridView.CellFormatting += UnitsDataGridView_CellFormatting;
-            unitsDataGridView.CellContentClick += unitsDataGridView_CellContentClick; // Ensure event is subscribed
+            // Removed CellPainting and CellContentClick subscriptions as they are no longer needed
         }
 
         private void Units_Load(object sender, EventArgs e)
@@ -72,21 +71,7 @@ namespace EscopeWindowsApp
                 HeaderText = "CREATED ON"
             });
 
-            unitsDataGridView.Columns.Add(new DataGridViewButtonColumn
-            {
-                Name = "EditColumn",
-                HeaderText = "Edit",
-                Width = 50,
-                ToolTipText = "Edit this unit"
-            });
-
-            unitsDataGridView.Columns.Add(new DataGridViewButtonColumn
-            {
-                Name = "DeleteColumn",
-                HeaderText = "Delete",
-                Width = 50,
-                ToolTipText = "Delete this unit"
-            });
+            // Removed EditColumn and DeleteColumn definitions
 
             unitsDataGridView.AllowUserToAddRows = false;
             unitsDataGridView.ScrollBars = ScrollBars.Horizontal; // Disable vertical scrolling, allow horizontal scrolling
@@ -104,42 +89,7 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void UnitsDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    if (unitsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
-                    {
-                        e.PaintBackground(e.CellBounds, true);
-                        Image editIcon = Properties.Resources.edit ?? SystemIcons.Question.ToBitmap();
-                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                        if (iconSize <= 0) iconSize = 16;
-                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
-                        e.Handled = true;
-                    }
-
-                    if (unitsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-                    {
-                        e.PaintBackground(e.CellBounds, true);
-                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
-                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                        if (iconSize <= 0) iconSize = 16;
-                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                        e.Handled = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error rendering icons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+        // Removed UnitsDataGridView_CellPainting as it’s no longer needed without Edit/Delete columns
 
         private void LoadUnitsData()
         {
@@ -223,73 +173,7 @@ namespace EscopeWindowsApp
             bindingSource.Filter = null;
         }
 
-        private void unitsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = unitsDataGridView.Rows[e.RowIndex];
-                DataRow dataRow = (row.DataBoundItem as DataRowView)?.Row; // Get the underlying DataRow
-
-                if (dataRow == null)
-                {
-                    MessageBox.Show("Error accessing row data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (unitsDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
-                {
-                    int unitId = Convert.ToInt32(row.Cells["id"].Value);
-                    string unitName = row.Cells["unit_name"].Value.ToString();
-                    string shortName = row.Cells["short_name"].Value.ToString();
-                    // Access base_unit_id directly from the DataRow instead of the DataGridView
-                    int baseUnitId = dataRow["base_unit_id"] != DBNull.Value ? Convert.ToInt32(dataRow["base_unit_id"]) : 0;
-
-                    using (CreateUnits editForm = new CreateUnits(unitId, unitName, shortName, baseUnitId))
-                    {
-                        editForm.ShowDialog(); // Show the edit form
-                        LoadUnitsData();       // Refresh grid regardless of result
-                    }
-                }
-
-                if (unitsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-                {
-                    int unitId = Convert.ToInt32(row.Cells["id"].Value);
-                    string formattedId = $"un{unitId:D3}";
-
-                    DialogResult result = MessageBox.Show(
-                        $"Are you sure you want to delete unit {formattedId}?",
-                        "Confirm Delete",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (result == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            using (MySqlConnection connection = new MySqlConnection(connectionString))
-                            {
-                                connection.Open();
-                                string query = "DELETE FROM units WHERE id = @unitId";
-                                using (MySqlCommand command = new MySqlCommand(query, connection))
-                                {
-                                    command.Parameters.AddWithValue("@unitId", unitId);
-                                    command.ExecuteNonQuery();
-                                }
-                            }
-                            LoadUnitsData();
-                            MessageBox.Show($"Unit {formattedId} deleted successfully.", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error deleting unit: {ex.Message}", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-        }
+        // Removed unitsDataGridView_CellContentClick as it’s no longer needed without Edit/Delete columns
 
         private void unitsFirstBtn_Click(object sender, EventArgs e)
         {

@@ -17,9 +17,8 @@ namespace EscopeWindowsApp
             InitializeComponent();
             this.Load += BaseUnit_Load;
             bindingSource = new BindingSource();
-            baseUnitDataGridView.CellPainting += BaseUnitDataGridView_CellPainting;
             baseUnitDataGridView.CellFormatting += BaseUnitDataGridView_CellFormatting;
-            baseUnitDataGridView.CellContentClick += baseUnitDataGridView_CellContentClick; // Ensure event is wired
+            // Removed CellPainting and CellContentClick subscriptions as they are no longer needed
         }
 
         private void BaseUnit_Load(object sender, EventArgs e)
@@ -57,27 +56,7 @@ namespace EscopeWindowsApp
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
-            {
-                Name = "EditColumn",
-                HeaderText = "EDIT",
-                Width = 50,
-                ToolTipText = "Edit this base unit",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true // Ensures "Edit" text is displayed
-            };
-            baseUnitDataGridView.Columns.Add(editColumn);
-
-            DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
-            {
-                Name = "DeleteColumn",
-                HeaderText = "DELETE",
-                Width = 50,
-                ToolTipText = "Delete this base unit",
-                Text = "Delete",
-                UseColumnTextForButtonValue = true // Ensures "Delete" text is displayed
-            };
-            baseUnitDataGridView.Columns.Add(deleteColumn);
+            // Removed EditColumn and DeleteColumn definitions
 
             baseUnitDataGridView.AllowUserToAddRows = false;
         }
@@ -94,42 +73,7 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void BaseUnitDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
-                    {
-                        e.PaintBackground(e.CellBounds, true);
-                        Image editIcon = Properties.Resources.edit ?? SystemIcons.Question.ToBitmap();
-                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                        if (iconSize <= 0) iconSize = 16;
-                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(editIcon, x, y, iconSize, iconSize);
-                        e.Handled = true;
-                    }
-
-                    if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-                    {
-                        e.PaintBackground(e.CellBounds, true);
-                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
-                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                        if (iconSize <= 0) iconSize = 16;
-                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                        e.Handled = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error rendering icons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+        // Removed BaseUnitDataGridView_CellPainting as it’s no longer needed without Edit/Delete columns
 
         private void LoadBaseUnitsData()
         {
@@ -238,77 +182,7 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void baseUnitDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) return; // Ignore header clicks
-
-            DataRowView rowView = (DataRowView)bindingSource[e.RowIndex];
-            DataRow row = rowView.Row;
-
-            try
-            {
-                if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "EditColumn")
-                {
-                    int baseUnitId = Convert.ToInt32(row["id"]);
-                    string name = row["name"].ToString();
-
-                    CreateBaseUnit editForm = new CreateBaseUnit(baseUnitId, name);
-                    editForm.FormClosed += (s, args) => LoadBaseUnitsData();
-                    editForm.ShowDialog(); // Use ShowDialog for modal behavior
-                }
-                else if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-                {
-                    int baseUnitId = Convert.ToInt32(row["id"]);
-                    string formattedId = $"bu{baseUnitId:D3}";
-
-                    int dependentUnitCount = CountUnitsUsingBaseUnit(baseUnitId);
-                    if (dependentUnitCount == -1)
-                    {
-                        return; // Error already shown
-                    }
-
-                    if (dependentUnitCount > 0)
-                    {
-                        MessageBox.Show(
-                            $"Warning: Base unit {formattedId} is currently used by {dependentUnitCount} unit(s). " +
-                            "You cannot delete this base unit until the dependent units are deleted or reassigned.",
-                            "Warning",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
-                        return;
-                    }
-
-                    DialogResult confirmResult = MessageBox.Show(
-                        $"Are you sure you want to delete base unit {formattedId}?",
-                        "Confirm Delete",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        using (MySqlConnection connection = new MySqlConnection(connectionString))
-                        {
-                            connection.Open();
-                            string query = "DELETE FROM base_units WHERE id = @baseUnitId";
-                            using (MySqlCommand command = new MySqlCommand(query, connection))
-                            {
-                                command.Parameters.AddWithValue("@baseUnitId", baseUnitId);
-                                command.ExecuteNonQuery();
-                            }
-                        }
-                        LoadBaseUnitsData();
-                        MessageBox.Show($"Base unit {formattedId} deleted successfully.", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error in cell action: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        // Removed baseUnitDataGridView_CellContentClick as it’s no longer needed without Edit/Delete columns
 
         private void baseUnitsFirstBtn_Click(object sender, EventArgs e)
         {
