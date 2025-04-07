@@ -16,23 +16,16 @@ namespace EscopeWindowsApp
         public Units()
         {
             InitializeComponent();
-            this.Load += Units_Load; // Subscribe to Load event
+            this.Load += Units_Load;
             bindingSource = new BindingSource();
             unitsDataGridView.CellFormatting += UnitsDataGridView_CellFormatting;
-            // Removed CellPainting and CellContentClick subscriptions as they are no longer needed
         }
 
         private void Units_Load(object sender, EventArgs e)
         {
-            ConfigureDataGridView();     // Configure columns first
-            unitsDataGridView.DataSource = bindingSource; // Bind data source
-            LoadUnitsData();            // Load data last
-
-            if (unitsTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No unit data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            ConfigureDataGridView();
+            unitsDataGridView.DataSource = bindingSource;
+            LoadUnitsData();
         }
 
         private void ConfigureDataGridView()
@@ -71,10 +64,8 @@ namespace EscopeWindowsApp
                 HeaderText = "CREATED ON"
             });
 
-            // Removed EditColumn and DeleteColumn definitions
-
             unitsDataGridView.AllowUserToAddRows = false;
-            unitsDataGridView.ScrollBars = ScrollBars.Horizontal; // Disable vertical scrolling, allow horizontal scrolling
+            unitsDataGridView.ScrollBars = ScrollBars.Horizontal;
         }
 
         private void UnitsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -84,12 +75,10 @@ namespace EscopeWindowsApp
             if (unitsDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int unitId = Convert.ToInt32(e.Value);
-                e.Value = $"un{unitId:D3}"; // Format as "un001", "un002", etc.
+                e.Value = $"un{unitId:D3}";
                 e.FormattingApplied = true;
             }
         }
-
-        // Removed UnitsDataGridView_CellPainting as it’s no longer needed without Edit/Delete columns
 
         private void LoadUnitsData()
         {
@@ -118,6 +107,7 @@ namespace EscopeWindowsApp
                 }
 
                 bindingSource.DataSource = unitsTable;
+                UpdateCreateButtonState(); // Update button state after loading data
             }
             catch (Exception ex)
             {
@@ -131,6 +121,27 @@ namespace EscopeWindowsApp
                 unitsTable.Columns.Add("created_at", typeof(DateTime));
 
                 bindingSource.DataSource = unitsTable;
+                UpdateCreateButtonState(); // Update button state in case of error
+            }
+
+            // Show message if no data is found
+            if (unitsTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No unit data found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void UpdateCreateButtonState()
+        {
+            // Check the number of rows in the unitsTable
+            int rowCount = unitsTable.Rows.Count;
+            // Disable the button if there are 4 or more rows
+            createUnitsBtn.Enabled = rowCount < 4;
+            // Optional: Add a tooltip to explain why the button is disabled
+            if (!createUnitsBtn.Enabled)
+            {
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(createUnitsBtn, "Maximum of 4 units reached.");
             }
         }
 
@@ -140,7 +151,7 @@ namespace EscopeWindowsApp
             {
                 if (createForm.ShowDialog() == DialogResult.OK)
                 {
-                    LoadUnitsData();
+                    LoadUnitsData(); // This will call UpdateCreateButtonState
                 }
             }
         }
@@ -158,22 +169,22 @@ namespace EscopeWindowsApp
                 {
                     bindingSource.Filter = null;
                 }
+                UpdateCreateButtonState(); // Update button state after filtering
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
+                UpdateCreateButtonState(); // Update button state in case of error
             }
         }
 
         private void unitsFilterBtn_Click(object sender, EventArgs e)
         {
-            LoadUnitsData();
+            LoadUnitsData(); // This will call UpdateCreateButtonState
             unitsSearchText.Text = string.Empty;
             bindingSource.Filter = null;
         }
-
-        // Removed unitsDataGridView_CellContentClick as it’s no longer needed without Edit/Delete columns
 
         private void unitsFirstBtn_Click(object sender, EventArgs e)
         {

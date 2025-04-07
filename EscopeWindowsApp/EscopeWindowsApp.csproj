@@ -298,6 +298,12 @@
     <Compile Include="POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
+    <Compile Include="POSWeightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="POSWeightForm.Designer.cs">
+      <DependentUpon>POSWeightForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PreviousGRN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,6 +494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="POSWeightForm.resx">
+      <DependentUpon>POSWeightForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PreviousGRN.resx">
       <DependentUpon>PreviousGRN.cs</DependentUpon>
