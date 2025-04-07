@@ -36,11 +36,9 @@
             this.creProWareLabel = new System.Windows.Forms.Label();
             this.creProVarTypeComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProVarTypeLabel = new System.Windows.Forms.Label();
-            this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creProSupComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProSupLabel = new System.Windows.Forms.Label();
             this.createProductMultipleImgLabel = new System.Windows.Forms.Label();
-            this.createProductMultipleImgText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creProUnitComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.creProUnitLabel = new System.Windows.Forms.Label();
             this.creProBrandComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
@@ -65,10 +63,13 @@
             this.singleRetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.singleTypeNameLbl = new System.Windows.Forms.Label();
             this.singleCostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.productImagePictureBox = new System.Windows.Forms.PictureBox();
+            this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.createProductMainPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.singlePricingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // creatProductLabel
@@ -88,6 +89,7 @@
             // 
             this.createProductMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.createProductMainPanel.BorderRadius = 8;
+            this.createProductMainPanel.Controls.Add(this.productImagePictureBox);
             this.createProductMainPanel.Controls.Add(this.enabalVTypeCheckBox);
             this.createProductMainPanel.Controls.Add(this.creProWareComboBox);
             this.createProductMainPanel.Controls.Add(this.creProWareLabel);
@@ -97,7 +99,6 @@
             this.createProductMainPanel.Controls.Add(this.creProSupComboBox);
             this.createProductMainPanel.Controls.Add(this.creProSupLabel);
             this.createProductMainPanel.Controls.Add(this.createProductMultipleImgLabel);
-            this.createProductMainPanel.Controls.Add(this.createProductMultipleImgText);
             this.createProductMainPanel.Controls.Add(this.creProUnitComboBox);
             this.createProductMainPanel.Controls.Add(this.creProUnitLabel);
             this.createProductMainPanel.Controls.Add(this.creProBrandComboBox);
@@ -200,24 +201,6 @@
             this.creProVarTypeLabel.TabIndex = 57;
             this.creProVarTypeLabel.Text = "Variation Type:";
             // 
-            // createProductMultipleImgBtn
-            // 
-            this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
-            this.createProductMultipleImgBtn.BorderRadius = 8;
-            this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.createProductMultipleImgBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.createProductMultipleImgBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.createProductMultipleImgBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
-            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(625, 305);
-            this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
-            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(65, 38);
-            this.createProductMultipleImgBtn.TabIndex = 56;
-            this.createProductMultipleImgBtn.Text = "+";
-            this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
-            // 
             // creProSupComboBox
             // 
             this.creProSupComboBox.BackColor = System.Drawing.Color.Transparent;
@@ -263,33 +246,6 @@
             this.createProductMultipleImgLabel.Size = new System.Drawing.Size(131, 23);
             this.createProductMultipleImgLabel.TabIndex = 28;
             this.createProductMultipleImgLabel.Text = "Multiple Image:";
-            // 
-            // createProductMultipleImgText
-            // 
-            this.createProductMultipleImgText.BackColor = System.Drawing.Color.Transparent;
-            this.createProductMultipleImgText.BorderRadius = 8;
-            this.createProductMultipleImgText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.createProductMultipleImgText.DefaultText = "";
-            this.createProductMultipleImgText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.createProductMultipleImgText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.createProductMultipleImgText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductMultipleImgText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createProductMultipleImgText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductMultipleImgText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.createProductMultipleImgText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createProductMultipleImgText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createProductMultipleImgText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.createProductMultipleImgText.Location = new System.Drawing.Point(365, 303);
-            this.createProductMultipleImgText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.createProductMultipleImgText.Name = "createProductMultipleImgText";
-            this.createProductMultipleImgText.PasswordChar = '\0';
-            this.createProductMultipleImgText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createProductMultipleImgText.PlaceholderText = "Choose File";
-            this.createProductMultipleImgText.ReadOnly = true;
-            this.createProductMultipleImgText.SelectedText = "";
-            this.createProductMultipleImgText.Size = new System.Drawing.Size(327, 42);
-            this.createProductMultipleImgText.TabIndex = 27;
-            this.createProductMultipleImgText.TextChanged += new System.EventHandler(this.createProductMultipleImgText_TextChanged);
             // 
             // creProUnitComboBox
             // 
@@ -685,6 +641,33 @@
             this.singleCostPriText.TabIndex = 29;
             this.singleCostPriText.TextChanged += new System.EventHandler(this.singleCostPriText_TextChanged);
             // 
+            // productImagePictureBox
+            // 
+            this.productImagePictureBox.Location = new System.Drawing.Point(363, 303);
+            this.productImagePictureBox.Name = "productImagePictureBox";
+            this.productImagePictureBox.Size = new System.Drawing.Size(184, 42);
+            this.productImagePictureBox.TabIndex = 62;
+            this.productImagePictureBox.TabStop = false;
+            this.productImagePictureBox.Click += new System.EventHandler(this.productImagePictureBox_Click);
+            // 
+            // createProductMultipleImgBtn
+            // 
+            this.createProductMultipleImgBtn.BackColor = System.Drawing.Color.Transparent;
+            this.createProductMultipleImgBtn.BorderRadius = 8;
+            this.createProductMultipleImgBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.createProductMultipleImgBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.createProductMultipleImgBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
+            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(625, 305);
+            this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
+            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(65, 38);
+            this.createProductMultipleImgBtn.TabIndex = 56;
+            this.createProductMultipleImgBtn.Text = "+";
+            this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
+            // 
             // CreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,6 +694,7 @@
             this.controlPanel.ResumeLayout(false);
             this.singlePricingPanel.ResumeLayout(false);
             this.singlePricingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,7 +706,6 @@
         private System.Windows.Forms.Label createProductNameLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createProductNameText;
         private System.Windows.Forms.Label createProductMultipleImgLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createProductMultipleImgText;
         private System.Windows.Forms.Label createProductCategoryLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox ProCatComboox;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox creProBrandComboBox;
@@ -753,5 +736,6 @@
         private System.Windows.Forms.Label singleCostLbl;
         private System.Windows.Forms.Label singleWholeLbl;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox enabalVTypeCheckBox;
+        private System.Windows.Forms.PictureBox productImagePictureBox;
     }
 }

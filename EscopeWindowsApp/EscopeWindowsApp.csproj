@@ -546,6 +546,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\posminus1.png" />
+    <None Include="Resources\posplus1.png" />
+    <None Include="Resources\posminus.png" />
+    <None Include="Resources\posplus.png" />
+    <None Include="Resources\posadd-.png" />
     <None Include="Resources\cashbook.png" />
     <None Include="Resources\expcategory.png" />
     <None Include="Resources\grnimage.png" />
