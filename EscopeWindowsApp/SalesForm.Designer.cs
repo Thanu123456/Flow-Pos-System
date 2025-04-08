@@ -31,30 +31,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.createSaleBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.saleDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.salesReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salesPayStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleAllPgLabel = new System.Windows.Forms.Label();
             this.saleOfLabel = new System.Windows.Forms.Label();
             this.salePgRangeLabel = new System.Windows.Forms.Label();
             this.salePageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleRecordsPerLabel = new System.Windows.Forms.Label();
             this.saleBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.saleFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.salePrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
+            this.saleDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.saleBtnPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // saleDataComboBox1
@@ -83,123 +76,6 @@
             this.saleDataComboBox1.StartIndex = 0;
             this.saleDataComboBox1.TabIndex = 7;
             this.saleDataComboBox1.SelectedIndexChanged += new System.EventHandler(this.saleDataComboBox1_SelectedIndexChanged);
-            // 
-            // createSaleBtn
-            // 
-            this.createSaleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createSaleBtn.Animated = true;
-            this.createSaleBtn.BorderRadius = 8;
-            this.createSaleBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.createSaleBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.createSaleBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.createSaleBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.createSaleBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createSaleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.createSaleBtn.ForeColor = System.Drawing.Color.White;
-            this.createSaleBtn.Location = new System.Drawing.Point(1158, 30);
-            this.createSaleBtn.Name = "createSaleBtn";
-            this.createSaleBtn.Size = new System.Drawing.Size(209, 42);
-            this.createSaleBtn.TabIndex = 6;
-            this.createSaleBtn.Text = "Create Sale";
-            this.createSaleBtn.Click += new System.EventHandler(this.createSaleBtn_Click);
-            // 
-            // saleDataGridView
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.saleDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.saleDataGridView.ColumnHeadersHeight = 25;
-            this.saleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.saleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.salesReference,
-            this.salesCusName,
-            this.salesWarehouse,
-            this.salesStatus,
-            this.salesGrandTotal,
-            this.salesPaid,
-            this.salesPayStatus});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.saleDataGridView.GridColor = System.Drawing.Color.White;
-            this.saleDataGridView.Location = new System.Drawing.Point(17, 100);
-            this.saleDataGridView.Name = "saleDataGridView";
-            this.saleDataGridView.RowHeadersVisible = false;
-            this.saleDataGridView.Size = new System.Drawing.Size(1352, 615);
-            this.saleDataGridView.TabIndex = 9;
-            this.saleDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.saleDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.saleDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.saleDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.saleDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.saleDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.saleDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.saleDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.saleDataGridView.ThemeStyle.ReadOnly = false;
-            this.saleDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.saleDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.saleDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.saleDataGridView.ThemeStyle.RowsStyle.Height = 22;
-            this.saleDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.saleDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.saleDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleDataGridView_CellContentClick);
-            // 
-            // salesReference
-            // 
-            this.salesReference.HeaderText = "Reference";
-            this.salesReference.Name = "salesReference";
-            // 
-            // salesCusName
-            // 
-            this.salesCusName.HeaderText = "Customer";
-            this.salesCusName.Name = "salesCusName";
-            // 
-            // salesWarehouse
-            // 
-            this.salesWarehouse.HeaderText = "Warehouse";
-            this.salesWarehouse.Name = "salesWarehouse";
-            // 
-            // salesStatus
-            // 
-            this.salesStatus.HeaderText = "Status";
-            this.salesStatus.Name = "salesStatus";
-            // 
-            // salesGrandTotal
-            // 
-            this.salesGrandTotal.HeaderText = "Grand Total";
-            this.salesGrandTotal.Name = "salesGrandTotal";
-            // 
-            // salesPaid
-            // 
-            this.salesPaid.HeaderText = "Paid";
-            this.salesPaid.Name = "salesPaid";
-            // 
-            // salesPayStatus
-            // 
-            this.salesPayStatus.HeaderText = "Payment Status";
-            this.salesPayStatus.Name = "salesPayStatus";
             // 
             // saleAllPgLabel
             // 
@@ -286,34 +162,6 @@
             this.saleBtnPanel.Size = new System.Drawing.Size(154, 37);
             this.saleBtnPanel.TabIndex = 26;
             // 
-            // saleSearchText
-            // 
-            this.saleSearchText.BorderColor = System.Drawing.Color.Gray;
-            this.saleSearchText.BorderRadius = 8;
-            this.saleSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.saleSearchText.DefaultText = "";
-            this.saleSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.saleSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.saleSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.saleSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.saleSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.saleSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.saleSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.saleSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.saleSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.saleSearchText.Location = new System.Drawing.Point(17, 30);
-            this.saleSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.saleSearchText.Name = "saleSearchText";
-            this.saleSearchText.PasswordChar = '\0';
-            this.saleSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.saleSearchText.PlaceholderText = "Search";
-            this.saleSearchText.SelectedText = "";
-            this.saleSearchText.Size = new System.Drawing.Size(400, 42);
-            this.saleSearchText.TabIndex = 27;
-            this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
-            // 
             // saleFirstBtn
             // 
             this.saleFirstBtn.BorderRadius = 6;
@@ -384,6 +232,34 @@
             this.saleLastBtn.TabIndex = 8;
             this.saleLastBtn.Click += new System.EventHandler(this.saleLastBtn_Click);
             // 
+            // saleSearchText
+            // 
+            this.saleSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.saleSearchText.BorderRadius = 8;
+            this.saleSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.saleSearchText.DefaultText = "";
+            this.saleSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.saleSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.saleSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.saleSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.saleSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.saleSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.saleSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.saleSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.saleSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.saleSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.saleSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.saleSearchText.Location = new System.Drawing.Point(17, 30);
+            this.saleSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.saleSearchText.Name = "saleSearchText";
+            this.saleSearchText.PasswordChar = '\0';
+            this.saleSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.saleSearchText.PlaceholderText = "Search";
+            this.saleSearchText.SelectedText = "";
+            this.saleSearchText.Size = new System.Drawing.Size(400, 42);
+            this.saleSearchText.TabIndex = 27;
+            this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
+            // 
             // saleFilterBtn
             // 
             this.saleFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -403,6 +279,84 @@
             this.saleFilterBtn.TabIndex = 5;
             this.saleFilterBtn.Click += new System.EventHandler(this.saleFilterBtn_Click);
             // 
+            // saleDataGridView
+            // 
+            this.saleDataGridView.AllowUserToAddRows = false;
+            this.saleDataGridView.AllowUserToDeleteRows = false;
+            this.saleDataGridView.AllowUserToResizeColumns = false;
+            this.saleDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.saleDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.saleDataGridView.ColumnHeadersHeight = 45;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.saleDataGridView.GridColor = System.Drawing.Color.White;
+            this.saleDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.saleDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.saleDataGridView.Name = "saleDataGridView";
+            this.saleDataGridView.ReadOnly = true;
+            this.saleDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.saleDataGridView.RowHeadersVisible = false;
+            this.saleDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.saleDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.saleDataGridView.RowTemplate.Height = 35;
+            this.saleDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.saleDataGridView.Size = new System.Drawing.Size(1352, 615);
+            this.saleDataGridView.TabIndex = 39;
+            this.saleDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.saleDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.saleDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.saleDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.saleDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.saleDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.saleDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.saleDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.saleDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.saleDataGridView.ThemeStyle.ReadOnly = true;
+            this.saleDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.saleDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.saleDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.saleDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.saleDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.saleDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,6 +364,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.saleDataGridView);
             this.Controls.Add(this.saleSearchText);
             this.Controls.Add(this.saleBtnPanel);
             this.Controls.Add(this.saleAllPgLabel);
@@ -417,9 +372,7 @@
             this.Controls.Add(this.salePgRangeLabel);
             this.Controls.Add(this.salePageCombo);
             this.Controls.Add(this.saleRecordsPerLabel);
-            this.Controls.Add(this.saleDataGridView);
             this.Controls.Add(this.saleDataComboBox1);
-            this.Controls.Add(this.createSaleBtn);
             this.Controls.Add(this.saleFilterBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -430,8 +383,8 @@
             this.ShowInTaskbar = false;
             this.Text = "SalesForm";
             this.Load += new System.EventHandler(this.SalesForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).EndInit();
             this.saleBtnPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,9 +392,7 @@
 
         #endregion
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox saleDataComboBox1;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton createSaleBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleFilterBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView saleDataGridView;
         private System.Windows.Forms.Label saleAllPgLabel;
         private System.Windows.Forms.Label saleOfLabel;
         private System.Windows.Forms.Label salePgRangeLabel;
@@ -453,12 +404,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox saleSearchText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesReference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesCusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesWarehouse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesGrandTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesPaid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salesPayStatus;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView saleDataGridView;
     }
 }

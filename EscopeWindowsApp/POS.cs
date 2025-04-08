@@ -960,5 +960,114 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void payNowBtn_Click(object sender, EventArgs e)
+        {
+            if (supDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No items in the cart to process payment.", "Empty Cart", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate payment details
+            decimal totalPrice = decimal.Parse(totPriceCountLabel.Text);
+            string paymentMethod = posCashRadioBtn.Checked ? "Cash" : posCardRadioBtn.Checked ? "Card" : "Not Specified";
+
+            if (posCashRadioBtn.Checked && (!decimal.TryParse(paymentText.Text, out decimal paymentAmount) || paymentAmount < totalPrice))
+            {
+                MessageBox.Show("Please enter a valid payment amount greater than or equal to the total price.", "Invalid Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Generate a unique Bill No
+                    string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+                    // Get customer name from posClientNameLabel
+                    string customerName = posClientNameLabel.Text; // Will save "Walk-In Customer" if that's the label text
+
+                    // Set default user name to "Cashier"
+                    string userName = "Cashier";
+
+                    // Calculate total quantity of items
+                    int totalItems = supDataGridView.Rows.Count;
+
+                    // Insert into sales table
+                    string salesQuery = @"
+                INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
+                VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
+
+                    using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection))
+                    {
+                        salesCommand.Parameters.AddWithValue("@billNo", billNo);
+                        salesCommand.Parameters.AddWithValue("@customer", customerName);
+                        salesCommand.Parameters.AddWithValue("@userName", userName);
+                        salesCommand.Parameters.AddWithValue("@quantityOfItems", totalItems);
+                        salesCommand.Parameters.AddWithValue("@paymentMethod", paymentMethod);
+                        salesCommand.Parameters.AddWithValue("@totalPrice", totalPrice);
+
+                        salesCommand.ExecuteNonQuery();
+                    }
+
+                    // Insert into sales_details table
+                    string detailsQuery = @"
+                INSERT INTO sales_details (bill_no, product_name, variation_type, unit, quantity, price, total_price)
+                VALUES (@billNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
+
+                    foreach (DataGridViewRow row in supDataGridView.Rows)
+                    {
+                        using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection))
+                        {
+                            detailsCommand.Parameters.AddWithValue("@billNo", billNo);
+                            detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
+                            detailsCommand.Parameters.AddWithValue("@variationType", row.Cells["variation_type"].Value.ToString());
+                            detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
+                            detailsCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                            detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
+                            detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
+
+                            detailsCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Update stock in the stock table
+                    foreach (DataGridViewRow row in supDataGridView.Rows)
+                    {
+                        string updateStockQuery = @"
+                    UPDATE stock 
+                    SET stock = stock - @quantity 
+                    WHERE product_id = (
+                        SELECT id FROM products WHERE name = @productName
+                    ) AND variation_type = @variationType";
+
+                        using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection))
+                        {
+                            stockCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                            stockCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
+                            stockCommand.Parameters.AddWithValue("@variationType", row.Cells["variation_type"].Value.ToString());
+                            stockCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Show success message
+                    MessageBox.Show($"Payment processed successfully!\nBill No: {billNo}", "Payment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Reset the form
+                    resetBtn_Click(sender, e);
+
+                    // Refresh product data to reflect updated stock
+                    LoadProductsData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

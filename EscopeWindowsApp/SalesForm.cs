@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
@@ -13,116 +9,187 @@ namespace EscopeWindowsApp
     public partial class SalesForm : Form
     {
         private DataTable salesTable; // Data source for sales
+        private BindingSource bindingSource; // Binding source for filtering
         private int currentIndex = 0; // Current index for navigation
+        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
 
         public SalesForm()
         {
             InitializeComponent();
+            bindingSource = new BindingSource();
             LoadSalesData();
+            // Explicitly wire events
+            saleDataGridView.CellFormatting += SaleDataGridView_CellFormatting;
         }
 
         private void SalesForm_Load(object sender, EventArgs e)
         {
-            // Initialize sales data on form load
-            saleDataGridView.DataSource = salesTable;
+            ConfigureDataGridView();
+            saleDataGridView.DataSource = bindingSource;
+        }
+
+        private void ConfigureDataGridView()
+        {
+            saleDataGridView.AutoGenerateColumns = false;
+            saleDataGridView.Columns.Clear();
+
+            // Add columns based on the sales table structure
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "bill_no",
+                Name = "bill_no",
+                HeaderText = "REFERENCE NO"
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "customer",
+                Name = "customer",
+                HeaderText = "CUSTOMER"
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "user_name",
+                Name = "user_name",
+                HeaderText = "USER NAME"
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "quantity_of_items",
+                Name = "quantity_of_items",
+                HeaderText = "QUANTITY OF ITEMS"
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "payment_method",
+                Name = "payment_method",
+                HeaderText = "PAYMENT METHOD"
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "total_price",
+                Name = "total_price",
+                HeaderText = "TOTAL PRICE",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" } // Format as currency
+            });
+            saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "sale_date",
+                Name = "sale_date",
+                HeaderText = "SALE DATE"
+            });
+
+            // Prevent the empty row at the end
+            saleDataGridView.AllowUserToAddRows = false;
+        }
+
+        private void SaleDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // Format the bill_no to ensure consistency
+            if (saleDataGridView.Columns[e.ColumnIndex].Name == "bill_no")
+            {
+                if (e.Value != null)
+                {
+                    e.Value = e.Value.ToString(); // Already in BILLyyyyMMddHHmmss format
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void LoadSalesData()
         {
-            // Load sales data into salesTable
-            salesTable = new DataTable();
-            salesTable.Columns.Add("SaleId", typeof(int));
-            salesTable.Columns.Add("ProductName", typeof(string));
-            salesTable.Columns.Add("Quantity", typeof(int));
-            salesTable.Columns.Add("Price", typeof(decimal));
-            salesTable.Columns.Add("Date", typeof(DateTime));
-
-            // Sample data - replace with actual data retrieval logic
-            salesTable.Rows.Add(1, "Laptop", 2, 1200.00m, DateTime.Now.AddDays(-5));
-            salesTable.Rows.Add(2, "Smartphone", 5, 800.00m, DateTime.Now.AddDays(-3));
-            salesTable.Rows.Add(3, "Tablet", 3, 500.00m, DateTime.Now.AddDays(-1));
-            salesTable.Rows.Add(4, "Headphones", 10, 150.00m, DateTime.Now);
-        }
-
-        private void createSaleBtn_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
+            try
             {
-                if (form is AddSaleForm)
+                salesTable = new DataTable();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    if (form.WindowState == FormWindowState.Minimized)
+                    connection.Open();
+                    string query = "SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date FROM sales ORDER BY sale_date DESC";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
-                        form.WindowState = FormWindowState.Normal;
+                        adapter.Fill(salesTable);
                     }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
                 }
-            }
-            AddSaleForm addSaleForm = new AddSaleForm();
-            addSaleForm.Show();
-        }
 
-        private void saleDataComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // select sales data based on the selected data
+                // Replace DBNull with default values
+                foreach (DataRow row in salesTable.Rows)
+                {
+                    for (int i = 0; i < salesTable.Columns.Count; i++)
+                    {
+                        if (row.IsNull(i))
+                        {
+                            if (salesTable.Columns[i].DataType == typeof(string))
+                            {
+                                row[i] = "";
+                            }
+                            else if (salesTable.Columns[i].DataType == typeof(DateTime))
+                            {
+                                row[i] = DateTime.MinValue;
+                            }
+                            else if (salesTable.Columns[i].DataType == typeof(decimal))
+                            {
+                                row[i] = 0.00m;
+                            }
+                            else if (salesTable.Columns[i].DataType == typeof(int))
+                            {
+                                row[i] = 0;
+                            }
+                        }
+                    }
+                }
+
+                bindingSource.DataSource = salesTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                salesTable = new DataTable();
+                salesTable.Columns.Add("bill_no", typeof(string));
+                salesTable.Columns.Add("customer", typeof(string));
+                salesTable.Columns.Add("user_name", typeof(string));
+                salesTable.Columns.Add("quantity_of_items", typeof(int));
+                salesTable.Columns.Add("payment_method", typeof(string));
+                salesTable.Columns.Add("total_price", typeof(decimal));
+                salesTable.Columns.Add("sale_date", typeof(DateTime));
+                bindingSource.DataSource = salesTable;
+            }
         }
 
         private void saleDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Handle cell clicks, for example to edit or delete sales
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = saleDataGridView.Rows[e.RowIndex];
-                int saleId = Convert.ToInt32(row.Cells["SaleId"].Value);
-                string productName = row.Cells["ProductName"].Value.ToString();
-                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
-                DateTime date = Convert.ToDateTime(row.Cells["Date"].Value);
-
-                // Implement logic to handle the cell content click event
-            }
+            // No action needed since we are not adding Edit or Delete columns
         }
 
         private void saleSearchText_TextChanged(object sender, EventArgs e)
         {
-            // Search sales as text changes
-            string searchText = saleSearchText.Text.Trim().ToLower();
-
-            if (!string.IsNullOrEmpty(searchText))
+            try
             {
-                var filteredRows = salesTable.AsEnumerable()
-                    .Where(row => row.Field<string>("ProductName").ToLower().Contains(searchText));
-
-                if (filteredRows.Any())
+                string searchText = saleSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
                 {
-                    saleDataGridView.DataSource = filteredRows.CopyToDataTable();
+                    bindingSource.Filter = $"customer LIKE '%{searchText}%' OR bill_no LIKE '%{searchText}%'";
                 }
                 else
                 {
-                    saleDataGridView.DataSource = null;
+                    bindingSource.Filter = null;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                saleDataGridView.DataSource = salesTable;
+                MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
             }
         }
 
         private void saleFilterBtn_Click(object sender, EventArgs e)
         {
-            // Filter sales where SaleId is greater than 2
-            var filteredRows = salesTable.AsEnumerable()
-                .Where(row => row.Field<int>("SaleId") > 2);
+            // Empty method as requested
+        }
 
-            if (filteredRows.Any())
-            {
-                saleDataGridView.DataSource = filteredRows.CopyToDataTable();
-            }
-            else
-            {
-                saleDataGridView.DataSource = null;
-            }
+        private void saleDataComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Empty method as requested
         }
 
         private void saleFirstBtn_Click(object sender, EventArgs e)
