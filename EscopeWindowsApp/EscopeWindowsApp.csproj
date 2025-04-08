@@ -328,18 +328,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PurchesList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PurchesList.Designer.cs">
-      <DependentUpon>PurchesList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PurchesReturn.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PurchesReturn.Designer.cs">
-      <DependentUpon>PurchesReturn.cs</DependentUpon>
-    </Compile>
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
