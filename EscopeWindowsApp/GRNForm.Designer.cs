@@ -53,6 +53,8 @@
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.previousGRNBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.grnUnitLabel = new System.Windows.Forms.Label();
+            this.grnUnitText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnExpireDatePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.addToListBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnPriceLabel = new System.Windows.Forms.Label();
@@ -85,8 +87,8 @@
             this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grnUnitLabel = new System.Windows.Forms.Label();
-            this.grnUnitText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.sUnitNameLabel = new System.Windows.Forms.Label();
+            this.qUnitNameLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
@@ -170,7 +172,7 @@
             this.grnNoLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
             this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
+            this.grnNoLabel.Size = new System.Drawing.Size(41, 18);
             this.grnNoLabel.TabIndex = 28;
             this.grnNoLabel.Text = "001";
             this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
@@ -182,7 +184,7 @@
             this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
             this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
+            this.grnNoFixLabel.Size = new System.Drawing.Size(91, 18);
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
@@ -227,7 +229,7 @@
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
             this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(153, 18);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -256,7 +258,7 @@
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(76, 18);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -284,7 +286,7 @@
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(53, 18);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
             this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
@@ -314,7 +316,7 @@
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
             this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
+            this.paymentMethLabel.Size = new System.Drawing.Size(174, 17);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
@@ -370,6 +372,8 @@
             // 
             this.grnMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.grnMainPanel.BorderRadius = 8;
+            this.grnMainPanel.Controls.Add(this.qUnitNameLabel);
+            this.grnMainPanel.Controls.Add(this.sUnitNameLabel);
             this.grnMainPanel.Controls.Add(this.grnUnitLabel);
             this.grnMainPanel.Controls.Add(this.grnUnitText);
             this.grnMainPanel.Controls.Add(this.grnExpireDatePicker);
@@ -398,6 +402,44 @@
             this.grnMainPanel.Name = "grnMainPanel";
             this.grnMainPanel.Size = new System.Drawing.Size(864, 362);
             this.grnMainPanel.TabIndex = 31;
+            // 
+            // grnUnitLabel
+            // 
+            this.grnUnitLabel.AutoSize = true;
+            this.grnUnitLabel.BackColor = System.Drawing.Color.Transparent;
+            this.grnUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grnUnitLabel.Location = new System.Drawing.Point(358, 93);
+            this.grnUnitLabel.Name = "grnUnitLabel";
+            this.grnUnitLabel.Size = new System.Drawing.Size(47, 23);
+            this.grnUnitLabel.TabIndex = 80;
+            this.grnUnitLabel.Text = "Unit:";
+            // 
+            // grnUnitText
+            // 
+            this.grnUnitText.BackColor = System.Drawing.Color.Transparent;
+            this.grnUnitText.BorderRadius = 8;
+            this.grnUnitText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.grnUnitText.DefaultText = "";
+            this.grnUnitText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.grnUnitText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.grnUnitText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnUnitText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnUnitText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnUnitText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnUnitText.ForeColor = System.Drawing.Color.Black;
+            this.grnUnitText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnUnitText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.grnUnitText.Location = new System.Drawing.Point(362, 122);
+            this.grnUnitText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grnUnitText.Name = "grnUnitText";
+            this.grnUnitText.PasswordChar = '\0';
+            this.grnUnitText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.grnUnitText.PlaceholderText = "Unit";
+            this.grnUnitText.SelectedText = "";
+            this.grnUnitText.Size = new System.Drawing.Size(150, 42);
+            this.grnUnitText.TabIndex = 79;
+            this.grnUnitText.TextChanged += new System.EventHandler(this.grnUnitText_TextChanged);
             // 
             // grnExpireDatePicker
             // 
@@ -448,7 +490,7 @@
             this.grnPriceLabel.ForeColor = System.Drawing.Color.Black;
             this.grnPriceLabel.Location = new System.Drawing.Point(38, 179);
             this.grnPriceLabel.Name = "grnPriceLabel";
-            this.grnPriceLabel.Size = new System.Drawing.Size(87, 18);
+            this.grnPriceLabel.Size = new System.Drawing.Size(96, 18);
             this.grnPriceLabel.TabIndex = 34;
             this.grnPriceLabel.Text = "PRICING :";
             this.grnPriceLabel.Click += new System.EventHandler(this.grnPriceLabel_Click);
@@ -1054,42 +1096,31 @@
             this.grnSaveBtn.Text = "Save";
             this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
             // 
-            // grnUnitLabel
+            // sUnitNameLabel
             // 
-            this.grnUnitLabel.AutoSize = true;
-            this.grnUnitLabel.BackColor = System.Drawing.Color.Transparent;
-            this.grnUnitLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnUnitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnUnitLabel.Location = new System.Drawing.Point(358, 93);
-            this.grnUnitLabel.Name = "grnUnitLabel";
-            this.grnUnitLabel.Size = new System.Drawing.Size(47, 23);
-            this.grnUnitLabel.TabIndex = 80;
-            this.grnUnitLabel.Text = "Unit:";
+            this.sUnitNameLabel.AutoSize = true;
+            this.sUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.sUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.sUnitNameLabel.Location = new System.Drawing.Point(589, 97);
+            this.sUnitNameLabel.Name = "sUnitNameLabel";
+            this.sUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.sUnitNameLabel.TabIndex = 81;
+            this.sUnitNameLabel.Text = "Kg";
+            this.sUnitNameLabel.Click += new System.EventHandler(this.sUnitNameLabel_Click);
             // 
-            // grnUnitText
+            // qUnitNameLabel
             // 
-            this.grnUnitText.BackColor = System.Drawing.Color.Transparent;
-            this.grnUnitText.BorderRadius = 8;
-            this.grnUnitText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.grnUnitText.DefaultText = "";
-            this.grnUnitText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.grnUnitText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.grnUnitText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnUnitText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnUnitText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnUnitText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.grnUnitText.ForeColor = System.Drawing.Color.Black;
-            this.grnUnitText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnUnitText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnUnitText.Location = new System.Drawing.Point(362, 122);
-            this.grnUnitText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grnUnitText.Name = "grnUnitText";
-            this.grnUnitText.PasswordChar = '\0';
-            this.grnUnitText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.grnUnitText.PlaceholderText = "Unit";
-            this.grnUnitText.SelectedText = "";
-            this.grnUnitText.Size = new System.Drawing.Size(150, 42);
-            this.grnUnitText.TabIndex = 79;
+            this.qUnitNameLabel.AutoSize = true;
+            this.qUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.qUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.qUnitNameLabel.Location = new System.Drawing.Point(774, 96);
+            this.qUnitNameLabel.Name = "qUnitNameLabel";
+            this.qUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.qUnitNameLabel.TabIndex = 82;
+            this.qUnitNameLabel.Text = "Kg";
+            this.qUnitNameLabel.Click += new System.EventHandler(this.qUnitNameLabel_Click);
             // 
             // GRNForm
             // 
@@ -1186,5 +1217,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker grnExpireDatePicker;
         private System.Windows.Forms.Label grnUnitLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnUnitText;
+        private System.Windows.Forms.Label sUnitNameLabel;
+        private System.Windows.Forms.Label qUnitNameLabel;
     }
 }

@@ -40,6 +40,17 @@
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.posBillPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.supDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discrese = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.increse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posPaymentLabel = new System.Windows.Forms.Label();
             this.paymentText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -68,17 +79,6 @@
             this.posNumberLabel = new System.Windows.Forms.Label();
             this.posClientNameLabel = new System.Windows.Forms.Label();
             this.posNameLabel = new System.Windows.Forms.Label();
-            this.supDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.varType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discrese = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.increse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.posCusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.posTimingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posTimePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -109,9 +109,9 @@
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).BeginInit();
             this.paymentPanel.SuspendLayout();
             this.billingPricePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).BeginInit();
             this.posTimingPanel.SuspendLayout();
             this.posTimePanel.SuspendLayout();
             this.posProfilePanel.SuspendLayout();
@@ -132,6 +132,7 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1386, 34);
             this.headerPanel.TabIndex = 28;
+            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // controlPanel
             // 
@@ -183,6 +184,156 @@
             this.posBillPanel.Name = "posBillPanel";
             this.posBillPanel.Size = new System.Drawing.Size(677, 740);
             this.posBillPanel.TabIndex = 29;
+            // 
+            // supDataGridView
+            // 
+            this.supDataGridView.AllowUserToAddRows = false;
+            this.supDataGridView.AllowUserToDeleteRows = false;
+            this.supDataGridView.AllowUserToResizeColumns = false;
+            this.supDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.supDataGridView.ColumnHeadersHeight = 45;
+            this.supDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.No,
+            this.proName,
+            this.varType,
+            this.unit,
+            this.discrese,
+            this.qty,
+            this.increse,
+            this.price,
+            this.totPrice,
+            this.delete});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.supDataGridView.GridColor = System.Drawing.Color.White;
+            this.supDataGridView.Location = new System.Drawing.Point(14, 112);
+            this.supDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.supDataGridView.Name = "supDataGridView";
+            this.supDataGridView.ReadOnly = true;
+            this.supDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.supDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.supDataGridView.RowHeadersVisible = false;
+            this.supDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.supDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.supDataGridView.RowTemplate.Height = 35;
+            this.supDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.supDataGridView.Size = new System.Drawing.Size(654, 345);
+            this.supDataGridView.TabIndex = 40;
+            this.supDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.supDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.supDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.supDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.supDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.supDataGridView.ThemeStyle.ReadOnly = true;
+            this.supDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.supDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.supDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.supDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.supDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.supDataGridView_CellContentClick);
+            // 
+            // No
+            // 
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            // 
+            // proName
+            // 
+            this.proName.HeaderText = "Product Name";
+            this.proName.Name = "proName";
+            this.proName.ReadOnly = true;
+            // 
+            // varType
+            // 
+            this.varType.HeaderText = "Type";
+            this.varType.Name = "varType";
+            this.varType.ReadOnly = true;
+            // 
+            // unit
+            // 
+            this.unit.HeaderText = "Unit";
+            this.unit.Name = "unit";
+            this.unit.ReadOnly = true;
+            // 
+            // discrese
+            // 
+            this.discrese.HeaderText = "Dis";
+            this.discrese.Name = "discrese";
+            this.discrese.ReadOnly = true;
+            // 
+            // qty
+            // 
+            this.qty.HeaderText = "QTY";
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            // 
+            // increse
+            // 
+            this.increse.HeaderText = "INC";
+            this.increse.Name = "increse";
+            this.increse.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // totPrice
+            // 
+            this.totPrice.HeaderText = "Total Price";
+            this.totPrice.Name = "totPrice";
+            this.totPrice.ReadOnly = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Del";
+            this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             // 
             // paymentPanel
             // 
@@ -645,156 +796,6 @@
             this.posNameLabel.TabIndex = 41;
             this.posNameLabel.Text = "Name:";
             // 
-            // supDataGridView
-            // 
-            this.supDataGridView.AllowUserToAddRows = false;
-            this.supDataGridView.AllowUserToDeleteRows = false;
-            this.supDataGridView.AllowUserToResizeColumns = false;
-            this.supDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.supDataGridView.ColumnHeadersHeight = 45;
-            this.supDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.No,
-            this.proName,
-            this.varType,
-            this.unit,
-            this.discrese,
-            this.qty,
-            this.increse,
-            this.price,
-            this.totPrice,
-            this.delete});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.supDataGridView.GridColor = System.Drawing.Color.White;
-            this.supDataGridView.Location = new System.Drawing.Point(14, 112);
-            this.supDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.supDataGridView.Name = "supDataGridView";
-            this.supDataGridView.ReadOnly = true;
-            this.supDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.supDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.supDataGridView.RowHeadersVisible = false;
-            this.supDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.supDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.supDataGridView.RowTemplate.Height = 35;
-            this.supDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.supDataGridView.Size = new System.Drawing.Size(654, 345);
-            this.supDataGridView.TabIndex = 40;
-            this.supDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.supDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.supDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.supDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.supDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.supDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.supDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.supDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.supDataGridView.ThemeStyle.HeaderStyle.Height = 45;
-            this.supDataGridView.ThemeStyle.ReadOnly = true;
-            this.supDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.supDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.supDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.supDataGridView.ThemeStyle.RowsStyle.Height = 35;
-            this.supDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.supDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.supDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.supDataGridView_CellContentClick);
-            // 
-            // No
-            // 
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            // 
-            // proName
-            // 
-            this.proName.HeaderText = "Product Name";
-            this.proName.Name = "proName";
-            this.proName.ReadOnly = true;
-            // 
-            // varType
-            // 
-            this.varType.HeaderText = "Type";
-            this.varType.Name = "varType";
-            this.varType.ReadOnly = true;
-            // 
-            // unit
-            // 
-            this.unit.HeaderText = "Unit";
-            this.unit.Name = "unit";
-            this.unit.ReadOnly = true;
-            // 
-            // discrese
-            // 
-            this.discrese.HeaderText = "Dis";
-            this.discrese.Name = "discrese";
-            this.discrese.ReadOnly = true;
-            // 
-            // qty
-            // 
-            this.qty.HeaderText = "QTY";
-            this.qty.Name = "qty";
-            this.qty.ReadOnly = true;
-            // 
-            // increse
-            // 
-            this.increse.HeaderText = "INC";
-            this.increse.Name = "increse";
-            this.increse.ReadOnly = true;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "Price";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // totPrice
-            // 
-            this.totPrice.HeaderText = "Total Price";
-            this.totPrice.Name = "totPrice";
-            this.totPrice.ReadOnly = true;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "Del";
-            this.delete.Name = "delete";
-            this.delete.ReadOnly = true;
-            // 
             // posCusSearchText
             // 
             this.posCusSearchText.BorderColor = System.Drawing.Color.Silver;
@@ -1254,11 +1255,11 @@
             this.controlPanel.ResumeLayout(false);
             this.posBillPanel.ResumeLayout(false);
             this.posBillPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).EndInit();
             this.paymentPanel.ResumeLayout(false);
             this.paymentPanel.PerformLayout();
             this.billingPricePanel.ResumeLayout(false);
             this.billingPricePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).EndInit();
             this.posTimingPanel.ResumeLayout(false);
             this.posTimePanel.ResumeLayout(false);
             this.posTimePanel.PerformLayout();
