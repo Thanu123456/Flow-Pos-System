@@ -19,7 +19,7 @@ namespace EscopeWindowsApp
         public POS()
         {
             InitializeComponent();
-            posClientNameLabel.Text = "Walking Customer";
+            posClientNameLabel.Text = "Walk-In Customer";
             posClientNumLabel.Text = "";
 
             // Initialize and start the time timer
@@ -335,60 +335,87 @@ namespace EscopeWindowsApp
                     return;
                 }
 
-                // Check if the item already exists in the cart (based on product_name and variation_type)
-                bool itemExists = false;
-                DataGridViewRow existingRow = null;
+                string unitName = row.Cells["unit_name"].Value.ToString();
 
-                foreach (DataGridViewRow cartRow in supDataGridView.Rows)
+                if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
                 {
-                    string cartProductName = cartRow.Cells["product_name"].Value.ToString();
-                    string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
-                    string newProductName = row.Cells["product_name"].Value.ToString();
-                    string newVariationType = row.Cells["variation_type"].Value.ToString();
-
-                    if (cartProductName == newProductName && cartVariationType == newVariationType)
+                    // Open POSWeightForm
+                    using (POSWeightForm weightForm = new POSWeightForm(unitName))
                     {
-                        itemExists = true;
-                        existingRow = cartRow;
-                        break;
+                        if (weightForm.ShowDialog() == DialogResult.OK)
+                        {
+                            decimal quantity = weightForm.GetQuantity();
+                            AddToCart(row, quantity);
+                        }
                     }
-                }
-
-                if (itemExists && existingRow != null)
-                {
-                    // Item already exists, increase the quantity
-                    int currentQuantity = Convert.ToInt32(existingRow.Cells["quantity"].Value);
-                    int newQuantity = currentQuantity + 1;
-
-                    // Check if the new quantity exceeds available stock
-                    if (newQuantity > stock)
-                    {
-                        MessageBox.Show($"Cannot add more {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    existingRow.Cells["quantity"].Value = newQuantity;
-                    UpdateTotalPrice(existingRow);
                 }
                 else
                 {
-                    // Item does not exist, add a new row
-                    supDataGridView.Rows.Add(
-                        itemNumberCounter++,
-                        row.Cells["product_name"].Value,
-                        row.Cells["variation_type"].Value,
-                        row.Cells["unit_name"].Value,
-                        null, // Decrease button
-                        1,    // Default quantity
-                        null, // Increase button
-                        row.Cells["retail_price"].Value, // Price per unit
-                        row.Cells["retail_price"].Value, // Total price (retail_price * 1)
-                        null  // Remove button
-                    );
+                    // Default behavior: add with quantity 1
+                    AddToCart(row, 1m);
+                }
+            }
+        }
+
+        private void AddToCart(DataGridViewRow productRow, decimal quantity)
+        {
+            string productName = productRow.Cells["product_name"].Value.ToString();
+            string variationType = productRow.Cells["variation_type"].Value.ToString();
+            string unit = productRow.Cells["unit_name"].Value.ToString();
+            decimal price = Convert.ToDecimal(productRow.Cells["retail_price"].Value);
+            int stock = Convert.ToInt32(productRow.Cells["stock"].Value);
+
+            // Check if the item already exists in the cart
+            bool itemExists = false;
+            DataGridViewRow existingRow = null;
+
+            foreach (DataGridViewRow cartRow in supDataGridView.Rows)
+            {
+                string cartProductName = cartRow.Cells["product_name"].Value.ToString();
+                string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
+
+                if (cartProductName == productName && cartVariationType == variationType)
+                {
+                    itemExists = true;
+                    existingRow = cartRow;
+                    break;
+                }
+            }
+
+            if (itemExists && existingRow != null)
+            {
+                // Item already exists, increase the quantity
+                decimal currentQuantity = Convert.ToDecimal(existingRow.Cells["quantity"].Value);
+                decimal newQuantity = currentQuantity + quantity;
+
+                // Check if the new quantity exceeds available stock
+                if (newQuantity > stock)
+                {
+                    MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                UpdateAllLabels();
+                existingRow.Cells["quantity"].Value = newQuantity;
+                UpdateTotalPrice(existingRow);
             }
+            else
+            {
+                // Item does not exist, add a new row
+                supDataGridView.Rows.Add(
+                    itemNumberCounter++,
+                    productName,
+                    variationType,
+                    unit,
+                    null, // Decrease button
+                    quantity,
+                    null, // Increase button
+                    price,
+                    price * quantity,
+                    null  // Remove button
+                );
+            }
+
+            UpdateAllLabels();
         }
 
         #endregion
@@ -423,9 +450,11 @@ namespace EscopeWindowsApp
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "product_name",
-                HeaderText = "Name",
-                Width = 150
+                
+                
+                    Name = "product_name",
+                    HeaderText = "Name",
+                    Width = 150
             });
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -457,7 +486,7 @@ namespace EscopeWindowsApp
                 Name = "quantity",
                 HeaderText = "Quantity",
                 Width = 50,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter, Format = "N2" }
             });
 
             DataGridViewButtonColumn increaseColumn = new DataGridViewButtonColumn
@@ -597,21 +626,19 @@ namespace EscopeWindowsApp
 
                 if (supDataGridView.Columns[e.ColumnIndex].Name == "decrease")
                 {
-                    int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-                    if (quantity > 1)
+                    decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                    if (quantity > 1m)
                     {
-                        quantity--;
+                        quantity -= 1m;
                         row.Cells["quantity"].Value = quantity;
                         UpdateTotalPrice(row);
                     }
                 }
                 else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
                 {
-                    // Check stock before increasing quantity
                     string productName = row.Cells["product_name"].Value.ToString();
                     string variationType = row.Cells["variation_type"].Value.ToString();
 
-                    // Find the product in posProductDataGrid to get the stock
                     int stock = 0;
                     foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
                     {
@@ -623,8 +650,8 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
-                    int newQuantity = quantity + 1;
+                    decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                    decimal newQuantity = quantity + 1m;
 
                     if (newQuantity > stock)
                     {
@@ -647,7 +674,7 @@ namespace EscopeWindowsApp
         private void UpdateTotalPrice(DataGridViewRow row)
         {
             decimal price = Convert.ToDecimal(row.Cells["price"].Value);
-            int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+            decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
             decimal totalPrice = price * quantity;
             row.Cells["total_price"].Value = totalPrice;
             UpdateAllLabels();
@@ -848,7 +875,7 @@ namespace EscopeWindowsApp
 
             if (string.IsNullOrEmpty(searchText))
             {
-                posClientNameLabel.Text = "Walking Customer";
+                posClientNameLabel.Text = "Walk-In Customer";
                 posClientNumLabel.Text = "";
                 return;
             }
@@ -928,5 +955,10 @@ namespace EscopeWindowsApp
         private void posTimeLabel_Click(object sender, EventArgs e) { }
 
         #endregion
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
