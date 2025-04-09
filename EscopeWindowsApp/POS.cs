@@ -49,6 +49,7 @@ namespace EscopeWindowsApp
             // Subscribe to events
             posProductDataGrid.CellPainting += posProductDataGrid_CellPainting;
             posProductDataGrid.CellFormatting += posProductDataGrid_CellFormatting;
+            supDataGridView.CellFormatting += supDataGridView_CellFormatting; // Added for dynamic quantity formatting
         }
 
         private void POS_Load(object sender, EventArgs e)
@@ -450,11 +451,9 @@ namespace EscopeWindowsApp
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                
-                
-                    Name = "product_name",
-                    HeaderText = "Name",
-                    Width = 150
+                Name = "product_name",
+                HeaderText = "Name",
+                Width = 150
             });
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -486,7 +485,8 @@ namespace EscopeWindowsApp
                 Name = "quantity",
                 HeaderText = "Quantity",
                 Width = 50,
-                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter, Format = "N2" }
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                // Removed Format = "N2" to apply formatting dynamically
             });
 
             DataGridViewButtonColumn increaseColumn = new DataGridViewButtonColumn
@@ -528,6 +528,30 @@ namespace EscopeWindowsApp
             supDataGridView.AllowUserToAddRows = false;
 
             supDataGridView.CellPainting += supDataGridView_CellPainting;
+        }
+
+        private void supDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (supDataGridView.Columns[e.ColumnIndex].Name == "quantity")
+            {
+                if (e.Value != null)
+                {
+                    string unit = supDataGridView.Rows[e.RowIndex].Cells["unit"].Value?.ToString();
+                    if (unit == "Pieces")
+                    {
+                        // For "Pieces", display as whole number without decimals
+                        e.Value = Convert.ToDecimal(e.Value).ToString("F0");
+                    }
+                    else
+                    {
+                        // For other units (e.g., Kilogram), use two decimal places
+                        e.Value = Convert.ToDecimal(e.Value).ToString("F2");
+                    }
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void supDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -864,7 +888,10 @@ namespace EscopeWindowsApp
         }
 
         private void label1_Click(object sender, EventArgs e) { }
-        private void cashBookBtn_Click_1(object sender, EventArgs e) { }
+        private void cashBookBtn_Click_1(object sender, EventArgs e) 
+        {
+            cashBooktimer.Start();
+        }
 
         private void posClientNameLabel_Click(object sender, EventArgs e) { }
         private void posClientNumLabel_Click(object sender, EventArgs e) { }
@@ -1067,6 +1094,29 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        bool btnExpand = false;
+        private void cashBooktimer_Tick(object sender, EventArgs e)
+        {
+            if(btnExpand == false)
+            {
+                cashBookFlowPanel.Height += 10;
+                if (cashBookFlowPanel.Height >= 123)
+                {
+                    cashBooktimer.Stop();
+                    btnExpand = true;
+                }
+            }
+            else
+            {
+                cashBookFlowPanel.Height -= 10;
+                if (cashBookFlowPanel.Height <= 41)
+                {
+                    cashBooktimer.Stop();
+                    btnExpand = false;
+                }
             }
         }
     }
