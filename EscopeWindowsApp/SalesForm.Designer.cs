@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.saleDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleAllPgLabel = new System.Windows.Forms.Label();
             this.saleOfLabel = new System.Windows.Forms.Label();
             this.salePgRangeLabel = new System.Windows.Forms.Label();
@@ -44,38 +43,12 @@
             this.saleNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.saleFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.salesRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.filterSaleDateCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.saleBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // saleDataComboBox1
-            // 
-            this.saleDataComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleDataComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.saleDataComboBox1.BorderColor = System.Drawing.Color.Gray;
-            this.saleDataComboBox1.BorderRadius = 8;
-            this.saleDataComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.saleDataComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.saleDataComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleDataComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleDataComboBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDataComboBox1.ForeColor = System.Drawing.Color.Gray;
-            this.saleDataComboBox1.ItemHeight = 30;
-            this.saleDataComboBox1.Items.AddRange(new object[] {
-            "Select Date",
-            "Today",
-            "This Week",
-            "Last Week",
-            "This Month",
-            "Last Month"});
-            this.saleDataComboBox1.Location = new System.Drawing.Point(872, 37);
-            this.saleDataComboBox1.Name = "saleDataComboBox1";
-            this.saleDataComboBox1.Size = new System.Drawing.Size(209, 36);
-            this.saleDataComboBox1.StartIndex = 0;
-            this.saleDataComboBox1.TabIndex = 7;
-            this.saleDataComboBox1.SelectedIndexChanged += new System.EventHandler(this.saleDataComboBox1_SelectedIndexChanged);
             // 
             // saleAllPgLabel
             // 
@@ -260,25 +233,6 @@
             this.saleSearchText.TabIndex = 27;
             this.saleSearchText.TextChanged += new System.EventHandler(this.saleSearchText_TextChanged);
             // 
-            // saleFilterBtn
-            // 
-            this.saleFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleFilterBtn.Animated = true;
-            this.saleFilterBtn.BorderRadius = 8;
-            this.saleFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.saleFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.saleFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.saleFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.saleFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.saleFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.saleFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.saleFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.saleFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.saleFilterBtn.Name = "saleFilterBtn";
-            this.saleFilterBtn.Size = new System.Drawing.Size(43, 43);
-            this.saleFilterBtn.TabIndex = 5;
-            this.saleFilterBtn.Click += new System.EventHandler(this.saleFilterBtn_Click);
-            // 
             // saleDataGridView
             // 
             this.saleDataGridView.AllowUserToAddRows = false;
@@ -357,6 +311,41 @@
             this.saleDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.saleDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // salesRefreshBtn
+            // 
+            this.salesRefreshBtn.BorderRadius = 8;
+            this.salesRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.salesRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.salesRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.salesRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.salesRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.salesRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.salesRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.salesRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.salesRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.salesRefreshBtn.Location = new System.Drawing.Point(448, 30);
+            this.salesRefreshBtn.Name = "salesRefreshBtn";
+            this.salesRefreshBtn.Size = new System.Drawing.Size(42, 42);
+            this.salesRefreshBtn.TabIndex = 85;
+            this.salesRefreshBtn.Click += new System.EventHandler(this.salesRefreshBtn_Click);
+            // 
+            // filterSaleDateCombo
+            // 
+            this.filterSaleDateCombo.BackColor = System.Drawing.Color.Transparent;
+            this.filterSaleDateCombo.BorderRadius = 8;
+            this.filterSaleDateCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterSaleDateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterSaleDateCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterSaleDateCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterSaleDateCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.filterSaleDateCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.filterSaleDateCombo.ItemHeight = 36;
+            this.filterSaleDateCombo.Location = new System.Drawing.Point(918, 30);
+            this.filterSaleDateCombo.Name = "filterSaleDateCombo";
+            this.filterSaleDateCombo.Size = new System.Drawing.Size(150, 42);
+            this.filterSaleDateCombo.TabIndex = 86;
+            this.filterSaleDateCombo.SelectedIndexChanged += new System.EventHandler(this.filterSaleDateCombo_SelectedIndexChanged);
+            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +353,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.filterSaleDateCombo);
+            this.Controls.Add(this.salesRefreshBtn);
             this.Controls.Add(this.saleDataGridView);
             this.Controls.Add(this.saleSearchText);
             this.Controls.Add(this.saleBtnPanel);
@@ -372,8 +363,6 @@
             this.Controls.Add(this.salePgRangeLabel);
             this.Controls.Add(this.salePageCombo);
             this.Controls.Add(this.saleRecordsPerLabel);
-            this.Controls.Add(this.saleDataComboBox1);
-            this.Controls.Add(this.saleFilterBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -391,8 +380,6 @@
         }
 
         #endregion
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox saleDataComboBox1;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton saleFilterBtn;
         private System.Windows.Forms.Label saleAllPgLabel;
         private System.Windows.Forms.Label saleOfLabel;
         private System.Windows.Forms.Label salePgRangeLabel;
@@ -405,5 +392,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox saleSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView saleDataGridView;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton salesRefreshBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterSaleDateCombo;
     }
 }
