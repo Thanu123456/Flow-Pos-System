@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Collections.Generic;
 
 namespace EscopeWindowsApp
 {
@@ -1053,6 +1054,37 @@ namespace EscopeWindowsApp
                             stockCommand.ExecuteNonQuery();
                         }
                     }
+
+                    // Prepare cart items for printing
+                    List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
+                    foreach (DataGridViewRow row in supDataGridView.Rows)
+                    {
+                        cartItems.Add(new BillPrinter.CartItem
+                        {
+                            ItemNumber = Convert.ToInt32(row.Cells["item_number"].Value),
+                            ProductName = row.Cells["product_name"].Value.ToString(),
+                            VariationType = row.Cells["variation_type"].Value.ToString(),
+                            Unit = row.Cells["unit"].Value.ToString(),
+                            Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
+                            Price = Convert.ToDecimal(row.Cells["price"].Value),
+                            TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
+                        });
+                    }
+
+                    // Calculate discount
+                    decimal discount = decimal.Parse(discountPriLabel.Text);
+
+                    // Calculate cash paid and balance (if cash payment)
+                    decimal cashPaid = 0m;
+                    decimal balance = 0m;
+                    if (posCashRadioBtn.Checked)
+                    {
+                        cashPaid = decimal.Parse(paymentText.Text);
+                        balance = decimal.Parse(balancePriceCountLabel.Text);
+                    }
+
+                    // Print the bill
+                    BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
 
                     // Show success message
                     MessageBox.Show($"Payment processed successfully!\nBill No: {billNo}", "Payment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
