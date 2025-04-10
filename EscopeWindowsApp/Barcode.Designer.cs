@@ -42,7 +42,8 @@
             this.barcodePictureBox.ImageRotate = 0F;
             this.barcodePictureBox.Location = new System.Drawing.Point(36, 89);
             this.barcodePictureBox.Name = "barcodePictureBox";
-            this.barcodePictureBox.Size = new System.Drawing.Size(300, 200);
+            this.barcodePictureBox.Size = new System.Drawing.Size(540, 280);
+            this.barcodePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.barcodePictureBox.TabIndex = 0;
             this.barcodePictureBox.TabStop = false;
             this.barcodePictureBox.Click += new System.EventHandler(this.barcodePictureBox_Click);
@@ -61,7 +62,7 @@
             this.enterProIDtextBox.Location = new System.Drawing.Point(36, 28);
             this.enterProIDtextBox.Name = "enterProIDtextBox";
             this.enterProIDtextBox.PasswordChar = '\0';
-            this.enterProIDtextBox.PlaceholderText = "";
+            this.enterProIDtextBox.PlaceholderText = "Enter ProductID";
             this.enterProIDtextBox.SelectedText = "";
             this.enterProIDtextBox.Size = new System.Drawing.Size(200, 36);
             this.enterProIDtextBox.TabIndex = 1;
@@ -78,10 +79,10 @@
             this.qtytextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.qtytextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.qtytextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.qtytextBox.Location = new System.Drawing.Point(36, 350);
+            this.qtytextBox.Location = new System.Drawing.Point(504, 28);
             this.qtytextBox.Name = "qtytextBox";
             this.qtytextBox.PasswordChar = '\0';
-            this.qtytextBox.PlaceholderText = "";
+            this.qtytextBox.PlaceholderText = "Quantity";
             this.qtytextBox.SelectedText = "";
             this.qtytextBox.Size = new System.Drawing.Size(200, 36);
             this.qtytextBox.TabIndex = 2;
@@ -115,11 +116,11 @@
             this.generateBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.generateBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.generateBtn.ForeColor = System.Drawing.Color.White;
-            this.generateBtn.Location = new System.Drawing.Point(582, 139);
+            this.generateBtn.Location = new System.Drawing.Point(608, 196);
             this.generateBtn.Name = "generateBtn";
             this.generateBtn.Size = new System.Drawing.Size(180, 45);
             this.generateBtn.TabIndex = 4;
-            this.generateBtn.Text = "ge";
+            this.generateBtn.Text = "Generate";
             this.generateBtn.Click += new System.EventHandler(this.generateBtn_Click);
             // 
             // printBtn
@@ -130,11 +131,11 @@
             this.printBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.printBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.printBtn.ForeColor = System.Drawing.Color.White;
-            this.printBtn.Location = new System.Drawing.Point(582, 341);
+            this.printBtn.Location = new System.Drawing.Point(608, 300);
             this.printBtn.Name = "printBtn";
             this.printBtn.Size = new System.Drawing.Size(180, 45);
             this.printBtn.TabIndex = 5;
-            this.printBtn.Text = "siticoneButton1";
+            this.printBtn.Text = "Print";
             this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
             // 
             // Barcode

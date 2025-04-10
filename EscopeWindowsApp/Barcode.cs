@@ -54,7 +54,8 @@ namespace EscopeWindowsApp
                 productName = "Unknown Product"; // Default name if not provided
             }
 
-            // Generate the barcode
+            // Generate the barcode with higher resolution for better print and PDF quality
+            // We’ll calculate the pixel size at 300 DPI for high quality
             generatedBarcode = GenerateBarcode(productId, productName);
             if (generatedBarcode != null)
             {
@@ -63,10 +64,20 @@ namespace EscopeWindowsApp
             }
         }
 
-        private Bitmap GenerateBarcode(string productId, string productName, int width = 200, int height = 80)
+        private Bitmap GenerateBarcode(string productId, string productName)
         {
             try
             {
+                // Barcode size in mm
+                double barcodeWidthMm = 70; // 70 mm
+                double barcodeHeightMm = 29.7; // 29.7 mm
+
+                // Calculate pixel size at 300 DPI for high quality
+                // 1 mm = (300 / 25.4) pixels at 300 DPI
+                double pixelsPerMm = 300.0 / 25.4;
+                int width = (int)(barcodeWidthMm * pixelsPerMm); // 70 mm at 300 DPI
+                int height = (int)(barcodeHeightMm * pixelsPerMm); // 29.7 mm at 300 DPI
+
                 // Initialize the barcode writer
                 var barcodeWriter = new BarcodeWriter
                 {
@@ -86,17 +97,26 @@ namespace EscopeWindowsApp
                 var barcodeBitmap = barcodeWriter.Write(barcodeData);
 
                 // Create a new bitmap to include the product name and ID below the barcode
-                var finalBitmap = new Bitmap(width, height + 40); // Add space for two lines of text
+                // Add space for two lines of text (scaled for 300 DPI)
+                int textHeight = (int)(20 * (300.0 / 72.0)); // 20 pixels at 72 DPI, scaled to 300 DPI
+                var finalBitmap = new Bitmap(width, height + textHeight * 2); // Space for two lines of text
                 using (var graphics = Graphics.FromImage(finalBitmap))
                 {
                     graphics.Clear(System.Drawing.Color.White); // Use System.Drawing.Color
                     graphics.DrawImage(barcodeBitmap, 0, 0); // Draw the barcode
 
-                    // Draw the product name and ID below the barcode
-                    using (var font = new System.Drawing.Font("Arial", 8)) // Use System.Drawing.Font
+                    // Improve rendering quality
+                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+                    // Draw the product name and ID below the barcode with a font scaled for 300 DPI
+                    float fontSize = 12 * (300.0f / 72.0f); // Scale font size from 72 DPI to 300 DPI
+                    using (var font = new System.Drawing.Font("Arial", fontSize))
                     {
                         graphics.DrawString($"Product: {productName}", font, Brushes.Black, new PointF(10, height));
-                        graphics.DrawString($"ID: {barcodeData}", font, Brushes.Black, new PointF(10, height + 20));
+                        graphics.DrawString($"ID: {barcodeData}", font, Brushes.Black, new PointF(10, height + textHeight));
                     }
                 }
 
@@ -196,21 +216,41 @@ namespace EscopeWindowsApp
             {
                 using (var printDocument = new System.Drawing.Printing.PrintDocument())
                 {
+                    // Set the print document to use high-quality settings
+                    printDocument.DefaultPageSettings.PrinterResolution = new System.Drawing.Printing.PrinterResolution
+                    {
+                        X = 300, // 300 DPI for high quality
+                        Y = 300
+                    };
+
                     printDocument.PrintPage += (sender, e) =>
                     {
-                        // A4 dimensions in pixels (1 inch = 96 pixels at 96 DPI)
+                        // Improve rendering quality
+                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+                        // A4 dimensions in pixels (1 inch = 96 pixels at 96 DPI for screen rendering in Windows Forms)
                         float a4Width = 8.27f * 96;  // 793 pixels
                         float a4Height = 11.69f * 96; // 1122 pixels
                         float margin = 0.5f * 96; // 0.5 inch margin on all sides
 
-                        // Label dimensions (adjust to fit 30 barcodes per page: 5 rows x 6 columns)
-                        float labelWidth = (a4Width - 2 * margin) / 6; // 6 columns
-                        float labelHeight = (a4Height - 2 * margin) / 5; // 5 rows
+                        // Label dimensions (adjust to fit 30 barcodes per page: 3 columns x 10 rows)
+                        float labelWidth = (a4Width - 2 * margin) / 3; // 3 columns
+                        float labelHeight = (a4Height - 2 * margin) / 10; // 10 rows
 
                         // Calculate number of labels per row and column
-                        int labelsPerRow = 6; // 6 labels per row
-                        int labelsPerColumn = 5; // 5 labels per column
+                        int labelsPerRow = 3; // 3 labels per row
+                        int labelsPerColumn = 10; // 10 labels per column
                         int totalLabelsPerPage = labelsPerRow * labelsPerColumn; // 30 labels per page
+
+                        // Calculate the physical size of the barcode in pixels at 96 DPI (for screen rendering)
+                        // Barcode size: 70 mm x 29.7 mm
+                        float pixelsPerMm = 96.0f / 25.4f; // Pixels per mm at 96 DPI
+                        float barcodeWidth = 70 * pixelsPerMm; // 70 mm at 96 DPI
+                        float barcodeHeight = 29.7f * pixelsPerMm; // Use 29.7f to make it a float literal// 29.7 mm at 96 DPI
+                        barcodeHeight += 20; // Add space for text (approximate at 96 DPI)
 
                         int currentImageIndex = 0;
 
@@ -231,8 +271,14 @@ namespace EscopeWindowsApp
                                 float x = startX + col * labelWidth;
                                 float y = startY + row * labelHeight;
 
-                                // Draw the barcode image, scaling it to fit the label
-                                e.Graphics.DrawImage(barcodeImages[currentImageIndex], x, y, labelWidth - 10, labelHeight - 10);
+                                // Center the barcode within the label
+                                float xOffset = (labelWidth - barcodeWidth) / 2;
+                                float yOffset = (labelHeight - barcodeHeight) / 2;
+                                float drawX = x + xOffset;
+                                float drawY = y + yOffset;
+
+                                // Draw the barcode image, scaling it to the specified physical size
+                                e.Graphics.DrawImage(barcodeImages[currentImageIndex], drawX, drawY, barcodeWidth, barcodeHeight);
 
                                 currentImageIndex++;
                             }
@@ -301,7 +347,7 @@ namespace EscopeWindowsApp
             // Show save file dialog
             using (var saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "PDF Files (.pdf)|.pdf";
+                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
                 saveFileDialog.DefaultExt = "pdf";
                 saveFileDialog.AddExtension = true;
                 saveFileDialog.FileName = "Barcodes.pdf";
@@ -316,19 +362,30 @@ namespace EscopeWindowsApp
                     // Create a new PDF document using PDFsharp
                     using (var pdfDocument = new PdfDocument())
                     {
+                        // Set the PDF document quality
+                        pdfDocument.Options.CompressContentStreams = true;
+                        pdfDocument.Options.NoCompression = false;
+
                         // A4 dimensions in points (1 point = 1/72 inch)
                         double a4Width = 8.27 * 72; // 595 points
                         double a4Height = 11.69 * 72; // 842 points
                         double margin = 0.5 * 72; // 0.5 inch margin in points
 
-                        // Label dimensions (adjust to fit 30 barcodes per page: 5 rows x 6 columns)
-                        double labelWidth = (a4Width - 2 * margin) / 6; // 6 columns
-                        double labelHeight = (a4Height - 2 * margin) / 5; // 5 rows
+                        // Label dimensions (adjust to fit 30 barcodes per page: 3 columns x 10 rows)
+                        double labelWidth = (a4Width - 2 * margin) / 3; // 3 columns
+                        double labelHeight = (a4Height - 2 * margin) / 10; // 10 rows
 
                         // Calculate number of labels per row and column
-                        int labelsPerRow = 6; // 6 labels per row
-                        int labelsPerColumn = 5; // 5 labels per column
+                        int labelsPerRow = 3; // 3 labels per row
+                        int labelsPerColumn = 10; // 10 labels per column
                         int totalLabelsPerPage = labelsPerRow * labelsPerColumn; // 30 labels per page
+
+                        // Calculate the physical size of the barcode in points
+                        // Barcode size: 70 mm x 29.7 mm
+                        double pointsPerMm = 72.0 / 25.4; // Points per mm (1 point = 1/72 inch)
+                        double barcodeWidth = 70 * pointsPerMm; // 70 mm in points
+                        double barcodeHeight = 29.7 * pointsPerMm; // 29.7 mm in points
+                        barcodeHeight += 20; // Add space for text (approximate in points)
 
                         int currentImageIndex = 0;
 
@@ -340,7 +397,7 @@ namespace EscopeWindowsApp
                             page.Width = a4Width;
                             page.Height = a4Height;
 
-                            using (XGraphics gfx = XGraphics.FromPdfPage(page))
+                            using (XGraphics gfx = XGraphics.FromPdfPage(page, XGraphicsUnit.Point))
                             {
                                 // Start position for the first label on the page
                                 double startX = margin;
@@ -356,13 +413,20 @@ namespace EscopeWindowsApp
                                     double x = startX + col * labelWidth;
                                     double y = startY + row * labelHeight;
 
-                                    // Convert Bitmap to XImage
+                                    // Center the barcode within the label
+                                    double xOffset = (labelWidth - barcodeWidth) / 2;
+                                    double yOffset = (labelHeight - barcodeHeight) / 2;
+                                    double drawX = x + xOffset;
+                                    double drawY = y + yOffset;
+
+                                    // Convert Bitmap to XImage with high quality
                                     using (var ms = new MemoryStream())
                                     {
                                         barcodeImages[currentImageIndex].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                                         ms.Position = 0; // Reset the stream position to the beginning
                                         XImage xImage = XImage.FromStream(ms);
-                                        gfx.DrawImage(xImage, x, y, labelWidth - 10, labelHeight - 10);
+                                        // Draw the barcode image, scaling it to the specified physical size
+                                        gfx.DrawImage(xImage, drawX, drawY, barcodeWidth, barcodeHeight);
                                     }
 
                                     currentImageIndex++;
@@ -405,7 +469,7 @@ namespace EscopeWindowsApp
 
         private void productNameTextBox_TextChanged_1(object sender, EventArgs e)
         {
-            // Optional: Add functionality if needed when product name changes
+            // Optional: Add functionality if needed when the product name changes
         }
     }
 }
