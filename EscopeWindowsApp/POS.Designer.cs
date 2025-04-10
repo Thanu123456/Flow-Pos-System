@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -82,16 +82,16 @@
             this.posNameLabel = new System.Windows.Forms.Label();
             this.posCusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.posTimingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.closeRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posTimePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posDateLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posTimeLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posProfilePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posHoldFormBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.closeRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posProductDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,7 +105,6 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.cashBooktimer = new System.Windows.Forms.Timer(this.components);
-            this.cashRegBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
@@ -113,9 +112,9 @@
             this.paymentPanel.SuspendLayout();
             this.billingPricePanel.SuspendLayout();
             this.posTimingPanel.SuspendLayout();
+            this.cashBookFlowPanel.SuspendLayout();
             this.posTimePanel.SuspendLayout();
             this.posProfilePanel.SuspendLayout();
-            this.cashBookFlowPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -188,25 +187,25 @@
             this.supDataGridView.AllowUserToDeleteRows = false;
             this.supDataGridView.AllowUserToResizeColumns = false;
             this.supDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
-            dataGridViewCellStyle57.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle57.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.Color.Black;
-            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.supDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
-            dataGridViewCellStyle58.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle58.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle58.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.supDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.supDataGridView.ColumnHeadersHeight = 45;
             this.supDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -219,28 +218,28 @@
             this.price,
             this.totPrice,
             this.delete});
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle59.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
-            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.supDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.supDataGridView.GridColor = System.Drawing.Color.White;
             this.supDataGridView.Location = new System.Drawing.Point(14, 112);
             this.supDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.supDataGridView.Name = "supDataGridView";
             this.supDataGridView.ReadOnly = true;
             this.supDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle60.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle60.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.supDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.supDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.supDataGridView.RowHeadersVisible = false;
             this.supDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.supDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -826,7 +825,6 @@
             // 
             this.posTimingPanel.BackColor = System.Drawing.Color.Transparent;
             this.posTimingPanel.BorderRadius = 8;
-            this.posTimingPanel.Controls.Add(this.cashBookFlowPanel);
             this.posTimingPanel.Controls.Add(this.posTimePanel);
             this.posTimingPanel.Controls.Add(this.posProfilePanel);
             this.posTimingPanel.FillColor = System.Drawing.Color.White;
@@ -834,6 +832,102 @@
             this.posTimingPanel.Name = "posTimingPanel";
             this.posTimingPanel.Size = new System.Drawing.Size(691, 65);
             this.posTimingPanel.TabIndex = 30;
+            // 
+            // cashBookFlowPanel
+            // 
+            this.cashBookFlowPanel.BackColor = System.Drawing.Color.White;
+            this.cashBookFlowPanel.Controls.Add(this.cashBookBtn);
+            this.cashBookFlowPanel.Controls.Add(this.cashRegBtn);
+            this.cashBookFlowPanel.Controls.Add(this.closeRegBtn);
+            this.cashBookFlowPanel.Location = new System.Drawing.Point(19, 60);
+            this.cashBookFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.cashBookFlowPanel.Name = "cashBookFlowPanel";
+            this.cashBookFlowPanel.Size = new System.Drawing.Size(173, 41);
+            this.cashBookFlowPanel.TabIndex = 31;
+            // 
+            // cashBookBtn
+            // 
+            this.cashBookBtn.BackColor = System.Drawing.Color.White;
+            this.cashBookBtn.BorderRadius = 8;
+            this.cashBookBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.cashBookBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashBookBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.cashBookBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
+            this.cashBookBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.cashBookBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.cashBookBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cashBookBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cashBookBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cashBookBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cashBookBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.cashBookBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashBookBtn.ForeColor = System.Drawing.Color.White;
+            this.cashBookBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashBookBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashBookBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.cashBookBtn.Location = new System.Drawing.Point(0, 0);
+            this.cashBookBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.cashBookBtn.Name = "cashBookBtn";
+            this.cashBookBtn.PressedColor = System.Drawing.Color.Navy;
+            this.cashBookBtn.Size = new System.Drawing.Size(173, 41);
+            this.cashBookBtn.TabIndex = 5;
+            this.cashBookBtn.Text = "    CashBook";
+            this.cashBookBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashBookBtn.Click += new System.EventHandler(this.cashBookBtn_Click_1);
+            // 
+            // cashRegBtn
+            // 
+            this.cashRegBtn.BorderRadius = 8;
+            this.cashRegBtn.BorderThickness = 1;
+            this.cashRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.cashRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.cashRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.cashRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cashRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cashRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cashRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cashRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cashRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cashRegBtn.ForeColor = System.Drawing.Color.Black;
+            this.cashRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.cashRegBtn.Location = new System.Drawing.Point(0, 41);
+            this.cashRegBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.cashRegBtn.Name = "cashRegBtn";
+            this.cashRegBtn.PressedColor = System.Drawing.Color.Navy;
+            this.cashRegBtn.Size = new System.Drawing.Size(173, 41);
+            this.cashRegBtn.TabIndex = 5;
+            this.cashRegBtn.Text = "    Register Details";
+            this.cashRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // closeRegBtn
+            // 
+            this.closeRegBtn.BorderRadius = 8;
+            this.closeRegBtn.BorderThickness = 1;
+            this.closeRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.closeRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.closeRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.closeRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.closeRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.closeRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.closeRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.closeRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.closeRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.closeRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.closeRegBtn.ForeColor = System.Drawing.Color.Black;
+            this.closeRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.closeRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.closeRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.closeRegBtn.Location = new System.Drawing.Point(0, 82);
+            this.closeRegBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.closeRegBtn.Name = "closeRegBtn";
+            this.closeRegBtn.PressedColor = System.Drawing.Color.Navy;
+            this.closeRegBtn.Size = new System.Drawing.Size(173, 41);
+            this.closeRegBtn.TabIndex = 5;
+            this.closeRegBtn.Text = "    Close Register";
+            this.closeRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // posTimePanel
             // 
@@ -927,126 +1021,30 @@
             this.posHoldFormBtn.Text = "Hold";
             this.posHoldFormBtn.Click += new System.EventHandler(this.posHoldFormBtn_Click);
             // 
-            // cashBookFlowPanel
-            // 
-            this.cashBookFlowPanel.BackColor = System.Drawing.Color.White;
-            this.cashBookFlowPanel.Controls.Add(this.cashBookBtn);
-            this.cashBookFlowPanel.Controls.Add(this.cashRegBtn);
-            this.cashBookFlowPanel.Controls.Add(this.closeRegBtn);
-            this.cashBookFlowPanel.Location = new System.Drawing.Point(21, 11);
-            this.cashBookFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.cashBookFlowPanel.Name = "cashBookFlowPanel";
-            this.cashBookFlowPanel.Size = new System.Drawing.Size(173, 41);
-            this.cashBookFlowPanel.TabIndex = 31;
-            // 
-            // cashBookBtn
-            // 
-            this.cashBookBtn.BackColor = System.Drawing.Color.White;
-            this.cashBookBtn.BorderRadius = 8;
-            this.cashBookBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.cashBookBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashBookBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
-            this.cashBookBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
-            this.cashBookBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.cashBookBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.cashBookBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cashBookBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cashBookBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cashBookBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cashBookBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.cashBookBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashBookBtn.ForeColor = System.Drawing.Color.White;
-            this.cashBookBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashBookBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashBookBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.cashBookBtn.Location = new System.Drawing.Point(0, 0);
-            this.cashBookBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.cashBookBtn.Name = "cashBookBtn";
-            this.cashBookBtn.PressedColor = System.Drawing.Color.Navy;
-            this.cashBookBtn.Size = new System.Drawing.Size(173, 41);
-            this.cashBookBtn.TabIndex = 5;
-            this.cashBookBtn.Text = "    CashBook";
-            this.cashBookBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashBookBtn.Click += new System.EventHandler(this.cashBookBtn_Click_1);
-            // 
-            // cashRegBtn
-            // 
-            this.cashRegBtn.BorderRadius = 8;
-            this.cashRegBtn.BorderThickness = 1;
-            this.cashRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.cashRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.cashRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.cashRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cashRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cashRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cashRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cashRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cashRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cashRegBtn.ForeColor = System.Drawing.Color.Black;
-            this.cashRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.cashRegBtn.Location = new System.Drawing.Point(0, 41);
-            this.cashRegBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.cashRegBtn.Name = "cashRegBtn";
-            this.cashRegBtn.PressedColor = System.Drawing.Color.Navy;
-            this.cashRegBtn.Size = new System.Drawing.Size(173, 41);
-            this.cashRegBtn.TabIndex = 5;
-            this.cashRegBtn.Text = "    Register Details";
-            this.cashRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // closeRegBtn
-            // 
-            this.closeRegBtn.BorderRadius = 8;
-            this.closeRegBtn.BorderThickness = 1;
-            this.closeRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.closeRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.closeRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.closeRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.closeRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.closeRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.closeRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.closeRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.closeRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.closeRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.closeRegBtn.ForeColor = System.Drawing.Color.Black;
-            this.closeRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.closeRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.closeRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.closeRegBtn.Location = new System.Drawing.Point(0, 82);
-            this.closeRegBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.closeRegBtn.Name = "closeRegBtn";
-            this.closeRegBtn.PressedColor = System.Drawing.Color.Navy;
-            this.closeRegBtn.Size = new System.Drawing.Size(173, 41);
-            this.closeRegBtn.TabIndex = 5;
-            this.closeRegBtn.Text = "    Close Register";
-            this.closeRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
             // posProductDataGrid
             // 
             this.posProductDataGrid.AllowUserToAddRows = false;
             this.posProductDataGrid.AllowUserToDeleteRows = false;
             this.posProductDataGrid.AllowUserToResizeColumns = false;
             this.posProductDataGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle61.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle61.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle61.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle61.SelectionForeColor = System.Drawing.Color.Black;
-            this.posProductDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.posProductDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.posProductDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle62.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle62.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle62.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.posProductDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.posProductDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.posProductDataGrid.ColumnHeadersHeight = 45;
             this.posProductDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1059,28 +1057,28 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
-            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle63.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle63.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle63.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle63.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle63.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.posProductDataGrid.DefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.posProductDataGrid.DefaultCellStyle = dataGridViewCellStyle7;
             this.posProductDataGrid.GridColor = System.Drawing.Color.White;
-            this.posProductDataGrid.Location = new System.Drawing.Point(9, 184);
+            this.posProductDataGrid.Location = new System.Drawing.Point(7, 184);
             this.posProductDataGrid.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.posProductDataGrid.Name = "posProductDataGrid";
             this.posProductDataGrid.ReadOnly = true;
             this.posProductDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle64.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle64.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.posProductDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.posProductDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.posProductDataGrid.RowHeadersVisible = false;
             this.posProductDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.posProductDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1204,27 +1202,18 @@
             // 
             this.cashBooktimer.Tick += new System.EventHandler(this.cashBooktimer_Tick);
             // 
-            // cashRegBtnPanel
-            // 
-            this.cashRegBtnPanel.BorderRadius = 8;
-            this.cashRegBtnPanel.Location = new System.Drawing.Point(237, 469);
-            this.cashRegBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.cashRegBtnPanel.Name = "cashRegBtnPanel";
-            this.cashRegBtnPanel.Size = new System.Drawing.Size(177, 41);
-            this.cashRegBtnPanel.TabIndex = 13;
-            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
-            this.Controls.Add(this.cashRegBtnPanel);
+            this.Controls.Add(this.cashBookFlowPanel);
             this.Controls.Add(this.posProductDataGrid);
-            this.Controls.Add(this.siticoneTextBox1);
             this.Controls.Add(this.posHoldFormBtn);
             this.Controls.Add(this.posTimingPanel);
             this.Controls.Add(this.posBillPanel);
             this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.siticoneTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1364, 718);
@@ -1242,10 +1231,10 @@
             this.billingPricePanel.ResumeLayout(false);
             this.billingPricePanel.PerformLayout();
             this.posTimingPanel.ResumeLayout(false);
+            this.cashBookFlowPanel.ResumeLayout(false);
             this.posTimePanel.ResumeLayout(false);
             this.posTimePanel.PerformLayout();
             this.posProfilePanel.ResumeLayout(false);
-            this.cashBookFlowPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -1321,6 +1310,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
         private System.Windows.Forms.Timer cashBooktimer;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel cashRegBtnPanel;
     }
 }
