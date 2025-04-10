@@ -97,7 +97,7 @@ namespace EscopeWindowsApp
             else
             {
                 // Clear fields and labels when search text is empty
-                ResetForm();
+                ClearProductDetails();
             }
         }
 
@@ -378,17 +378,43 @@ namespace EscopeWindowsApp
         #region Add to List
         private void addToListBtn_Click(object sender, EventArgs e)
         {
+            // Validate required fields
             if (string.IsNullOrEmpty(grnProIDText.Text) || string.IsNullOrEmpty(grnQuantityText.Text))
             {
                 MessageBox.Show("Please select a product and enter quantity.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
 
+            if (!decimal.TryParse(grnQuantityText.Text, out decimal quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Please enter a valid quantity greater than 0.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check for duplicate entries in the DataGridView and consolidate quantities
+            string productId = grnProIDText.Text;
+            string variationType = grnVarTypCombo.SelectedItem?.ToString() ?? "N/A";
+            foreach (DataGridViewRow row in grnDataGridView.Rows)
+            {
+                if (row.Cells["ProductID"].Value.ToString() == productId &&
+                    row.Cells["VariationType"].Value.ToString() == variationType)
+                {
+                    // Update the existing row's quantity
+                    decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
+                    decimal newQuantity = existingQuantity + quantity;
+                    row.Cells["Quantity"].Value = newQuantity;
+                    row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                    ClearItemFields();
+                    return;
+                }
+            }
+
+            // Add the item to the DataGridView
+            string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             grnDataGridView.Rows.Add(
                 grnProIDText.Text,
                 grnProNameText.Text,
-                grnVarTypCombo.SelectedItem?.ToString() ?? "N/A",
+                variationType,
                 grnQuantityText.Text,
                 grnCostPriText.Text,
                 grnRetPriText.Text,
@@ -399,22 +425,23 @@ namespace EscopeWindowsApp
                 grnUnitText.Text // Include unit
             );
 
-            // Clear fields but preserve currentProductId and currentVariationType
-            grnProSearchText.Text = "";
-            grnProIDText.Text = "";
-            grnProNameText.Text = "";
-            grnProCatText.Text = "";
-            grnVarText.Text = "";
-            grnStockText.Text = "";
-            grnVarTypCombo.Items.Clear();
+            ClearItemFields();
+        }
+
+        private void ClearItemFields()
+        {
             grnQuantityText.Text = "";
-            grnCostPriText.Text = "";
-            grnRetPriText.Text = "";
-            grnWholePriText.Text = "";
-            grnNetPriceText.Text = "";
-            grnUnitText.Text = ""; // Clear unit text
+            grnNetPriceText.Text = "0.00";
             grnExpireDatePicker.Value = DateTime.Now;
             grnWarrantyComboBox.SelectedIndex = 0;
+
+            if (currentProductId.HasValue)
+            {
+                if (currentVariationType == null)
+                    LoadStockForNoVariation(currentProductId.Value);
+                else
+                    LoadStockForVariation(currentProductId.Value, currentVariationType);
+            }
         }
         #endregion
 
@@ -445,12 +472,13 @@ namespace EscopeWindowsApp
                                           "VALUES (@grnNo, @paymentMethod, @totalAmount, @date)";
                         using (MySqlCommand cmd = new MySqlCommand(grnQuery, conn, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@grnNo", GenerateGRNNumber());
+                            string grnNo = GenerateGRNNumber();
+                            cmd.Parameters.AddWithValue("@grnNo", grnNo);
                             cmd.Parameters.AddWithValue("@paymentMethod", paymentMethod);
                             cmd.Parameters.AddWithValue("@totalAmount", CalculateTotalAmount());
                             cmd.Parameters.AddWithValue("@date", DateTime.Now);
                             cmd.ExecuteNonQuery();
-                            int grnId = (int)cmd.LastInsertedId;
+                            long grnId = cmd.LastInsertedId;
 
                             // Insert GRN items and update stock
                             foreach (DataGridViewRow row in grnDataGridView.Rows)
@@ -458,7 +486,7 @@ namespace EscopeWindowsApp
                                 string varType = row.Cells["VariationType"].Value?.ToString();
                                 if (varType == "N/A") varType = null;
                                 int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
-                                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                                decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
                                 DateTime expiryDate = Convert.ToDateTime(row.Cells["ExpiryDate"].Value);
@@ -484,14 +512,16 @@ namespace EscopeWindowsApp
                                 }
 
                                 // Update stock table (consolidate stock for existing product_id and variation_type)
-                                string stockQuery = "INSERT INTO stock (product_id, variation_type, stock) " +
-                                                   "VALUES (@productId, @variationType, @quantity) " +
-                                                   "ON DUPLICATE KEY UPDATE stock = stock + @quantity";
+                                string stockQuery = @"
+                                    INSERT INTO stock (product_id, variation_type, stock, unit)
+                                    VALUES (@productId, @variationType, @quantity, @unit)
+                                    ON DUPLICATE KEY UPDATE stock = stock + @quantity, unit = @unit";
                                 using (MySqlCommand stockCmd = new MySqlCommand(stockQuery, conn, transaction))
                                 {
                                     stockCmd.Parameters.AddWithValue("@productId", productId);
                                     stockCmd.Parameters.AddWithValue("@variationType", varType ?? (object)DBNull.Value);
                                     stockCmd.Parameters.AddWithValue("@quantity", quantity);
+                                    stockCmd.Parameters.AddWithValue("@unit", unit == "N/A" ? (object)DBNull.Value : unit);
                                     stockCmd.ExecuteNonQuery();
                                 }
 
@@ -506,11 +536,11 @@ namespace EscopeWindowsApp
                             }
 
                             transaction.Commit();
+                            MessageBox.Show("GRN saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
 
-                    MessageBox.Show("GRN saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    // Reload stock for the current product if applicable
                     if (currentProductId.HasValue)
                     {
                         if (currentVariationType == null)
@@ -519,6 +549,7 @@ namespace EscopeWindowsApp
                             LoadStockForVariation(currentProductId.Value, currentVariationType);
                     }
 
+                    // Reset the form after saving
                     ResetForm();
                 }
             }
@@ -528,10 +559,8 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void ResetForm()
+        private void ClearProductDetails()
         {
-            grnDataGridView.Rows.Clear();
-            grnProSearchText.Text = "";
             grnProIDText.Text = "";
             grnProNameText.Text = "";
             grnProCatText.Text = "";
@@ -543,19 +572,25 @@ namespace EscopeWindowsApp
             grnCostPriText.Text = "";
             grnRetPriText.Text = "";
             grnWholePriText.Text = "";
-            grnNetPriceText.Text = "";
-            grnUnitText.Text = ""; // Clear unit text
+            grnNetPriceText.Text = "0.00";
+            grnUnitText.Text = "";
             grnExpireDatePicker.Value = DateTime.Now;
             grnWarrantyComboBox.SelectedIndex = 0;
+            currentProductId = null;
+            currentVariationType = null;
+
+            UpdateUnitLabels();
+        }
+
+        private void ResetForm()
+        {
+            grnDataGridView.Rows.Clear();
+            grnProSearchText.Text = "";
+            ClearProductDetails();
             paymentMethod = null;
             cashPaymentRadioBtn.Checked = false;
             chequePaymentRadioBtn.Checked = false;
             creaditPayementRadioBtn.Checked = false;
-            currentProductId = null;
-            currentVariationType = null;
-
-            // Update unit labels when form is reset
-            UpdateUnitLabels();
         }
 
         private string GenerateGRNNumber()
@@ -568,7 +603,10 @@ namespace EscopeWindowsApp
             decimal total = 0;
             foreach (DataGridViewRow row in grnDataGridView.Rows)
             {
-                total += Convert.ToDecimal(row.Cells["NetPrice"].Value);
+                if (decimal.TryParse(row.Cells["NetPrice"].Value?.ToString(), out decimal netPrice))
+                {
+                    total += netPrice;
+                }
             }
             return total;
         }
@@ -648,8 +686,6 @@ namespace EscopeWindowsApp
 
         private void UpdateUnitLabels()
         {
-            // If the unit name is Liter, Kilogram, or Meter, display the corresponding abbreviation.
-            // Liter -> "L", Kilogram -> "Kg", Meter -> "M", default -> ""
             string unit = grnUnitText.Text.Trim().ToLower();
             switch (unit)
             {
@@ -674,23 +710,12 @@ namespace EscopeWindowsApp
 
         private void grnUnitText_TextChanged(object sender, EventArgs e)
         {
-            // Automatically update the unit labels whenever grnUnitText changes
             UpdateUnitLabels();
         }
 
-        private void sUnitNameLabel_Click(object sender, EventArgs e)
-        {
-            // If the unit name is Liter, Kilogram, or Meter, display the corresponding abbreviation.
-            // Liter -> "L", Kilogram -> "Kg", Meter -> "M", default -> ""
-            // This method is now redundant since the update happens automatically
-        }
+        private void sUnitNameLabel_Click(object sender, EventArgs e) { }
 
-        private void qUnitNameLabel_Click(object sender, EventArgs e)
-        {
-            // If the unit name is Liter, Kilogram, or Meter, display the corresponding abbreviation.
-            // Liter -> "L", Kilogram -> "Kg", Meter -> "M", default -> ""
-            // This method is now redundant since the update happens automatically
-        }
+        private void qUnitNameLabel_Click(object sender, EventArgs e) { }
         #endregion
     }
 }

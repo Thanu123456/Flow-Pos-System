@@ -361,6 +361,7 @@ namespace EscopeWindowsApp
 
         private void AddToCart(DataGridViewRow productRow, decimal quantity)
         {
+            int productId = Convert.ToInt32(productRow.Cells["id"].Value); // Get product_id
             string productName = productRow.Cells["product_name"].Value.ToString();
             string variationType = productRow.Cells["variation_type"].Value.ToString();
             string unit = productRow.Cells["unit_name"].Value.ToString();
@@ -373,10 +374,10 @@ namespace EscopeWindowsApp
 
             foreach (DataGridViewRow cartRow in supDataGridView.Rows)
             {
-                string cartProductName = cartRow.Cells["product_name"].Value.ToString();
+                int cartProductId = Convert.ToInt32(cartRow.Cells["product_id"].Value);
                 string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
 
-                if (cartProductName == productName && cartVariationType == variationType)
+                if (cartProductId == productId && cartVariationType == variationType)
                 {
                     itemExists = true;
                     existingRow = cartRow;
@@ -390,7 +391,6 @@ namespace EscopeWindowsApp
                 decimal currentQuantity = Convert.ToDecimal(existingRow.Cells["quantity"].Value);
                 decimal newQuantity = currentQuantity + quantity;
 
-                // Check if the new quantity exceeds available stock
                 if (newQuantity > stock)
                 {
                     MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -405,6 +405,7 @@ namespace EscopeWindowsApp
                 // Item does not exist, add a new row
                 supDataGridView.Rows.Add(
                     itemNumberCounter++,
+                    productId, // Store product_id
                     productName,
                     variationType,
                     unit,
@@ -450,6 +451,14 @@ namespace EscopeWindowsApp
                 Width = 30
             });
 
+            // Add hidden product_id column
+            supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "product_id",
+                HeaderText = "Product ID",
+                Visible = false
+            });
+
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "product_name",
@@ -487,7 +496,6 @@ namespace EscopeWindowsApp
                 HeaderText = "Quantity",
                 Width = 50,
                 DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
-                // Removed Format = "N2" to apply formatting dynamically
             });
 
             DataGridViewButtonColumn increaseColumn = new DataGridViewButtonColumn
@@ -661,16 +669,16 @@ namespace EscopeWindowsApp
                 }
                 else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
                 {
-                    string productName = row.Cells["product_name"].Value.ToString();
+                    int productId = Convert.ToInt32(row.Cells["product_id"].Value);
                     string variationType = row.Cells["variation_type"].Value.ToString();
 
-                    int stock = 0;
+                    decimal stock = 0;
                     foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
                     {
-                        if (productRow.Cells["product_name"].Value.ToString() == productName &&
+                        if (Convert.ToInt32(productRow.Cells["id"].Value) == productId &&
                             productRow.Cells["variation_type"].Value.ToString() == variationType)
                         {
-                            stock = Convert.ToInt32(productRow.Cells["stock"].Value);
+                            stock = Convert.ToDecimal(productRow.Cells["stock"].Value);
                             break;
                         }
                     }
@@ -680,6 +688,7 @@ namespace EscopeWindowsApp
 
                     if (newQuantity > stock)
                     {
+                        string productName = row.Cells["product_name"].Value.ToString();
                         MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
@@ -1012,118 +1021,104 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    // Generate a unique Bill No
-                    string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-                    // Get customer name from posClientNameLabel
-                    string customerName = posClientNameLabel.Text; // Will save "Walk-In Customer" if that's the label text
-
-                    // Set default user name to "Cashier"
-                    string userName = "Cashier";
-
-                    // Calculate total quantity of items
-                    int totalItems = supDataGridView.Rows.Count;
-
-                    // Insert into sales table
-                    string salesQuery = @"
-                INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
-                VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
-
-                    using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection))
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
-                        salesCommand.Parameters.AddWithValue("@billNo", billNo);
-                        salesCommand.Parameters.AddWithValue("@customer", customerName);
-                        salesCommand.Parameters.AddWithValue("@userName", userName);
-                        salesCommand.Parameters.AddWithValue("@quantityOfItems", totalItems);
-                        salesCommand.Parameters.AddWithValue("@paymentMethod", paymentMethod);
-                        salesCommand.Parameters.AddWithValue("@totalPrice", totalPrice);
+                        // Generate a unique Bill No
+                        string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                        string customerName = posClientNameLabel.Text;
+                        string userName = "Cashier";
+                        int totalItems = supDataGridView.Rows.Count;
 
-                        salesCommand.ExecuteNonQuery();
-                    }
-
-                    // Insert into sales_details table
-                    string detailsQuery = @"
-                INSERT INTO sales_details (bill_no, product_name, variation_type, unit, quantity, price, total_price)
-                VALUES (@billNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
-
-                    foreach (DataGridViewRow row in supDataGridView.Rows)
-                    {
-                        using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection))
+                        // Insert into sales table
+                        string salesQuery = @"
+                    INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
+                    VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
+                        using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection, transaction))
                         {
-                            detailsCommand.Parameters.AddWithValue("@billNo", billNo);
-                            detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
-                            detailsCommand.Parameters.AddWithValue("@variationType", row.Cells["variation_type"].Value.ToString());
-                            detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
-                            detailsCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
-                            detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
-                            detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
-
-                            detailsCommand.ExecuteNonQuery();
+                            salesCommand.Parameters.AddWithValue("@billNo", billNo);
+                            salesCommand.Parameters.AddWithValue("@customer", customerName);
+                            salesCommand.Parameters.AddWithValue("@userName", userName);
+                            salesCommand.Parameters.AddWithValue("@quantityOfItems", totalItems);
+                            salesCommand.Parameters.AddWithValue("@paymentMethod", paymentMethod);
+                            salesCommand.Parameters.AddWithValue("@totalPrice", totalPrice);
+                            salesCommand.ExecuteNonQuery();
                         }
-                    }
 
-                    // Update stock in the stock table
-                    foreach (DataGridViewRow row in supDataGridView.Rows)
-                    {
+                        // Insert into sales_details and update stock
+                        string detailsQuery = @"
+                    INSERT INTO sales_details (bill_no, product_name, variation_type, unit, quantity, price, total_price)
+                    VALUES (@billNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
                         string updateStockQuery = @"
                     UPDATE stock 
                     SET stock = stock - @quantity 
-                    WHERE product_id = (
-                        SELECT id FROM products WHERE name = @productName
-                    ) AND variation_type = @variationType";
+                    WHERE product_id = @productId 
+                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))";
 
-                        using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection))
+                        foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
-                            stockCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
-                            stockCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
-                            stockCommand.Parameters.AddWithValue("@variationType", row.Cells["variation_type"].Value.ToString());
-                            stockCommand.ExecuteNonQuery();
+                            int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                            string variationType = row.Cells["variation_type"].Value.ToString();
+                            if (variationType == "N/A") variationType = null; // Normalize "N/A" to NULL
+
+                            // Insert sales details
+                            using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
+                            {
+                                detailsCommand.Parameters.AddWithValue("@billNo", billNo);
+                                detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
+                                detailsCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
+                                detailsCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                                detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
+                                detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
+                                detailsCommand.ExecuteNonQuery();
+                            }
+
+                            // Update stock
+                            using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
+                            {
+                                stockCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                                stockCommand.Parameters.AddWithValue("@productId", productId);
+                                stockCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                int rowsAffected = stockCommand.ExecuteNonQuery();
+                                if (rowsAffected == 0)
+                                {
+                                    // Log for debugging
+                                    MessageBox.Show($"Warning: Stock not updated for Product ID {productId}, Variation: {variationType ?? "NULL"}", "Stock Update Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
                         }
-                    }
 
-                    // Prepare cart items for printing
-                    List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
-                    foreach (DataGridViewRow row in supDataGridView.Rows)
-                    {
-                        cartItems.Add(new BillPrinter.CartItem
+                        transaction.Commit();
+
+                        // Prepare cart items for printing
+                        List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
+                        foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
-                            ItemNumber = Convert.ToInt32(row.Cells["item_number"].Value),
-                            ProductName = row.Cells["product_name"].Value.ToString(),
-                            VariationType = row.Cells["variation_type"].Value.ToString(),
-                            Unit = row.Cells["unit"].Value.ToString(),
-                            Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
-                            Price = Convert.ToDecimal(row.Cells["price"].Value),
-                            TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
-                        });
+                            cartItems.Add(new BillPrinter.CartItem
+                            {
+                                ItemNumber = Convert.ToInt32(row.Cells["item_number"].Value),
+                                ProductName = row.Cells["product_name"].Value.ToString(),
+                                VariationType = row.Cells["variation_type"].Value.ToString(),
+                                Unit = row.Cells["unit"].Value.ToString(),
+                                Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
+                                Price = Convert.ToDecimal(row.Cells["price"].Value),
+                                TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
+                            });
+                        }
+
+                        decimal discount = decimal.Parse(discountPriLabel.Text);
+                        decimal cashPaid = posCashRadioBtn.Checked ? decimal.Parse(paymentText.Text) : 0m;
+                        decimal balance = posCashRadioBtn.Checked ? decimal.Parse(balancePriceCountLabel.Text) : 0m;
+
+                        BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
+
+                        // Reset form and refresh products
+                        resetBtn_Click(sender, e);
+                        LoadProductsData();
                     }
-
-                    // Calculate discount
-                    decimal discount = decimal.Parse(discountPriLabel.Text);
-
-                    // Calculate cash paid and balance (if cash payment)
-                    decimal cashPaid = 0m;
-                    decimal balance = 0m;
-                    if (posCashRadioBtn.Checked)
-                    {
-                        cashPaid = decimal.Parse(paymentText.Text);
-                        balance = decimal.Parse(balancePriceCountLabel.Text);
-                    }
-
-                    // Print the bill
-                    BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
-
-                    // Show success message
-                   // MessageBox.Show($"Payment processed successfully!\nBill No: {billNo}", "Payment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Reset the form
-                    resetBtn_Click(sender, e);
-
-                    // Refresh product data to reflect updated stock
-                    LoadProductsData();
-                }
+ }
             }
-            catch (Exception ex)
+        catch (Exception ex)
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
