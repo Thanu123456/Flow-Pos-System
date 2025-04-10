@@ -156,26 +156,38 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
-                            p.id,
-                            p.name AS product_name,
-                            pr.variation_type,
-                            u.unit_name,
-                            SUM(COALESCE(s.stock, 0)) AS stock,
-                            pr.retail_price,
-                            p.image_path
-                        FROM products p
-                        LEFT JOIN units u ON p.unit_id = u.id
-                        LEFT JOIN pricing pr ON p.id = pr.product_id
-                        LEFT JOIN stock s ON p.id = s.product_id AND 
-                            (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
-                        GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
-                        ORDER BY p.id, pr.variation_type";
+                SELECT 
+                    p.id,
+                    p.name AS product_name,
+                    pr.variation_type,
+                    u.unit_name,
+                    SUM(COALESCE(s.stock, 0)) AS stock,
+                    pr.retail_price,
+                    p.image_path
+                FROM products p
+                LEFT JOIN units u ON p.unit_id = u.id
+                LEFT JOIN pricing pr ON p.id = pr.product_id
+                LEFT JOIN stock s ON p.id = s.product_id AND 
+                    (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
+                GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
+                ORDER BY p.id, pr.variation_type";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
                         adapter.Fill(productsTable);
                     }
+                }
+
+                // Ensure the stock column is of type decimal
+                if (productsTable.Columns["stock"].DataType != typeof(decimal))
+                {
+                    DataTable tempTable = productsTable.Clone();
+                    tempTable.Columns["stock"].DataType = typeof(decimal);
+                    foreach (DataRow row in productsTable.Rows)
+                    {
+                        tempTable.ImportRow(row);
+                    }
+                    productsTable = tempTable;
                 }
 
                 foreach (DataRow row in productsTable.Rows)
@@ -213,7 +225,7 @@ namespace EscopeWindowsApp
                 productsTable.Columns.Add("product_name", typeof(string));
                 productsTable.Columns.Add("variation_type", typeof(string));
                 productsTable.Columns.Add("unit_name", typeof(string));
-                productsTable.Columns.Add("stock", typeof(int));
+                productsTable.Columns.Add("stock", typeof(decimal)); // Use decimal for stock
                 productsTable.Columns.Add("retail_price", typeof(decimal));
                 productsTable.Columns.Add("image_path", typeof(byte[]));
                 bindingSource.DataSource = productsTable;
@@ -230,6 +242,26 @@ namespace EscopeWindowsApp
                 {
                     int productId = Convert.ToInt32(e.Value);
                     e.Value = $"pro{productId:D3}";
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (posProductDataGrid.Columns[e.ColumnIndex].Name == "stock")
+            {
+                if (e.Value != null)
+                {
+                    decimal stock = Convert.ToDecimal(e.Value);
+                    string unit = posProductDataGrid.Rows[e.RowIndex].Cells["unit_name"].Value?.ToString();
+
+                    if (unit == "Pieces")
+                    {
+                        // For "Pieces", display as whole number without decimals
+                        e.Value = stock.ToString("F0");
+                    }
+                    else
+                    {
+                        // For other units (e.g., Meter, Liter, Kilogram), use two decimal places
+                        e.Value = stock.ToString("F2");
+                    }
                     e.FormattingApplied = true;
                 }
             }
@@ -363,12 +395,12 @@ namespace EscopeWindowsApp
 
         private void AddToCart(DataGridViewRow productRow, decimal quantity)
         {
-            int productId = Convert.ToInt32(productRow.Cells["id"].Value); // Get product_id
+            int productId = Convert.ToInt32(productRow.Cells["id"].Value);
             string productName = productRow.Cells["product_name"].Value.ToString();
             string variationType = productRow.Cells["variation_type"].Value.ToString();
             string unit = productRow.Cells["unit_name"].Value.ToString();
             decimal price = Convert.ToDecimal(productRow.Cells["retail_price"].Value);
-            int stock = Convert.ToInt32(productRow.Cells["stock"].Value);
+            decimal stock = Convert.ToDecimal(productRow.Cells["stock"].Value); // Use decimal
 
             // Check if the item already exists in the cart
             bool itemExists = false;
@@ -407,7 +439,7 @@ namespace EscopeWindowsApp
                 // Item does not exist, add a new row
                 supDataGridView.Rows.Add(
                     itemNumberCounter++,
-                    productId, // Store product_id
+                    productId,
                     productName,
                     variationType,
                     unit,
@@ -674,7 +706,7 @@ namespace EscopeWindowsApp
                     int productId = Convert.ToInt32(row.Cells["product_id"].Value);
                     string variationType = row.Cells["variation_type"].Value.ToString();
 
-                    decimal stock = 0;
+                    decimal stock = 0m; // Use decimal
                     foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
                     {
                         if (Convert.ToInt32(productRow.Cells["id"].Value) == productId &&
