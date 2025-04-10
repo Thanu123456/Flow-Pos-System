@@ -330,7 +330,7 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0 && posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn")
             {
                 DataGridViewRow row = posProductDataGrid.Rows[e.RowIndex];
-                int stock = Convert.ToInt32(row.Cells["stock"].Value);
+                decimal stock = Convert.ToDecimal(row.Cells["stock"].Value); // Use decimal to match stock type
                 if (stock <= 0)
                 {
                     MessageBox.Show($"Cannot add {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -338,11 +338,13 @@ namespace EscopeWindowsApp
                 }
 
                 string unitName = row.Cells["unit_name"].Value.ToString();
+                string productName = row.Cells["product_name"].Value.ToString();
+                string variationType = row.Cells["variation_type"].Value.ToString();
 
                 if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
                 {
-                    // Open POSWeightForm
-                    using (POSWeightForm weightForm = new POSWeightForm(unitName))
+                    // Open POSWeightForm with stock, product name, and variation type
+                    using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, productName, variationType))
                     {
                         if (weightForm.ShowDialog() == DialogResult.OK)
                         {

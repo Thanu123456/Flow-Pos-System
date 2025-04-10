@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
@@ -6,11 +7,17 @@ namespace EscopeWindowsApp
     public partial class POSWeightForm : Form
     {
         private string unitName;
+        private decimal stock; // Available stock for the product
+        private string productName; // Product name for the warning message
+        private string variationType; // Variation type for the warning message
 
-        public POSWeightForm(string unit)
+        public POSWeightForm(string unit, decimal stock, string productName, string variationType)
         {
             InitializeComponent();
             unitName = unit;
+            this.stock = stock;
+            this.productName = productName;
+            this.variationType = variationType;
             ConfigureForm();
         }
 
@@ -96,7 +103,7 @@ namespace EscopeWindowsApp
                 {
                     switch (unitName.ToLower())
                     {
-                        case "kilogram": // Corrected from "killogram"
+                        case "kilogram":
                             quantity = subValue / 1000m; // Grams to Kilograms
                             break;
                         case "liter":
@@ -115,6 +122,16 @@ namespace EscopeWindowsApp
 
             // Update calculateNum label with a cleaner format: "0.30 Kg"
             calculateNum.Text = $"{quantity.ToString("N2")} {unitShortName.Text}";
+
+            // Optional: Change color to indicate if quantity exceeds stock
+            if (quantity > stock)
+            {
+                calculateNum.ForeColor = Color.Red; // Indicate excess quantity
+            }
+            else
+            {
+                calculateNum.ForeColor = Color.Black; // Normal color
+            }
         }
 
         public decimal GetQuantity()
@@ -134,6 +151,22 @@ namespace EscopeWindowsApp
                 MessageBox.Show("Please enter a value.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            decimal quantity = GetQuantity();
+            if (quantity <= 0)
+            {
+                MessageBox.Show("Please enter a valid quantity greater than 0.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check if the entered quantity exceeds available stock
+            if (quantity > stock)
+            {
+                MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.",
+                    "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
