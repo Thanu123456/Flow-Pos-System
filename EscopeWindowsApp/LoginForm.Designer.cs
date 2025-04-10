@@ -39,9 +39,6 @@
             this.loginUserNameTextBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.loginLabel = new System.Windows.Forms.Label();
             this.loginPasswordTextbox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.loginForgotPasswordlinkLabel = new System.Windows.Forms.LinkLabel();
-            this.loginToggleSwitch = new Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch();
-            this.loginKeepMeLoggedlLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.loginBtn = new Siticone.Desktop.UI.WinForms.SiticoneGradientButton();
             this.loginCloseControlBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.loginMinimizeControlBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -112,7 +109,7 @@
             this.loginPictureBox3.ImageRotate = 0F;
             this.loginPictureBox3.Location = new System.Drawing.Point(34, 130);
             this.loginPictureBox3.Name = "loginPictureBox3";
-            this.loginPictureBox3.Size = new System.Drawing.Size(376, 296);
+            this.loginPictureBox3.Size = new System.Drawing.Size(376, 263);
             this.loginPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.loginPictureBox3.TabIndex = 8;
             this.loginPictureBox3.TabStop = false;
@@ -169,7 +166,7 @@
             this.loginPasswordTextbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginPasswordTextbox.ForeColor = System.Drawing.Color.Black;
             this.loginPasswordTextbox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.loginPasswordTextbox.Location = new System.Drawing.Point(62, 233);
+            this.loginPasswordTextbox.Location = new System.Drawing.Point(62, 241);
             this.loginPasswordTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.loginPasswordTextbox.Name = "loginPasswordTextbox";
             this.loginPasswordTextbox.PasswordChar = '\0';
@@ -178,54 +175,6 @@
             this.loginPasswordTextbox.Size = new System.Drawing.Size(305, 43);
             this.loginPasswordTextbox.TabIndex = 14;
             this.loginPasswordTextbox.TextChanged += new System.EventHandler(this.loginPasswordTextbox_TextChanged);
-            // 
-            // loginForgotPasswordlinkLabel
-            // 
-            this.loginForgotPasswordlinkLabel.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.loginForgotPasswordlinkLabel.AutoSize = true;
-            this.loginForgotPasswordlinkLabel.BackColor = System.Drawing.Color.White;
-            this.loginForgotPasswordlinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginForgotPasswordlinkLabel.LinkColor = System.Drawing.Color.Black;
-            this.loginForgotPasswordlinkLabel.Location = new System.Drawing.Point(159, 285);
-            this.loginForgotPasswordlinkLabel.Name = "loginForgotPasswordlinkLabel";
-            this.loginForgotPasswordlinkLabel.Size = new System.Drawing.Size(99, 15);
-            this.loginForgotPasswordlinkLabel.TabIndex = 15;
-            this.loginForgotPasswordlinkLabel.TabStop = true;
-            this.loginForgotPasswordlinkLabel.Text = "Forgot Password";
-            this.loginForgotPasswordlinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.loginForgotPasswordlinkLabel_LinkClicked);
-            // 
-            // loginToggleSwitch
-            // 
-            this.loginToggleSwitch.Animated = true;
-            this.loginToggleSwitch.AutoRoundedCorners = true;
-            this.loginToggleSwitch.BackColor = System.Drawing.Color.White;
-            this.loginToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.loginToggleSwitch.CheckedState.BorderRadius = 6;
-            this.loginToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.loginToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.loginToggleSwitch.CheckedState.InnerBorderRadius = 2;
-            this.loginToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.loginToggleSwitch.Location = new System.Drawing.Point(191, 316);
-            this.loginToggleSwitch.Name = "loginToggleSwitch";
-            this.loginToggleSwitch.Size = new System.Drawing.Size(30, 15);
-            this.loginToggleSwitch.TabIndex = 16;
-            this.loginToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.loginToggleSwitch.UncheckedState.BorderRadius = 6;
-            this.loginToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.loginToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.loginToggleSwitch.UncheckedState.InnerBorderRadius = 2;
-            this.loginToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.loginToggleSwitch.CheckedChanged += new System.EventHandler(this.loginToggleSwitch_CheckedChanged);
-            // 
-            // loginKeepMeLoggedlLabel
-            // 
-            this.loginKeepMeLoggedlLabel.BackColor = System.Drawing.Color.White;
-            this.loginKeepMeLoggedlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginKeepMeLoggedlLabel.Location = new System.Drawing.Point(62, 314);
-            this.loginKeepMeLoggedlLabel.Name = "loginKeepMeLoggedlLabel";
-            this.loginKeepMeLoggedlLabel.Size = new System.Drawing.Size(120, 18);
-            this.loginKeepMeLoggedlLabel.TabIndex = 17;
-            this.loginKeepMeLoggedlLabel.Text = "Keep Me Logged in";
             // 
             // loginBtn
             // 
@@ -243,9 +192,9 @@
             this.loginBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
             this.loginBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.loginBtn.HoverState.FillColor2 = System.Drawing.Color.Navy;
-            this.loginBtn.Location = new System.Drawing.Point(163, 355);
+            this.loginBtn.Location = new System.Drawing.Point(158, 309);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(95, 45);
+            this.loginBtn.Size = new System.Drawing.Size(111, 45);
             this.loginBtn.TabIndex = 18;
             this.loginBtn.Text = "Login";
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
@@ -281,9 +230,6 @@
             this.Controls.Add(this.loginMinimizeControlBtn);
             this.Controls.Add(this.loginCloseControlBtn);
             this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.loginKeepMeLoggedlLabel);
-            this.Controls.Add(this.loginToggleSwitch);
-            this.Controls.Add(this.loginForgotPasswordlinkLabel);
             this.Controls.Add(this.loginPasswordTextbox);
             this.Controls.Add(this.loginLabel);
             this.Controls.Add(this.loginUserNameTextBox);
@@ -315,10 +261,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox loginPictureBox3;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox loginUserNameTextBox;
         private System.Windows.Forms.Label loginLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch loginToggleSwitch;
-        private System.Windows.Forms.LinkLabel loginForgotPasswordlinkLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox loginPasswordTextbox;
-        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel loginKeepMeLoggedlLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneGradientButton loginBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox loginCloseControlBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox loginMinimizeControlBtn;

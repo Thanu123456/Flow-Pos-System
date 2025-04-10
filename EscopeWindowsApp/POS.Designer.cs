@@ -82,15 +82,15 @@
             this.posNameLabel = new System.Windows.Forms.Label();
             this.posCusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.posTimingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.closeRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posTimePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posDateLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posTimeLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posProfilePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.closeRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posHoldFormBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.posProductDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,9 +112,9 @@
             this.paymentPanel.SuspendLayout();
             this.billingPricePanel.SuspendLayout();
             this.posTimingPanel.SuspendLayout();
-            this.cashBookFlowPanel.SuspendLayout();
             this.posTimePanel.SuspendLayout();
             this.posProfilePanel.SuspendLayout();
+            this.cashBookFlowPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -833,102 +833,6 @@
             this.posTimingPanel.Size = new System.Drawing.Size(691, 65);
             this.posTimingPanel.TabIndex = 30;
             // 
-            // cashBookFlowPanel
-            // 
-            this.cashBookFlowPanel.BackColor = System.Drawing.Color.White;
-            this.cashBookFlowPanel.Controls.Add(this.cashBookBtn);
-            this.cashBookFlowPanel.Controls.Add(this.cashRegBtn);
-            this.cashBookFlowPanel.Controls.Add(this.closeRegBtn);
-            this.cashBookFlowPanel.Location = new System.Drawing.Point(19, 60);
-            this.cashBookFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.cashBookFlowPanel.Name = "cashBookFlowPanel";
-            this.cashBookFlowPanel.Size = new System.Drawing.Size(173, 41);
-            this.cashBookFlowPanel.TabIndex = 31;
-            // 
-            // cashBookBtn
-            // 
-            this.cashBookBtn.BackColor = System.Drawing.Color.White;
-            this.cashBookBtn.BorderRadius = 8;
-            this.cashBookBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.cashBookBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashBookBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
-            this.cashBookBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
-            this.cashBookBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.cashBookBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.cashBookBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cashBookBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cashBookBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cashBookBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cashBookBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.cashBookBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashBookBtn.ForeColor = System.Drawing.Color.White;
-            this.cashBookBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashBookBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashBookBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.cashBookBtn.Location = new System.Drawing.Point(0, 0);
-            this.cashBookBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.cashBookBtn.Name = "cashBookBtn";
-            this.cashBookBtn.PressedColor = System.Drawing.Color.Navy;
-            this.cashBookBtn.Size = new System.Drawing.Size(173, 41);
-            this.cashBookBtn.TabIndex = 5;
-            this.cashBookBtn.Text = "    CashBook";
-            this.cashBookBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashBookBtn.Click += new System.EventHandler(this.cashBookBtn_Click_1);
-            // 
-            // cashRegBtn
-            // 
-            this.cashRegBtn.BorderRadius = 8;
-            this.cashRegBtn.BorderThickness = 1;
-            this.cashRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.cashRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.cashRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.cashRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cashRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cashRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cashRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cashRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cashRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cashRegBtn.ForeColor = System.Drawing.Color.Black;
-            this.cashRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.cashRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.cashRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.cashRegBtn.Location = new System.Drawing.Point(0, 41);
-            this.cashRegBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.cashRegBtn.Name = "cashRegBtn";
-            this.cashRegBtn.PressedColor = System.Drawing.Color.Navy;
-            this.cashRegBtn.Size = new System.Drawing.Size(173, 41);
-            this.cashRegBtn.TabIndex = 5;
-            this.cashRegBtn.Text = "    Register Details";
-            this.cashRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // closeRegBtn
-            // 
-            this.closeRegBtn.BorderRadius = 8;
-            this.closeRegBtn.BorderThickness = 1;
-            this.closeRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.closeRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.closeRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
-            this.closeRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.closeRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.closeRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.closeRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.closeRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.closeRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.closeRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.closeRegBtn.ForeColor = System.Drawing.Color.Black;
-            this.closeRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.closeRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.closeRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.closeRegBtn.Location = new System.Drawing.Point(0, 82);
-            this.closeRegBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.closeRegBtn.Name = "closeRegBtn";
-            this.closeRegBtn.PressedColor = System.Drawing.Color.Navy;
-            this.closeRegBtn.Size = new System.Drawing.Size(173, 41);
-            this.closeRegBtn.TabIndex = 5;
-            this.closeRegBtn.Text = "    Close Register";
-            this.closeRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
             // posTimePanel
             // 
             this.posTimePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1000,6 +904,102 @@
             this.posProfileBtn.TabIndex = 6;
             this.posProfileBtn.Text = "Admin";
             this.posProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // cashBookFlowPanel
+            // 
+            this.cashBookFlowPanel.BackColor = System.Drawing.Color.Transparent;
+            this.cashBookFlowPanel.Controls.Add(this.cashBookBtn);
+            this.cashBookFlowPanel.Controls.Add(this.cashRegBtn);
+            this.cashBookFlowPanel.Controls.Add(this.closeRegBtn);
+            this.cashBookFlowPanel.Location = new System.Drawing.Point(19, 60);
+            this.cashBookFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.cashBookFlowPanel.Name = "cashBookFlowPanel";
+            this.cashBookFlowPanel.Size = new System.Drawing.Size(173, 41);
+            this.cashBookFlowPanel.TabIndex = 31;
+            // 
+            // cashBookBtn
+            // 
+            this.cashBookBtn.BackColor = System.Drawing.Color.White;
+            this.cashBookBtn.BorderRadius = 8;
+            this.cashBookBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.cashBookBtn.CheckedState.FillColor = System.Drawing.Color.DarkGreen;
+            this.cashBookBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.cashBookBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
+            this.cashBookBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.cashBookBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.cashBookBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cashBookBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cashBookBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cashBookBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cashBookBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.cashBookBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashBookBtn.ForeColor = System.Drawing.Color.White;
+            this.cashBookBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashBookBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashBookBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.cashBookBtn.Location = new System.Drawing.Point(0, 0);
+            this.cashBookBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.cashBookBtn.Name = "cashBookBtn";
+            this.cashBookBtn.PressedColor = System.Drawing.Color.Green;
+            this.cashBookBtn.Size = new System.Drawing.Size(173, 41);
+            this.cashBookBtn.TabIndex = 5;
+            this.cashBookBtn.Text = "    CashBook";
+            this.cashBookBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashBookBtn.Click += new System.EventHandler(this.cashBookBtn_Click_1);
+            // 
+            // cashRegBtn
+            // 
+            this.cashRegBtn.BorderRadius = 8;
+            this.cashRegBtn.BorderThickness = 1;
+            this.cashRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.cashRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.cashRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.cashRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cashRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cashRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cashRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cashRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cashRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cashRegBtn.ForeColor = System.Drawing.Color.Black;
+            this.cashRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.cashRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cashRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.cashRegBtn.Location = new System.Drawing.Point(0, 44);
+            this.cashRegBtn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.cashRegBtn.Name = "cashRegBtn";
+            this.cashRegBtn.PressedColor = System.Drawing.Color.Navy;
+            this.cashRegBtn.Size = new System.Drawing.Size(173, 41);
+            this.cashRegBtn.TabIndex = 5;
+            this.cashRegBtn.Text = "    Register Details";
+            this.cashRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // closeRegBtn
+            // 
+            this.closeRegBtn.BorderRadius = 8;
+            this.closeRegBtn.BorderThickness = 1;
+            this.closeRegBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.closeRegBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.closeRegBtn.CustomImages.ImageOffset = new System.Drawing.Point(5, 0);
+            this.closeRegBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.closeRegBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.closeRegBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.closeRegBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.closeRegBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.closeRegBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.closeRegBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.closeRegBtn.ForeColor = System.Drawing.Color.Black;
+            this.closeRegBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.closeRegBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.closeRegBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.closeRegBtn.Location = new System.Drawing.Point(0, 88);
+            this.closeRegBtn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.closeRegBtn.Name = "closeRegBtn";
+            this.closeRegBtn.PressedColor = System.Drawing.Color.Navy;
+            this.closeRegBtn.Size = new System.Drawing.Size(173, 41);
+            this.closeRegBtn.TabIndex = 5;
+            this.closeRegBtn.Text = "    Close Register";
+            this.closeRegBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // posHoldFormBtn
             // 
@@ -1200,6 +1200,7 @@
             // 
             // cashBooktimer
             // 
+            this.cashBooktimer.Interval = 25;
             this.cashBooktimer.Tick += new System.EventHandler(this.cashBooktimer_Tick);
             // 
             // POS
@@ -1231,10 +1232,10 @@
             this.billingPricePanel.ResumeLayout(false);
             this.billingPricePanel.PerformLayout();
             this.posTimingPanel.ResumeLayout(false);
-            this.cashBookFlowPanel.ResumeLayout(false);
             this.posTimePanel.ResumeLayout(false);
             this.posTimePanel.PerformLayout();
             this.posProfilePanel.ResumeLayout(false);
+            this.cashBookFlowPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).EndInit();
             this.ResumeLayout(false);
 
