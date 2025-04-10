@@ -21,6 +21,7 @@ namespace EscopeWindowsApp
         public AddUserForm() : this(-1, "", "", "", "", "") // Default constructor for creating a new user
         {
         }
+
         public AddUserForm(int userId, string firstName, string lastName, string email, string phoneNumber, string role)
         {
             InitializeComponent();
@@ -153,15 +154,10 @@ namespace EscopeWindowsApp
                 return false;
             }
 
-            if (createUserPassText.Text.Length < 8)
+            // Check if the password is exactly 4 digits
+            if (!Regex.IsMatch(createUserPassText.Text, @"^\d{4}$"))
             {
-                passwordErrorProvider.SetError(createUserPassText, "Password must be at least 8 characters");
-                return false;
-            }
-
-            if (!Regex.IsMatch(createUserPassText.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))
-            {
-                passwordErrorProvider.SetError(createUserPassText, "Password must include uppercase, lowercase, number, and special character");
+                passwordErrorProvider.SetError(createUserPassText, "Password must be exactly 4 digits (e.g., 1234)");
                 return false;
             }
 
@@ -221,7 +217,7 @@ namespace EscopeWindowsApp
         }
 
         // Modified event handlers to update the Save button state
-        private void addUserNameText_TextChanged(object sender, EventArgs e)
+        private void createUserFirstText_TextChanged(object sender, EventArgs e)
         {
             UpdateSaveButtonState();
         }
@@ -309,7 +305,7 @@ namespace EscopeWindowsApp
                         }
                         else
                         {
-                            // Insert new user (existing logic)
+                            // Insert new user
                             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(createUserPassText.Text);
                             string query = "INSERT INTO users (first_name, last_name, email, phone_number, password, role) " +
                                            "VALUES (@firstName, @lastName, @email, @phoneNumber, @password, @role)";
@@ -346,6 +342,11 @@ namespace EscopeWindowsApp
         private void createCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void addUserNameText_TextChanged(object sender, EventArgs e)
+        {
+            UpdateSaveButtonState();
         }
     }
 }
