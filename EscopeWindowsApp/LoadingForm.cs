@@ -19,12 +19,12 @@ namespace EscopeWindowsApp
 
         private void loadingProgressBar_ValueChanged(object sender, EventArgs e)
         {
-
+            // Optional: Add logic if needed
         }
 
         private void loadingPictureBox2_Click(object sender, EventArgs e)
         {
-
+            // Optional: Add logic if needed
         }
 
         private void LoadingForm_Load(object sender, EventArgs e)
@@ -42,7 +42,8 @@ namespace EscopeWindowsApp
             {
                 loadingTimer.Stop();
                 this.Hide();
-                AddUserForm mainForm = new AddUserForm();
+                LoginForm mainForm = new LoginForm();
+                mainForm.FormClosed += (s, args) => Application.Exit(); // Exit the application when LoginForm is closed
                 mainForm.Show();
             }
         }
