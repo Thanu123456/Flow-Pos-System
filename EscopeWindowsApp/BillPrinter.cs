@@ -23,12 +23,9 @@ namespace EscopeWindowsApp
 
         public static void PrintBill(string billNo, string customerName, string userName, int totalItems, string paymentMethod, decimal totalPrice, decimal discount, decimal cashPaid, decimal balance, List<CartItem> cartItems, bool isCardPayment)
         {
-            // If it's a card payment, print the small receipt (80mm wide)
-            if (isCardPayment)
-            {
-                string receiptPath = GenerateBillPDF(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, true);
-                PrintPDF(receiptPath);
-            }
+            // Print the small receipt (80mm wide) for both cash and card payments
+            string receiptPath = GenerateBillPDF(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, true);
+            PrintPDF(receiptPath);
 
             // Ask if the user wants to print an A4-sized bill
             DialogResult result = MessageBox.Show("Do you want to print an A4-sized bill?", "Print A4 Bill", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -94,6 +91,21 @@ namespace EscopeWindowsApp
             if (isSmallReceipt)
             {
                 // Small Receipt (80mm) Design
+                // Logo
+                Paragraph logoPara = section.AddParagraph();
+                logoPara.Format.Alignment = ParagraphAlignment.Center;
+                string logoPath = @"D:\E Scope\Logo\logopos.png";
+                if (File.Exists(logoPath))
+                {
+                    var image = logoPara.AddImage(logoPath);
+                    image.Width = Unit.FromMillimeter(30); // Adjust the width to fit the 80mm receipt
+                    image.LockAspectRatio = true;
+                }
+                else
+                {
+                    logoPara.AddText("[Logo Not Found]");
+                }
+
                 // Header: Store Information
                 Paragraph storeName = section.AddParagraph();
                 storeName.Style = "Title";
@@ -134,6 +146,10 @@ namespace EscopeWindowsApp
                 Row cashierRow2 = cashierTable.AddRow();
                 cashierRow2.Cells[0].AddParagraph($"Manager: {userName}").Style = "Body";
 
+                // Add Bill Number
+                Row billNoRow = cashierTable.AddRow();
+                billNoRow.Cells[0].AddParagraph($"Bill No: {billNo}").Style = "Body";
+
                 // Dotted line separator (using text)
                 Paragraph separator2 = section.AddParagraph();
                 separator2.Style = "Body";
@@ -163,8 +179,28 @@ namespace EscopeWindowsApp
 
                     Row itemRow = itemRowTable.AddRow();
                     itemRow.Cells[0].AddParagraph($"{item.ProductName} ({item.VariationType})").Style = "Body";
-                    itemRow.Cells[1].AddParagraph(item.Quantity.ToString("N2")).Style = "Body";
-                    itemRow.Cells[2].AddParagraph($"${item.TotalPrice:N2}").Style = "Body";
+                    // Map the unit to its abbreviation for display
+                    string displayUnit;
+                    if (item.Unit == "Liter")
+                    {
+                        displayUnit = "L";
+                    }
+                    else if (item.Unit == "Kilogram")
+                    {
+                        displayUnit = "Kg";
+                    }
+                    else if (item.Unit == "Meter")
+                    {
+                        displayUnit = "M";
+                    }
+                    else
+                    {
+                        displayUnit = item.Unit; // Keep the original unit if not Liter, Kilogram, or Meter
+                    }
+                    // Show quantity without decimals for "Pieces", with unit and decimals for others
+                    string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : $"{item.Quantity:N2} {displayUnit}";
+                    itemRow.Cells[1].AddParagraph(qtyText).Style = "Body";
+                    itemRow.Cells[2].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
                     itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
                 }
 
@@ -182,20 +218,35 @@ namespace EscopeWindowsApp
 
                 Row summaryRow1 = summaryTable.AddRow();
                 summaryRow1.Cells[0].AddParagraph("Sub TOTAL").Style = "Subtitle";
-                summaryRow1.Cells[1].AddParagraph($"${totalPrice + discount:N2}").Style = "Subtitle";
+                summaryRow1.Cells[1].AddParagraph($"LKR {totalPrice + discount:N2}").Style = "Subtitle";
                 summaryRow1.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+
+                Row summaryRow2 = summaryTable.AddRow();
+                summaryRow2.Cells[0].AddParagraph("Discount").Style = "Body";
+                summaryRow2.Cells[1].AddParagraph($"LKR {discount:N2}").Style = "Body";
+                summaryRow2.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+
+                Row summaryRow3 = summaryTable.AddRow();
+                summaryRow3.Cells[0].AddParagraph("Total").Style = "Body";
+                summaryRow3.Cells[1].AddParagraph($"LKR {totalPrice:N2}").Style = "Body";
+                summaryRow3.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+
+                Row summaryRow4 = summaryTable.AddRow();
+                summaryRow4.Cells[0].AddParagraph("Payment Method").Style = "Body";
+                summaryRow4.Cells[1].AddParagraph(paymentMethod).Style = "Body";
+                summaryRow4.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 if (paymentMethod == "Cash")
                 {
-                    Row summaryRow2 = summaryTable.AddRow();
-                    summaryRow2.Cells[0].AddParagraph("CASH").Style = "Body";
-                    summaryRow2.Cells[1].AddParagraph($"${cashPaid:N2}").Style = "Body";
-                    summaryRow2.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+                    Row summaryRow5 = summaryTable.AddRow();
+                    summaryRow5.Cells[0].AddParagraph("Cash").Style = "Body"; // Changed "CASH" to "Cash"
+                    summaryRow5.Cells[1].AddParagraph($"LKR {cashPaid:N2}").Style = "Body";
+                    summaryRow5.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
-                    Row summaryRow3 = summaryTable.AddRow();
-                    summaryRow3.Cells[0].AddParagraph("CHANGE").Style = "Body";
-                    summaryRow3.Cells[1].AddParagraph($"${balance:N2}").Style = "Body";
-                    summaryRow3.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+                    Row summaryRow6 = summaryTable.AddRow();
+                    summaryRow6.Cells[0].AddParagraph("Balance").Style = "Body"; // Changed "CHANGE" to "Balance"
+                    summaryRow6.Cells[1].AddParagraph($"LKR {balance:N2}").Style = "Body";
+                    summaryRow6.Cells[1].Format.Alignment = ParagraphAlignment.Right;
                 }
 
                 // Dotted line separator (using text)
@@ -224,7 +275,8 @@ namespace EscopeWindowsApp
             }
             else
             {
-                // A4 Bill Design (unchanged)
+                // A4 Bill Design
+                // Logo
                 Table headerTable = section.AddTable();
                 headerTable.Borders.Width = 0.5;
                 headerTable.Borders.Color = Colors.Black;
@@ -233,6 +285,20 @@ namespace EscopeWindowsApp
                 headerRow.Shading.Color = Colors.LightGray;
 
                 Cell headerCell = headerRow.Cells[0];
+                Paragraph logoPara = headerCell.AddParagraph();
+                logoPara.Format.Alignment = ParagraphAlignment.Center;
+                string logoPath = @"D:\E Scope\Logo\logopos.png";
+                if (File.Exists(logoPath))
+                {
+                    var image = logoPara.AddImage(logoPath);
+                    image.Width = Unit.FromCentimeter(5); // Adjust the width to fit the A4 page
+                    image.LockAspectRatio = true;
+                }
+                else
+                {
+                    logoPara.AddText("[Logo Not Found]");
+                }
+
                 Paragraph headerPara1 = headerCell.AddParagraph();
                 headerPara1.Style = "Title";
                 headerPara1.AddText("Escope POS System");
@@ -324,13 +390,33 @@ namespace EscopeWindowsApp
                     itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Left;
                     itemRow.Cells[2].AddParagraph(item.VariationType).Style = "Body";
                     itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[3].AddParagraph(item.Unit).Style = "Body";
+                    // Map the unit to its abbreviation for display
+                    string displayUnit;
+                    if (item.Unit == "Liter")
+                    {
+                        displayUnit = "L";
+                    }
+                    else if (item.Unit == "Kilogram")
+                    {
+                        displayUnit = "Kg";
+                    }
+                    else if (item.Unit == "Meter")
+                    {
+                        displayUnit = "M";
+                    }
+                    else
+                    {
+                        displayUnit = item.Unit; // Keep the original unit if not Liter, Kilogram, or Meter
+                    }
+                    itemRow.Cells[3].AddParagraph(displayUnit).Style = "Body";
                     itemRow.Cells[3].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[4].AddParagraph(item.Quantity.ToString("N2")).Style = "Body";
+                    // Show quantity without decimals for "Pieces", with decimals for others
+                    string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : item.Quantity.ToString("N2");
+                    itemRow.Cells[4].AddParagraph(qtyText).Style = "Body";
                     itemRow.Cells[4].Format.Alignment = ParagraphAlignment.Center;
                     itemRow.Cells[5].AddParagraph(item.Price.ToString("N2")).Style = "Body";
                     itemRow.Cells[5].Format.Alignment = ParagraphAlignment.Right;
-                    itemRow.Cells[6].AddParagraph(item.TotalPrice.ToString("N2")).Style = "Body";
+                    itemRow.Cells[6].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
                     itemRow.Cells[6].Format.Alignment = ParagraphAlignment.Right;
                 }
 
@@ -352,12 +438,12 @@ namespace EscopeWindowsApp
 
                 Row summaryRow1 = summaryTable.AddRow();
                 summaryRow1.Cells[0].AddParagraph($"Total Items: {totalItems}").Style = "Body";
-                summaryRow1.Cells[1].AddParagraph($"Sub Total: {totalPrice + discount:N2}").Style = "Body";
+                summaryRow1.Cells[1].AddParagraph($"Sub Total: LKR {totalPrice + discount:N2}").Style = "Body";
                 summaryRow1.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow2 = summaryTable.AddRow();
-                summaryRow2.Cells[0].AddParagraph($"Discount: {discount:N2}").Style = "Body";
-                summaryRow2.Cells[1].AddParagraph($"Total: {totalPrice:N2}").Style = "Body";
+                summaryRow2.Cells[0].AddParagraph($"Discount: LKR {discount:N2}").Style = "Body";
+                summaryRow2.Cells[1].AddParagraph($"Total: LKR {totalPrice:N2}").Style = "Body";
                 summaryRow2.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow3 = summaryTable.AddRow();
@@ -366,8 +452,8 @@ namespace EscopeWindowsApp
                 if (paymentMethod == "Cash")
                 {
                     Row summaryRow4 = summaryTable.AddRow();
-                    summaryRow4.Cells[0].AddParagraph($"Cash Paid: {cashPaid:N2}").Style = "Body";
-                    summaryRow4.Cells[1].AddParagraph($"Balance: {balance:N2}").Style = "Body";
+                    summaryRow4.Cells[0].AddParagraph($"Cash Paid: LKR {cashPaid:N2}").Style = "Body";
+                    summaryRow4.Cells[1].AddParagraph($"Balance: LKR {balance:N2}").Style = "Body";
                     summaryRow4.Cells[1].Format.Alignment = ParagraphAlignment.Right;
                 }
 

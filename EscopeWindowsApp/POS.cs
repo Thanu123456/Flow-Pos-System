@@ -1114,7 +1114,7 @@ namespace EscopeWindowsApp
                     BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
 
                     // Show success message
-                    MessageBox.Show($"Payment processed successfully!\nBill No: {billNo}", "Payment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   // MessageBox.Show($"Payment processed successfully!\nBill No: {billNo}", "Payment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Reset the form
                     resetBtn_Click(sender, e);
