@@ -176,6 +176,12 @@
     <Reference Include="ZstdSharp, Version=0.8.0.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>packages\ZstdSharp.Port.0.8.0\lib\net462\ZstdSharp.dll</HintPath>
     </Reference>
+    <Reference Include="zxing, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.10\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.10\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddAdjustments.cs">
@@ -477,6 +483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustmentsForm.resx">
       <DependentUpon>AdjustmentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode.resx">
+      <DependentUpon>Barcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUnit.resx">
       <DependentUpon>BaseUnit.cs</DependentUpon>
