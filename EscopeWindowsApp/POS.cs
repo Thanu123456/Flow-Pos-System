@@ -1180,5 +1180,15 @@ namespace EscopeWindowsApp
                 }
             }
         }
+
+        private void cashRegBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void closeRegBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
