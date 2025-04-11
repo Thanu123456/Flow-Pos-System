@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -41,7 +41,6 @@
             this.grnNoLabelPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.grnNoLabel = new System.Windows.Forms.Label();
             this.grnNoFixLabel = new System.Windows.Forms.Label();
-            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.paymentMethPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.ceaditPayementLabel = new System.Windows.Forms.Label();
             this.creaditPayementRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
@@ -50,9 +49,10 @@
             this.cashPaymentLabel = new System.Windows.Forms.Label();
             this.cashPaymentRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
             this.paymentMethLabel = new System.Windows.Forms.Label();
-            this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.previousGRNBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.qUnitNameLabel = new System.Windows.Forms.Label();
+            this.sUnitNameLabel = new System.Windows.Forms.Label();
             this.grnUnitLabel = new System.Windows.Forms.Label();
             this.grnUnitText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnExpireDatePicker = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
@@ -87,16 +87,17 @@
             this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.sUnitNameLabel = new System.Windows.Forms.Label();
-            this.qUnitNameLabel = new System.Windows.Forms.Label();
+            this.checkSerialNumber = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
+            this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
             this.paymentMethPanel.SuspendLayout();
             this.grnMainPanel.SuspendLayout();
             this.grnPricingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // grnBorderlessForm
@@ -188,21 +189,6 @@
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
-            // 
-            // grnPictureBox
-            // 
-            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
-            this.grnPictureBox.ImageRotate = 0F;
-            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
-            this.grnPictureBox.Name = "grnPictureBox";
-            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
-            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.grnPictureBox.TabIndex = 28;
-            this.grnPictureBox.TabStop = false;
-            this.grnPictureBox.UseTransparentBackground = true;
-            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
             // 
             // paymentMethPanel
             // 
@@ -320,34 +306,6 @@
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
-            // grnProSearchText
-            // 
-            this.grnProSearchText.BorderColor = System.Drawing.Color.Gray;
-            this.grnProSearchText.BorderRadius = 8;
-            this.grnProSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.grnProSearchText.DefaultText = "";
-            this.grnProSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.grnProSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
-            this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.grnProSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnProSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.grnProSearchText.Location = new System.Drawing.Point(215, 58);
-            this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grnProSearchText.Name = "grnProSearchText";
-            this.grnProSearchText.PasswordChar = '\0';
-            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.grnProSearchText.PlaceholderText = "Search Products";
-            this.grnProSearchText.SelectedText = "";
-            this.grnProSearchText.Size = new System.Drawing.Size(689, 42);
-            this.grnProSearchText.TabIndex = 29;
-            this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
-            // 
             // previousGRNBtn
             // 
             this.previousGRNBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -402,6 +360,32 @@
             this.grnMainPanel.Name = "grnMainPanel";
             this.grnMainPanel.Size = new System.Drawing.Size(864, 362);
             this.grnMainPanel.TabIndex = 31;
+            // 
+            // qUnitNameLabel
+            // 
+            this.qUnitNameLabel.AutoSize = true;
+            this.qUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.qUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.qUnitNameLabel.Location = new System.Drawing.Point(774, 96);
+            this.qUnitNameLabel.Name = "qUnitNameLabel";
+            this.qUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.qUnitNameLabel.TabIndex = 82;
+            this.qUnitNameLabel.Text = "Kg";
+            this.qUnitNameLabel.Click += new System.EventHandler(this.qUnitNameLabel_Click);
+            // 
+            // sUnitNameLabel
+            // 
+            this.sUnitNameLabel.AutoSize = true;
+            this.sUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.sUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.sUnitNameLabel.Location = new System.Drawing.Point(589, 97);
+            this.sUnitNameLabel.Name = "sUnitNameLabel";
+            this.sUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.sUnitNameLabel.TabIndex = 81;
+            this.sUnitNameLabel.Text = "Kg";
+            this.sUnitNameLabel.Click += new System.EventHandler(this.sUnitNameLabel_Click);
             // 
             // grnUnitLabel
             // 
@@ -980,48 +964,48 @@
             this.grnDataGridView.AllowUserToDeleteRows = false;
             this.grnDataGridView.AllowUserToResizeColumns = false;
             this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grnDataGridView.ColumnHeadersHeight = 25;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.grnDataGridView.GridColor = System.Drawing.Color.White;
             this.grnDataGridView.Location = new System.Drawing.Point(22, 504);
             this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnDataGridView.Name = "grnDataGridView";
             this.grnDataGridView.ReadOnly = true;
             this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grnDataGridView.RowHeadersVisible = false;
             this.grnDataGridView.RowHeadersWidth = 22;
             this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1096,37 +1080,74 @@
             this.grnSaveBtn.Text = "Save";
             this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
             // 
-            // sUnitNameLabel
+            // checkSerialNumber
             // 
-            this.sUnitNameLabel.AutoSize = true;
-            this.sUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.sUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.sUnitNameLabel.Location = new System.Drawing.Point(589, 97);
-            this.sUnitNameLabel.Name = "sUnitNameLabel";
-            this.sUnitNameLabel.Size = new System.Drawing.Size(26, 19);
-            this.sUnitNameLabel.TabIndex = 81;
-            this.sUnitNameLabel.Text = "Kg";
-            this.sUnitNameLabel.Click += new System.EventHandler(this.sUnitNameLabel_Click);
+            this.checkSerialNumber.AutoSize = true;
+            this.checkSerialNumber.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.checkSerialNumber.CheckedState.BorderRadius = 5;
+            this.checkSerialNumber.CheckedState.BorderThickness = 1;
+            this.checkSerialNumber.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
+            this.checkSerialNumber.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.checkSerialNumber.Location = new System.Drawing.Point(12, 414);
+            this.checkSerialNumber.Name = "checkSerialNumber";
+            this.checkSerialNumber.Size = new System.Drawing.Size(193, 23);
+            this.checkSerialNumber.TabIndex = 82;
+            this.checkSerialNumber.Text = "Available Serial Number";
+            this.checkSerialNumber.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.checkSerialNumber.UncheckedState.BorderRadius = 5;
+            this.checkSerialNumber.UncheckedState.BorderThickness = 1;
+            this.checkSerialNumber.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.checkSerialNumber.CheckedChanged += new System.EventHandler(this.checkSerialNumber_CheckedChanged);
             // 
-            // qUnitNameLabel
+            // grnProSearchText
             // 
-            this.qUnitNameLabel.AutoSize = true;
-            this.qUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.qUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.qUnitNameLabel.Location = new System.Drawing.Point(774, 96);
-            this.qUnitNameLabel.Name = "qUnitNameLabel";
-            this.qUnitNameLabel.Size = new System.Drawing.Size(26, 19);
-            this.qUnitNameLabel.TabIndex = 82;
-            this.qUnitNameLabel.Text = "Kg";
-            this.qUnitNameLabel.Click += new System.EventHandler(this.qUnitNameLabel_Click);
+            this.grnProSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.grnProSearchText.BorderRadius = 8;
+            this.grnProSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.grnProSearchText.DefaultText = "";
+            this.grnProSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.grnProSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnProSearchText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
+            this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.grnProSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.grnProSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.grnProSearchText.Location = new System.Drawing.Point(215, 58);
+            this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grnProSearchText.Name = "grnProSearchText";
+            this.grnProSearchText.PasswordChar = '\0';
+            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.grnProSearchText.PlaceholderText = "Search Products";
+            this.grnProSearchText.SelectedText = "";
+            this.grnProSearchText.Size = new System.Drawing.Size(689, 42);
+            this.grnProSearchText.TabIndex = 29;
+            this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
+            // 
+            // grnPictureBox
+            // 
+            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
+            this.grnPictureBox.ImageRotate = 0F;
+            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
+            this.grnPictureBox.Name = "grnPictureBox";
+            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
+            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.grnPictureBox.TabIndex = 28;
+            this.grnPictureBox.TabStop = false;
+            this.grnPictureBox.UseTransparentBackground = true;
+            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
             // 
             // GRNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.checkSerialNumber);
             this.Controls.Add(this.grnCancelBtn);
             this.Controls.Add(this.grnSaveBtn);
             this.Controls.Add(this.grnDataGridView);
@@ -1148,7 +1169,6 @@
             this.controlPanel.ResumeLayout(false);
             this.grnNoLabelPanel.ResumeLayout(false);
             this.grnNoLabelPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.paymentMethPanel.ResumeLayout(false);
             this.paymentMethPanel.PerformLayout();
             this.grnMainPanel.ResumeLayout(false);
@@ -1156,6 +1176,7 @@
             this.grnPricingPanel.ResumeLayout(false);
             this.grnPricingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1219,5 +1240,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnUnitText;
         private System.Windows.Forms.Label sUnitNameLabel;
         private System.Windows.Forms.Label qUnitNameLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkSerialNumber;
     }
 }

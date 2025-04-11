@@ -11,8 +11,9 @@ namespace EscopeWindowsApp
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
         private string paymentMethod;
         private bool isFormLoading = true;
-        private int? currentProductId = null; // Store the current product ID
-        private string currentVariationType = null; // Store the current variation type
+        private int? currentProductId = null;
+        private string currentVariationType = null;
+        private bool isSerialNumberRequired = false;
 
         public GRNForm()
         {
@@ -35,7 +36,8 @@ namespace EscopeWindowsApp
                     grnDataGridView.Columns.Add("NetPrice", "Net Price");
                     grnDataGridView.Columns.Add("ExpiryDate", "Expiry Date");
                     grnDataGridView.Columns.Add("Warranty", "Warranty");
-                    grnDataGridView.Columns.Add("Unit", "Unit"); // Added Unit column
+                    grnDataGridView.Columns.Add("Unit", "Unit");
+                    grnDataGridView.Columns.Add("SerialNumber", "Serial Number"); // New column
                 }
 
                 grnDataGridView.AllowUserToAddRows = false;
@@ -46,7 +48,6 @@ namespace EscopeWindowsApp
                 grnWarrantyComboBox.Items.Add("2 Years");
                 grnWarrantyComboBox.SelectedIndex = 0;
 
-                // Initialize labels to empty
                 UpdateUnitLabels();
             }
             catch (Exception ex)
@@ -96,7 +97,6 @@ namespace EscopeWindowsApp
             }
             else
             {
-                // Clear fields and labels when search text is empty
                 ClearProductDetails();
             }
         }
@@ -112,7 +112,9 @@ namespace EscopeWindowsApp
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
-                        cmd.Parameters.AddWithValue("@searchId", int.TryParse(searchText, out int id) ? id : (object)DBNull.Value);
+                        // Handle "PROxxx" format in search if entered
+                        int searchId = searchText.StartsWith("PRO") && int.TryParse(searchText.Substring(3), out int id) ? id : (int.TryParse(searchText, out id) ? id : -1);
+                        cmd.Parameters.AddWithValue("@searchId", searchId != -1 ? searchId : (object)DBNull.Value);
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
@@ -150,11 +152,11 @@ namespace EscopeWindowsApp
                         {
                             if (reader.Read())
                             {
-                                grnProIDText.Text = reader["id"].ToString();
+                                grnProIDText.Text = $"PRO{productId:D3}"; // Format as "PRO001"
                                 grnProNameText.Text = reader["name"].ToString();
                                 grnProCatText.Text = reader["category"].ToString();
                                 grnVarText.Text = reader.IsDBNull(reader.GetOrdinal("variation_name")) ? "N/A" : reader["variation_name"].ToString();
-                                grnStockText.Text = "0"; // Initially set to 0; will update based on variation
+                                grnStockText.Text = "0";
                                 grnUnitText.Text = reader["unit_name"] != DBNull.Value ? reader["unit_name"].ToString() : "N/A";
 
                                 grnProIDText.ReadOnly = true;
@@ -162,9 +164,9 @@ namespace EscopeWindowsApp
                                 grnProCatText.ReadOnly = true;
                                 grnVarText.ReadOnly = true;
                                 grnStockText.ReadOnly = true;
-                                grnUnitText.ReadOnly = true; // Make unit textbox read-only
+                                grnUnitText.ReadOnly = true;
 
-                                currentProductId = productId; // Store the current product ID
+                                currentProductId = productId;
 
                                 if (!reader.IsDBNull(reader.GetOrdinal("variation_name")))
                                 {
@@ -177,7 +179,7 @@ namespace EscopeWindowsApp
                                     grnVarTypCombo.Enabled = false;
                                     LoadSinglePricing(productId);
                                     LoadStockForNoVariation(productId);
-                                    currentVariationType = null; // No variation
+                                    currentVariationType = null;
                                 }
                             }
                         }
@@ -276,7 +278,7 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grnStockText.Text = "0"; // Fallback on error
+                grnStockText.Text = "0";
             }
         }
         #endregion
@@ -350,7 +352,7 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading stock for variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grnStockText.Text = "0"; // Fallback on error
+                grnStockText.Text = "0";
             }
         }
         #endregion
@@ -391,12 +393,15 @@ namespace EscopeWindowsApp
                 return;
             }
 
+            // Extract numeric product ID from formatted string (e.g., "PRO001" -> "1")
+            string formattedProductId = grnProIDText.Text;
+            int productId = int.Parse(formattedProductId.Replace("PRO", ""));
+
             // Check for duplicate entries in the DataGridView and consolidate quantities
-            string productId = grnProIDText.Text;
             string variationType = grnVarTypCombo.SelectedItem?.ToString() ?? "N/A";
             foreach (DataGridViewRow row in grnDataGridView.Rows)
             {
-                if (row.Cells["ProductID"].Value.ToString() == productId &&
+                if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
                     row.Cells["VariationType"].Value.ToString() == variationType)
                 {
                     // Update the existing row's quantity
@@ -404,7 +409,13 @@ namespace EscopeWindowsApp
                     decimal newQuantity = existingQuantity + quantity;
                     row.Cells["Quantity"].Value = newQuantity;
                     row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                    // Keep SerialNumber column unchanged (reflects isSerialNumberRequired at time of original add)
                     ClearItemFields();
+
+                    if (isSerialNumberRequired)
+                    {
+                        OpenAddBarcodeForm(productId.ToString(), variationType, quantity);
+                    }
                     return;
                 }
             }
@@ -412,7 +423,7 @@ namespace EscopeWindowsApp
             // Add the item to the DataGridView
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             grnDataGridView.Rows.Add(
-                grnProIDText.Text,
+                formattedProductId, // Use formatted "PRO001" in grid
                 grnProNameText.Text,
                 variationType,
                 grnQuantityText.Text,
@@ -422,8 +433,14 @@ namespace EscopeWindowsApp
                 grnNetPriceText.Text,
                 grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
                 warranty,
-                grnUnitText.Text // Include unit
+                grnUnitText.Text,
+                isSerialNumberRequired ? "Yes" : "No" // Set Serial Number column based on checkSerialNumber
             );
+
+            if (isSerialNumberRequired)
+            {
+                OpenAddBarcodeForm(productId.ToString(), variationType, quantity);
+            }
 
             ClearItemFields();
         }
@@ -485,18 +502,20 @@ namespace EscopeWindowsApp
                             {
                                 string varType = row.Cells["VariationType"].Value?.ToString();
                                 if (varType == "N/A") varType = null;
-                                int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
+                                string formattedProductId = row.Cells["ProductID"].Value.ToString();
+                                int productId = int.Parse(formattedProductId.Replace("PRO", "")); // Extract numeric ID
                                 decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
                                 DateTime expiryDate = Convert.ToDateTime(row.Cells["ExpiryDate"].Value);
                                 string warranty = row.Cells["Warranty"].Value?.ToString() ?? "No Warranty";
                                 string unit = row.Cells["Unit"].Value?.ToString();
+                                string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString(); // Get "Yes" or "No"
 
                                 // Insert into grn_items
                                 string itemQuery = @"
-                                    INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit)
-                                    VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit)";
+                                    INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
+                                    VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
                                 using (MySqlCommand itemCmd = new MySqlCommand(itemQuery, conn, transaction))
                                 {
                                     itemCmd.Parameters.AddWithValue("@grnId", grnId);
@@ -508,10 +527,11 @@ namespace EscopeWindowsApp
                                     itemCmd.Parameters.AddWithValue("@expiryDate", expiryDate);
                                     itemCmd.Parameters.AddWithValue("@warranty", warranty);
                                     itemCmd.Parameters.AddWithValue("@unit", unit == "N/A" ? (object)DBNull.Value : unit);
+                                    itemCmd.Parameters.AddWithValue("@serialNumbers", serialNumberFlag); // Save "Yes" or "No"
                                     itemCmd.ExecuteNonQuery();
                                 }
 
-                                // Update stock table (consolidate stock for existing product_id and variation_type)
+                                // Update stock table
                                 string stockQuery = @"
                                     INSERT INTO stock (product_id, variation_type, stock, unit)
                                     VALUES (@productId, @variationType, @quantity, @unit)
@@ -525,7 +545,7 @@ namespace EscopeWindowsApp
                                     stockCmd.ExecuteNonQuery();
                                 }
 
-                                // Update products table stock (total stock for the product)
+                                // Update products table stock
                                 string productStockQuery = "UPDATE products SET stock = stock + @quantity WHERE id = @productId";
                                 using (MySqlCommand productCmd = new MySqlCommand(productStockQuery, conn, transaction))
                                 {
@@ -540,7 +560,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Reload stock for the current product if applicable
                     if (currentProductId.HasValue)
                     {
                         if (currentVariationType == null)
@@ -549,7 +568,6 @@ namespace EscopeWindowsApp
                             LoadStockForVariation(currentProductId.Value, currentVariationType);
                     }
 
-                    // Reset the form after saving
                     ResetForm();
                 }
             }
@@ -591,6 +609,8 @@ namespace EscopeWindowsApp
             cashPaymentRadioBtn.Checked = false;
             chequePaymentRadioBtn.Checked = false;
             creaditPayementRadioBtn.Checked = false;
+            checkSerialNumber.Checked = false;
+            isSerialNumberRequired = false;
         }
 
         private string GenerateGRNNumber()
@@ -611,6 +631,28 @@ namespace EscopeWindowsApp
             return total;
         }
         #endregion
+
+        private void OpenAddBarcodeForm(string productId, string variationType, decimal quantity)
+        {
+            try
+            {
+                int qty = (int)quantity;
+                if (qty != quantity)
+                {
+                    MessageBox.Show("Serial numbers require whole number quantities.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pass numeric product ID to AddBarcodeForm (strip "PRO" prefix)
+                string numericProductId = productId.Replace("PRO", "");
+                AddBarcodeForm barcodeForm = new AddBarcodeForm(numericProductId, variationType, qty);
+                barcodeForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening barcode form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         #region Cancel
         private void grnCancelBtn_Click(object sender, EventArgs e)
@@ -641,47 +683,25 @@ namespace EscopeWindowsApp
         #endregion
 
         #region Expiry Date and Miscellaneous
-        private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            // Handle expiry date change if needed
-        }
-
+        private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e) { }
         private void grnNoLabel_Click(object sender, EventArgs e) { }
-
         private void creatProductLabel_Click(object sender, EventArgs e) { }
-
         private void grnPictureBox_Click(object sender, EventArgs e) { }
-
         private void ceaditPayementLabel_Click(object sender, EventArgs e) { }
-
         private void grnPricingPanel_Paint(object sender, PaintEventArgs e) { }
-
         private void grnPriceLabel_Click(object sender, EventArgs e) { }
-
         private void cashPaymentLabel_Click(object sender, EventArgs e) { }
-
         private void grnCostPriText_TextChanged(object sender, EventArgs e) { }
-
         private void grnRetPriText_TextChanged(object sender, EventArgs e) { }
-
         private void grnWholePriText_TextChanged(object sender, EventArgs e) { }
-
         private void grnNetPriceText_TextChanged(object sender, EventArgs e) { }
-
         private void grnStockText_TextChanged(object sender, EventArgs e) { }
-
         private void grnVarText_TextChanged(object sender, EventArgs e) { }
-
         private void grnProCatText_TextChanged(object sender, EventArgs e) { }
-
         private void expireDateText_TextChanged(object sender, EventArgs e) { }
-
         private void grnDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-
         private void grnWarrantyComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
-
         private void grnProIDText_TextChanged(object sender, EventArgs e) { }
-
         private void grnProNameText_TextChanged(object sender, EventArgs e) { }
 
         private void UpdateUnitLabels()
@@ -714,8 +734,12 @@ namespace EscopeWindowsApp
         }
 
         private void sUnitNameLabel_Click(object sender, EventArgs e) { }
-
         private void qUnitNameLabel_Click(object sender, EventArgs e) { }
         #endregion
+
+        private void checkSerialNumber_CheckedChanged(object sender, EventArgs e)
+        {
+            isSerialNumberRequired = checkSerialNumber.Checked;
+        }
     }
 }
