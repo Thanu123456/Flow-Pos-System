@@ -545,7 +545,13 @@ namespace EscopeWindowsApp
         private void Production_Load_1(object sender, EventArgs e)
         {
             ConfigureDataGridView();
+            LoadProductsData();
             ProductDataGridView.DataSource = bindingSource;
+        }
+
+        private void ProductDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
