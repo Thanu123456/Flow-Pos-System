@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace EscopeWindowsApp
 {
@@ -1183,12 +1184,45 @@ namespace EscopeWindowsApp
 
         private void cashRegBtn_Click(object sender, EventArgs e)
         {
-            
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CashBookDetails)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+
+                
+            }
+            CashBookDetails cashBookDetails = new CashBookDetails();
+            cashBookDetails.Show();
         }
+        
 
         private void closeRegBtn_Click(object sender, EventArgs e)
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CloseRegister)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
 
+
+            }
+            CloseRegister closeRegister = new CloseRegister();
+            closeRegister.Show();
         }
     }
 }

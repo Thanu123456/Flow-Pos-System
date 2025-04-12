@@ -32,7 +32,6 @@ namespace EscopeWindowsApp
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            // Optional: Initialize form state if needed
         }
 
         private bool ValidateEmail()
@@ -62,7 +61,6 @@ namespace EscopeWindowsApp
                 return false;
             }
 
-            // Check if the password is exactly 4 digits
             if (!Regex.IsMatch(loginPasswordTextbox.Text, @"^\d{4}$"))
             {
                 passwordErrorProvider.SetError(loginPasswordTextbox, "Password must be exactly 4 digits (e.g., 1234)");
@@ -85,7 +83,6 @@ namespace EscopeWindowsApp
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            // Validate email and password format before proceeding
             bool isEmailValid = ValidateEmail();
             bool isPasswordValid = ValidatePassword();
 
@@ -96,7 +93,6 @@ namespace EscopeWindowsApp
                 return;
             }
 
-            // Proceed with login
             string email = loginUserNameTextBox.Text.Trim();
             string password = loginPasswordTextbox.Text;
 
@@ -107,7 +103,6 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Query to find the user by email
                     string query = "SELECT id, first_name, last_name, email, password, role FROM users WHERE email = @email";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -117,53 +112,47 @@ namespace EscopeWindowsApp
                         {
                             if (reader.Read())
                             {
-                                // User found, verify the password
                                 string storedHashedPassword = reader["password"].ToString();
                                 bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(password, storedHashedPassword);
 
                                 if (isPasswordCorrect)
                                 {
-                                    // Login successful
                                     string role = reader["role"].ToString();
-                                    int userId = Convert.ToInt32(reader["id"]);
                                     string firstName = reader["first_name"].ToString();
                                     string lastName = reader["last_name"].ToString();
                                     string userEmail = reader["email"].ToString();
-                                    string username = $"{firstName} {lastName}".Trim(); // Combine first and last name
+                                    string username = $"{firstName} {lastName}".Trim();
 
-                                    // Open the appropriate form based on the role
-                                    this.Hide(); // Hide the login form
+                                    this.Hide();
 
                                     if (role == "Cashier")
                                     {
-                                        POSRegister posForm = new POSRegister(username, userEmail); // Pass username and email
-                                        posForm.FormClosed += (s, args) => this.Close(); // Close LoginForm when POSRegister is closed
+                                        POSRegister posForm = new POSRegister(username, userEmail);
+                                        posForm.FormClosed += (s, args) => this.Close();
                                         posForm.Show();
                                     }
                                     else if (role == "Owner")
                                     {
-                                        SideBarForm sideBarForm = new SideBarForm();
-                                        sideBarForm.FormClosed += (s, args) => this.Close(); // Close LoginForm when SideBarForm is closed
+                                        SideBarForm sideBarForm = new SideBarForm(username, userEmail); // Pass username and email
+                                        sideBarForm.FormClosed += (s, args) => this.Close();
                                         sideBarForm.Show();
                                     }
                                     else
                                     {
                                         MessageBox.Show($"Unknown role: {role}. Please contact the administrator.", "Error",
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        this.Show(); // Show the login form again if the role is invalid
+                                        this.Show();
                                         return;
                                     }
                                 }
                                 else
                                 {
-                                    // Password is incorrect
                                     MessageBox.Show("Invalid email or password.", "Login Failed",
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
-                                // User not found
                                 MessageBox.Show("Invalid email or password.", "Login Failed",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
