@@ -36,15 +36,15 @@
             this.cashRegDetailsLabel = new System.Windows.Forms.Label();
             this.cashRegDateLable = new System.Windows.Forms.Label();
             this.detailsPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.amountLabel = new System.Windows.Forms.Label();
-            this.paymentTypeLabel = new System.Windows.Forms.Label();
-            this.cashInHandAmount = new System.Windows.Forms.Label();
-            this.cashInHandLabel = new System.Windows.Forms.Label();
             this.DetailsTable = new System.Windows.Forms.TableLayoutPanel();
-            this.cashLabel = new System.Windows.Forms.Label();
-            this.cashAmount = new System.Windows.Forms.Label();
             this.cardLabel = new System.Windows.Forms.Label();
             this.cardAmount = new System.Windows.Forms.Label();
+            this.cashLabel = new System.Windows.Forms.Label();
+            this.cashAmount = new System.Windows.Forms.Label();
+            this.paymentTypeLabel = new System.Windows.Forms.Label();
+            this.cashInHandAmount = new System.Windows.Forms.Label();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.cashInHandLabel = new System.Windows.Forms.Label();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.subTotLabel = new System.Windows.Forms.Label();
@@ -122,6 +122,7 @@
             this.cashRegDateLable.Size = new System.Drawing.Size(53, 25);
             this.cashRegDateLable.TabIndex = 30;
             this.cashRegDateLable.Text = "Date";
+            this.cashRegDateLable.Click += new System.EventHandler(this.cashRegDateLable_Click);
             // 
             // detailsPanel
             // 
@@ -133,46 +134,6 @@
             this.detailsPanel.Name = "detailsPanel";
             this.detailsPanel.Size = new System.Drawing.Size(380, 174);
             this.detailsPanel.TabIndex = 31;
-            // 
-            // amountLabel
-            // 
-            this.amountLabel.AutoSize = true;
-            this.amountLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amountLabel.Location = new System.Drawing.Point(170, 0);
-            this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(82, 25);
-            this.amountLabel.TabIndex = 33;
-            this.amountLabel.Text = "Amount";
-            // 
-            // paymentTypeLabel
-            // 
-            this.paymentTypeLabel.AutoSize = true;
-            this.paymentTypeLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paymentTypeLabel.Location = new System.Drawing.Point(3, 0);
-            this.paymentTypeLabel.Name = "paymentTypeLabel";
-            this.paymentTypeLabel.Size = new System.Drawing.Size(132, 25);
-            this.paymentTypeLabel.TabIndex = 32;
-            this.paymentTypeLabel.Text = "Payment Type";
-            // 
-            // cashInHandAmount
-            // 
-            this.cashInHandAmount.AutoSize = true;
-            this.cashInHandAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashInHandAmount.Location = new System.Drawing.Point(170, 43);
-            this.cashInHandAmount.Name = "cashInHandAmount";
-            this.cashInHandAmount.Size = new System.Drawing.Size(67, 21);
-            this.cashInHandAmount.TabIndex = 35;
-            this.cashInHandAmount.Text = "0000.00";
-            // 
-            // cashInHandLabel
-            // 
-            this.cashInHandLabel.AutoSize = true;
-            this.cashInHandLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashInHandLabel.Location = new System.Drawing.Point(3, 43);
-            this.cashInHandLabel.Name = "cashInHandLabel";
-            this.cashInHandLabel.Size = new System.Drawing.Size(109, 21);
-            this.cashInHandLabel.TabIndex = 34;
-            this.cashInHandLabel.Text = "Cash In Hand :";
             // 
             // DetailsTable
             // 
@@ -198,26 +159,6 @@
             this.DetailsTable.Size = new System.Drawing.Size(335, 151);
             this.DetailsTable.TabIndex = 36;
             // 
-            // cashLabel
-            // 
-            this.cashLabel.AutoSize = true;
-            this.cashLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashLabel.Location = new System.Drawing.Point(3, 78);
-            this.cashLabel.Name = "cashLabel";
-            this.cashLabel.Size = new System.Drawing.Size(51, 21);
-            this.cashLabel.TabIndex = 37;
-            this.cashLabel.Text = "Cash :";
-            // 
-            // cashAmount
-            // 
-            this.cashAmount.AutoSize = true;
-            this.cashAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashAmount.Location = new System.Drawing.Point(170, 78);
-            this.cashAmount.Name = "cashAmount";
-            this.cashAmount.Size = new System.Drawing.Size(67, 21);
-            this.cashAmount.TabIndex = 36;
-            this.cashAmount.Text = "0000.00";
-            // 
             // cardLabel
             // 
             this.cardLabel.AutoSize = true;
@@ -237,6 +178,69 @@
             this.cardAmount.Size = new System.Drawing.Size(67, 21);
             this.cardAmount.TabIndex = 38;
             this.cardAmount.Text = "0000.00";
+            this.cardAmount.Click += new System.EventHandler(this.cardAmount_Click);
+            // 
+            // cashLabel
+            // 
+            this.cashLabel.AutoSize = true;
+            this.cashLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashLabel.Location = new System.Drawing.Point(3, 78);
+            this.cashLabel.Name = "cashLabel";
+            this.cashLabel.Size = new System.Drawing.Size(51, 21);
+            this.cashLabel.TabIndex = 37;
+            this.cashLabel.Text = "Cash :";
+            // 
+            // cashAmount
+            // 
+            this.cashAmount.AutoSize = true;
+            this.cashAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashAmount.Location = new System.Drawing.Point(170, 78);
+            this.cashAmount.Name = "cashAmount";
+            this.cashAmount.Size = new System.Drawing.Size(67, 21);
+            this.cashAmount.TabIndex = 36;
+            this.cashAmount.Text = "0000.00";
+            this.cashAmount.Click += new System.EventHandler(this.cashAmount_Click);
+            // 
+            // paymentTypeLabel
+            // 
+            this.paymentTypeLabel.AutoSize = true;
+            this.paymentTypeLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentTypeLabel.Location = new System.Drawing.Point(3, 0);
+            this.paymentTypeLabel.Name = "paymentTypeLabel";
+            this.paymentTypeLabel.Size = new System.Drawing.Size(132, 25);
+            this.paymentTypeLabel.TabIndex = 32;
+            this.paymentTypeLabel.Text = "Payment Type";
+            // 
+            // cashInHandAmount
+            // 
+            this.cashInHandAmount.AutoSize = true;
+            this.cashInHandAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashInHandAmount.Location = new System.Drawing.Point(170, 43);
+            this.cashInHandAmount.Name = "cashInHandAmount";
+            this.cashInHandAmount.Size = new System.Drawing.Size(67, 21);
+            this.cashInHandAmount.TabIndex = 35;
+            this.cashInHandAmount.Text = "0000.00";
+            this.cashInHandAmount.Click += new System.EventHandler(this.cashInHandAmount_Click);
+            // 
+            // amountLabel
+            // 
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountLabel.Location = new System.Drawing.Point(170, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(82, 25);
+            this.amountLabel.TabIndex = 33;
+            this.amountLabel.Text = "Amount";
+            // 
+            // cashInHandLabel
+            // 
+            this.cashInHandLabel.AutoSize = true;
+            this.cashInHandLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashInHandLabel.Location = new System.Drawing.Point(3, 43);
+            this.cashInHandLabel.Name = "cashInHandLabel";
+            this.cashInHandLabel.Size = new System.Drawing.Size(109, 21);
+            this.cashInHandLabel.TabIndex = 34;
+            this.cashInHandLabel.Text = "Cash In Hand :";
             // 
             // siticonePanel1
             // 
@@ -290,6 +294,7 @@
             this.subTotAmount.Size = new System.Drawing.Size(68, 21);
             this.subTotAmount.TabIndex = 38;
             this.subTotAmount.Text = "0000.00";
+            this.subTotAmount.Click += new System.EventHandler(this.subTotAmount_Click);
             // 
             // totRefundLabel
             // 
@@ -310,6 +315,7 @@
             this.totRefAmount.Size = new System.Drawing.Size(68, 21);
             this.totRefAmount.TabIndex = 36;
             this.totRefAmount.Text = "0000.00";
+            this.totRefAmount.Click += new System.EventHandler(this.totRefAmount_Click);
             // 
             // totSaleAmount
             // 
@@ -320,6 +326,7 @@
             this.totSaleAmount.Size = new System.Drawing.Size(68, 21);
             this.totSaleAmount.TabIndex = 35;
             this.totSaleAmount.Text = "0000.00";
+            this.totSaleAmount.Click += new System.EventHandler(this.totSaleAmount_Click);
             // 
             // totSaleLabel
             // 
@@ -350,6 +357,7 @@
             this.cashbookDetailsCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.cashbookDetailsCancelBtn.TabIndex = 39;
             this.cashbookDetailsCancelBtn.Text = "Cancel";
+            this.cashbookDetailsCancelBtn.Click += new System.EventHandler(this.cashbookDetailsCancelBtn_Click);
             // 
             // cashBookPrintBtn
             // 
@@ -370,6 +378,7 @@
             this.cashBookPrintBtn.Size = new System.Drawing.Size(95, 45);
             this.cashBookPrintBtn.TabIndex = 38;
             this.cashBookPrintBtn.Text = "Print";
+            this.cashBookPrintBtn.Click += new System.EventHandler(this.cashBookPrintBtn_Click);
             // 
             // CashBookDetails
             // 
