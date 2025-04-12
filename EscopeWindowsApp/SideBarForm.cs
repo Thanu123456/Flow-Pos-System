@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Siticone.Desktop.UI.WinForms;
 
 namespace EscopeWindowsApp
 {
@@ -29,21 +27,26 @@ namespace EscopeWindowsApp
         CustomerForm customerForm;
         SupplierForm supplierForm;
         UserForm userForm;
-        Quotations quatationsForm; // Added for QuatationsForm
-        WarehouseForm warehouseForm; // Added for WarehouseForm
-        AdjustmentsForm adjustmentsForm; // Added for AdjustmentsForm
-        Transfer transferForm; // Added for Transfer
-        Reports reportsForm; // Added for Reports
-        Setting settingForm; // Added for Setting
-        private Control currentCheckedButton = null; // Track the currently checked control
-        private Color checkedColor = Color.LightBlue; // Color when checked
-        private Color uncheckedColor = SystemColors.Control; // Default color
-        private Timer timeTimer; // Timer for timeLabel
-        private Timer dateTimer; // Timer for dateLabel
+        Quotations quatationsForm;
+        WarehouseForm warehouseForm;
+        AdjustmentsForm adjustmentsForm;
+        Transfer transferForm;
+        Reports reportsForm;
+        Setting settingForm;
+        private Control currentCheckedButton = null;
+        private Color checkedColor = Color.LightBlue;
+        private Color uncheckedColor = SystemColors.Control;
+        private Timer timeTimer;
+        private Timer dateTimer;
+        private string userName; // Store logged-in user's name
+        private string userEmail; // Store logged-in user's email
 
-        public SideBarForm()
+        // Constructor to accept username and email
+        public SideBarForm(string username = "", string email = "")
         {
             InitializeComponent();
+            this.userName = username;
+            this.userEmail = email;
 
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
@@ -60,19 +63,18 @@ namespace EscopeWindowsApp
 
             // Initialize and start the time timer
             timeTimer = new Timer();
-            timeTimer.Interval = 1000; // Update every 1 second
+            timeTimer.Interval = 1000;
             timeTimer.Tick += TimeTimer_Tick;
             timeTimer.Start();
 
             // Initialize and start the date timer
             dateTimer = new Timer();
-            dateTimer.Interval = 1000; // Update every 1 second
+            dateTimer.Interval = 1000;
             dateTimer.Tick += DateTimer_Tick;
             dateTimer.Start();
 
-            // Ensure labels can display their content
-            timeLabel.AutoSize = false; // Still needed for multi-line display
-            dateLabel.AutoSize = false; // Allow manual sizing
+            timeLabel.AutoSize = false;
+            dateLabel.AutoSize = false;
         }
 
         private void SetButtonStyles()
@@ -99,7 +101,6 @@ namespace EscopeWindowsApp
 
         private void SideBarForm_Load(object sender, EventArgs e)
         {
-
         }
 
         bool manuExpand = false;
@@ -146,31 +147,24 @@ namespace EscopeWindowsApp
             currentCheckedButton = control;
         }
 
-        // Timer Tick event for timeLabel
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
             timeLabel.Text = DateTime.Now.ToString("hh:mm:ss tt") + "\n" + DateTime.Now.ToString("yyyy-MM-dd");
-            // Example: "02:35:42 PM\n2025-03-20"
         }
 
-        // Timer Tick event for dateLabel with day, fixed to 20 characters
         private void DateTimer_Tick(object sender, EventArgs e)
         {
             dateLabel.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy");
-            // Example: "Thu, Mar 20, 2025" (20 characters)
         }
 
         private void timeLabel_Click(object sender, EventArgs e)
         {
-            // Do nothing - time cannot be stopped
         }
 
         private void dateLabel_Click(object sender, EventArgs e)
         {
-            // Do nothing - date cannot be stopped
         }
 
-        // Manu Panel
         private void manuTransition_Tick(object sender, EventArgs e)
         {
             if (manuExpand)
@@ -211,7 +205,6 @@ namespace EscopeWindowsApp
             }
         }
 
-        // Purchases Panel
         private void purchesTransition_Tick(object sender, EventArgs e)
         {
             if (purchesesExpand)
@@ -245,7 +238,6 @@ namespace EscopeWindowsApp
             }
         }
 
-        // Sales Panel
         private void salesTransition_Tick(object sender, EventArgs e)
         {
             if (salesExpand)
@@ -279,7 +271,6 @@ namespace EscopeWindowsApp
             }
         }
 
-        // People Panel
         private void peoplesTransition_Tick(object sender, EventArgs e)
         {
             if (peopleExpand)
@@ -313,7 +304,6 @@ namespace EscopeWindowsApp
             }
         }
 
-        // Sidebar Panel
         private void sidebarTransition_Tick(object sender, EventArgs e)
         {
             if (sideBarExpand)
@@ -321,10 +311,9 @@ namespace EscopeWindowsApp
                 sideBarPanel.Width += 20;
                 if (sideBarPanel.Width >= 250)
                 {
-                    sideBarPanel.Width = 250; // Force it to exactly 250
+                    sideBarPanel.Width = 250;
                     sidebarTransition.Stop();
                     sideBarExpand = false;
-                    // Set all button panel widths to exactly 250
                     dashBtnPanel.Width = 250;
                     settingBtnPanel.Width = 250;
                     adjBtnPanel.Width = 250;
@@ -358,7 +347,7 @@ namespace EscopeWindowsApp
                 sideBarPanel.Width -= 20;
                 if (sideBarPanel.Width <= 56)
                 {
-                    sideBarPanel.Width = 56; // Force it to exactly 56 when collapsed
+                    sideBarPanel.Width = 56;
                     sidebarTransition.Stop();
                     sideBarExpand = true;
                     dashBtnPanel.Width = 56;
@@ -883,6 +872,7 @@ namespace EscopeWindowsApp
                 expensesCategoryForm.Show();
             }
         }
+
         private void ExpensesCategoryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             expensesCategoryForm = null;
@@ -890,10 +880,14 @@ namespace EscopeWindowsApp
 
         private void posBtn_Click(object sender, EventArgs e)
         {
+            CheckButton(posBtn);
+            ExpandSidebarIfCollapsed();
+            CollapseAllPanels();
 
+            // Check if POSRegister is already open
             foreach (Form form in Application.OpenForms)
             {
-                if (form is POS)
+                if (form is POSRegister)
                 {
                     if (form.WindowState == FormWindowState.Minimized)
                     {
@@ -904,8 +898,10 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            POS pOS = new POS();
-            pOS.Show();
+
+            // Open POSRegister with username and email
+            POSRegister posRegister = new POSRegister(userName, userEmail);
+            posRegister.Show();
         }
     }
 }
