@@ -26,6 +26,8 @@ namespace EscopeWindowsApp
 
         private void POSRegister_Load(object sender, EventArgs e)
         {
+            // Reset the session when the form loads (new cashier session)
+            SessionManager.ResetSession();
         }
 
         private bool ValidateCashInHand()
@@ -60,10 +62,9 @@ namespace EscopeWindowsApp
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            
         }
 
-        private void posRegSaveBtn_Click(object sender, EventArgs e) 
+        private void posRegSaveBtn_Click(object sender, EventArgs e)
         {
             if (!ValidateCashInHand())
             {
@@ -89,6 +90,10 @@ namespace EscopeWindowsApp
                         command.Parameters.AddWithValue("@dateTime", DateTime.Now);
                         command.ExecuteNonQuery();
                     }
+
+                    // Initialize SessionManager with Cash in Hand and session start time
+                    SessionManager.CashInHand = decimal.Parse(cashInHandText.Text);
+                    SessionManager.SessionStartTime = DateTime.Now;
 
                     MessageBox.Show("Cash in hand saved successfully!", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
