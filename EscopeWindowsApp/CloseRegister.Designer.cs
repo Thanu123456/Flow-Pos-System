@@ -54,10 +54,10 @@
             this.totSaleAmount = new System.Windows.Forms.Label();
             this.totSaleLabel = new System.Windows.Forms.Label();
             this.closetotcashPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.totCashLabel = new System.Windows.Forms.Label();
-            this.totCashText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.noteLabel = new System.Windows.Forms.Label();
             this.noteText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.totCashLabel = new System.Windows.Forms.Label();
+            this.totCashText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.closeRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.closeRegCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
@@ -163,6 +163,7 @@
             this.cardAmount.Size = new System.Drawing.Size(67, 21);
             this.cardAmount.TabIndex = 38;
             this.cardAmount.Text = "0000.00";
+            this.cardAmount.Click += new System.EventHandler(this.cardAmount_Click);
             // 
             // cashLabel
             // 
@@ -183,6 +184,7 @@
             this.cashAmount.Size = new System.Drawing.Size(67, 21);
             this.cashAmount.TabIndex = 36;
             this.cashAmount.Text = "0000.00";
+            this.cashAmount.Click += new System.EventHandler(this.cashAmount_Click);
             // 
             // paymentTypeLabel
             // 
@@ -203,6 +205,7 @@
             this.cashInHandAmount.Size = new System.Drawing.Size(67, 21);
             this.cashInHandAmount.TabIndex = 35;
             this.cashInHandAmount.Text = "0000.00";
+            this.cashInHandAmount.Click += new System.EventHandler(this.cashInHandAmount_Click);
             // 
             // amountLabel
             // 
@@ -233,6 +236,7 @@
             this.cashRegDateLable.Size = new System.Drawing.Size(53, 25);
             this.cashRegDateLable.TabIndex = 33;
             this.cashRegDateLable.Text = "Date";
+            this.cashRegDateLable.Click += new System.EventHandler(this.cashRegDateLable_Click);
             // 
             // cashRegDetailsLabel
             // 
@@ -296,6 +300,7 @@
             this.subTotAmount.Size = new System.Drawing.Size(68, 21);
             this.subTotAmount.TabIndex = 38;
             this.subTotAmount.Text = "0000.00";
+            this.subTotAmount.Click += new System.EventHandler(this.subTotAmount_Click);
             // 
             // totRefundLabel
             // 
@@ -316,6 +321,7 @@
             this.totRefAmount.Size = new System.Drawing.Size(68, 21);
             this.totRefAmount.TabIndex = 36;
             this.totRefAmount.Text = "0000.00";
+            this.totRefAmount.Click += new System.EventHandler(this.totRefAmount_Click);
             // 
             // totSaleAmount
             // 
@@ -326,6 +332,7 @@
             this.totSaleAmount.Size = new System.Drawing.Size(68, 21);
             this.totSaleAmount.TabIndex = 35;
             this.totSaleAmount.Text = "0000.00";
+            this.totSaleAmount.Click += new System.EventHandler(this.totSaleAmount_Click);
             // 
             // totSaleLabel
             // 
@@ -350,43 +357,6 @@
             this.closetotcashPanel.Name = "closetotcashPanel";
             this.closetotcashPanel.Size = new System.Drawing.Size(380, 179);
             this.closetotcashPanel.TabIndex = 39;
-            // 
-            // totCashLabel
-            // 
-            this.totCashLabel.AutoSize = true;
-            this.totCashLabel.BackColor = System.Drawing.Color.Transparent;
-            this.totCashLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totCashLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.totCashLabel.Location = new System.Drawing.Point(20, 12);
-            this.totCashLabel.Name = "totCashLabel";
-            this.totCashLabel.Size = new System.Drawing.Size(92, 23);
-            this.totCashLabel.TabIndex = 66;
-            this.totCashLabel.Text = "Total Cash:";
-            // 
-            // totCashText
-            // 
-            this.totCashText.BackColor = System.Drawing.Color.Transparent;
-            this.totCashText.BorderRadius = 8;
-            this.totCashText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.totCashText.DefaultText = "";
-            this.totCashText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.totCashText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.totCashText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.totCashText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.totCashText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.totCashText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.totCashText.ForeColor = System.Drawing.Color.Black;
-            this.totCashText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.totCashText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.totCashText.Location = new System.Drawing.Point(24, 41);
-            this.totCashText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.totCashText.Name = "totCashText";
-            this.totCashText.PasswordChar = '\0';
-            this.totCashText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.totCashText.PlaceholderText = "Total Cash";
-            this.totCashText.SelectedText = "";
-            this.totCashText.Size = new System.Drawing.Size(328, 42);
-            this.totCashText.TabIndex = 65;
             // 
             // noteLabel
             // 
@@ -424,6 +394,45 @@
             this.noteText.SelectedText = "";
             this.noteText.Size = new System.Drawing.Size(328, 42);
             this.noteText.TabIndex = 67;
+            this.noteText.TextChanged += new System.EventHandler(this.noteText_TextChanged);
+            // 
+            // totCashLabel
+            // 
+            this.totCashLabel.AutoSize = true;
+            this.totCashLabel.BackColor = System.Drawing.Color.Transparent;
+            this.totCashLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totCashLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.totCashLabel.Location = new System.Drawing.Point(20, 12);
+            this.totCashLabel.Name = "totCashLabel";
+            this.totCashLabel.Size = new System.Drawing.Size(92, 23);
+            this.totCashLabel.TabIndex = 66;
+            this.totCashLabel.Text = "Total Cash:";
+            // 
+            // totCashText
+            // 
+            this.totCashText.BackColor = System.Drawing.Color.Transparent;
+            this.totCashText.BorderRadius = 8;
+            this.totCashText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.totCashText.DefaultText = "";
+            this.totCashText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.totCashText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.totCashText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.totCashText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.totCashText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.totCashText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.totCashText.ForeColor = System.Drawing.Color.Black;
+            this.totCashText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.totCashText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.totCashText.Location = new System.Drawing.Point(24, 41);
+            this.totCashText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.totCashText.Name = "totCashText";
+            this.totCashText.PasswordChar = '\0';
+            this.totCashText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.totCashText.PlaceholderText = "Total Cash";
+            this.totCashText.SelectedText = "";
+            this.totCashText.Size = new System.Drawing.Size(328, 42);
+            this.totCashText.TabIndex = 65;
+            this.totCashText.TextChanged += new System.EventHandler(this.totCashText_TextChanged);
             // 
             // closeRegBtn
             // 
@@ -444,6 +453,7 @@
             this.closeRegBtn.Size = new System.Drawing.Size(157, 45);
             this.closeRegBtn.TabIndex = 41;
             this.closeRegBtn.Text = "Close Register";
+            this.closeRegBtn.Click += new System.EventHandler(this.closeRegBtn_Click);
             // 
             // closeRegCancelBtn
             // 
@@ -464,6 +474,7 @@
             this.closeRegCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.closeRegCancelBtn.TabIndex = 40;
             this.closeRegCancelBtn.Text = "Cancel";
+            this.closeRegCancelBtn.Click += new System.EventHandler(this.closeRegCancelBtn_Click);
             // 
             // CloseRegister
             // 
@@ -482,6 +493,7 @@
             this.Name = "CloseRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CloseRegister";
+            this.Load += new System.EventHandler(this.CloseRegister_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.detailsPanel.ResumeLayout(false);
