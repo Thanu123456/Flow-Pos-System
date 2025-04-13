@@ -1117,13 +1117,15 @@ namespace EscopeWindowsApp
                                 int rowsAffected = stockCommand.ExecuteNonQuery();
                                 if (rowsAffected == 0)
                                 {
-                                    // Log for debugging
                                     MessageBox.Show($"Warning: Stock not updated for Product ID {productId}, Variation: {variationType ?? "NULL"}", "Stock Update Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                             }
                         }
 
                         transaction.Commit();
+
+                        // Update SessionManager with the transaction details
+                        UpdateSessionManager(paymentMethod, totalPrice);
 
                         // Prepare cart items for printing
                         List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
@@ -1151,9 +1153,11 @@ namespace EscopeWindowsApp
                         resetBtn_Click(sender, e);
                         LoadProductsData();
                     }
- }
+                }
             }
-        catch (Exception ex)
+
+
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1224,5 +1228,21 @@ namespace EscopeWindowsApp
             CloseRegister closeRegister = new CloseRegister();
             closeRegister.Show();
         }
+
+        private void UpdateSessionManager(string paymentMethod, decimal totalPrice)
+        {
+            if (paymentMethod == "Cash")
+            {
+                SessionManager.Cash += totalPrice;
+            }
+            else if (paymentMethod == "Card")
+            {
+                SessionManager.Card += totalPrice;
+            }
+            SessionManager.TotalSales += totalPrice;
+            // Note: TotalRefund is not updated here since your POS form does not handle refunds yet
+        }
+
+        
     }
 }

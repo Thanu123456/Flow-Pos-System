@@ -433,6 +433,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionManager.cs" />
     <Compile Include="Setting.cs">
       <SubType>Form</SubType>
     </Compile>
