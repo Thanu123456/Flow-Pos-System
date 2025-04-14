@@ -8,23 +8,26 @@ namespace EscopeWindowsApp
     public partial class AddBarcodeForm : Form
     {
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
-        private string productId; // Stores numeric ID (e.g., "19")
+        private string productId;
         private string variationType;
         private int quantity;
         private string productName;
+        public bool IsSaved { get; private set; } // Property to track save status
 
         public AddBarcodeForm()
         {
             InitializeComponent();
+            IsSaved = false;
         }
 
         public AddBarcodeForm(string productId, string variationType, int quantity)
         {
-            this.productId = productId; // Store numeric ID
+            this.productId = productId;
             this.variationType = variationType == "N/A" ? null : variationType;
             this.quantity = quantity;
             InitializeComponent();
             InitializeForm();
+            IsSaved = false;
         }
 
         private void AddBarcodeForm_Load(object sender, EventArgs e)
@@ -254,11 +257,11 @@ namespace EscopeWindowsApp
                     foreach (string serial in serialNumbers)
                     {
                         string query = @"
-                            INSERT INTO serial_numbers (product_id, variation_type, serial_number, product_name)
-                            VALUES (@productId, @variationType, @serialNumber, @productName)";
+                        INSERT INTO serial_numbers (product_id, variation_type, serial_number, product_name)
+                        VALUES (@productId, @variationType, @serialNumber, @productName)";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@productId", productId); // Use numeric ID for database
+                            cmd.Parameters.AddWithValue("@productId", productId);
                             cmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
                             cmd.Parameters.AddWithValue("@serialNumber", serial);
                             cmd.Parameters.AddWithValue("@productName", productName);
@@ -267,19 +270,23 @@ namespace EscopeWindowsApp
                     }
                 }
 
+                IsSaved = true; // Mark as saved
                 MessageBox.Show("Serial numbers saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving serial numbers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IsSaved = false;
             }
         }
 
         private void barcodeCancelBtn_Click(object sender, EventArgs e)
         {
+            IsSaved = false; // Ensure IsSaved is false if canceled
             this.Close();
         }
+
 
         private void checkRange_CheckedChanged(object sender, EventArgs e)
         {
