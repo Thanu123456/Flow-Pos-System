@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -41,6 +41,7 @@
             this.grnNoLabelPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.grnNoLabel = new System.Windows.Forms.Label();
             this.grnNoFixLabel = new System.Windows.Forms.Label();
+            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.paymentMethPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.ceaditPayementLabel = new System.Windows.Forms.Label();
             this.creaditPayementRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
@@ -89,15 +90,14 @@
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.checkSerialNumber = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
             this.paymentMethPanel.SuspendLayout();
             this.grnMainPanel.SuspendLayout();
             this.grnPricingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // grnBorderlessForm
@@ -173,7 +173,7 @@
             this.grnNoLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
             this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(41, 18);
+            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
             this.grnNoLabel.TabIndex = 28;
             this.grnNoLabel.Text = "001";
             this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
@@ -185,10 +185,25 @@
             this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
             this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(91, 18);
+            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
+            // 
+            // grnPictureBox
+            // 
+            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
+            this.grnPictureBox.ImageRotate = 0F;
+            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
+            this.grnPictureBox.Name = "grnPictureBox";
+            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
+            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.grnPictureBox.TabIndex = 28;
+            this.grnPictureBox.TabStop = false;
+            this.grnPictureBox.UseTransparentBackground = true;
+            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
             // 
             // paymentMethPanel
             // 
@@ -215,7 +230,7 @@
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
             this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(153, 18);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -244,7 +259,7 @@
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(76, 18);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -272,7 +287,7 @@
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(53, 18);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
             this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
@@ -302,7 +317,7 @@
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
             this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(174, 17);
+            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
@@ -330,6 +345,7 @@
             // 
             this.grnMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.grnMainPanel.BorderRadius = 8;
+            this.grnMainPanel.Controls.Add(this.checkSerialNumber);
             this.grnMainPanel.Controls.Add(this.qUnitNameLabel);
             this.grnMainPanel.Controls.Add(this.sUnitNameLabel);
             this.grnMainPanel.Controls.Add(this.grnUnitLabel);
@@ -358,7 +374,7 @@
             this.grnMainPanel.FillColor = System.Drawing.Color.White;
             this.grnMainPanel.Location = new System.Drawing.Point(215, 122);
             this.grnMainPanel.Name = "grnMainPanel";
-            this.grnMainPanel.Size = new System.Drawing.Size(864, 362);
+            this.grnMainPanel.Size = new System.Drawing.Size(864, 374);
             this.grnMainPanel.TabIndex = 31;
             // 
             // qUnitNameLabel
@@ -459,7 +475,7 @@
             this.addToListBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addToListBtn.ForeColor = System.Drawing.Color.White;
             this.addToListBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.addToListBtn.Location = new System.Drawing.Point(719, 310);
+            this.addToListBtn.Location = new System.Drawing.Point(718, 315);
             this.addToListBtn.Name = "addToListBtn";
             this.addToListBtn.Size = new System.Drawing.Size(126, 45);
             this.addToListBtn.TabIndex = 58;
@@ -474,7 +490,7 @@
             this.grnPriceLabel.ForeColor = System.Drawing.Color.Black;
             this.grnPriceLabel.Location = new System.Drawing.Point(38, 179);
             this.grnPriceLabel.Name = "grnPriceLabel";
-            this.grnPriceLabel.Size = new System.Drawing.Size(96, 18);
+            this.grnPriceLabel.Size = new System.Drawing.Size(87, 18);
             this.grnPriceLabel.TabIndex = 34;
             this.grnPriceLabel.Text = "PRICING :";
             this.grnPriceLabel.Click += new System.EventHandler(this.grnPriceLabel_Click);
@@ -964,48 +980,48 @@
             this.grnDataGridView.AllowUserToDeleteRows = false;
             this.grnDataGridView.AllowUserToResizeColumns = false;
             this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.grnDataGridView.ColumnHeadersHeight = 25;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.grnDataGridView.ColumnHeadersHeight = 45;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.grnDataGridView.GridColor = System.Drawing.Color.White;
             this.grnDataGridView.Location = new System.Drawing.Point(22, 504);
             this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnDataGridView.Name = "grnDataGridView";
             this.grnDataGridView.ReadOnly = true;
             this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.grnDataGridView.RowHeadersVisible = false;
             this.grnDataGridView.RowHeadersWidth = 22;
             this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1027,7 +1043,7 @@
             this.grnDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.grnDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 25;
+            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.grnDataGridView.ThemeStyle.ReadOnly = true;
             this.grnDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.grnDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -1083,20 +1099,22 @@
             // checkSerialNumber
             // 
             this.checkSerialNumber.AutoSize = true;
+            this.checkSerialNumber.BackColor = System.Drawing.Color.Transparent;
             this.checkSerialNumber.CheckedState.BorderColor = System.Drawing.Color.White;
             this.checkSerialNumber.CheckedState.BorderRadius = 5;
             this.checkSerialNumber.CheckedState.BorderThickness = 1;
             this.checkSerialNumber.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
-            this.checkSerialNumber.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.checkSerialNumber.Location = new System.Drawing.Point(12, 414);
+            this.checkSerialNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSerialNumber.Location = new System.Drawing.Point(22, 315);
             this.checkSerialNumber.Name = "checkSerialNumber";
-            this.checkSerialNumber.Size = new System.Drawing.Size(193, 23);
+            this.checkSerialNumber.Size = new System.Drawing.Size(203, 25);
             this.checkSerialNumber.TabIndex = 82;
             this.checkSerialNumber.Text = "Available Serial Number";
             this.checkSerialNumber.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.checkSerialNumber.UncheckedState.BorderRadius = 5;
             this.checkSerialNumber.UncheckedState.BorderThickness = 1;
             this.checkSerialNumber.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.checkSerialNumber.UseVisualStyleBackColor = false;
             this.checkSerialNumber.CheckedChanged += new System.EventHandler(this.checkSerialNumber_CheckedChanged);
             // 
             // grnProSearchText
@@ -1127,27 +1145,11 @@
             this.grnProSearchText.TabIndex = 29;
             this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
             // 
-            // grnPictureBox
-            // 
-            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
-            this.grnPictureBox.ImageRotate = 0F;
-            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
-            this.grnPictureBox.Name = "grnPictureBox";
-            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
-            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.grnPictureBox.TabIndex = 28;
-            this.grnPictureBox.TabStop = false;
-            this.grnPictureBox.UseTransparentBackground = true;
-            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
-            // 
             // GRNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
-            this.Controls.Add(this.checkSerialNumber);
             this.Controls.Add(this.grnCancelBtn);
             this.Controls.Add(this.grnSaveBtn);
             this.Controls.Add(this.grnDataGridView);
@@ -1169,6 +1171,7 @@
             this.controlPanel.ResumeLayout(false);
             this.grnNoLabelPanel.ResumeLayout(false);
             this.grnNoLabelPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.paymentMethPanel.ResumeLayout(false);
             this.paymentMethPanel.PerformLayout();
             this.grnMainPanel.ResumeLayout(false);
@@ -1176,7 +1179,6 @@
             this.grnPricingPanel.ResumeLayout(false);
             this.grnPricingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

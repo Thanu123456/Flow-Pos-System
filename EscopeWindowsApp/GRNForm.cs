@@ -397,52 +397,100 @@ namespace EscopeWindowsApp
             string formattedProductId = grnProIDText.Text;
             int productId = int.Parse(formattedProductId.Replace("PRO", ""));
 
-            // Check for duplicate entries in the DataGridView and consolidate quantities
             string variationType = grnVarTypCombo.SelectedItem?.ToString() ?? "N/A";
-            foreach (DataGridViewRow row in grnDataGridView.Rows)
-            {
-                if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
-                    row.Cells["VariationType"].Value.ToString() == variationType)
-                {
-                    // Update the existing row's quantity
-                    decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
-                    decimal newQuantity = existingQuantity + quantity;
-                    row.Cells["Quantity"].Value = newQuantity;
-                    row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                    // Keep SerialNumber column unchanged (reflects isSerialNumberRequired at time of original add)
-                    ClearItemFields();
-
-                    if (isSerialNumberRequired)
-                    {
-                        OpenAddBarcodeForm(productId.ToString(), variationType, quantity);
-                    }
-                    return;
-                }
-            }
-
-            // Add the item to the DataGridView
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
-            grnDataGridView.Rows.Add(
-                formattedProductId, // Use formatted "PRO001" in grid
-                grnProNameText.Text,
-                variationType,
-                grnQuantityText.Text,
-                grnCostPriText.Text,
-                grnRetPriText.Text,
-                grnWholePriText.Text,
-                grnNetPriceText.Text,
-                grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
-                warranty,
-                grnUnitText.Text,
-                isSerialNumberRequired ? "Yes" : "No" // Set Serial Number column based on checkSerialNumber
-            );
+            string unit = grnUnitText.Text;
 
             if (isSerialNumberRequired)
             {
-                OpenAddBarcodeForm(productId.ToString(), variationType, quantity);
-            }
+                if (quantity != (int)quantity)
+                {
+                    MessageBox.Show("Serial numbers require whole number quantities.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            ClearItemFields();
+                // Open AddBarcodeForm and wait for it to close
+                AddBarcodeForm barcodeForm = new AddBarcodeForm(productId.ToString(), variationType, (int)quantity);
+                barcodeForm.FormClosed += (s, args) =>
+                {
+                    // Check if the form was saved (we'll add a property to AddBarcodeForm to track this)
+                    if (barcodeForm.IsSaved)
+                    {
+                        // Check for duplicate entries and consolidate quantities
+                        foreach (DataGridViewRow row in grnDataGridView.Rows)
+                        {
+                            if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
+                                row.Cells["VariationType"].Value.ToString() == variationType)
+                            {
+                                // Update existing row
+                                decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
+                                decimal newQuantity = existingQuantity + quantity;
+                                row.Cells["Quantity"].Value = newQuantity;
+                                row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                                ClearItemFields();
+                                return;
+                            }
+                        }
+
+                        // Add new row to DataGridView
+                        grnDataGridView.Rows.Add(
+                            formattedProductId,
+                            grnProNameText.Text,
+                            variationType,
+                            grnQuantityText.Text,
+                            grnCostPriText.Text,
+                            grnRetPriText.Text,
+                            grnWholePriText.Text,
+                            grnNetPriceText.Text,
+                            grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
+                            warranty,
+                            unit,
+                            "Yes" // Indicate serial numbers are required
+                        );
+
+                        ClearItemFields();
+                    }
+                    // If not saved, do nothing (item is not added)
+                };
+                barcodeForm.ShowDialog();
+            }
+            else
+            {
+                // No serial numbers required, add directly to DataGridView
+                // Check for duplicate entries and consolidate quantities
+                foreach (DataGridViewRow row in grnDataGridView.Rows)
+                {
+                    if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
+                        row.Cells["VariationType"].Value.ToString() == variationType)
+                    {
+                        // Update existing row
+                        decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
+                        decimal newQuantity = existingQuantity + quantity;
+                        row.Cells["Quantity"].Value = newQuantity;
+                        row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                        ClearItemFields();
+                        return;
+                    }
+                }
+
+                // Add new row to DataGridView
+                grnDataGridView.Rows.Add(
+                    formattedProductId,
+                    grnProNameText.Text,
+                    variationType,
+                    grnQuantityText.Text,
+                    grnCostPriText.Text,
+                    grnRetPriText.Text,
+                    grnWholePriText.Text,
+                    grnNetPriceText.Text,
+                    grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
+                    warranty,
+                    unit,
+                    "No" // No serial numbers
+                );
+
+                ClearItemFields();
+            }
         }
 
         private void ClearItemFields()
