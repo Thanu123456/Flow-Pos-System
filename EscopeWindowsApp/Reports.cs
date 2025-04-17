@@ -16,5 +16,26 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
         }
+
+        private void expReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is ExpencesReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+
+            // Create and show a new instance of ExpencesReport
+            ExpencesReport expencesReport = new ExpencesReport();
+            expencesReport.Show();
+        }
     }
 }
