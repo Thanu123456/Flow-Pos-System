@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Diagnostics;
 
 namespace EscopeWindowsApp
 {
@@ -44,6 +45,14 @@ namespace EscopeWindowsApp
             bindingSource = new BindingSource();
             productsTable = new DataTable();
 
+            // Disable discountText and payNowBtn by default
+            discountText.Enabled = false;
+            payNowBtn.Enabled = false;
+
+            posCashRadioBtn.Enabled = true;
+            posCashRadioBtn.Checked = true; // Optional: Check by default
+            paymentText.Enabled = true;
+
             // Load product data on form load
             this.Load += POS_Load;
             ConfigureSupDataGridView();
@@ -51,7 +60,28 @@ namespace EscopeWindowsApp
             // Subscribe to events
             posProductDataGrid.CellPainting += posProductDataGrid_CellPainting;
             posProductDataGrid.CellFormatting += posProductDataGrid_CellFormatting;
-            supDataGridView.CellFormatting += supDataGridView_CellFormatting; // Added for dynamic quantity formatting
+            supDataGridView.CellFormatting += supDataGridView_CellFormatting;
+
+            // Add KeyPress handlers for numerical input
+            discountText.KeyPress += TextBox_NumericalKeyPress;
+            paymentText.KeyPress += TextBox_NumericalKeyPress;
+
+            UpdatePayNowButtonState();
+        }
+
+        private void TextBox_NumericalKeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, decimal point, and control keys (like backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
         }
 
         private void POS_Load(object sender, EventArgs e)
@@ -226,7 +256,7 @@ namespace EscopeWindowsApp
                 productsTable.Columns.Add("product_name", typeof(string));
                 productsTable.Columns.Add("variation_type", typeof(string));
                 productsTable.Columns.Add("unit_name", typeof(string));
-                productsTable.Columns.Add("stock", typeof(decimal)); // Use decimal for stock
+                productsTable.Columns.Add("stock", typeof(decimal));
                 productsTable.Columns.Add("retail_price", typeof(decimal));
                 productsTable.Columns.Add("image_path", typeof(byte[]));
                 bindingSource.DataSource = productsTable;
@@ -255,12 +285,10 @@ namespace EscopeWindowsApp
 
                     if (unit == "Pieces")
                     {
-                        // For "Pieces", display as whole number without decimals
                         e.Value = stock.ToString("F0");
                     }
                     else
                     {
-                        // For other units (e.g., Meter, Liter, Kilogram), use two decimal places
                         e.Value = stock.ToString("F2");
                     }
                     e.FormattingApplied = true;
@@ -363,7 +391,7 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0 && posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn")
             {
                 DataGridViewRow row = posProductDataGrid.Rows[e.RowIndex];
-                decimal stock = Convert.ToDecimal(row.Cells["stock"].Value); // Use decimal to match stock type
+                decimal stock = Convert.ToDecimal(row.Cells["stock"].Value);
                 if (stock <= 0)
                 {
                     MessageBox.Show($"Cannot add {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -376,7 +404,6 @@ namespace EscopeWindowsApp
 
                 if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
                 {
-                    // Open POSWeightForm with stock, product name, and variation type
                     using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, productName, variationType))
                     {
                         if (weightForm.ShowDialog() == DialogResult.OK)
@@ -388,7 +415,6 @@ namespace EscopeWindowsApp
                 }
                 else
                 {
-                    // Default behavior: add with quantity 1
                     AddToCart(row, 1m);
                 }
             }
@@ -401,9 +427,8 @@ namespace EscopeWindowsApp
             string variationType = productRow.Cells["variation_type"].Value.ToString();
             string unit = productRow.Cells["unit_name"].Value.ToString();
             decimal price = Convert.ToDecimal(productRow.Cells["retail_price"].Value);
-            decimal stock = Convert.ToDecimal(productRow.Cells["stock"].Value); // Use decimal
+            decimal stock = Convert.ToDecimal(productRow.Cells["stock"].Value);
 
-            // Check if the item already exists in the cart
             bool itemExists = false;
             DataGridViewRow existingRow = null;
 
@@ -422,7 +447,6 @@ namespace EscopeWindowsApp
 
             if (itemExists && existingRow != null)
             {
-                // Item already exists, increase the quantity
                 decimal currentQuantity = Convert.ToDecimal(existingRow.Cells["quantity"].Value);
                 decimal newQuantity = currentQuantity + quantity;
 
@@ -437,19 +461,18 @@ namespace EscopeWindowsApp
             }
             else
             {
-                // Item does not exist, add a new row
                 supDataGridView.Rows.Add(
                     itemNumberCounter++,
                     productId,
                     productName,
                     variationType,
                     unit,
-                    null, // Decrease button
+                    null,
                     quantity,
-                    null, // Increase button
+                    null,
                     price,
                     price * quantity,
-                    null  // Remove button
+                    null
                 );
             }
 
@@ -486,7 +509,6 @@ namespace EscopeWindowsApp
                 Width = 30
             });
 
-            // Add hidden product_id column
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "product_id",
@@ -548,7 +570,10 @@ namespace EscopeWindowsApp
                 Name = "price",
                 HeaderText = "Price",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Format = "N2"
+                }
             });
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -585,12 +610,10 @@ namespace EscopeWindowsApp
                     string unit = supDataGridView.Rows[e.RowIndex].Cells["unit"].Value?.ToString();
                     if (unit == "Pieces")
                     {
-                        // For "Pieces", display as whole number without decimals
                         e.Value = Convert.ToDecimal(e.Value).ToString("F0");
                     }
                     else
                     {
-                        // For other units (e.g., Kilogram), use two decimal places
                         e.Value = Convert.ToDecimal(e.Value).ToString("F2");
                     }
                     e.FormattingApplied = true;
@@ -691,9 +714,17 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = supDataGridView.Rows[e.RowIndex];
+                string unit = row.Cells["unit"].Value?.ToString();
+                bool isUnitDisabled = unit == "Kilogram" || unit == "Meter" || unit == "Liter";
 
                 if (supDataGridView.Columns[e.ColumnIndex].Name == "decrease")
                 {
+                    if (isUnitDisabled)
+                    {
+                        MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
                     decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
                     if (quantity > 1m)
                     {
@@ -704,10 +735,16 @@ namespace EscopeWindowsApp
                 }
                 else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
                 {
+                    if (isUnitDisabled)
+                    {
+                        MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
                     int productId = Convert.ToInt32(row.Cells["product_id"].Value);
                     string variationType = row.Cells["variation_type"].Value.ToString();
 
-                    decimal stock = 0m; // Use decimal
+                    decimal stock = 0m;
                     foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
                     {
                         if (Convert.ToInt32(productRow.Cells["id"].Value) == productId &&
@@ -775,6 +812,11 @@ namespace EscopeWindowsApp
             if (disFixedRadioBtn.Checked)
             {
                 discountText.Text = "";
+                discountText.Enabled = true;
+            }
+            else if (!disPercentageRadioBtn.Checked)
+            {
+                discountText.Enabled = false;
             }
         }
 
@@ -783,7 +825,12 @@ namespace EscopeWindowsApp
             if (disPercentageRadioBtn.Checked)
             {
                 discountText.Text = "";
+                discountText.Enabled = true;
                 discountText.Text += "%";
+            }
+            else if (!disFixedRadioBtn.Checked)
+            {
+                discountText.Enabled = false;
             }
         }
 
@@ -854,6 +901,7 @@ namespace EscopeWindowsApp
             {
                 paymentText.Enabled = true;
             }
+            UpdatePayNowButtonState();
         }
 
         private void posCardRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -863,6 +911,12 @@ namespace EscopeWindowsApp
                 paymentText.Enabled = false;
                 paymentText.Text = "";
             }
+            UpdatePayNowButtonState();
+        }
+
+        private void UpdatePayNowButtonState()
+        {
+            payNowBtn.Enabled = posCashRadioBtn.Checked || posCardRadioBtn.Checked;
         }
 
         private void paymentText_TextChanged(object sender, EventArgs e)
@@ -897,17 +951,14 @@ namespace EscopeWindowsApp
 
         private void discountPriLabel_Click(object sender, EventArgs e)
         {
-            // Handled in discountText_TextChanged
         }
 
         private void totPriceCountLabel_Click(object sender, EventArgs e)
         {
-            // Handled in discountText_TextChanged
         }
 
         private void balancePriceCountLabel_Click(object sender, EventArgs e)
         {
-            // Handled in paymentText_TextChanged
         }
 
         #endregion
@@ -926,14 +977,16 @@ namespace EscopeWindowsApp
             balancePriceCountLabel.Text = "0.00";
             disFixedRadioBtn.Checked = false;
             disPercentageRadioBtn.Checked = false;
-            posCashRadioBtn.Checked = false;
+            posCashRadioBtn.Checked = true;
             posCardRadioBtn.Checked = false;
+            posCashRadioBtn.Enabled = true;
             itemNumberCounter = 1;
             paymentText.Enabled = true;
+            UpdatePayNowButtonState();
         }
 
         private void label1_Click(object sender, EventArgs e) { }
-        private void cashBookBtn_Click_1(object sender, EventArgs e) 
+        private void cashBookBtn_Click_1(object sender, EventArgs e)
         {
             cashBooktimer.Start();
         }
@@ -1030,7 +1083,6 @@ namespace EscopeWindowsApp
 
         private void headerPanel_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void payNowBtn_Click(object sender, EventArgs e)
@@ -1041,7 +1093,6 @@ namespace EscopeWindowsApp
                 return;
             }
 
-            // Validate payment details
             decimal totalPrice = decimal.Parse(totPriceCountLabel.Text);
             string paymentMethod = posCashRadioBtn.Checked ? "Cash" : posCardRadioBtn.Checked ? "Card" : "Not Specified";
 
@@ -1058,13 +1109,12 @@ namespace EscopeWindowsApp
                     connection.Open();
                     using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
-                        // Generate a unique Bill No
                         string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                         string customerName = posClientNameLabel.Text;
                         string userName = "Cashier";
                         int totalItems = supDataGridView.Rows.Count;
 
-                        // Insert into sales table
+                        // Insert sale record
                         string salesQuery = @"
                     INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
                     VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
@@ -1079,7 +1129,7 @@ namespace EscopeWindowsApp
                             salesCommand.ExecuteNonQuery();
                         }
 
-                        // Insert into sales_details and update stock
+                        // Insert sales details and update stock
                         string detailsQuery = @"
                     INSERT INTO sales_details (bill_no, product_name, variation_type, unit, quantity, price, total_price)
                     VALUES (@billNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
@@ -1087,13 +1137,15 @@ namespace EscopeWindowsApp
                     UPDATE stock 
                     SET stock = stock - @quantity 
                     WHERE product_id = @productId 
-                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))";
+                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                    LIMIT 1";
 
                         foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
                             int productId = Convert.ToInt32(row.Cells["product_id"].Value);
                             string variationType = row.Cells["variation_type"].Value.ToString();
-                            if (variationType == "N/A") variationType = null; // Normalize "N/A" to NULL
+                            if (variationType == "N/A") variationType = null;
+                            decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
 
                             // Insert sales details
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
@@ -1102,7 +1154,7 @@ namespace EscopeWindowsApp
                                 detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
                                 detailsCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
                                 detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
-                                detailsCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                                detailsCommand.Parameters.AddWithValue("@quantity", quantity);
                                 detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
                                 detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
                                 detailsCommand.ExecuteNonQuery();
@@ -1111,20 +1163,24 @@ namespace EscopeWindowsApp
                             // Update stock
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
-                                stockCommand.Parameters.AddWithValue("@quantity", Convert.ToDecimal(row.Cells["quantity"].Value));
+                                stockCommand.Parameters.AddWithValue("@quantity", quantity);
                                 stockCommand.Parameters.AddWithValue("@productId", productId);
                                 stockCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
                                 int rowsAffected = stockCommand.ExecuteNonQuery();
+                                Debug.WriteLine($"Stock update for Product ID {productId}, Variation: {variationType ?? "NULL"}, Quantity: {quantity}, Rows Affected: {rowsAffected}");
                                 if (rowsAffected == 0)
                                 {
                                     MessageBox.Show($"Warning: Stock not updated for Product ID {productId}, Variation: {variationType ?? "NULL"}", "Stock Update Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                                else if (rowsAffected > 1)
+                                {
+                                    MessageBox.Show($"Error: Multiple stock rows updated for Product ID {productId}, Variation: {variationType ?? "NULL"}. Please check the stock table for duplicates.", "Stock Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
 
                         transaction.Commit();
 
-                        // Update SessionManager with the transaction details
                         UpdateSessionManager(paymentMethod, totalPrice);
 
                         // Prepare cart items for printing
@@ -1155,8 +1211,6 @@ namespace EscopeWindowsApp
                     }
                 }
             }
-
-
             catch (Exception ex)
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1166,7 +1220,7 @@ namespace EscopeWindowsApp
         bool btnExpand = false;
         private void cashBooktimer_Tick(object sender, EventArgs e)
         {
-            if(btnExpand == false)
+            if (btnExpand == false)
             {
                 cashBookFlowPanel.Height += 10;
                 if (cashBookFlowPanel.Height >= 123)
@@ -1200,13 +1254,10 @@ namespace EscopeWindowsApp
                     form.Activate();
                     return;
                 }
-
-                
             }
             CashBookDetails cashBookDetails = new CashBookDetails();
             cashBookDetails.Show();
         }
-        
 
         private void closeRegBtn_Click(object sender, EventArgs e)
         {
@@ -1222,8 +1273,6 @@ namespace EscopeWindowsApp
                     form.Activate();
                     return;
                 }
-
-
             }
             CloseRegister closeRegister = new CloseRegister();
             closeRegister.Show();
@@ -1240,9 +1289,6 @@ namespace EscopeWindowsApp
                 SessionManager.Card += totalPrice;
             }
             SessionManager.TotalSales += totalPrice;
-            // Note: TotalRefund is not updated here since your POS form does not handle refunds yet
         }
-
-        
     }
 }
