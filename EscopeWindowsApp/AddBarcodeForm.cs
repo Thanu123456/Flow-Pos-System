@@ -254,18 +254,43 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    foreach (string serial in serialNumbers)
+                    using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
-                        string query = @"
-                        INSERT INTO serial_numbers (product_id, variation_type, serial_number, product_name)
-                        VALUES (@productId, @variationType, @serialNumber, @productName)";
-                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@productId", productId);
-                            cmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@serialNumber", serial);
-                            cmd.Parameters.AddWithValue("@productName", productName);
-                            cmd.ExecuteNonQuery();
+                            foreach (string serial in serialNumbers)
+                            {
+                                // Check for existing serial number
+                                string checkQuery = "SELECT COUNT(*) FROM serial_numbers WHERE serial_number = @serialNumber";
+                                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn, transaction))
+                                {
+                                    checkCmd.Parameters.AddWithValue("@serialNumber", serial);
+                                    long count = (long)checkCmd.ExecuteScalar();
+                                    if (count > 0)
+                                    {
+                                        throw new Exception($"Serial number '{serial}' already exists.");
+                                    }
+                                }
+
+                                // Insert serial number
+                                string query = @"
+                                    INSERT INTO serial_numbers (product_id, variation_type, serial_number, product_name)
+                                    VALUES (@productId, @variationType, @serialNumber, @productName)";
+                                using (MySqlCommand cmd = new MySqlCommand(query, conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@productId", productId);
+                                    cmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@serialNumber", serial);
+                                    cmd.Parameters.AddWithValue("@productName", productName);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception($"Database error: {ex.Message}");
                         }
                     }
                 }
@@ -286,7 +311,6 @@ namespace EscopeWindowsApp
             IsSaved = false; // Ensure IsSaved is false if canceled
             this.Close();
         }
-
 
         private void checkRange_CheckedChanged(object sender, EventArgs e)
         {
