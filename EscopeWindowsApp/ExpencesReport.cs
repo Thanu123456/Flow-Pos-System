@@ -35,8 +35,99 @@ namespace EscopeWindowsApp
             dateFilterCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
             dateFilterCombo.SelectedIndex = 0; // Default to Daily
 
-            // Load all expenses initially
+            // Load all expenses initially and update total amount
             LoadExpensesData();
+            UpdateTotalAmountLabel();
+        }
+
+        private void UpdateTotalAmountLabel(string searchText = "", string dateFilter = "Daily")
+        {
+            try
+            {
+                decimal totalAmount = 0m;
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Query to calculate the total amount based on the date filter and search text
+                    string query = @"
+                        SELECT SUM(e.amount)
+                        FROM expenses e
+                        WHERE 1=1";
+
+                    // Add search filter if provided
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        query += " AND (e.title LIKE @searchText OR e.details LIKE @searchText)";
+                    }
+
+                    // Add date filter
+                    DateTime now = DateTime.Now;
+                    if (dateFilter == "Daily")
+                    {
+                        query += " AND DATE(e.expense_date) = @today";
+                    }
+                    else if (dateFilter == "Weekly")
+                    {
+                        query += " AND e.expense_date >= @weekStart AND e.expense_date <= @weekEnd";
+                    }
+                    else if (dateFilter == "Monthly")
+                    {
+                        query += " AND MONTH(e.expense_date) = @month AND YEAR(e.expense_date) = @year";
+                    }
+                    else if (dateFilter == "Yearly")
+                    {
+                        query += " AND YEAR(e.expense_date) = @year";
+                    }
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Add parameters for search
+                        if (!string.IsNullOrEmpty(searchText))
+                        {
+                            command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
+                        }
+
+                        // Add parameters for date filter
+                        if (dateFilter == "Daily")
+                        {
+                            command.Parameters.AddWithValue("@today", now.Date);
+                        }
+                        else if (dateFilter == "Weekly")
+                        {
+                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek); // Start of the week (Sunday)
+                            DateTime weekEnd = weekStart.AddDays(6); // End of the week (Saturday)
+                            command.Parameters.AddWithValue("@weekStart", weekStart);
+                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
+                        }
+                        else if (dateFilter == "Monthly")
+                        {
+                            command.Parameters.AddWithValue("@month", now.Month);
+                            command.Parameters.AddWithValue("@year", now.Year);
+                        }
+                        else if (dateFilter == "Yearly")
+                        {
+                            command.Parameters.AddWithValue("@year", now.Year);
+                        }
+
+                        // Execute the query
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            totalAmount = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                // Update the label with the total amount
+                expTotAmontLabel.Text = totalAmount.ToString("F2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calculating total amount: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                expTotAmontLabel.Text = "0.00";
+            }
         }
 
         private void LoadExpensesData(string searchText = "", string dateFilter = "Daily")
@@ -47,7 +138,6 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Modified query to use c.name AS category_name instead of c.category_name
                     string query = @"
                         SELECT e.id, e.expense_date, e.title, w.name AS warehouse_name, c.name AS category_name, e.amount, e.details
                         FROM expenses e
@@ -159,12 +249,18 @@ namespace EscopeWindowsApp
 
         private void expencesSearchText_TextChanged(object sender, EventArgs e)
         {
-            LoadExpensesData(expencesSearchText.Text, dateFilterCombo.SelectedItem?.ToString() ?? "Daily");
+            string searchText = expencesSearchText.Text;
+            string dateFilter = dateFilterCombo.SelectedItem?.ToString() ?? "Daily";
+            LoadExpensesData(searchText, dateFilter);
+            UpdateTotalAmountLabel(searchText, dateFilter);
         }
 
         private void dateFilterCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadExpensesData(expencesSearchText.Text, dateFilterCombo.SelectedItem?.ToString() ?? "Daily");
+            string searchText = expencesSearchText.Text;
+            string dateFilter = dateFilterCombo.SelectedItem?.ToString() ?? "Daily";
+            LoadExpensesData(searchText, dateFilter);
+            UpdateTotalAmountLabel(searchText, dateFilter);
         }
 
         private void expencesReportDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -182,86 +278,6 @@ Category Name: {row.Cells["category_name"].Value ?? "N/A"}
 Amount: {row.Cells["amount"].Value}
 Details: {row.Cells["details"].Value ?? "N/A"}";
                 MessageBox.Show(details, "Expense Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void expTotAmontLabel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Calculate the total amount based on the current filter
-                decimal totalAmount = 0m;
-                string dateFilter = dateFilterCombo.SelectedItem?.ToString() ?? "Daily";
-
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    // Query to calculate the total amount based on the date filter
-                    string query = @"
-                        SELECT SUM(e.amount)
-                        FROM expenses e
-                        WHERE 1=1";
-
-                    // Add date filter
-                    DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
-                    {
-                        query += " AND DATE(e.expense_date) = @today";
-                    }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND e.expense_date >= @weekStart AND e.expense_date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(e.expense_date) = @month AND YEAR(e.expense_date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(e.expense_date) = @year";
-                    }
-
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        // Add parameters for date filter
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek); // Start of the week (Sunday)
-                            DateTime weekEnd = weekStart.AddDays(6); // End of the week (Saturday)
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-
-                        // Execute the query
-                        object result = command.ExecuteScalar();
-                        if (result != DBNull.Value && result != null)
-                        {
-                            totalAmount = Convert.ToDecimal(result);
-                        }
-                    }
-                }
-
-                // Update the label with the total amount
-                expTotAmontLabel.Text = totalAmount.ToString("F2");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error calculating total amount: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                expTotAmontLabel.Text = "0.00";
             }
         }
 
@@ -350,6 +366,11 @@ Details: {row.Cells["details"].Value ?? "N/A"}";
             {
                 MessageBox.Show($"Error generating PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void expTotAmontLabel_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void generateExcel_Click(object sender, EventArgs e)
