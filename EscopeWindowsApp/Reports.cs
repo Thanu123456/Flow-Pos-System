@@ -37,5 +37,47 @@ namespace EscopeWindowsApp
             ExpencesReport expencesReport = new ExpencesReport();
             expencesReport.Show();
         }
+
+        private void saleReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is SalesReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+
+            // Create and show a new instance of ExpencesReport
+            SalesReport salesReport = new SalesReport();
+            salesReport.Show();
+        }
+
+        private void stockReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is StockReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+
+            // Create and show a new instance of ExpencesReport
+            StockReport stockReport = new StockReport();
+            stockReport.Show();
+        }
     }
 }
