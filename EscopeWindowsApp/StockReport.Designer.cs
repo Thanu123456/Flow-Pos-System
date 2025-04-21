@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,6 +42,7 @@
             this.generateStockExcelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.checkZeroStocks = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.caterotyFilterCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.stockRepBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockReportDataGrid)).BeginInit();
@@ -54,7 +56,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(914, 34);
+            this.headerPanel.Size = new System.Drawing.Size(908, 34);
             this.headerPanel.TabIndex = 31;
             // 
             // controlPanel
@@ -63,7 +65,7 @@
             this.controlPanel.BackColor = System.Drawing.Color.White;
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(822, 2);
+            this.controlPanel.Location = new System.Drawing.Point(816, 2);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(92, 30);
             this.controlPanel.TabIndex = 1;
@@ -96,14 +98,14 @@
             this.stockSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.stockSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.stockSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.stockSearchText.Location = new System.Drawing.Point(12, 52);
+            this.stockSearchText.Location = new System.Drawing.Point(12, 53);
             this.stockSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.stockSearchText.Name = "stockSearchText";
             this.stockSearchText.PasswordChar = '\0';
             this.stockSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.stockSearchText.PlaceholderText = "Search Stock";
             this.stockSearchText.SelectedText = "";
-            this.stockSearchText.Size = new System.Drawing.Size(310, 36);
+            this.stockSearchText.Size = new System.Drawing.Size(310, 42);
             this.stockSearchText.TabIndex = 33;
             this.stockSearchText.TextChanged += new System.EventHandler(this.stockSearchText_TextChanged);
             // 
@@ -159,7 +161,7 @@
             this.stockReportDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.stockReportDataGrid.RowTemplate.Height = 35;
             this.stockReportDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.stockReportDataGrid.Size = new System.Drawing.Size(882, 251);
+            this.stockReportDataGrid.Size = new System.Drawing.Size(882, 253);
             this.stockReportDataGrid.TabIndex = 44;
             this.stockReportDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.stockReportDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -187,28 +189,38 @@
             // 
             // generateStockPdfBtn
             // 
+            this.generateStockPdfBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.generateStockPdfBtn.Animated = true;
+            this.generateStockPdfBtn.BorderRadius = 8;
             this.generateStockPdfBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.generateStockPdfBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.generateStockPdfBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generateStockPdfBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.generateStockPdfBtn.FillColor = System.Drawing.Color.Green;
             this.generateStockPdfBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.generateStockPdfBtn.ForeColor = System.Drawing.Color.White;
-            this.generateStockPdfBtn.Location = new System.Drawing.Point(642, 445);
+            this.generateStockPdfBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.generateStockPdfBtn.Location = new System.Drawing.Point(640, 384);
             this.generateStockPdfBtn.Name = "generateStockPdfBtn";
             this.generateStockPdfBtn.Size = new System.Drawing.Size(123, 45);
             this.generateStockPdfBtn.TabIndex = 52;
-            this.generateStockPdfBtn.Text = "Pdf";
+            this.generateStockPdfBtn.Text = "PDF";
             this.generateStockPdfBtn.Click += new System.EventHandler(this.generateStockPdfBtn_Click);
             // 
             // generateStockExcelBtn
             // 
+            this.generateStockExcelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.generateStockExcelBtn.Animated = true;
+            this.generateStockExcelBtn.BorderRadius = 8;
             this.generateStockExcelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.generateStockExcelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.generateStockExcelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generateStockExcelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.generateStockExcelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.generateStockExcelBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.generateStockExcelBtn.ForeColor = System.Drawing.Color.White;
-            this.generateStockExcelBtn.Location = new System.Drawing.Point(771, 445);
+            this.generateStockExcelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
+            this.generateStockExcelBtn.Location = new System.Drawing.Point(771, 384);
             this.generateStockExcelBtn.Name = "generateStockExcelBtn";
             this.generateStockExcelBtn.Size = new System.Drawing.Size(123, 45);
             this.generateStockExcelBtn.TabIndex = 51;
@@ -217,6 +229,7 @@
             // 
             // checkZeroStocks
             // 
+            this.checkZeroStocks.Animated = true;
             this.checkZeroStocks.AutoSize = true;
             this.checkZeroStocks.BackColor = System.Drawing.Color.Transparent;
             this.checkZeroStocks.CheckedState.BorderColor = System.Drawing.Color.White;
@@ -224,7 +237,7 @@
             this.checkZeroStocks.CheckedState.BorderThickness = 1;
             this.checkZeroStocks.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
             this.checkZeroStocks.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkZeroStocks.Location = new System.Drawing.Point(779, 63);
+            this.checkZeroStocks.Location = new System.Drawing.Point(530, 70);
             this.checkZeroStocks.Name = "checkZeroStocks";
             this.checkZeroStocks.Size = new System.Drawing.Size(115, 25);
             this.checkZeroStocks.TabIndex = 83;
@@ -238,6 +251,7 @@
             // 
             // caterotyFilterCombo
             // 
+            this.caterotyFilterCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.caterotyFilterCombo.BackColor = System.Drawing.Color.Transparent;
             this.caterotyFilterCombo.BorderRadius = 8;
             this.caterotyFilterCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -247,17 +261,24 @@
             this.caterotyFilterCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.caterotyFilterCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.caterotyFilterCombo.ItemHeight = 36;
-            this.caterotyFilterCombo.Location = new System.Drawing.Point(529, 46);
+            this.caterotyFilterCombo.Location = new System.Drawing.Point(657, 53);
             this.caterotyFilterCombo.Name = "caterotyFilterCombo";
-            this.caterotyFilterCombo.Size = new System.Drawing.Size(150, 42);
+            this.caterotyFilterCombo.Size = new System.Drawing.Size(238, 42);
             this.caterotyFilterCombo.TabIndex = 84;
             this.caterotyFilterCombo.SelectedIndexChanged += new System.EventHandler(this.caterotyFilterCombo_SelectedIndexChanged);
+            // 
+            // stockRepBorderlessForm
+            // 
+            this.stockRepBorderlessForm.BorderRadius = 25;
+            this.stockRepBorderlessForm.ContainerControl = this;
+            this.stockRepBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
+            this.stockRepBorderlessForm.TransparentWhileDrag = true;
             // 
             // StockReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 502);
+            this.ClientSize = new System.Drawing.Size(908, 449);
             this.Controls.Add(this.caterotyFilterCombo);
             this.Controls.Add(this.checkZeroStocks);
             this.Controls.Add(this.generateStockPdfBtn);
@@ -266,7 +287,10 @@
             this.Controls.Add(this.stockSearchText);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(908, 449);
+            this.MinimumSize = new System.Drawing.Size(908, 449);
             this.Name = "StockReport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StockReport";
             this.Load += new System.EventHandler(this.StockReport_Load);
             this.headerPanel.ResumeLayout(false);
@@ -288,5 +312,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton generateStockExcelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkZeroStocks;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox caterotyFilterCombo;
+        private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm stockRepBorderlessForm;
     }
 }
