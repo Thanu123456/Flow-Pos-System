@@ -79,5 +79,10 @@ namespace EscopeWindowsApp
             StockReport stockReport = new StockReport();
             stockReport.Show();
         }
+
+        private void topProductsPieChart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -57,7 +57,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(888, 34);
+            this.headerPanel.Size = new System.Drawing.Size(908, 34);
             this.headerPanel.TabIndex = 29;
             // 
             // controlPanel
@@ -66,7 +66,7 @@
             this.controlPanel.BackColor = System.Drawing.Color.White;
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(796, 2);
+            this.controlPanel.Location = new System.Drawing.Point(816, 2);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(92, 30);
             this.controlPanel.TabIndex = 1;
@@ -84,18 +84,20 @@
             // 
             // dateFilterCombo
             // 
+            this.dateFilterCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateFilterCombo.BackColor = System.Drawing.Color.Transparent;
+            this.dateFilterCombo.BorderRadius = 8;
             this.dateFilterCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.dateFilterCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dateFilterCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.dateFilterCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.dateFilterCombo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dateFilterCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateFilterCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.dateFilterCombo.ItemHeight = 30;
-            this.dateFilterCombo.Location = new System.Drawing.Point(667, 52);
+            this.dateFilterCombo.ItemHeight = 36;
+            this.dateFilterCombo.Location = new System.Drawing.Point(657, 53);
             this.dateFilterCombo.Name = "dateFilterCombo";
-            this.dateFilterCombo.Size = new System.Drawing.Size(207, 36);
-            this.dateFilterCombo.TabIndex = 30;
+            this.dateFilterCombo.Size = new System.Drawing.Size(238, 42);
+            this.dateFilterCombo.TabIndex = 42;
             this.dateFilterCombo.SelectedIndexChanged += new System.EventHandler(this.dateFilterCombo_SelectedIndexChanged);
             // 
             // expencesSearchText
@@ -115,14 +117,14 @@
             this.expencesSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.expencesSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.expencesSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.expencesSearchText.Location = new System.Drawing.Point(12, 52);
+            this.expencesSearchText.Location = new System.Drawing.Point(12, 53);
             this.expencesSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.expencesSearchText.Name = "expencesSearchText";
             this.expencesSearchText.PasswordChar = '\0';
             this.expencesSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.expencesSearchText.PlaceholderText = "Search Expences";
             this.expencesSearchText.SelectedText = "";
-            this.expencesSearchText.Size = new System.Drawing.Size(310, 36);
+            this.expencesSearchText.Size = new System.Drawing.Size(310, 42);
             this.expencesSearchText.TabIndex = 31;
             this.expencesSearchText.TextChanged += new System.EventHandler(this.expencesSearchText_TextChanged);
             // 
@@ -160,7 +162,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.expencesReportDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.expencesReportDataGrid.GridColor = System.Drawing.Color.White;
-            this.expencesReportDataGrid.Location = new System.Drawing.Point(12, 110);
+            this.expencesReportDataGrid.Location = new System.Drawing.Point(12, 109);
             this.expencesReportDataGrid.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.expencesReportDataGrid.Name = "expencesReportDataGrid";
             this.expencesReportDataGrid.ReadOnly = true;
@@ -178,7 +180,7 @@
             this.expencesReportDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expencesReportDataGrid.RowTemplate.Height = 35;
             this.expencesReportDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expencesReportDataGrid.Size = new System.Drawing.Size(862, 233);
+            this.expencesReportDataGrid.Size = new System.Drawing.Size(882, 209);
             this.expencesReportDataGrid.TabIndex = 42;
             this.expencesReportDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -206,13 +208,18 @@
             // 
             // generateExcel
             // 
+            this.generateExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.generateExcel.Animated = true;
+            this.generateExcel.BorderRadius = 8;
             this.generateExcel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.generateExcel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.generateExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generateExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.generateExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.generateExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.generateExcel.ForeColor = System.Drawing.Color.White;
-            this.generateExcel.Location = new System.Drawing.Point(751, 413);
+            this.generateExcel.HoverState.FillColor = System.Drawing.Color.Maroon;
+            this.generateExcel.Location = new System.Drawing.Point(771, 384);
             this.generateExcel.Name = "generateExcel";
             this.generateExcel.Size = new System.Drawing.Size(123, 45);
             this.generateExcel.TabIndex = 43;
@@ -221,13 +228,18 @@
             // 
             // generatePdfBtn
             // 
+            this.generatePdfBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.generatePdfBtn.Animated = true;
+            this.generatePdfBtn.BorderRadius = 8;
             this.generatePdfBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.generatePdfBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.generatePdfBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generatePdfBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.generatePdfBtn.FillColor = System.Drawing.Color.Green;
             this.generatePdfBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.generatePdfBtn.ForeColor = System.Drawing.Color.White;
-            this.generatePdfBtn.Location = new System.Drawing.Point(622, 413);
+            this.generatePdfBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.generatePdfBtn.Location = new System.Drawing.Point(640, 384);
             this.generatePdfBtn.Name = "generatePdfBtn";
             this.generatePdfBtn.Size = new System.Drawing.Size(123, 45);
             this.generatePdfBtn.TabIndex = 44;
@@ -243,9 +255,10 @@
             // 
             // totalExpLabel
             // 
+            this.totalExpLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalExpLabel.BackColor = System.Drawing.Color.Transparent;
             this.totalExpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalExpLabel.Location = new System.Drawing.Point(668, 359);
+            this.totalExpLabel.Location = new System.Drawing.Point(688, 334);
             this.totalExpLabel.Name = "totalExpLabel";
             this.totalExpLabel.Size = new System.Drawing.Size(63, 22);
             this.totalExpLabel.TabIndex = 45;
@@ -253,9 +266,10 @@
             // 
             // expTotAmontLabel
             // 
+            this.expTotAmontLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.expTotAmontLabel.BackColor = System.Drawing.Color.Transparent;
             this.expTotAmontLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expTotAmontLabel.Location = new System.Drawing.Point(751, 359);
+            this.expTotAmontLabel.Location = new System.Drawing.Point(771, 334);
             this.expTotAmontLabel.Name = "expTotAmontLabel";
             this.expTotAmontLabel.Size = new System.Drawing.Size(38, 22);
             this.expTotAmontLabel.TabIndex = 46;
@@ -266,7 +280,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 481);
+            this.ClientSize = new System.Drawing.Size(908, 449);
             this.Controls.Add(this.expTotAmontLabel);
             this.Controls.Add(this.totalExpLabel);
             this.Controls.Add(this.generatePdfBtn);
@@ -276,6 +290,8 @@
             this.Controls.Add(this.dateFilterCombo);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(908, 449);
+            this.MinimumSize = new System.Drawing.Size(908, 449);
             this.Name = "ExpencesReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExpencesReport";
