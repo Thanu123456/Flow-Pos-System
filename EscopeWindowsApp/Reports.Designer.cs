@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.LineAnnotation lineAnnotation1 = new System.Windows.Forms.DataVisualization.Charting.LineAnnotation();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.LineAnnotation lineAnnotation2 = new System.Windows.Forms.DataVisualization.Charting.LineAnnotation();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -134,6 +136,10 @@
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            lineAnnotation1.AllowAnchorMoving = true;
+            lineAnnotation1.AllowMoving = true;
+            lineAnnotation1.Name = "LineAnnotation1";
+            this.chart1.Annotations.Add(lineAnnotation1);
             this.chart1.BackColor = System.Drawing.Color.Transparent;
             this.chart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.chart1.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Scaled;
@@ -142,7 +148,9 @@
             this.chart1.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             this.chart1.BorderSkin.PageColor = System.Drawing.Color.Transparent;
             chartArea1.Area3DStyle.Enable3D = true;
+            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BorderColor = System.Drawing.Color.DarkGray;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(658, 31);
@@ -153,7 +161,7 @@
             series1.ChartArea = "ChartArea1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(671, 316);
+            this.chart1.Size = new System.Drawing.Size(675, 316);
             this.chart1.TabIndex = 7;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
@@ -162,15 +170,33 @@
             // 
             this.topProductsPieChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            lineAnnotation2.AllowAnchorMoving = true;
+            lineAnnotation2.AllowMoving = true;
+            lineAnnotation2.Name = "LineAnnotation1";
+            this.topProductsPieChart.Annotations.Add(lineAnnotation2);
             this.topProductsPieChart.BackColor = System.Drawing.Color.Transparent;
             this.topProductsPieChart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.topProductsPieChart.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea2.Area3DStyle.Enable3D = true;
             chartArea2.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
+            chartArea2.Position.Auto = false;
+            chartArea2.Position.Height = 74.52099F;
+            chartArea2.Position.Width = 94F;
+            chartArea2.Position.X = 3F;
+            chartArea2.Position.Y = 12.94635F;
+            chartArea2.ShadowColor = System.Drawing.Color.LightGray;
             this.topProductsPieChart.ChartAreas.Add(chartArea2);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.BackColor = System.Drawing.Color.Transparent;
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Font = new System.Drawing.Font("Segoe UI", 8F);
+            legend1.InterlacedRows = true;
+            legend1.IsDockedInsideChartArea = false;
             legend1.Name = "Legend1";
+            legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
+            legend1.TitleAlignment = System.Drawing.StringAlignment.Far;
+            legend1.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.topProductsPieChart.Legends.Add(legend1);
             this.topProductsPieChart.Location = new System.Drawing.Point(706, 347);
             this.topProductsPieChart.Margin = new System.Windows.Forms.Padding(0);
@@ -183,6 +209,9 @@
             series2.LabelForeColor = System.Drawing.Color.White;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
+            series2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series2.ShadowColor = System.Drawing.Color.Gray;
+            series2.ShadowOffset = 1;
             this.topProductsPieChart.Series.Add(series2);
             this.topProductsPieChart.Size = new System.Drawing.Size(671, 399);
             this.topProductsPieChart.TabIndex = 12;
