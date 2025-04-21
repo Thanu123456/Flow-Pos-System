@@ -74,8 +74,6 @@ namespace EscopeWindowsApp
                                 Text = "Top 5 Products by Sales Quantity (All Time)",
                                 Font = new Font("Segoe UI", 16, FontStyle.Bold)
                             });
-                            
-
 
                             // Ensure the legend is enabled and visible
                             if (topProductsPieChart.Legends.Count == 0)
@@ -134,6 +132,17 @@ namespace EscopeWindowsApp
                                 dailyTotals[i] = salesData.TryGetValue(day, out decimal total) ? total : 0;
                             }
 
+                            // Calculate the maximum sales value for dynamic Y-axis scaling
+                            decimal maxSales = dailyTotals.Any() ? dailyTotals.Max() : 1000; // Default to 1000 if no data
+                            if (maxSales == 0) maxSales = 1000; // Ensure non-zero maximum for empty data
+
+                            // Set Y-axis properties
+                            chart1.ChartAreas[0].AxisY.Maximum = (double)(Math.Ceiling(maxSales / 1000) * 1000); // Round up to nearest 1000
+                            chart1.ChartAreas[0].AxisY.Interval = chart1.ChartAreas[0].AxisY.Maximum / 5; // Divide into 5 intervals
+                            chart1.ChartAreas[0].AxisY.Minimum = 0; // Start at 0
+                            //chart1.ChartAreas[0].AxisY.Title = "Total Sales (LKR)";
+                            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "LKR #,##0.00";
+
                             chart1.Series.Clear();
                             var series = new Series
                             {
@@ -156,8 +165,8 @@ namespace EscopeWindowsApp
                             };
                             chart1.Titles.Add(chartTitle);
                             //chart1.ChartAreas[0].AxisX.Title = "Day of Week";
-                            //chart1.ChartAreas[0].AxisY.Title = "Total Sales (LKR)";
-                            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "LKR #,##0.00";
+                            //chart1.ChartAreas[0].AxisY.Title = "Total Sales (LKR)"; // Moved to Y-axis properties above
+                            //chart1.ChartAreas[0].AxisY.LabelStyle.Format = "LKR #,##0.00"; // Moved to Y-axis properties above
                         }
                     }
                 }
