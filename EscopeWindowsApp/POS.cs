@@ -1290,5 +1290,24 @@ namespace EscopeWindowsApp
             }
             SessionManager.TotalSales += totalPrice;
         }
+
+        private void refundBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Refund)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            Refund refund = new Refund();
+            refund.Show();
+        }
     }
 }
