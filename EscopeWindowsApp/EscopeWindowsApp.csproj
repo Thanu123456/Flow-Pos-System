@@ -450,6 +450,12 @@
     <Compile Include="CashBookDetails.Designer.cs">
       <DependentUpon>CashBookDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Refund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Refund.Designer.cs">
+      <DependentUpon>Refund.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -653,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuotationsForm.resx">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Refund.resx">
+      <DependentUpon>Refund.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>

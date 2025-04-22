@@ -80,13 +80,11 @@
             this.posNumberLabel = new System.Windows.Forms.Label();
             this.posClientNameLabel = new System.Windows.Forms.Label();
             this.posNameLabel = new System.Windows.Forms.Label();
-            this.posCusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.posTimingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posTimePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posDateLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posTimeLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posProfilePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.posProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -103,8 +101,11 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.cashBooktimer = new System.Windows.Forms.Timer(this.components);
+            this.refundBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.posProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.posCusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
@@ -245,7 +246,7 @@
             this.supDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.supDataGridView.RowTemplate.Height = 35;
             this.supDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.supDataGridView.Size = new System.Drawing.Size(654, 324);
+            this.supDataGridView.Size = new System.Drawing.Size(654, 297);
             this.supDataGridView.TabIndex = 40;
             this.supDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
             this.supDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
@@ -338,9 +339,9 @@
             this.paymentPanel.Controls.Add(this.paymentText);
             this.paymentPanel.Controls.Add(this.posCashRadioBtn);
             this.paymentPanel.Controls.Add(this.posCardRadioBtn);
-            this.paymentPanel.Location = new System.Drawing.Point(4, 537);
+            this.paymentPanel.Location = new System.Drawing.Point(4, 511);
             this.paymentPanel.Name = "paymentPanel";
-            this.paymentPanel.Size = new System.Drawing.Size(307, 94);
+            this.paymentPanel.Size = new System.Drawing.Size(306, 94);
             this.paymentPanel.TabIndex = 83;
             // 
             // posPaymentLabel
@@ -380,7 +381,7 @@
             this.paymentText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.paymentText.PlaceholderText = "Cash";
             this.paymentText.SelectedText = "";
-            this.paymentText.Size = new System.Drawing.Size(250, 37);
+            this.paymentText.Size = new System.Drawing.Size(285, 37);
             this.paymentText.TabIndex = 81;
             this.paymentText.TextChanged += new System.EventHandler(this.paymentText_TextChanged);
             // 
@@ -461,12 +462,12 @@
             this.payNowBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.payNowBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.payNowBtn.FillColor = System.Drawing.Color.Green;
-            this.payNowBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.payNowBtn.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.payNowBtn.ForeColor = System.Drawing.Color.White;
             this.payNowBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.payNowBtn.Location = new System.Drawing.Point(453, 665);
+            this.payNowBtn.Location = new System.Drawing.Point(326, 629);
             this.payNowBtn.Name = "payNowBtn";
-            this.payNowBtn.Size = new System.Drawing.Size(215, 42);
+            this.payNowBtn.Size = new System.Drawing.Size(342, 91);
             this.payNowBtn.TabIndex = 30;
             this.payNowBtn.Text = "Pay Now";
             this.payNowBtn.Click += new System.EventHandler(this.payNowBtn_Click);
@@ -481,7 +482,7 @@
             this.disPercentageRadioBtn.CheckedState.InnerColor = System.Drawing.Color.White;
             this.disPercentageRadioBtn.CheckedState.InnerOffset = -4;
             this.disPercentageRadioBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disPercentageRadioBtn.Location = new System.Drawing.Point(167, 459);
+            this.disPercentageRadioBtn.Location = new System.Drawing.Point(167, 433);
             this.disPercentageRadioBtn.Name = "disPercentageRadioBtn";
             this.disPercentageRadioBtn.Size = new System.Drawing.Size(104, 25);
             this.disPercentageRadioBtn.TabIndex = 77;
@@ -499,7 +500,7 @@
             this.posDisLabel.BackColor = System.Drawing.Color.Transparent;
             this.posDisLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.posDisLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.posDisLabel.Location = new System.Drawing.Point(13, 459);
+            this.posDisLabel.Location = new System.Drawing.Point(13, 433);
             this.posDisLabel.Name = "posDisLabel";
             this.posDisLabel.Size = new System.Drawing.Size(83, 23);
             this.posDisLabel.TabIndex = 76;
@@ -516,7 +517,7 @@
             this.disFixedRadioBtn.CheckedState.InnerColor = System.Drawing.Color.White;
             this.disFixedRadioBtn.CheckedState.InnerOffset = -4;
             this.disFixedRadioBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disFixedRadioBtn.Location = new System.Drawing.Point(102, 459);
+            this.disFixedRadioBtn.Location = new System.Drawing.Point(102, 433);
             this.disFixedRadioBtn.Name = "disFixedRadioBtn";
             this.disFixedRadioBtn.Size = new System.Drawing.Size(64, 25);
             this.disFixedRadioBtn.TabIndex = 70;
@@ -544,14 +545,14 @@
             this.discountText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.discountText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.discountText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.discountText.Location = new System.Drawing.Point(17, 492);
+            this.discountText.Location = new System.Drawing.Point(17, 466);
             this.discountText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.discountText.Name = "discountText";
             this.discountText.PasswordChar = '\0';
             this.discountText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.discountText.PlaceholderText = "Discount";
             this.discountText.SelectedText = "";
-            this.discountText.Size = new System.Drawing.Size(250, 37);
+            this.discountText.Size = new System.Drawing.Size(285, 37);
             this.discountText.TabIndex = 69;
             this.discountText.TextChanged += new System.EventHandler(this.discountText_TextChanged);
             // 
@@ -571,7 +572,7 @@
             this.billingPricePanel.Controls.Add(this.totQtyCountLabel);
             this.billingPricePanel.Controls.Add(this.discountPriLabel);
             this.billingPricePanel.Controls.Add(this.dicountLabel);
-            this.billingPricePanel.Location = new System.Drawing.Point(381, 461);
+            this.billingPricePanel.Location = new System.Drawing.Point(381, 435);
             this.billingPricePanel.Name = "billingPricePanel";
             this.billingPricePanel.Size = new System.Drawing.Size(287, 170);
             this.billingPricePanel.TabIndex = 68;
@@ -703,7 +704,8 @@
             // 
             // holdBtn
             // 
-            this.holdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.holdBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.holdBtn.Animated = true;
             this.holdBtn.BorderRadius = 8;
             this.holdBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -711,12 +713,12 @@
             this.holdBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.holdBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.holdBtn.FillColor = System.Drawing.Color.Coral;
-            this.holdBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.holdBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.holdBtn.ForeColor = System.Drawing.Color.White;
             this.holdBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.holdBtn.Location = new System.Drawing.Point(14, 665);
+            this.holdBtn.Location = new System.Drawing.Point(14, 629);
             this.holdBtn.Name = "holdBtn";
-            this.holdBtn.Size = new System.Drawing.Size(193, 42);
+            this.holdBtn.Size = new System.Drawing.Size(296, 42);
             this.holdBtn.TabIndex = 67;
             this.holdBtn.Text = "Hold";
             // 
@@ -731,12 +733,12 @@
             this.resetBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.resetBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.resetBtn.FillColor = System.Drawing.Color.Maroon;
-            this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.resetBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetBtn.ForeColor = System.Drawing.Color.White;
             this.resetBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.resetBtn.Location = new System.Drawing.Point(222, 665);
+            this.resetBtn.Location = new System.Drawing.Point(14, 678);
             this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(215, 42);
+            this.resetBtn.Size = new System.Drawing.Size(296, 42);
             this.resetBtn.TabIndex = 66;
             this.resetBtn.Text = "Reset";
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
@@ -750,9 +752,9 @@
             this.posClientNumLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.posClientNumLabel.Location = new System.Drawing.Point(517, 73);
             this.posClientNumLabel.Name = "posClientNumLabel";
-            this.posClientNumLabel.Size = new System.Drawing.Size(110, 23);
+            this.posClientNumLabel.Size = new System.Drawing.Size(38, 23);
             this.posClientNumLabel.TabIndex = 65;
-            this.posClientNumLabel.Text = "0757119340";
+            this.posClientNumLabel.Text = "null";
             this.posClientNumLabel.Click += new System.EventHandler(this.posClientNumLabel_Click);
             // 
             // posNumberLabel
@@ -776,9 +778,9 @@
             this.posClientNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.posClientNameLabel.Location = new System.Drawing.Point(75, 73);
             this.posClientNameLabel.Name = "posClientNameLabel";
-            this.posClientNameLabel.Size = new System.Drawing.Size(122, 23);
+            this.posClientNameLabel.Size = new System.Drawing.Size(38, 23);
             this.posClientNameLabel.TabIndex = 63;
-            this.posClientNameLabel.Text = "Dilshan Perera";
+            this.posClientNameLabel.Text = "null";
             this.posClientNameLabel.Click += new System.EventHandler(this.posClientNameLabel_Click);
             // 
             // posNameLabel
@@ -793,38 +795,11 @@
             this.posNameLabel.TabIndex = 41;
             this.posNameLabel.Text = "Name:";
             // 
-            // posCusSearchText
-            // 
-            this.posCusSearchText.BorderColor = System.Drawing.Color.Silver;
-            this.posCusSearchText.BorderRadius = 8;
-            this.posCusSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.posCusSearchText.DefaultText = "";
-            this.posCusSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.posCusSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.posCusSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.posCusSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.posCusSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.posCusSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.posCusSearchText.ForeColor = System.Drawing.Color.Gray;
-            this.posCusSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.posCusSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.posCusSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.posCusSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.posCusSearchText.Location = new System.Drawing.Point(11, 15);
-            this.posCusSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.posCusSearchText.Name = "posCusSearchText";
-            this.posCusSearchText.PasswordChar = '\0';
-            this.posCusSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.posCusSearchText.PlaceholderText = "Search Customer";
-            this.posCusSearchText.SelectedText = "";
-            this.posCusSearchText.Size = new System.Drawing.Size(310, 42);
-            this.posCusSearchText.TabIndex = 30;
-            this.posCusSearchText.TextChanged += new System.EventHandler(this.posCusSearchText_TextChanged);
-            // 
             // posTimingPanel
             // 
             this.posTimingPanel.BackColor = System.Drawing.Color.Transparent;
             this.posTimingPanel.BorderRadius = 8;
+            this.posTimingPanel.Controls.Add(this.refundBtn);
             this.posTimingPanel.Controls.Add(this.posTimePanel);
             this.posTimingPanel.Controls.Add(this.posProfilePanel);
             this.posTimingPanel.FillColor = System.Drawing.Color.White;
@@ -880,30 +855,6 @@
             this.posProfilePanel.Name = "posProfilePanel";
             this.posProfilePanel.Size = new System.Drawing.Size(145, 53);
             this.posProfilePanel.TabIndex = 31;
-            // 
-            // posProfileBtn
-            // 
-            this.posProfileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.posProfileBtn.BorderRadius = 8;
-            this.posProfileBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.Down;
-            this.posProfileBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.posProfileBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.posProfileBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.posProfileBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.posProfileBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.posProfileBtn.FillColor = System.Drawing.Color.Transparent;
-            this.posProfileBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.posProfileBtn.ForeColor = System.Drawing.Color.Black;
-            this.posProfileBtn.HoverState.FillColor = System.Drawing.Color.White;
-            this.posProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.userIcon;
-            this.posProfileBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.posProfileBtn.ImageSize = new System.Drawing.Size(30, 30);
-            this.posProfileBtn.Location = new System.Drawing.Point(3, 4);
-            this.posProfileBtn.Name = "posProfileBtn";
-            this.posProfileBtn.Size = new System.Drawing.Size(138, 45);
-            this.posProfileBtn.TabIndex = 6;
-            this.posProfileBtn.Text = "Admin";
-            this.posProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // cashBookFlowPanel
             // 
@@ -1172,6 +1123,83 @@
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             // 
+            // cashBooktimer
+            // 
+            this.cashBooktimer.Interval = 25;
+            this.cashBooktimer.Tick += new System.EventHandler(this.cashBooktimer_Tick);
+            // 
+            // refundBtn
+            // 
+            this.refundBtn.Animated = true;
+            this.refundBtn.BackColor = System.Drawing.Color.White;
+            this.refundBtn.BorderRadius = 8;
+            this.refundBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.refundBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.refundBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.refundBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.refundBtn.FillColor = System.Drawing.Color.DarkRed;
+            this.refundBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refundBtn.ForeColor = System.Drawing.Color.White;
+            this.refundBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.refundBtn.Location = new System.Drawing.Point(281, 11);
+            this.refundBtn.Name = "refundBtn";
+            this.refundBtn.Size = new System.Drawing.Size(90, 41);
+            this.refundBtn.TabIndex = 85;
+            this.refundBtn.Text = "Refund";
+            this.refundBtn.Click += new System.EventHandler(this.refundBtn_Click);
+            // 
+            // posProfileBtn
+            // 
+            this.posProfileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.posProfileBtn.BorderRadius = 8;
+            this.posProfileBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.posProfileBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.posProfileBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.posProfileBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.posProfileBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.posProfileBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.posProfileBtn.FillColor = System.Drawing.Color.Transparent;
+            this.posProfileBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.posProfileBtn.ForeColor = System.Drawing.Color.Black;
+            this.posProfileBtn.HoverState.FillColor = System.Drawing.Color.White;
+            this.posProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.userIcon;
+            this.posProfileBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.posProfileBtn.ImageSize = new System.Drawing.Size(30, 30);
+            this.posProfileBtn.Location = new System.Drawing.Point(3, 4);
+            this.posProfileBtn.Name = "posProfileBtn";
+            this.posProfileBtn.Size = new System.Drawing.Size(138, 45);
+            this.posProfileBtn.TabIndex = 6;
+            this.posProfileBtn.Text = "Admin";
+            this.posProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // posCusSearchText
+            // 
+            this.posCusSearchText.BorderColor = System.Drawing.Color.Silver;
+            this.posCusSearchText.BorderRadius = 8;
+            this.posCusSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.posCusSearchText.DefaultText = "";
+            this.posCusSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.posCusSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.posCusSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.posCusSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.posCusSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.posCusSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.posCusSearchText.ForeColor = System.Drawing.Color.Gray;
+            this.posCusSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.posCusSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.posCusSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.posCusSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.posCusSearchText.Location = new System.Drawing.Point(11, 15);
+            this.posCusSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.posCusSearchText.Name = "posCusSearchText";
+            this.posCusSearchText.PasswordChar = '\0';
+            this.posCusSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.posCusSearchText.PlaceholderText = "Search Customer";
+            this.posCusSearchText.SelectedText = "";
+            this.posCusSearchText.Size = new System.Drawing.Size(310, 42);
+            this.posCusSearchText.TabIndex = 30;
+            this.posCusSearchText.TextChanged += new System.EventHandler(this.posCusSearchText_TextChanged);
+            // 
             // siticoneTextBox1
             // 
             this.siticoneTextBox1.BorderColor = System.Drawing.Color.Silver;
@@ -1199,11 +1227,6 @@
             this.siticoneTextBox1.Size = new System.Drawing.Size(691, 42);
             this.siticoneTextBox1.TabIndex = 84;
             this.siticoneTextBox1.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged);
-            // 
-            // cashBooktimer
-            // 
-            this.cashBooktimer.Interval = 25;
-            this.cashBooktimer.Tick += new System.EventHandler(this.cashBooktimer_Tick);
             // 
             // POS
             // 
@@ -1313,5 +1336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
         private System.Windows.Forms.Timer cashBooktimer;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton refundBtn;
     }
 }

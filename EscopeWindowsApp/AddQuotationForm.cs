@@ -73,19 +73,7 @@ namespace EscopeWindowsApp
             return isValid;
         }
 
-        private bool ValidateWarehouseSelection()
-        {
-            bool isValid = createQuoWareCombo.SelectedIndex > 0; // Assuming the first item is a placeholder
-            if (!isValid)
-            {
-                warehouseErrorProvider.SetError(createQuoWareCombo, "Please select a warehouse.");
-            }
-            else
-            {
-                warehouseErrorProvider.SetError(createQuoWareCombo, string.Empty);
-            }
-            return isValid;
-        }
+       
 
         private bool ValidateProductSelection()
         {
@@ -101,20 +89,7 @@ namespace EscopeWindowsApp
             return isValid;
         }
 
-        private bool ValidateTax()
-        {
-            bool isValid = decimal.TryParse(createQuoOderTaxText.Text, out decimal tax) && tax >= 0;
-            if (!isValid)
-            {
-                taxErrorProvider.SetError(createQuoOderTaxText, "Please enter a valid tax amount.");
-            }
-            else
-            {
-                taxErrorProvider.SetError(createQuoOderTaxText, string.Empty);
-            }
-            return isValid;
-        }
-
+        
         private bool ValidateDiscount()
         {
             bool isValid = decimal.TryParse(createQuotaDisText.Text, out decimal discount) && discount >= 0;
@@ -129,19 +104,7 @@ namespace EscopeWindowsApp
             return isValid;
         }
 
-        private bool ValidateStatus()
-        {
-            bool isValid = createQuotaStatusCombo.SelectedIndex > 0; // Assuming the first item is a placeholder
-            if (!isValid)
-            {
-                statusErrorProvider.SetError(createQuotaStatusCombo, "Please select a status.");
-            }
-            else
-            {
-                statusErrorProvider.SetError(createQuotaStatusCombo, string.Empty);
-            }
-            return isValid;
-        }
+        
 
         private void ValidateNotes()
         {
@@ -186,10 +149,7 @@ namespace EscopeWindowsApp
             ValidateDate();
         }
 
-        private void createQuoWareCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ValidateWarehouseSelection();
-        }
+        
 
         private void createQuoText_TextChanged(object sender, EventArgs e)
         {
@@ -201,20 +161,13 @@ namespace EscopeWindowsApp
             ValidateProductSearch();
         }
 
-        private void createQuoOderTaxText_TextChanged(object sender, EventArgs e)
-        {
-            ValidateTax();
-        }
-
+        
         private void createQuotaDisText_TextChanged(object sender, EventArgs e)
         {
             ValidateDiscount();
         }
 
-        private void createQuotaStatusCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ValidateStatus();
-        }
+        
 
         private void createQuotaNoteText_TextChanged(object sender, EventArgs e)
         {
@@ -225,11 +178,8 @@ namespace EscopeWindowsApp
         {
             bool isValid = ValidateCustomerName()
                 & ValidateDate()
-                & ValidateWarehouseSelection()
                 & ValidateProductSelection()
-                & ValidateTax()
-                & ValidateDiscount()
-                & ValidateStatus();
+                & ValidateDiscount();
 
             if (isValid)
             {
