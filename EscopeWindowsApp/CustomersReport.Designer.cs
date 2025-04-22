@@ -38,7 +38,6 @@
             this.dateFilterCusCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.customersReportDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.generateCustomersExcelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.customersTotAmontLabel = new System.Windows.Forms.Label();
             this.generateCustomersPdfBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.customerSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.headerPanel.SuspendLayout();
@@ -148,7 +147,7 @@
             this.customersReportDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.customersReportDataGrid.RowTemplate.Height = 35;
             this.customersReportDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.customersReportDataGrid.Size = new System.Drawing.Size(882, 209);
+            this.customersReportDataGrid.Size = new System.Drawing.Size(882, 236);
             this.customersReportDataGrid.TabIndex = 44;
             this.customersReportDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.customersReportDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -193,15 +192,6 @@
             this.generateCustomersExcelBtn.TabIndex = 49;
             this.generateCustomersExcelBtn.Text = "EXCEL";
             this.generateCustomersExcelBtn.Click += new System.EventHandler(this.generateCustomersExcelBtn_Click);
-            // 
-            // customersTotAmontLabel
-            // 
-            this.customersTotAmontLabel.AutoSize = true;
-            this.customersTotAmontLabel.Location = new System.Drawing.Point(781, 347);
-            this.customersTotAmontLabel.Name = "customersTotAmontLabel";
-            this.customersTotAmontLabel.Size = new System.Drawing.Size(28, 13);
-            this.customersTotAmontLabel.TabIndex = 51;
-            this.customersTotAmontLabel.Text = "0:00";
             // 
             // generateCustomersPdfBtn
             // 
@@ -256,7 +246,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 450);
-            this.Controls.Add(this.customersTotAmontLabel);
             this.Controls.Add(this.generateCustomersPdfBtn);
             this.Controls.Add(this.generateCustomersExcelBtn);
             this.Controls.Add(this.customersReportDataGrid);
@@ -271,7 +260,6 @@
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customersReportDataGrid)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -285,6 +273,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView customersReportDataGrid;
         private Siticone.Desktop.UI.WinForms.SiticoneButton generateCustomersPdfBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton generateCustomersExcelBtn;
-        private System.Windows.Forms.Label customersTotAmontLabel;
     }
 }

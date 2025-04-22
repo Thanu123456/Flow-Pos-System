@@ -178,6 +178,8 @@
             this.topProductsPieChart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.topProductsPieChart.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea2.Area3DStyle.Enable3D = true;
+            chartArea2.Area3DStyle.IsRightAngleAxes = false;
+            chartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
             chartArea2.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
             chartArea2.Position.Auto = false;
@@ -193,6 +195,7 @@
             legend1.Font = new System.Drawing.Font("Segoe UI", 8F);
             legend1.InterlacedRows = true;
             legend1.IsDockedInsideChartArea = false;
+            legend1.IsTextAutoFit = false;
             legend1.Name = "Legend1";
             legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
             legend1.TitleAlignment = System.Drawing.StringAlignment.Far;
