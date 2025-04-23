@@ -1,116 +1,289 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
     public partial class SaleReturnForm : Form
     {
-        private DataTable saleReturnsTable; // Data source for sale returns
-        private int currentIndex = 0; // Current index for navigation
+        private DataTable refundsTable;
+        private BindingSource bindingSource;
+        private int currentIndex = 0;
+        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
 
         public SaleReturnForm()
         {
             InitializeComponent();
+            bindingSource = new BindingSource();
             LoadSaleReturnsData();
+            // Explicitly wire all events
+            saleReDataGridView.CellFormatting += SaleReDataGridView_CellFormatting;
+            saleReDataGridView.CellContentClick += SaleReDataGridView_CellContentClick;
         }
 
         private void SaleReturnForm_Load(object sender, EventArgs e)
         {
-            // Initialize sale returns data on form load
-            saleReDataGridView.DataSource = saleReturnsTable;
+            ConfigureDataGridView();
+            saleReDataGridView.DataSource = bindingSource;
+        }
+
+        private void ConfigureDataGridView()
+        {
+            saleReDataGridView.AutoGenerateColumns = false;
+            saleReDataGridView.Columns.Clear();
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "bill_no",
+                Name = "bill_no",
+                HeaderText = "Bill No"
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "product_name",
+                Name = "product_name",
+                HeaderText = "Product Name",
+                Width = 150
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "variation_type",
+                Name = "variation_type",
+                HeaderText = "Variation Type",
+                Width = 100
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "unit",
+                Name = "unit",
+                HeaderText = "Unit",
+                Width = 80
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "quantity",
+                Name = "quantity",
+                HeaderText = "Quantity",
+                Width = 80,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "price",
+                Name = "price",
+                HeaderText = "Price",
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "total_price",
+                Name = "total_price",
+                HeaderText = "Total Refund",
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "refund_date",
+                Name = "refund_date",
+                HeaderText = "Refund Date",
+                Width = 120,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" }
+            });
+
+            saleReDataGridView.AllowUserToAddRows = false;
+            saleReDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            saleReDataGridView.MultiSelect = false;
+
+            // Set text color to black for all cells
+            saleReDataGridView.DefaultCellStyle.ForeColor = Color.Black;
         }
 
         private void LoadSaleReturnsData()
         {
-            // Load sale returns data into saleReturnsTable
-            saleReturnsTable = new DataTable();
-            saleReturnsTable.Columns.Add("SaleReturnId", typeof(int));
-            saleReturnsTable.Columns.Add("ProductName", typeof(string));
-            saleReturnsTable.Columns.Add("Quantity", typeof(int));
-            saleReturnsTable.Columns.Add("ReturnDate", typeof(DateTime));
-            saleReturnsTable.Columns.Add("Reason", typeof(string));
+            try
+            {
+                refundsTable = new DataTable();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            bill_no,
+                            product_name,
+                            COALESCE(variation_type, 'N/A') AS variation_type,
+                            unit,
+                            quantity,
+                            price,
+                            total_price,
+                            refund_date
+                        FROM refunds
+                        ORDER BY refund_date DESC";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(refundsTable);
+                    }
+                }
 
-            // Sample data - replace with actual data retrieval logic
-            saleReturnsTable.Rows.Add(1, "Laptop", 1, DateTime.Now.AddDays(-10), "Defective");
-            saleReturnsTable.Rows.Add(2, "Smartphone", 2, DateTime.Now.AddDays(-7), "Damaged");
-            saleReturnsTable.Rows.Add(3, "Tablet", 1, DateTime.Now.AddDays(-5), "Incorrect Model");
-            saleReturnsTable.Rows.Add(4, "Headphones", 3, DateTime.Now.AddDays(-2), "Changed Mind");
+                // Replace DBNull with default values
+                foreach (DataRow row in refundsTable.Rows)
+                {
+                    for (int i = 0; i < refundsTable.Columns.Count; i++)
+                    {
+                        if (row.IsNull(i))
+                        {
+                            if (refundsTable.Columns[i].DataType == typeof(string))
+                            {
+                                row[i] = "N/A";
+                            }
+                            else if (refundsTable.Columns[i].DataType == typeof(decimal))
+                            {
+                                row[i] = 0m;
+                            }
+                            else if (refundsTable.Columns[i].DataType == typeof(DateTime))
+                            {
+                                row[i] = DateTime.MinValue;
+                            }
+                        }
+                    }
+                }
+
+                bindingSource.DataSource = refundsTable;
+
+                // Select the first row if available
+                if (saleReDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading sales returns: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                refundsTable = new DataTable();
+                refundsTable.Columns.Add("bill_no", typeof(string));
+                refundsTable.Columns.Add("product_name", typeof(string));
+                refundsTable.Columns.Add("variation_type", typeof(string));
+                refundsTable.Columns.Add("unit", typeof(string));
+                refundsTable.Columns.Add("quantity", typeof(decimal));
+                refundsTable.Columns.Add("price", typeof(decimal));
+                refundsTable.Columns.Add("total_price", typeof(decimal));
+                refundsTable.Columns.Add("refund_date", typeof(DateTime));
+                bindingSource.DataSource = refundsTable;
+            }
         }
 
         private void saleReSearchText_TextChanged(object sender, EventArgs e)
         {
-            // Search sales returns as text changes
-            string searchText = saleReSearchText.Text.Trim().ToLower();
-
-            if (!string.IsNullOrEmpty(searchText))
+            try
             {
-                var filteredRows = saleReturnsTable.AsEnumerable()
-                    .Where(row => row.Field<string>("ProductName").ToLower().Contains(searchText)
-                               || row.Field<string>("Reason").ToLower().Contains(searchText));
-
-                if (filteredRows.Any())
+                string searchText = saleReSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
                 {
-                    saleReDataGridView.DataSource = filteredRows.CopyToDataTable();
+                    bindingSource.Filter = $"bill_no LIKE '%{searchText}%'";
                 }
                 else
                 {
-                    saleReDataGridView.DataSource = null;
+                    bindingSource.Filter = null;
+                }
+
+                // Reset current index after filtering
+                if (saleReDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
                 }
             }
-            else
+            catch (Exception ex)
             {
-                saleReDataGridView.DataSource = saleReturnsTable;
+                MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
             }
         }
 
         private void saleReFilterBtn_Click(object sender, EventArgs e)
         {
-            // Filter sale returns where SaleReturnId is greater than 2
-            var filteredRows = saleReturnsTable.AsEnumerable()
-                .Where(row => row.Field<int>("SaleReturnId") > 2);
+            try
+            {
+                DateTime selectedDate = selectSaleReDateTime.Value.Date;
+                bindingSource.Filter = $"refund_date >= #{selectedDate:yyyy-MM-dd}# AND refund_date < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
 
-            if (filteredRows.Any())
-            {
-                saleReDataGridView.DataSource = filteredRows.CopyToDataTable();
+                // Reset current index after filtering
+                if (saleReDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
+                }
             }
-            else
+            catch (Exception ex)
             {
-                saleReDataGridView.DataSource = null;
+                MessageBox.Show($"Error applying date filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
             }
         }
 
-        private void saleReDataComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void saleReturnRefreshBtn_Click(object sender, EventArgs e)
         {
-            // Handle selection change in ComboBox if needed
-            // For example, filter sale returns based on selected criteria
+            LoadSaleReturnsData();
+            saleReSearchText.Text = string.Empty;
+            selectSaleReDateTime.Value = DateTime.Now;
+            bindingSource.Filter = null; // Clear any existing filter
+
+            // Reset current index after refreshing
+            if (saleReDataGridView.Rows.Count > 0)
+            {
+                currentIndex = 0;
+                saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
+            }
         }
 
-        private void saleReDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SaleReDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Handle cell content click event
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = saleReDataGridView.Rows[e.RowIndex];
-                int saleReturnId = Convert.ToInt32(row.Cells["SaleReturnId"].Value);
-                string productName = row.Cells["ProductName"].Value.ToString();
-                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                DateTime returnDate = Convert.ToDateTime(row.Cells["ReturnDate"].Value);
-                string reason = row.Cells["Reason"].Value.ToString();
+            if (e.RowIndex < 0) return;
 
-                // Implement logic to handle the cell content click event
+            if (saleReDataGridView.Columns[e.ColumnIndex].Name == "quantity")
+            {
+                if (e.Value != null)
+                {
+                    string unit = saleReDataGridView.Rows[e.RowIndex].Cells["unit"].Value?.ToString();
+                    if (unit == "Pieces")
+                    {
+                        e.Value = Convert.ToDecimal(e.Value).ToString("F0");
+                    }
+                    else
+                    {
+                        e.Value = Convert.ToDecimal(e.Value).ToString("F2");
+                    }
+                    e.FormattingApplied = true;
+                }
             }
+            else if (saleReDataGridView.Columns[e.ColumnIndex].Name != "refund_date")
+            {
+                if (e.Value == DBNull.Value || e.Value == null)
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void SaleReDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // No action required as per current requirements; columns are display-only
         }
 
         private void saleReFirstBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to first record
             if (saleReDataGridView.Rows.Count > 0)
             {
                 currentIndex = 0;
@@ -120,7 +293,6 @@ namespace EscopeWindowsApp
 
         private void saleRePrevBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to previous record
             if (currentIndex > 0)
             {
                 currentIndex--;
@@ -130,7 +302,6 @@ namespace EscopeWindowsApp
 
         private void saleReNextBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to next record
             if (currentIndex < saleReDataGridView.Rows.Count - 1)
             {
                 currentIndex++;
@@ -138,14 +309,29 @@ namespace EscopeWindowsApp
             }
         }
 
+        private void saleReDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // this is the sales returns data from refunds table.
+            // cloumns are : billno, product name, variation type, unit, quantity, price, total price, refund date(date only)
+        }
+
         private void saleReLastBtn_Click(object sender, EventArgs e)
         {
-            // Navigate to last record
             if (saleReDataGridView.Rows.Count > 0)
             {
                 currentIndex = saleReDataGridView.Rows.Count - 1;
                 saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
             }
+        }
+
+        private void saleReDataComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder for pagination logic if needed (e.g., items per page)
+        }
+
+        private void selectSaleReDateTime_ValueChanged(object sender, EventArgs e)
+        {
+            // No action needed; filtering is handled by saleReFilterBtn_Click
         }
     }
 }
