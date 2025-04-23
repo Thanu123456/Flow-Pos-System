@@ -95,8 +95,6 @@ namespace EscopeWindowsApp
                     SessionManager.CashInHand = decimal.Parse(cashInHandText.Text);
                     SessionManager.SessionStartTime = DateTime.Now;
 
-                    MessageBox.Show("Cash in hand saved successfully!", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 this.Hide();

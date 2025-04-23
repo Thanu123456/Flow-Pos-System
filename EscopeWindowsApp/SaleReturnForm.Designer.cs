@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.saleReDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saleReFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleReSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.saleReDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleReAllPgLabel = new System.Windows.Forms.Label();
             this.saleReOfLabel = new System.Windows.Forms.Label();
             this.saleRePgRangeLabel = new System.Windows.Forms.Label();
@@ -52,35 +44,11 @@
             this.saleRePrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleReNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleReLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.selectSaleReDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
+            this.saleReturnRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.saleReDataGridView)).BeginInit();
             this.saleReBtnPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // saleReDataComboBox1
-            // 
-            this.saleReDataComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleReDataComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.saleReDataComboBox1.BorderRadius = 8;
-            this.saleReDataComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.saleReDataComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.saleReDataComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleReDataComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.saleReDataComboBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleReDataComboBox1.ForeColor = System.Drawing.Color.Gray;
-            this.saleReDataComboBox1.ItemHeight = 30;
-            this.saleReDataComboBox1.Items.AddRange(new object[] {
-            "Select Date",
-            "Today",
-            "This Week",
-            "Last Week",
-            "This Month",
-            "Last Month"});
-            this.saleReDataComboBox1.Location = new System.Drawing.Point(1158, 37);
-            this.saleReDataComboBox1.Name = "saleReDataComboBox1";
-            this.saleReDataComboBox1.Size = new System.Drawing.Size(209, 36);
-            this.saleReDataComboBox1.StartIndex = 0;
-            this.saleReDataComboBox1.TabIndex = 10;
-            this.saleReDataComboBox1.SelectedIndexChanged += new System.EventHandler(this.saleReDataComboBox1_SelectedIndexChanged);
             // 
             // saleReFilterBtn
             // 
@@ -94,7 +62,7 @@
             this.saleReFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.saleReFilterBtn.ForeColor = System.Drawing.Color.White;
             this.saleReFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.saleReFilterBtn.Location = new System.Drawing.Point(1098, 30);
+            this.saleReFilterBtn.Location = new System.Drawing.Point(1044, 30);
             this.saleReFilterBtn.Name = "saleReFilterBtn";
             this.saleReFilterBtn.Size = new System.Drawing.Size(43, 43);
             this.saleReFilterBtn.TabIndex = 8;
@@ -130,37 +98,29 @@
             // 
             // saleReDataGridView
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.saleReDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.saleReDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.saleReDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.saleReDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.saleReDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.saleReDataGridView.ColumnHeadersHeight = 25;
             this.saleReDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.saleReDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierID,
-            this.supName,
-            this.supDesc,
-            this.supEmail,
-            this.supPhone,
-            this.createdAt,
-            this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.saleReDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.saleReDataGridView.DefaultCellStyle = dataGridViewCellStyle12;
             this.saleReDataGridView.GridColor = System.Drawing.Color.White;
             this.saleReDataGridView.Location = new System.Drawing.Point(17, 100);
             this.saleReDataGridView.Name = "saleReDataGridView";
@@ -190,41 +150,6 @@
             this.saleReDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.saleReDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.saleReDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.saleReDataGridView_CellContentClick);
-            // 
-            // supplierID
-            // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
-            // 
-            // supName
-            // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
-            // 
-            // supDesc
-            // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
-            // 
-            // supEmail
-            // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
-            // 
-            // supPhone
-            // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
             // 
             // saleReAllPgLabel
             // 
@@ -381,12 +306,54 @@
             this.saleReLastBtn.TabIndex = 8;
             this.saleReLastBtn.Click += new System.EventHandler(this.saleReLastBtn_Click);
             // 
+            // selectSaleReDateTime
+            // 
+            this.selectSaleReDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectSaleReDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.selectSaleReDateTime.BorderColor = System.Drawing.Color.Gray;
+            this.selectSaleReDateTime.BorderRadius = 8;
+            this.selectSaleReDateTime.BorderThickness = 1;
+            this.selectSaleReDateTime.Checked = true;
+            this.selectSaleReDateTime.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.selectSaleReDateTime.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectSaleReDateTime.ForeColor = System.Drawing.Color.Black;
+            this.selectSaleReDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.selectSaleReDateTime.Location = new System.Drawing.Point(1101, 30);
+            this.selectSaleReDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.selectSaleReDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.selectSaleReDateTime.Name = "selectSaleReDateTime";
+            this.selectSaleReDateTime.Size = new System.Drawing.Size(268, 42);
+            this.selectSaleReDateTime.TabIndex = 38;
+            this.selectSaleReDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
+            this.selectSaleReDateTime.ValueChanged += new System.EventHandler(this.selectSaleReDateTime_ValueChanged);
+            // 
+            // saleReturnRefreshBtn
+            // 
+            this.saleReturnRefreshBtn.Animated = true;
+            this.saleReturnRefreshBtn.BorderRadius = 8;
+            this.saleReturnRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.saleReturnRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.saleReturnRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saleReturnRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.saleReturnRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.saleReturnRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.saleReturnRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.saleReturnRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.saleReturnRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.saleReturnRefreshBtn.Location = new System.Drawing.Point(443, 30);
+            this.saleReturnRefreshBtn.Name = "saleReturnRefreshBtn";
+            this.saleReturnRefreshBtn.Size = new System.Drawing.Size(42, 42);
+            this.saleReturnRefreshBtn.TabIndex = 39;
+            this.saleReturnRefreshBtn.Click += new System.EventHandler(this.saleReturnRefreshBtn_Click);
+            // 
             // SaleReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.saleReturnRefreshBtn);
+            this.Controls.Add(this.selectSaleReDateTime);
             this.Controls.Add(this.saleReBtnPanel);
             this.Controls.Add(this.saleReAllPgLabel);
             this.Controls.Add(this.saleReOfLabel);
@@ -395,7 +362,6 @@
             this.Controls.Add(this.saleReRecordsPerLabel);
             this.Controls.Add(this.saleReDataGridView);
             this.Controls.Add(this.saleReSearchText);
-            this.Controls.Add(this.saleReDataComboBox1);
             this.Controls.Add(this.saleReFilterBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -415,18 +381,9 @@
         }
 
         #endregion
-
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox saleReDataComboBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleReFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox saleReSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView saleReDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
         private System.Windows.Forms.Label saleReAllPgLabel;
         private System.Windows.Forms.Label saleReOfLabel;
         private System.Windows.Forms.Label saleRePgRangeLabel;
@@ -437,5 +394,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleRePrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleReNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleReLastBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectSaleReDateTime;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton saleReturnRefreshBtn;
     }
 }
