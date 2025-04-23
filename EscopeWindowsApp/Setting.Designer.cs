@@ -66,6 +66,7 @@
             this.setImgUploadBtn.Size = new System.Drawing.Size(30, 30);
             this.setImgUploadBtn.TabIndex = 76;
             this.setImgUploadBtn.UseTransparentBackground = true;
+            this.setImgUploadBtn.Click += new System.EventHandler(this.setImgUploadBtn_Click);
             // 
             // setLogoBox
             // 
@@ -78,6 +79,7 @@
             this.setLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.setLogoBox.TabIndex = 77;
             this.setLogoBox.TabStop = false;
+            this.setLogoBox.Click += new System.EventHandler(this.setLogoBox_Click);
             // 
             // setSaveBtn
             // 
@@ -97,6 +99,7 @@
             this.setSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.setSaveBtn.TabIndex = 75;
             this.setSaveBtn.Text = "Save";
+            this.setSaveBtn.Click += new System.EventHandler(this.setSaveBtn_Click);
             // 
             // setLogoChangelabel
             // 
@@ -149,6 +152,7 @@
             this.settingNameText.SelectedText = "";
             this.settingNameText.Size = new System.Drawing.Size(348, 42);
             this.settingNameText.TabIndex = 72;
+            this.settingNameText.TextChanged += new System.EventHandler(this.settingNameText_TextChanged);
             // 
             // settingLabel
             // 
@@ -197,6 +201,7 @@
             this.setEmailText.SelectedText = "";
             this.setEmailText.Size = new System.Drawing.Size(348, 42);
             this.setEmailText.TabIndex = 78;
+            this.setEmailText.TextChanged += new System.EventHandler(this.setEmailText_TextChanged);
             // 
             // setAddressLabel
             // 
@@ -235,6 +240,7 @@
             this.setAddressText.SelectedText = "";
             this.setAddressText.Size = new System.Drawing.Size(348, 42);
             this.setAddressText.TabIndex = 82;
+            this.setAddressText.TextChanged += new System.EventHandler(this.setAddressText_TextChanged);
             // 
             // setPhoneNoLabel
             // 
@@ -273,6 +279,7 @@
             this.setPhoneNotext.SelectedText = "";
             this.setPhoneNotext.Size = new System.Drawing.Size(348, 42);
             this.setPhoneNotext.TabIndex = 80;
+            this.setPhoneNotext.TextChanged += new System.EventHandler(this.setPhoneNotext_TextChanged);
             // 
             // setPanel
             // 
@@ -295,6 +302,7 @@
             this.setPanel.Name = "setPanel";
             this.setPanel.Size = new System.Drawing.Size(799, 370);
             this.setPanel.TabIndex = 84;
+            this.setPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.setPanel_Paint);
             // 
             // Setting
             // 
@@ -311,6 +319,7 @@
             this.MinimizeBox = false;
             this.Name = "Setting";
             this.Text = "Setting";
+            this.Load += new System.EventHandler(this.Setting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.setLogoBox)).EndInit();
             this.setPanel.ResumeLayout(false);
             this.setPanel.PerformLayout();
