@@ -14,7 +14,12 @@ namespace EscopeWindowsApp
     {
         public DashBoardForm()
         {
+            
             InitializeComponent();
+            // Disable horizontal scrollbar
+            this.AutoScroll = true; // Enable scrolling (optional, for vertical scroll)
+            this.HorizontalScroll.Enabled = false; // Disable horizontal scrollbar
+            this.HorizontalScroll.Visible = false; // Hide horizontal scrollbar
         }
 
         private void numberOrderLabel_Click(object sender, EventArgs e)
@@ -44,7 +49,7 @@ namespace EscopeWindowsApp
 
         private void DashBoardForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void siticonePanel1_Paint(object sender, PaintEventArgs e)
@@ -62,61 +67,24 @@ namespace EscopeWindowsApp
 
         }
 
-        private void dashNOCBtn_Click(object sender, EventArgs e)
+        private void dashTotPurPanel_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is AddCustomerForm)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-                }
-            }
-            AddCustomerForm addCustomerForm = new AddCustomerForm();
-            addCustomerForm.Show();
+
         }
 
-        private void dashNOSBtn_Click(object sender, EventArgs e)
+        private void dashTotSalePriceLabel_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is AddSupplierForm)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-                }
-            }
-            AddSupplierForm addSupplierForm = new AddSupplierForm();
-            addSupplierForm.Show();
+
         }
 
-        private void dashNOPBtn_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is CreateProduct)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-                }
-            }
-            CreateProduct createProduct = new CreateProduct();
-            createProduct.Show();
+
+        }
+
+        private void thisYearBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

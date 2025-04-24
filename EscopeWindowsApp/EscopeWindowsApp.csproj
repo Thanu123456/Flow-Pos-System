@@ -438,6 +438,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchasesForm.Designer.cs">
+      <DependentUpon>PurchasesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -657,6 +663,9 @@
     <EmbeddedResource Include="ProductPricing.resx">
       <DependentUpon>ProductPricing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PurchasesForm.resx">
+      <DependentUpon>PurchasesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuotationsForm.resx">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -723,6 +732,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-stocks-growth-96.png" />
+    <None Include="Resources\icons8-buy-96.png" />
+    <None Include="Resources\icons8-wallet-96.png" />
+    <None Include="Resources\icons8-transaction-96.png" />
+    <None Include="Resources\transaction-72.png" />
+    <None Include="Resources\transaction-72 %281%29.png" />
+    <None Include="Resources\transaction-48 %281%29.png" />
+    <None Include="Resources\transaction-48 %282%29.png" />
+    <None Include="Resources\DollarRet.png" />
+    <None Include="Resources\icons8-transaction-48.png" />
+    <None Include="Resources\icons8-wallet-64 %281%29.png" />
+    <None Include="Resources\icons8-wallet-64.png" />
+    <None Include="Resources\SaleIcon.png" />
     <None Include="Resources\export-pdf.png" />
     <None Include="Resources\posminus1.png" />
     <None Include="Resources\posplus1.png" />
