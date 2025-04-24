@@ -173,6 +173,16 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DollarRet {
+            get {
+                object obj = ResourceManager.GetObject("DollarRet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Down {
             get {
                 object obj = ResourceManager.GetObject("Down", resourceCulture);
@@ -306,6 +316,76 @@ namespace EscopeWindowsApp.Properties {
         internal static System.Drawing.Bitmap GrnWhite_Ori {
             get {
                 object obj = ResourceManager.GetObject("GrnWhite Ori", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_buy_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-buy-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_stocks_growth_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-stocks-growth-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_transaction_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-transaction-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_transaction_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-transaction-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_wallet_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-wallet-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_wallet_64__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-wallet-64 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_wallet_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-wallet-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,6 +723,16 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SaleIcon {
+            get {
+                object obj = ResourceManager.GetObject("SaleIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sales {
             get {
                 object obj = ResourceManager.GetObject("sales", resourceCulture);
@@ -726,6 +816,46 @@ namespace EscopeWindowsApp.Properties {
         internal static System.Drawing.Bitmap total_sales1 {
             get {
                 object obj = ResourceManager.GetObject("total-sales1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transaction_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("transaction-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transaction_48__2_ {
+            get {
+                object obj = ResourceManager.GetObject("transaction-48 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transaction_72 {
+            get {
+                object obj = ResourceManager.GetObject("transaction-72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transaction_72__1_ {
+            get {
+                object obj = ResourceManager.GetObject("transaction-72 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
