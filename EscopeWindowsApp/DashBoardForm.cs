@@ -8,30 +8,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting; // Add this for Chart control
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace EscopeWindowsApp
 {
     public partial class DashBoardForm : Form
     {
-        private DataTable salesTable; // Data source for recent sales
-        private DataTable expiryTable; // Data source for expiring products
-        private DataTable topCustomersTable; // Data source for top customers
-        private BindingSource salesBindingSource; // Binding source for recent sales DataGridView
-        private BindingSource expiryBindingSource; // Binding source for expire date alert DataGridView
+        private DataTable salesTable;
+        private DataTable expiryTable;
+        private DataTable topCustomersTable;
+        private DataTable topExpensesTable;
+        private BindingSource salesBindingSource;
+        private BindingSource expiryBindingSource;
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
-        private Font gridFont = new Font("Segoe UI", 9F); // Uniform font for DataGridView
+        private Font gridFont = new Font("Segoe UI", 9F);
 
         public DashBoardForm()
         {
             InitializeComponent();
-            // Disable horizontal scrollbar
             this.AutoScroll = true;
             this.HorizontalScroll.Enabled = false;
             this.HorizontalScroll.Visible = false;
             salesBindingSource = new BindingSource();
             expiryBindingSource = new BindingSource();
-            // Attach cell formatting events
             recentDataGridView.CellFormatting += RecentDataGridView_CellFormatting;
             expireDateAlertGridView.CellFormatting += ExpireDateAlertGridView_CellFormatting;
         }
@@ -48,18 +47,21 @@ namespace EscopeWindowsApp
 
             ConfigureTopCustomerPieChart();
             LoadTopCustomers();
+
+            ConfigureTopExpensesDoughnutChart();
+            LoadTopExpenses();
+
+            ConfigureSalesPurchColumnChart();
+            LoadSalesPurchData();
         }
 
         private void ConfigureRecentSalesGridView()
         {
             recentDataGridView.AutoGenerateColumns = false;
             recentDataGridView.Columns.Clear();
-
-            // Define the uniform font
-            recentDataGridView.DefaultCellStyle.Font = gridFont; // Set at the grid level
+            recentDataGridView.DefaultCellStyle.Font = gridFont;
             recentDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
 
-            // Add columns with consistent styling
             recentDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "bill_no",
@@ -100,21 +102,18 @@ namespace EscopeWindowsApp
                 DataPropertyName = "total_price",
                 Name = "total_price",
                 HeaderText = "TOTAL PRICE",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" } // Currency format
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" }
             });
             recentDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "sale_date",
                 Name = "sale_date",
                 HeaderText = "SALE DATE",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" } // Date format
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" }
             });
 
-            // Prevent the empty row at the end
             recentDataGridView.AllowUserToAddRows = false;
-
-            // Ensure uniform row height and disable auto-sizing
-            recentDataGridView.RowTemplate.Height = 45; // 45 is the best size for this
+            recentDataGridView.RowTemplate.Height = 45;
             recentDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             recentDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             recentDataGridView.ReadOnly = true;
@@ -125,12 +124,9 @@ namespace EscopeWindowsApp
         {
             expireDateAlertGridView.AutoGenerateColumns = false;
             expireDateAlertGridView.Columns.Clear();
-
-            // Define the uniform font
             expireDateAlertGridView.DefaultCellStyle.Font = gridFont;
             expireDateAlertGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
 
-            // Add columns with consistent styling
             expireDateAlertGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "product_id",
@@ -157,7 +153,7 @@ namespace EscopeWindowsApp
                 DataPropertyName = "purchase_date",
                 Name = "purchase_date",
                 HeaderText = "PURCHASE DATE",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd" } // Display only date
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd" }
             });
             expireDateAlertGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -167,11 +163,8 @@ namespace EscopeWindowsApp
                 DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd" }
             });
 
-            // Prevent the empty row at the end
             expireDateAlertGridView.AllowUserToAddRows = false;
-
-            // Ensure uniform row height and disable auto-sizing
-            expireDateAlertGridView.RowTemplate.Height = 45; // 45 is the best size for this
+            expireDateAlertGridView.RowTemplate.Height = 45;
             expireDateAlertGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             expireDateAlertGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
             expireDateAlertGridView.ReadOnly = true;
@@ -180,24 +173,187 @@ namespace EscopeWindowsApp
 
         private void ConfigureTopCustomerPieChart()
         {
-            // Clear any existing series
             topCustomerPieChart.Series.Clear();
-
-            // Add a new series for the pie chart
             Series series = new Series("TopCustomers")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = true, // Show values on the pie chart
-                LabelFormat = "C2", // Currency format
-                Font = new Font("Segoe UI", 9F)
+                IsValueShownAsLabel = false,
+                Font = new Font("Segoe UI", 9F),
+                ToolTip = "#VALX: #VALY{C2}"
             };
             topCustomerPieChart.Series.Add(series);
+            topCustomerPieChart.ChartAreas[0].Area3DStyle.Enable3D = true;
 
-            // Customize the chart appearance
-            topCustomerPieChart.ChartAreas[0].Area3DStyle.Enable3D = true; // 3D effect
-            topCustomerPieChart.Legends.Clear(); // Remove legend for simplicity (optional)
+            if (topCustomerPieChart.Legends.Count == 0)
+            {
+                topCustomerPieChart.Legends.Add(new Legend("Default"));
+            }
+            topCustomerPieChart.Legends[0].Enabled = true;
+            topCustomerPieChart.Legends[0].Docking = Docking.Bottom;
+            topCustomerPieChart.Legends[0].Font = new Font("Segoe UI", 9F);
+
             topCustomerPieChart.Titles.Clear();
-            //topCustomerPieChart.Titles.Add(new Title("Top 5 Customers This Month", Docking.Top, new Font("Segoe UI", 12F, FontStyle.Bold), Color.Black));
+        }
+
+        private void ConfigureTopExpensesDoughnutChart()
+        {
+            topExpensesDoughnutChart.Series.Clear();
+            Series series = new Series("TopExpenses")
+            {
+                ChartType = SeriesChartType.Doughnut,
+                IsValueShownAsLabel = false,
+                Font = new Font("Segoe UI", 9F),
+                ToolTip = "#VALX: #VALY{C2}"
+            };
+            topExpensesDoughnutChart.Series.Add(series);
+            topExpensesDoughnutChart.ChartAreas[0].Area3DStyle.Enable3D = true;
+
+            if (topExpensesDoughnutChart.Legends.Count == 0)
+            {
+                topExpensesDoughnutChart.Legends.Add(new Legend("Default"));
+            }
+            topExpensesDoughnutChart.Legends[0].Enabled = true;
+            topExpensesDoughnutChart.Legends[0].Docking = Docking.Bottom;
+            topExpensesDoughnutChart.Legends[0].Font = new Font("Segoe UI", 9F);
+
+            topExpensesDoughnutChart.Titles.Clear();
+            topExpensesDoughnutChart.Titles.Add(new Title
+            {
+                Text = "Top 5 Expenses This Month",
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                Docking = Docking.Top
+            });
+        }
+
+        private void ConfigureSalesPurchColumnChart()
+        {
+            salesPurchStackedColumn.Series.Clear();
+
+            Series salesSeries = new Series("Sales")
+            {
+                ChartType = SeriesChartType.Column,
+                Color = Color.FromArgb(64, 64, 128), // Dark blue
+                ToolTip = "Sales on #VALX: #VALY{N2} LKR (in thousands)"
+            };
+
+            Series purchSeries = new Series("Purchases")
+            {
+                ChartType = SeriesChartType.Column,
+                Color = Color.FromArgb(200, 200, 230), // Light purple
+                ToolTip = "Purchases on #VALX: #VALY{N2} LKR (in thousands)"
+            };
+
+            salesPurchStackedColumn.Series.Add(salesSeries);
+            salesPurchStackedColumn.Series.Add(purchSeries);
+
+            salesPurchStackedColumn.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Segoe UI", 9F);
+            salesPurchStackedColumn.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Segoe UI", 9F);
+            salesPurchStackedColumn.ChartAreas[0].AxisY.Title = "(LKR thousand)";
+            salesPurchStackedColumn.ChartAreas[0].AxisY.TitleFont = new Font("Segoe UI", 9F);
+            salesPurchStackedColumn.ChartAreas[0].AxisY.LabelStyle.Format = "N0"; // No decimal places
+            salesPurchStackedColumn.ChartAreas[0].AxisY.Minimum = 0;
+            // Remove fixed maximum to allow auto-scaling
+            salesPurchStackedColumn.ChartAreas[0].AxisY.Maximum = double.NaN; // Let chart auto-scale
+            salesPurchStackedColumn.ChartAreas[0].AxisY.Interval = 0; // Let chart determine interval automatically
+
+            if (salesPurchStackedColumn.Legends.Count == 0)
+            {
+                salesPurchStackedColumn.Legends.Add(new Legend("Default"));
+            }
+            salesPurchStackedColumn.Legends[0].Enabled = true;
+            salesPurchStackedColumn.Legends[0].Docking = Docking.Top;
+            salesPurchStackedColumn.Legends[0].Font = new Font("Segoe UI", 9F);
+
+            salesPurchStackedColumn.Titles.Clear();
+            
+        }
+
+        private void LoadSalesPurchData()
+        {
+            try
+            {
+                salesPurchStackedColumn.Series["Sales"].Points.Clear();
+                salesPurchStackedColumn.Series["Purchases"].Points.Clear();
+
+                string[] days = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+                decimal[] salesData = new decimal[7];
+                decimal[] purchData = new decimal[7];
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    DateTime today = DateTime.Today;
+                    DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+                    if (today.DayOfWeek == DayOfWeek.Sunday) startOfWeek = startOfWeek.AddDays(-7);
+                    DateTime endOfWeek = startOfWeek.AddDays(6);
+
+                    string salesQuery = @"
+                        SELECT 
+                            DAYOFWEEK(sale_date) AS day_of_week,
+                            SUM(total_price) / 1000 AS total_sales_thousands
+                        FROM sales
+                        WHERE sale_date >= @startDate AND sale_date <= @endDate
+                        GROUP BY DAYOFWEEK(sale_date)";
+                    using (MySqlCommand salesCmd = new MySqlCommand(salesQuery, connection))
+                    {
+                        salesCmd.Parameters.AddWithValue("@startDate", startOfWeek);
+                        salesCmd.Parameters.AddWithValue("@endDate", endOfWeek.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = salesCmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int dayOfWeek = reader.GetInt32("day_of_week");
+                                decimal totalSales = reader.GetDecimal("total_sales_thousands");
+                                int index = (dayOfWeek == 1) ? 6 : dayOfWeek - 2;
+                                salesData[index] = totalSales;
+                            }
+                        }
+                    }
+
+                    string purchQuery = @"
+                        SELECT 
+                            DAYOFWEEK(date) AS day_of_week,
+                            SUM(total_amount) / 1000 AS total_purch_thousands
+                        FROM grn
+                        WHERE date >= @startDate AND date <= @endDate
+                        GROUP BY DAYOFWEEK(date)";
+                    using (MySqlCommand purchCmd = new MySqlCommand(purchQuery, connection))
+                    {
+                        purchCmd.Parameters.AddWithValue("@startDate", startOfWeek);
+                        purchCmd.Parameters.AddWithValue("@endDate", endOfWeek.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = purchCmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int dayOfWeek = reader.GetInt32("day_of_week");
+                                decimal totalPurch = reader.GetDecimal("total_purch_thousands");
+                                int index = (dayOfWeek == 1) ? 6 : dayOfWeek - 2;
+                                purchData[index] = totalPurch;
+                            }
+                        }
+                    }
+                }
+
+                for (int i = 0; i < 7; i++)
+                {
+                    salesPurchStackedColumn.Series["Sales"].Points.AddXY(days[i], salesData[i]);
+                    salesPurchStackedColumn.Series["Purchases"].Points.AddXY(days[i], purchData[i]);
+                }
+
+                // Recalculate Y-axis scale based on data
+                salesPurchStackedColumn.ChartAreas[0].RecalculateAxesScale();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading sales and purchases data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string[] days = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+                for (int i = 0; i < 7; i++)
+                {
+                    salesPurchStackedColumn.Series["Sales"].Points.AddXY(days[i], 0);
+                    salesPurchStackedColumn.Series["Purchases"].Points.AddXY(days[i], 0);
+                }
+            }
         }
 
         private void LoadTopCustomers()
@@ -208,7 +364,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    // Query to get the total purchases by customer for the current month
                     string query = @"
                         SELECT 
                             CASE 
@@ -228,29 +383,63 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Clear existing data points
                 topCustomerPieChart.Series["TopCustomers"].Points.Clear();
 
-                // Add data points to the pie chart
                 foreach (DataRow row in topCustomersTable.Rows)
                 {
                     string customerName = row["customer_name"].ToString();
                     decimal totalSpent = Convert.ToDecimal(row["total_spent"]);
-                    topCustomerPieChart.Series["TopCustomers"].Points.AddXY(customerName, totalSpent);
-                }
-
-                // Customize data point labels to show customer name and amount
-                foreach (DataPoint point in topCustomerPieChart.Series["TopCustomers"].Points)
-                {
-                    point.Label = $"{point.AxisLabel}\n{point.YValues[0]:C2}";
+                    int pointIndex = topCustomerPieChart.Series["TopCustomers"].Points.AddXY(customerName, totalSpent);
+                    topCustomerPieChart.Series["TopCustomers"].Points[pointIndex].LegendText = customerName;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading top customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 topCustomersTable = new DataTable();
                 topCustomersTable.Columns.Add("customer_name", typeof(string));
                 topCustomersTable.Columns.Add("total_spent", typeof(decimal));
+            }
+        }
+
+        private void LoadTopExpenses()
+        {
+            try
+            {
+                topExpensesTable = new DataTable();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            title AS expense_title,
+                            SUM(amount) AS total_amount
+                        FROM expenses
+                        WHERE YEAR(expense_date) = YEAR(CURDATE())
+                        AND MONTH(expense_date) = MONTH(CURDATE())
+                        GROUP BY title
+                        ORDER BY total_amount DESC
+                        LIMIT 5";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(topExpensesTable);
+                    }
+                }
+
+                topExpensesDoughnutChart.Series["TopExpenses"].Points.Clear();
+
+                foreach (DataRow row in topExpensesTable.Rows)
+                {
+                    string expenseTitle = row["expense_title"].ToString();
+                    decimal totalAmount = Convert.ToDecimal(row["total_amount"]);
+                    int pointIndex = topExpensesDoughnutChart.Series["TopExpenses"].Points.AddXY(expenseTitle, totalAmount);
+                    topExpensesDoughnutChart.Series["TopExpenses"].Points[pointIndex].LegendText = expenseTitle;
+                }
+            }
+            catch (Exception)
+            {
+                topExpensesTable = new DataTable();
+                topExpensesTable.Columns.Add("expense_title", typeof(string));
+                topExpensesTable.Columns.Add("total_amount", typeof(decimal));
             }
         }
 
@@ -262,7 +451,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    // Query to fetch the last 8 sales ordered by sale_date descending
                     string query = "SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date FROM sales ORDER BY sale_date DESC LIMIT 7";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
@@ -270,7 +458,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Replace DBNull with default values
                 foreach (DataRow row in salesTable.Rows)
                 {
                     for (int i = 0; i < salesTable.Columns.Count; i++)
@@ -299,9 +486,8 @@ namespace EscopeWindowsApp
 
                 salesBindingSource.DataSource = salesTable;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading recent sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 salesTable = new DataTable();
                 salesTable.Columns.Add("bill_no", typeof(string));
                 salesTable.Columns.Add("customer", typeof(string));
@@ -322,7 +508,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    // Query to fetch products expiring within the next 14 days
                     string query = @"
                         SELECT 
                             gi.product_id,
@@ -342,7 +527,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Replace DBNull with default values
                 foreach (DataRow row in expiryTable.Rows)
                 {
                     for (int i = 0; i < expiryTable.Columns.Count; i++)
@@ -367,9 +551,8 @@ namespace EscopeWindowsApp
 
                 expiryBindingSource.DataSource = expiryTable;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading expiring products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 expiryTable = new DataTable();
                 expiryTable.Columns.Add("product_id", typeof(int));
                 expiryTable.Columns.Add("product_name", typeof(string));
@@ -383,9 +566,7 @@ namespace EscopeWindowsApp
         private void RecentDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
-            // Enforce the font for every cell during formatting
-            e.CellStyle.Font = gridFont; // Ensure the font is applied consistently
+            e.CellStyle.Font = gridFont;
 
             if (e.Value == DBNull.Value || e.Value == null)
             {
@@ -402,15 +583,12 @@ namespace EscopeWindowsApp
         private void ExpireDateAlertGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
-            // Enforce the font for every cell during formatting
             e.CellStyle.Font = gridFont;
 
-            // Highlight expiry_date in red
             if (expireDateAlertGridView.Columns[e.ColumnIndex].Name == "expiry_date")
             {
                 e.CellStyle.ForeColor = Color.Red;
-                e.CellStyle.SelectionForeColor = Color.Red; // Ensure visibility when selected
+                e.CellStyle.SelectionForeColor = Color.Red;
             }
 
             if (e.Value == DBNull.Value || e.Value == null)
@@ -420,136 +598,34 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void recentDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void recentDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void expireDateAlertGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void topCustomerPieChart_Click(object sender, EventArgs e) { }
+        private void topExpensesDoughnutChart_Click(object sender, EventArgs e) { }
+
+        private void salesPurchStackedColumn_Click(object sender, EventArgs e)
         {
-            // Ensure the click is on a valid row and not the header
-            if (e.RowIndex >= 0)
-            {
-                // Get the selected row
-                DataGridViewRow row = recentDataGridView.Rows[e.RowIndex];
-
-                // Extract data from the row
-                string billNo = row.Cells["bill_no"].Value?.ToString() ?? "N/A";
-                string customerName = row.Cells["customer"].Value?.ToString() ?? "N/A";
-                string cashierName = row.Cells["user_name"].Value?.ToString() ?? "N/A";
-                int quantity = row.Cells["quantity_of_items"].Value != null ? Convert.ToInt32(row.Cells["quantity_of_items"].Value) : 0;
-                string paymentMethod = row.Cells["payment_method"].Value?.ToString() ?? "N/A";
-                decimal totalPrice = row.Cells["total_price"].Value != null ? Convert.ToDecimal(row.Cells["total_price"].Value) : 0.00m;
-                DateTime saleDate = row.Cells["sale_date"].Value != null && row.Cells["sale_date"].Value != DBNull.Value
-                    ? Convert.ToDateTime(row.Cells["sale_date"].Value)
-                    : DateTime.MinValue;
-
-                // Show sale details in a message box
-                string message = $"Reference No: {billNo}\n" +
-                                $"Customer: {customerName}\n" +
-                                $"Cashier: {cashierName}\n" +
-                                $"Quantity: {quantity}\n" +
-                                $"Payment Method: {paymentMethod}\n" +
-                                $"Total Price: {totalPrice:N2}\n" +
-                                $"Sale Date: {(saleDate == DateTime.MinValue ? "N/A" : saleDate.ToString("yyyy-MM-dd HH:mm:ss"))}";
-                MessageBox.Show(message, "Sale Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Optional: Open a new form to display detailed sale information
-                // Example: SaleDetailsForm detailsForm = new SaleDetailsForm(billNo);
-                // detailsForm.ShowDialog();
-            }
+            ConfigureSalesPurchColumnChart();
+            LoadSalesPurchData();
         }
 
-        private void expireDateAlertGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Ensure the click is on a valid row and not the header
-            if (e.RowIndex >= 0)
-            {
-                // Get the selected row
-                DataGridViewRow row = expireDateAlertGridView.Rows[e.RowIndex];
-
-                // Extract data from the row
-                int productId = row.Cells["product_id"].Value != null ? Convert.ToInt32(row.Cells["product_id"].Value) : 0;
-                string productName = row.Cells["product_name"].Value?.ToString() ?? "N/A";
-                string variationType = row.Cells["variation_type"].Value?.ToString() ?? "N/A";
-                DateTime purchaseDate = row.Cells["purchase_date"].Value != null && row.Cells["purchase_date"].Value != DBNull.Value
-                    ? Convert.ToDateTime(row.Cells["purchase_date"].Value)
-                    : DateTime.MinValue;
-                DateTime expiryDate = row.Cells["expiry_date"].Value != null && row.Cells["expiry_date"].Value != DBNull.Value
-                    ? Convert.ToDateTime(row.Cells["expiry_date"].Value)
-                    : DateTime.MinValue;
-
-                // Show product details in a message box
-                string message = $"Product ID: {productId}\n" +
-                                $"Product Name: {productName}\n" +
-                                $"Variation Type: {variationType}\n" +
-                                $"Purchase Date: {(purchaseDate == DateTime.MinValue ? "N/A" : purchaseDate.ToString("yyyy-MM-dd"))}\n" +
-                                $"Expiry Date: {(expiryDate == DateTime.MinValue ? "N/A" : expiryDate.ToString("yyyy-MM-dd"))}";
-                MessageBox.Show(message, "Expiring Product Details", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void topCustomerPieChart_Click(object sender, EventArgs e)
-        {
-            // Display details of the top customers in a message box
-            if (topCustomersTable == null || topCustomersTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No data available for top customers this month.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            StringBuilder message = new StringBuilder("Top 5 Customers This Month:\n\n");
-            foreach (DataRow row in topCustomersTable.Rows)
-            {
-                string customerName = row["customer_name"].ToString();
-                decimal totalSpent = Convert.ToDecimal(row["total_spent"]);
-                message.AppendLine($"{customerName}: {totalSpent:C2}");
-            }
-
-            MessageBox.Show(message.ToString(), "Top Customers Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void numberOrderLabel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void grossRevenueChart_Click(object sender, EventArgs e)
-        {
-        }
+        private void numberOrderLabel_Click(object sender, EventArgs e) { }
+        private void grossRevenueChart_Click(object sender, EventArgs e) { }
+       
+        private void numberTrevenueLabel_Click(object sender, EventArgs e) { }
+        private void last7DaysBtn_Click(object sender, EventArgs e) { }
+        private void siticonePanel1_Paint(object sender, PaintEventArgs e) { }
+        private void tNOCLabel_Click(object sender, EventArgs e) { }
+        private void tNOPLabel_Click(object sender, EventArgs e) { }
+        private void dashTotPurPanel_Paint(object sender, PaintEventArgs e) { }
+        private void dashTotSalePriceLabel_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void thisYearBtn_Click(object sender, EventArgs e) { }
+        private void stockAlertDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
         private void topProductsPieChart_Click(object sender, EventArgs e)
         {
-        }
-
-        private void numberTrevenueLabel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void last7DaysBtn_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void siticonePanel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void tNOCLabel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void tNOPLabel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dashTotPurPanel_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void dashTotSalePriceLabel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void thisYearBtn_Click(object sender, EventArgs e)
-        {
+            //This is Top 05 product pie chart, that should display, daily, Weekly, Monthly, and this year Top product when i filter that, I will give to you that filter system later, now only make for this week
         }
     }
 }

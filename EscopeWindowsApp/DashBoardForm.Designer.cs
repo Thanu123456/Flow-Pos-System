@@ -49,7 +49,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -112,7 +111,7 @@
             this.siticonePanel8 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.topCustomerPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.siticonePanel7 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.topExpensesColumnChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.topExpensesDoughnutChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label10 = new System.Windows.Forms.Label();
             this.siticonePanel9 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.label12 = new System.Windows.Forms.Label();
@@ -150,7 +149,7 @@
             this.siticonePanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topCustomerPieChart)).BeginInit();
             this.siticonePanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.topExpensesColumnChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topExpensesDoughnutChart)).BeginInit();
             this.siticonePanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expireDateAlertGridView)).BeginInit();
             this.siticonePanel10.SuspendLayout();
@@ -602,7 +601,7 @@
             this.siticonePanel5.FillColor = System.Drawing.Color.White;
             this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
             this.siticonePanel5.Name = "siticonePanel5";
-            this.siticonePanel5.Size = new System.Drawing.Size(865, 461);
+            this.siticonePanel5.Size = new System.Drawing.Size(916, 461);
             this.siticonePanel5.TabIndex = 19;
             // 
             // label8
@@ -620,7 +619,7 @@
             // salesPurchStackedColumn
             // 
             this.salesPurchStackedColumn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.salesPurchStackedColumn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.salesPurchStackedColumn.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
             this.salesPurchStackedColumn.ChartAreas.Add(chartArea2);
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
@@ -636,7 +635,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.salesPurchStackedColumn.Series.Add(series2);
-            this.salesPurchStackedColumn.Size = new System.Drawing.Size(831, 350);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(882, 350);
             this.salesPurchStackedColumn.TabIndex = 19;
             this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -645,6 +644,7 @@
             title2.Text = "Top 5 Produts";
             title2.Visible = false;
             this.salesPurchStackedColumn.Titles.Add(title2);
+            this.salesPurchStackedColumn.Click += new System.EventHandler(this.salesPurchStackedColumn_Click);
             // 
             // siticonePanel4
             // 
@@ -657,7 +657,7 @@
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
             this.siticonePanel4.Location = new System.Drawing.Point(21, 875);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1297, 316);
+            this.siticonePanel4.Size = new System.Drawing.Size(1348, 316);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
@@ -691,7 +691,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1272, 240);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1323, 240);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -809,6 +809,7 @@
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.Height = 45;
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.stockAlertDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockAlertDataGrid_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -892,7 +893,7 @@
             this.siticonePanel8.FillColor = System.Drawing.Color.White;
             this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
             this.siticonePanel8.Name = "siticonePanel8";
-            this.siticonePanel8.Size = new System.Drawing.Size(675, 530);
+            this.siticonePanel8.Size = new System.Drawing.Size(726, 530);
             this.siticonePanel8.TabIndex = 23;
             // 
             // topCustomerPieChart
@@ -915,7 +916,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.topCustomerPieChart.Series.Add(series4);
-            this.topCustomerPieChart.Size = new System.Drawing.Size(645, 448);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(696, 448);
             this.topCustomerPieChart.TabIndex = 45;
             this.topCustomerPieChart.Text = "chart2";
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -929,7 +930,7 @@
             // siticonePanel7
             // 
             this.siticonePanel7.BorderRadius = 12;
-            this.siticonePanel7.Controls.Add(this.topExpensesColumnChart);
+            this.siticonePanel7.Controls.Add(this.topExpensesDoughnutChart);
             this.siticonePanel7.Controls.Add(this.label10);
             this.siticonePanel7.FillColor = System.Drawing.Color.White;
             this.siticonePanel7.Location = new System.Drawing.Point(21, 1685);
@@ -937,33 +938,33 @@
             this.siticonePanel7.Size = new System.Drawing.Size(515, 400);
             this.siticonePanel7.TabIndex = 24;
             // 
-            // topExpensesColumnChart
+            // topExpensesDoughnutChart
             // 
-            this.topExpensesColumnChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.topExpensesDoughnutChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.topExpensesColumnChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.topExpensesDoughnutChart.BackColor = System.Drawing.Color.Transparent;
+            chartArea5.Area3DStyle.Enable3D = true;
             chartArea5.Name = "ChartArea1";
-            this.topExpensesColumnChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.topExpensesColumnChart.Legends.Add(legend5);
-            this.topExpensesColumnChart.Location = new System.Drawing.Point(16, 59);
-            this.topExpensesColumnChart.Name = "topExpensesColumnChart";
+            this.topExpensesDoughnutChart.ChartAreas.Add(chartArea5);
+            this.topExpensesDoughnutChart.Location = new System.Drawing.Point(3, 47);
+            this.topExpensesDoughnutChart.Name = "topExpensesDoughnutChart";
             series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             series5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             series5.IsValueShownAsLabel = true;
             series5.LabelForeColor = System.Drawing.Color.White;
-            series5.Legend = "Legend1";
             series5.Name = "Series1";
-            this.topExpensesColumnChart.Series.Add(series5);
-            this.topExpensesColumnChart.Size = new System.Drawing.Size(478, 321);
-            this.topExpensesColumnChart.TabIndex = 46;
-            this.topExpensesColumnChart.Text = "chart2";
+            this.topExpensesDoughnutChart.Series.Add(series5);
+            this.topExpensesDoughnutChart.Size = new System.Drawing.Size(509, 350);
+            this.topExpensesDoughnutChart.TabIndex = 46;
+            this.topExpensesDoughnutChart.Text = "chart2";
             title5.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title5.Name = "Title1";
             title5.Text = "Top 5 Produts";
             title5.Visible = false;
-            this.topExpensesColumnChart.Titles.Add(title5);
+            this.topExpensesDoughnutChart.Titles.Add(title5);
+            this.topExpensesDoughnutChart.Click += new System.EventHandler(this.topExpensesDoughnutChart_Click);
             // 
             // label10
             // 
@@ -987,7 +988,7 @@
             this.siticonePanel9.FillColor = System.Drawing.Color.White;
             this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
             this.siticonePanel9.Name = "siticonePanel9";
-            this.siticonePanel9.Size = new System.Drawing.Size(761, 307);
+            this.siticonePanel9.Size = new System.Drawing.Size(812, 307);
             this.siticonePanel9.TabIndex = 48;
             // 
             // label12
@@ -1060,7 +1061,7 @@
             this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expireDateAlertGridView.RowTemplate.Height = 45;
             this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expireDateAlertGridView.Size = new System.Drawing.Size(736, 221);
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(787, 221);
             this.expireDateAlertGridView.TabIndex = 45;
             this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1120,7 +1121,7 @@
             this.siticonePanel10.FillColor = System.Drawing.Color.White;
             this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
             this.siticonePanel10.Name = "siticonePanel10";
-            this.siticonePanel10.Size = new System.Drawing.Size(1297, 450);
+            this.siticonePanel10.Size = new System.Drawing.Size(1348, 450);
             this.siticonePanel10.TabIndex = 49;
             // 
             // label13
@@ -1193,7 +1194,7 @@
             this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.recentDataGridView.RowTemplate.Height = 45;
             this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.recentDataGridView.Size = new System.Drawing.Size(1269, 366);
+            this.recentDataGridView.Size = new System.Drawing.Size(1320, 366);
             this.recentDataGridView.TabIndex = 45;
             this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1310,7 +1311,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.topCustomerPieChart)).EndInit();
             this.siticonePanel7.ResumeLayout(false);
             this.siticonePanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.topExpensesColumnChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topExpensesDoughnutChart)).EndInit();
             this.siticonePanel9.ResumeLayout(false);
             this.siticonePanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expireDateAlertGridView)).EndInit();
@@ -1382,7 +1383,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataVisualization.Charting.Chart topExpensesColumnChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart topExpensesDoughnutChart;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel10;
         private System.Windows.Forms.Label label13;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView recentDataGridView;
