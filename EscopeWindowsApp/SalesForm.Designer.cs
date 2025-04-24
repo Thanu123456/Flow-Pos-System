@@ -32,11 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.saleAllPgLabel = new System.Windows.Forms.Label();
-            this.saleOfLabel = new System.Windows.Forms.Label();
-            this.salePgRangeLabel = new System.Windows.Forms.Label();
-            this.salePageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.saleRecordsPerLabel = new System.Windows.Forms.Label();
             this.saleBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.saleFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.salePrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -49,78 +44,6 @@
             this.saleBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // saleAllPgLabel
-            // 
-            this.saleAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saleAllPgLabel.AutoSize = true;
-            this.saleAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.saleAllPgLabel.Name = "saleAllPgLabel";
-            this.saleAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.saleAllPgLabel.TabIndex = 25;
-            this.saleAllPgLabel.Text = "500";
-            // 
-            // saleOfLabel
-            // 
-            this.saleOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saleOfLabel.AutoSize = true;
-            this.saleOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.saleOfLabel.Name = "saleOfLabel";
-            this.saleOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.saleOfLabel.TabIndex = 24;
-            this.saleOfLabel.Text = "of";
-            // 
-            // salePgRangeLabel
-            // 
-            this.salePgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.salePgRangeLabel.AutoSize = true;
-            this.salePgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salePgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.salePgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.salePgRangeLabel.Name = "salePgRangeLabel";
-            this.salePgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.salePgRangeLabel.TabIndex = 23;
-            this.salePgRangeLabel.Text = "0-50";
-            // 
-            // salePageCombo
-            // 
-            this.salePageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.salePageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.salePageCombo.BorderColor = System.Drawing.Color.Black;
-            this.salePageCombo.BorderRadius = 8;
-            this.salePageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.salePageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.salePageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.salePageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.salePageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salePageCombo.ForeColor = System.Drawing.Color.Black;
-            this.salePageCombo.ItemHeight = 30;
-            this.salePageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.salePageCombo.Location = new System.Drawing.Point(141, 734);
-            this.salePageCombo.Name = "salePageCombo";
-            this.salePageCombo.Size = new System.Drawing.Size(85, 36);
-            this.salePageCombo.StartIndex = 0;
-            this.salePageCombo.TabIndex = 22;
-            // 
-            // saleRecordsPerLabel
-            // 
-            this.saleRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saleRecordsPerLabel.AutoSize = true;
-            this.saleRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.saleRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.saleRecordsPerLabel.Name = "saleRecordsPerLabel";
-            this.saleRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.saleRecordsPerLabel.TabIndex = 21;
-            this.saleRecordsPerLabel.Text = "Records per page";
             // 
             // saleBtnPanel
             // 
@@ -331,6 +254,7 @@
             // 
             // filterSaleDateCombo
             // 
+            this.filterSaleDateCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filterSaleDateCombo.BackColor = System.Drawing.Color.Transparent;
             this.filterSaleDateCombo.BorderRadius = 8;
             this.filterSaleDateCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -340,7 +264,7 @@
             this.filterSaleDateCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.filterSaleDateCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.filterSaleDateCombo.ItemHeight = 36;
-            this.filterSaleDateCombo.Location = new System.Drawing.Point(918, 30);
+            this.filterSaleDateCombo.Location = new System.Drawing.Point(1219, 30);
             this.filterSaleDateCombo.Name = "filterSaleDateCombo";
             this.filterSaleDateCombo.Size = new System.Drawing.Size(150, 42);
             this.filterSaleDateCombo.TabIndex = 86;
@@ -358,11 +282,6 @@
             this.Controls.Add(this.saleDataGridView);
             this.Controls.Add(this.saleSearchText);
             this.Controls.Add(this.saleBtnPanel);
-            this.Controls.Add(this.saleAllPgLabel);
-            this.Controls.Add(this.saleOfLabel);
-            this.Controls.Add(this.salePgRangeLabel);
-            this.Controls.Add(this.salePageCombo);
-            this.Controls.Add(this.saleRecordsPerLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -375,16 +294,10 @@
             this.saleBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.saleDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label saleAllPgLabel;
-        private System.Windows.Forms.Label saleOfLabel;
-        private System.Windows.Forms.Label salePgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox salePageCombo;
-        private System.Windows.Forms.Label saleRecordsPerLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel saleBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton salePrevBtn;

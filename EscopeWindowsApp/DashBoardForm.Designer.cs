@@ -32,132 +32,133 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.customeBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.todayBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.last7DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.Last30DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.thisMonthBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grossRevenueChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.proUnderPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.underStockDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dashProunderStockLbl = new System.Windows.Forms.Label();
-            this.countOFCusLabel = new System.Windows.Forms.Label();
-            this.tNOCLabel = new System.Windows.Forms.Label();
-            this.countOFSupLabel = new System.Windows.Forms.Label();
-            this.tNOSLabel = new System.Windows.Forms.Label();
-            this.countOfProductLabel = new System.Windows.Forms.Label();
-            this.tNOPLabel = new System.Windows.Forms.Label();
-            this.totalCounterPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOCBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.dashNOCIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOCPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashTotPurPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTPIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTPIconePicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashTPPriceLabel = new System.Windows.Forms.Label();
-            this.dashTPLabel = new System.Windows.Forms.Label();
             this.dashTotSaleRetPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTSRIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTotSaleRetIconPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashTSRPriceLabel = new System.Windows.Forms.Label();
-            this.dashTSRLabel = new System.Windows.Forms.Label();
+            this.siticonePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SaleRetLabel = new System.Windows.Forms.Label();
+            this.saleRetAmoutLabel = new System.Windows.Forms.Label();
             this.dashTPRPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTPRIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTPRPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashTPRPricelabel = new System.Windows.Forms.Label();
-            this.dashTPRlabel = new System.Windows.Forms.Label();
+            this.siticonePictureBox2 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.purAmountLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.purLabel = new System.Windows.Forms.Label();
             this.dashTotSalePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTSIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dashTotSaleIconPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dashTotSalePriceLabel = new System.Windows.Forms.Label();
             this.dashTotalSalesLabel = new System.Windows.Forms.Label();
-            this.dashTotProfitPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTotProfitIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashTotProfitIconPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashTotProfitPriceLabel = new System.Windows.Forms.Label();
-            this.dashTotProfitLabel = new System.Windows.Forms.Label();
+            this.topProductsDoughnutChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.thisYearBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.dashTotPurPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticonePictureBox3 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.profitAmoutLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOSpanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOSBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.dashNOSIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOSPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashNOPPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOPBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.dashNOPIconLabel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOPPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashOverallPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashOverInfoLabel = new System.Windows.Forms.Label();
-            this.dashNOOPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOOIconPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.dashNOOpicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.dashNOOCountLabel = new System.Windows.Forms.Label();
-            this.dasNOOLabel = new System.Windows.Forms.Label();
-            this.topProductsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.grossRevenueChart)).BeginInit();
-            this.proUnderPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.underStockDataGridView)).BeginInit();
-            this.totalCounterPanel.SuspendLayout();
-            this.dashNOCIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOCPicBox)).BeginInit();
-            this.dashTotPurPanel.SuspendLayout();
-            this.dashTPIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashTPIconePicBox)).BeginInit();
+            this.label4 = new System.Windows.Forms.Label();
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticonePanel5 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.salesPurchStackedColumn = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.siticonePanel4 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dailyProfitLineChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.siticonePanel6 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.stockAlertDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label11 = new System.Windows.Forms.Label();
+            this.siticonePanel8 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.topCustomerPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.siticonePanel7 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.topExpensesColumnChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label10 = new System.Windows.Forms.Label();
+            this.siticonePanel9 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.expireDateAlertGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siticonePanel10 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.recentDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siticonePanel11 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.dashTotSaleRetPanel.SuspendLayout();
-            this.dashTSRIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleRetIconPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).BeginInit();
             this.dashTPRPanel.SuspendLayout();
-            this.dashTPRIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashTPRPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox2)).BeginInit();
             this.dashTotSalePanel.SuspendLayout();
-            this.dashTSIconPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).BeginInit();
-            this.dashTotProfitPanel.SuspendLayout();
-            this.dashTotProfitIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashTotProfitIconPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topProductsDoughnutChart)).BeginInit();
             this.siticonePanel2.SuspendLayout();
-            this.dashNOSpanel.SuspendLayout();
-            this.dashNOSIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOSPicBox)).BeginInit();
-            this.dashNOPPanel.SuspendLayout();
-            this.dashNOPIconLabel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOPPicBox)).BeginInit();
-            this.dashOverallPanel.SuspendLayout();
-            this.dashNOOPanel.SuspendLayout();
-            this.dashNOOIconPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOOpicBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
+            this.dashTotPurPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox3)).BeginInit();
+            this.siticonePanel1.SuspendLayout();
+            this.siticonePanel3.SuspendLayout();
+            this.siticonePanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.salesPurchStackedColumn)).BeginInit();
+            this.siticonePanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dailyProfitLineChart)).BeginInit();
+            this.siticonePanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockAlertDataGrid)).BeginInit();
+            this.siticonePanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topCustomerPieChart)).BeginInit();
+            this.siticonePanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topExpensesColumnChart)).BeginInit();
+            this.siticonePanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expireDateAlertGridView)).BeginInit();
+            this.siticonePanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recentDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // customeBtn
-            // 
-            this.customeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customeBtn.BorderRadius = 8;
-            this.customeBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.customeBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.customeBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.customeBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.customeBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customeBtn.ForeColor = System.Drawing.Color.White;
-            this.customeBtn.Location = new System.Drawing.Point(1254, 12);
-            this.customeBtn.Name = "customeBtn";
-            this.customeBtn.Size = new System.Drawing.Size(121, 28);
-            this.customeBtn.TabIndex = 2;
-            this.customeBtn.Text = "Custom";
             // 
             // todayBtn
             // 
-            this.todayBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.todayBtn.BorderRadius = 8;
             this.todayBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.todayBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -165,15 +166,14 @@
             this.todayBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.todayBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.todayBtn.ForeColor = System.Drawing.Color.White;
-            this.todayBtn.Location = new System.Drawing.Point(743, 12);
+            this.todayBtn.Location = new System.Drawing.Point(19, 26);
             this.todayBtn.Name = "todayBtn";
-            this.todayBtn.Size = new System.Drawing.Size(121, 28);
+            this.todayBtn.Size = new System.Drawing.Size(152, 43);
             this.todayBtn.TabIndex = 3;
             this.todayBtn.Text = "Today";
             // 
             // last7DaysBtn
             // 
-            this.last7DaysBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.last7DaysBtn.BorderRadius = 8;
             this.last7DaysBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.last7DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -181,16 +181,15 @@
             this.last7DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.last7DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.last7DaysBtn.ForeColor = System.Drawing.Color.White;
-            this.last7DaysBtn.Location = new System.Drawing.Point(870, 12);
+            this.last7DaysBtn.Location = new System.Drawing.Point(193, 26);
             this.last7DaysBtn.Name = "last7DaysBtn";
-            this.last7DaysBtn.Size = new System.Drawing.Size(121, 28);
+            this.last7DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.last7DaysBtn.TabIndex = 4;
-            this.last7DaysBtn.Text = "Last 7 Days";
+            this.last7DaysBtn.Text = "This Week";
             this.last7DaysBtn.Click += new System.EventHandler(this.last7DaysBtn_Click);
             // 
             // Last30DaysBtn
             // 
-            this.Last30DaysBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Last30DaysBtn.BorderRadius = 8;
             this.Last30DaysBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.Last30DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -198,852 +197,1053 @@
             this.Last30DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.Last30DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Last30DaysBtn.ForeColor = System.Drawing.Color.White;
-            this.Last30DaysBtn.Location = new System.Drawing.Point(997, 12);
+            this.Last30DaysBtn.Location = new System.Drawing.Point(367, 26);
             this.Last30DaysBtn.Name = "Last30DaysBtn";
-            this.Last30DaysBtn.Size = new System.Drawing.Size(121, 28);
+            this.Last30DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.Last30DaysBtn.TabIndex = 5;
-            this.Last30DaysBtn.Text = "Last 30 Days";
-            // 
-            // thisMonthBtn
-            // 
-            this.thisMonthBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.thisMonthBtn.BorderRadius = 8;
-            this.thisMonthBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.thisMonthBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.thisMonthBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.thisMonthBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.thisMonthBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thisMonthBtn.ForeColor = System.Drawing.Color.White;
-            this.thisMonthBtn.Location = new System.Drawing.Point(1127, 12);
-            this.thisMonthBtn.Name = "thisMonthBtn";
-            this.thisMonthBtn.Size = new System.Drawing.Size(121, 28);
-            this.thisMonthBtn.TabIndex = 6;
-            this.thisMonthBtn.Text = "This Month";
-            // 
-            // grossRevenueChart
-            // 
-            this.grossRevenueChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grossRevenueChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            chartArea1.Name = "ChartArea1";
-            this.grossRevenueChart.ChartAreas.Add(chartArea1);
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.grossRevenueChart.Legends.Add(legend1);
-            this.grossRevenueChart.Location = new System.Drawing.Point(860, 67);
-            this.grossRevenueChart.Name = "grossRevenueChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.grossRevenueChart.Series.Add(series1);
-            this.grossRevenueChart.Size = new System.Drawing.Size(514, 293);
-            this.grossRevenueChart.TabIndex = 10;
-            this.grossRevenueChart.Text = "chart1";
-            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Gross Revenue";
-            this.grossRevenueChart.Titles.Add(title1);
-            this.grossRevenueChart.Click += new System.EventHandler(this.grossRevenueChart_Click);
-            // 
-            // proUnderPanel
-            // 
-            this.proUnderPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.proUnderPanel.AutoSize = true;
-            this.proUnderPanel.BorderRadius = 8;
-            this.proUnderPanel.BorderThickness = 10;
-            this.proUnderPanel.Controls.Add(this.underStockDataGridView);
-            this.proUnderPanel.Controls.Add(this.dashProunderStockLbl);
-            this.proUnderPanel.FillColor = System.Drawing.Color.White;
-            this.proUnderPanel.Location = new System.Drawing.Point(323, 425);
-            this.proUnderPanel.Name = "proUnderPanel";
-            this.proUnderPanel.Size = new System.Drawing.Size(525, 293);
-            this.proUnderPanel.TabIndex = 13;
-            // 
-            // underStockDataGridView
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.underStockDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.underStockDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.underStockDataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.underStockDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.underStockDataGridView.ColumnHeadersHeight = 15;
-            this.underStockDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.underStockDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.underStockDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.underStockDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.underStockDataGridView.Location = new System.Drawing.Point(15, 39);
-            this.underStockDataGridView.Name = "underStockDataGridView";
-            this.underStockDataGridView.RowHeadersVisible = false;
-            this.underStockDataGridView.Size = new System.Drawing.Size(496, 245);
-            this.underStockDataGridView.TabIndex = 1;
-            this.underStockDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.underStockDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.underStockDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.underStockDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.underStockDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.underStockDataGridView.ThemeStyle.BackColor = System.Drawing.Color.DarkGray;
-            this.underStockDataGridView.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.underStockDataGridView.ThemeStyle.HeaderStyle.Height = 15;
-            this.underStockDataGridView.ThemeStyle.ReadOnly = false;
-            this.underStockDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.underStockDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.underStockDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.underStockDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.underStockDataGridView.ThemeStyle.RowsStyle.Height = 22;
-            this.underStockDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.underStockDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            // 
-            // dashProunderStockLbl
-            // 
-            this.dashProunderStockLbl.AutoSize = true;
-            this.dashProunderStockLbl.BackColor = System.Drawing.Color.Transparent;
-            this.dashProunderStockLbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashProunderStockLbl.Location = new System.Drawing.Point(11, 9);
-            this.dashProunderStockLbl.Name = "dashProunderStockLbl";
-            this.dashProunderStockLbl.Size = new System.Drawing.Size(204, 22);
-            this.dashProunderStockLbl.TabIndex = 0;
-            this.dashProunderStockLbl.Text = "Products Understock";
-            // 
-            // countOFCusLabel
-            // 
-            this.countOFCusLabel.AutoSize = true;
-            this.countOFCusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.countOFCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countOFCusLabel.Location = new System.Drawing.Point(68, 31);
-            this.countOFCusLabel.Name = "countOFCusLabel";
-            this.countOFCusLabel.Size = new System.Drawing.Size(82, 28);
-            this.countOFCusLabel.TabIndex = 1;
-            this.countOFCusLabel.Text = "10000";
-            // 
-            // tNOCLabel
-            // 
-            this.tNOCLabel.AutoSize = true;
-            this.tNOCLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tNOCLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tNOCLabel.Location = new System.Drawing.Point(69, 7);
-            this.tNOCLabel.Name = "tNOCLabel";
-            this.tNOCLabel.Size = new System.Drawing.Size(184, 18);
-            this.tNOCLabel.TabIndex = 2;
-            this.tNOCLabel.Text = "Number Of Customers";
-            this.tNOCLabel.Click += new System.EventHandler(this.tNOCLabel_Click);
-            // 
-            // countOFSupLabel
-            // 
-            this.countOFSupLabel.AutoSize = true;
-            this.countOFSupLabel.BackColor = System.Drawing.Color.Transparent;
-            this.countOFSupLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countOFSupLabel.Location = new System.Drawing.Point(68, 32);
-            this.countOFSupLabel.Name = "countOFSupLabel";
-            this.countOFSupLabel.Size = new System.Drawing.Size(82, 28);
-            this.countOFSupLabel.TabIndex = 13;
-            this.countOFSupLabel.Text = "10000";
-            // 
-            // tNOSLabel
-            // 
-            this.tNOSLabel.AutoSize = true;
-            this.tNOSLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tNOSLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tNOSLabel.Location = new System.Drawing.Point(70, 7);
-            this.tNOSLabel.Name = "tNOSLabel";
-            this.tNOSLabel.Size = new System.Drawing.Size(172, 18);
-            this.tNOSLabel.TabIndex = 14;
-            this.tNOSLabel.Text = "Number Of Suppliers";
-            // 
-            // countOfProductLabel
-            // 
-            this.countOfProductLabel.AutoSize = true;
-            this.countOfProductLabel.BackColor = System.Drawing.Color.Transparent;
-            this.countOfProductLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countOfProductLabel.Location = new System.Drawing.Point(66, 32);
-            this.countOfProductLabel.Name = "countOfProductLabel";
-            this.countOfProductLabel.Size = new System.Drawing.Size(82, 28);
-            this.countOfProductLabel.TabIndex = 13;
-            this.countOfProductLabel.Text = "10000";
-            // 
-            // tNOPLabel
-            // 
-            this.tNOPLabel.AutoSize = true;
-            this.tNOPLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tNOPLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tNOPLabel.Location = new System.Drawing.Point(68, 7);
-            this.tNOPLabel.Name = "tNOPLabel";
-            this.tNOPLabel.Size = new System.Drawing.Size(170, 18);
-            this.tNOPLabel.TabIndex = 14;
-            this.tNOPLabel.Text = "Number Of Products";
-            this.tNOPLabel.Click += new System.EventHandler(this.tNOPLabel_Click);
-            // 
-            // totalCounterPanel
-            // 
-            this.totalCounterPanel.BorderColor = System.Drawing.Color.Blue;
-            this.totalCounterPanel.BorderRadius = 8;
-            this.totalCounterPanel.BorderThickness = 1;
-            this.totalCounterPanel.Controls.Add(this.dashNOCBtn);
-            this.totalCounterPanel.Controls.Add(this.dashNOCIconPanel);
-            this.totalCounterPanel.Controls.Add(this.tNOCLabel);
-            this.totalCounterPanel.Controls.Add(this.countOFCusLabel);
-            this.totalCounterPanel.FillColor = System.Drawing.Color.White;
-            this.totalCounterPanel.Location = new System.Drawing.Point(3, 52);
-            this.totalCounterPanel.Name = "totalCounterPanel";
-            this.totalCounterPanel.Size = new System.Drawing.Size(265, 69);
-            this.totalCounterPanel.TabIndex = 12;
-            // 
-            // dashNOCBtn
-            // 
-            this.dashNOCBtn.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOCBtn.BorderRadius = 8;
-            this.dashNOCBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOCBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOCBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.dashNOCBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dashNOCBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dashNOCBtn.ForeColor = System.Drawing.Color.White;
-            this.dashNOCBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dashNOCBtn.Location = new System.Drawing.Point(208, 31);
-            this.dashNOCBtn.Name = "dashNOCBtn";
-            this.dashNOCBtn.Size = new System.Drawing.Size(40, 28);
-            this.dashNOCBtn.TabIndex = 16;
-            this.dashNOCBtn.Text = "+";
-            this.dashNOCBtn.Click += new System.EventHandler(this.dashNOCBtn_Click);
-            // 
-            // dashNOCIconPanel
-            // 
-            this.dashNOCIconPanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOCIconPanel.BorderRadius = 8;
-            this.dashNOCIconPanel.Controls.Add(this.dashNOCPicBox);
-            this.dashNOCIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashNOCIconPanel.Location = new System.Drawing.Point(15, 12);
-            this.dashNOCIconPanel.Name = "dashNOCIconPanel";
-            this.dashNOCIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashNOCIconPanel.TabIndex = 15;
-            // 
-            // dashNOCPicBox
-            // 
-            this.dashNOCPicBox.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOCPicBox.Image = global::EscopeWindowsApp.Properties.Resources.customersIcon;
-            this.dashNOCPicBox.ImageRotate = 0F;
-            this.dashNOCPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashNOCPicBox.Name = "dashNOCPicBox";
-            this.dashNOCPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashNOCPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dashNOCPicBox.TabIndex = 14;
-            this.dashNOCPicBox.TabStop = false;
-            this.dashNOCPicBox.UseTransparentBackground = true;
-            // 
-            // dashTotPurPanel
-            // 
-            this.dashTotPurPanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotPurPanel.BorderRadius = 8;
-            this.dashTotPurPanel.Controls.Add(this.dashTPIconPanel);
-            this.dashTotPurPanel.Controls.Add(this.dashTPPriceLabel);
-            this.dashTotPurPanel.Controls.Add(this.dashTPLabel);
-            this.dashTotPurPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dashTotPurPanel.Location = new System.Drawing.Point(17, 262);
-            this.dashTotPurPanel.Name = "dashTotPurPanel";
-            this.dashTotPurPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.dashTotPurPanel.Size = new System.Drawing.Size(294, 125);
-            this.dashTotPurPanel.TabIndex = 9;
-            // 
-            // dashTPIconPanel
-            // 
-            this.dashTPIconPanel.BorderRadius = 8;
-            this.dashTPIconPanel.Controls.Add(this.dashTPIconePicBox);
-            this.dashTPIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashTPIconPanel.Location = new System.Drawing.Point(13, 33);
-            this.dashTPIconPanel.Name = "dashTPIconPanel";
-            this.dashTPIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashTPIconPanel.TabIndex = 2;
-            // 
-            // dashTPIconePicBox
-            // 
-            this.dashTPIconePicBox.Image = global::EscopeWindowsApp.Properties.Resources.purchaseIcon;
-            this.dashTPIconePicBox.ImageRotate = 0F;
-            this.dashTPIconePicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashTPIconePicBox.Name = "dashTPIconePicBox";
-            this.dashTPIconePicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashTPIconePicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.dashTPIconePicBox.TabIndex = 14;
-            this.dashTPIconePicBox.TabStop = false;
-            this.dashTPIconePicBox.UseTransparentBackground = true;
-            // 
-            // dashTPPriceLabel
-            // 
-            this.dashTPPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTPPriceLabel.AutoSize = true;
-            this.dashTPPriceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTPPriceLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTPPriceLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTPPriceLabel.Location = new System.Drawing.Point(65, 53);
-            this.dashTPPriceLabel.Name = "dashTPPriceLabel";
-            this.dashTPPriceLabel.Size = new System.Drawing.Size(132, 28);
-            this.dashTPPriceLabel.TabIndex = 1;
-            this.dashTPPriceLabel.Text = "$14839.88";
-            // 
-            // dashTPLabel
-            // 
-            this.dashTPLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTPLabel.AutoSize = true;
-            this.dashTPLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTPLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTPLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTPLabel.Location = new System.Drawing.Point(69, 29);
-            this.dashTPLabel.Name = "dashTPLabel";
-            this.dashTPLabel.Size = new System.Drawing.Size(129, 18);
-            this.dashTPLabel.TabIndex = 0;
-            this.dashTPLabel.Text = "Total Purchase";
+            this.Last30DaysBtn.Text = "This Month";
             // 
             // dashTotSaleRetPanel
             // 
             this.dashTotSaleRetPanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotSaleRetPanel.BorderRadius = 8;
-            this.dashTotSaleRetPanel.Controls.Add(this.dashTSRIconPanel);
-            this.dashTotSaleRetPanel.Controls.Add(this.dashTSRPriceLabel);
-            this.dashTotSaleRetPanel.Controls.Add(this.dashTSRLabel);
-            this.dashTotSaleRetPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.dashTotSaleRetPanel.Location = new System.Drawing.Point(17, 131);
+            this.dashTotSaleRetPanel.BorderRadius = 12;
+            this.dashTotSaleRetPanel.Controls.Add(this.siticonePictureBox1);
+            this.dashTotSaleRetPanel.Controls.Add(this.label2);
+            this.dashTotSaleRetPanel.Controls.Add(this.SaleRetLabel);
+            this.dashTotSaleRetPanel.Controls.Add(this.saleRetAmoutLabel);
+            this.dashTotSaleRetPanel.FillColor = System.Drawing.Color.White;
+            this.dashTotSaleRetPanel.Location = new System.Drawing.Point(21, 161);
+            this.dashTotSaleRetPanel.MinimumSize = new System.Drawing.Size(600, 125);
             this.dashTotSaleRetPanel.Name = "dashTotSaleRetPanel";
             this.dashTotSaleRetPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.dashTotSaleRetPanel.Size = new System.Drawing.Size(294, 125);
+            this.dashTotSaleRetPanel.Size = new System.Drawing.Size(600, 125);
             this.dashTotSaleRetPanel.TabIndex = 8;
             // 
-            // dashTSRIconPanel
+            // siticonePictureBox1
             // 
-            this.dashTSRIconPanel.BorderRadius = 8;
-            this.dashTSRIconPanel.Controls.Add(this.dashTotSaleRetIconPicBox);
-            this.dashTSRIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashTSRIconPanel.Location = new System.Drawing.Point(13, 33);
-            this.dashTSRIconPanel.Name = "dashTSRIconPanel";
-            this.dashTSRIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashTSRIconPanel.TabIndex = 2;
+            this.siticonePictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.siticonePictureBox1.FillColor = System.Drawing.Color.Transparent;
+            this.siticonePictureBox1.Image = global::EscopeWindowsApp.Properties.Resources.icons8_transaction_96;
+            this.siticonePictureBox1.ImageRotate = 0F;
+            this.siticonePictureBox1.Location = new System.Drawing.Point(3, 13);
+            this.siticonePictureBox1.Name = "siticonePictureBox1";
+            this.siticonePictureBox1.Size = new System.Drawing.Size(158, 108);
+            this.siticonePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.siticonePictureBox1.TabIndex = 15;
+            this.siticonePictureBox1.TabStop = false;
+            this.siticonePictureBox1.UseTransparentBackground = true;
             // 
-            // dashTotSaleRetIconPicBox
+            // label2
             // 
-            this.dashTotSaleRetIconPicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTotSaleRetIconPicBox.Image = global::EscopeWindowsApp.Properties.Resources.SalesReturnIcon;
-            this.dashTotSaleRetIconPicBox.ImageRotate = 0F;
-            this.dashTotSaleRetIconPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashTotSaleRetIconPicBox.Name = "dashTotSaleRetIconPicBox";
-            this.dashTotSaleRetIconPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashTotSaleRetIconPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dashTotSaleRetIconPicBox.TabIndex = 14;
-            this.dashTotSaleRetIconPicBox.TabStop = false;
-            this.dashTotSaleRetIconPicBox.UseTransparentBackground = true;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(313, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 45);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "LKR:";
             // 
-            // dashTSRPriceLabel
+            // SaleRetLabel
             // 
-            this.dashTSRPriceLabel.AutoSize = true;
-            this.dashTSRPriceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTSRPriceLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTSRPriceLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTSRPriceLabel.Location = new System.Drawing.Point(65, 53);
-            this.dashTSRPriceLabel.Name = "dashTSRPriceLabel";
-            this.dashTSRPriceLabel.Size = new System.Drawing.Size(132, 28);
-            this.dashTSRPriceLabel.TabIndex = 1;
-            this.dashTSRPriceLabel.Text = "$14839.88";
+            this.SaleRetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaleRetLabel.AutoSize = true;
+            this.SaleRetLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SaleRetLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaleRetLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.SaleRetLabel.Location = new System.Drawing.Point(435, 28);
+            this.SaleRetLabel.Name = "SaleRetLabel";
+            this.SaleRetLabel.Size = new System.Drawing.Size(141, 25);
+            this.SaleRetLabel.TabIndex = 15;
+            this.SaleRetLabel.Text = "SALES RETURN";
             // 
-            // dashTSRLabel
+            // saleRetAmoutLabel
             // 
-            this.dashTSRLabel.AutoSize = true;
-            this.dashTSRLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTSRLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTSRLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTSRLabel.Location = new System.Drawing.Point(69, 29);
-            this.dashTSRLabel.Name = "dashTSRLabel";
-            this.dashTSRLabel.Size = new System.Drawing.Size(155, 18);
-            this.dashTSRLabel.TabIndex = 0;
-            this.dashTSRLabel.Text = "Total Sales Return";
+            this.saleRetAmoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saleRetAmoutLabel.AutoSize = true;
+            this.saleRetAmoutLabel.BackColor = System.Drawing.Color.Transparent;
+            this.saleRetAmoutLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleRetAmoutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.saleRetAmoutLabel.Location = new System.Drawing.Point(394, 53);
+            this.saleRetAmoutLabel.Name = "saleRetAmoutLabel";
+            this.saleRetAmoutLabel.Size = new System.Drawing.Size(191, 45);
+            this.saleRetAmoutLabel.TabIndex = 16;
+            this.saleRetAmoutLabel.Text = "0000000.00";
             // 
             // dashTPRPanel
             // 
+            this.dashTPRPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dashTPRPanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTPRPanel.BorderRadius = 8;
-            this.dashTPRPanel.Controls.Add(this.dashTPRIconPanel);
-            this.dashTPRPanel.Controls.Add(this.dashTPRPricelabel);
-            this.dashTPRPanel.Controls.Add(this.dashTPRlabel);
-            this.dashTPRPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dashTPRPanel.Location = new System.Drawing.Point(17, 393);
+            this.dashTPRPanel.BorderRadius = 12;
+            this.dashTPRPanel.Controls.Add(this.siticonePictureBox2);
+            this.dashTPRPanel.Controls.Add(this.purAmountLabel);
+            this.dashTPRPanel.Controls.Add(this.label3);
+            this.dashTPRPanel.Controls.Add(this.purLabel);
+            this.dashTPRPanel.FillColor = System.Drawing.Color.White;
+            this.dashTPRPanel.Location = new System.Drawing.Point(643, 26);
             this.dashTPRPanel.Name = "dashTPRPanel";
             this.dashTPRPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.dashTPRPanel.Size = new System.Drawing.Size(294, 125);
+            this.dashTPRPanel.Size = new System.Drawing.Size(714, 125);
             this.dashTPRPanel.TabIndex = 10;
             // 
-            // dashTPRIconPanel
+            // siticonePictureBox2
             // 
-            this.dashTPRIconPanel.BorderRadius = 8;
-            this.dashTPRIconPanel.Controls.Add(this.dashTPRPicBox);
-            this.dashTPRIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashTPRIconPanel.Location = new System.Drawing.Point(13, 32);
-            this.dashTPRIconPanel.Name = "dashTPRIconPanel";
-            this.dashTPRIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashTPRIconPanel.TabIndex = 2;
+            this.siticonePictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.siticonePictureBox2.FillColor = System.Drawing.Color.Transparent;
+            this.siticonePictureBox2.Image = global::EscopeWindowsApp.Properties.Resources.icons8_buy_96;
+            this.siticonePictureBox2.ImageRotate = 0F;
+            this.siticonePictureBox2.Location = new System.Drawing.Point(-5, 8);
+            this.siticonePictureBox2.Name = "siticonePictureBox2";
+            this.siticonePictureBox2.Size = new System.Drawing.Size(158, 108);
+            this.siticonePictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.siticonePictureBox2.TabIndex = 18;
+            this.siticonePictureBox2.TabStop = false;
+            this.siticonePictureBox2.UseTransparentBackground = true;
             // 
-            // dashTPRPicBox
+            // purAmountLabel
             // 
-            this.dashTPRPicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTPRPicBox.Image = global::EscopeWindowsApp.Properties.Resources.return_purchase;
-            this.dashTPRPicBox.ImageRotate = 0F;
-            this.dashTPRPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashTPRPicBox.Name = "dashTPRPicBox";
-            this.dashTPRPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashTPRPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.dashTPRPicBox.TabIndex = 14;
-            this.dashTPRPicBox.TabStop = false;
-            this.dashTPRPicBox.UseTransparentBackground = true;
+            this.purAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.purAmountLabel.AutoSize = true;
+            this.purAmountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.purAmountLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.purAmountLabel.Location = new System.Drawing.Point(504, 53);
+            this.purAmountLabel.Name = "purAmountLabel";
+            this.purAmountLabel.Size = new System.Drawing.Size(191, 45);
+            this.purAmountLabel.TabIndex = 16;
+            this.purAmountLabel.Text = "0000000.00";
             // 
-            // dashTPRPricelabel
+            // label3
             // 
-            this.dashTPRPricelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTPRPricelabel.AutoSize = true;
-            this.dashTPRPricelabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTPRPricelabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTPRPricelabel.ForeColor = System.Drawing.Color.White;
-            this.dashTPRPricelabel.Location = new System.Drawing.Point(65, 53);
-            this.dashTPRPricelabel.Name = "dashTPRPricelabel";
-            this.dashTPRPricelabel.Size = new System.Drawing.Size(132, 28);
-            this.dashTPRPricelabel.TabIndex = 1;
-            this.dashTPRPricelabel.Text = "$14839.88";
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(423, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 45);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "LKR:";
             // 
-            // dashTPRlabel
+            // purLabel
             // 
-            this.dashTPRlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTPRlabel.AutoSize = true;
-            this.dashTPRlabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTPRlabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTPRlabel.ForeColor = System.Drawing.Color.White;
-            this.dashTPRlabel.Location = new System.Drawing.Point(69, 29);
-            this.dashTPRlabel.Name = "dashTPRlabel";
-            this.dashTPRlabel.Size = new System.Drawing.Size(188, 18);
-            this.dashTPRlabel.TabIndex = 0;
-            this.dashTPRlabel.Text = "Total Purchase Return";
+            this.purLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.purLabel.AutoSize = true;
+            this.purLabel.BackColor = System.Drawing.Color.Transparent;
+            this.purLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.purLabel.Location = new System.Drawing.Point(568, 27);
+            this.purLabel.Name = "purLabel";
+            this.purLabel.Size = new System.Drawing.Size(117, 25);
+            this.purLabel.TabIndex = 15;
+            this.purLabel.Text = "PURCHASES";
             // 
             // dashTotSalePanel
             // 
             this.dashTotSalePanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotSalePanel.BorderRadius = 8;
-            this.dashTotSalePanel.Controls.Add(this.dashTSIconPanel);
+            this.dashTotSalePanel.BorderRadius = 12;
+            this.dashTotSalePanel.Controls.Add(this.dashTotSaleIconPicBox);
+            this.dashTotSalePanel.Controls.Add(this.label1);
             this.dashTotSalePanel.Controls.Add(this.dashTotSalePriceLabel);
             this.dashTotSalePanel.Controls.Add(this.dashTotalSalesLabel);
-            this.dashTotSalePanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dashTotSalePanel.Location = new System.Drawing.Point(21, 67);
+            this.dashTotSalePanel.FillColor = System.Drawing.Color.White;
+            this.dashTotSalePanel.Location = new System.Drawing.Point(21, 26);
+            this.dashTotSalePanel.MinimumSize = new System.Drawing.Size(600, 125);
             this.dashTotSalePanel.Name = "dashTotSalePanel";
             this.dashTotSalePanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.dashTotSalePanel.Size = new System.Drawing.Size(294, 125);
+            this.dashTotSalePanel.Size = new System.Drawing.Size(600, 125);
             this.dashTotSalePanel.TabIndex = 7;
-            // 
-            // dashTSIconPanel
-            // 
-            this.dashTSIconPanel.BorderRadius = 8;
-            this.dashTSIconPanel.Controls.Add(this.dashTotSaleIconPicBox);
-            this.dashTSIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashTSIconPanel.Location = new System.Drawing.Point(13, 34);
-            this.dashTSIconPanel.Name = "dashTSIconPanel";
-            this.dashTSIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashTSIconPanel.TabIndex = 2;
             // 
             // dashTotSaleIconPicBox
             // 
-            this.dashTotSaleIconPicBox.Image = global::EscopeWindowsApp.Properties.Resources.total_sales;
+            this.dashTotSaleIconPicBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.dashTotSaleIconPicBox.FillColor = System.Drawing.Color.Transparent;
+            this.dashTotSaleIconPicBox.Image = global::EscopeWindowsApp.Properties.Resources.icons8_wallet_96;
             this.dashTotSaleIconPicBox.ImageRotate = 0F;
-            this.dashTotSaleIconPicBox.Location = new System.Drawing.Point(3, 3);
+            this.dashTotSaleIconPicBox.Location = new System.Drawing.Point(3, 8);
             this.dashTotSaleIconPicBox.Name = "dashTotSaleIconPicBox";
-            this.dashTotSaleIconPicBox.Size = new System.Drawing.Size(41, 40);
+            this.dashTotSaleIconPicBox.Size = new System.Drawing.Size(158, 108);
             this.dashTotSaleIconPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.dashTotSaleIconPicBox.TabIndex = 14;
             this.dashTotSaleIconPicBox.TabStop = false;
             this.dashTotSaleIconPicBox.UseTransparentBackground = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(313, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 45);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "LKR:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // dashTotSalePriceLabel
             // 
+            this.dashTotSalePriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashTotSalePriceLabel.AutoSize = true;
             this.dashTotSalePriceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotSalePriceLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTotSalePriceLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTotSalePriceLabel.Location = new System.Drawing.Point(65, 53);
+            this.dashTotSalePriceLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashTotSalePriceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dashTotSalePriceLabel.Location = new System.Drawing.Point(394, 53);
             this.dashTotSalePriceLabel.Name = "dashTotSalePriceLabel";
-            this.dashTotSalePriceLabel.Size = new System.Drawing.Size(132, 28);
+            this.dashTotSalePriceLabel.Size = new System.Drawing.Size(191, 45);
             this.dashTotSalePriceLabel.TabIndex = 1;
-            this.dashTotSalePriceLabel.Text = "$14839.88";
+            this.dashTotSalePriceLabel.Text = "0000000.00";
+            this.dashTotSalePriceLabel.Click += new System.EventHandler(this.dashTotSalePriceLabel_Click);
             // 
             // dashTotalSalesLabel
             // 
+            this.dashTotalSalesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashTotalSalesLabel.AutoSize = true;
             this.dashTotalSalesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotalSalesLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTotalSalesLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTotalSalesLabel.Location = new System.Drawing.Point(69, 29);
+            this.dashTotalSalesLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashTotalSalesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.dashTotalSalesLabel.Location = new System.Drawing.Point(512, 27);
             this.dashTotalSalesLabel.Name = "dashTotalSalesLabel";
-            this.dashTotalSalesLabel.Size = new System.Drawing.Size(96, 18);
+            this.dashTotalSalesLabel.Size = new System.Drawing.Size(64, 25);
             this.dashTotalSalesLabel.TabIndex = 0;
-            this.dashTotalSalesLabel.Text = "Total Sales";
+            this.dashTotalSalesLabel.Text = "SALES";
             this.dashTotalSalesLabel.Click += new System.EventHandler(this.numberOrderLabel_Click);
             // 
-            // dashTotProfitPanel
+            // topProductsDoughnutChart
             // 
-            this.dashTotProfitPanel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotProfitPanel.BorderRadius = 8;
-            this.dashTotProfitPanel.Controls.Add(this.dashTotProfitIconPanel);
-            this.dashTotProfitPanel.Controls.Add(this.dashTotProfitPriceLabel);
-            this.dashTotProfitPanel.Controls.Add(this.dashTotProfitLabel);
-            this.dashTotProfitPanel.FillColor = System.Drawing.Color.Green;
-            this.dashTotProfitPanel.Location = new System.Drawing.Point(17, 524);
-            this.dashTotProfitPanel.Name = "dashTotProfitPanel";
-            this.dashTotProfitPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.dashTotProfitPanel.Size = new System.Drawing.Size(294, 124);
-            this.dashTotProfitPanel.TabIndex = 11;
-            // 
-            // dashTotProfitIconPanel
-            // 
-            this.dashTotProfitIconPanel.BorderRadius = 8;
-            this.dashTotProfitIconPanel.Controls.Add(this.dashTotProfitIconPicBox);
-            this.dashTotProfitIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashTotProfitIconPanel.Location = new System.Drawing.Point(13, 34);
-            this.dashTotProfitIconPanel.Name = "dashTotProfitIconPanel";
-            this.dashTotProfitIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashTotProfitIconPanel.TabIndex = 2;
-            // 
-            // dashTotProfitIconPicBox
-            // 
-            this.dashTotProfitIconPicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTotProfitIconPicBox.Image = global::EscopeWindowsApp.Properties.Resources.profitIcon;
-            this.dashTotProfitIconPicBox.ImageRotate = 0F;
-            this.dashTotProfitIconPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashTotProfitIconPicBox.Name = "dashTotProfitIconPicBox";
-            this.dashTotProfitIconPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashTotProfitIconPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.dashTotProfitIconPicBox.TabIndex = 14;
-            this.dashTotProfitIconPicBox.TabStop = false;
-            this.dashTotProfitIconPicBox.UseTransparentBackground = true;
-            // 
-            // dashTotProfitPriceLabel
-            // 
-            this.dashTotProfitPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTotProfitPriceLabel.AutoSize = true;
-            this.dashTotProfitPriceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotProfitPriceLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTotProfitPriceLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTotProfitPriceLabel.Location = new System.Drawing.Point(65, 53);
-            this.dashTotProfitPriceLabel.Name = "dashTotProfitPriceLabel";
-            this.dashTotProfitPriceLabel.Size = new System.Drawing.Size(132, 28);
-            this.dashTotProfitPriceLabel.TabIndex = 1;
-            this.dashTotProfitPriceLabel.Text = "$14839.88";
-            // 
-            // dashTotProfitLabel
-            // 
-            this.dashTotProfitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dashTotProfitLabel.AutoSize = true;
-            this.dashTotProfitLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotProfitLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashTotProfitLabel.ForeColor = System.Drawing.Color.White;
-            this.dashTotProfitLabel.Location = new System.Drawing.Point(69, 29);
-            this.dashTotProfitLabel.Name = "dashTotProfitLabel";
-            this.dashTotProfitLabel.Size = new System.Drawing.Size(95, 18);
-            this.dashTotProfitLabel.TabIndex = 0;
-            this.dashTotProfitLabel.Text = "Total Profit";
+            this.topProductsDoughnutChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea1.Area3DStyle.Enable3D = true;
+            chartArea1.Name = "ChartArea1";
+            this.topProductsDoughnutChart.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            this.topProductsDoughnutChart.Legends.Add(legend1);
+            this.topProductsDoughnutChart.Location = new System.Drawing.Point(13, 58);
+            this.topProductsDoughnutChart.Name = "topProductsDoughnutChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            series1.IsValueShownAsLabel = true;
+            series1.LabelForeColor = System.Drawing.Color.White;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.topProductsDoughnutChart.Series.Add(series1);
+            this.topProductsDoughnutChart.Size = new System.Drawing.Size(387, 350);
+            this.topProductsDoughnutChart.TabIndex = 11;
+            this.topProductsDoughnutChart.Text = "chart2";
+            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Top 5 Produts";
+            title1.Visible = false;
+            this.topProductsDoughnutChart.Titles.Add(title1);
+            this.topProductsDoughnutChart.Click += new System.EventHandler(this.topProductsPieChart_Click);
             // 
             // siticonePanel2
             // 
             this.siticonePanel2.AutoSize = true;
-            this.siticonePanel2.Controls.Add(this.dashTotProfitPanel);
-            this.siticonePanel2.Controls.Add(this.dashTPRPanel);
-            this.siticonePanel2.Controls.Add(this.dashTotSaleRetPanel);
-            this.siticonePanel2.Controls.Add(this.dashTotPurPanel);
+            this.siticonePanel2.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePanel2.BorderRadius = 8;
+            this.siticonePanel2.Controls.Add(this.thisYearBtn);
+            this.siticonePanel2.Controls.Add(this.Last30DaysBtn);
+            this.siticonePanel2.Controls.Add(this.last7DaysBtn);
+            this.siticonePanel2.Controls.Add(this.todayBtn);
+            this.siticonePanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.siticonePanel2.FillColor = System.Drawing.Color.Transparent;
-            this.siticonePanel2.Location = new System.Drawing.Point(1, 67);
+            this.siticonePanel2.Location = new System.Drawing.Point(0, 0);
             this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(314, 651);
-            this.siticonePanel2.TabIndex = 15;
+            this.siticonePanel2.ShadowDecoration.Color = System.Drawing.Color.Gray;
+            this.siticonePanel2.Size = new System.Drawing.Size(1369, 72);
+            this.siticonePanel2.TabIndex = 11;
+            // 
+            // thisYearBtn
+            // 
+            this.thisYearBtn.BorderRadius = 8;
+            this.thisYearBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.thisYearBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.thisYearBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.thisYearBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.thisYearBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thisYearBtn.ForeColor = System.Drawing.Color.White;
+            this.thisYearBtn.Location = new System.Drawing.Point(547, 26);
+            this.thisYearBtn.Name = "thisYearBtn";
+            this.thisYearBtn.Size = new System.Drawing.Size(152, 43);
+            this.thisYearBtn.TabIndex = 6;
+            this.thisYearBtn.Text = "This Year";
+            this.thisYearBtn.Click += new System.EventHandler(this.thisYearBtn_Click);
+            // 
+            // dashTotPurPanel
+            // 
+            this.dashTotPurPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dashTotPurPanel.BackColor = System.Drawing.Color.Transparent;
+            this.dashTotPurPanel.BorderRadius = 12;
+            this.dashTotPurPanel.Controls.Add(this.siticonePictureBox3);
+            this.dashTotPurPanel.Controls.Add(this.profitAmoutLabel);
+            this.dashTotPurPanel.Controls.Add(this.label6);
+            this.dashTotPurPanel.Controls.Add(this.label5);
+            this.dashTotPurPanel.FillColor = System.Drawing.Color.White;
+            this.dashTotPurPanel.Location = new System.Drawing.Point(642, 161);
+            this.dashTotPurPanel.Name = "dashTotPurPanel";
+            this.dashTotPurPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
+            this.dashTotPurPanel.Size = new System.Drawing.Size(715, 125);
+            this.dashTotPurPanel.TabIndex = 9;
+            this.dashTotPurPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.dashTotPurPanel_Paint);
+            // 
+            // siticonePictureBox3
+            // 
+            this.siticonePictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.siticonePictureBox3.FillColor = System.Drawing.Color.Transparent;
+            this.siticonePictureBox3.Image = global::EscopeWindowsApp.Properties.Resources.icons8_stocks_growth_96;
+            this.siticonePictureBox3.ImageRotate = 0F;
+            this.siticonePictureBox3.Location = new System.Drawing.Point(3, 9);
+            this.siticonePictureBox3.Name = "siticonePictureBox3";
+            this.siticonePictureBox3.Size = new System.Drawing.Size(158, 108);
+            this.siticonePictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.siticonePictureBox3.TabIndex = 22;
+            this.siticonePictureBox3.TabStop = false;
+            this.siticonePictureBox3.UseTransparentBackground = true;
+            // 
+            // profitAmoutLabel
+            // 
+            this.profitAmoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.profitAmoutLabel.AutoSize = true;
+            this.profitAmoutLabel.BackColor = System.Drawing.Color.Transparent;
+            this.profitAmoutLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profitAmoutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.profitAmoutLabel.Location = new System.Drawing.Point(506, 54);
+            this.profitAmoutLabel.Name = "profitAmoutLabel";
+            this.profitAmoutLabel.Size = new System.Drawing.Size(191, 45);
+            this.profitAmoutLabel.TabIndex = 20;
+            this.profitAmoutLabel.Text = "0000000.00";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label6.Location = new System.Drawing.Point(612, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "PROFIT";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(425, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 45);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "LKR:";
             // 
             // siticonePanel1
             // 
-            this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.siticonePanel1.FillColor = System.Drawing.Color.Transparent;
-            this.siticonePanel1.Location = new System.Drawing.Point(0, 751);
+            this.siticonePanel1.AutoSize = true;
+            this.siticonePanel1.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePanel1.BorderRadius = 12;
+            this.siticonePanel1.Controls.Add(this.label4);
+            this.siticonePanel1.Controls.Add(this.topProductsDoughnutChart);
+            this.siticonePanel1.FillColor = System.Drawing.Color.White;
+            this.siticonePanel1.Location = new System.Drawing.Point(21, 381);
             this.siticonePanel1.Name = "siticonePanel1";
-            this.siticonePanel1.Size = new System.Drawing.Size(1386, 37);
-            this.siticonePanel1.TabIndex = 14;
-            this.siticonePanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel1_Paint);
+            this.siticonePanel1.ShadowDecoration.Color = System.Drawing.Color.Gray;
+            this.siticonePanel1.Size = new System.Drawing.Size(415, 461);
+            this.siticonePanel1.TabIndex = 18;
             // 
-            // dashNOSpanel
+            // label4
             // 
-            this.dashNOSpanel.BorderColor = System.Drawing.Color.Blue;
-            this.dashNOSpanel.BorderRadius = 8;
-            this.dashNOSpanel.BorderThickness = 1;
-            this.dashNOSpanel.Controls.Add(this.dashNOSBtn);
-            this.dashNOSpanel.Controls.Add(this.dashNOSIconPanel);
-            this.dashNOSpanel.Controls.Add(this.tNOSLabel);
-            this.dashNOSpanel.Controls.Add(this.countOFSupLabel);
-            this.dashNOSpanel.FillColor = System.Drawing.Color.White;
-            this.dashNOSpanel.Location = new System.Drawing.Point(3, 127);
-            this.dashNOSpanel.Name = "dashNOSpanel";
-            this.dashNOSpanel.Size = new System.Drawing.Size(265, 69);
-            this.dashNOSpanel.TabIndex = 16;
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(7, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(245, 32);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Top Selling Product:";
             // 
-            // dashNOSBtn
+            // siticonePanel3
             // 
-            this.dashNOSBtn.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOSBtn.BorderRadius = 8;
-            this.dashNOSBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOSBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOSBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.dashNOSBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dashNOSBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dashNOSBtn.ForeColor = System.Drawing.Color.White;
-            this.dashNOSBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dashNOSBtn.Location = new System.Drawing.Point(208, 30);
-            this.dashNOSBtn.Name = "dashNOSBtn";
-            this.dashNOSBtn.Size = new System.Drawing.Size(40, 28);
-            this.dashNOSBtn.TabIndex = 17;
-            this.dashNOSBtn.Text = "+";
-            this.dashNOSBtn.Click += new System.EventHandler(this.dashNOSBtn_Click);
+            this.siticonePanel3.AutoSize = true;
+            this.siticonePanel3.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePanel3.BorderRadius = 12;
+            this.siticonePanel3.Controls.Add(this.dashTPRPanel);
+            this.siticonePanel3.Controls.Add(this.dashTotSalePanel);
+            this.siticonePanel3.Controls.Add(this.dashTotPurPanel);
+            this.siticonePanel3.Controls.Add(this.dashTotSaleRetPanel);
+            this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.siticonePanel3.FillColor = System.Drawing.Color.Transparent;
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 72);
+            this.siticonePanel3.MinimumSize = new System.Drawing.Size(600, 125);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.ShadowDecoration.Color = System.Drawing.Color.Gray;
+            this.siticonePanel3.Size = new System.Drawing.Size(1369, 289);
+            this.siticonePanel3.TabIndex = 15;
             // 
-            // dashNOSIconPanel
+            // siticonePanel5
             // 
-            this.dashNOSIconPanel.BackColor = System.Drawing.Color.White;
-            this.dashNOSIconPanel.BorderRadius = 8;
-            this.dashNOSIconPanel.Controls.Add(this.dashNOSPicBox);
-            this.dashNOSIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashNOSIconPanel.Location = new System.Drawing.Point(15, 11);
-            this.dashNOSIconPanel.Name = "dashNOSIconPanel";
-            this.dashNOSIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashNOSIconPanel.TabIndex = 15;
-            // 
-            // dashNOSPicBox
-            // 
-            this.dashNOSPicBox.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOSPicBox.Image = global::EscopeWindowsApp.Properties.Resources.supplierIcon;
-            this.dashNOSPicBox.ImageRotate = 0F;
-            this.dashNOSPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashNOSPicBox.Name = "dashNOSPicBox";
-            this.dashNOSPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashNOSPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dashNOSPicBox.TabIndex = 14;
-            this.dashNOSPicBox.TabStop = false;
-            this.dashNOSPicBox.UseTransparentBackground = true;
-            // 
-            // dashNOPPanel
-            // 
-            this.dashNOPPanel.BorderColor = System.Drawing.Color.Blue;
-            this.dashNOPPanel.BorderRadius = 8;
-            this.dashNOPPanel.BorderThickness = 1;
-            this.dashNOPPanel.Controls.Add(this.dashNOPBtn);
-            this.dashNOPPanel.Controls.Add(this.dashNOPIconLabel);
-            this.dashNOPPanel.Controls.Add(this.countOfProductLabel);
-            this.dashNOPPanel.Controls.Add(this.tNOPLabel);
-            this.dashNOPPanel.FillColor = System.Drawing.Color.White;
-            this.dashNOPPanel.Location = new System.Drawing.Point(3, 203);
-            this.dashNOPPanel.Name = "dashNOPPanel";
-            this.dashNOPPanel.Size = new System.Drawing.Size(265, 69);
-            this.dashNOPPanel.TabIndex = 18;
-            // 
-            // dashNOPBtn
-            // 
-            this.dashNOPBtn.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOPBtn.BorderRadius = 8;
-            this.dashNOPBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOPBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.dashNOPBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.dashNOPBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.dashNOPBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dashNOPBtn.ForeColor = System.Drawing.Color.White;
-            this.dashNOPBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dashNOPBtn.Location = new System.Drawing.Point(208, 32);
-            this.dashNOPBtn.Name = "dashNOPBtn";
-            this.dashNOPBtn.Size = new System.Drawing.Size(40, 28);
-            this.dashNOPBtn.TabIndex = 17;
-            this.dashNOPBtn.Text = "+";
-            this.dashNOPBtn.Click += new System.EventHandler(this.dashNOPBtn_Click);
-            // 
-            // dashNOPIconLabel
-            // 
-            this.dashNOPIconLabel.BackColor = System.Drawing.Color.White;
-            this.dashNOPIconLabel.BorderRadius = 8;
-            this.dashNOPIconLabel.Controls.Add(this.dashNOPPicBox);
-            this.dashNOPIconLabel.FillColor = System.Drawing.Color.White;
-            this.dashNOPIconLabel.Location = new System.Drawing.Point(15, 10);
-            this.dashNOPIconLabel.Name = "dashNOPIconLabel";
-            this.dashNOPIconLabel.Size = new System.Drawing.Size(47, 47);
-            this.dashNOPIconLabel.TabIndex = 15;
-            // 
-            // dashNOPPicBox
-            // 
-            this.dashNOPPicBox.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOPPicBox.Image = global::EscopeWindowsApp.Properties.Resources.productsIcon;
-            this.dashNOPPicBox.ImageRotate = 0F;
-            this.dashNOPPicBox.Location = new System.Drawing.Point(3, 3);
-            this.dashNOPPicBox.Name = "dashNOPPicBox";
-            this.dashNOPPicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashNOPPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dashNOPPicBox.TabIndex = 14;
-            this.dashNOPPicBox.TabStop = false;
-            this.dashNOPPicBox.UseTransparentBackground = true;
-            // 
-            // dashOverallPanel
-            // 
-            this.dashOverallPanel.BorderRadius = 8;
-            this.dashOverallPanel.Controls.Add(this.dashOverInfoLabel);
-            this.dashOverallPanel.Controls.Add(this.dashNOOPanel);
-            this.dashOverallPanel.Controls.Add(this.totalCounterPanel);
-            this.dashOverallPanel.Controls.Add(this.dashNOPPanel);
-            this.dashOverallPanel.Controls.Add(this.dashNOSpanel);
-            this.dashOverallPanel.FillColor = System.Drawing.Color.White;
-            this.dashOverallPanel.Location = new System.Drawing.Point(323, 67);
-            this.dashOverallPanel.Name = "dashOverallPanel";
-            this.dashOverallPanel.Size = new System.Drawing.Size(525, 352);
-            this.dashOverallPanel.TabIndex = 19;
-            // 
-            // dashOverInfoPieChart
-            // 
-            
-            
-            // 
-            // dashOverInfoLabel
-            // 
-            this.dashOverInfoLabel.AutoSize = true;
-            this.dashOverInfoLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashOverInfoLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashOverInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.dashOverInfoLabel.Location = new System.Drawing.Point(12, 12);
-            this.dashOverInfoLabel.Name = "dashOverInfoLabel";
-            this.dashOverInfoLabel.Size = new System.Drawing.Size(207, 24);
-            this.dashOverInfoLabel.TabIndex = 17;
-            this.dashOverInfoLabel.Text = "Overall Information";
-            // 
-            // dashNOOPanel
-            // 
-            this.dashNOOPanel.BorderColor = System.Drawing.Color.Blue;
-            this.dashNOOPanel.BorderRadius = 8;
-            this.dashNOOPanel.BorderThickness = 1;
-            this.dashNOOPanel.Controls.Add(this.dashNOOIconPanel);
-            this.dashNOOPanel.Controls.Add(this.dashNOOCountLabel);
-            this.dashNOOPanel.Controls.Add(this.dasNOOLabel);
-            this.dashNOOPanel.FillColor = System.Drawing.Color.White;
-            this.dashNOOPanel.Location = new System.Drawing.Point(3, 279);
-            this.dashNOOPanel.Name = "dashNOOPanel";
-            this.dashNOOPanel.Size = new System.Drawing.Size(265, 69);
-            this.dashNOOPanel.TabIndex = 19;
-            // 
-            // dashNOOIconPanel
-            // 
-            this.dashNOOIconPanel.BackColor = System.Drawing.Color.White;
-            this.dashNOOIconPanel.BorderRadius = 8;
-            this.dashNOOIconPanel.Controls.Add(this.dashNOOpicBox);
-            this.dashNOOIconPanel.FillColor = System.Drawing.Color.White;
-            this.dashNOOIconPanel.Location = new System.Drawing.Point(15, 14);
-            this.dashNOOIconPanel.Name = "dashNOOIconPanel";
-            this.dashNOOIconPanel.Size = new System.Drawing.Size(47, 47);
-            this.dashNOOIconPanel.TabIndex = 15;
-            // 
-            // dashNOOpicBox
-            // 
-            this.dashNOOpicBox.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOOpicBox.Image = global::EscopeWindowsApp.Properties.Resources.orderIcon;
-            this.dashNOOpicBox.ImageRotate = 0F;
-            this.dashNOOpicBox.Location = new System.Drawing.Point(3, 4);
-            this.dashNOOpicBox.Name = "dashNOOpicBox";
-            this.dashNOOpicBox.Size = new System.Drawing.Size(41, 40);
-            this.dashNOOpicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.dashNOOpicBox.TabIndex = 14;
-            this.dashNOOpicBox.TabStop = false;
-            this.dashNOOpicBox.UseTransparentBackground = true;
-            // 
-            // dashNOOCountLabel
-            // 
-            this.dashNOOCountLabel.AutoSize = true;
-            this.dashNOOCountLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashNOOCountLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashNOOCountLabel.Location = new System.Drawing.Point(67, 34);
-            this.dashNOOCountLabel.Name = "dashNOOCountLabel";
-            this.dashNOOCountLabel.Size = new System.Drawing.Size(82, 28);
-            this.dashNOOCountLabel.TabIndex = 13;
-            this.dashNOOCountLabel.Text = "10000";
-            // 
-            // dasNOOLabel
-            // 
-            this.dasNOOLabel.AutoSize = true;
-            this.dasNOOLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dasNOOLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dasNOOLabel.Location = new System.Drawing.Point(68, 11);
-            this.dasNOOLabel.Name = "dasNOOLabel";
-            this.dasNOOLabel.Size = new System.Drawing.Size(144, 18);
-            this.dasNOOLabel.TabIndex = 14;
-            this.dasNOOLabel.Text = "Number Of Order";
-            // 
-            // topProductsPieChart
-            // 
-            this.topProductsPieChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.siticonePanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.topProductsPieChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.siticonePanel5.BorderRadius = 12;
+            this.siticonePanel5.Controls.Add(this.label8);
+            this.siticonePanel5.Controls.Add(this.salesPurchStackedColumn);
+            this.siticonePanel5.FillColor = System.Drawing.Color.White;
+            this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
+            this.siticonePanel5.Name = "siticonePanel5";
+            this.siticonePanel5.Size = new System.Drawing.Size(899, 461);
+            this.siticonePanel5.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(16, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(371, 32);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "This Week Sales and Purchases:";
+            // 
+            // salesPurchStackedColumn
+            // 
+            this.salesPurchStackedColumn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.salesPurchStackedColumn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             chartArea2.Name = "ChartArea1";
-            this.topProductsPieChart.ChartAreas.Add(chartArea2);
+            this.salesPurchStackedColumn.ChartAreas.Add(chartArea2);
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend2.Name = "Legend1";
-            this.topProductsPieChart.Legends.Add(legend2);
-            this.topProductsPieChart.Location = new System.Drawing.Point(860, 364);
-            this.topProductsPieChart.Name = "topProductsPieChart";
+            this.salesPurchStackedColumn.Legends.Add(legend2);
+            this.salesPurchStackedColumn.Location = new System.Drawing.Point(22, 70);
+            this.salesPurchStackedColumn.Name = "salesPurchStackedColumn";
             series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
             series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             series2.IsValueShownAsLabel = true;
             series2.LabelForeColor = System.Drawing.Color.White;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.topProductsPieChart.Series.Add(series2);
-            this.topProductsPieChart.Size = new System.Drawing.Size(514, 354);
-            this.topProductsPieChart.TabIndex = 11;
-            this.topProductsPieChart.Text = "chart2";
+            this.salesPurchStackedColumn.Series.Add(series2);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(865, 350);
+            this.salesPurchStackedColumn.TabIndex = 19;
+            this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title2.Name = "Title1";
             title2.Text = "Top 5 Produts";
-            this.topProductsPieChart.Titles.Add(title2);
-            this.topProductsPieChart.Click += new System.EventHandler(this.topProductsPieChart_Click);
+            title2.Visible = false;
+            this.salesPurchStackedColumn.Titles.Add(title2);
+            // 
+            // siticonePanel4
+            // 
+            this.siticonePanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel4.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePanel4.BorderRadius = 12;
+            this.siticonePanel4.Controls.Add(this.label7);
+            this.siticonePanel4.Controls.Add(this.dailyProfitLineChart);
+            this.siticonePanel4.FillColor = System.Drawing.Color.White;
+            this.siticonePanel4.Location = new System.Drawing.Point(21, 875);
+            this.siticonePanel4.Name = "siticonePanel4";
+            this.siticonePanel4.Size = new System.Drawing.Size(1331, 316);
+            this.siticonePanel4.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(7, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(151, 32);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Daily Profit:";
+            // 
+            // dailyProfitLineChart
+            // 
+            this.dailyProfitLineChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dailyProfitLineChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea3.Name = "ChartArea1";
+            this.dailyProfitLineChart.ChartAreas.Add(chartArea3);
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend3.Name = "Legend1";
+            this.dailyProfitLineChart.Legends.Add(legend3);
+            this.dailyProfitLineChart.Location = new System.Drawing.Point(13, 60);
+            this.dailyProfitLineChart.Name = "dailyProfitLineChart";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            series3.IsValueShownAsLabel = true;
+            series3.LabelForeColor = System.Drawing.Color.White;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.dailyProfitLineChart.Series.Add(series3);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1306, 240);
+            this.dailyProfitLineChart.TabIndex = 20;
+            this.dailyProfitLineChart.Text = "chart1";
+            title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Top 5 Produts";
+            title3.Visible = false;
+            this.dailyProfitLineChart.Titles.Add(title3);
+            // 
+            // siticonePanel6
+            // 
+            this.siticonePanel6.Controls.Add(this.label9);
+            this.siticonePanel6.Controls.Add(this.stockAlertDataGrid);
+            this.siticonePanel6.FillColor = System.Drawing.Color.White;
+            this.siticonePanel6.Location = new System.Drawing.Point(21, 1221);
+            this.siticonePanel6.Name = "siticonePanel6";
+            this.siticonePanel6.Size = new System.Drawing.Size(600, 436);
+            this.siticonePanel6.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(10, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(146, 32);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "Stock Alert:";
+            // 
+            // stockAlertDataGrid
+            // 
+            this.stockAlertDataGrid.AllowUserToAddRows = false;
+            this.stockAlertDataGrid.AllowUserToDeleteRows = false;
+            this.stockAlertDataGrid.AllowUserToResizeColumns = false;
+            this.stockAlertDataGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.stockAlertDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stockAlertDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.stockAlertDataGrid.ColumnHeadersHeight = 45;
+            this.stockAlertDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stockAlertDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.stockAlertDataGrid.GridColor = System.Drawing.Color.White;
+            this.stockAlertDataGrid.Location = new System.Drawing.Point(13, 66);
+            this.stockAlertDataGrid.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.stockAlertDataGrid.Name = "stockAlertDataGrid";
+            this.stockAlertDataGrid.ReadOnly = true;
+            this.stockAlertDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stockAlertDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.stockAlertDataGrid.RowHeadersVisible = false;
+            this.stockAlertDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.stockAlertDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.stockAlertDataGrid.RowTemplate.Height = 35;
+            this.stockAlertDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.stockAlertDataGrid.Size = new System.Drawing.Size(572, 360);
+            this.stockAlertDataGrid.TabIndex = 42;
+            this.stockAlertDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.stockAlertDataGrid.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.stockAlertDataGrid.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Height = 45;
+            this.stockAlertDataGrid.ThemeStyle.ReadOnly = true;
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Height = 35;
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "No";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Dis";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "QTY";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "INC";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Price";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Total Price";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Del";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label11.Location = new System.Drawing.Point(12, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(226, 32);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Top 05 Customers:";
+            // 
+            // siticonePanel8
+            // 
+            this.siticonePanel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel8.BorderRadius = 12;
+            this.siticonePanel8.Controls.Add(this.topCustomerPieChart);
+            this.siticonePanel8.Controls.Add(this.label11);
+            this.siticonePanel8.FillColor = System.Drawing.Color.White;
+            this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
+            this.siticonePanel8.Name = "siticonePanel8";
+            this.siticonePanel8.Size = new System.Drawing.Size(709, 530);
+            this.siticonePanel8.TabIndex = 23;
+            // 
+            // topCustomerPieChart
+            // 
+            this.topCustomerPieChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.topCustomerPieChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea4.Area3DStyle.Enable3D = true;
+            chartArea4.Name = "ChartArea1";
+            this.topCustomerPieChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.topCustomerPieChart.Legends.Add(legend4);
+            this.topCustomerPieChart.Location = new System.Drawing.Point(18, 66);
+            this.topCustomerPieChart.Name = "topCustomerPieChart";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            series4.IsValueShownAsLabel = true;
+            series4.LabelForeColor = System.Drawing.Color.White;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.topCustomerPieChart.Series.Add(series4);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(679, 448);
+            this.topCustomerPieChart.TabIndex = 45;
+            this.topCustomerPieChart.Text = "chart2";
+            title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Text = "Top 5 Produts";
+            title4.Visible = false;
+            this.topCustomerPieChart.Titles.Add(title4);
+            // 
+            // siticonePanel7
+            // 
+            this.siticonePanel7.BorderRadius = 12;
+            this.siticonePanel7.Controls.Add(this.topExpensesColumnChart);
+            this.siticonePanel7.Controls.Add(this.label10);
+            this.siticonePanel7.FillColor = System.Drawing.Color.White;
+            this.siticonePanel7.Location = new System.Drawing.Point(21, 1685);
+            this.siticonePanel7.Name = "siticonePanel7";
+            this.siticonePanel7.Size = new System.Drawing.Size(515, 400);
+            this.siticonePanel7.TabIndex = 24;
+            // 
+            // topExpensesColumnChart
+            // 
+            this.topExpensesColumnChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.topExpensesColumnChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea5.Name = "ChartArea1";
+            this.topExpensesColumnChart.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.topExpensesColumnChart.Legends.Add(legend5);
+            this.topExpensesColumnChart.Location = new System.Drawing.Point(16, 59);
+            this.topExpensesColumnChart.Name = "topExpensesColumnChart";
+            series5.ChartArea = "ChartArea1";
+            series5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            series5.IsValueShownAsLabel = true;
+            series5.LabelForeColor = System.Drawing.Color.White;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.topExpensesColumnChart.Series.Add(series5);
+            this.topExpensesColumnChart.Size = new System.Drawing.Size(478, 321);
+            this.topExpensesColumnChart.TabIndex = 46;
+            this.topExpensesColumnChart.Text = "chart2";
+            title5.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title5.Name = "Title1";
+            title5.Text = "Top 5 Produts";
+            title5.Visible = false;
+            this.topExpensesColumnChart.Titles.Add(title5);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(10, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(209, 32);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "Top 05 Expenses:";
+            // 
+            // siticonePanel9
+            // 
+            this.siticonePanel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel9.BorderRadius = 12;
+            this.siticonePanel9.Controls.Add(this.label12);
+            this.siticonePanel9.Controls.Add(this.expireDateAlertGridView);
+            this.siticonePanel9.FillColor = System.Drawing.Color.White;
+            this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
+            this.siticonePanel9.Name = "siticonePanel9";
+            this.siticonePanel9.Size = new System.Drawing.Size(795, 307);
+            this.siticonePanel9.TabIndex = 48;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label12.Location = new System.Drawing.Point(10, 12);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(216, 32);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "Expire Date Alert:";
+            // 
+            // expireDateAlertGridView
+            // 
+            this.expireDateAlertGridView.AllowUserToAddRows = false;
+            this.expireDateAlertGridView.AllowUserToDeleteRows = false;
+            this.expireDateAlertGridView.AllowUserToResizeColumns = false;
+            this.expireDateAlertGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.expireDateAlertGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.expireDateAlertGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expireDateAlertGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.expireDateAlertGridView.ColumnHeadersHeight = 45;
+            this.expireDateAlertGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn17});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.expireDateAlertGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            this.expireDateAlertGridView.GridColor = System.Drawing.Color.White;
+            this.expireDateAlertGridView.Location = new System.Drawing.Point(16, 66);
+            this.expireDateAlertGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.expireDateAlertGridView.Name = "expireDateAlertGridView";
+            this.expireDateAlertGridView.ReadOnly = true;
+            this.expireDateAlertGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expireDateAlertGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.expireDateAlertGridView.RowHeadersVisible = false;
+            this.expireDateAlertGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.expireDateAlertGridView.RowTemplate.Height = 35;
+            this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(770, 221);
+            this.expireDateAlertGridView.TabIndex = 45;
+            this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.expireDateAlertGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.expireDateAlertGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.expireDateAlertGridView.ThemeStyle.ReadOnly = true;
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "No";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.HeaderText = "Total Price";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            // 
+            // siticonePanel10
+            // 
+            this.siticonePanel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel10.BorderRadius = 12;
+            this.siticonePanel10.Controls.Add(this.label13);
+            this.siticonePanel10.Controls.Add(this.recentDataGridView);
+            this.siticonePanel10.FillColor = System.Drawing.Color.White;
+            this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
+            this.siticonePanel10.Name = "siticonePanel10";
+            this.siticonePanel10.Size = new System.Drawing.Size(1331, 450);
+            this.siticonePanel10.TabIndex = 49;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label13.Location = new System.Drawing.Point(10, 12);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(162, 32);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Recent Sales:";
+            // 
+            // recentDataGridView
+            // 
+            this.recentDataGridView.AllowUserToAddRows = false;
+            this.recentDataGridView.AllowUserToDeleteRows = false;
+            this.recentDataGridView.AllowUserToResizeColumns = false;
+            this.recentDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.recentDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.recentDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.recentDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.recentDataGridView.ColumnHeadersHeight = 45;
+            this.recentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn18});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.recentDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            this.recentDataGridView.GridColor = System.Drawing.Color.White;
+            this.recentDataGridView.Location = new System.Drawing.Point(16, 66);
+            this.recentDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.recentDataGridView.Name = "recentDataGridView";
+            this.recentDataGridView.ReadOnly = true;
+            this.recentDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.recentDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.recentDataGridView.RowHeadersVisible = false;
+            this.recentDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.recentDataGridView.RowTemplate.Height = 35;
+            this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.recentDataGridView.Size = new System.Drawing.Size(1303, 296);
+            this.recentDataGridView.TabIndex = 45;
+            this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.recentDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.recentDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.recentDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.recentDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.recentDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.recentDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.recentDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.recentDataGridView.ThemeStyle.ReadOnly = true;
+            this.recentDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.recentDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.recentDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.recentDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.recentDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.recentDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "No";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.HeaderText = "Total Price";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            // 
+            // siticonePanel11
+            // 
+            this.siticonePanel11.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.siticonePanel11.Location = new System.Drawing.Point(0, 2564);
+            this.siticonePanel11.Name = "siticonePanel11";
+            this.siticonePanel11.Size = new System.Drawing.Size(1369, 102);
+            this.siticonePanel11.TabIndex = 50;
             // 
             // DashBoardForm
             // 
@@ -1052,18 +1252,17 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
-            this.Controls.Add(this.dashTotSalePanel);
+            this.Controls.Add(this.siticonePanel11);
+            this.Controls.Add(this.siticonePanel10);
+            this.Controls.Add(this.siticonePanel9);
+            this.Controls.Add(this.siticonePanel7);
+            this.Controls.Add(this.siticonePanel8);
+            this.Controls.Add(this.siticonePanel6);
+            this.Controls.Add(this.siticonePanel4);
+            this.Controls.Add(this.siticonePanel5);
+            this.Controls.Add(this.siticonePanel3);
             this.Controls.Add(this.siticonePanel1);
-            this.Controls.Add(this.proUnderPanel);
-            this.Controls.Add(this.topProductsPieChart);
-            this.Controls.Add(this.grossRevenueChart);
-            this.Controls.Add(this.thisMonthBtn);
-            this.Controls.Add(this.Last30DaysBtn);
-            this.Controls.Add(this.last7DaysBtn);
-            this.Controls.Add(this.todayBtn);
-            this.Controls.Add(this.customeBtn);
             this.Controls.Add(this.siticonePanel2);
-            this.Controls.Add(this.dashOverallPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1072,123 +1271,120 @@
             this.Name = "DashBoardForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DashBoardForm";
             this.Load += new System.EventHandler(this.DashBoardForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grossRevenueChart)).EndInit();
-            this.proUnderPanel.ResumeLayout(false);
-            this.proUnderPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.underStockDataGridView)).EndInit();
-            this.totalCounterPanel.ResumeLayout(false);
-            this.totalCounterPanel.PerformLayout();
-            this.dashNOCIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOCPicBox)).EndInit();
-            this.dashTotPurPanel.ResumeLayout(false);
-            this.dashTotPurPanel.PerformLayout();
-            this.dashTPIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashTPIconePicBox)).EndInit();
             this.dashTotSaleRetPanel.ResumeLayout(false);
             this.dashTotSaleRetPanel.PerformLayout();
-            this.dashTSRIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleRetIconPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.dashTPRPanel.ResumeLayout(false);
             this.dashTPRPanel.PerformLayout();
-            this.dashTPRIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashTPRPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox2)).EndInit();
             this.dashTotSalePanel.ResumeLayout(false);
             this.dashTotSalePanel.PerformLayout();
-            this.dashTSIconPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).EndInit();
-            this.dashTotProfitPanel.ResumeLayout(false);
-            this.dashTotProfitPanel.PerformLayout();
-            this.dashTotProfitIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashTotProfitIconPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topProductsDoughnutChart)).EndInit();
             this.siticonePanel2.ResumeLayout(false);
-            this.dashNOSpanel.ResumeLayout(false);
-            this.dashNOSpanel.PerformLayout();
-            this.dashNOSIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOSPicBox)).EndInit();
-            this.dashNOPPanel.ResumeLayout(false);
-            this.dashNOPPanel.PerformLayout();
-            this.dashNOPIconLabel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOPPicBox)).EndInit();
-            this.dashOverallPanel.ResumeLayout(false);
-            this.dashOverallPanel.PerformLayout();
-            this.dashNOOPanel.ResumeLayout(false);
-            this.dashNOOPanel.PerformLayout();
-            this.dashNOOIconPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dashNOOpicBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).EndInit();
+            this.dashTotPurPanel.ResumeLayout(false);
+            this.dashTotPurPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox3)).EndInit();
+            this.siticonePanel1.ResumeLayout(false);
+            this.siticonePanel1.PerformLayout();
+            this.siticonePanel3.ResumeLayout(false);
+            this.siticonePanel5.ResumeLayout(false);
+            this.siticonePanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.salesPurchStackedColumn)).EndInit();
+            this.siticonePanel4.ResumeLayout(false);
+            this.siticonePanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dailyProfitLineChart)).EndInit();
+            this.siticonePanel6.ResumeLayout(false);
+            this.siticonePanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stockAlertDataGrid)).EndInit();
+            this.siticonePanel8.ResumeLayout(false);
+            this.siticonePanel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topCustomerPieChart)).EndInit();
+            this.siticonePanel7.ResumeLayout(false);
+            this.siticonePanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topExpensesColumnChart)).EndInit();
+            this.siticonePanel9.ResumeLayout(false);
+            this.siticonePanel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expireDateAlertGridView)).EndInit();
+            this.siticonePanel10.ResumeLayout(false);
+            this.siticonePanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recentDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private Siticone.Desktop.UI.WinForms.SiticoneButton customeBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton todayBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton last7DaysBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton Last30DaysBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton thisMonthBtn;
-        private System.Windows.Forms.DataVisualization.Charting.Chart grossRevenueChart;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel proUnderPanel;
-        private System.Windows.Forms.Label dashProunderStockLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView underStockDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Label countOFCusLabel;
-        private System.Windows.Forms.Label tNOCLabel;
-        private System.Windows.Forms.Label countOFSupLabel;
-        private System.Windows.Forms.Label tNOSLabel;
-        private System.Windows.Forms.Label countOfProductLabel;
-        private System.Windows.Forms.Label tNOPLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel totalCounterPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotPurPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTPIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTPIconePicBox;
-        private System.Windows.Forms.Label dashTPPriceLabel;
-        private System.Windows.Forms.Label dashTPLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotSaleRetPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTSRIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTotSaleRetIconPicBox;
-        private System.Windows.Forms.Label dashTSRPriceLabel;
-        private System.Windows.Forms.Label dashTSRLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel dashTPRPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTPRIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTPRPicBox;
-        private System.Windows.Forms.Label dashTPRPricelabel;
-        private System.Windows.Forms.Label dashTPRlabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotSalePanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTSIconPanel;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTotSaleIconPicBox;
         private System.Windows.Forms.Label dashTotSalePriceLabel;
         private System.Windows.Forms.Label dashTotalSalesLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotProfitPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotProfitIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTotProfitIconPicBox;
-        private System.Windows.Forms.Label dashTotProfitPriceLabel;
-        private System.Windows.Forms.Label dashTotProfitLabel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart topProductsDoughnutChart;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label SaleRetLabel;
+        private System.Windows.Forms.Label saleRetAmoutLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox1;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox2;
+        private System.Windows.Forms.Label purAmountLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label purLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel dashTotPurPanel;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox3;
+        private System.Windows.Forms.Label profitAmoutLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOCIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashNOCPicBox;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOSpanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOSIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashNOSPicBox;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton dashNOCBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton dashNOSBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOPPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton dashNOPBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOPIconLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashNOPPicBox;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashOverallPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOOPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel dashNOOIconPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashNOOpicBox;
-        private System.Windows.Forms.Label dashNOOCountLabel;
-        private System.Windows.Forms.Label dasNOOLabel;
-        private System.Windows.Forms.Label dashOverInfoLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart topProductsPieChart;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
+        private System.Windows.Forms.Label label4;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataVisualization.Charting.Chart salesPurchStackedColumn;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart dailyProfitLineChart;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView stockAlertDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.Label label11;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel8;
+        private System.Windows.Forms.DataVisualization.Charting.Chart topCustomerPieChart;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel7;
+        private System.Windows.Forms.Label label10;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel9;
+        private System.Windows.Forms.Label label12;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView expireDateAlertGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataVisualization.Charting.Chart topExpensesColumnChart;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel10;
+        private System.Windows.Forms.Label label13;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView recentDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel11;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton thisYearBtn;
     }
 }
