@@ -103,6 +103,8 @@ namespace EscopeWindowsApp
 
         private void SideBarForm_Load(object sender, EventArgs e)
         {
+            // Open DashBoardForm by default
+            dashboardBtn_Click(dashboardBtn, EventArgs.Empty);
         }
 
         bool manuExpand = false;
