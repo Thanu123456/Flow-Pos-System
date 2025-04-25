@@ -63,10 +63,10 @@
             this.last7DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.Last30DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashTotSaleRetPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.saleReAmountLabel = new System.Windows.Forms.Label();
             this.siticonePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SaleRetLabel = new System.Windows.Forms.Label();
-            this.saleRetAmoutLabel = new System.Windows.Forms.Label();
             this.dashTPRPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePictureBox2 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.purAmountLabel = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dashTotSalePriceLabel = new System.Windows.Forms.Label();
             this.dashTotalSalesLabel = new System.Windows.Forms.Label();
-            this.topProductsDoughnutChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.topProductsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.thisYearBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashTotPurPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -134,7 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox2)).BeginInit();
             this.dashTotSalePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topProductsDoughnutChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
             this.siticonePanel2.SuspendLayout();
             this.dashTotPurPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox3)).BeginInit();
@@ -163,6 +163,7 @@
             this.todayBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.todayBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.todayBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.todayBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.todayBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.todayBtn.ForeColor = System.Drawing.Color.White;
             this.todayBtn.Location = new System.Drawing.Point(19, 26);
@@ -170,6 +171,7 @@
             this.todayBtn.Size = new System.Drawing.Size(152, 43);
             this.todayBtn.TabIndex = 3;
             this.todayBtn.Text = "Today";
+            this.todayBtn.Click += new System.EventHandler(this.todayBtn_Click);
             // 
             // last7DaysBtn
             // 
@@ -178,6 +180,7 @@
             this.last7DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.last7DaysBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.last7DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.last7DaysBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.last7DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.last7DaysBtn.ForeColor = System.Drawing.Color.White;
             this.last7DaysBtn.Location = new System.Drawing.Point(193, 26);
@@ -194,6 +197,7 @@
             this.Last30DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.Last30DaysBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.Last30DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Last30DaysBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.Last30DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Last30DaysBtn.ForeColor = System.Drawing.Color.White;
             this.Last30DaysBtn.Location = new System.Drawing.Point(367, 26);
@@ -201,15 +205,16 @@
             this.Last30DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.Last30DaysBtn.TabIndex = 5;
             this.Last30DaysBtn.Text = "This Month";
+            this.Last30DaysBtn.Click += new System.EventHandler(this.Last30DaysBtn_Click);
             // 
             // dashTotSaleRetPanel
             // 
             this.dashTotSaleRetPanel.BackColor = System.Drawing.Color.Transparent;
             this.dashTotSaleRetPanel.BorderRadius = 12;
+            this.dashTotSaleRetPanel.Controls.Add(this.saleReAmountLabel);
             this.dashTotSaleRetPanel.Controls.Add(this.siticonePictureBox1);
             this.dashTotSaleRetPanel.Controls.Add(this.label2);
             this.dashTotSaleRetPanel.Controls.Add(this.SaleRetLabel);
-            this.dashTotSaleRetPanel.Controls.Add(this.saleRetAmoutLabel);
             this.dashTotSaleRetPanel.FillColor = System.Drawing.Color.White;
             this.dashTotSaleRetPanel.Location = new System.Drawing.Point(21, 161);
             this.dashTotSaleRetPanel.MinimumSize = new System.Drawing.Size(600, 125);
@@ -217,6 +222,20 @@
             this.dashTotSaleRetPanel.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.dashTotSaleRetPanel.Size = new System.Drawing.Size(600, 125);
             this.dashTotSaleRetPanel.TabIndex = 8;
+            // 
+            // saleReAmountLabel
+            // 
+            this.saleReAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saleReAmountLabel.AutoSize = true;
+            this.saleReAmountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.saleReAmountLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleReAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.saleReAmountLabel.Location = new System.Drawing.Point(394, 54);
+            this.saleReAmountLabel.Name = "saleReAmountLabel";
+            this.saleReAmountLabel.Size = new System.Drawing.Size(191, 45);
+            this.saleReAmountLabel.TabIndex = 18;
+            this.saleReAmountLabel.Text = "0000000.00";
+            this.saleReAmountLabel.Click += new System.EventHandler(this.saleReAmountLabel_Click);
             // 
             // siticonePictureBox1
             // 
@@ -257,19 +276,6 @@
             this.SaleRetLabel.Size = new System.Drawing.Size(141, 25);
             this.SaleRetLabel.TabIndex = 15;
             this.SaleRetLabel.Text = "SALES RETURN";
-            // 
-            // saleRetAmoutLabel
-            // 
-            this.saleRetAmoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleRetAmoutLabel.AutoSize = true;
-            this.saleRetAmoutLabel.BackColor = System.Drawing.Color.Transparent;
-            this.saleRetAmoutLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleRetAmoutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.saleRetAmoutLabel.Location = new System.Drawing.Point(394, 53);
-            this.saleRetAmoutLabel.Name = "saleRetAmoutLabel";
-            this.saleRetAmoutLabel.Size = new System.Drawing.Size(191, 45);
-            this.saleRetAmoutLabel.TabIndex = 16;
-            this.saleRetAmoutLabel.Text = "0000000.00";
             // 
             // dashTPRPanel
             // 
@@ -314,6 +320,7 @@
             this.purAmountLabel.Size = new System.Drawing.Size(191, 45);
             this.purAmountLabel.TabIndex = 16;
             this.purAmountLabel.Text = "0000000.00";
+            this.purAmountLabel.Click += new System.EventHandler(this.purAmountLabel_Click);
             // 
             // label3
             // 
@@ -413,17 +420,17 @@
             this.dashTotalSalesLabel.Text = "SALES";
             this.dashTotalSalesLabel.Click += new System.EventHandler(this.numberOrderLabel_Click);
             // 
-            // topProductsDoughnutChart
+            // topProductsPieChart
             // 
-            this.topProductsDoughnutChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.topProductsPieChart.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Area3DStyle.Enable3D = true;
             chartArea1.Name = "ChartArea1";
-            this.topProductsDoughnutChart.ChartAreas.Add(chartArea1);
+            this.topProductsPieChart.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Name = "Legend1";
-            this.topProductsDoughnutChart.Legends.Add(legend1);
-            this.topProductsDoughnutChart.Location = new System.Drawing.Point(13, 58);
-            this.topProductsDoughnutChart.Name = "topProductsDoughnutChart";
+            this.topProductsPieChart.Legends.Add(legend1);
+            this.topProductsPieChart.Location = new System.Drawing.Point(13, 58);
+            this.topProductsPieChart.Name = "topProductsPieChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -431,17 +438,17 @@
             series1.LabelForeColor = System.Drawing.Color.White;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.topProductsDoughnutChart.Series.Add(series1);
-            this.topProductsDoughnutChart.Size = new System.Drawing.Size(387, 350);
-            this.topProductsDoughnutChart.TabIndex = 11;
-            this.topProductsDoughnutChart.Text = "chart2";
+            this.topProductsPieChart.Series.Add(series1);
+            this.topProductsPieChart.Size = new System.Drawing.Size(387, 350);
+            this.topProductsPieChart.TabIndex = 11;
+            this.topProductsPieChart.Text = "chart2";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "Title1";
             title1.Text = "Top 5 Produts";
             title1.Visible = false;
-            this.topProductsDoughnutChart.Titles.Add(title1);
-            this.topProductsDoughnutChart.Click += new System.EventHandler(this.topProductsPieChart_Click);
+            this.topProductsPieChart.Titles.Add(title1);
+            this.topProductsPieChart.Click += new System.EventHandler(this.topProductsPieChart_Click);
             // 
             // siticonePanel2
             // 
@@ -467,6 +474,7 @@
             this.thisYearBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.thisYearBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.thisYearBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.thisYearBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.thisYearBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thisYearBtn.ForeColor = System.Drawing.Color.White;
             this.thisYearBtn.Location = new System.Drawing.Point(547, 26);
@@ -553,7 +561,7 @@
             this.siticonePanel1.BackColor = System.Drawing.Color.Transparent;
             this.siticonePanel1.BorderRadius = 12;
             this.siticonePanel1.Controls.Add(this.label4);
-            this.siticonePanel1.Controls.Add(this.topProductsDoughnutChart);
+            this.siticonePanel1.Controls.Add(this.topProductsPieChart);
             this.siticonePanel1.FillColor = System.Drawing.Color.White;
             this.siticonePanel1.Location = new System.Drawing.Point(21, 381);
             this.siticonePanel1.Name = "siticonePanel1";
@@ -569,9 +577,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(7, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(245, 32);
+            this.label4.Size = new System.Drawing.Size(252, 32);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Top Selling Product:";
+            this.label4.Text = "Top Selling Product :";
             // 
             // siticonePanel3
             // 
@@ -601,7 +609,7 @@
             this.siticonePanel5.FillColor = System.Drawing.Color.White;
             this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
             this.siticonePanel5.Name = "siticonePanel5";
-            this.siticonePanel5.Size = new System.Drawing.Size(916, 461);
+            this.siticonePanel5.Size = new System.Drawing.Size(814, 461);
             this.siticonePanel5.TabIndex = 19;
             // 
             // label8
@@ -612,9 +620,9 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label8.Location = new System.Drawing.Point(16, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(371, 32);
+            this.label8.Size = new System.Drawing.Size(378, 32);
             this.label8.TabIndex = 19;
-            this.label8.Text = "This Week Sales and Purchases:";
+            this.label8.Text = "This Week Sales and Purchases :";
             // 
             // salesPurchStackedColumn
             // 
@@ -635,7 +643,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.salesPurchStackedColumn.Series.Add(series2);
-            this.salesPurchStackedColumn.Size = new System.Drawing.Size(882, 350);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(780, 350);
             this.salesPurchStackedColumn.TabIndex = 19;
             this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -657,7 +665,7 @@
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
             this.siticonePanel4.Location = new System.Drawing.Point(21, 875);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1348, 316);
+            this.siticonePanel4.Size = new System.Drawing.Size(1246, 316);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
@@ -668,9 +676,9 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label7.Location = new System.Drawing.Point(7, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(151, 32);
+            this.label7.Size = new System.Drawing.Size(158, 32);
             this.label7.TabIndex = 21;
-            this.label7.Text = "Daily Profit:";
+            this.label7.Text = "Daily Profit :";
             // 
             // dailyProfitLineChart
             // 
@@ -691,7 +699,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1323, 240);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1221, 240);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -703,6 +711,7 @@
             // 
             // siticonePanel6
             // 
+            this.siticonePanel6.BorderRadius = 12;
             this.siticonePanel6.Controls.Add(this.label9);
             this.siticonePanel6.Controls.Add(this.stockAlertDataGrid);
             this.siticonePanel6.FillColor = System.Drawing.Color.White;
@@ -719,9 +728,9 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label9.Location = new System.Drawing.Point(10, 15);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(146, 32);
+            this.label9.Size = new System.Drawing.Size(153, 32);
             this.label9.TabIndex = 43;
-            this.label9.Text = "Stock Alert:";
+            this.label9.Text = "Stock Alert :";
             // 
             // stockAlertDataGrid
             // 
@@ -879,9 +888,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label11.Location = new System.Drawing.Point(12, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(226, 32);
+            this.label11.Size = new System.Drawing.Size(387, 32);
             this.label11.TabIndex = 44;
-            this.label11.Text = "Top 05 Customers:";
+            this.label11.Text = "Top 05 Customers (This Month) :";
             // 
             // siticonePanel8
             // 
@@ -893,7 +902,7 @@
             this.siticonePanel8.FillColor = System.Drawing.Color.White;
             this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
             this.siticonePanel8.Name = "siticonePanel8";
-            this.siticonePanel8.Size = new System.Drawing.Size(726, 530);
+            this.siticonePanel8.Size = new System.Drawing.Size(624, 530);
             this.siticonePanel8.TabIndex = 23;
             // 
             // topCustomerPieChart
@@ -916,7 +925,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.topCustomerPieChart.Series.Add(series4);
-            this.topCustomerPieChart.Size = new System.Drawing.Size(696, 448);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(594, 448);
             this.topCustomerPieChart.TabIndex = 45;
             this.topCustomerPieChart.Text = "chart2";
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -974,9 +983,9 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label10.Location = new System.Drawing.Point(10, 12);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(209, 32);
+            this.label10.Size = new System.Drawing.Size(370, 32);
             this.label10.TabIndex = 46;
-            this.label10.Text = "Top 05 Expenses:";
+            this.label10.Text = "Top 05 Expenses (This Month) :";
             // 
             // siticonePanel9
             // 
@@ -988,7 +997,7 @@
             this.siticonePanel9.FillColor = System.Drawing.Color.White;
             this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
             this.siticonePanel9.Name = "siticonePanel9";
-            this.siticonePanel9.Size = new System.Drawing.Size(812, 307);
+            this.siticonePanel9.Size = new System.Drawing.Size(710, 307);
             this.siticonePanel9.TabIndex = 48;
             // 
             // label12
@@ -999,9 +1008,9 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label12.Location = new System.Drawing.Point(10, 12);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(216, 32);
+            this.label12.Size = new System.Drawing.Size(223, 32);
             this.label12.TabIndex = 46;
-            this.label12.Text = "Expire Date Alert:";
+            this.label12.Text = "Expire Date Alert :";
             // 
             // expireDateAlertGridView
             // 
@@ -1061,7 +1070,7 @@
             this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expireDateAlertGridView.RowTemplate.Height = 45;
             this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expireDateAlertGridView.Size = new System.Drawing.Size(787, 221);
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(685, 221);
             this.expireDateAlertGridView.TabIndex = 45;
             this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1121,7 +1130,7 @@
             this.siticonePanel10.FillColor = System.Drawing.Color.White;
             this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
             this.siticonePanel10.Name = "siticonePanel10";
-            this.siticonePanel10.Size = new System.Drawing.Size(1348, 450);
+            this.siticonePanel10.Size = new System.Drawing.Size(1246, 450);
             this.siticonePanel10.TabIndex = 49;
             // 
             // label13
@@ -1132,9 +1141,9 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label13.Location = new System.Drawing.Point(10, 12);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(162, 32);
+            this.label13.Size = new System.Drawing.Size(169, 32);
             this.label13.TabIndex = 46;
-            this.label13.Text = "Recent Sales:";
+            this.label13.Text = "Recent Sales :";
             // 
             // recentDataGridView
             // 
@@ -1194,7 +1203,7 @@
             this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.recentDataGridView.RowTemplate.Height = 45;
             this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.recentDataGridView.Size = new System.Drawing.Size(1320, 366);
+            this.recentDataGridView.Size = new System.Drawing.Size(1218, 366);
             this.recentDataGridView.TabIndex = 45;
             this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1289,7 +1298,7 @@
             this.dashTotSalePanel.ResumeLayout(false);
             this.dashTotSalePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topProductsDoughnutChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).EndInit();
             this.siticonePanel2.ResumeLayout(false);
             this.dashTotPurPanel.ResumeLayout(false);
             this.dashTotPurPanel.PerformLayout();
@@ -1333,12 +1342,11 @@
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox dashTotSaleIconPicBox;
         private System.Windows.Forms.Label dashTotSalePriceLabel;
         private System.Windows.Forms.Label dashTotalSalesLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart topProductsDoughnutChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart topProductsPieChart;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label SaleRetLabel;
-        private System.Windows.Forms.Label saleRetAmoutLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox1;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox2;
         private System.Windows.Forms.Label purAmountLabel;
@@ -1393,5 +1401,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel11;
         private Siticone.Desktop.UI.WinForms.SiticoneButton thisYearBtn;
+        private System.Windows.Forms.Label saleReAmountLabel;
     }
 }

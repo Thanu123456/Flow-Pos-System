@@ -288,5 +288,24 @@ namespace EscopeWindowsApp
             SuppliersReport suppliersReport = new SuppliersReport();
             suppliersReport.Show();
         }
+
+        private void logHistoryBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is LogsReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            LogsReport logsReport = new LogsReport();
+            logsReport.Show();
+        }
     }
 }
