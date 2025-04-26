@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createExpBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.expBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -39,11 +39,6 @@
             this.expPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.expAllPgLabel = new System.Windows.Forms.Label();
-            this.expOfLabel = new System.Windows.Forms.Label();
-            this.expPgRangeLabel = new System.Windows.Forms.Label();
-            this.expPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.expRecordsPerLabel = new System.Windows.Forms.Label();
             this.expRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.expDataGridView)).BeginInit();
@@ -60,7 +55,7 @@
             this.createExpBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createExpBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createExpBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createExpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.createExpBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createExpBtn.ForeColor = System.Drawing.Color.White;
             this.createExpBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.createExpBtn.Location = new System.Drawing.Point(1158, 30);
@@ -76,48 +71,48 @@
             this.expDataGridView.AllowUserToDeleteRows = false;
             this.expDataGridView.AllowUserToResizeColumns = false;
             this.expDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
-            this.expDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.expDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.expDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.expDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.expDataGridView.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.expDataGridView.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.expDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.expDataGridView.GridColor = System.Drawing.Color.White;
             this.expDataGridView.Location = new System.Drawing.Point(17, 100);
             this.expDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.expDataGridView.Name = "expDataGridView";
             this.expDataGridView.ReadOnly = true;
             this.expDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.expDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.expDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.expDataGridView.RowHeadersVisible = false;
             this.expDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.expDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -233,79 +228,6 @@
             this.expLastBtn.TabIndex = 8;
             this.expLastBtn.Click += new System.EventHandler(this.expLastBtn_Click);
             // 
-            // expAllPgLabel
-            // 
-            this.expAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expAllPgLabel.AutoSize = true;
-            this.expAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.expAllPgLabel.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.expAllPgLabel.Name = "expAllPgLabel";
-            this.expAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.expAllPgLabel.TabIndex = 53;
-            this.expAllPgLabel.Text = "500";
-            // 
-            // expOfLabel
-            // 
-            this.expOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expOfLabel.AutoSize = true;
-            this.expOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.expOfLabel.Name = "expOfLabel";
-            this.expOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.expOfLabel.TabIndex = 52;
-            this.expOfLabel.Text = "of";
-            // 
-            // expPgRangeLabel
-            // 
-            this.expPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expPgRangeLabel.AutoSize = true;
-            this.expPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.expPgRangeLabel.Name = "expPgRangeLabel";
-            this.expPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.expPgRangeLabel.TabIndex = 51;
-            this.expPgRangeLabel.Text = "0-50";
-            // 
-            // expPageCombo
-            // 
-            this.expPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.expPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.expPageCombo.BorderRadius = 8;
-            this.expPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.expPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.expPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.expPageCombo.ItemHeight = 30;
-            this.expPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.expPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.expPageCombo.Name = "expPageCombo";
-            this.expPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.expPageCombo.StartIndex = 0;
-            this.expPageCombo.TabIndex = 50;
-            // 
-            // expRecordsPerLabel
-            // 
-            this.expRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expRecordsPerLabel.AutoSize = true;
-            this.expRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.expRecordsPerLabel.Name = "expRecordsPerLabel";
-            this.expRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.expRecordsPerLabel.TabIndex = 49;
-            this.expRecordsPerLabel.Text = "Records per page";
-            // 
             // expRefreshBtn
             // 
             this.expRefreshBtn.Animated = true;
@@ -359,11 +281,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
-            this.Controls.Add(this.expAllPgLabel);
-            this.Controls.Add(this.expOfLabel);
-            this.Controls.Add(this.expPgRangeLabel);
-            this.Controls.Add(this.expPageCombo);
-            this.Controls.Add(this.expRecordsPerLabel);
             this.Controls.Add(this.expBtnPanel);
             this.Controls.Add(this.expDataGridView);
             this.Controls.Add(this.createExpBtn);
@@ -380,7 +297,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.expDataGridView)).EndInit();
             this.expBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -395,10 +311,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton expPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expLastBtn;
-        private System.Windows.Forms.Label expAllPgLabel;
-        private System.Windows.Forms.Label expOfLabel;
-        private System.Windows.Forms.Label expPgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox expPageCombo;
-        private System.Windows.Forms.Label expRecordsPerLabel;
     }
 }
