@@ -29,36 +29,55 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createQuotaLabel = new System.Windows.Forms.Label();
             this.createQuotaPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.quotaProductDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addQuotaDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discrese = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.increse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quotaShippingCharge = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.addQuoTotAmoPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.quotaSubTotLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.addQuoDisCostLabel = new System.Windows.Forms.Label();
-            this.addQuoOrdTaxCostLabel = new System.Windows.Forms.Label();
             this.addQuoShipCostLabel = new System.Windows.Forms.Label();
             this.AddQuoTotAmoCostLabel = new System.Windows.Forms.Label();
             this.addQuoDisCalLabel = new System.Windows.Forms.Label();
-            this.addQuoOrdTaxCalLabel = new System.Windows.Forms.Label();
             this.addQuoShipCalLabel = new System.Windows.Forms.Label();
             this.addQuoTotAmoLabel = new System.Windows.Forms.Label();
             this.createQuotaNoteLabel = new System.Windows.Forms.Label();
             this.createQuotaNoteText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.createQuotaShipText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.siticoneTextBox4 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createQuotaShiLabel = new System.Windows.Forms.Label();
             this.createQuotaDisText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createQuotaDisLabel = new System.Windows.Forms.Label();
-            this.quotaOrderDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.supplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderItemLabel = new System.Windows.Forms.Label();
             this.createQuoSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createQuoProductLabel = new System.Windows.Forms.Label();
             this.createQuoText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -72,9 +91,11 @@
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.addQuoBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.printPdfBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.createQuotaPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quotaProductDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addQuotaDataGridView)).BeginInit();
             this.addQuoTotAmoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quotaOrderDataGrid)).BeginInit();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.SuspendLayout();
@@ -95,15 +116,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.createQuotaPanel.BorderRadius = 8;
+            this.createQuotaPanel.Controls.Add(this.quotaProductDataGrid);
+            this.createQuotaPanel.Controls.Add(this.addQuotaDataGridView);
+            this.createQuotaPanel.Controls.Add(this.quotaShippingCharge);
+            this.createQuotaPanel.Controls.Add(this.label1);
             this.createQuotaPanel.Controls.Add(this.addQuoTotAmoPanel);
             this.createQuotaPanel.Controls.Add(this.createQuotaNoteLabel);
             this.createQuotaPanel.Controls.Add(this.createQuotaNoteText);
-            this.createQuotaPanel.Controls.Add(this.createQuotaShipText);
+            this.createQuotaPanel.Controls.Add(this.siticoneTextBox4);
             this.createQuotaPanel.Controls.Add(this.createQuotaShiLabel);
             this.createQuotaPanel.Controls.Add(this.createQuotaDisText);
             this.createQuotaPanel.Controls.Add(this.createQuotaDisLabel);
-            this.createQuotaPanel.Controls.Add(this.quotaOrderDataGrid);
-            this.createQuotaPanel.Controls.Add(this.orderItemLabel);
             this.createQuotaPanel.Controls.Add(this.createQuoSearchText);
             this.createQuotaPanel.Controls.Add(this.createQuoProductLabel);
             this.createQuotaPanel.Controls.Add(this.createQuoText);
@@ -117,6 +140,344 @@
             this.createQuotaPanel.TabIndex = 17;
             this.createQuotaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createQuotaPanel_Paint);
             // 
+            // quotaProductDataGrid
+            // 
+            this.quotaProductDataGrid.AllowUserToAddRows = false;
+            this.quotaProductDataGrid.AllowUserToDeleteRows = false;
+            this.quotaProductDataGrid.AllowUserToResizeColumns = false;
+            this.quotaProductDataGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaProductDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.quotaProductDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.quotaProductDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.quotaProductDataGrid.ColumnHeadersHeight = 45;
+            this.quotaProductDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.quotaProductDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.quotaProductDataGrid.GridColor = System.Drawing.Color.White;
+            this.quotaProductDataGrid.Location = new System.Drawing.Point(19, 214);
+            this.quotaProductDataGrid.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.quotaProductDataGrid.Name = "quotaProductDataGrid";
+            this.quotaProductDataGrid.ReadOnly = true;
+            this.quotaProductDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.quotaProductDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.quotaProductDataGrid.RowHeadersVisible = false;
+            this.quotaProductDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.quotaProductDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.quotaProductDataGrid.RowTemplate.Height = 35;
+            this.quotaProductDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.quotaProductDataGrid.Size = new System.Drawing.Size(466, 214);
+            this.quotaProductDataGrid.TabIndex = 44;
+            this.quotaProductDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.quotaProductDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.quotaProductDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaProductDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.quotaProductDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.quotaProductDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaProductDataGrid.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.quotaProductDataGrid.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.quotaProductDataGrid.ThemeStyle.HeaderStyle.Height = 45;
+            this.quotaProductDataGrid.ThemeStyle.ReadOnly = true;
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.Height = 35;
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.quotaProductDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaProductDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.quotaProductDataGrid_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "No";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Product Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Dis";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "QTY";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "INC";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Price";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Total Price";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Del";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // addQuotaDataGridView
+            // 
+            this.addQuotaDataGridView.AllowUserToAddRows = false;
+            this.addQuotaDataGridView.AllowUserToDeleteRows = false;
+            this.addQuotaDataGridView.AllowUserToResizeColumns = false;
+            this.addQuotaDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.addQuotaDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.addQuotaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.addQuotaDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.addQuotaDataGridView.ColumnHeadersHeight = 45;
+            this.addQuotaDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.No,
+            this.proName,
+            this.varType,
+            this.unit,
+            this.discrese,
+            this.qty,
+            this.increse,
+            this.price,
+            this.totPrice,
+            this.delete});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.addQuotaDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            this.addQuotaDataGridView.GridColor = System.Drawing.Color.White;
+            this.addQuotaDataGridView.Location = new System.Drawing.Point(508, 214);
+            this.addQuotaDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.addQuotaDataGridView.Name = "addQuotaDataGridView";
+            this.addQuotaDataGridView.ReadOnly = true;
+            this.addQuotaDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.addQuotaDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.addQuotaDataGridView.RowHeadersVisible = false;
+            this.addQuotaDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.addQuotaDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.addQuotaDataGridView.RowTemplate.Height = 35;
+            this.addQuotaDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.addQuotaDataGridView.Size = new System.Drawing.Size(448, 164);
+            this.addQuotaDataGridView.TabIndex = 43;
+            this.addQuotaDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
+            this.addQuotaDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            this.addQuotaDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addQuotaDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addQuotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.addQuotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.addQuotaDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.addQuotaDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.addQuotaDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.addQuotaDataGridView.ThemeStyle.ReadOnly = true;
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            this.addQuotaDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.addQuotaDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.addQuotaDataGridView_CellContentClick);
+            // 
+            // No
+            // 
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            // 
+            // proName
+            // 
+            this.proName.HeaderText = "Product Name";
+            this.proName.Name = "proName";
+            this.proName.ReadOnly = true;
+            // 
+            // varType
+            // 
+            this.varType.HeaderText = "Type";
+            this.varType.Name = "varType";
+            this.varType.ReadOnly = true;
+            // 
+            // unit
+            // 
+            this.unit.HeaderText = "Unit";
+            this.unit.Name = "unit";
+            this.unit.ReadOnly = true;
+            // 
+            // discrese
+            // 
+            this.discrese.HeaderText = "Dis";
+            this.discrese.Name = "discrese";
+            this.discrese.ReadOnly = true;
+            // 
+            // qty
+            // 
+            this.qty.HeaderText = "QTY";
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            // 
+            // increse
+            // 
+            this.increse.HeaderText = "INC";
+            this.increse.Name = "increse";
+            this.increse.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // totPrice
+            // 
+            this.totPrice.HeaderText = "Total Price";
+            this.totPrice.Name = "totPrice";
+            this.totPrice.ReadOnly = true;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Del";
+            this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
+            // 
+            // quotaShippingCharge
+            // 
+            this.quotaShippingCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.quotaShippingCharge.BackColor = System.Drawing.Color.Transparent;
+            this.quotaShippingCharge.BorderColor = System.Drawing.Color.Gray;
+            this.quotaShippingCharge.BorderRadius = 8;
+            this.quotaShippingCharge.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.quotaShippingCharge.DefaultText = "";
+            this.quotaShippingCharge.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.quotaShippingCharge.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.quotaShippingCharge.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.quotaShippingCharge.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.quotaShippingCharge.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.quotaShippingCharge.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.quotaShippingCharge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.quotaShippingCharge.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.quotaShippingCharge.Location = new System.Drawing.Point(19, 565);
+            this.quotaShippingCharge.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.quotaShippingCharge.Name = "quotaShippingCharge";
+            this.quotaShippingCharge.PasswordChar = '\0';
+            this.quotaShippingCharge.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.quotaShippingCharge.PlaceholderText = "Enter Shiping Charge";
+            this.quotaShippingCharge.SelectedText = "";
+            this.quotaShippingCharge.Size = new System.Drawing.Size(213, 42);
+            this.quotaShippingCharge.TabIndex = 34;
+            this.quotaShippingCharge.TextChanged += new System.EventHandler(this.quotaShippingCharge_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 534);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 23);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Shipping Charge:";
+            // 
             // addQuoTotAmoPanel
             // 
             this.addQuoTotAmoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -124,20 +485,45 @@
             this.addQuoTotAmoPanel.BorderColor = System.Drawing.Color.Gray;
             this.addQuoTotAmoPanel.BorderRadius = 8;
             this.addQuoTotAmoPanel.BorderThickness = 1;
+            this.addQuoTotAmoPanel.Controls.Add(this.quotaSubTotLabel);
+            this.addQuoTotAmoPanel.Controls.Add(this.label2);
             this.addQuoTotAmoPanel.Controls.Add(this.addQuoDisCostLabel);
-            this.addQuoTotAmoPanel.Controls.Add(this.addQuoOrdTaxCostLabel);
             this.addQuoTotAmoPanel.Controls.Add(this.addQuoShipCostLabel);
             this.addQuoTotAmoPanel.Controls.Add(this.AddQuoTotAmoCostLabel);
             this.addQuoTotAmoPanel.Controls.Add(this.addQuoDisCalLabel);
-            this.addQuoTotAmoPanel.Controls.Add(this.addQuoOrdTaxCalLabel);
             this.addQuoTotAmoPanel.Controls.Add(this.addQuoShipCalLabel);
             this.addQuoTotAmoPanel.Controls.Add(this.addQuoTotAmoLabel);
             this.addQuoTotAmoPanel.CustomBorderColor = System.Drawing.Color.Gray;
             this.addQuoTotAmoPanel.FillColor = System.Drawing.Color.Transparent;
-            this.addQuoTotAmoPanel.Location = new System.Drawing.Point(513, 361);
+            this.addQuoTotAmoPanel.Location = new System.Drawing.Point(513, 396);
             this.addQuoTotAmoPanel.Name = "addQuoTotAmoPanel";
-            this.addQuoTotAmoPanel.Size = new System.Drawing.Size(422, 168);
+            this.addQuoTotAmoPanel.Size = new System.Drawing.Size(422, 161);
             this.addQuoTotAmoPanel.TabIndex = 32;
+            // 
+            // quotaSubTotLabel
+            // 
+            this.quotaSubTotLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.quotaSubTotLabel.AutoSize = true;
+            this.quotaSubTotLabel.BackColor = System.Drawing.Color.Transparent;
+            this.quotaSubTotLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaSubTotLabel.Location = new System.Drawing.Point(329, 93);
+            this.quotaSubTotLabel.Name = "quotaSubTotLabel";
+            this.quotaSubTotLabel.Size = new System.Drawing.Size(49, 23);
+            this.quotaSubTotLabel.TabIndex = 39;
+            this.quotaSubTotLabel.Text = "0.00 ";
+            this.quotaSubTotLabel.Click += new System.EventHandler(this.quotaSubTotLabel_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(240, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 23);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Sub Total ";
             // 
             // addQuoDisCostLabel
             // 
@@ -145,23 +531,12 @@
             this.addQuoDisCostLabel.AutoSize = true;
             this.addQuoDisCostLabel.BackColor = System.Drawing.Color.Transparent;
             this.addQuoDisCostLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoDisCostLabel.Location = new System.Drawing.Point(167, 82);
+            this.addQuoDisCostLabel.Location = new System.Drawing.Point(166, 79);
             this.addQuoDisCostLabel.Name = "addQuoDisCostLabel";
-            this.addQuoDisCostLabel.Size = new System.Drawing.Size(63, 23);
+            this.addQuoDisCostLabel.Size = new System.Drawing.Size(49, 23);
             this.addQuoDisCostLabel.TabIndex = 38;
-            this.addQuoDisCostLabel.Text = "$ 0.00 ";
-            // 
-            // addQuoOrdTaxCostLabel
-            // 
-            this.addQuoOrdTaxCostLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addQuoOrdTaxCostLabel.AutoSize = true;
-            this.addQuoOrdTaxCostLabel.BackColor = System.Drawing.Color.Transparent;
-            this.addQuoOrdTaxCostLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoOrdTaxCostLabel.Location = new System.Drawing.Point(167, 46);
-            this.addQuoOrdTaxCostLabel.Name = "addQuoOrdTaxCostLabel";
-            this.addQuoOrdTaxCostLabel.Size = new System.Drawing.Size(63, 23);
-            this.addQuoOrdTaxCostLabel.TabIndex = 37;
-            this.addQuoOrdTaxCostLabel.Text = "$ 0.00 ";
+            this.addQuoDisCostLabel.Text = "0.00 ";
+            this.addQuoDisCostLabel.Click += new System.EventHandler(this.addQuoDisCostLabel_Click);
             // 
             // addQuoShipCostLabel
             // 
@@ -169,11 +544,12 @@
             this.addQuoShipCostLabel.AutoSize = true;
             this.addQuoShipCostLabel.BackColor = System.Drawing.Color.Transparent;
             this.addQuoShipCostLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoShipCostLabel.Location = new System.Drawing.Point(166, 11);
+            this.addQuoShipCostLabel.Location = new System.Drawing.Point(166, 42);
             this.addQuoShipCostLabel.Name = "addQuoShipCostLabel";
-            this.addQuoShipCostLabel.Size = new System.Drawing.Size(124, 23);
+            this.addQuoShipCostLabel.Size = new System.Drawing.Size(45, 23);
             this.addQuoShipCostLabel.TabIndex = 36;
-            this.addQuoShipCostLabel.Text = "$ 0.00 (0.00%)";
+            this.addQuoShipCostLabel.Text = "0.00";
+            this.addQuoShipCostLabel.Click += new System.EventHandler(this.addQuoShipCostLabel_Click);
             // 
             // AddQuoTotAmoCostLabel
             // 
@@ -181,11 +557,12 @@
             this.AddQuoTotAmoCostLabel.AutoSize = true;
             this.AddQuoTotAmoCostLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddQuoTotAmoCostLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.AddQuoTotAmoCostLabel.Location = new System.Drawing.Point(167, 120);
+            this.AddQuoTotAmoCostLabel.Location = new System.Drawing.Point(166, 117);
             this.AddQuoTotAmoCostLabel.Name = "AddQuoTotAmoCostLabel";
-            this.AddQuoTotAmoCostLabel.Size = new System.Drawing.Size(63, 23);
+            this.AddQuoTotAmoCostLabel.Size = new System.Drawing.Size(49, 23);
             this.AddQuoTotAmoCostLabel.TabIndex = 35;
-            this.AddQuoTotAmoCostLabel.Text = "$ 0.00 ";
+            this.AddQuoTotAmoCostLabel.Text = "0.00 ";
+            this.AddQuoTotAmoCostLabel.Click += new System.EventHandler(this.AddQuoTotAmoCostLabel_Click);
             // 
             // addQuoDisCalLabel
             // 
@@ -193,23 +570,11 @@
             this.addQuoDisCalLabel.AutoSize = true;
             this.addQuoDisCalLabel.BackColor = System.Drawing.Color.Transparent;
             this.addQuoDisCalLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoDisCalLabel.Location = new System.Drawing.Point(15, 83);
+            this.addQuoDisCalLabel.Location = new System.Drawing.Point(14, 80);
             this.addQuoDisCalLabel.Name = "addQuoDisCalLabel";
             this.addQuoDisCalLabel.Size = new System.Drawing.Size(78, 23);
             this.addQuoDisCalLabel.TabIndex = 34;
             this.addQuoDisCalLabel.Text = "Discount";
-            // 
-            // addQuoOrdTaxCalLabel
-            // 
-            this.addQuoOrdTaxCalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addQuoOrdTaxCalLabel.AutoSize = true;
-            this.addQuoOrdTaxCalLabel.BackColor = System.Drawing.Color.Transparent;
-            this.addQuoOrdTaxCalLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoOrdTaxCalLabel.Location = new System.Drawing.Point(15, 47);
-            this.addQuoOrdTaxCalLabel.Name = "addQuoOrdTaxCalLabel";
-            this.addQuoOrdTaxCalLabel.Size = new System.Drawing.Size(85, 23);
-            this.addQuoOrdTaxCalLabel.TabIndex = 33;
-            this.addQuoOrdTaxCalLabel.Text = "Order Tax";
             // 
             // addQuoShipCalLabel
             // 
@@ -217,7 +582,7 @@
             this.addQuoShipCalLabel.AutoSize = true;
             this.addQuoShipCalLabel.BackColor = System.Drawing.Color.Transparent;
             this.addQuoShipCalLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQuoShipCalLabel.Location = new System.Drawing.Point(14, 12);
+            this.addQuoShipCalLabel.Location = new System.Drawing.Point(14, 43);
             this.addQuoShipCalLabel.Name = "addQuoShipCalLabel";
             this.addQuoShipCalLabel.Size = new System.Drawing.Size(80, 23);
             this.addQuoShipCalLabel.TabIndex = 32;
@@ -229,11 +594,11 @@
             this.addQuoTotAmoLabel.AutoSize = true;
             this.addQuoTotAmoLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addQuoTotAmoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.addQuoTotAmoLabel.Location = new System.Drawing.Point(15, 121);
+            this.addQuoTotAmoLabel.Location = new System.Drawing.Point(14, 118);
             this.addQuoTotAmoLabel.Name = "addQuoTotAmoLabel";
-            this.addQuoTotAmoLabel.Size = new System.Drawing.Size(121, 23);
+            this.addQuoTotAmoLabel.Size = new System.Drawing.Size(112, 23);
             this.addQuoTotAmoLabel.TabIndex = 30;
-            this.addQuoTotAmoLabel.Text = "Totale Amount";
+            this.addQuoTotAmoLabel.Text = "Total Amount";
             // 
             // createQuotaNoteLabel
             // 
@@ -241,7 +606,7 @@
             this.createQuotaNoteLabel.AutoSize = true;
             this.createQuotaNoteLabel.BackColor = System.Drawing.Color.Transparent;
             this.createQuotaNoteLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaNoteLabel.Location = new System.Drawing.Point(15, 536);
+            this.createQuotaNoteLabel.Location = new System.Drawing.Point(243, 534);
             this.createQuotaNoteLabel.Name = "createQuotaNoteLabel";
             this.createQuotaNoteLabel.Size = new System.Drawing.Size(52, 23);
             this.createQuotaNoteLabel.TabIndex = 24;
@@ -265,7 +630,8 @@
             this.createQuotaNoteText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createQuotaNoteText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createQuotaNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaNoteText.Location = new System.Drawing.Point(19, 565);
+            this.createQuotaNoteText.Location = new System.Drawing.Point(247, 565);
+            this.createQuotaNoteText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.createQuotaNoteText.Name = "createQuotaNoteText";
             this.createQuotaNoteText.PasswordChar = '\0';
             this.createQuotaNoteText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -275,31 +641,32 @@
             this.createQuotaNoteText.TabIndex = 23;
             this.createQuotaNoteText.TextChanged += new System.EventHandler(this.createQuotaNoteText_TextChanged);
             // 
-            // createQuotaShipText
+            // siticoneTextBox4
             // 
-            this.createQuotaShipText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.createQuotaShipText.BackColor = System.Drawing.Color.Transparent;
-            this.createQuotaShipText.BorderColor = System.Drawing.Color.Gray;
-            this.createQuotaShipText.BorderRadius = 8;
-            this.createQuotaShipText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.createQuotaShipText.DefaultText = "";
-            this.createQuotaShipText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.createQuotaShipText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.createQuotaShipText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createQuotaShipText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createQuotaShipText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaShipText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaShipText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createQuotaShipText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaShipText.Location = new System.Drawing.Point(247, 479);
-            this.createQuotaShipText.Name = "createQuotaShipText";
-            this.createQuotaShipText.PasswordChar = '\0';
-            this.createQuotaShipText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createQuotaShipText.PlaceholderText = "Enter Shiping Address";
-            this.createQuotaShipText.SelectedText = "";
-            this.createQuotaShipText.Size = new System.Drawing.Size(213, 42);
-            this.createQuotaShipText.TabIndex = 20;
-            this.createQuotaShipText.TextChanged += new System.EventHandler(this.siticoneTextBox4_TextChanged);
+            this.siticoneTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.siticoneTextBox4.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneTextBox4.BorderColor = System.Drawing.Color.Gray;
+            this.siticoneTextBox4.BorderRadius = 8;
+            this.siticoneTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.siticoneTextBox4.DefaultText = "";
+            this.siticoneTextBox4.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.siticoneTextBox4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.siticoneTextBox4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.siticoneTextBox4.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.siticoneTextBox4.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.siticoneTextBox4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneTextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.siticoneTextBox4.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.siticoneTextBox4.Location = new System.Drawing.Point(247, 479);
+            this.siticoneTextBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.siticoneTextBox4.Name = "siticoneTextBox4";
+            this.siticoneTextBox4.PasswordChar = '\0';
+            this.siticoneTextBox4.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.siticoneTextBox4.PlaceholderText = "Enter Shiping Address";
+            this.siticoneTextBox4.SelectedText = "";
+            this.siticoneTextBox4.Size = new System.Drawing.Size(213, 42);
+            this.siticoneTextBox4.TabIndex = 20;
+            this.siticoneTextBox4.TextChanged += new System.EventHandler(this.siticoneTextBox4_TextChanged);
             // 
             // createQuotaShiLabel
             // 
@@ -309,9 +676,9 @@
             this.createQuotaShiLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createQuotaShiLabel.Location = new System.Drawing.Point(243, 448);
             this.createQuotaShiLabel.Name = "createQuotaShiLabel";
-            this.createQuotaShiLabel.Size = new System.Drawing.Size(107, 23);
+            this.createQuotaShiLabel.Size = new System.Drawing.Size(148, 23);
             this.createQuotaShiLabel.TabIndex = 19;
-            this.createQuotaShiLabel.Text = "Shipping ($):";
+            this.createQuotaShiLabel.Text = "Shipping Address:";
             // 
             // createQuotaDisText
             // 
@@ -326,14 +693,15 @@
             this.createQuotaDisText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createQuotaDisText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createQuotaDisText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createQuotaDisText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createQuotaDisText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold);
             this.createQuotaDisText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createQuotaDisText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createQuotaDisText.Location = new System.Drawing.Point(19, 479);
+            this.createQuotaDisText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.createQuotaDisText.Name = "createQuotaDisText";
             this.createQuotaDisText.PasswordChar = '\0';
             this.createQuotaDisText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createQuotaDisText.PlaceholderText = "Discount %";
+            this.createQuotaDisText.PlaceholderText = "Discount Amount";
             this.createQuotaDisText.SelectedText = "";
             this.createQuotaDisText.Size = new System.Drawing.Size(213, 42);
             this.createQuotaDisText.TabIndex = 18;
@@ -350,133 +718,6 @@
             this.createQuotaDisLabel.Size = new System.Drawing.Size(83, 23);
             this.createQuotaDisLabel.TabIndex = 17;
             this.createQuotaDisLabel.Text = "Discount:";
-            // 
-            // quotaOrderDataGrid
-            // 
-            this.quotaOrderDataGrid.AllowUserToOrderColumns = true;
-            this.quotaOrderDataGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black;
-            this.quotaOrderDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
-            this.quotaOrderDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.quotaOrderDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
-            this.quotaOrderDataGrid.ColumnHeadersHeight = 35;
-            this.quotaOrderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.quotaOrderDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierID,
-            this.supName,
-            this.supDesc,
-            this.supEmail,
-            this.supPhone,
-            this.createdAt,
-            this.action});
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.quotaOrderDataGrid.DefaultCellStyle = dataGridViewCellStyle19;
-            this.quotaOrderDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(242)))));
-            this.quotaOrderDataGrid.Location = new System.Drawing.Point(19, 215);
-            this.quotaOrderDataGrid.Name = "quotaOrderDataGrid";
-            this.quotaOrderDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.quotaOrderDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            this.quotaOrderDataGrid.RowHeadersVisible = false;
-            this.quotaOrderDataGrid.RowTemplate.Height = 35;
-            this.quotaOrderDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.quotaOrderDataGrid.Size = new System.Drawing.Size(916, 133);
-            this.quotaOrderDataGrid.TabIndex = 14;
-            this.quotaOrderDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.quotaOrderDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(244)))));
-            this.quotaOrderDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaOrderDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.quotaOrderDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.quotaOrderDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.quotaOrderDataGrid.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.quotaOrderDataGrid.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(242)))));
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.quotaOrderDataGrid.ThemeStyle.HeaderStyle.Height = 35;
-            this.quotaOrderDataGrid.ThemeStyle.ReadOnly = false;
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.Height = 35;
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.quotaOrderDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.quotaOrderDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.quotaOrderDataGrid_CellContentClick);
-            // 
-            // supplierID
-            // 
-            this.supplierID.HeaderText = "Supplier ID";
-            this.supplierID.Name = "supplierID";
-            // 
-            // supName
-            // 
-            this.supName.HeaderText = "Name";
-            this.supName.Name = "supName";
-            // 
-            // supDesc
-            // 
-            this.supDesc.HeaderText = "Description";
-            this.supDesc.Name = "supDesc";
-            // 
-            // supEmail
-            // 
-            this.supEmail.HeaderText = "Email";
-            this.supEmail.Name = "supEmail";
-            // 
-            // supPhone
-            // 
-            this.supPhone.HeaderText = "Phone";
-            this.supPhone.Name = "supPhone";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
-            // 
-            // orderItemLabel
-            // 
-            this.orderItemLabel.AutoSize = true;
-            this.orderItemLabel.BackColor = System.Drawing.Color.Transparent;
-            this.orderItemLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orderItemLabel.Location = new System.Drawing.Point(15, 186);
-            this.orderItemLabel.Name = "orderItemLabel";
-            this.orderItemLabel.Size = new System.Drawing.Size(109, 23);
-            this.orderItemLabel.TabIndex = 13;
-            this.orderItemLabel.Text = "Order Items:";
-            this.orderItemLabel.Click += new System.EventHandler(this.orderItemLabel_Click);
             // 
             // createQuoSearchText
             // 
@@ -498,6 +739,7 @@
             this.createQuoSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.createQuoSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.createQuoSearchText.Location = new System.Drawing.Point(19, 129);
+            this.createQuoSearchText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.createQuoSearchText.Name = "createQuoSearchText";
             this.createQuoSearchText.PasswordChar = '\0';
             this.createQuoSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -536,12 +778,13 @@
             this.createQuoText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createQuoText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createQuoText.Location = new System.Drawing.Point(333, 43);
+            this.createQuoText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.createQuoText.Name = "createQuoText";
             this.createQuoText.PasswordChar = '\0';
             this.createQuoText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createQuoText.PlaceholderText = "Enter Customer Name";
             this.createQuoText.SelectedText = "";
-            this.createQuoText.Size = new System.Drawing.Size(286, 42);
+            this.createQuoText.Size = new System.Drawing.Size(407, 42);
             this.createQuoText.TabIndex = 10;
             this.createQuoText.TextChanged += new System.EventHandler(this.createQuoText_TextChanged);
             // 
@@ -618,7 +861,7 @@
             this.quotaSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaSaveBtn.ForeColor = System.Drawing.Color.White;
             this.quotaSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.quotaSaveBtn.Location = new System.Drawing.Point(780, 730);
+            this.quotaSaveBtn.Location = new System.Drawing.Point(780, 731);
             this.quotaSaveBtn.Name = "quotaSaveBtn";
             this.quotaSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.quotaSaveBtn.TabIndex = 25;
@@ -678,12 +921,33 @@
             this.addQuoBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.addQuoBorderlessForm.TransparentWhileDrag = true;
             // 
+            // printPdfBtn
+            // 
+            this.printPdfBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printPdfBtn.BorderRadius = 8;
+            this.printPdfBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.printPdfBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.printPdfBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.printPdfBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.printPdfBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.printPdfBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.printPdfBtn.ForeColor = System.Drawing.Color.White;
+            this.printPdfBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.printPdfBtn.Location = new System.Drawing.Point(656, 730);
+            this.printPdfBtn.Name = "printPdfBtn";
+            this.printPdfBtn.Size = new System.Drawing.Size(95, 45);
+            this.printPdfBtn.TabIndex = 29;
+            this.printPdfBtn.Text = "PDF";
+            this.printPdfBtn.Click += new System.EventHandler(this.printPdfBtn_Click);
+            // 
             // AddQuotationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1000, 788);
+            this.Controls.Add(this.printPdfBtn);
             this.Controls.Add(this.quotaCancelBtn);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.quotaSaveBtn);
@@ -698,9 +962,10 @@
             this.Load += new System.EventHandler(this.AddQuotationForm_Load);
             this.createQuotaPanel.ResumeLayout(false);
             this.createQuotaPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quotaProductDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addQuotaDataGridView)).EndInit();
             this.addQuoTotAmoPanel.ResumeLayout(false);
             this.addQuoTotAmoPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quotaOrderDataGrid)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -717,16 +982,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createQuoText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createQuoSearchText;
         private System.Windows.Forms.Label createQuoProductLabel;
-        private System.Windows.Forms.Label orderItemLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView quotaOrderDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox createQuotaShipText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox4;
         private System.Windows.Forms.Label createQuotaShiLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox createQuotaDisText;
         private System.Windows.Forms.Label createQuotaDisLabel;
@@ -741,12 +997,37 @@
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm addQuoBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticonePanel addQuoTotAmoPanel;
         private System.Windows.Forms.Label addQuoDisCostLabel;
-        private System.Windows.Forms.Label addQuoOrdTaxCostLabel;
         private System.Windows.Forms.Label addQuoShipCostLabel;
         private System.Windows.Forms.Label AddQuoTotAmoCostLabel;
         private System.Windows.Forms.Label addQuoDisCalLabel;
-        private System.Windows.Forms.Label addQuoOrdTaxCalLabel;
         private System.Windows.Forms.Label addQuoShipCalLabel;
         private System.Windows.Forms.Label addQuoTotAmoLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox quotaShippingCharge;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView addQuotaDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn discrese;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn increse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn delete;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton printPdfBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView quotaProductDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.Label quotaSubTotLabel;
     }
 }
