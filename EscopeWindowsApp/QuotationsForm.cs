@@ -1,52 +1,220 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace EscopeWindowsApp
 {
     public partial class Quotations : Form
     {
-        private DataTable quotationsTable; // Data source for quotations
+        private readonly string _connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private DataTable _quotationsTable = new DataTable(); // Table to hold quotation data
         private int currentIndex = 0; // Current index for navigation
 
         public Quotations()
         {
             InitializeComponent();
-            LoadQuotationsData();
+
+            // Wire up events with the correct method names
+            this.Load += Quotations_Load;
+            quotaSearchText.TextChanged += quotaSearchText_TextChanged;
+            createQuotaBtn.Click += createQuotaBtn_Click;
+            quotaFirstBtn.Click += quotaFirstBtn_Click;
+            quotaPrevBtn.Click += quotaPrevBtn_Click;
+            quotaNextBtn.Click += quotaNextBtn_Click;
+            quotaLastBtn.Click += quotaLastBtn_Click;
+            quotaDataGridView.CellContentClick += quotaDataGridView_CellContentClick;
+            quotaDataGridView.CellFormatting += quotaDataGridView_CellFormatting; // Add CellFormatting event
         }
 
         private void Quotations_Load(object sender, EventArgs e)
         {
-            // Initialize quotations data on form load
-            quotaDataGridView.DataSource = quotationsTable;
+            // Configure the DataGridView columns
+            quotaDataGridView.AutoGenerateColumns = false;
+            quotaDataGridView.ReadOnly = true;
+            quotaDataGridView.AllowUserToAddRows = false;
+            quotaDataGridView.Columns.Clear();
+
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "quotation_no",
+                DataPropertyName = "quotation_no",
+                HeaderText = "Quotation Number",
+                Width = 150
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "customer_name",
+                DataPropertyName = "customer_name",
+                HeaderText = "Customer Name",
+                Width = 150
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "quotation_date",
+                DataPropertyName = "quotation_date",
+                HeaderText = "Date",
+                DefaultCellStyle = { Format = "yyyy-MM-dd" },
+                Width = 100
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "quantity_of_items",
+                DataPropertyName = "quantity_of_items",
+                HeaderText = "Quantity",
+                Width = 80
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "subtotal",
+                DataPropertyName = "subtotal",
+                HeaderText = "Sub Total",
+                DefaultCellStyle = { Format = "N2" },
+                Width = 100
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "discount_amount",
+                DataPropertyName = "discount_amount",
+                HeaderText = "Discount Amount",
+                DefaultCellStyle = { Format = "N2" },
+                Width = 120
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "shipping_charge",
+                DataPropertyName = "shipping_charge",
+                HeaderText = "Shipping Charge",
+                DefaultCellStyle = { Format = "N2" },
+                Width = 120
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "total_amount",
+                DataPropertyName = "total_amount",
+                HeaderText = "Total Amount",
+                DefaultCellStyle = { Format = "N2" },
+                Width = 100
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "shipping_address",
+                DataPropertyName = "shipping_address",
+                HeaderText = "Shipping Address",
+                Width = 150
+            });
+            quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "notes",
+                DataPropertyName = "notes",
+                HeaderText = "Notes",
+                Width = 200
+            });
+
+            // Load all quotations initially
+            LoadQuotationsData();
         }
 
         private void LoadQuotationsData()
         {
-            // Load quotations data into quotationsTable
-            quotationsTable = new DataTable();
-            quotationsTable.Columns.Add("QuotationId", typeof(int));
-            quotationsTable.Columns.Add("CustomerName", typeof(string));
-            quotationsTable.Columns.Add("Product", typeof(string));
-            quotationsTable.Columns.Add("Quantity", typeof(int));
-            quotationsTable.Columns.Add("Price", typeof(decimal));
-            quotationsTable.Columns.Add("Date", typeof(DateTime));
+            try
+            {
+                // Validate controls
+                if (quotaDataGridView == null || quotaSearchText == null)
+                {
+                    MessageBox.Show(
+                        "One or more controls are not properly initialized. Check your designer names.",
+                        "Initialization Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return;
+                }
 
-            // Sample data - replace with actual data retrieval logic
-            quotationsTable.Rows.Add(1, "Alice", "Laptop", 2, 1200.00m, DateTime.Now.AddDays(-5));
-            quotationsTable.Rows.Add(2, "Bob", "Smartphone", 5, 800.00m, DateTime.Now.AddDays(-3));
-            quotationsTable.Rows.Add(3, "Charlie", "Tablet", 3, 500.00m, DateTime.Now.AddDays(-1));
-            quotationsTable.Rows.Add(4, "Diana", "Headphones", 10, 150.00m, DateTime.Now);
+                // Build the query to fetch quotations
+                string query = @"
+                    SELECT 
+                        quotation_no,
+                        customer_name,
+                        quotation_date,
+                        quantity_of_items,
+                        subtotal,
+                        discount_amount,
+                        shipping_charge,
+                        total_amount,
+                        shipping_address,
+                        notes
+                    FROM quotations
+                    WHERE 1=1
+                ";
+
+                string searchText = quotaSearchText.Text.Trim();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    // Search by both quotation_no and customer_name
+                    query += " AND (quotation_no LIKE @searchText OR customer_name LIKE @searchText)";
+                }
+
+                using (var conn = new MySqlConnection(_connectionString))
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        cmd.Parameters.AddWithValue("@searchText", $"%{searchText}%");
+                    }
+
+                    var adapter = new MySqlDataAdapter(cmd);
+                    _quotationsTable.Clear();
+                    adapter.Fill(_quotationsTable);
+                    quotaDataGridView.DataSource = _quotationsTable;
+
+                    // Reset the current index after loading data
+                    if (_quotationsTable.Rows.Count > 0)
+                    {
+                        currentIndex = 0;
+                        quotaDataGridView.CurrentCell = quotaDataGridView.Rows[currentIndex].Cells[0];
+                    }
+                    else
+                    {
+                        currentIndex = -1; // No rows available
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading quotations: {ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void quotaDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            // Handle shipping_address column
+            if (quotaDataGridView.Columns[e.ColumnIndex].Name == "shipping_address")
+            {
+                if (e.Value == null || e.Value == DBNull.Value || string.IsNullOrWhiteSpace(e.Value.ToString()))
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+
+            // Handle notes column
+            if (quotaDataGridView.Columns[e.ColumnIndex].Name == "notes")
+            {
+                if (e.Value == null || e.Value == DBNull.Value || string.IsNullOrWhiteSpace(e.Value.ToString()))
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void createQuotaBtn_Click(object sender, EventArgs e)
         {
+            // Open the AddQuotationForm if not already open
             foreach (Form form in Application.OpenForms)
             {
                 if (form is AddQuotationForm)
@@ -61,66 +229,20 @@ namespace EscopeWindowsApp
                 }
             }
             AddQuotationForm addQuotation = new AddQuotationForm();
+            addQuotation.FormClosed += (s, args) => LoadQuotationsData(); // Refresh data after adding a new quotation
             addQuotation.Show();
-        }
-
-        private void quotaFilterBtn_Click(object sender, EventArgs e)
-        {
-            // Filter quotations where QuotationId is greater than 2
-            var filteredRows = quotationsTable.AsEnumerable()
-                .Where(row => row.Field<int>("QuotationId") > 2);
-
-            if (filteredRows.Any())
-            {
-                quotaDataGridView.DataSource = filteredRows.CopyToDataTable();
-            }
-            else
-            {
-                quotaDataGridView.DataSource = null;
-            }
         }
 
         private void quotaSearchText_TextChanged(object sender, EventArgs e)
         {
-            // Search quotations as text changes
-            string searchText = quotaSearchText.Text.Trim().ToLower();
-
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                var filteredRows = quotationsTable.AsEnumerable()
-                    .Where(row => row.Field<string>("CustomerName").ToLower().Contains(searchText)
-                               || row.Field<string>("Product").ToLower().Contains(searchText));
-
-                if (filteredRows.Any())
-                {
-                    quotaDataGridView.DataSource = filteredRows.CopyToDataTable();
-                }
-                else
-                {
-                    quotaDataGridView.DataSource = null;
-                }
-            }
-            else
-            {
-                quotaDataGridView.DataSource = quotationsTable;
-            }
+            // Refresh the DataGridView when the search text changes
+            LoadQuotationsData();
         }
 
         private void quotaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Handle cell content click event
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = quotaDataGridView.Rows[e.RowIndex];
-                int quotationId = Convert.ToInt32(row.Cells["QuotationId"].Value);
-                string customerName = row.Cells["CustomerName"].Value.ToString();
-                string product = row.Cells["Product"].Value.ToString();
-                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
-                DateTime date = Convert.ToDateTime(row.Cells["Date"].Value);
-
-                // Implement logic to handle the cell content click event
-            }
+            // This is the datagridview for the quotations
+            // columns are: quotation number, customer name, date, quantity, sub total, discount amount, shipping charge, total amount, shipping address, note
         }
 
         private void quotaBtnPanel_Paint(object sender, PaintEventArgs e)
