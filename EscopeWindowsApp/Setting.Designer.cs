@@ -42,8 +42,14 @@
             this.setPhoneNoLabel = new System.Windows.Forms.Label();
             this.setPhoneNotext = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.setPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticonePanel11 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.copyrightlabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
+            this.logobox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.setLogoBox)).BeginInit();
             this.setPanel.SuspendLayout();
+            this.siticonePanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logobox)).BeginInit();
             this.SuspendLayout();
             // 
             // setImgUploadBtn
@@ -60,7 +66,7 @@
             this.setImgUploadBtn.ForeColor = System.Drawing.Color.White;
             this.setImgUploadBtn.Image = global::EscopeWindowsApp.Properties.Resources.ImgUpload_Icon;
             this.setImgUploadBtn.ImageOffset = new System.Drawing.Point(0, -2);
-            this.setImgUploadBtn.Location = new System.Drawing.Point(113, 321);
+            this.setImgUploadBtn.Location = new System.Drawing.Point(196, 324);
             this.setImgUploadBtn.Name = "setImgUploadBtn";
             this.setImgUploadBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
             this.setImgUploadBtn.Size = new System.Drawing.Size(30, 30);
@@ -72,10 +78,11 @@
             // 
             this.setLogoBox.BackColor = System.Drawing.Color.Transparent;
             this.setLogoBox.BorderRadius = 8;
+            this.setLogoBox.Image = global::EscopeWindowsApp.Properties.Resources.My_new_logo_b_05;
             this.setLogoBox.ImageRotate = 0F;
             this.setLogoBox.Location = new System.Drawing.Point(27, 239);
             this.setLogoBox.Name = "setLogoBox";
-            this.setLogoBox.Size = new System.Drawing.Size(106, 106);
+            this.setLogoBox.Size = new System.Drawing.Size(191, 106);
             this.setLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.setLogoBox.TabIndex = 77;
             this.setLogoBox.TabStop = false;
@@ -94,7 +101,7 @@
             this.setSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.setSaveBtn.ForeColor = System.Drawing.Color.White;
             this.setSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.setSaveBtn.Location = new System.Drawing.Point(670, 300);
+            this.setSaveBtn.Location = new System.Drawing.Point(1205, 373);
             this.setSaveBtn.Name = "setSaveBtn";
             this.setSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.setSaveBtn.TabIndex = 75;
@@ -103,8 +110,6 @@
             // 
             // setLogoChangelabel
             // 
-            this.setLogoChangelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.setLogoChangelabel.AutoSize = true;
             this.setLogoChangelabel.BackColor = System.Drawing.Color.Transparent;
             this.setLogoChangelabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,6 +134,8 @@
             // 
             // settingNameText
             // 
+            this.settingNameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.settingNameText.BackColor = System.Drawing.Color.Transparent;
             this.settingNameText.BorderColor = System.Drawing.Color.Gray;
             this.settingNameText.BorderRadius = 8;
@@ -150,7 +157,7 @@
             this.settingNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.settingNameText.PlaceholderText = "Name";
             this.settingNameText.SelectedText = "";
-            this.settingNameText.Size = new System.Drawing.Size(348, 42);
+            this.settingNameText.Size = new System.Drawing.Size(645, 42);
             this.settingNameText.TabIndex = 72;
             this.settingNameText.TextChanged += new System.EventHandler(this.settingNameText_TextChanged);
             // 
@@ -166,11 +173,12 @@
             // 
             // settingEmailLabel
             // 
+            this.settingEmailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.settingEmailLabel.AutoSize = true;
             this.settingEmailLabel.BackColor = System.Drawing.Color.Transparent;
             this.settingEmailLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingEmailLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.settingEmailLabel.Location = new System.Drawing.Point(413, 22);
+            this.settingEmailLabel.Location = new System.Drawing.Point(696, 22);
             this.settingEmailLabel.Name = "settingEmailLabel";
             this.settingEmailLabel.Size = new System.Drawing.Size(56, 23);
             this.settingEmailLabel.TabIndex = 79;
@@ -178,6 +186,7 @@
             // 
             // setEmailText
             // 
+            this.setEmailText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.setEmailText.BackColor = System.Drawing.Color.Transparent;
             this.setEmailText.BorderColor = System.Drawing.Color.Gray;
             this.setEmailText.BorderRadius = 8;
@@ -192,24 +201,25 @@
             this.setEmailText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.setEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.setEmailText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.setEmailText.Location = new System.Drawing.Point(417, 52);
+            this.setEmailText.Location = new System.Drawing.Point(700, 52);
             this.setEmailText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.setEmailText.Name = "setEmailText";
             this.setEmailText.PasswordChar = '\0';
             this.setEmailText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.setEmailText.PlaceholderText = "Enter Your Email";
             this.setEmailText.SelectedText = "";
-            this.setEmailText.Size = new System.Drawing.Size(348, 42);
+            this.setEmailText.Size = new System.Drawing.Size(600, 42);
             this.setEmailText.TabIndex = 78;
             this.setEmailText.TextChanged += new System.EventHandler(this.setEmailText_TextChanged);
             // 
             // setAddressLabel
             // 
+            this.setAddressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.setAddressLabel.AutoSize = true;
             this.setAddressLabel.BackColor = System.Drawing.Color.Transparent;
             this.setAddressLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.setAddressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.setAddressLabel.Location = new System.Drawing.Point(413, 112);
+            this.setAddressLabel.Location = new System.Drawing.Point(696, 112);
             this.setAddressLabel.Name = "setAddressLabel";
             this.setAddressLabel.Size = new System.Drawing.Size(78, 23);
             this.setAddressLabel.TabIndex = 83;
@@ -217,6 +227,7 @@
             // 
             // setAddressText
             // 
+            this.setAddressText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.setAddressText.BackColor = System.Drawing.Color.Transparent;
             this.setAddressText.BorderColor = System.Drawing.Color.Gray;
             this.setAddressText.BorderRadius = 8;
@@ -231,14 +242,14 @@
             this.setAddressText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.setAddressText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.setAddressText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.setAddressText.Location = new System.Drawing.Point(417, 142);
+            this.setAddressText.Location = new System.Drawing.Point(700, 142);
             this.setAddressText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.setAddressText.Name = "setAddressText";
             this.setAddressText.PasswordChar = '\0';
             this.setAddressText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.setAddressText.PlaceholderText = "Enter Your Adress";
             this.setAddressText.SelectedText = "";
-            this.setAddressText.Size = new System.Drawing.Size(348, 42);
+            this.setAddressText.Size = new System.Drawing.Size(600, 42);
             this.setAddressText.TabIndex = 82;
             this.setAddressText.TextChanged += new System.EventHandler(this.setAddressText_TextChanged);
             // 
@@ -256,6 +267,8 @@
             // 
             // setPhoneNotext
             // 
+            this.setPhoneNotext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.setPhoneNotext.BackColor = System.Drawing.Color.Transparent;
             this.setPhoneNotext.BorderColor = System.Drawing.Color.Gray;
             this.setPhoneNotext.BorderRadius = 8;
@@ -277,12 +290,14 @@
             this.setPhoneNotext.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.setPhoneNotext.PlaceholderText = "Enter Your Number";
             this.setPhoneNotext.SelectedText = "";
-            this.setPhoneNotext.Size = new System.Drawing.Size(348, 42);
+            this.setPhoneNotext.Size = new System.Drawing.Size(645, 42);
             this.setPhoneNotext.TabIndex = 80;
             this.setPhoneNotext.TextChanged += new System.EventHandler(this.setPhoneNotext_TextChanged);
             // 
             // setPanel
             // 
+            this.setPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.setPanel.BackColor = System.Drawing.Color.Transparent;
             this.setPanel.BorderRadius = 8;
             this.setPanel.Controls.Add(this.setSaveBtn);
@@ -300,9 +315,56 @@
             this.setPanel.FillColor = System.Drawing.Color.White;
             this.setPanel.Location = new System.Drawing.Point(28, 66);
             this.setPanel.Name = "setPanel";
-            this.setPanel.Size = new System.Drawing.Size(799, 370);
+            this.setPanel.Size = new System.Drawing.Size(1334, 438);
             this.setPanel.TabIndex = 84;
             this.setPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.setPanel_Paint);
+            // 
+            // siticonePanel11
+            // 
+            this.siticonePanel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel11.BorderColor = System.Drawing.Color.Black;
+            this.siticonePanel11.BorderThickness = 2;
+            this.siticonePanel11.Controls.Add(this.siticoneHtmlLabel1);
+            this.siticonePanel11.Controls.Add(this.copyrightlabel);
+            this.siticonePanel11.Controls.Add(this.logobox);
+            this.siticonePanel11.Location = new System.Drawing.Point(-4, 524);
+            this.siticonePanel11.Name = "siticonePanel11";
+            this.siticonePanel11.Size = new System.Drawing.Size(1395, 267);
+            this.siticonePanel11.TabIndex = 85;
+            // 
+            // siticoneHtmlLabel1
+            // 
+            this.siticoneHtmlLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneHtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneHtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(933, 45);
+            this.siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
+            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(430, 19);
+            this.siticoneHtmlLabel1.TabIndex = 2;
+            this.siticoneHtmlLabel1.Text = "For technical issues, please contact our support team at +94 75 711 9340";
+            // 
+            // copyrightlabel
+            // 
+            this.copyrightlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.copyrightlabel.BackColor = System.Drawing.Color.Transparent;
+            this.copyrightlabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyrightlabel.Location = new System.Drawing.Point(1021, 23);
+            this.copyrightlabel.Name = "copyrightlabel";
+            this.copyrightlabel.Size = new System.Drawing.Size(342, 19);
+            this.copyrightlabel.TabIndex = 1;
+            this.copyrightlabel.Text = "© 2025 Escope International (PVT) LTD. All rights reserved";
+            // 
+            // logobox
+            // 
+            this.logobox.Image = global::EscopeWindowsApp.Properties.Resources.My_new_logo_b_05;
+            this.logobox.ImageRotate = 0F;
+            this.logobox.Location = new System.Drawing.Point(20, 13);
+            this.logobox.Name = "logobox";
+            this.logobox.Size = new System.Drawing.Size(216, 72);
+            this.logobox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logobox.TabIndex = 0;
+            this.logobox.TabStop = false;
             // 
             // Setting
             // 
@@ -310,6 +372,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.siticonePanel11);
             this.Controls.Add(this.settingLabel);
             this.Controls.Add(this.setPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -323,6 +386,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.setLogoBox)).EndInit();
             this.setPanel.ResumeLayout(false);
             this.setPanel.PerformLayout();
+            this.siticonePanel11.ResumeLayout(false);
+            this.siticonePanel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logobox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,5 +410,9 @@
         private System.Windows.Forms.Label setPhoneNoLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox setPhoneNotext;
         private Siticone.Desktop.UI.WinForms.SiticonePanel setPanel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel11;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel copyrightlabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox logobox;
     }
 }

@@ -38,14 +38,16 @@ namespace EscopeWindowsApp
                 Name = "session_start_time",
                 DataPropertyName = "session_start_time",
                 HeaderText = "Session Start Time",
-                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" }
+                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
+                Width = 150 // Adjust this value as needed
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "session_end_time",
                 DataPropertyName = "session_end_time",
                 HeaderText = "Session End Time",
-                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" }
+                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
+                Width = 150 // Adjust this value as needed
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -202,6 +204,11 @@ namespace EscopeWindowsApp
         {
             // We only refresh on Filter-button click,
             // so you can leave this empty (or call LoadLogsData here if you prefer).
+        }
+
+        private void LogsReport_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
