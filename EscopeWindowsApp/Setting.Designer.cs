@@ -76,7 +76,6 @@
             this.setLogoBox.Location = new System.Drawing.Point(27, 239);
             this.setLogoBox.Name = "setLogoBox";
             this.setLogoBox.Size = new System.Drawing.Size(106, 106);
-            this.setLogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.setLogoBox.TabIndex = 77;
             this.setLogoBox.TabStop = false;
             this.setLogoBox.Click += new System.EventHandler(this.setLogoBox_Click);

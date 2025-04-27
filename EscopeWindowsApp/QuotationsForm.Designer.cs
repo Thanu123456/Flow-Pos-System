@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createQuotaBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.quotaDataComboBox1 = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.quotaDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.quoReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quoCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +50,6 @@
             this.quotaPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.quotaFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).BeginInit();
             this.quotaBtnPanel.SuspendLayout();
@@ -77,31 +75,6 @@
             this.createQuotaBtn.TabIndex = 3;
             this.createQuotaBtn.Text = "Create Quotation";
             this.createQuotaBtn.Click += new System.EventHandler(this.createQuotaBtn_Click);
-            // 
-            // quotaDataComboBox1
-            // 
-            this.quotaDataComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.quotaDataComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.quotaDataComboBox1.BorderRadius = 8;
-            this.quotaDataComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.quotaDataComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.quotaDataComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.quotaDataComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.quotaDataComboBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.quotaDataComboBox1.ForeColor = System.Drawing.Color.Gray;
-            this.quotaDataComboBox1.ItemHeight = 30;
-            this.quotaDataComboBox1.Items.AddRange(new object[] {
-            "Select Date",
-            "Today",
-            "This Week",
-            "Last Week",
-            "This Month",
-            "Last Month"});
-            this.quotaDataComboBox1.Location = new System.Drawing.Point(840, 36);
-            this.quotaDataComboBox1.Name = "quotaDataComboBox1";
-            this.quotaDataComboBox1.Size = new System.Drawing.Size(240, 36);
-            this.quotaDataComboBox1.StartIndex = 0;
-            this.quotaDataComboBox1.TabIndex = 4;
             // 
             // quotaDataGridView
             // 
@@ -358,27 +331,6 @@
             this.quotaLastBtn.TabIndex = 8;
             this.quotaLastBtn.Click += new System.EventHandler(this.quotaLastBtn_Click);
             // 
-            // quotaFilterBtn
-            // 
-            this.quotaFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.quotaFilterBtn.Animated = true;
-            this.quotaFilterBtn.BackColor = System.Drawing.Color.Transparent;
-            this.quotaFilterBtn.BorderRadius = 8;
-            this.quotaFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.quotaFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.quotaFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.quotaFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.quotaFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.quotaFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.quotaFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.quotaFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.quotaFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.quotaFilterBtn.Location = new System.Drawing.Point(1098, 30);
-            this.quotaFilterBtn.Name = "quotaFilterBtn";
-            this.quotaFilterBtn.Size = new System.Drawing.Size(43, 43);
-            this.quotaFilterBtn.TabIndex = 2;
-            this.quotaFilterBtn.Click += new System.EventHandler(this.quotaFilterBtn_Click);
-            // 
             // quotaSearchText
             // 
             this.quotaSearchText.BorderRadius = 8;
@@ -418,9 +370,7 @@
             this.Controls.Add(this.quotaPageCombo);
             this.Controls.Add(this.quotaRecordsPerLabel);
             this.Controls.Add(this.quotaDataGridView);
-            this.Controls.Add(this.quotaDataComboBox1);
             this.Controls.Add(this.createQuotaBtn);
-            this.Controls.Add(this.quotaFilterBtn);
             this.Controls.Add(this.quotaSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -441,9 +391,7 @@
         #endregion
 
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox quotaSearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton quotaFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createQuotaBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox quotaDataComboBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView quotaDataGridView;
         private System.Windows.Forms.Label quotAllPgLabel;
         private System.Windows.Forms.Label quotaOfLabel;
