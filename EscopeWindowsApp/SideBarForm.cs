@@ -146,9 +146,13 @@ namespace EscopeWindowsApp
             if (currentCheckedButton != null && currentCheckedButton != control)
             {
                 currentCheckedButton.BackColor = uncheckedColor;
+                currentCheckedButton.Refresh(); // Force UI update
+                Console.WriteLine($"Unchecked previous button: {currentCheckedButton.Name}, BackColor: {currentCheckedButton.BackColor}");
             }
             control.BackColor = checkedColor;
+            control.Refresh(); // Force UI update
             currentCheckedButton = control;
+            Console.WriteLine($"Checked new button: {control.Name}, BackColor: {control.BackColor}");
         }
 
         private void TimeTimer_Tick(object sender, EventArgs e)
@@ -213,22 +217,28 @@ namespace EscopeWindowsApp
         {
             if (purchesesExpand)
             {
-                purchLayoutPanel.Height -= 10;
-                if (purchLayoutPanel.Height <= 41)
+                expLayoutPanel.Height -= 10;
+                if (expLayoutPanel.Height <= 41)
                 {
                     purchesTransition.Stop();
                     purchesesExpand = false;
-                    
+                    sideBarPanel.AutoScroll = false;
+                }
             }
             else
             {
-                purchLayoutPanel.Height += 10;
-                if (purchLayoutPanel.Height >= 123)
+                expLayoutPanel.Height += 10;
+                if (expLayoutPanel.Height >= 123)
                 {
                     purchesTransition.Stop();
                     purchesesExpand = true;
+                    sideBarPanel.AutoScroll = true;
+                    sideBarPanel.AutoScrollMinSize = new Size(0, 816);
+                    sideBarPanel.HorizontalScroll.Visible = false;
+                    sideBarPanel.HorizontalScroll.Enabled = false;
+                    sideBarPanel.VerticalScroll.Visible = true;
+                    sideBarPanel.VerticalScroll.Enabled = true;
                 }
-            }
             }
         }
 
@@ -394,9 +404,10 @@ namespace EscopeWindowsApp
         {
             Console.WriteLine($"MDI children before closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
+            // Close all existing MDI children
             foreach (Form child in this.MdiChildren.ToList())
             {
-                if (!child.IsDisposed)
+                if (child != null && !child.IsDisposed)
                 {
                     Console.WriteLine($"Attempting to close MDI child: {child.Name}, Visible: {child.Visible}, IsHandleCreated: {child.IsHandleCreated}");
                     try
@@ -406,21 +417,19 @@ namespace EscopeWindowsApp
                             pc.AllowProgrammaticClose = true;
                         }
                         child.Close();
-                        Console.WriteLine($"Successfully closed MDI child: {child.Name}");
+                        child.Dispose(); // Explicitly dispose to release resources
+                        Console.WriteLine($"Successfully closed and disposed MDI child: {child.Name}");
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Error closing MDI child {child.Name}: {ex.Message}");
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"MDI child {child.Name} is already disposed");
-                }
             }
 
             Console.WriteLine($"MDI children after closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
+            // Open the new form
             if (form == null || form.IsDisposed)
             {
                 form = new T();
