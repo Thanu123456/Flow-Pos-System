@@ -450,6 +450,12 @@
     <Compile Include="PurchasesForm.Designer.cs">
       <DependentUpon>PurchasesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PurchasesReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchasesReturn.Designer.cs">
+      <DependentUpon>PurchasesReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PurchasesForm.resx">
       <DependentUpon>PurchasesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchasesReturn.resx">
+      <DependentUpon>PurchasesReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuotationsForm.resx">
       <DependentUpon>QuotationsForm.cs</DependentUpon>
