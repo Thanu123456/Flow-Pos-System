@@ -21,10 +21,21 @@ namespace EscopeWindowsApp
         private ErrorProvider emailErrorProvider = new ErrorProvider();
         private ErrorProvider phoneErrorProvider = new ErrorProvider();
 
+        // Store initial values to track changes
+        private string initialName;
+        private string initialEmail;
+        private string initialPhoneNumber;
+        private string initialAddress;
+        private byte[] initialLogoBytes;
+        private bool logoChanged;
+
         public Setting()
         {
             InitializeComponent();
             SetupErrorProviders();
+            setLogoBox.SizeMode = PictureBoxSizeMode.CenterImage; // Prevent stretching in PictureBox
+            // Restrict phone number input
+            setPhoneNotext.KeyPress += setPhoneNotext_KeyPress;
         }
 
         private void SetupErrorProviders()
@@ -37,6 +48,13 @@ namespace EscopeWindowsApp
         private void Setting_Load(object sender, EventArgs e)
         {
             LoadCompanyDetails();
+            // Store initial values after loading
+            initialName = settingNameText.Text;
+            initialEmail = setEmailText.Text;
+            initialPhoneNumber = setPhoneNotext.Text;
+            initialAddress = setAddressText.Text;
+            initialLogoBytes = GetImageBytes(setLogoBox.Image);
+            logoChanged = false;
             UpdateSaveButtonState();
         }
 
@@ -118,19 +136,58 @@ namespace EscopeWindowsApp
                 phoneErrorProvider.SetError(setPhoneNotext, string.Empty);
                 return true; // Phone number is optional
             }
-            string phonePattern = @"^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$";
-            if (!Regex.IsMatch(setPhoneNotext.Text, phonePattern))
+
+            // Split input by '/' to handle two phone numbers
+            string[] phoneNumbers = setPhoneNotext.Text.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            if (phoneNumbers.Length > 2)
             {
-                phoneErrorProvider.SetError(setPhoneNotext, "Please enter a valid phone number.");
+                phoneErrorProvider.SetError(setPhoneNotext, "Please enter up to two phone numbers separated by '/'.");
                 return false;
             }
+
+            // Regex pattern for a single phone number
+            string phonePattern = @"^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$";
+            foreach (string phone in phoneNumbers)
+            {
+                if (!Regex.IsMatch(phone.Trim(), phonePattern))
+                {
+                    phoneErrorProvider.SetError(setPhoneNotext, "Each phone number must be valid.");
+                    return false;
+                }
+            }
+
             phoneErrorProvider.SetError(setPhoneNotext, string.Empty);
             return true;
         }
 
+        private bool HasChanges()
+        {
+            // Check if text fields have changed
+            bool textChanged = settingNameText.Text != initialName ||
+                              setEmailText.Text != initialEmail ||
+                              setPhoneNotext.Text != initialPhoneNumber ||
+                              setAddressText.Text != initialAddress;
+
+            // Check if logo has changed
+            bool logoModified = logoChanged;
+
+            return textChanged || logoModified;
+        }
+
+        private byte[] GetImageBytes(Image image)
+        {
+            if (image == null)
+                return null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
         private void UpdateSaveButtonState()
         {
-            setSaveBtn.Enabled = ValidateCompanyName() && ValidateEmail() && ValidatePhoneNumber();
+            setSaveBtn.Enabled = ValidateCompanyName() && ValidateEmail() && ValidatePhoneNumber() && HasChanges();
         }
 
         private void settingNameText_TextChanged(object sender, EventArgs e)
@@ -149,6 +206,15 @@ namespace EscopeWindowsApp
         {
             ValidatePhoneNumber();
             UpdateSaveButtonState();
+        }
+
+        private void setPhoneNotext_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, +, -, (, ), space, /, and control keys (e.g., Backspace)
+            if (!char.IsDigit(e.KeyChar) && !"+-()/ ".Contains(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Prevent the character from being entered
+            }
         }
 
         private void setAddressText_TextChanged(object sender, EventArgs e)
@@ -177,7 +243,10 @@ namespace EscopeWindowsApp
                         using (Image originalImage = Image.FromFile(dialog.FileName))
                         {
                             Image resizedImage = ResizeImage(originalImage, setLogoBox.Width, setLogoBox.Height);
+                            setLogoBox.Image?.Dispose(); // Dispose of previous image to prevent memory leaks
                             setLogoBox.Image = resizedImage;
+                            logoChanged = true; // Mark logo as changed
+                            UpdateSaveButtonState();
                         }
                     }
                 }
@@ -188,14 +257,42 @@ namespace EscopeWindowsApp
             }
         }
 
-        private Image ResizeImage(Image image, int width, int height)
+        private Image ResizeImage(Image image, int maxWidth, int maxHeight)
         {
-            Bitmap resizedBitmap = new Bitmap(width, height);
+            // Calculate the aspect ratio
+            double aspectRatio = (double)image.Width / image.Height;
+            int newWidth, newHeight;
+
+            // Determine new dimensions while preserving aspect ratio
+            if (image.Width > image.Height)
+            {
+                newWidth = maxWidth;
+                newHeight = (int)(maxWidth / aspectRatio);
+                if (newHeight > maxHeight)
+                {
+                    newHeight = maxHeight;
+                    newWidth = (int)(maxHeight * aspectRatio);
+                }
+            }
+            else
+            {
+                newHeight = maxHeight;
+                newWidth = (int)(maxHeight * aspectRatio);
+                if (newWidth > maxWidth)
+                {
+                    newWidth = maxWidth;
+                    newHeight = (int)(maxWidth / aspectRatio);
+                }
+            }
+
+            // Create a new bitmap with the calculated dimensions
+            Bitmap resizedBitmap = new Bitmap(newWidth, newHeight);
             using (Graphics graphics = Graphics.FromImage(resizedBitmap))
             {
                 graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                graphics.DrawImage(image, 0, 0, width, height);
+                graphics.DrawImage(image, 0, 0, newWidth, newHeight);
             }
+
             return resizedBitmap;
         }
 
@@ -262,6 +359,14 @@ namespace EscopeWindowsApp
                             }
                         }
                     }
+                    // Update initial values after saving
+                    initialName = settingNameText.Text;
+                    initialEmail = setEmailText.Text;
+                    initialPhoneNumber = setPhoneNotext.Text;
+                    initialAddress = setAddressText.Text;
+                    initialLogoBytes = GetImageBytes(setLogoBox.Image);
+                    logoChanged = false;
+                    UpdateSaveButtonState();
                     this.Close();
                 }
                 catch (MySqlException myEx)
