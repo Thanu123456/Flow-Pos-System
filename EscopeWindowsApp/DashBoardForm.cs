@@ -23,7 +23,7 @@ namespace EscopeWindowsApp
         private BindingSource expiryBindingSource;
         private BindingSource stockAlertBindingSource;
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
-        private Font gridFont = new Font("Segoe UI", 9F);
+        private Font gridFont = new Font("Segoe UI", 12F);
 
         public DashBoardForm()
         {
@@ -1017,5 +1017,15 @@ namespace EscopeWindowsApp
         private void tNOPLabel_Click(object sender, EventArgs e) { }
         private void dashTotPurPanel_Paint(object sender, PaintEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
+
+        private void profitAmoutLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticonePanel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

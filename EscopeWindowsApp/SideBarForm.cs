@@ -34,15 +34,15 @@ namespace EscopeWindowsApp
         Reports reportsForm;
         Setting settingForm;
         PurchasesForm purchasesForm;
+        PurchasesReturn purchasesReturnForm; // New field for PurchasesReturnForm
         private Control currentCheckedButton = null;
         private Color checkedColor = Color.LightBlue;
         private Color uncheckedColor = SystemColors.Control;
         private Timer timeTimer;
         private Timer dateTimer;
-        private string userName; // Store logged-in user's name
-        private string userEmail; // Store logged-in user's email
+        private string userName;
+        private string userEmail;
 
-        // Constructor to accept username and email
         public SideBarForm(string username = "", string email = "")
         {
             InitializeComponent();
@@ -52,23 +52,19 @@ namespace EscopeWindowsApp
             this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
 
-            // Disable horizontal scrolling
             sideBarPanel.AutoScroll = false;
             sideBarPanel.HorizontalScroll.Visible = false;
             sideBarPanel.HorizontalScroll.Enabled = false;
             sideBarPanel.VerticalScroll.Visible = true;
             sideBarPanel.VerticalScroll.Enabled = true;
 
-            // Set initial button styles
             SetButtonStyles();
 
-            // Initialize and start the time timer
             timeTimer = new Timer();
             timeTimer.Interval = 1000;
             timeTimer.Tick += TimeTimer_Tick;
             timeTimer.Start();
 
-            // Initialize and start the date timer
             dateTimer = new Timer();
             dateTimer.Interval = 1000;
             dateTimer.Tick += DateTimer_Tick;
@@ -87,7 +83,7 @@ namespace EscopeWindowsApp
                 settingBtn, sidebarBtn, proBtn, proCatBtn, varBtn,
                 brandBtn, unitsBtn, baseUnitBtn, salesListBtn, salesRetBtn,
                 barcodePrtBtn, creExpBtn, expCatBtn, cusBtn, supBtn, userBtn,
-                purBtn
+                purBtn, purPanelBtn, purRetBtn
             };
 
             foreach (Control ctrl in sidebarButtons)
@@ -103,7 +99,6 @@ namespace EscopeWindowsApp
 
         private void SideBarForm_Load(object sender, EventArgs e)
         {
-            // Open DashBoardForm by default
             dashboardBtn_Click(dashboardBtn, EventArgs.Empty);
         }
 
@@ -112,6 +107,7 @@ namespace EscopeWindowsApp
         bool salesExpand = false;
         bool peopleExpand = false;
         bool sideBarExpand = true;
+        bool purchasesPanelExpand = false;
 
         private void ExpandSidebarIfCollapsed()
         {
@@ -139,6 +135,10 @@ namespace EscopeWindowsApp
             {
                 peoplesTransition.Start();
             }
+            if (purchasesPanelExpand)
+            {
+                purchTransition.Start();
+            }
         }
 
         private void CheckButton(Control control)
@@ -146,9 +146,13 @@ namespace EscopeWindowsApp
             if (currentCheckedButton != null && currentCheckedButton != control)
             {
                 currentCheckedButton.BackColor = uncheckedColor;
+                currentCheckedButton.Refresh(); // Force UI update
+                Console.WriteLine($"Unchecked previous button: {currentCheckedButton.Name}, BackColor: {currentCheckedButton.BackColor}");
             }
             control.BackColor = checkedColor;
+            control.Refresh(); // Force UI update
             currentCheckedButton = control;
+            Console.WriteLine($"Checked new button: {control.Name}, BackColor: {control.BackColor}");
         }
 
         private void TimeTimer_Tick(object sender, EventArgs e)
@@ -213,20 +217,27 @@ namespace EscopeWindowsApp
         {
             if (purchesesExpand)
             {
-                purchLayoutPanel.Height -= 10;
-                if (purchLayoutPanel.Height <= 41)
+                expLayoutPanel.Height -= 10;
+                if (expLayoutPanel.Height <= 41)
                 {
                     purchesTransition.Stop();
                     purchesesExpand = false;
+                    sideBarPanel.AutoScroll = false;
                 }
             }
             else
             {
-                purchLayoutPanel.Height += 10;
-                if (purchLayoutPanel.Height >= 123)
+                expLayoutPanel.Height += 10;
+                if (expLayoutPanel.Height >= 123)
                 {
                     purchesTransition.Stop();
                     purchesesExpand = true;
+                    sideBarPanel.AutoScroll = true;
+                    sideBarPanel.AutoScrollMinSize = new Size(0, 816);
+                    sideBarPanel.HorizontalScroll.Visible = false;
+                    sideBarPanel.HorizontalScroll.Enabled = false;
+                    sideBarPanel.VerticalScroll.Visible = true;
+                    sideBarPanel.VerticalScroll.Enabled = true;
                 }
             }
         }
@@ -389,43 +400,36 @@ namespace EscopeWindowsApp
             sidebarTransition.Start();
         }
 
-        // Helper method to open a new form and close all previous MDI children
         private void OpenFormAndClosePrevious<T>(ref T form, Action<T> setFormClosed) where T : Form, new()
         {
-            // Log current MDI children before closing
             Console.WriteLine($"MDI children before closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
-            // Close all MDI child forms
+            // Close all existing MDI children
             foreach (Form child in this.MdiChildren.ToList())
             {
-                if (!child.IsDisposed)
+                if (child != null && !child.IsDisposed)
                 {
                     Console.WriteLine($"Attempting to close MDI child: {child.Name}, Visible: {child.Visible}, IsHandleCreated: {child.IsHandleCreated}");
                     try
                     {
-                        // Set a flag to allow programmatic closing if supported by the form
                         if (child is IProgrammaticCloseable pc)
                         {
                             pc.AllowProgrammaticClose = true;
                         }
                         child.Close();
-                        Console.WriteLine($"Successfully closed MDI child: {child.Name}");
+                        child.Dispose(); // Explicitly dispose to release resources
+                        Console.WriteLine($"Successfully closed and disposed MDI child: {child.Name}");
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Error closing MDI child {child.Name}: {ex.Message}");
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"MDI child {child.Name} is already disposed");
-                }
             }
 
-            // Log current MDI children after closing
             Console.WriteLine($"MDI children after closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
-            // Open or activate the new form
+            // Open the new form
             if (form == null || form.IsDisposed)
             {
                 form = new T();
@@ -453,11 +457,9 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Log current MDI children after opening
             Console.WriteLine($"MDI children after opening: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
         }
 
-        // Interface to support programmatic closing in forms
         private interface IProgrammaticCloseable
         {
             bool AllowProgrammaticClose { get; set; }
@@ -763,7 +765,6 @@ namespace EscopeWindowsApp
             ExpandSidebarIfCollapsed();
             CollapseAllPanels();
 
-            // Close all MDI child forms
             foreach (Form child in this.MdiChildren.ToList())
             {
                 if (!child.IsDisposed)
@@ -789,7 +790,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Check if POSRegister is already open
             foreach (Form form in Application.OpenForms)
             {
                 if (form is POSRegister)
@@ -804,7 +804,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Open POSRegister with username and email
             POSRegister posRegister = new POSRegister(userName, userEmail);
             Console.WriteLine("Opening new POSRegister");
             try
@@ -818,11 +817,37 @@ namespace EscopeWindowsApp
             }
         }
 
+        private void purchTransition_Tick(object sender, EventArgs e)
+        {
+            if (purchasesPanelExpand)
+            {
+                purchflowlayoutpanel.Height -= 10;
+                if (purchflowlayoutpanel.Height <= 41)
+                {
+                    purchTransition.Stop();
+                    purchasesPanelExpand = false;
+                }
+            }
+            else
+            {
+                purchflowlayoutpanel.Height += 10;
+                if (purchflowlayoutpanel.Height >= 123)
+                {
+                    purchTransition.Stop();
+                    purchasesPanelExpand = true;
+                }
+            }
+        }
+
         private void purBtn_Click(object sender, EventArgs e)
         {
             CheckButton(purBtn);
             ExpandSidebarIfCollapsed();
             CollapseAllPanels();
+            if (!purchasesPanelExpand)
+            {
+                purchTransition.Start();
+            }
             OpenFormAndClosePrevious(ref purchasesForm, (form) => form.FormClosed += PurchasesForm_FormClosed);
         }
 
@@ -830,6 +855,35 @@ namespace EscopeWindowsApp
         {
             purchasesForm = null;
             Console.WriteLine("PurchasesForm closed");
+        }
+
+        private void purPanelBtn_Click(object sender, EventArgs e)
+        {
+            CheckButton(purPanelBtn);
+            ExpandSidebarIfCollapsed();
+            CollapseAllPanels();
+            if (!purchasesPanelExpand)
+            {
+                purchTransition.Start();
+            }
+        }
+
+        private void purRetBtn_Click(object sender, EventArgs e)
+        {
+            CheckButton(purRetBtn);
+            ExpandSidebarIfCollapsed();
+            CollapseAllPanels();
+            if (!purchasesPanelExpand)
+            {
+                purchTransition.Start();
+            }
+            OpenFormAndClosePrevious(ref purchasesReturnForm, (form) => form.FormClosed += PurchasesReturnForm_FormClosed);
+        }
+
+        private void PurchasesReturnForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            purchasesReturnForm = null;
+            Console.WriteLine("PurchasesReturnForm closed");
         }
     }
 }

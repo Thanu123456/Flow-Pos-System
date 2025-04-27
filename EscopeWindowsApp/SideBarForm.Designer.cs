@@ -58,6 +58,20 @@
             this.salesListBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.salesRetBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.salesRetBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.purchflowlayoutpanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.pur = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.purPanelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.purBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.purBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.purRetPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.purRetBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.expLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.expPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.expensesBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.creExpBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.creExpBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.expCatBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.expCatBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.peoplesLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.peoplesBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.peoplesBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -67,21 +81,14 @@
             this.supBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.userBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.purchLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.expPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.expensesBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.creExpBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.creExpBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.expCatBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.expCatBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.reportsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.reportsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.qutationBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.quatationBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.wareHouseBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.wareHouseBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.transferBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.transferBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.reportsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.reportsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.settingBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.settingBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sidebarBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -102,8 +109,7 @@
             this.purchesTransition = new System.Windows.Forms.Timer(this.components);
             this.salesTransition = new System.Windows.Forms.Timer(this.components);
             this.peoplesTransition = new System.Windows.Forms.Timer(this.components);
-            this.purBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.purBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.purchTransition = new System.Windows.Forms.Timer(this.components);
             this.manuLayoutPanel.SuspendLayout();
             this.manuBtnPanel.SuspendLayout();
             this.proBtnPanel.SuspendLayout();
@@ -119,19 +125,23 @@
             this.salesBtnPanel.SuspendLayout();
             this.salesListBtnPanel.SuspendLayout();
             this.salesRetBtnPanel.SuspendLayout();
+            this.purchflowlayoutpanel.SuspendLayout();
+            this.pur.SuspendLayout();
+            this.purBtnPanel.SuspendLayout();
+            this.purRetPanel.SuspendLayout();
+            this.expLayoutPanel.SuspendLayout();
+            this.expPanel.SuspendLayout();
+            this.creExpBtnPanel.SuspendLayout();
+            this.expCatBtnPanel.SuspendLayout();
             this.peoplesLayoutPanel.SuspendLayout();
             this.peoplesBtnPanel.SuspendLayout();
             this.cusBtnPanel.SuspendLayout();
             this.supBtnPanel.SuspendLayout();
             this.userBtnPanel.SuspendLayout();
-            this.purchLayoutPanel.SuspendLayout();
-            this.expPanel.SuspendLayout();
-            this.creExpBtnPanel.SuspendLayout();
-            this.expCatBtnPanel.SuspendLayout();
-            this.reportsBtnPanel.SuspendLayout();
             this.qutationBtnPanel.SuspendLayout();
             this.wareHouseBtnPanel.SuspendLayout();
             this.transferBtnPanel.SuspendLayout();
+            this.reportsBtnPanel.SuspendLayout();
             this.settingBtnPanel.SuspendLayout();
             this.sidebarBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
@@ -140,7 +150,6 @@
             this.posBtnPanel.SuspendLayout();
             this.timePanel.SuspendLayout();
             this.userProfilePanel.SuspendLayout();
-            this.purBtnPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // manuTransition
@@ -445,13 +454,13 @@
             this.sideBarPanel.Controls.Add(this.dashBtnPanel);
             this.sideBarPanel.Controls.Add(this.manuLayoutPanel);
             this.sideBarPanel.Controls.Add(this.salesLayoutPanel);
-            this.sideBarPanel.Controls.Add(this.purBtnPanel);
-            this.sideBarPanel.Controls.Add(this.purchLayoutPanel);
+            this.sideBarPanel.Controls.Add(this.purchflowlayoutpanel);
+            this.sideBarPanel.Controls.Add(this.expLayoutPanel);
             this.sideBarPanel.Controls.Add(this.peoplesLayoutPanel);
-            this.sideBarPanel.Controls.Add(this.reportsBtnPanel);
             this.sideBarPanel.Controls.Add(this.qutationBtnPanel);
             this.sideBarPanel.Controls.Add(this.wareHouseBtnPanel);
             this.sideBarPanel.Controls.Add(this.transferBtnPanel);
+            this.sideBarPanel.Controls.Add(this.reportsBtnPanel);
             this.sideBarPanel.Controls.Add(this.settingBtnPanel);
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideBarPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -614,6 +623,245 @@
             this.salesRetBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.salesRetBtn.Click += new System.EventHandler(this.salesRetBtn_Click);
             // 
+            // purchflowlayoutpanel
+            // 
+            this.purchflowlayoutpanel.BackColor = System.Drawing.Color.Transparent;
+            this.purchflowlayoutpanel.Controls.Add(this.pur);
+            this.purchflowlayoutpanel.Controls.Add(this.purBtnPanel);
+            this.purchflowlayoutpanel.Controls.Add(this.purRetPanel);
+            this.purchflowlayoutpanel.Location = new System.Drawing.Point(0, 123);
+            this.purchflowlayoutpanel.Margin = new System.Windows.Forms.Padding(0);
+            this.purchflowlayoutpanel.Name = "purchflowlayoutpanel";
+            this.purchflowlayoutpanel.Size = new System.Drawing.Size(250, 41);
+            this.purchflowlayoutpanel.TabIndex = 22;
+            // 
+            // pur
+            // 
+            this.pur.Controls.Add(this.purPanelBtn);
+            this.pur.Location = new System.Drawing.Point(0, 0);
+            this.pur.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.pur.Name = "pur";
+            this.pur.Size = new System.Drawing.Size(250, 41);
+            this.pur.TabIndex = 12;
+            // 
+            // purPanelBtn
+            // 
+            this.purPanelBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.purPanelBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.purPanelBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.purPanelBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
+            this.purPanelBtn.CustomImages.ImageOffset = new System.Drawing.Point(20, 0);
+            this.purPanelBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.purPanelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.purPanelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.purPanelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.purPanelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.purPanelBtn.FillColor = System.Drawing.Color.White;
+            this.purPanelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.purPanelBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.purPanelBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.purPanelBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchases_box;
+            this.purPanelBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purPanelBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.purPanelBtn.Location = new System.Drawing.Point(-7, -4);
+            this.purPanelBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.purPanelBtn.Name = "purPanelBtn";
+            this.purPanelBtn.PressedColor = System.Drawing.Color.Navy;
+            this.purPanelBtn.Size = new System.Drawing.Size(266, 48);
+            this.purPanelBtn.TabIndex = 5;
+            this.purPanelBtn.Text = "          Purchases";
+            this.purPanelBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purPanelBtn.Click += new System.EventHandler(this.purPanelBtn_Click);
+            // 
+            // purBtnPanel
+            // 
+            this.purBtnPanel.Controls.Add(this.purBtn);
+            this.purBtnPanel.Location = new System.Drawing.Point(0, 41);
+            this.purBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.purBtnPanel.Name = "purBtnPanel";
+            this.purBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.purBtnPanel.TabIndex = 13;
+            // 
+            // purBtn
+            // 
+            this.purBtn.BackColor = System.Drawing.Color.Transparent;
+            this.purBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.purBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.purBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.purBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.purBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.purBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.purBtn.FillColor = System.Drawing.Color.White;
+            this.purBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.purBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.purBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchaseIcon;
+            this.purBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.purBtn.Location = new System.Drawing.Point(-7, -4);
+            this.purBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.purBtn.Name = "purBtn";
+            this.purBtn.PressedColor = System.Drawing.Color.Navy;
+            this.purBtn.Size = new System.Drawing.Size(266, 48);
+            this.purBtn.TabIndex = 3;
+            this.purBtn.Text = "          Purchases";
+            this.purBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purBtn.UseTransparentBackground = true;
+            this.purBtn.Click += new System.EventHandler(this.purBtn_Click);
+            // 
+            // purRetPanel
+            // 
+            this.purRetPanel.Controls.Add(this.purRetBtn);
+            this.purRetPanel.Location = new System.Drawing.Point(0, 82);
+            this.purRetPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.purRetPanel.Name = "purRetPanel";
+            this.purRetPanel.Size = new System.Drawing.Size(250, 41);
+            this.purRetPanel.TabIndex = 14;
+            // 
+            // purRetBtn
+            // 
+            this.purRetBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.purRetBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.purRetBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.purRetBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.purRetBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.purRetBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.purRetBtn.FillColor = System.Drawing.Color.White;
+            this.purRetBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.purRetBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.purRetBtn.Image = global::EscopeWindowsApp.Properties.Resources.Return;
+            this.purRetBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purRetBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.purRetBtn.Location = new System.Drawing.Point(-7, -4);
+            this.purRetBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.purRetBtn.Name = "purRetBtn";
+            this.purRetBtn.PressedColor = System.Drawing.Color.Navy;
+            this.purRetBtn.Size = new System.Drawing.Size(266, 48);
+            this.purRetBtn.TabIndex = 5;
+            this.purRetBtn.Text = "          Purchases Return";
+            this.purRetBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purRetBtn.Click += new System.EventHandler(this.purRetBtn_Click);
+            // 
+            // expLayoutPanel
+            // 
+            this.expLayoutPanel.BackColor = System.Drawing.Color.Transparent;
+            this.expLayoutPanel.Controls.Add(this.expPanel);
+            this.expLayoutPanel.Controls.Add(this.creExpBtnPanel);
+            this.expLayoutPanel.Controls.Add(this.expCatBtnPanel);
+            this.expLayoutPanel.Location = new System.Drawing.Point(0, 164);
+            this.expLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.expLayoutPanel.Name = "expLayoutPanel";
+            this.expLayoutPanel.Size = new System.Drawing.Size(250, 41);
+            this.expLayoutPanel.TabIndex = 20;
+            // 
+            // expPanel
+            // 
+            this.expPanel.Controls.Add(this.expensesBtn);
+            this.expPanel.Location = new System.Drawing.Point(0, 0);
+            this.expPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.expPanel.Name = "expPanel";
+            this.expPanel.Size = new System.Drawing.Size(250, 41);
+            this.expPanel.TabIndex = 16;
+            // 
+            // expensesBtn
+            // 
+            this.expensesBtn.BackColor = System.Drawing.Color.Transparent;
+            this.expensesBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.expensesBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.expensesBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.expensesBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
+            this.expensesBtn.CustomImages.ImageOffset = new System.Drawing.Point(20, 0);
+            this.expensesBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.expensesBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.expensesBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.expensesBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.expensesBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.expensesBtn.FillColor = System.Drawing.Color.White;
+            this.expensesBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.expensesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.expensesBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchases;
+            this.expensesBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.expensesBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.expensesBtn.Location = new System.Drawing.Point(-7, -4);
+            this.expensesBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.expensesBtn.Name = "expensesBtn";
+            this.expensesBtn.PressedColor = System.Drawing.Color.Navy;
+            this.expensesBtn.Size = new System.Drawing.Size(266, 48);
+            this.expensesBtn.TabIndex = 3;
+            this.expensesBtn.Text = "          Expenses";
+            this.expensesBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.expensesBtn.UseTransparentBackground = true;
+            this.expensesBtn.Click += new System.EventHandler(this.ExpensesBtn_Click);
+            // 
+            // creExpBtnPanel
+            // 
+            this.creExpBtnPanel.Controls.Add(this.creExpBtn);
+            this.creExpBtnPanel.Location = new System.Drawing.Point(0, 41);
+            this.creExpBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.creExpBtnPanel.Name = "creExpBtnPanel";
+            this.creExpBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.creExpBtnPanel.TabIndex = 17;
+            // 
+            // creExpBtn
+            // 
+            this.creExpBtn.BackColor = System.Drawing.Color.Transparent;
+            this.creExpBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.creExpBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.creExpBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.creExpBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.creExpBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.creExpBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.creExpBtn.FillColor = System.Drawing.Color.White;
+            this.creExpBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.creExpBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.creExpBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchases;
+            this.creExpBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.creExpBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.creExpBtn.Location = new System.Drawing.Point(-7, -4);
+            this.creExpBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.creExpBtn.Name = "creExpBtn";
+            this.creExpBtn.PressedColor = System.Drawing.Color.Navy;
+            this.creExpBtn.Size = new System.Drawing.Size(266, 48);
+            this.creExpBtn.TabIndex = 3;
+            this.creExpBtn.Text = "          Expenses";
+            this.creExpBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.creExpBtn.UseTransparentBackground = true;
+            this.creExpBtn.Click += new System.EventHandler(this.creExpBtn_Click);
+            // 
+            // expCatBtnPanel
+            // 
+            this.expCatBtnPanel.Controls.Add(this.expCatBtn);
+            this.expCatBtnPanel.Location = new System.Drawing.Point(0, 82);
+            this.expCatBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.expCatBtnPanel.Name = "expCatBtnPanel";
+            this.expCatBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.expCatBtnPanel.TabIndex = 18;
+            // 
+            // expCatBtn
+            // 
+            this.expCatBtn.BackColor = System.Drawing.Color.Transparent;
+            this.expCatBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.expCatBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.expCatBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.expCatBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.expCatBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.expCatBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.expCatBtn.FillColor = System.Drawing.Color.White;
+            this.expCatBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.expCatBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.expCatBtn.Image = global::EscopeWindowsApp.Properties.Resources.expcategory;
+            this.expCatBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.expCatBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.expCatBtn.Location = new System.Drawing.Point(-7, -4);
+            this.expCatBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.expCatBtn.Name = "expCatBtn";
+            this.expCatBtn.PressedColor = System.Drawing.Color.Navy;
+            this.expCatBtn.Size = new System.Drawing.Size(266, 48);
+            this.expCatBtn.TabIndex = 3;
+            this.expCatBtn.Text = "          Expenses Category";
+            this.expCatBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.expCatBtn.UseTransparentBackground = true;
+            this.expCatBtn.Click += new System.EventHandler(this.expCatBtn_Click);
+            // 
             // peoplesLayoutPanel
             // 
             this.peoplesLayoutPanel.BackColor = System.Drawing.Color.Transparent;
@@ -764,166 +1012,10 @@
             this.userBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.userBtn.Click += new System.EventHandler(this.userBtn_Click);
             // 
-            // purchLayoutPanel
-            // 
-            this.purchLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.purchLayoutPanel.Controls.Add(this.expPanel);
-            this.purchLayoutPanel.Controls.Add(this.creExpBtnPanel);
-            this.purchLayoutPanel.Controls.Add(this.expCatBtnPanel);
-            this.purchLayoutPanel.Location = new System.Drawing.Point(0, 164);
-            this.purchLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.purchLayoutPanel.Name = "purchLayoutPanel";
-            this.purchLayoutPanel.Size = new System.Drawing.Size(250, 41);
-            this.purchLayoutPanel.TabIndex = 20;
-            // 
-            // expPanel
-            // 
-            this.expPanel.Controls.Add(this.expensesBtn);
-            this.expPanel.Location = new System.Drawing.Point(0, 0);
-            this.expPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.expPanel.Name = "expPanel";
-            this.expPanel.Size = new System.Drawing.Size(250, 41);
-            this.expPanel.TabIndex = 16;
-            // 
-            // expensesBtn
-            // 
-            this.expensesBtn.BackColor = System.Drawing.Color.Transparent;
-            this.expensesBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.expensesBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.expensesBtn.CustomImages.CheckedImage = global::EscopeWindowsApp.Properties.Resources.Down;
-            this.expensesBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.RightArrow;
-            this.expensesBtn.CustomImages.ImageOffset = new System.Drawing.Point(20, 0);
-            this.expensesBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.expensesBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.expensesBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.expensesBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.expensesBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.expensesBtn.FillColor = System.Drawing.Color.White;
-            this.expensesBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.expensesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.expensesBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchases;
-            this.expensesBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.expensesBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.expensesBtn.Location = new System.Drawing.Point(-7, -4);
-            this.expensesBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.expensesBtn.Name = "expensesBtn";
-            this.expensesBtn.PressedColor = System.Drawing.Color.Navy;
-            this.expensesBtn.Size = new System.Drawing.Size(266, 48);
-            this.expensesBtn.TabIndex = 3;
-            this.expensesBtn.Text = "          Expenses";
-            this.expensesBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.expensesBtn.UseTransparentBackground = true;
-            this.expensesBtn.Click += new System.EventHandler(this.ExpensesBtn_Click);
-            // 
-            // creExpBtnPanel
-            // 
-            this.creExpBtnPanel.Controls.Add(this.creExpBtn);
-            this.creExpBtnPanel.Location = new System.Drawing.Point(0, 41);
-            this.creExpBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.creExpBtnPanel.Name = "creExpBtnPanel";
-            this.creExpBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.creExpBtnPanel.TabIndex = 17;
-            // 
-            // creExpBtn
-            // 
-            this.creExpBtn.BackColor = System.Drawing.Color.Transparent;
-            this.creExpBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.creExpBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.creExpBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.creExpBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.creExpBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.creExpBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.creExpBtn.FillColor = System.Drawing.Color.White;
-            this.creExpBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.creExpBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creExpBtn.Image = global::EscopeWindowsApp.Properties.Resources.purchases;
-            this.creExpBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.creExpBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.creExpBtn.Location = new System.Drawing.Point(-7, -4);
-            this.creExpBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.creExpBtn.Name = "creExpBtn";
-            this.creExpBtn.PressedColor = System.Drawing.Color.Navy;
-            this.creExpBtn.Size = new System.Drawing.Size(266, 48);
-            this.creExpBtn.TabIndex = 3;
-            this.creExpBtn.Text = "          Expenses";
-            this.creExpBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.creExpBtn.UseTransparentBackground = true;
-            this.creExpBtn.Click += new System.EventHandler(this.creExpBtn_Click);
-            // 
-            // expCatBtnPanel
-            // 
-            this.expCatBtnPanel.Controls.Add(this.expCatBtn);
-            this.expCatBtnPanel.Location = new System.Drawing.Point(0, 82);
-            this.expCatBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.expCatBtnPanel.Name = "expCatBtnPanel";
-            this.expCatBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.expCatBtnPanel.TabIndex = 18;
-            // 
-            // expCatBtn
-            // 
-            this.expCatBtn.BackColor = System.Drawing.Color.Transparent;
-            this.expCatBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.expCatBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.expCatBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.expCatBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.expCatBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.expCatBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.expCatBtn.FillColor = System.Drawing.Color.White;
-            this.expCatBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.expCatBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.expCatBtn.Image = global::EscopeWindowsApp.Properties.Resources.expcategory;
-            this.expCatBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.expCatBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.expCatBtn.Location = new System.Drawing.Point(-7, -4);
-            this.expCatBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.expCatBtn.Name = "expCatBtn";
-            this.expCatBtn.PressedColor = System.Drawing.Color.Navy;
-            this.expCatBtn.Size = new System.Drawing.Size(266, 48);
-            this.expCatBtn.TabIndex = 3;
-            this.expCatBtn.Text = "          Expenses Category";
-            this.expCatBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.expCatBtn.UseTransparentBackground = true;
-            this.expCatBtn.Click += new System.EventHandler(this.expCatBtn_Click);
-            // 
-            // reportsBtnPanel
-            // 
-            this.reportsBtnPanel.Controls.Add(this.reportsBtn);
-            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 246);
-            this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.reportsBtnPanel.Name = "reportsBtnPanel";
-            this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.reportsBtnPanel.TabIndex = 16;
-            // 
-            // reportsBtn
-            // 
-            this.reportsBtn.BackColor = System.Drawing.Color.Transparent;
-            this.reportsBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.reportsBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.reportsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.reportsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.reportsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.reportsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.reportsBtn.FillColor = System.Drawing.Color.White;
-            this.reportsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.reportsBtn.Image = global::EscopeWindowsApp.Properties.Resources.reports;
-            this.reportsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.reportsBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.reportsBtn.Location = new System.Drawing.Point(-7, -4);
-            this.reportsBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.reportsBtn.Name = "reportsBtn";
-            this.reportsBtn.PressedColor = System.Drawing.Color.Navy;
-            this.reportsBtn.Size = new System.Drawing.Size(266, 48);
-            this.reportsBtn.TabIndex = 3;
-            this.reportsBtn.Text = "          Reports";
-            this.reportsBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.reportsBtn.UseTransparentBackground = true;
-            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
-            // 
             // qutationBtnPanel
             // 
             this.qutationBtnPanel.Controls.Add(this.quatationBtn);
-            this.qutationBtnPanel.Location = new System.Drawing.Point(0, 287);
+            this.qutationBtnPanel.Location = new System.Drawing.Point(0, 246);
             this.qutationBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.qutationBtnPanel.Name = "qutationBtnPanel";
             this.qutationBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -959,7 +1051,7 @@
             // wareHouseBtnPanel
             // 
             this.wareHouseBtnPanel.Controls.Add(this.wareHouseBtn);
-            this.wareHouseBtnPanel.Location = new System.Drawing.Point(0, 328);
+            this.wareHouseBtnPanel.Location = new System.Drawing.Point(0, 287);
             this.wareHouseBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.wareHouseBtnPanel.Name = "wareHouseBtnPanel";
             this.wareHouseBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -994,7 +1086,7 @@
             // transferBtnPanel
             // 
             this.transferBtnPanel.Controls.Add(this.transferBtn);
-            this.transferBtnPanel.Location = new System.Drawing.Point(0, 369);
+            this.transferBtnPanel.Location = new System.Drawing.Point(0, 328);
             this.transferBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.transferBtnPanel.Name = "transferBtnPanel";
             this.transferBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -1025,6 +1117,41 @@
             this.transferBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.transferBtn.UseTransparentBackground = true;
             this.transferBtn.Click += new System.EventHandler(this.transferBtn_Click);
+            // 
+            // reportsBtnPanel
+            // 
+            this.reportsBtnPanel.Controls.Add(this.reportsBtn);
+            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 369);
+            this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
+            this.reportsBtnPanel.Name = "reportsBtnPanel";
+            this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
+            this.reportsBtnPanel.TabIndex = 16;
+            // 
+            // reportsBtn
+            // 
+            this.reportsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.reportsBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.reportsBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.reportsBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.reportsBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.reportsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.reportsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.reportsBtn.FillColor = System.Drawing.Color.White;
+            this.reportsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.reportsBtn.Image = global::EscopeWindowsApp.Properties.Resources.reports;
+            this.reportsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.reportsBtn.ImageOffset = new System.Drawing.Point(14, 0);
+            this.reportsBtn.Location = new System.Drawing.Point(-7, -4);
+            this.reportsBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.reportsBtn.Name = "reportsBtn";
+            this.reportsBtn.PressedColor = System.Drawing.Color.Navy;
+            this.reportsBtn.Size = new System.Drawing.Size(266, 48);
+            this.reportsBtn.TabIndex = 3;
+            this.reportsBtn.Text = "          Reports";
+            this.reportsBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.reportsBtn.UseTransparentBackground = true;
+            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
             // 
             // settingBtnPanel
             // 
@@ -1291,40 +1418,10 @@
             this.peoplesTransition.Interval = 10;
             this.peoplesTransition.Tick += new System.EventHandler(this.peoplesTransition_Tick);
             // 
-            // purBtnPanel
+            // purchTransition
             // 
-            this.purBtnPanel.Controls.Add(this.purBtn);
-            this.purBtnPanel.Location = new System.Drawing.Point(0, 123);
-            this.purBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.purBtnPanel.Name = "purBtnPanel";
-            this.purBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.purBtnPanel.TabIndex = 13;
-            // 
-            // purBtn
-            // 
-            this.purBtn.BackColor = System.Drawing.Color.Transparent;
-            this.purBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.purBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.purBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.purBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.purBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.purBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.purBtn.FillColor = System.Drawing.Color.White;
-            this.purBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.purBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.purBtn.Image = global::EscopeWindowsApp.Properties.Resources.Adjustments;
-            this.purBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.purBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.purBtn.Location = new System.Drawing.Point(-7, -4);
-            this.purBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.purBtn.Name = "purBtn";
-            this.purBtn.PressedColor = System.Drawing.Color.Navy;
-            this.purBtn.Size = new System.Drawing.Size(266, 48);
-            this.purBtn.TabIndex = 3;
-            this.purBtn.Text = "          Purchases";
-            this.purBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.purBtn.UseTransparentBackground = true;
-            this.purBtn.Click += new System.EventHandler(this.purBtn_Click);
+            this.purchTransition.Interval = 10;
+            this.purchTransition.Tick += new System.EventHandler(this.purchTransition_Tick);
             // 
             // SideBarForm
             // 
@@ -1363,19 +1460,23 @@
             this.salesBtnPanel.ResumeLayout(false);
             this.salesListBtnPanel.ResumeLayout(false);
             this.salesRetBtnPanel.ResumeLayout(false);
+            this.purchflowlayoutpanel.ResumeLayout(false);
+            this.pur.ResumeLayout(false);
+            this.purBtnPanel.ResumeLayout(false);
+            this.purRetPanel.ResumeLayout(false);
+            this.expLayoutPanel.ResumeLayout(false);
+            this.expPanel.ResumeLayout(false);
+            this.creExpBtnPanel.ResumeLayout(false);
+            this.expCatBtnPanel.ResumeLayout(false);
             this.peoplesLayoutPanel.ResumeLayout(false);
             this.peoplesBtnPanel.ResumeLayout(false);
             this.cusBtnPanel.ResumeLayout(false);
             this.supBtnPanel.ResumeLayout(false);
             this.userBtnPanel.ResumeLayout(false);
-            this.purchLayoutPanel.ResumeLayout(false);
-            this.expPanel.ResumeLayout(false);
-            this.creExpBtnPanel.ResumeLayout(false);
-            this.expCatBtnPanel.ResumeLayout(false);
-            this.reportsBtnPanel.ResumeLayout(false);
             this.qutationBtnPanel.ResumeLayout(false);
             this.wareHouseBtnPanel.ResumeLayout(false);
             this.transferBtnPanel.ResumeLayout(false);
+            this.reportsBtnPanel.ResumeLayout(false);
             this.settingBtnPanel.ResumeLayout(false);
             this.sidebarBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
@@ -1385,7 +1486,6 @@
             this.timePanel.ResumeLayout(false);
             this.timePanel.PerformLayout();
             this.userProfilePanel.ResumeLayout(false);
-            this.purBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1421,7 +1521,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton barcodePrtBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel qutationBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton quatationBtn;
-        private System.Windows.Forms.FlowLayoutPanel purchLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel expLayoutPanel;
         private System.Windows.Forms.Timer purchesTransition;
         private System.Windows.Forms.FlowLayoutPanel salesLayoutPanel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel salesBtnPanel;
@@ -1445,8 +1545,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton wareHouseBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel settingBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton settingBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel transferBtnPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton transferBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel reportsBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton reportsBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel sideBarTopPanel;
@@ -1466,5 +1564,13 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton expCatBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel purBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purBtn;
+        private System.Windows.Forms.FlowLayoutPanel purchflowlayoutpanel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel pur;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton purPanelBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel purRetPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton purRetBtn;
+        private System.Windows.Forms.Timer purchTransition;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel transferBtnPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton transferBtn;
     }
 }

@@ -93,6 +93,7 @@ namespace EscopeWindowsApp
         private static string GenerateBillPDF(string billNo, string customerName, string userName, int totalItems, string paymentMethod, decimal totalPrice, decimal discount, decimal cashPaid, decimal balance, List<CartItem> cartItems, bool isSmallReceipt)
         {
             string pdfPath = Path.Combine(Environment.CurrentDirectory, $"{billNo}_{(isSmallReceipt ? "receipt" : "A4")}.pdf");
+            string tempImagePath = null;
 
             Document document = new Document();
             Section section = document.AddSection();
@@ -142,7 +143,7 @@ namespace EscopeWindowsApp
             {
                 Paragraph logoPara = section.AddParagraph();
                 logoPara.Format.Alignment = ParagraphAlignment.Center;
-                if (company.Logo != null)
+                if (company.Logo != null && company.Logo.Length > 0)
                 {
                     try
                     {
@@ -150,12 +151,11 @@ namespace EscopeWindowsApp
                         {
                             using (var image = Image.FromStream(ms))
                             {
-                                string tempImagePath = Path.Combine(Path.GetTempPath(), "temp_logo.png");
+                                tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
                                 image.Save(tempImagePath, ImageFormat.Png);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
-                                pdfImage.Width = Unit.FromMillimeter(30);
+                                pdfImage.Width = Unit.FromMillimeter(50); // Increased logo width
                                 pdfImage.LockAspectRatio = true;
-                                File.Delete(tempImagePath);
                             }
                         }
                     }
@@ -329,7 +329,7 @@ namespace EscopeWindowsApp
                 Cell headerCell = headerRow.Cells[0];
                 Paragraph logoPara = headerCell.AddParagraph();
                 logoPara.Format.Alignment = ParagraphAlignment.Center;
-                if (company.Logo != null)
+                if (company.Logo != null && company.Logo.Length > 0)
                 {
                     try
                     {
@@ -337,12 +337,11 @@ namespace EscopeWindowsApp
                         {
                             using (var image = Image.FromStream(ms))
                             {
-                                string tempImagePath = Path.Combine(Path.GetTempPath(), "temp_logo.png");
+                                tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
                                 image.Save(tempImagePath, ImageFormat.Png);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
-                                pdfImage.Width = Unit.FromCentimeter(5);
+                                pdfImage.Width = Unit.FromCentimeter(8); // Increased logo width
                                 pdfImage.LockAspectRatio = true;
-                                File.Delete(tempImagePath);
                             }
                         }
                     }
@@ -524,10 +523,27 @@ namespace EscopeWindowsApp
                 footerPara.Format.Alignment = ParagraphAlignment.Center;
             }
 
-            PdfDocumentRenderer renderer = new PdfDocumentRenderer();
-            renderer.Document = document;
-            renderer.RenderDocument();
-            renderer.PdfDocument.Save(pdfPath);
+            try
+            {
+                PdfDocumentRenderer renderer = new PdfDocumentRenderer();
+                renderer.Document = document;
+                renderer.RenderDocument();
+                renderer.PdfDocument.Save(pdfPath);
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(tempImagePath) && File.Exists(tempImagePath))
+                {
+                    try
+                    {
+                        File.Delete(tempImagePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting temporary logo file: {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
 
             return pdfPath;
         }
