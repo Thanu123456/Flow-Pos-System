@@ -154,7 +154,8 @@ namespace EscopeWindowsApp
                                 tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
                                 image.Save(tempImagePath, ImageFormat.Png);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
-                                pdfImage.Width = Unit.FromMillimeter(50); // Increased logo width
+                                pdfImage.Width = Unit.FromMillimeter(30); // Increased logo width
+                                pdfImage.Height = Unit.FromMillimeter(30);
                                 pdfImage.LockAspectRatio = true;
                             }
                         }
