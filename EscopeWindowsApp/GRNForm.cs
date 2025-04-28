@@ -3,6 +3,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Linq;
+using System.Drawing;
 
 namespace EscopeWindowsApp
 {
@@ -14,10 +15,28 @@ namespace EscopeWindowsApp
         private int? currentProductId = null;
         private string currentVariationType = null;
         private bool isSerialNumberRequired = false;
+        private ListBox suggestionListBox;
 
         public GRNForm()
         {
             InitializeComponent();
+            InitializeSuggestionListBox();
+        }
+
+        private void InitializeSuggestionListBox()
+        {
+            suggestionListBox = new ListBox
+            {
+                Visible = false,
+                Width = grnProSearchText.Width,
+                Font = grnProSearchText.Font,
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(grnProSearchText.Location.X, grnProSearchText.Location.Y + grnProSearchText.Height + 2)
+            };
+            this.Controls.Add(suggestionListBox);
+
+            suggestionListBox.Click += SuggestionListBox_Click;
+            suggestionListBox.KeyDown += SuggestionListBox_KeyDown;
         }
 
         private void GRNForm_Load(object sender, EventArgs e)
@@ -37,15 +56,12 @@ namespace EscopeWindowsApp
                     grnDataGridView.Columns.Add("ExpiryDate", "Expiry Date");
                     grnDataGridView.Columns.Add("Warranty", "Warranty");
                     grnDataGridView.Columns.Add("Unit", "Unit");
-                    grnDataGridView.Columns.Add("SerialNumber", "Serial Number"); // New column
+                    grnDataGridView.Columns.Add("SerialNumber", "Serial Number");
                 }
 
                 grnDataGridView.AllowUserToAddRows = false;
                 grnProSearchText.Text = "";
-                grnWarrantyComboBox.Items.Add("No Warranty");
-                grnWarrantyComboBox.Items.Add("6 Months");
-                grnWarrantyComboBox.Items.Add("1 Year");
-                grnWarrantyComboBox.Items.Add("2 Years");
+                grnWarrantyComboBox.Items.AddRange(new object[] { "No Warranty", "6 Months", "1 Year", "2 Years" });
                 grnWarrantyComboBox.SelectedIndex = 0;
 
                 UpdateUnitLabels();
@@ -86,13 +102,27 @@ namespace EscopeWindowsApp
             if (isFormLoading) return;
 
             string searchText = grnProSearchText.Text.Trim();
+            suggestionListBox.Items.Clear();
+            suggestionListBox.Visible = false;
+
             if (!string.IsNullOrEmpty(searchText))
             {
                 DataTable products = SearchProducts(searchText);
                 if (products.Rows.Count > 0)
                 {
-                    int productId = Convert.ToInt32(products.Rows[0]["id"]);
-                    FillProductDetails(productId);
+                    foreach (DataRow row in products.Rows)
+                    {
+                        suggestionListBox.Items.Add(new ProductSuggestion
+                        {
+                            ProductId = Convert.ToInt32(row["id"]),
+                            DisplayText = $"PRO{row["id"]:D3} - {row["name"]}"
+                        });
+                    }
+                    suggestionListBox.Visible = suggestionListBox.Items.Count > 0;
+                    if (suggestionListBox.Visible)
+                    {
+                        suggestionListBox.BringToFront(); // Ensure ListBox is in front of other controls
+                    }
                 }
             }
             else
@@ -108,11 +138,10 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT id, name FROM products WHERE name LIKE @searchText OR id = @searchId";
+                    string query = "SELECT id, name FROM products WHERE name LIKE @searchText OR id = @searchId ORDER BY name";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
-                        // Handle "PROxxx" format in search if entered
                         int searchId = searchText.StartsWith("PRO") && int.TryParse(searchText.Substring(3), out int id) ? id : (int.TryParse(searchText, out id) ? id : -1);
                         cmd.Parameters.AddWithValue("@searchId", searchId != -1 ? searchId : (object)DBNull.Value);
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -127,6 +156,93 @@ namespace EscopeWindowsApp
                 MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new DataTable();
             }
+        }
+
+        private class ProductSuggestion
+        {
+            public int ProductId { get; set; }
+            public string DisplayText { get; set; }
+
+            public override string ToString() => DisplayText;
+        }
+
+        private void SuggestionListBox_Click(object sender, EventArgs e)
+        {
+            if (suggestionListBox.SelectedItem != null)
+            {
+                SelectSuggestion();
+            }
+        }
+
+        private void SuggestionListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && suggestionListBox.SelectedItem != null)
+            {
+                SelectSuggestion();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                suggestionListBox.Visible = false;
+                grnProSearchText.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void SelectSuggestion()
+        {
+            if (suggestionListBox.SelectedItem is ProductSuggestion suggestion)
+            {
+                grnProSearchText.Text = suggestion.DisplayText;
+                FillProductDetails(suggestion.ProductId);
+                suggestionListBox.Visible = false;
+                grnProSearchText.Focus();
+            }
+        }
+
+        private void grnProSearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (suggestionListBox.Visible)
+            {
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (suggestionListBox.Items.Count > 0)
+                    {
+                        suggestionListBox.SelectedIndex = Math.Min(suggestionListBox.SelectedIndex + 1, suggestionListBox.Items.Count - 1);
+                        e.Handled = true;
+                    }
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    if (suggestionListBox.Items.Count > 0)
+                    {
+                        suggestionListBox.SelectedIndex = Math.Max(suggestionListBox.SelectedIndex - 1, 0);
+                        e.Handled = true;
+                    }
+                }
+                else if (e.KeyCode == Keys.Enter && suggestionListBox.SelectedItem != null)
+                {
+                    SelectSuggestion();
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    suggestionListBox.Visible = false;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void grnProSearchText_Leave(object sender, EventArgs e)
+        {
+            var timer = new System.Windows.Forms.Timer { Interval = 200 };
+            timer.Tick += (s, args) =>
+            {
+                suggestionListBox.Visible = false;
+                timer.Stop();
+                timer.Dispose();
+            };
+            timer.Start();
         }
         #endregion
 
@@ -152,7 +268,7 @@ namespace EscopeWindowsApp
                         {
                             if (reader.Read())
                             {
-                                grnProIDText.Text = $"PRO{productId:D3}"; // Format as "PRO001"
+                                grnProIDText.Text = $"PRO{productId:D3}";
                                 grnProNameText.Text = reader["name"].ToString();
                                 grnProCatText.Text = reader["category"].ToString();
                                 grnVarText.Text = reader.IsDBNull(reader.GetOrdinal("variation_name")) ? "N/A" : reader["variation_name"].ToString();
@@ -380,7 +496,6 @@ namespace EscopeWindowsApp
         #region Add to List
         private void addToListBtn_Click(object sender, EventArgs e)
         {
-            // Validate required fields
             if (string.IsNullOrEmpty(grnProIDText.Text) || string.IsNullOrEmpty(grnQuantityText.Text))
             {
                 MessageBox.Show("Please select a product and enter quantity.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -393,10 +508,8 @@ namespace EscopeWindowsApp
                 return;
             }
 
-            // Extract numeric product ID from formatted string (e.g., "PRO001" -> "1")
             string formattedProductId = grnProIDText.Text;
             int productId = int.Parse(formattedProductId.Replace("PRO", ""));
-
             string variationType = grnVarTypCombo.SelectedItem?.ToString() ?? "N/A";
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             string unit = grnUnitText.Text;
@@ -409,20 +522,16 @@ namespace EscopeWindowsApp
                     return;
                 }
 
-                // Open AddBarcodeForm and wait for it to close
                 AddBarcodeForm barcodeForm = new AddBarcodeForm(productId.ToString(), variationType, (int)quantity);
                 barcodeForm.FormClosed += (s, args) =>
                 {
-                    // Check if the form was saved (we'll add a property to AddBarcodeForm to track this)
                     if (barcodeForm.IsSaved)
                     {
-                        // Check for duplicate entries and consolidate quantities
                         foreach (DataGridViewRow row in grnDataGridView.Rows)
                         {
                             if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
                                 row.Cells["VariationType"].Value.ToString() == variationType)
                             {
-                                // Update existing row
                                 decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                                 decimal newQuantity = existingQuantity + quantity;
                                 row.Cells["Quantity"].Value = newQuantity;
@@ -432,7 +541,6 @@ namespace EscopeWindowsApp
                             }
                         }
 
-                        // Add new row to DataGridView
                         grnDataGridView.Rows.Add(
                             formattedProductId,
                             grnProNameText.Text,
@@ -445,25 +553,21 @@ namespace EscopeWindowsApp
                             grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
                             warranty,
                             unit,
-                            "Yes" // Indicate serial numbers are required
+                            "Yes"
                         );
 
                         ClearItemFields();
                     }
-                    // If not saved, do nothing (item is not added)
                 };
                 barcodeForm.ShowDialog();
             }
             else
             {
-                // No serial numbers required, add directly to DataGridView
-                // Check for duplicate entries and consolidate quantities
                 foreach (DataGridViewRow row in grnDataGridView.Rows)
                 {
                     if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
                         row.Cells["VariationType"].Value.ToString() == variationType)
                     {
-                        // Update existing row
                         decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                         decimal newQuantity = existingQuantity + quantity;
                         row.Cells["Quantity"].Value = newQuantity;
@@ -473,7 +577,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Add new row to DataGridView
                 grnDataGridView.Rows.Add(
                     formattedProductId,
                     grnProNameText.Text,
@@ -486,7 +589,7 @@ namespace EscopeWindowsApp
                     grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
                     warranty,
                     unit,
-                    "No" // No serial numbers
+                    "No"
                 );
 
                 ClearItemFields();
@@ -532,7 +635,6 @@ namespace EscopeWindowsApp
                     conn.Open();
                     using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
-                        // Insert GRN
                         string grnQuery = "INSERT INTO grn (grn_no, payment_method, total_amount, date) " +
                                           "VALUES (@grnNo, @paymentMethod, @totalAmount, @date)";
                         using (MySqlCommand cmd = new MySqlCommand(grnQuery, conn, transaction))
@@ -545,22 +647,20 @@ namespace EscopeWindowsApp
                             cmd.ExecuteNonQuery();
                             long grnId = cmd.LastInsertedId;
 
-                            // Insert GRN items and update stock
                             foreach (DataGridViewRow row in grnDataGridView.Rows)
                             {
                                 string varType = row.Cells["VariationType"].Value?.ToString();
                                 if (varType == "N/A") varType = null;
                                 string formattedProductId = row.Cells["ProductID"].Value.ToString();
-                                int productId = int.Parse(formattedProductId.Replace("PRO", "")); // Extract numeric ID
+                                int productId = int.Parse(formattedProductId.Replace("PRO", ""));
                                 decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
                                 DateTime expiryDate = Convert.ToDateTime(row.Cells["ExpiryDate"].Value);
                                 string warranty = row.Cells["Warranty"].Value?.ToString() ?? "No Warranty";
                                 string unit = row.Cells["Unit"].Value?.ToString();
-                                string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString(); // Get "Yes" or "No"
+                                string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();
 
-                                // Insert into grn_items
                                 string itemQuery = @"
                                     INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
                                     VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
@@ -575,11 +675,10 @@ namespace EscopeWindowsApp
                                     itemCmd.Parameters.AddWithValue("@expiryDate", expiryDate);
                                     itemCmd.Parameters.AddWithValue("@warranty", warranty);
                                     itemCmd.Parameters.AddWithValue("@unit", unit == "N/A" ? (object)DBNull.Value : unit);
-                                    itemCmd.Parameters.AddWithValue("@serialNumbers", serialNumberFlag); // Save "Yes" or "No"
+                                    itemCmd.Parameters.AddWithValue("@serialNumbers", serialNumberFlag);
                                     itemCmd.ExecuteNonQuery();
                                 }
 
-                                // Update stock table
                                 string stockQuery = @"
                                     INSERT INTO stock (product_id, variation_type, stock, unit)
                                     VALUES (@productId, @variationType, @quantity, @unit)
@@ -593,7 +692,6 @@ namespace EscopeWindowsApp
                                     stockCmd.ExecuteNonQuery();
                                 }
 
-                                // Update products table stock
                                 string productStockQuery = "UPDATE products SET stock = stock + @quantity WHERE id = @productId";
                                 using (MySqlCommand productCmd = new MySqlCommand(productStockQuery, conn, transaction))
                                 {
@@ -691,7 +789,6 @@ namespace EscopeWindowsApp
                     return;
                 }
 
-                // Pass numeric product ID to AddBarcodeForm (strip "PRO" prefix)
                 string numericProductId = productId.Replace("PRO", "");
                 AddBarcodeForm barcodeForm = new AddBarcodeForm(numericProductId, variationType, qty);
                 barcodeForm.ShowDialog();
