@@ -1,6 +1,6 @@
 ﻿namespace EscopeWindowsApp
 {
-    partial class GRNForm
+    partial class CreatePurchasesReturn
     {
         /// <summary>
         /// Required designer variable.
@@ -29,28 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.retNoteBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
-            this.grnNoLabelPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.grnNoLabel = new System.Windows.Forms.Label();
-            this.grnNoFixLabel = new System.Windows.Forms.Label();
-            this.grnPictureBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.paymentMethPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.ceaditPayementLabel = new System.Windows.Forms.Label();
-            this.creaditPayementRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
-            this.chequePaymentLabel = new System.Windows.Forms.Label();
-            this.chequePaymentRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
-            this.cashPaymentLabel = new System.Windows.Forms.Label();
-            this.cashPaymentRadioBtn = new Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton();
-            this.paymentMethLabel = new System.Windows.Forms.Label();
-            this.previousGRNBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.checkSerialNumber = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.qUnitNameLabel = new System.Windows.Forms.Label();
@@ -86,27 +70,18 @@
             this.grnWarrantyLabel = new System.Windows.Forms.Label();
             this.grnProIDLabel = new System.Windows.Forms.Label();
             this.grnProIDText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.grnDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.siticoneAnimateWindow1 = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
-            this.grnNoLabelPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).BeginInit();
-            this.paymentMethPanel.SuspendLayout();
             this.grnMainPanel.SuspendLayout();
             this.grnPricingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // grnBorderlessForm
+            // retNoteBorderlessForm
             // 
-            this.grnBorderlessForm.BorderRadius = 25;
-            this.grnBorderlessForm.ContainerControl = this;
-            this.grnBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
-            this.grnBorderlessForm.TransparentWhileDrag = true;
+            this.retNoteBorderlessForm.BorderRadius = 25;
+            this.retNoteBorderlessForm.ContainerControl = this;
+            this.retNoteBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
+            this.retNoteBorderlessForm.TransparentWhileDrag = true;
             // 
             // headerPanel
             // 
@@ -117,7 +92,7 @@
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1100, 34);
-            this.headerPanel.TabIndex = 25;
+            this.headerPanel.TabIndex = 26;
             // 
             // controlPanel
             // 
@@ -154,193 +129,32 @@
             this.closeBtn.Size = new System.Drawing.Size(26, 26);
             this.closeBtn.TabIndex = 0;
             // 
-            // grnNoLabelPanel
+            // grnProSearchText
             // 
-            this.grnNoLabelPanel.BackColor = System.Drawing.Color.Transparent;
-            this.grnNoLabelPanel.BorderRadius = 8;
-            this.grnNoLabelPanel.Controls.Add(this.grnNoLabel);
-            this.grnNoLabelPanel.Controls.Add(this.grnNoFixLabel);
-            this.grnNoLabelPanel.Controls.Add(this.grnPictureBox);
-            this.grnNoLabelPanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.grnNoLabelPanel.Location = new System.Drawing.Point(22, 58);
-            this.grnNoLabelPanel.Name = "grnNoLabelPanel";
-            this.grnNoLabelPanel.Size = new System.Drawing.Size(182, 150);
-            this.grnNoLabelPanel.TabIndex = 26;
-            // 
-            // grnNoLabel
-            // 
-            this.grnNoLabel.AutoSize = true;
-            this.grnNoLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnNoLabel.ForeColor = System.Drawing.Color.White;
-            this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
-            this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
-            this.grnNoLabel.TabIndex = 28;
-            this.grnNoLabel.Text = "001";
-            this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
-            // 
-            // grnNoFixLabel
-            // 
-            this.grnNoFixLabel.AutoSize = true;
-            this.grnNoFixLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
-            this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
-            this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
-            this.grnNoFixLabel.TabIndex = 27;
-            this.grnNoFixLabel.Text = "GRN NO :";
-            this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
-            // 
-            // grnPictureBox
-            // 
-            this.grnPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.grnPictureBox.Image = global::EscopeWindowsApp.Properties.Resources.grnimage;
-            this.grnPictureBox.ImageRotate = 0F;
-            this.grnPictureBox.Location = new System.Drawing.Point(-4, 11);
-            this.grnPictureBox.Name = "grnPictureBox";
-            this.grnPictureBox.Size = new System.Drawing.Size(194, 139);
-            this.grnPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.grnPictureBox.TabIndex = 28;
-            this.grnPictureBox.TabStop = false;
-            this.grnPictureBox.UseTransparentBackground = true;
-            this.grnPictureBox.Click += new System.EventHandler(this.grnPictureBox_Click);
-            // 
-            // paymentMethPanel
-            // 
-            this.paymentMethPanel.BackColor = System.Drawing.Color.Transparent;
-            this.paymentMethPanel.BorderColor = System.Drawing.Color.Gray;
-            this.paymentMethPanel.BorderRadius = 8;
-            this.paymentMethPanel.BorderThickness = 1;
-            this.paymentMethPanel.Controls.Add(this.ceaditPayementLabel);
-            this.paymentMethPanel.Controls.Add(this.creaditPayementRadioBtn);
-            this.paymentMethPanel.Controls.Add(this.chequePaymentLabel);
-            this.paymentMethPanel.Controls.Add(this.chequePaymentRadioBtn);
-            this.paymentMethPanel.Controls.Add(this.cashPaymentLabel);
-            this.paymentMethPanel.Controls.Add(this.cashPaymentRadioBtn);
-            this.paymentMethPanel.FillColor = System.Drawing.Color.Transparent;
-            this.paymentMethPanel.Location = new System.Drawing.Point(22, 230);
-            this.paymentMethPanel.Name = "paymentMethPanel";
-            this.paymentMethPanel.Size = new System.Drawing.Size(182, 134);
-            this.paymentMethPanel.TabIndex = 27;
-            // 
-            // ceaditPayementLabel
-            // 
-            this.ceaditPayementLabel.AutoSize = true;
-            this.ceaditPayementLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
-            this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
-            this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
-            this.ceaditPayementLabel.TabIndex = 33;
-            this.ceaditPayementLabel.Text = "Creadit Supplier";
-            this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
-            // 
-            // creaditPayementRadioBtn
-            // 
-            this.creaditPayementRadioBtn.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.creaditPayementRadioBtn.CheckedState.BorderThickness = 0;
-            this.creaditPayementRadioBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.creaditPayementRadioBtn.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.creaditPayementRadioBtn.Location = new System.Drawing.Point(18, 96);
-            this.creaditPayementRadioBtn.Name = "creaditPayementRadioBtn";
-            this.creaditPayementRadioBtn.Size = new System.Drawing.Size(20, 20);
-            this.creaditPayementRadioBtn.TabIndex = 32;
-            this.creaditPayementRadioBtn.Text = "siticoneCustomRadioButton1";
-            this.creaditPayementRadioBtn.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creaditPayementRadioBtn.UncheckedState.BorderThickness = 2;
-            this.creaditPayementRadioBtn.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.creaditPayementRadioBtn.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.creaditPayementRadioBtn.CheckedChanged += new System.EventHandler(this.creaditPayementRadioBtn_CheckedChanged);
-            // 
-            // chequePaymentLabel
-            // 
-            this.chequePaymentLabel.AutoSize = true;
-            this.chequePaymentLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
-            this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
-            this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
-            this.chequePaymentLabel.TabIndex = 31;
-            this.chequePaymentLabel.Text = "Cheque";
-            // 
-            // chequePaymentRadioBtn
-            // 
-            this.chequePaymentRadioBtn.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.chequePaymentRadioBtn.CheckedState.BorderThickness = 0;
-            this.chequePaymentRadioBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.chequePaymentRadioBtn.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.chequePaymentRadioBtn.Location = new System.Drawing.Point(18, 62);
-            this.chequePaymentRadioBtn.Name = "chequePaymentRadioBtn";
-            this.chequePaymentRadioBtn.Size = new System.Drawing.Size(20, 20);
-            this.chequePaymentRadioBtn.TabIndex = 30;
-            this.chequePaymentRadioBtn.Text = "siticoneCustomRadioButton1";
-            this.chequePaymentRadioBtn.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.chequePaymentRadioBtn.UncheckedState.BorderThickness = 2;
-            this.chequePaymentRadioBtn.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.chequePaymentRadioBtn.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.chequePaymentRadioBtn.CheckedChanged += new System.EventHandler(this.chequePaymentRadioBtn_CheckedChanged);
-            // 
-            // cashPaymentLabel
-            // 
-            this.cashPaymentLabel.AutoSize = true;
-            this.cashPaymentLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
-            this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
-            this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
-            this.cashPaymentLabel.TabIndex = 29;
-            this.cashPaymentLabel.Text = "Cash";
-            this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
-            // 
-            // cashPaymentRadioBtn
-            // 
-            this.cashPaymentRadioBtn.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.cashPaymentRadioBtn.CheckedState.BorderThickness = 0;
-            this.cashPaymentRadioBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.cashPaymentRadioBtn.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.cashPaymentRadioBtn.Location = new System.Drawing.Point(18, 26);
-            this.cashPaymentRadioBtn.Name = "cashPaymentRadioBtn";
-            this.cashPaymentRadioBtn.Size = new System.Drawing.Size(20, 20);
-            this.cashPaymentRadioBtn.TabIndex = 28;
-            this.cashPaymentRadioBtn.Text = "siticoneCustomRadioButton1";
-            this.cashPaymentRadioBtn.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cashPaymentRadioBtn.UncheckedState.BorderThickness = 2;
-            this.cashPaymentRadioBtn.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.cashPaymentRadioBtn.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.cashPaymentRadioBtn.CheckedChanged += new System.EventHandler(this.cashPaymentRadioBtn_CheckedChanged);
-            // 
-            // paymentMethLabel
-            // 
-            this.paymentMethLabel.AutoSize = true;
-            this.paymentMethLabel.BackColor = System.Drawing.Color.Transparent;
-            this.paymentMethLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
-            this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
-            this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
-            this.paymentMethLabel.TabIndex = 27;
-            this.paymentMethLabel.Text = "PAYMENT METHOD :";
-            // 
-            // previousGRNBtn
-            // 
-            this.previousGRNBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.previousGRNBtn.Animated = true;
-            this.previousGRNBtn.BorderRadius = 8;
-            this.previousGRNBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.previousGRNBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.previousGRNBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.previousGRNBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.previousGRNBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.previousGRNBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.previousGRNBtn.ForeColor = System.Drawing.Color.White;
-            this.previousGRNBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.previousGRNBtn.Location = new System.Drawing.Point(933, 58);
-            this.previousGRNBtn.Name = "previousGRNBtn";
-            this.previousGRNBtn.Size = new System.Drawing.Size(146, 42);
-            this.previousGRNBtn.TabIndex = 30;
-            this.previousGRNBtn.Text = "Previous GRN";
-            this.previousGRNBtn.Click += new System.EventHandler(this.previousGRNBtn_Click);
+            this.grnProSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.grnProSearchText.BorderRadius = 8;
+            this.grnProSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.grnProSearchText.DefaultText = "";
+            this.grnProSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.grnProSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
+            this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.grnProSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.grnProSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.grnProSearchText.Location = new System.Drawing.Point(215, 58);
+            this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grnProSearchText.Name = "grnProSearchText";
+            this.grnProSearchText.PasswordChar = '\0';
+            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.grnProSearchText.PlaceholderText = "Search Products";
+            this.grnProSearchText.SelectedText = "";
+            this.grnProSearchText.Size = new System.Drawing.Size(689, 42);
+            this.grnProSearchText.TabIndex = 32;
             // 
             // grnMainPanel
             // 
@@ -376,7 +190,7 @@
             this.grnMainPanel.Location = new System.Drawing.Point(215, 122);
             this.grnMainPanel.Name = "grnMainPanel";
             this.grnMainPanel.Size = new System.Drawing.Size(864, 374);
-            this.grnMainPanel.TabIndex = 31;
+            this.grnMainPanel.TabIndex = 33;
             // 
             // checkSerialNumber
             // 
@@ -397,7 +211,6 @@
             this.checkSerialNumber.UncheckedState.BorderThickness = 1;
             this.checkSerialNumber.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.checkSerialNumber.UseVisualStyleBackColor = false;
-            this.checkSerialNumber.CheckedChanged += new System.EventHandler(this.checkSerialNumber_CheckedChanged);
             // 
             // qUnitNameLabel
             // 
@@ -410,7 +223,6 @@
             this.qUnitNameLabel.Size = new System.Drawing.Size(26, 19);
             this.qUnitNameLabel.TabIndex = 82;
             this.qUnitNameLabel.Text = "Kg";
-            this.qUnitNameLabel.Click += new System.EventHandler(this.qUnitNameLabel_Click);
             // 
             // sUnitNameLabel
             // 
@@ -423,7 +235,6 @@
             this.sUnitNameLabel.Size = new System.Drawing.Size(26, 19);
             this.sUnitNameLabel.TabIndex = 81;
             this.sUnitNameLabel.Text = "Kg";
-            this.sUnitNameLabel.Click += new System.EventHandler(this.sUnitNameLabel_Click);
             // 
             // grnUnitLabel
             // 
@@ -461,7 +272,6 @@
             this.grnUnitText.SelectedText = "";
             this.grnUnitText.Size = new System.Drawing.Size(150, 42);
             this.grnUnitText.TabIndex = 79;
-            this.grnUnitText.TextChanged += new System.EventHandler(this.grnUnitText_TextChanged);
             // 
             // grnExpireDatePicker
             // 
@@ -481,7 +291,6 @@
             this.grnExpireDatePicker.TabIndex = 78;
             this.grnExpireDatePicker.UseTransparentBackground = true;
             this.grnExpireDatePicker.Value = new System.DateTime(2025, 3, 30, 0, 0, 0, 0);
-            this.grnExpireDatePicker.ValueChanged += new System.EventHandler(this.siticoneDateTimePicker1_ValueChanged);
             // 
             // addToListBtn
             // 
@@ -502,7 +311,6 @@
             this.addToListBtn.Size = new System.Drawing.Size(126, 45);
             this.addToListBtn.TabIndex = 58;
             this.addToListBtn.Text = "Add to List";
-            this.addToListBtn.Click += new System.EventHandler(this.addToListBtn_Click);
             // 
             // grnPriceLabel
             // 
@@ -515,7 +323,6 @@
             this.grnPriceLabel.Size = new System.Drawing.Size(87, 18);
             this.grnPriceLabel.TabIndex = 34;
             this.grnPriceLabel.Text = "PRICING :";
-            this.grnPriceLabel.Click += new System.EventHandler(this.grnPriceLabel_Click);
             // 
             // grnPricingPanel
             // 
@@ -536,7 +343,6 @@
             this.grnPricingPanel.Name = "grnPricingPanel";
             this.grnPricingPanel.Size = new System.Drawing.Size(822, 111);
             this.grnPricingPanel.TabIndex = 35;
-            this.grnPricingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.grnPricingPanel_Paint);
             // 
             // grnNetPriceLbl
             // 
@@ -576,7 +382,6 @@
             this.grnNetPriceText.SelectedText = "";
             this.grnNetPriceText.Size = new System.Drawing.Size(180, 42);
             this.grnNetPriceText.TabIndex = 41;
-            this.grnNetPriceText.TextChanged += new System.EventHandler(this.grnNetPriceText_TextChanged);
             // 
             // grnWholeLbl
             // 
@@ -626,7 +431,6 @@
             this.grnWholePriText.SelectedText = "";
             this.grnWholePriText.Size = new System.Drawing.Size(180, 42);
             this.grnWholePriText.TabIndex = 39;
-            this.grnWholePriText.TextChanged += new System.EventHandler(this.grnWholePriText_TextChanged);
             // 
             // grnRetPriText
             // 
@@ -652,7 +456,6 @@
             this.grnRetPriText.SelectedText = "";
             this.grnRetPriText.Size = new System.Drawing.Size(180, 42);
             this.grnRetPriText.TabIndex = 38;
-            this.grnRetPriText.TextChanged += new System.EventHandler(this.grnRetPriText_TextChanged);
             // 
             // grnCostLbl
             // 
@@ -690,7 +493,6 @@
             this.grnCostPriText.SelectedText = "";
             this.grnCostPriText.Size = new System.Drawing.Size(180, 42);
             this.grnCostPriText.TabIndex = 37;
-            this.grnCostPriText.TextChanged += new System.EventHandler(this.grnCostPriText_TextChanged);
             // 
             // grnQuantityLabel
             // 
@@ -728,7 +530,6 @@
             this.grnQuantityText.SelectedText = "";
             this.grnQuantityText.Size = new System.Drawing.Size(150, 42);
             this.grnQuantityText.TabIndex = 76;
-            this.grnQuantityText.TextChanged += new System.EventHandler(this.grnQuantityText_TextChanged);
             // 
             // grnVarTypCombo
             // 
@@ -751,7 +552,6 @@
             this.grnVarTypCombo.Size = new System.Drawing.Size(150, 42);
             this.grnVarTypCombo.StartIndex = 0;
             this.grnVarTypCombo.TabIndex = 75;
-            this.grnVarTypCombo.SelectedIndexChanged += new System.EventHandler(this.grnVarTypCombo_SelectedIndexChanged);
             // 
             // grnVarTypLabel
             // 
@@ -789,7 +589,6 @@
             this.grnStockText.SelectedText = "";
             this.grnStockText.Size = new System.Drawing.Size(150, 42);
             this.grnStockText.TabIndex = 71;
-            this.grnStockText.TextChanged += new System.EventHandler(this.grnStockText_TextChanged);
             // 
             // grnStockLabel
             // 
@@ -839,7 +638,6 @@
             this.grnVarText.SelectedText = "";
             this.grnVarText.Size = new System.Drawing.Size(150, 42);
             this.grnVarText.TabIndex = 72;
-            this.grnVarText.TextChanged += new System.EventHandler(this.grnVarText_TextChanged);
             // 
             // expireDateLabel
             // 
@@ -889,7 +687,6 @@
             this.grnProCatText.SelectedText = "";
             this.grnProCatText.Size = new System.Drawing.Size(150, 42);
             this.grnProCatText.TabIndex = 64;
-            this.grnProCatText.TextChanged += new System.EventHandler(this.grnProCatText_TextChanged);
             // 
             // grnProNameLabel
             // 
@@ -927,7 +724,6 @@
             this.grnProNameText.SelectedText = "";
             this.grnProNameText.Size = new System.Drawing.Size(150, 42);
             this.grnProNameText.TabIndex = 62;
-            this.grnProNameText.TextChanged += new System.EventHandler(this.grnProNameText_TextChanged);
             // 
             // grnWarrantyComboBox
             // 
@@ -944,7 +740,6 @@
             this.grnWarrantyComboBox.Name = "grnWarrantyComboBox";
             this.grnWarrantyComboBox.Size = new System.Drawing.Size(150, 42);
             this.grnWarrantyComboBox.TabIndex = 33;
-            this.grnWarrantyComboBox.SelectedIndexChanged += new System.EventHandler(this.grnWarrantyComboBox_SelectedIndexChanged);
             // 
             // grnWarrantyLabel
             // 
@@ -994,256 +789,73 @@
             this.grnProIDText.SelectedText = "";
             this.grnProIDText.Size = new System.Drawing.Size(150, 42);
             this.grnProIDText.TabIndex = 9;
-            this.grnProIDText.TextChanged += new System.EventHandler(this.grnProIDText_TextChanged);
             // 
-            // grnDataGridView
-            // 
-            this.grnDataGridView.AllowUserToAddRows = false;
-            this.grnDataGridView.AllowUserToDeleteRows = false;
-            this.grnDataGridView.AllowUserToResizeColumns = false;
-            this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.grnDataGridView.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
-            this.grnDataGridView.GridColor = System.Drawing.Color.White;
-            this.grnDataGridView.Location = new System.Drawing.Point(22, 504);
-            this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.grnDataGridView.Name = "grnDataGridView";
-            this.grnDataGridView.ReadOnly = true;
-            this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.grnDataGridView.RowHeadersVisible = false;
-            this.grnDataGridView.RowHeadersWidth = 22;
-            this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.grnDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.grnDataGridView.RowTemplate.Height = 35;
-            this.grnDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.grnDataGridView.Size = new System.Drawing.Size(1057, 127);
-            this.grnDataGridView.TabIndex = 78;
-            this.grnDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.grnDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.grnDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 45;
-            this.grnDataGridView.ThemeStyle.ReadOnly = true;
-            this.grnDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.grnDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.grnDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.ThemeStyle.RowsStyle.Height = 35;
-            this.grnDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.grnDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grnDataGridView_CellContentClick);
-            // 
-            // grnCancelBtn
-            // 
-            this.grnCancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnCancelBtn.Animated = true;
-            this.grnCancelBtn.BackColor = System.Drawing.Color.Transparent;
-            this.grnCancelBtn.BorderRadius = 8;
-            this.grnCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.grnCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.grnCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.grnCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.grnCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.grnCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.grnCancelBtn.ForeColor = System.Drawing.Color.White;
-            this.grnCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.grnCancelBtn.Location = new System.Drawing.Point(984, 648);
-            this.grnCancelBtn.Name = "grnCancelBtn";
-            this.grnCancelBtn.Size = new System.Drawing.Size(95, 45);
-            this.grnCancelBtn.TabIndex = 80;
-            this.grnCancelBtn.Text = "Cancel";
-            this.grnCancelBtn.Click += new System.EventHandler(this.grnCancelBtn_Click);
-            // 
-            // grnSaveBtn
-            // 
-            this.grnSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grnSaveBtn.Animated = true;
-            this.grnSaveBtn.BackColor = System.Drawing.Color.Transparent;
-            this.grnSaveBtn.BorderRadius = 8;
-            this.grnSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.grnSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.grnSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.grnSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.grnSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.grnSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnSaveBtn.ForeColor = System.Drawing.Color.White;
-            this.grnSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.grnSaveBtn.Location = new System.Drawing.Point(879, 648);
-            this.grnSaveBtn.Name = "grnSaveBtn";
-            this.grnSaveBtn.Size = new System.Drawing.Size(95, 45);
-            this.grnSaveBtn.TabIndex = 79;
-            this.grnSaveBtn.Text = "Save";
-            this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
-            // 
-            // grnProSearchText
-            // 
-            this.grnProSearchText.BorderColor = System.Drawing.Color.Gray;
-            this.grnProSearchText.BorderRadius = 8;
-            this.grnProSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.grnProSearchText.DefaultText = "";
-            this.grnProSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.grnProSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
-            this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.grnProSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnProSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.grnProSearchText.Location = new System.Drawing.Point(215, 58);
-            this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grnProSearchText.Name = "grnProSearchText";
-            this.grnProSearchText.PasswordChar = '\0';
-            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.grnProSearchText.PlaceholderText = "Search Products";
-            this.grnProSearchText.SelectedText = "";
-            this.grnProSearchText.Size = new System.Drawing.Size(689, 42);
-            this.grnProSearchText.TabIndex = 29;
-            this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
-            // 
-            // GRNForm
+            // CreatePurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
             this.Controls.Add(this.grnProSearchText);
-            this.Controls.Add(this.grnCancelBtn);
-            this.Controls.Add(this.grnSaveBtn);
-            this.Controls.Add(this.grnDataGridView);
             this.Controls.Add(this.grnMainPanel);
-            this.Controls.Add(this.previousGRNBtn);
-            this.Controls.Add(this.paymentMethLabel);
-            this.Controls.Add(this.paymentMethPanel);
-            this.Controls.Add(this.grnNoLabelPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1100, 710);
             this.MinimumSize = new System.Drawing.Size(1100, 710);
-            this.Name = "GRNForm";
+            this.Name = "CreatePurchasesReturn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GRNForm";
-            this.Load += new System.EventHandler(this.GRNForm_Load);
+            this.Text = "CreatePurchasesReturn";
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
-            this.grnNoLabelPanel.ResumeLayout(false);
-            this.grnNoLabelPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnPictureBox)).EndInit();
-            this.paymentMethPanel.ResumeLayout(false);
-            this.paymentMethPanel.PerformLayout();
             this.grnMainPanel.ResumeLayout(false);
             this.grnMainPanel.PerformLayout();
             this.grnPricingPanel.ResumeLayout(false);
             this.grnPricingPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grnDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm grnBorderlessForm;
+        private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm retNoteBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticonePanel headerPanel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel grnNoLabelPanel;
-        private System.Windows.Forms.Label grnNoFixLabel;
-        private System.Windows.Forms.Label grnNoLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePictureBox grnPictureBox;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel paymentMethPanel;
-        private System.Windows.Forms.Label paymentMethLabel;
-        private System.Windows.Forms.Label chequePaymentLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton chequePaymentRadioBtn;
-        private System.Windows.Forms.Label cashPaymentLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton cashPaymentRadioBtn;
-        private System.Windows.Forms.Label ceaditPayementLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneCustomRadioButton creaditPayementRadioBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnProSearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton previousGRNBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel grnMainPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkSerialNumber;
+        private System.Windows.Forms.Label qUnitNameLabel;
+        private System.Windows.Forms.Label sUnitNameLabel;
+        private System.Windows.Forms.Label grnUnitLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnUnitText;
+        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker grnExpireDatePicker;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton addToListBtn;
+        private System.Windows.Forms.Label grnPriceLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel grnPricingPanel;
+        private System.Windows.Forms.Label grnNetPriceLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnNetPriceText;
+        private System.Windows.Forms.Label grnWholeLbl;
+        private System.Windows.Forms.Label grnRetLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnWholePriText;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnRetPriText;
+        private System.Windows.Forms.Label grnCostLbl;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnCostPriText;
+        private System.Windows.Forms.Label grnQuantityLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnQuantityText;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox grnVarTypCombo;
+        private System.Windows.Forms.Label grnVarTypLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnStockText;
+        private System.Windows.Forms.Label grnStockLabel;
+        private System.Windows.Forms.Label grnVarLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnVarText;
+        private System.Windows.Forms.Label expireDateLabel;
+        private System.Windows.Forms.Label grnProCatLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnProCatText;
         private System.Windows.Forms.Label grnProNameLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnProNameText;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox grnWarrantyComboBox;
         private System.Windows.Forms.Label grnWarrantyLabel;
         private System.Windows.Forms.Label grnProIDLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnProIDText;
-        private System.Windows.Forms.Label grnProCatLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnProCatText;
-        private System.Windows.Forms.Label expireDateLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnStockText;
-        private System.Windows.Forms.Label grnStockLabel;
-        private System.Windows.Forms.Label grnVarTypLabel;
-        private System.Windows.Forms.Label grnVarLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnVarText;
-        private System.Windows.Forms.Label grnQuantityLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnQuantityText;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox grnVarTypCombo;
-        private System.Windows.Forms.Label grnPriceLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel grnPricingPanel;
-        private System.Windows.Forms.Label grnCostLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnCostPriText;
-        private System.Windows.Forms.Label grnRetLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnRetPriText;
-        private System.Windows.Forms.Label grnNetPriceLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnNetPriceText;
-        private System.Windows.Forms.Label grnWholeLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnWholePriText;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton addToListBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView grnDataGridView;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton grnCancelBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker grnExpireDatePicker;
-        private System.Windows.Forms.Label grnUnitLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox grnUnitText;
-        private System.Windows.Forms.Label sUnitNameLabel;
-        private System.Windows.Forms.Label qUnitNameLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkSerialNumber;
-        private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow siticoneAnimateWindow1;
     }
 }
