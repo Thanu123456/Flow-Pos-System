@@ -330,6 +330,12 @@
     <Compile Include="CreateProduct.Designer.cs">
       <DependentUpon>CreateProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreatePurchasesReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePurchasesReturn.Designer.cs">
+      <DependentUpon>CreatePurchasesReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateUnits.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -623,6 +629,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateProduct.resx">
       <DependentUpon>CreateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreatePurchasesReturn.resx">
+      <DependentUpon>CreatePurchasesReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUnits.resx">
       <DependentUpon>CreateUnits.cs</DependentUpon>
