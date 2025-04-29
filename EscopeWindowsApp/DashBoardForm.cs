@@ -65,6 +65,14 @@ namespace EscopeWindowsApp
             LoadLowStockProducts();
             stockAlertDataGrid.DataSource = stockAlertBindingSource;
 
+            // Configure and load the daily profit line chart
+            ConfigureDailyProfitLineChart();
+            LoadDailyProfitData();
+
+            // Optional: Adjust position of other controls to avoid overlap after resizing the chart
+            // Uncomment if overlap occurs
+            // stockAlertDataGrid.Location = new Point(stockAlertDataGrid.Location.X, dailyProfitLineChart.Bottom + 10);
+
             // Initialize financial labels with today's data
             todayBtn_Click(this, EventArgs.Empty);
         }
@@ -294,9 +302,8 @@ namespace EscopeWindowsApp
 
                 stockAlertBindingSource.DataSource = stockAlertTable;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading low stock products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stockAlertTable = new DataTable();
                 stockAlertTable.Columns.Add("product_id", typeof(string));
                 stockAlertTable.Columns.Add("product_name", typeof(string));
@@ -356,8 +363,8 @@ namespace EscopeWindowsApp
             Series series = new Series("TopCustomers")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = true, // Enable labels on slices
-                Label = "#PERCENT{P0}%",    // Show only the percentage
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}%",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY{C2}"
             };
@@ -381,8 +388,8 @@ namespace EscopeWindowsApp
             Series series = new Series("TopExpenses")
             {
                 ChartType = SeriesChartType.Doughnut,
-                IsValueShownAsLabel = true, // Enable labels on slices
-                Label = "#PERCENT{P0}%",    // Show only the percentage
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}%",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY{C2}"
             };
@@ -447,8 +454,8 @@ namespace EscopeWindowsApp
             Series series = new Series("TopProducts")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = true, // Enable labels on slices
-                Label = "#PERCENT{P0}%",    // Show only the percentage
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}%",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY (#PERCENT{P0})"
             };
@@ -464,6 +471,234 @@ namespace EscopeWindowsApp
             topProductsPieChart.Legends[0].Font = new Font("Segoe UI", 9F);
 
             topProductsPieChart.Titles.Clear();
+        }
+
+        private void ConfigureDailyProfitLineChart()
+        {
+            dailyProfitLineChart.Series.Clear();
+            dailyProfitLineChart.ChartAreas.Clear();
+            dailyProfitLineChart.Legends.Clear();
+            dailyProfitLineChart.Titles.Clear();
+
+            // Add a new ChartArea
+            ChartArea chartArea = new ChartArea("ProfitArea");
+            chartArea.BackColor = Color.FromArgb(240, 240, 245); // Light gray background
+            chartArea.BackGradientStyle = GradientStyle.TopBottom;
+            chartArea.BackSecondaryColor = Color.White;
+            chartArea.BorderColor = Color.FromArgb(200, 200, 200);
+            chartArea.BorderDashStyle = ChartDashStyle.Solid;
+            chartArea.BorderWidth = 1;
+
+            // Configure axes
+            //chartArea.AxisX.Title = "Date";
+            chartArea.AxisX.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
+            chartArea.AxisX.LabelStyle.Font = new Font("Segoe UI", 9F);
+            chartArea.AxisX.LabelStyle.Format = "dd-MMM";
+            chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
+            chartArea.AxisX.MinorGrid.Enabled = false;
+            chartArea.AxisX.LineColor = Color.FromArgb(150, 150, 150);
+
+           // chartArea.AxisY.Title = "Profit (LKR)";
+            chartArea.AxisY.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
+            chartArea.AxisY.LabelStyle.Font = new Font("Segoe UI", 9F);
+            chartArea.AxisY.LabelStyle.Format = "N0";
+            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
+            chartArea.AxisY.MinorGrid.Enabled = false;
+            chartArea.AxisY.LineColor = Color.FromArgb(150, 150, 150);
+
+            dailyProfitLineChart.ChartAreas.Add(chartArea);
+
+            // Add a Series for the profit line
+            Series profitSeries = new Series("DailyProfit")
+            {
+                ChartType = SeriesChartType.Spline, // Smooth line chart
+                Color = Color.FromArgb(0, 120, 215), // Modern blue color
+                BorderWidth = 3,
+                ToolTip = "Date: #VALX{dd-MMM-yyyy}, Profit: #VALY{N2} LKR",
+                MarkerStyle = MarkerStyle.Circle,
+                MarkerSize = 6,
+                MarkerColor = Color.FromArgb(0, 120, 215),
+                MarkerBorderColor = Color.White,
+                MarkerBorderWidth = 1
+            };
+            dailyProfitLineChart.Series.Add(profitSeries);
+
+            
+            // Increase the chart's height by 50 pixels and width by 30 pixels
+            dailyProfitLineChart.Size = new Size(dailyProfitLineChart.Width + 50, dailyProfitLineChart.Height + 75);
+        }
+
+        private void LoadDailyProfitData()
+        {
+            try
+            {
+                dailyProfitLineChart.Series["DailyProfit"].Points.Clear();
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Define the date range: last 30 days including today
+                    DateTime endDate = DateTime.Today;
+                    DateTime startDate = endDate.AddDays(-29); // 30 days total
+
+                    // Fetch daily data for each component
+                    Dictionary<DateTime, decimal> salesData = new Dictionary<DateTime, decimal>();
+                    Dictionary<DateTime, decimal> refundData = new Dictionary<DateTime, decimal>();
+                    Dictionary<DateTime, decimal> expenseData = new Dictionary<DateTime, decimal>();
+                    Dictionary<DateTime, decimal> purchaseData = new Dictionary<DateTime, decimal>();
+                    Dictionary<DateTime, decimal> purchaseReturnData = new Dictionary<DateTime, decimal>();
+
+                    // Initialize all days with 0
+                    for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                    {
+                        salesData[date] = 0;
+                        refundData[date] = 0;
+                        expenseData[date] = 0;
+                        purchaseData[date] = 0;
+                        purchaseReturnData[date] = 0;
+                    }
+
+                    // Fetch Sales
+                    string salesQuery = @"
+                        SELECT DATE(sale_date) AS sale_day, SUM(total_price) AS total_sales
+                        FROM sales
+                        WHERE sale_date >= @startDate AND sale_date <= @endDate
+                        GROUP BY DATE(sale_date)";
+                    using (MySqlCommand cmd = new MySqlCommand(salesQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DateTime saleDay = reader.GetDateTime("sale_day");
+                                decimal totalSales = reader.GetDecimal("total_sales");
+                                salesData[saleDay] = totalSales;
+                            }
+                        }
+                    }
+
+                    // Fetch Refunds
+                    string refundQuery = @"
+                        SELECT DATE(refund_date) AS refund_day, SUM(total_price) AS total_refunds
+                        FROM refunds
+                        WHERE refund_date >= @startDate AND refund_date <= @endDate
+                        GROUP BY DATE(refund_date)";
+                    using (MySqlCommand cmd = new MySqlCommand(refundQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DateTime refundDay = reader.GetDateTime("refund_day");
+                                decimal totalRefunds = reader.GetDecimal("total_refunds");
+                                refundData[refundDay] = totalRefunds;
+                            }
+                        }
+                    }
+
+                    // Fetch Expenses
+                    string expenseQuery = @"
+                        SELECT DATE(expense_date) AS expense_day, SUM(amount) AS total_expenses
+                        FROM expenses
+                        WHERE expense_date >= @startDate AND expense_date <= @endDate
+                        GROUP BY DATE(expense_date)";
+                    using (MySqlCommand cmd = new MySqlCommand(expenseQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DateTime expenseDay = reader.GetDateTime("expense_day");
+                                decimal totalExpenses = reader.GetDecimal("total_expenses");
+                                expenseData[expenseDay] = totalExpenses;
+                            }
+                        }
+                    }
+
+                    // Fetch Purchases (from grn table)
+                    string purchaseQuery = @"
+                        SELECT DATE(date) AS purchase_day, SUM(total_amount) AS total_purchases
+                        FROM grn
+                        WHERE date >= @startDate AND date <= @endDate
+                        GROUP BY DATE(date)";
+                    using (MySqlCommand cmd = new MySqlCommand(purchaseQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DateTime purchaseDay = reader.GetDateTime("purchase_day");
+                                decimal totalPurchases = reader.GetDecimal("total_purchases");
+                                purchaseData[purchaseDay] = totalPurchases;
+                            }
+                        }
+                    }
+
+                    // Fetch Purchase Returns
+                    string purchaseReturnQuery = @"
+                        SELECT DATE(created_at) AS return_day, SUM(total_amount) AS total_returns
+                        FROM purchase_returns
+                        WHERE created_at >= @startDate AND created_at <= @endDate
+                        GROUP BY DATE(created_at)";
+                    using (MySqlCommand cmd = new MySqlCommand(purchaseReturnQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate.AddDays(1).AddSeconds(-1));
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DateTime returnDay = reader.GetDateTime("return_day");
+                                decimal totalReturns = reader.GetDecimal("total_returns");
+                                purchaseReturnData[returnDay] = totalReturns;
+                            }
+                        }
+                    }
+
+                    // Calculate daily profit and add to chart
+                    for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                    {
+                        decimal sales = salesData[date];
+                        decimal refunds = refundData[date];
+                        decimal expenses = expenseData[date];
+                        decimal purchases = purchaseData[date];
+                        decimal purchaseReturns = purchaseReturnData[date];
+
+                        // Profit = Sales - (Refunds + Expenses + (Purchases - Purchase Returns))
+                        decimal profit = sales - (refunds + expenses + (purchases - purchaseReturns));
+                        dailyProfitLineChart.Series["DailyProfit"].Points.AddXY(date, profit);
+                    }
+                }
+
+                // Recalculate axes for proper scaling
+                dailyProfitLineChart.ChartAreas["ProfitArea"].RecalculateAxesScale();
+            }
+            catch (Exception)
+            {
+                // Silently fail as per request to remove MessageBox
+                dailyProfitLineChart.Series["DailyProfit"].Points.Clear();
+                for (int i = 29; i >= 0; i--)
+                {
+                    DateTime date = DateTime.Today.AddDays(-i);
+                    dailyProfitLineChart.Series["DailyProfit"].Points.AddXY(date, 0);
+                }
+            }
+        }
+
+        private void dailyProfitLineChart_Click(object sender, EventArgs e)
+        {
+            ConfigureDailyProfitLineChart();
+            LoadDailyProfitData();
         }
 
         private void LoadTopProducts()
@@ -516,9 +751,8 @@ namespace EscopeWindowsApp
                     });
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading top products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 topProductsPieChart.Series.Clear();
                 topProductsPieChart.Titles.Clear();
                 topProductsPieChart.Titles.Add(new Title
@@ -605,9 +839,8 @@ namespace EscopeWindowsApp
 
                 salesPurchStackedColumn.ChartAreas[0].RecalculateAxesScale();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading sales and purchases data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 string[] days = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
                 for (int i = 0; i < 7; i++)
                 {
@@ -953,9 +1186,8 @@ namespace EscopeWindowsApp
                     saleReAmountLabel.Text = $" {totalRefunds:#,##0.00}";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error loading {period} financial data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dashTotSalePriceLabel.Text = " 0.00";
                 purAmountLabel.Text = " 0.00";
                 saleReAmountLabel.Text = " 0.00";
@@ -994,21 +1226,9 @@ namespace EscopeWindowsApp
             UpdateFinancialLabels("last 7 days", salesQuery, purchasesQuery, refundsQuery);
         }
 
-        private void dashTotSalePriceLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void purAmountLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saleReAmountLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        private void dashTotSalePriceLabel_Click(object sender, EventArgs e) { }
+        private void purAmountLabel_Click(object sender, EventArgs e) { }
+        private void saleReAmountLabel_Click(object sender, EventArgs e) { }
         private void numberOrderLabel_Click(object sender, EventArgs e) { }
         private void grossRevenueChart_Click(object sender, EventArgs e) { }
         private void numberTrevenueLabel_Click(object sender, EventArgs e) { }
@@ -1017,15 +1237,7 @@ namespace EscopeWindowsApp
         private void tNOPLabel_Click(object sender, EventArgs e) { }
         private void dashTotPurPanel_Paint(object sender, PaintEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
-
-        private void profitAmoutLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void siticonePanel11_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void profitAmoutLabel_Click(object sender, EventArgs e) { }
+        private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
     }
 }
