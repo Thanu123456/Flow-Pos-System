@@ -48,6 +48,7 @@
             this.purReNoteText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.createPurRetLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.preReGRNDataGridView)).BeginInit();
@@ -124,14 +125,14 @@
             this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.grnProSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.grnProSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.grnProSearchText.Location = new System.Drawing.Point(9, 41);
+            this.grnProSearchText.Location = new System.Drawing.Point(679, 53);
             this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnProSearchText.Name = "grnProSearchText";
             this.grnProSearchText.PasswordChar = '\0';
             this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.grnProSearchText.PlaceholderText = "Search Products";
             this.grnProSearchText.SelectedText = "";
-            this.grnProSearchText.Size = new System.Drawing.Size(689, 42);
+            this.grnProSearchText.Size = new System.Drawing.Size(400, 42);
             this.grnProSearchText.TabIndex = 32;
             this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
             // 
@@ -170,7 +171,7 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.preReGRNDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.preReGRNDataGridView.GridColor = System.Drawing.Color.White;
-            this.preReGRNDataGridView.Location = new System.Drawing.Point(9, 114);
+            this.preReGRNDataGridView.Location = new System.Drawing.Point(22, 112);
             this.preReGRNDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.preReGRNDataGridView.Name = "preReGRNDataGridView";
             this.preReGRNDataGridView.ReadOnly = true;
@@ -189,7 +190,7 @@
             this.preReGRNDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.preReGRNDataGridView.RowTemplate.Height = 35;
             this.preReGRNDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.preReGRNDataGridView.Size = new System.Drawing.Size(1082, 271);
+            this.preReGRNDataGridView.Size = new System.Drawing.Size(1057, 225);
             this.preReGRNDataGridView.TabIndex = 80;
             this.preReGRNDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.preReGRNDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -250,7 +251,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grnProductDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.grnProductDataGridView.GridColor = System.Drawing.Color.White;
-            this.grnProductDataGridView.Location = new System.Drawing.Point(22, 410);
+            this.grnProductDataGridView.Location = new System.Drawing.Point(22, 351);
             this.grnProductDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnProductDataGridView.Name = "grnProductDataGridView";
             this.grnProductDataGridView.ReadOnly = true;
@@ -311,14 +312,14 @@
             this.purReNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.purReNoteText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.purReNoteText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.purReNoteText.Location = new System.Drawing.Point(22, 642);
+            this.purReNoteText.Location = new System.Drawing.Point(22, 579);
             this.purReNoteText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.purReNoteText.Name = "purReNoteText";
             this.purReNoteText.PasswordChar = '\0';
             this.purReNoteText.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.purReNoteText.PlaceholderText = "Note";
             this.purReNoteText.SelectedText = "";
-            this.purReNoteText.Size = new System.Drawing.Size(396, 42);
+            this.purReNoteText.Size = new System.Drawing.Size(1057, 42);
             this.purReNoteText.TabIndex = 82;
             this.purReNoteText.TextChanged += new System.EventHandler(this.purReNoteText_TextChanged);
             // 
@@ -336,7 +337,7 @@
             this.grnCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
             this.grnCancelBtn.ForeColor = System.Drawing.Color.White;
             this.grnCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.grnCancelBtn.Location = new System.Drawing.Point(953, 639);
+            this.grnCancelBtn.Location = new System.Drawing.Point(984, 639);
             this.grnCancelBtn.Name = "grnCancelBtn";
             this.grnCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.grnCancelBtn.TabIndex = 84;
@@ -357,18 +358,29 @@
             this.grnSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnSaveBtn.ForeColor = System.Drawing.Color.White;
             this.grnSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.grnSaveBtn.Location = new System.Drawing.Point(848, 639);
+            this.grnSaveBtn.Location = new System.Drawing.Point(879, 639);
             this.grnSaveBtn.Name = "grnSaveBtn";
             this.grnSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.grnSaveBtn.TabIndex = 83;
             this.grnSaveBtn.Text = "Save";
             this.grnSaveBtn.Click += new System.EventHandler(this.grnSaveBtn_Click);
             // 
+            // createPurRetLabel
+            // 
+            this.createPurRetLabel.AutoSize = true;
+            this.createPurRetLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createPurRetLabel.Location = new System.Drawing.Point(18, 50);
+            this.createPurRetLabel.Name = "createPurRetLabel";
+            this.createPurRetLabel.Size = new System.Drawing.Size(202, 32);
+            this.createPurRetLabel.TabIndex = 85;
+            this.createPurRetLabel.Text = "Purchases Return";
+            // 
             // CreatePurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.createPurRetLabel);
             this.Controls.Add(this.grnCancelBtn);
             this.Controls.Add(this.grnSaveBtn);
             this.Controls.Add(this.purReNoteText);
@@ -387,6 +399,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.preReGRNDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grnProductDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -403,5 +416,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView grnProductDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
+        private System.Windows.Forms.Label createPurRetLabel;
     }
 }

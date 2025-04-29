@@ -667,9 +667,9 @@
             this.siticonePanel4.Controls.Add(this.label7);
             this.siticonePanel4.Controls.Add(this.dailyProfitLineChart);
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
-            this.siticonePanel4.Location = new System.Drawing.Point(21, 875);
+            this.siticonePanel4.Location = new System.Drawing.Point(21, 866);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1348, 316);
+            this.siticonePanel4.Size = new System.Drawing.Size(1348, 335);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
@@ -687,13 +687,13 @@
             // dailyProfitLineChart
             // 
             this.dailyProfitLineChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dailyProfitLineChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dailyProfitLineChart.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
             this.dailyProfitLineChart.ChartAreas.Add(chartArea3);
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend3.Name = "Legend1";
             this.dailyProfitLineChart.Legends.Add(legend3);
-            this.dailyProfitLineChart.Location = new System.Drawing.Point(13, 60);
+            this.dailyProfitLineChart.Location = new System.Drawing.Point(-41, 56);
             this.dailyProfitLineChart.Name = "dailyProfitLineChart";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -703,7 +703,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1323, 240);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1368, 210);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -712,6 +712,7 @@
             title3.Text = "Top 5 Produts";
             title3.Visible = false;
             this.dailyProfitLineChart.Titles.Add(title3);
+            this.dailyProfitLineChart.Click += new System.EventHandler(this.dailyProfitLineChart_Click);
             // 
             // siticonePanel6
             // 
