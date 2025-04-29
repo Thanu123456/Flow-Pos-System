@@ -31,28 +31,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createQuotaBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.quotaDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.quoReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoCusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoWarehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quotAllPgLabel = new System.Windows.Forms.Label();
-            this.quotaOfLabel = new System.Windows.Forms.Label();
-            this.quotaPgRangeLabel = new System.Windows.Forms.Label();
-            this.quotaPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.quotaRecordsPerLabel = new System.Windows.Forms.Label();
             this.quotaBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.quotaFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.quotaSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).BeginInit();
+            this.quotaDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.quotaBtnPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // createQuotaBtn
@@ -75,176 +64,6 @@
             this.createQuotaBtn.TabIndex = 3;
             this.createQuotaBtn.Text = "Create Quotation";
             this.createQuotaBtn.Click += new System.EventHandler(this.createQuotaBtn_Click);
-            // 
-            // quotaDataGridView
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.quotaDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.quotaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.quotaDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.quotaDataGridView.ColumnHeadersHeight = 25;
-            this.quotaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.quotaDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.quoReference,
-            this.quoCusName,
-            this.quoWarehouse,
-            this.quoStatus,
-            this.quoGrandTotal,
-            this.createdAt,
-            this.action});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.quotaDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.quotaDataGridView.GridColor = System.Drawing.Color.White;
-            this.quotaDataGridView.Location = new System.Drawing.Point(17, 100);
-            this.quotaDataGridView.Name = "quotaDataGridView";
-            this.quotaDataGridView.RowHeadersVisible = false;
-            this.quotaDataGridView.Size = new System.Drawing.Size(1352, 615);
-            this.quotaDataGridView.TabIndex = 8;
-            this.quotaDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
-            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.quotaDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.quotaDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.quotaDataGridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.quotaDataGridView.ThemeStyle.ReadOnly = false;
-            this.quotaDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            this.quotaDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.quotaDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.quotaDataGridView.ThemeStyle.RowsStyle.Height = 22;
-            this.quotaDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            this.quotaDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.quotaDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.quotaDataGridView_CellContentClick);
-            // 
-            // quoReference
-            // 
-            this.quoReference.HeaderText = "Reference";
-            this.quoReference.Name = "quoReference";
-            // 
-            // quoCusName
-            // 
-            this.quoCusName.HeaderText = "Customer";
-            this.quoCusName.Name = "quoCusName";
-            // 
-            // quoWarehouse
-            // 
-            this.quoWarehouse.HeaderText = "WareHouse";
-            this.quoWarehouse.Name = "quoWarehouse";
-            // 
-            // quoStatus
-            // 
-            this.quoStatus.HeaderText = "Status";
-            this.quoStatus.Name = "quoStatus";
-            // 
-            // quoGrandTotal
-            // 
-            this.quoGrandTotal.HeaderText = "Grand Total";
-            this.quoGrandTotal.Name = "quoGrandTotal";
-            // 
-            // createdAt
-            // 
-            this.createdAt.HeaderText = "Create At";
-            this.createdAt.Name = "createdAt";
-            // 
-            // action
-            // 
-            this.action.HeaderText = "Action";
-            this.action.Name = "action";
-            // 
-            // quotAllPgLabel
-            // 
-            this.quotAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.quotAllPgLabel.AutoSize = true;
-            this.quotAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.quotAllPgLabel.Name = "quotAllPgLabel";
-            this.quotAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.quotAllPgLabel.TabIndex = 20;
-            this.quotAllPgLabel.Text = "500";
-            // 
-            // quotaOfLabel
-            // 
-            this.quotaOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.quotaOfLabel.AutoSize = true;
-            this.quotaOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.quotaOfLabel.Name = "quotaOfLabel";
-            this.quotaOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.quotaOfLabel.TabIndex = 19;
-            this.quotaOfLabel.Text = "of";
-            // 
-            // quotaPgRangeLabel
-            // 
-            this.quotaPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.quotaPgRangeLabel.AutoSize = true;
-            this.quotaPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.quotaPgRangeLabel.Name = "quotaPgRangeLabel";
-            this.quotaPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.quotaPgRangeLabel.TabIndex = 18;
-            this.quotaPgRangeLabel.Text = "0-50";
-            // 
-            // quotaPageCombo
-            // 
-            this.quotaPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.quotaPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.quotaPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.quotaPageCombo.BorderRadius = 8;
-            this.quotaPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.quotaPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.quotaPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.quotaPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.quotaPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.quotaPageCombo.ItemHeight = 30;
-            this.quotaPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.quotaPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.quotaPageCombo.Name = "quotaPageCombo";
-            this.quotaPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.quotaPageCombo.StartIndex = 0;
-            this.quotaPageCombo.TabIndex = 17;
-            // 
-            // quotaRecordsPerLabel
-            // 
-            this.quotaRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.quotaRecordsPerLabel.AutoSize = true;
-            this.quotaRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quotaRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.quotaRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.quotaRecordsPerLabel.Name = "quotaRecordsPerLabel";
-            this.quotaRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.quotaRecordsPerLabel.TabIndex = 16;
-            this.quotaRecordsPerLabel.Text = "Records per page";
             // 
             // quotaBtnPanel
             // 
@@ -356,6 +175,82 @@
             this.quotaSearchText.TabIndex = 1;
             this.quotaSearchText.TextChanged += new System.EventHandler(this.quotaSearchText_TextChanged);
             // 
+            // quotaDataGridView
+            // 
+            this.quotaDataGridView.AllowUserToAddRows = false;
+            this.quotaDataGridView.AllowUserToDeleteRows = false;
+            this.quotaDataGridView.AllowUserToResizeColumns = false;
+            this.quotaDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.quotaDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.quotaDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.quotaDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.quotaDataGridView.ColumnHeadersHeight = 45;
+            this.quotaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.quotaDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.quotaDataGridView.GridColor = System.Drawing.Color.White;
+            this.quotaDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.quotaDataGridView.Name = "quotaDataGridView";
+            this.quotaDataGridView.ReadOnly = true;
+            this.quotaDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.quotaDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.quotaDataGridView.RowHeadersVisible = false;
+            this.quotaDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.quotaDataGridView.RowTemplate.Height = 35;
+            this.quotaDataGridView.ShowEditingIcon = false;
+            this.quotaDataGridView.Size = new System.Drawing.Size(1352, 615);
+            this.quotaDataGridView.TabIndex = 30;
+            this.quotaDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
+            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.quotaDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.quotaDataGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.quotaDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.quotaDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.quotaDataGridView.ThemeStyle.ReadOnly = true;
+            this.quotaDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            this.quotaDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.quotaDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quotaDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.quotaDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            this.quotaDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            this.quotaDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
             // Quotations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,13 +258,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
-            this.Controls.Add(this.quotaBtnPanel);
-            this.Controls.Add(this.quotAllPgLabel);
-            this.Controls.Add(this.quotaOfLabel);
-            this.Controls.Add(this.quotaPgRangeLabel);
-            this.Controls.Add(this.quotaPageCombo);
-            this.Controls.Add(this.quotaRecordsPerLabel);
             this.Controls.Add(this.quotaDataGridView);
+            this.Controls.Add(this.quotaBtnPanel);
             this.Controls.Add(this.createQuotaBtn);
             this.Controls.Add(this.quotaSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -381,10 +271,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quotations";
             this.Load += new System.EventHandler(this.Quotations_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).EndInit();
             this.quotaBtnPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.quotaDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -392,23 +281,11 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox quotaSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createQuotaBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView quotaDataGridView;
-        private System.Windows.Forms.Label quotAllPgLabel;
-        private System.Windows.Forms.Label quotaOfLabel;
-        private System.Windows.Forms.Label quotaPgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox quotaPageCombo;
-        private System.Windows.Forms.Label quotaRecordsPerLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel quotaBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton quotaFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton quotaPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton quotaNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton quotaLastBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoReference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoCusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoWarehouse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoGrandTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn action;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView quotaDataGridView;
     }
 }

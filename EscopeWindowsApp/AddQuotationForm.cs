@@ -14,7 +14,6 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 
-
 namespace EscopeWindowsApp
 {
     public partial class AddQuotationForm : Form
@@ -1157,17 +1156,7 @@ namespace EscopeWindowsApp
 
         private void quotaCancelBtn_Click(object sender, EventArgs e)
         {
-            addQuotaDataGridView.Rows.Clear();
-            createQuoText.Text = "Walk-In Customer";
-            createQuoSearchText.Text = "";
-            createQuotaDisText.Text = "";
-            quotaShippingCharge.Text = "";
-            createQuotaNoteText.Text = "";
-            quotaSubTotLabel.Text = "0.00";
-            addQuoDisCostLabel.Text = "0.00";
-            addQuoShipCostLabel.Text = "0.00";
-            AddQuoTotAmoCostLabel.Text = "0.00";
-            itemNumberCounter = 1;
+            this.Close();
         }
 
         private void createQuotaNoteLabel_Click(object sender, EventArgs e)
@@ -1263,5 +1252,9 @@ namespace EscopeWindowsApp
         }
 
         #endregion
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
     }
 }
