@@ -307,5 +307,24 @@ namespace EscopeWindowsApp
             LogsReport logsReport = new LogsReport();
             logsReport.Show();
         }
+
+        private void purchasesReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is PurchasesReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            PurchasesReport purchasesReport = new PurchasesReport();
+            purchasesReport.Show();
+        }
     }
 }
