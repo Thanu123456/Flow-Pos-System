@@ -343,6 +343,7 @@ namespace EscopeWindowsApp
                     BackgroundColor = Color.White,
                     RowTemplate = { Height = 35 },
                     ColumnHeadersHeight = 45,
+                    ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
                     ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle { Font = new Font("Segoe UI", 10F, FontStyle.Bold) }
                 };
 
