@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace EscopeWindowsApp
         private BindingSource salesBindingSource;
         private BindingSource expiryBindingSource;
         private BindingSource stockAlertBindingSource;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private Font gridFont = new Font("Segoe UI", 12F);
 
         public DashBoardForm()
@@ -65,15 +66,9 @@ namespace EscopeWindowsApp
             LoadLowStockProducts();
             stockAlertDataGrid.DataSource = stockAlertBindingSource;
 
-            // Configure and load the daily profit line chart
             ConfigureDailyProfitLineChart();
             LoadDailyProfitData();
 
-            // Optional: Adjust position of other controls to avoid overlap after resizing the chart
-            // Uncomment if overlap occurs
-            // stockAlertDataGrid.Location = new Point(stockAlertDataGrid.Location.X, dailyProfitLineChart.Bottom + 10);
-
-            // Initialize financial labels with today's data
             todayBtn_Click(this, EventArgs.Empty);
         }
 
@@ -480,17 +475,14 @@ namespace EscopeWindowsApp
             dailyProfitLineChart.Legends.Clear();
             dailyProfitLineChart.Titles.Clear();
 
-            // Add a new ChartArea
             ChartArea chartArea = new ChartArea("ProfitArea");
-            chartArea.BackColor = Color.FromArgb(240, 240, 245); // Light gray background
+            chartArea.BackColor = Color.FromArgb(240, 240, 245);
             chartArea.BackGradientStyle = GradientStyle.TopBottom;
             chartArea.BackSecondaryColor = Color.White;
             chartArea.BorderColor = Color.FromArgb(200, 200, 200);
             chartArea.BorderDashStyle = ChartDashStyle.Solid;
             chartArea.BorderWidth = 1;
 
-            // Configure axes
-            //chartArea.AxisX.Title = "Date";
             chartArea.AxisX.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
             chartArea.AxisX.LabelStyle.Font = new Font("Segoe UI", 9F);
             chartArea.AxisX.LabelStyle.Format = "dd-MMM";
@@ -499,7 +491,6 @@ namespace EscopeWindowsApp
             chartArea.AxisX.MinorGrid.Enabled = false;
             chartArea.AxisX.LineColor = Color.FromArgb(150, 150, 150);
 
-           // chartArea.AxisY.Title = "Profit (LKR)";
             chartArea.AxisY.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
             chartArea.AxisY.LabelStyle.Font = new Font("Segoe UI", 9F);
             chartArea.AxisY.LabelStyle.Format = "N0";
@@ -509,11 +500,10 @@ namespace EscopeWindowsApp
 
             dailyProfitLineChart.ChartAreas.Add(chartArea);
 
-            // Add a Series for the profit line
             Series profitSeries = new Series("DailyProfit")
             {
-                ChartType = SeriesChartType.Spline, // Smooth line chart
-                Color = Color.FromArgb(0, 120, 215), // Modern blue color
+                ChartType = SeriesChartType.Spline,
+                Color = Color.FromArgb(0, 120, 215),
                 BorderWidth = 3,
                 ToolTip = "Date: #VALX{dd-MMM-yyyy}, Profit: #VALY{N2} LKR",
                 MarkerStyle = MarkerStyle.Circle,
@@ -524,8 +514,6 @@ namespace EscopeWindowsApp
             };
             dailyProfitLineChart.Series.Add(profitSeries);
 
-            
-            // Increase the chart's height by 50 pixels and width by 30 pixels
             dailyProfitLineChart.Size = new Size(dailyProfitLineChart.Width + 50, dailyProfitLineChart.Height + 75);
         }
 
@@ -539,18 +527,15 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Define the date range: last 30 days including today
                     DateTime endDate = DateTime.Today;
-                    DateTime startDate = endDate.AddDays(-29); // 30 days total
+                    DateTime startDate = endDate.AddDays(-29);
 
-                    // Fetch daily data for each component
                     Dictionary<DateTime, decimal> salesData = new Dictionary<DateTime, decimal>();
                     Dictionary<DateTime, decimal> refundData = new Dictionary<DateTime, decimal>();
                     Dictionary<DateTime, decimal> expenseData = new Dictionary<DateTime, decimal>();
                     Dictionary<DateTime, decimal> purchaseData = new Dictionary<DateTime, decimal>();
                     Dictionary<DateTime, decimal> purchaseReturnData = new Dictionary<DateTime, decimal>();
 
-                    // Initialize all days with 0
                     for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
                     {
                         salesData[date] = 0;
@@ -560,7 +545,6 @@ namespace EscopeWindowsApp
                         purchaseReturnData[date] = 0;
                     }
 
-                    // Fetch Sales
                     string salesQuery = @"
                         SELECT DATE(sale_date) AS sale_day, SUM(total_price) AS total_sales
                         FROM sales
@@ -581,7 +565,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch Refunds
                     string refundQuery = @"
                         SELECT DATE(refund_date) AS refund_day, SUM(total_price) AS total_refunds
                         FROM refunds
@@ -602,7 +585,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch Expenses
                     string expenseQuery = @"
                         SELECT DATE(expense_date) AS expense_day, SUM(amount) AS total_expenses
                         FROM expenses
@@ -623,7 +605,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch Purchases (from grn table)
                     string purchaseQuery = @"
                         SELECT DATE(date) AS purchase_day, SUM(total_amount) AS total_purchases
                         FROM grn
@@ -644,7 +625,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch Purchase Returns
                     string purchaseReturnQuery = @"
                         SELECT DATE(created_at) AS return_day, SUM(total_amount) AS total_returns
                         FROM purchase_returns
@@ -665,7 +645,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Calculate daily profit and add to chart
                     for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
                     {
                         decimal sales = salesData[date];
@@ -674,18 +653,15 @@ namespace EscopeWindowsApp
                         decimal purchases = purchaseData[date];
                         decimal purchaseReturns = purchaseReturnData[date];
 
-                        // Profit = Sales - (Refunds + Expenses + (Purchases - Purchase Returns))
                         decimal profit = sales - (refunds + expenses + (purchases - purchaseReturns));
                         dailyProfitLineChart.Series["DailyProfit"].Points.AddXY(date, profit);
                     }
                 }
 
-                // Recalculate axes for proper scaling
                 dailyProfitLineChart.ChartAreas["ProfitArea"].RecalculateAxesScale();
             }
             catch (Exception)
             {
-                // Silently fail as per request to remove MessageBox
                 dailyProfitLineChart.Series["DailyProfit"].Points.Clear();
                 for (int i = 29; i >= 0; i--)
                 {
@@ -1139,7 +1115,7 @@ namespace EscopeWindowsApp
             LoadTopProducts();
         }
 
-        private void UpdateFinancialLabels(string period, string salesQuery, string purchasesQuery, string refundsQuery)
+        private void UpdateFinancialLabels(string period, string salesQuery, string purchasesQuery, string refundsQuery, string expensesQuery, string purchaseReturnsQuery)
         {
             try
             {
@@ -1169,7 +1145,7 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch total sales returns
+                    // Fetch total sales returns (refunds)
                     decimal totalRefunds = 0;
                     using (MySqlCommand refundCmd = new MySqlCommand(refundsQuery, connection))
                     {
@@ -1180,10 +1156,39 @@ namespace EscopeWindowsApp
                         }
                     }
 
+                    // Fetch total expenses
+                    decimal totalExpenses = 0;
+                    using (MySqlCommand expenseCmd = new MySqlCommand(expensesQuery, connection))
+                    {
+                        object result = expenseCmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            totalExpenses = Convert.ToDecimal(result);
+                        }
+                    }
+
+                    // Fetch total purchase returns
+                    decimal totalPurchaseReturns = 0;
+                    using (MySqlCommand purchaseReturnCmd = new MySqlCommand(purchaseReturnsQuery, connection))
+                    {
+                        object result = purchaseReturnCmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            totalPurchaseReturns = Convert.ToDecimal(result);
+                        }
+                    }
+
+                    // Calculate profit
+                    decimal profit = totalSales - (totalRefunds + totalExpenses + (totalPurchases - totalPurchaseReturns));
+
                     // Update labels with formatted currency
                     dashTotSalePriceLabel.Text = $" {totalSales:#,##0.00}";
                     purAmountLabel.Text = $" {totalPurchases:#,##0.00}";
                     saleReAmountLabel.Text = $" {totalRefunds:#,##0.00}";
+                    profitAmoutLabel.Text = $" {profit:#,##0.00}";
+
+                    // Set color based on profit value
+                    profitAmoutLabel.ForeColor = profit >= 0 ? Color.Green : Color.Red;
                 }
             }
             catch (Exception)
@@ -1191,6 +1196,8 @@ namespace EscopeWindowsApp
                 dashTotSalePriceLabel.Text = " 0.00";
                 purAmountLabel.Text = " 0.00";
                 saleReAmountLabel.Text = " 0.00";
+                profitAmoutLabel.Text = " 0.00";
+                profitAmoutLabel.ForeColor = Color.Black; // Default color in case of error
             }
         }
 
@@ -1199,7 +1206,9 @@ namespace EscopeWindowsApp
             string salesQuery = "SELECT SUM(total_price) FROM sales WHERE YEAR(sale_date) = YEAR(CURDATE())";
             string purchasesQuery = "SELECT SUM(total_amount) FROM grn WHERE YEAR(date) = YEAR(CURDATE())";
             string refundsQuery = "SELECT SUM(total_price) FROM refunds WHERE YEAR(refund_date) = YEAR(CURDATE())";
-            UpdateFinancialLabels("yearly", salesQuery, purchasesQuery, refundsQuery);
+            string expensesQuery = "SELECT SUM(amount) FROM expenses WHERE YEAR(expense_date) = YEAR(CURDATE())";
+            string purchaseReturnsQuery = "SELECT SUM(total_amount) FROM purchase_returns WHERE YEAR(created_at) = YEAR(CURDATE())";
+            UpdateFinancialLabels("yearly", salesQuery, purchasesQuery, refundsQuery, expensesQuery, purchaseReturnsQuery);
         }
 
         private void todayBtn_Click(object sender, EventArgs e)
@@ -1207,7 +1216,9 @@ namespace EscopeWindowsApp
             string salesQuery = "SELECT SUM(total_price) FROM sales WHERE DATE(sale_date) = CURDATE()";
             string purchasesQuery = "SELECT SUM(total_amount) FROM grn WHERE DATE(date) = CURDATE()";
             string refundsQuery = "SELECT SUM(total_price) FROM refunds WHERE DATE(refund_date) = CURDATE()";
-            UpdateFinancialLabels("today's", salesQuery, purchasesQuery, refundsQuery);
+            string expensesQuery = "SELECT SUM(amount) FROM expenses WHERE DATE(expense_date) = CURDATE()";
+            string purchaseReturnsQuery = "SELECT SUM(total_amount) FROM purchase_returns WHERE DATE(created_at) = CURDATE()";
+            UpdateFinancialLabels("today's", salesQuery, purchasesQuery, refundsQuery, expensesQuery, purchaseReturnsQuery);
         }
 
         private void Last30DaysBtn_Click(object sender, EventArgs e)
@@ -1215,7 +1226,9 @@ namespace EscopeWindowsApp
             string salesQuery = "SELECT SUM(total_price) FROM sales WHERE sale_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
             string purchasesQuery = "SELECT SUM(total_amount) FROM grn WHERE date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
             string refundsQuery = "SELECT SUM(total_price) FROM refunds WHERE refund_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
-            UpdateFinancialLabels("last 30 days", salesQuery, purchasesQuery, refundsQuery);
+            string expensesQuery = "SELECT SUM(amount) FROM expenses WHERE expense_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+            string purchaseReturnsQuery = "SELECT SUM(total_amount) FROM purchase_returns WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)";
+            UpdateFinancialLabels("last 30 days", salesQuery, purchasesQuery, refundsQuery, expensesQuery, purchaseReturnsQuery);
         }
 
         private void last7DaysBtn_Click(object sender, EventArgs e)
@@ -1223,7 +1236,9 @@ namespace EscopeWindowsApp
             string salesQuery = "SELECT SUM(total_price) FROM sales WHERE sale_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
             string purchasesQuery = "SELECT SUM(total_amount) FROM grn WHERE date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
             string refundsQuery = "SELECT SUM(total_price) FROM refunds WHERE refund_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
-            UpdateFinancialLabels("last 7 days", salesQuery, purchasesQuery, refundsQuery);
+            string expensesQuery = "SELECT SUM(amount) FROM expenses WHERE expense_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+            string purchaseReturnsQuery = "SELECT SUM(total_amount) FROM purchase_returns WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+            UpdateFinancialLabels("last 7 days", salesQuery, purchasesQuery, refundsQuery, expensesQuery, purchaseReturnsQuery);
         }
 
         private void dashTotSalePriceLabel_Click(object sender, EventArgs e) { }
@@ -1237,7 +1252,10 @@ namespace EscopeWindowsApp
         private void tNOPLabel_Click(object sender, EventArgs e) { }
         private void dashTotPurPanel_Paint(object sender, PaintEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
-        private void profitAmoutLabel_Click(object sender, EventArgs e) { }
+        private void profitAmoutLabel_Click(object sender, EventArgs e)
+        {
+            todayBtn_Click(sender, e);
+        }
         private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
     }
 }
