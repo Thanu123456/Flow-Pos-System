@@ -108,6 +108,7 @@
             this.salesTransition = new System.Windows.Forms.Timer(this.components);
             this.peoplesTransition = new System.Windows.Forms.Timer(this.components);
             this.purchTransition = new System.Windows.Forms.Timer(this.components);
+            this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.manuLayoutPanel.SuspendLayout();
             this.manuBtnPanel.SuspendLayout();
             this.proBtnPanel.SuspendLayout();
@@ -147,6 +148,7 @@
             this.posBtnPanel.SuspendLayout();
             this.timePanel.SuspendLayout();
             this.userProfilePanel.SuspendLayout();
+            this.siticonePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // manuTransition
@@ -1224,9 +1226,7 @@
             this.sideBarTopPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sideBarTopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(242)))), ((int)(((byte)(248)))));
-            this.sideBarTopPanel.Controls.Add(this.posBtnPanel);
-            this.sideBarTopPanel.Controls.Add(this.timePanel);
-            this.sideBarTopPanel.Controls.Add(this.userProfilePanel);
+            this.sideBarTopPanel.Controls.Add(this.siticonePanel2);
             this.sideBarTopPanel.Controls.Add(this.sidebarBtnPanel);
             this.sideBarTopPanel.Location = new System.Drawing.Point(0, 36);
             this.sideBarTopPanel.Name = "sideBarTopPanel";
@@ -1238,7 +1238,7 @@
             this.posBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.posBtnPanel.BackColor = System.Drawing.Color.Transparent;
             this.posBtnPanel.Controls.Add(this.posBtn);
-            this.posBtnPanel.Location = new System.Drawing.Point(1119, 7);
+            this.posBtnPanel.Location = new System.Drawing.Point(239, 3);
             this.posBtnPanel.Margin = new System.Windows.Forms.Padding(0);
             this.posBtnPanel.Name = "posBtnPanel";
             this.posBtnPanel.Size = new System.Drawing.Size(109, 53);
@@ -1274,7 +1274,7 @@
             this.timePanel.BackColor = System.Drawing.Color.Transparent;
             this.timePanel.Controls.Add(this.dateLabel);
             this.timePanel.Controls.Add(this.timeLabel);
-            this.timePanel.Location = new System.Drawing.Point(925, 7);
+            this.timePanel.Location = new System.Drawing.Point(21, 3);
             this.timePanel.Margin = new System.Windows.Forms.Padding(0);
             this.timePanel.Name = "timePanel";
             this.timePanel.Size = new System.Drawing.Size(187, 53);
@@ -1310,15 +1310,16 @@
             this.userProfilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.userProfilePanel.BackColor = System.Drawing.Color.Transparent;
             this.userProfilePanel.Controls.Add(this.userProfileBtn);
-            this.userProfilePanel.Location = new System.Drawing.Point(1233, 7);
+            this.userProfilePanel.Location = new System.Drawing.Point(379, 3);
             this.userProfilePanel.Margin = new System.Windows.Forms.Padding(0);
             this.userProfilePanel.Name = "userProfilePanel";
-            this.userProfilePanel.Size = new System.Drawing.Size(145, 53);
+            this.userProfilePanel.Size = new System.Drawing.Size(162, 53);
             this.userProfilePanel.TabIndex = 6;
             // 
             // userProfileBtn
             // 
             this.userProfileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.userProfileBtn.Animated = true;
             this.userProfileBtn.BorderRadius = 8;
             this.userProfileBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.Down;
             this.userProfileBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
@@ -1326,19 +1327,20 @@
             this.userProfileBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.userProfileBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.userProfileBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.userProfileBtn.FillColor = System.Drawing.Color.Transparent;
-            this.userProfileBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userProfileBtn.FillColor = System.Drawing.Color.White;
+            this.userProfileBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold);
             this.userProfileBtn.ForeColor = System.Drawing.Color.Black;
             this.userProfileBtn.HoverState.FillColor = System.Drawing.Color.White;
-            this.userProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.userIcon;
+            this.userProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.avatar2;
             this.userProfileBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.userProfileBtn.ImageSize = new System.Drawing.Size(30, 30);
+            this.userProfileBtn.ImageSize = new System.Drawing.Size(31, 31);
             this.userProfileBtn.Location = new System.Drawing.Point(3, 4);
             this.userProfileBtn.Name = "userProfileBtn";
-            this.userProfileBtn.Size = new System.Drawing.Size(138, 45);
+            this.userProfileBtn.Size = new System.Drawing.Size(155, 45);
             this.userProfileBtn.TabIndex = 6;
             this.userProfileBtn.Text = "Admin";
             this.userProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userProfileBtn.Click += new System.EventHandler(this.userProfileBtn_Click);
             // 
             // siticoneControlBox3
             // 
@@ -1383,6 +1385,17 @@
             // 
             this.purchTransition.Interval = 10;
             this.purchTransition.Tick += new System.EventHandler(this.purchTransition_Tick);
+            // 
+            // siticonePanel2
+            // 
+            this.siticonePanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel2.Controls.Add(this.posBtnPanel);
+            this.siticonePanel2.Controls.Add(this.timePanel);
+            this.siticonePanel2.Controls.Add(this.userProfilePanel);
+            this.siticonePanel2.Location = new System.Drawing.Point(833, 3);
+            this.siticonePanel2.Name = "siticonePanel2";
+            this.siticonePanel2.Size = new System.Drawing.Size(541, 58);
+            this.siticonePanel2.TabIndex = 9;
             // 
             // SideBarForm
             // 
@@ -1446,6 +1459,7 @@
             this.timePanel.ResumeLayout(false);
             this.timePanel.PerformLayout();
             this.userProfilePanel.ResumeLayout(false);
+            this.siticonePanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1530,5 +1544,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel purRetPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetBtn;
         private System.Windows.Forms.Timer purchTransition;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
     }
 }

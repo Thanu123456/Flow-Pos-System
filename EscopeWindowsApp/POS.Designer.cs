@@ -86,8 +86,6 @@
             this.posTimePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posDateLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.posTimeLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
-            this.posProfilePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.posProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cashBookFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.cashBookBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cashRegBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -106,6 +104,8 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cashBooktimer = new System.Windows.Forms.Timer(this.components);
             this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.userProfilePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.userPOSProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
@@ -114,9 +114,9 @@
             this.billingPricePanel.SuspendLayout();
             this.posTimingPanel.SuspendLayout();
             this.posTimePanel.SuspendLayout();
-            this.posProfilePanel.SuspendLayout();
             this.cashBookFlowPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).BeginInit();
+            this.userProfilePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -198,7 +198,6 @@
             this.supDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.supDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -828,9 +827,9 @@
             // 
             this.posTimingPanel.BackColor = System.Drawing.Color.Transparent;
             this.posTimingPanel.BorderRadius = 8;
+            this.posTimingPanel.Controls.Add(this.userProfilePanel);
             this.posTimingPanel.Controls.Add(this.refundBtn);
             this.posTimingPanel.Controls.Add(this.posTimePanel);
-            this.posTimingPanel.Controls.Add(this.posProfilePanel);
             this.posTimingPanel.FillColor = System.Drawing.Color.White;
             this.posTimingPanel.Location = new System.Drawing.Point(7, 49);
             this.posTimingPanel.Name = "posTimingPanel";
@@ -893,41 +892,6 @@
             this.posTimeLabel.TabIndex = 9;
             this.posTimeLabel.Text = " 00: 00: 00 AM";
             this.posTimeLabel.Click += new System.EventHandler(this.posTimeLabel_Click);
-            // 
-            // posProfilePanel
-            // 
-            this.posProfilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.posProfilePanel.BackColor = System.Drawing.Color.Transparent;
-            this.posProfilePanel.Controls.Add(this.posProfileBtn);
-            this.posProfilePanel.Location = new System.Drawing.Point(538, 6);
-            this.posProfilePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.posProfilePanel.Name = "posProfilePanel";
-            this.posProfilePanel.Size = new System.Drawing.Size(145, 53);
-            this.posProfilePanel.TabIndex = 31;
-            // 
-            // posProfileBtn
-            // 
-            this.posProfileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.posProfileBtn.BorderRadius = 8;
-            this.posProfileBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.Down;
-            this.posProfileBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
-            this.posProfileBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.posProfileBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.posProfileBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.posProfileBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.posProfileBtn.FillColor = System.Drawing.Color.Transparent;
-            this.posProfileBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.posProfileBtn.ForeColor = System.Drawing.Color.Black;
-            this.posProfileBtn.HoverState.FillColor = System.Drawing.Color.White;
-            this.posProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.userIcon;
-            this.posProfileBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.posProfileBtn.ImageSize = new System.Drawing.Size(30, 30);
-            this.posProfileBtn.Location = new System.Drawing.Point(3, 4);
-            this.posProfileBtn.Name = "posProfileBtn";
-            this.posProfileBtn.Size = new System.Drawing.Size(138, 45);
-            this.posProfileBtn.TabIndex = 6;
-            this.posProfileBtn.Text = "Admin";
-            this.posProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // cashBookFlowPanel
             // 
@@ -1062,7 +1026,6 @@
             this.posProductDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.posProductDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.posProductDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1231,6 +1194,45 @@
             this.siticoneTextBox1.TabIndex = 84;
             this.siticoneTextBox1.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged);
             // 
+            // userProfilePanel
+            // 
+            this.userProfilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.userProfilePanel.BackColor = System.Drawing.Color.Transparent;
+            this.userProfilePanel.Controls.Add(this.userPOSProfileBtn);
+            this.userProfilePanel.Location = new System.Drawing.Point(543, 8);
+            this.userProfilePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.userProfilePanel.Name = "userProfilePanel";
+            this.userProfilePanel.Size = new System.Drawing.Size(146, 51);
+            this.userProfilePanel.TabIndex = 85;
+            // 
+            // userPOSProfileBtn
+            // 
+            this.userPOSProfileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userPOSProfileBtn.Animated = true;
+            this.userPOSProfileBtn.BorderRadius = 8;
+            this.userPOSProfileBtn.CustomImages.Image = global::EscopeWindowsApp.Properties.Resources.Down;
+            this.userPOSProfileBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.userPOSProfileBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.userPOSProfileBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.userPOSProfileBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.userPOSProfileBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.userPOSProfileBtn.FillColor = System.Drawing.Color.White;
+            this.userPOSProfileBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.userPOSProfileBtn.ForeColor = System.Drawing.Color.Black;
+            this.userPOSProfileBtn.HoverState.FillColor = System.Drawing.Color.White;
+            this.userPOSProfileBtn.Image = global::EscopeWindowsApp.Properties.Resources.avatar2;
+            this.userPOSProfileBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userPOSProfileBtn.ImageSize = new System.Drawing.Size(31, 31);
+            this.userPOSProfileBtn.Location = new System.Drawing.Point(3, 4);
+            this.userPOSProfileBtn.Name = "userPOSProfileBtn";
+            this.userPOSProfileBtn.Size = new System.Drawing.Size(139, 43);
+            this.userPOSProfileBtn.TabIndex = 6;
+            this.userPOSProfileBtn.Text = "Admin";
+            this.userPOSProfileBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userPOSProfileBtn.Click += new System.EventHandler(this.userPOSProfileBtn_Click);
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1262,9 +1264,9 @@
             this.posTimingPanel.ResumeLayout(false);
             this.posTimePanel.ResumeLayout(false);
             this.posTimePanel.PerformLayout();
-            this.posProfilePanel.ResumeLayout(false);
             this.cashBookFlowPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.posProductDataGrid)).EndInit();
+            this.userProfilePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1320,8 +1322,6 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel posTimePanel;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel posDateLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel posTimeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel posProfilePanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton posProfileBtn;
         private System.Windows.Forms.FlowLayoutPanel cashBookFlowPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cashBookBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cashRegBtn;
@@ -1340,5 +1340,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
         private System.Windows.Forms.Timer cashBooktimer;
         private Siticone.Desktop.UI.WinForms.SiticoneButton refundBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel userProfilePanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton userPOSProfileBtn;
     }
 }

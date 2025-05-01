@@ -384,6 +384,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogOutForm.Designer.cs">
+      <DependentUpon>LogOutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -645,6 +651,9 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LogOutForm.resx">
+      <DependentUpon>LogOutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogsReport.resx">
       <DependentUpon>LogsReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -741,6 +750,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\avatar2.png" />
     <None Include="Resources\icons8-stocks-growth-96.png" />
     <None Include="Resources\icons8-buy-96.png" />
     <None Include="Resources\icons8-wallet-96.png" />

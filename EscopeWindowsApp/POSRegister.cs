@@ -98,7 +98,8 @@ namespace EscopeWindowsApp
                 }
 
                 this.Hide();
-                POS posForm = new POS();
+                POS posForm = new POS(this.userName, this.userEmail);
+
                 posForm.FormClosed += (s, args) => this.Close();
                 posForm.Show();
             }
