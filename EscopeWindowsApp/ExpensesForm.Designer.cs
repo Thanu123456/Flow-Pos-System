@@ -55,7 +55,7 @@
             this.createExpBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createExpBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createExpBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createExpBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createExpBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createExpBtn.ForeColor = System.Drawing.Color.White;
             this.createExpBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.createExpBtn.Location = new System.Drawing.Point(1158, 30);
@@ -258,7 +258,7 @@
             this.expSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expSearchText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expSearchText.ForeColor = System.Drawing.Color.Gray;
             this.expSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.expSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -268,7 +268,7 @@
             this.expSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.expSearchText.Name = "expSearchText";
             this.expSearchText.PasswordChar = '\0';
-            this.expSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.expSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.expSearchText.PlaceholderText = "Search";
             this.expSearchText.SelectedText = "";
             this.expSearchText.Size = new System.Drawing.Size(400, 42);

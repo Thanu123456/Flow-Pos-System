@@ -85,7 +85,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.preGRNDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.preGRNDataGridView.GridColor = System.Drawing.Color.White;
-            this.preGRNDataGridView.Location = new System.Drawing.Point(17, 100);
+            this.preGRNDataGridView.Location = new System.Drawing.Point(17, 158);
             this.preGRNDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.preGRNDataGridView.Name = "preGRNDataGridView";
             this.preGRNDataGridView.ReadOnly = true;
@@ -104,7 +104,7 @@
             this.preGRNDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.preGRNDataGridView.RowTemplate.Height = 35;
             this.preGRNDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.preGRNDataGridView.Size = new System.Drawing.Size(901, 281);
+            this.preGRNDataGridView.Size = new System.Drawing.Size(901, 246);
             this.preGRNDataGridView.TabIndex = 79;
             this.preGRNDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.preGRNDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -181,11 +181,11 @@
             this.preGRNLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.preGRNLabel.AutoSize = true;
-            this.preGRNLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preGRNLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preGRNLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.preGRNLabel.Location = new System.Drawing.Point(12, 52);
             this.preGRNLabel.Name = "preGRNLabel";
-            this.preGRNLabel.Size = new System.Drawing.Size(186, 28);
+            this.preGRNLabel.Size = new System.Drawing.Size(150, 29);
             this.preGRNLabel.TabIndex = 81;
             this.preGRNLabel.Text = "Previous GRN";
             // 
@@ -199,10 +199,10 @@
             this.preGRNCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.preGRNCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.preGRNCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.preGRNCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.preGRNCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preGRNCancelBtn.ForeColor = System.Drawing.Color.White;
             this.preGRNCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.preGRNCancelBtn.Location = new System.Drawing.Point(823, 399);
+            this.preGRNCancelBtn.Location = new System.Drawing.Point(823, 422);
             this.preGRNCancelBtn.Name = "preGRNCancelBtn";
             this.preGRNCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.preGRNCancelBtn.TabIndex = 82;
@@ -228,7 +228,7 @@
             this.preGRNRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.preGRNRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.preGRNRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.preGRNRefreshBtn.Location = new System.Drawing.Point(501, 52);
+            this.preGRNRefreshBtn.Location = new System.Drawing.Point(302, 96);
             this.preGRNRefreshBtn.Name = "preGRNRefreshBtn";
             this.preGRNRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.preGRNRefreshBtn.TabIndex = 84;
@@ -242,10 +242,10 @@
             this.filterDateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterDateComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.filterDateComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.filterDateComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.filterDateComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.filterDateComboBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterDateComboBox.ForeColor = System.Drawing.Color.Black;
             this.filterDateComboBox.ItemHeight = 36;
-            this.filterDateComboBox.Location = new System.Drawing.Point(768, 52);
+            this.filterDateComboBox.Location = new System.Drawing.Point(768, 96);
             this.filterDateComboBox.Name = "filterDateComboBox";
             this.filterDateComboBox.Size = new System.Drawing.Size(150, 42);
             this.filterDateComboBox.TabIndex = 85;
@@ -262,12 +262,12 @@
             this.preGRNSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.preGRNSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.preGRNSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.preGRNSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.preGRNSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preGRNSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.preGRNSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.preGRNSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.preGRNSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.preGRNSearchText.Location = new System.Drawing.Point(204, 52);
+            this.preGRNSearchText.Location = new System.Drawing.Point(17, 96);
             this.preGRNSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.preGRNSearchText.Name = "preGRNSearchText";
             this.preGRNSearchText.PasswordChar = '\0';
@@ -286,10 +286,10 @@
             this.filterPaymentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterPaymentComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.filterPaymentComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.filterPaymentComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.filterPaymentComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.filterPaymentComboBox.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterPaymentComboBox.ForeColor = System.Drawing.Color.Black;
             this.filterPaymentComboBox.ItemHeight = 36;
-            this.filterPaymentComboBox.Location = new System.Drawing.Point(598, 52);
+            this.filterPaymentComboBox.Location = new System.Drawing.Point(598, 96);
             this.filterPaymentComboBox.Name = "filterPaymentComboBox";
             this.filterPaymentComboBox.Size = new System.Drawing.Size(150, 42);
             this.filterPaymentComboBox.TabIndex = 87;
@@ -299,7 +299,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 466);
+            this.ClientSize = new System.Drawing.Size(939, 489);
             this.Controls.Add(this.filterPaymentComboBox);
             this.Controls.Add(this.preGRNSearchText);
             this.Controls.Add(this.filterDateComboBox);

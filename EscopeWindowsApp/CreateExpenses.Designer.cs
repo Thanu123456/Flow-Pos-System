@@ -104,10 +104,10 @@
             // creExpLabel
             // 
             this.creExpLabel.AutoSize = true;
-            this.creExpLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpLabel.Location = new System.Drawing.Point(18, 50);
             this.creExpLabel.Name = "creExpLabel";
-            this.creExpLabel.Size = new System.Drawing.Size(209, 28);
+            this.creExpLabel.Size = new System.Drawing.Size(177, 29);
             this.creExpLabel.TabIndex = 31;
             this.creExpLabel.Text = "Create Expenses";
             // 
@@ -132,7 +132,7 @@
             this.creExpPanel.FillColor = System.Drawing.Color.White;
             this.creExpPanel.Location = new System.Drawing.Point(23, 96);
             this.creExpPanel.Name = "creExpPanel";
-            this.creExpPanel.Size = new System.Drawing.Size(956, 322);
+            this.creExpPanel.Size = new System.Drawing.Size(956, 309);
             this.creExpPanel.TabIndex = 32;
             // 
             // creExpCatComboBox
@@ -143,14 +143,14 @@
             this.creExpCatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creExpCatComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpCatComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpCatComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creExpCatComboBox.ItemHeight = 36;
             this.creExpCatComboBox.Items.AddRange(new object[] {
             "Choose Category",
             "Supplier 1",
             "Supplier 2"});
-            this.creExpCatComboBox.Location = new System.Drawing.Point(494, 149);
+            this.creExpCatComboBox.Location = new System.Drawing.Point(494, 142);
             this.creExpCatComboBox.Name = "creExpCatComboBox";
             this.creExpCatComboBox.Size = new System.Drawing.Size(443, 42);
             this.creExpCatComboBox.StartIndex = 0;
@@ -165,14 +165,14 @@
             this.creExpWarehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creExpWarehouseComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpWarehouseComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpWarehouseComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creExpWarehouseComboBox.ItemHeight = 36;
             this.creExpWarehouseComboBox.Items.AddRange(new object[] {
             "Choose Warehouse",
             "Supplier 1",
             "Supplier 2"});
-            this.creExpWarehouseComboBox.Location = new System.Drawing.Point(21, 149);
+            this.creExpWarehouseComboBox.Location = new System.Drawing.Point(21, 142);
             this.creExpWarehouseComboBox.Name = "creExpWarehouseComboBox";
             this.creExpWarehouseComboBox.Size = new System.Drawing.Size(443, 42);
             this.creExpWarehouseComboBox.StartIndex = 0;
@@ -185,7 +185,7 @@
             this.creExpDateTimePicker.BorderRadius = 8;
             this.creExpDateTimePicker.Checked = true;
             this.creExpDateTimePicker.FillColor = System.Drawing.Color.White;
-            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpDateTimePicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.creExpDateTimePicker.Location = new System.Drawing.Point(21, 52);
@@ -210,11 +210,11 @@
             this.creExpDetailsext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpDetailsext.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpDetailsext.Font = new System.Drawing.Font("Calibri", 12F);
             this.creExpDetailsext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDetailsext.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpDetailsext.Location = new System.Drawing.Point(494, 250);
-            this.creExpDetailsext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.creExpDetailsext.Location = new System.Drawing.Point(494, 231);
+            this.creExpDetailsext.Margin = new System.Windows.Forms.Padding(4);
             this.creExpDetailsext.Name = "creExpDetailsext";
             this.creExpDetailsext.PasswordChar = '\0';
             this.creExpDetailsext.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -230,7 +230,7 @@
             this.creExpDetailsLabel.AutoSize = true;
             this.creExpDetailsLabel.BackColor = System.Drawing.Color.White;
             this.creExpDetailsLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creExpDetailsLabel.Location = new System.Drawing.Point(491, 215);
+            this.creExpDetailsLabel.Location = new System.Drawing.Point(491, 200);
             this.creExpDetailsLabel.Name = "creExpDetailsLabel";
             this.creExpDetailsLabel.Size = new System.Drawing.Size(67, 23);
             this.creExpDetailsLabel.TabIndex = 27;
@@ -248,11 +248,11 @@
             this.creExpAmountText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpAmountText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpAmountText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpAmountText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpAmountText.Font = new System.Drawing.Font("Calibri", 12F);
             this.creExpAmountText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpAmountText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpAmountText.Location = new System.Drawing.Point(21, 250);
-            this.creExpAmountText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.creExpAmountText.Location = new System.Drawing.Point(21, 231);
+            this.creExpAmountText.Margin = new System.Windows.Forms.Padding(4);
             this.creExpAmountText.Name = "creExpAmountText";
             this.creExpAmountText.PasswordChar = '\0';
             this.creExpAmountText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -267,7 +267,7 @@
             this.creExpAmountLabel.AutoSize = true;
             this.creExpAmountLabel.BackColor = System.Drawing.Color.White;
             this.creExpAmountLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creExpAmountLabel.Location = new System.Drawing.Point(15, 215);
+            this.creExpAmountLabel.Location = new System.Drawing.Point(15, 200);
             this.creExpAmountLabel.Name = "creExpAmountLabel";
             this.creExpAmountLabel.Size = new System.Drawing.Size(77, 23);
             this.creExpAmountLabel.TabIndex = 25;
@@ -279,7 +279,7 @@
             this.creExpCatLabel.AutoSize = true;
             this.creExpCatLabel.BackColor = System.Drawing.Color.White;
             this.creExpCatLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creExpCatLabel.Location = new System.Drawing.Point(490, 115);
+            this.creExpCatLabel.Location = new System.Drawing.Point(490, 111);
             this.creExpCatLabel.Name = "creExpCatLabel";
             this.creExpCatLabel.Size = new System.Drawing.Size(159, 23);
             this.creExpCatLabel.TabIndex = 23;
@@ -290,7 +290,7 @@
             this.creExpWarehouseLabel.AutoSize = true;
             this.creExpWarehouseLabel.BackColor = System.Drawing.Color.White;
             this.creExpWarehouseLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creExpWarehouseLabel.Location = new System.Drawing.Point(17, 115);
+            this.creExpWarehouseLabel.Location = new System.Drawing.Point(17, 111);
             this.creExpWarehouseLabel.Name = "creExpWarehouseLabel";
             this.creExpWarehouseLabel.Size = new System.Drawing.Size(103, 23);
             this.creExpWarehouseLabel.TabIndex = 22;
@@ -332,11 +332,11 @@
             this.creExpTitleText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpTitleText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.creExpTitleText.Font = new System.Drawing.Font("Calibri", 12F);
             this.creExpTitleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpTitleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpTitleText.Location = new System.Drawing.Point(494, 52);
-            this.creExpTitleText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.creExpTitleText.Margin = new System.Windows.Forms.Padding(4);
             this.creExpTitleText.Name = "creExpTitleText";
             this.creExpTitleText.PasswordChar = '\0';
             this.creExpTitleText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -357,7 +357,7 @@
             this.creExpCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creExpCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creExpCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.creExpCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.creExpCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creExpCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.creExpCancelBtn.Location = new System.Drawing.Point(884, 429);
@@ -378,7 +378,7 @@
             this.creExpSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creExpSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creExpSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.creExpSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpSaveBtn.ForeColor = System.Drawing.Color.White;
             this.creExpSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.creExpSaveBtn.Location = new System.Drawing.Point(779, 429);

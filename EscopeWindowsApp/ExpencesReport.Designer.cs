@@ -91,7 +91,7 @@
             this.dateFilterCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dateFilterCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.dateFilterCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.dateFilterCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateFilterCombo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateFilterCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.dateFilterCombo.ItemHeight = 36;
             this.dateFilterCombo.Location = new System.Drawing.Point(657, 53);
@@ -111,7 +111,7 @@
             this.expencesSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expencesSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expencesSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expencesSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.expencesSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expencesSearchText.ForeColor = System.Drawing.Color.Gray;
             this.expencesSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.expencesSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -136,16 +136,17 @@
             this.expencesReportDataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.expencesReportDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.expencesReportDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.expencesReportDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -153,9 +154,10 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.expencesReportDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.expencesReportDataGrid.ColumnHeadersHeight = 45;
+            this.expencesReportDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -180,11 +182,11 @@
             this.expencesReportDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expencesReportDataGrid.RowTemplate.Height = 35;
             this.expencesReportDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expencesReportDataGrid.Size = new System.Drawing.Size(882, 209);
+            this.expencesReportDataGrid.Size = new System.Drawing.Size(882, 210);
             this.expencesReportDataGrid.TabIndex = 42;
             this.expencesReportDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.expencesReportDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -192,14 +194,14 @@
             this.expencesReportDataGrid.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.expencesReportDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.expencesReportDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.expencesReportDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expencesReportDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expencesReportDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.expencesReportDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.expencesReportDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.expencesReportDataGrid.ThemeStyle.HeaderStyle.Height = 45;
             this.expencesReportDataGrid.ThemeStyle.ReadOnly = true;
             this.expencesReportDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.expencesReportDataGrid.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.expencesReportDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expencesReportDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expencesReportDataGrid.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.expencesReportDataGrid.ThemeStyle.RowsStyle.Height = 35;
             this.expencesReportDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
@@ -216,10 +218,10 @@
             this.generateExcel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generateExcel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.generateExcel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.generateExcel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.generateExcel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateExcel.ForeColor = System.Drawing.Color.White;
             this.generateExcel.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.generateExcel.Location = new System.Drawing.Point(771, 384);
+            this.generateExcel.Location = new System.Drawing.Point(771, 385);
             this.generateExcel.Name = "generateExcel";
             this.generateExcel.Size = new System.Drawing.Size(123, 45);
             this.generateExcel.TabIndex = 43;
@@ -236,10 +238,10 @@
             this.generatePdfBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.generatePdfBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.generatePdfBtn.FillColor = System.Drawing.Color.Green;
-            this.generatePdfBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.generatePdfBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generatePdfBtn.ForeColor = System.Drawing.Color.White;
             this.generatePdfBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.generatePdfBtn.Location = new System.Drawing.Point(640, 384);
+            this.generatePdfBtn.Location = new System.Drawing.Point(640, 385);
             this.generatePdfBtn.Name = "generatePdfBtn";
             this.generatePdfBtn.Size = new System.Drawing.Size(123, 45);
             this.generatePdfBtn.TabIndex = 44;
@@ -257,10 +259,10 @@
             // 
             this.totalExpLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalExpLabel.BackColor = System.Drawing.Color.Transparent;
-            this.totalExpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalExpLabel.Location = new System.Drawing.Point(688, 334);
+            this.totalExpLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalExpLabel.Location = new System.Drawing.Point(688, 335);
             this.totalExpLabel.Name = "totalExpLabel";
-            this.totalExpLabel.Size = new System.Drawing.Size(63, 22);
+            this.totalExpLabel.Size = new System.Drawing.Size(59, 25);
             this.totalExpLabel.TabIndex = 45;
             this.totalExpLabel.Text = "TOTAL:";
             // 
@@ -268,10 +270,10 @@
             // 
             this.expTotAmontLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.expTotAmontLabel.BackColor = System.Drawing.Color.Transparent;
-            this.expTotAmontLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expTotAmontLabel.Location = new System.Drawing.Point(771, 334);
+            this.expTotAmontLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expTotAmontLabel.Location = new System.Drawing.Point(755, 335);
             this.expTotAmontLabel.Name = "expTotAmontLabel";
-            this.expTotAmontLabel.Size = new System.Drawing.Size(38, 22);
+            this.expTotAmontLabel.Size = new System.Drawing.Size(38, 25);
             this.expTotAmontLabel.TabIndex = 46;
             this.expTotAmontLabel.Text = "0.00";
             this.expTotAmontLabel.Click += new System.EventHandler(this.expTotAmontLabel_Click);
@@ -280,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 449);
+            this.ClientSize = new System.Drawing.Size(908, 450);
             this.Controls.Add(this.expTotAmontLabel);
             this.Controls.Add(this.totalExpLabel);
             this.Controls.Add(this.generatePdfBtn);
@@ -290,8 +292,8 @@
             this.Controls.Add(this.dateFilterCombo);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(908, 449);
-            this.MinimumSize = new System.Drawing.Size(908, 449);
+            this.MaximumSize = new System.Drawing.Size(908, 450);
+            this.MinimumSize = new System.Drawing.Size(908, 450);
             this.Name = "ExpencesReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExpencesReport";

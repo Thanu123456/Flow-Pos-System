@@ -74,10 +74,10 @@
             // createUserLabel
             // 
             this.createUserLabel.AutoSize = true;
-            this.createUserLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createUserLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserLabel.Location = new System.Drawing.Point(18, 50);
             this.createUserLabel.Name = "createUserLabel";
-            this.createUserLabel.Size = new System.Drawing.Size(153, 28);
+            this.createUserLabel.Size = new System.Drawing.Size(131, 29);
             this.createUserLabel.TabIndex = 17;
             this.createUserLabel.Text = "Create User";
             // 
@@ -104,10 +104,11 @@
             this.createUserFirstText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserFirstText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserFirstText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserFirstText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserFirstText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserFirstText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserFirstText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserFirstText.Location = new System.Drawing.Point(19, 52);
+            this.createUserFirstText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserFirstText.Name = "createUserFirstText";
             this.createUserFirstText.PasswordChar = '\0';
             this.createUserFirstText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -221,8 +222,8 @@
             this.CreateUserRoleCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CreateUserRoleCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CreateUserRoleCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CreateUserRoleCombo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CreateUserRoleCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CreateUserRoleCombo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateUserRoleCombo.ForeColor = System.Drawing.Color.Black;
             this.CreateUserRoleCombo.ItemHeight = 36;
             this.CreateUserRoleCombo.Items.AddRange(new object[] {
             "Select your Role",
@@ -230,7 +231,7 @@
             "Owner"});
             this.CreateUserRoleCombo.Location = new System.Drawing.Point(19, 346);
             this.CreateUserRoleCombo.Name = "CreateUserRoleCombo";
-            this.CreateUserRoleCombo.Size = new System.Drawing.Size(443, 48);
+            this.CreateUserRoleCombo.Size = new System.Drawing.Size(443, 42);
             this.CreateUserRoleCombo.StartIndex = 0;
             this.CreateUserRoleCombo.TabIndex = 30;
             this.CreateUserRoleCombo.SelectedIndexChanged += new System.EventHandler(this.CreateUserRoleCombo_SelectedIndexChanged);
@@ -248,10 +249,11 @@
             this.createUserCpassText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserCpassText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserCpassText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserCpassText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserCpassText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserCpassText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserCpassText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserCpassText.Location = new System.Drawing.Point(494, 250);
+            this.createUserCpassText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserCpassText.Name = "createUserCpassText";
             this.createUserCpassText.PasswordChar = '\0';
             this.createUserCpassText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -273,10 +275,11 @@
             this.createUserPassText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserPassText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserPassText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserPassText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserPassText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserPassText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserPassText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserPassText.Location = new System.Drawing.Point(21, 250);
+            this.createUserPassText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserPassText.Name = "createUserPassText";
             this.createUserPassText.PasswordChar = '\0';
             this.createUserPassText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -298,10 +301,11 @@
             this.createUserEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserEmailText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserEmailText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserEmailText.Location = new System.Drawing.Point(21, 149);
+            this.createUserEmailText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserEmailText.Name = "createUserEmailText";
             this.createUserEmailText.PasswordChar = '\0';
             this.createUserEmailText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -324,10 +328,11 @@
             this.createUserPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserPhoneText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserPhoneText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserPhoneText.Location = new System.Drawing.Point(494, 149);
+            this.createUserPhoneText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserPhoneText.Name = "createUserPhoneText";
             this.createUserPhoneText.PasswordChar = '\0';
             this.createUserPhoneText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -350,10 +355,11 @@
             this.createUserLastText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserLastText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUserLastText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserLastText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createUserLastText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserLastText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserLastText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUserLastText.Location = new System.Drawing.Point(494, 52);
+            this.createUserLastText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserLastText.Name = "createUserLastText";
             this.createUserLastText.PasswordChar = '\0';
             this.createUserLastText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -373,7 +379,7 @@
             this.createCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.createCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.createCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCancelBtn.ForeColor = System.Drawing.Color.White;
             this.createCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.createCancelBtn.Location = new System.Drawing.Point(884, 532);
@@ -393,7 +399,7 @@
             this.createSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createSaveBtn.ForeColor = System.Drawing.Color.White;
             this.createSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.createSaveBtn.Location = new System.Drawing.Point(779, 532);

@@ -18,23 +18,16 @@ namespace EscopeWindowsApp
             InitializeComponent();
             bindingSource = new BindingSource();
             LoadProductsData();
-            // Wire up events
             ProductDataGridView.CellPainting += ProductDataGridView_CellPainting;
             ProductDataGridView.CellFormatting += ProductDataGridView_CellFormatting;
             ProductDataGridView.CellContentClick += ProductDataGridView_CellContentClick;
         }
-
-        //private void Production_Load(object sender, EventArgs e)
-        //{
-            
-        //}
 
         private void ConfigureDataGridView()
         {
             ProductDataGridView.AutoGenerateColumns = false;
             ProductDataGridView.Columns.Clear();
 
-            // Add columns as specified
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "id",
@@ -47,7 +40,7 @@ namespace EscopeWindowsApp
                 DataPropertyName = "variation_type_id",
                 Name = "variation_type_id",
                 HeaderText = "Variation Type ID",
-                Visible = false // Hidden column
+                Visible = false
             });
 
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -93,7 +86,7 @@ namespace EscopeWindowsApp
                 HeaderText = "RETAIL PRICE",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
-            
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "stock",
@@ -101,7 +94,6 @@ namespace EscopeWindowsApp
                 HeaderText = "STOCK"
             });
 
-            // Add action buttons
             ProductDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
@@ -118,7 +110,6 @@ namespace EscopeWindowsApp
                 ToolTipText = "Delete this product"
             });
 
-            // Prevent the empty row at the end
             ProductDataGridView.AllowUserToAddRows = false;
         }
 
@@ -126,7 +117,6 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex < 0) return;
 
-            // Format product ID
             if (ProductDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 if (e.Value != null)
@@ -137,7 +127,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Handle null values
             if (e.Value == DBNull.Value || e.Value == null)
             {
                 e.Value = "N/A";
@@ -220,7 +209,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Replace DBNull with default values
                 foreach (DataRow row in productsTable.Rows)
                 {
                     for (int i = 0; i < productsTable.Columns.Count; i++)
@@ -232,7 +220,7 @@ namespace EscopeWindowsApp
                             else if (productsTable.Columns[i].DataType == typeof(decimal))
                                 row[i] = 0.00m;
                             else if (productsTable.Columns[i].DataType == typeof(int))
-                                row[i] = 0;
+                                 row[i] = 0;
                         }
                     }
                 }
@@ -242,12 +230,10 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Create empty table structure with variation_type_id
                 productsTable = new DataTable();
                 productsTable.Columns.Add("id", typeof(int));
                 productsTable.Columns.Add("variation_type_id", typeof(int));
                 productsTable.Columns.Add("product_name", typeof(string));
-                // ... (rest of the columns remain the same)
                 bindingSource.DataSource = productsTable;
             }
         }
@@ -286,7 +272,6 @@ namespace EscopeWindowsApp
 
         private void ProductDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if a valid row is clicked
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = ProductDataGridView.Rows[e.RowIndex];
@@ -295,44 +280,31 @@ namespace EscopeWindowsApp
                 if (columnName == "EditColumn")
                 {
                     int productId = Convert.ToInt32(row.Cells["id"].Value);
+                    string productName = row.Cells["product_name"].Value.ToString();
+                    string category = row.Cells["category_name"].Value.ToString();
+                    int variationTypeId = row.Cells["variation_type_id"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["variation_type_id"].Value) : 0;
                     string variationType = row.Cells["variation_type"].Value.ToString();
 
-                    if (variationType == "N/A")
-                    {
-                        // No variation: Open CreateProduct directly
-                        CreateProduct editForm = new CreateProduct(productId);
-                        editForm.FormClosed += (s, args) => LoadProductsData();
-                        editForm.Show();
-                    }
-                    else
-                    {
-                        // Has variation: Open ProductPricing first
-                        if (row.Cells["variation_type_id"].Value == DBNull.Value)
-                        {
-                            MessageBox.Show("Variation type ID is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        int variationId = Convert.ToInt32(row.Cells["variation_type_id"].Value);
-                        ProductPricing pricingForm = new ProductPricing(variationId, productId, variationType);
-                        if (pricingForm.ShowDialog() == DialogResult.OK)
-                        {
-                            // After saving pricing, open CreateProduct
-                            CreateProduct editForm = new CreateProduct(productId);
-                            editForm.FormClosed += (s, args) => LoadProductsData();
-                            editForm.Show();
-                        }
-                    }
+                    CreateProduct editForm = new CreateProduct(
+                        productId,
+                        productName,
+                        category,
+                        0, // unitId
+                        0, // warehouseId
+                        0, // supplierId
+                        0, // brandId
+                        variationType
+                    );
+                    editForm.FormClosed += (s, args) => LoadProductsData();
+                    editForm.Show();
                 }
 
-                // Check if the delete button column was clicked
                 if (columnName == "DeleteColumn")
                 {
-                    // Extract product ID and variation type from the selected row
                     int productId = Convert.ToInt32(row.Cells["id"].Value);
                     string variationType = row.Cells["variation_type"].Value.ToString();
-                    string formattedId = $"pro{productId:D3}"; // Format product ID as "pro001"
+                    string formattedId = $"pro{productId:D3}";
 
-                    // Customize the confirmation message based on whether it's a product or variation
                     string deleteMessage;
                     if (variationType == "N/A")
                     {
@@ -343,7 +315,6 @@ namespace EscopeWindowsApp
                         deleteMessage = $"Are you sure you want to delete variation '{variationType}' of product {formattedId}?";
                     }
 
-                    // Show confirmation dialog
                     DialogResult result = MessageBox.Show(
                         deleteMessage,
                         "Confirm Delete",
@@ -355,46 +326,38 @@ namespace EscopeWindowsApp
                     {
                         try
                         {
-                            // Open database connection
                             using (MySqlConnection connection = new MySqlConnection(connectionString))
                             {
                                 connection.Open();
-
-                                // Start a transaction for atomic operations
                                 using (MySqlTransaction transaction = connection.BeginTransaction())
                                 {
                                     try
                                     {
                                         if (variationType == "N/A")
                                         {
-                                            // Delete the entire product and all related data
                                             string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId";
                                             string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId";
                                             string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId";
                                             string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
 
-                                            // Execute deletion from grn_items
                                             using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            // Execute deletion from pricing
                                             using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            // Execute deletion from stock
                                             using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            // Execute deletion from products
                                             using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -403,12 +366,10 @@ namespace EscopeWindowsApp
                                         }
                                         else
                                         {
-                                            // Delete only the specific variation
                                             string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId AND variation_type = @variationType";
                                             string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_type = @variationType";
                                             string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId AND variation_type = @variationType";
 
-                                            // Execute deletion from grn_items for the specific variation
                                             using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -416,7 +377,6 @@ namespace EscopeWindowsApp
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            // Execute deletion from pricing for the specific variation
                                             using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -424,7 +384,6 @@ namespace EscopeWindowsApp
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            // Execute deletion from stock for the specific variation
                                             using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -433,18 +392,12 @@ namespace EscopeWindowsApp
                                             }
                                         }
 
-                                        // Commit the transaction if all operations succeed
                                         transaction.Commit();
-
-                                        // Refresh the DataGridView
                                         LoadProductsData();
-
-                                        // Inform the user of success
                                         MessageBox.Show("Deletion successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                     catch (Exception ex)
                                     {
-                                        // Roll back the transaction on failure
                                         transaction.Rollback();
                                         throw new Exception("Transaction failed: " + ex.Message);
                                     }
@@ -453,15 +406,12 @@ namespace EscopeWindowsApp
                         }
                         catch (Exception ex)
                         {
-                            // Display error message if deletion fails
                             MessageBox.Show($"Error deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
-                // Note: Add existing edit logic here if applicable
             }
         }
-        
 
         private void productFirstBtn_Click(object sender, EventArgs e)
         {
@@ -540,18 +490,13 @@ namespace EscopeWindowsApp
 
         private void adjPageCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Pagination logic can be implemented here if needed
         }
+
         private void Production_Load_1(object sender, EventArgs e)
         {
             ConfigureDataGridView();
             LoadProductsData();
             ProductDataGridView.DataSource = bindingSource;
-        }
-
-        private void ProductDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

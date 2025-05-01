@@ -127,13 +127,14 @@
             this.loginUserNameTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.loginUserNameTextBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
             this.loginUserNameTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.loginUserNameTextBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginUserNameTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginUserNameTextBox.ForeColor = System.Drawing.Color.Black;
             this.loginUserNameTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.loginUserNameTextBox.Location = new System.Drawing.Point(62, 181);
+            this.loginUserNameTextBox.Location = new System.Drawing.Point(62, 185);
             this.loginUserNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.loginUserNameTextBox.Name = "loginUserNameTextBox";
             this.loginUserNameTextBox.PasswordChar = '\0';
+            this.loginUserNameTextBox.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.loginUserNameTextBox.PlaceholderText = "User Name / Email";
             this.loginUserNameTextBox.SelectedText = "";
             this.loginUserNameTextBox.Size = new System.Drawing.Size(305, 43);
@@ -144,10 +145,10 @@
             // 
             this.loginLabel.AutoSize = true;
             this.loginLabel.BackColor = System.Drawing.Color.White;
-            this.loginLabel.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginLabel.Location = new System.Drawing.Point(58, 140);
             this.loginLabel.Name = "loginLabel";
-            this.loginLabel.Size = new System.Drawing.Size(60, 26);
+            this.loginLabel.Size = new System.Drawing.Size(66, 29);
             this.loginLabel.TabIndex = 13;
             this.loginLabel.Text = "Login";
             // 
@@ -163,13 +164,14 @@
             this.loginPasswordTextbox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.loginPasswordTextbox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(248)))));
             this.loginPasswordTextbox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.loginPasswordTextbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginPasswordTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginPasswordTextbox.ForeColor = System.Drawing.Color.Black;
             this.loginPasswordTextbox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.loginPasswordTextbox.Location = new System.Drawing.Point(62, 241);
+            this.loginPasswordTextbox.Location = new System.Drawing.Point(62, 245);
             this.loginPasswordTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.loginPasswordTextbox.Name = "loginPasswordTextbox";
             this.loginPasswordTextbox.PasswordChar = '\0';
+            this.loginPasswordTextbox.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.loginPasswordTextbox.PlaceholderText = "Enter Your Password";
             this.loginPasswordTextbox.SelectedText = "";
             this.loginPasswordTextbox.Size = new System.Drawing.Size(305, 43);
@@ -187,7 +189,7 @@
             this.loginBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.loginBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
             this.loginBtn.FillColor2 = System.Drawing.Color.Blue;
-            this.loginBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.ForeColor = System.Drawing.Color.White;
             this.loginBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
             this.loginBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));

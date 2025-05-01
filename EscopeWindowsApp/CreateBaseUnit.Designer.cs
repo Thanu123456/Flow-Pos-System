@@ -91,7 +91,7 @@
             this.creCatSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creCatSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creCatSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.creCatSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.creCatSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creCatSaveBtn.ForeColor = System.Drawing.Color.White;
             this.creCatSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.creCatSaveBtn.Location = new System.Drawing.Point(166, 201);
@@ -111,7 +111,7 @@
             this.creCatCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creCatCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creCatCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.creCatCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.creCatCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creCatCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creCatCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.creCatCancelBtn.Location = new System.Drawing.Point(274, 201);
@@ -148,7 +148,7 @@
             this.createBaseUnitNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createBaseUnitNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createBaseUnitNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createBaseUnitNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createBaseUnitNameText.Font = new System.Drawing.Font("Calibri", 12F);
             this.createBaseUnitNameText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createBaseUnitNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createBaseUnitNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -156,6 +156,7 @@
             this.createBaseUnitNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createBaseUnitNameText.Name = "createBaseUnitNameText";
             this.createBaseUnitNameText.PasswordChar = '\0';
+            this.createBaseUnitNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createBaseUnitNameText.PlaceholderText = "Name";
             this.createBaseUnitNameText.SelectedText = "";
             this.createBaseUnitNameText.Size = new System.Drawing.Size(348, 42);
