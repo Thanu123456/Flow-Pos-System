@@ -22,12 +22,17 @@ namespace EscopeWindowsApp
         private Panel suggestionPanel;      // Panel to wrap ListBox for border
         private Timer searchTimer;         // Timer for delayed search
         private bool suppressTextChanged;  // Flag to prevent recursive TextChanged events
+        private string username; // Store username
+        private string userEmail;
 
-        public POS()
+        public POS(string username, string userEmail)
         {
             InitializeComponent();
             posClientNameLabel.Text = "Walk-In Customer";
             posClientNumLabel.Text = "";
+
+            this.username = username;
+            this.userEmail = userEmail;
 
             // Initialize and start the time timer
             timeTimer = new Timer();
@@ -1544,6 +1549,25 @@ namespace EscopeWindowsApp
             }
             Refund refund = new Refund();
             refund.Show();
+        }
+
+        private void userPOSProfileBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is LogOutForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            LogOutForm logOutForm = new LogOutForm(this.username, this.userEmail);
+            logOutForm.Show();
         }
     }
 }

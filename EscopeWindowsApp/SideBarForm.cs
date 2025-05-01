@@ -79,7 +79,7 @@ namespace EscopeWindowsApp
             Control[] sidebarButtons = new Control[]
             {
                 manuBtn, expensesBtn, salesBtn, peoplesBtn, dashboardBtn,
-                quatationBtn, wareHouseBtn, transferBtn, reportsBtn,
+                quatationBtn, wareHouseBtn, reportsBtn,
                 settingBtn, sidebarBtn, proBtn, proCatBtn, varBtn,
                 brandBtn, unitsBtn, baseUnitBtn, salesListBtn, salesRetBtn,
                 barcodePrtBtn, creExpBtn, expCatBtn, cusBtn, supBtn, userBtn,
@@ -333,7 +333,6 @@ namespace EscopeWindowsApp
                     settingBtnPanel.Width = 250;
                     varBtnPanel.Width = 250;
                     reportsBtnPanel.Width = 250;
-                    transferBtnPanel.Width = 250;
                     wareHouseBtnPanel.Width = 250;
                     userBtnPanel.Width = 250;
                     supBtnPanel.Width = 250;
@@ -368,7 +367,6 @@ namespace EscopeWindowsApp
                     settingBtnPanel.Width = 56;
                     varBtnPanel.Width = 56;
                     reportsBtnPanel.Width = 56;
-                    transferBtnPanel.Width = 56;
                     wareHouseBtnPanel.Width = 56;
                     userBtnPanel.Width = 56;
                     supBtnPanel.Width = 56;
@@ -511,14 +509,6 @@ namespace EscopeWindowsApp
         {
             warehouseForm = null;
             Console.WriteLine("WarehouseForm closed");
-        }
-
-        private void transferBtn_Click(object sender, EventArgs e)
-        {
-            CheckButton(transferBtn);
-            ExpandSidebarIfCollapsed();
-            CollapseAllPanels();
-            OpenFormAndClosePrevious(ref transferForm, (form) => form.FormClosed += TransferForm_FormClosed);
         }
 
         private void TransferForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -880,6 +870,26 @@ namespace EscopeWindowsApp
         {
             purchasesReturnForm = null;
             Console.WriteLine("PurchasesReturnForm closed");
+        }
+
+        private void userProfileBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is LogOutForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            LogOutForm logOutForm = new LogOutForm(this.userName, this.userEmail);
+            logOutForm.Show();
+            
         }
     }
 }
