@@ -29,7 +29,7 @@ namespace EscopeWindowsApp
         UserForm userForm;
         Quotations quatationsForm;
         WarehouseForm warehouseForm;
-        AdjustmentsForm adjustmentsForm;
+        
         Transfer transferForm;
         Reports reportsForm;
         Setting settingForm;
@@ -483,11 +483,7 @@ namespace EscopeWindowsApp
         {
         }
 
-        private void AdjustmentsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            adjustmentsForm = null;
-            Console.WriteLine("AdjustmentsForm closed");
-        }
+        
 
         private void quatationBtn_Click(object sender, EventArgs e)
         {

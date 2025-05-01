@@ -68,9 +68,10 @@
             this.createCusCityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusCityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusCityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createCusCityText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusCityText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCusCityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createCusCityText.Location = new System.Drawing.Point(19, 246);
+            this.createCusCityText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createCusCityText.Name = "createCusCityText";
             this.createCusCityText.PasswordChar = '\0';
             this.createCusCityText.PlaceholderText = "Enter Customer City";
@@ -92,9 +93,10 @@
             this.createCusAddressText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusAddressText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusAddressText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createCusAddressText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusAddressText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCusAddressText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createCusAddressText.Location = new System.Drawing.Point(495, 246);
+            this.createCusAddressText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createCusAddressText.Name = "createCusAddressText";
             this.createCusAddressText.PasswordChar = '\0';
             this.createCusAddressText.PlaceholderText = "Enter Customer Address";
@@ -116,9 +118,10 @@
             this.addCusEmailText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.addCusEmailText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.addCusEmailText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.addCusEmailText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.addCusEmailText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCusEmailText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.addCusEmailText.Location = new System.Drawing.Point(494, 58);
+            this.addCusEmailText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addCusEmailText.Name = "addCusEmailText";
             this.addCusEmailText.PasswordChar = '\0';
             this.addCusEmailText.PlaceholderText = "Enter Customer Email";
@@ -139,9 +142,10 @@
             this.CreateCusPhoneText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.CreateCusPhoneText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.CreateCusPhoneText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CreateCusPhoneText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.CreateCusPhoneText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateCusPhoneText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CreateCusPhoneText.Location = new System.Drawing.Point(19, 151);
+            this.CreateCusPhoneText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CreateCusPhoneText.Name = "CreateCusPhoneText";
             this.CreateCusPhoneText.PasswordChar = '\0';
             this.CreateCusPhoneText.PlaceholderText = "Enter Customer Phone";
@@ -162,9 +166,10 @@
             this.createCusNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCusNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createCusNameText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
+            this.createCusNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCusNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createCusNameText.Location = new System.Drawing.Point(19, 58);
+            this.createCusNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createCusNameText.Name = "createCusNameText";
             this.createCusNameText.PasswordChar = '\0';
             this.createCusNameText.PlaceholderText = "Enter Customer Name";
@@ -189,10 +194,10 @@
             // createCusLabel
             // 
             this.createCusLabel.AutoSize = true;
-            this.createCusLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCusLabel.Location = new System.Drawing.Point(18, 50);
             this.createCusLabel.Name = "createCusLabel";
-            this.createCusLabel.Size = new System.Drawing.Size(210, 28);
+            this.createCusLabel.Size = new System.Drawing.Size(182, 29);
             this.createCusLabel.TabIndex = 18;
             this.createCusLabel.Text = "Create Customer";
             // 
@@ -263,7 +268,7 @@
             this.createCusDateTime.BorderThickness = 1;
             this.createCusDateTime.Checked = true;
             this.createCusDateTime.FillColor = System.Drawing.Color.LightCyan;
-            this.createCusDateTime.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCusDateTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCusDateTime.ForeColor = System.Drawing.Color.Gray;
             this.createCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.createCusDateTime.Location = new System.Drawing.Point(494, 151);
@@ -319,7 +324,7 @@
             this.cusCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.cusCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.cusCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cusCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.cusCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusCancelBtn.ForeColor = System.Drawing.Color.White;
             this.cusCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.cusCancelBtn.Location = new System.Drawing.Point(884, 429);
@@ -340,7 +345,7 @@
             this.cusSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.cusSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.cusSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.cusSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusSaveBtn.ForeColor = System.Drawing.Color.White;
             this.cusSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.cusSaveBtn.Location = new System.Drawing.Point(779, 429);

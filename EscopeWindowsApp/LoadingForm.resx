@@ -127,7 +127,7 @@
   <data name="loadingPictureBoxLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJAAAAAuCAYAAADHhpC9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAGQFJREFUeF7tXAl8VNXVP5NEWcOWkIUsZJlsk8wkk0kymWQmmUz2jUBCQkICBJIg
+        DwAACw8BkvkDpQAAGQFJREFUeF7tXAl8VNXVP5NEWcOWkIUsZJlsk8wkk0kymWQmmUz2jUBCQkICBJIg
         WwDDVhFR0bq0Lv2qfrXaWlvb0oqVWqut1uqvWreixa1SqbhWrEWqLCIS4H7nnPse8zKZSYa1/frL/8fh
         vfveXd7c+39nufe+wAhGMIIRjGAEIxjBCEYwgvOLQOUIEJEVB9Nz2yGzcRMYazeDsQaPpytYLrNhA8SY
         ZkB4YphSMyFAOY7gvwQ6FDmoKaVdULxiPzhXCLBfIiBvvoD8Tp+iy18owNIhIKNFQNJMAYkNAtJmCzDP
@@ -255,7 +255,7 @@ FlowPOS - where every transaction flows flawlessly.
   <data name="loadingPictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAd0AAAGwCAYAAADsV7/qAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAMPxJREFUeF7t3U+MZWeZ33H+dN/q7up226Yau8EYA42nMcxgdxsb9zQ95VWkzCwS
+        DwAACw8BkvkDpQAAMPxJREFUeF7t3U+MZWeZ33H+dN/q7up226Yau8EYA42nMcxgdxsb9zQ95VWkzCwS
         JVaygYzIsImUgUVWBCkWSpRJFskIexMWmWxgA9Js2LGY4FkkSFhG/JGlZOGZUWBAXgA22ALaJr/fU+/z
         8pz33mpXn1MG//l+pEfvueece+tW2dbPz3v+veE36Ve/+tWNqrtVn1L9V9Vfqp5qBQDAQTk3nlD9lcp5
         4lzZVdS80aXlqPba+ePBY7x+zdIv6KD1H8N/mB+pAAB42bz44ov/8xe/+MXHf/jDH75HMfRm1ZuytLkH
@@ -470,7 +470,7 @@ FlowPOS - where every transaction flows flawlessly.
   <data name="loadingPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAjEAAAJTCAYAAAD5U0elAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAA/7JJREFUeF7svQdgVGW6///fe/fevXfvvXv3bl93VVronbRJpYQAIVTBgoC9ra4K
+        DwAACw8BkvkDpQAA/7JJREFUeF7svQdgVGW6///fe/fevXfvvXv3bl93VVronbRJpYQAIVTBgoC9ra4K
         dkV/gIWWDqIiSocQ0jsdQXoo6dNSSJ9MeiFl5nzP/3nemQkBUQGJuu771YdzZubMmTOTOe98ztPe/09K
         SkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpK
         SkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpK
@@ -4977,7 +4977,7 @@ FlowPOS - where every transaction flows flawlessly.
   <data name="loadingPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAmUAAAIMCAYAAAC0dNu1AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAGW5JREFUeF7t3d1V29jewOGUkBIogRIogQ5OOjh0MHSQdJDpgLcDX4Ht3FCC1gr6
+        DwAACw8BkvkDpQAAGW5JREFUeF7t3d1V29jewOGUkBIogRIogQ5OOjh0MHSQdJDpgLcDX4Ht3FCC1gr6
         sLmhhPN62zIYswHb6FvPb63n4hwDYZgY/WdrS/omHdJ9knyfFg8Xszz9NVvk9yv/e1+RxMzXn1dM3lgW
         v3dNi+x6626RX02L9Ecwz/5ehu/hRXIWhO+t/DYlSZLG1bQoVgNRGJayf1eD2Groig1nbXgeAt8MfS/D
         3mbI2w53t2l6Hoa78h9NkiSpv90+pudhVWs1GK0Godiw1Cd7q3qrgW71v39uB7rtip1hTpIkdbpwOvEu

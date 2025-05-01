@@ -95,7 +95,7 @@
             this.creCategorySaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creCategorySaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creCategorySaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.creCategorySaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.creCategorySaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creCategorySaveBtn.ForeColor = System.Drawing.Color.White;
             this.creCategorySaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.creCategorySaveBtn.Location = new System.Drawing.Point(170, 364);
@@ -115,7 +115,7 @@
             this.creCategoryCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.creCategoryCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.creCategoryCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.creCategoryCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.creCategoryCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creCategoryCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creCategoryCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.creCategoryCancelBtn.Location = new System.Drawing.Point(278, 364);
@@ -177,7 +177,7 @@
             this.createCategoryNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCategoryNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createCategoryNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createCategoryNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createCategoryNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createCategoryNameText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createCategoryNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createCategoryNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -185,6 +185,7 @@
             this.createCategoryNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createCategoryNameText.Name = "createCategoryNameText";
             this.createCategoryNameText.PasswordChar = '\0';
+            this.createCategoryNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createCategoryNameText.PlaceholderText = "Name";
             this.createCategoryNameText.SelectedText = "";
             this.createCategoryNameText.Size = new System.Drawing.Size(348, 42);

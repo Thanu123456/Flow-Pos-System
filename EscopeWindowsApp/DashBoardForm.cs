@@ -470,19 +470,24 @@ namespace EscopeWindowsApp
 
         private void ConfigureDailyProfitLineChart()
         {
+            // Clear all existing configurations to start fresh
             dailyProfitLineChart.Series.Clear();
             dailyProfitLineChart.ChartAreas.Clear();
             dailyProfitLineChart.Legends.Clear();
             dailyProfitLineChart.Titles.Clear();
 
-            ChartArea chartArea = new ChartArea("ProfitArea");
-            chartArea.BackColor = Color.FromArgb(240, 240, 245);
-            chartArea.BackGradientStyle = GradientStyle.TopBottom;
-            chartArea.BackSecondaryColor = Color.White;
-            chartArea.BorderColor = Color.FromArgb(200, 200, 200);
-            chartArea.BorderDashStyle = ChartDashStyle.Solid;
-            chartArea.BorderWidth = 1;
+            // Create and configure chart area
+            ChartArea chartArea = new ChartArea("ProfitArea")
+            {
+                BackColor = Color.FromArgb(240, 240, 245),
+                BackGradientStyle = GradientStyle.TopBottom,
+                BackSecondaryColor = Color.White,
+                BorderColor = Color.FromArgb(200, 200, 200),
+                BorderDashStyle = ChartDashStyle.Solid,
+                BorderWidth = 1
+            };
 
+            // Configure X-axis
             chartArea.AxisX.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
             chartArea.AxisX.LabelStyle.Font = new Font("Segoe UI", 9F);
             chartArea.AxisX.LabelStyle.Format = "dd-MMM";
@@ -491,6 +496,7 @@ namespace EscopeWindowsApp
             chartArea.AxisX.MinorGrid.Enabled = false;
             chartArea.AxisX.LineColor = Color.FromArgb(150, 150, 150);
 
+            // Configure Y-axis
             chartArea.AxisY.TitleFont = new Font("Segoe UI", 10F, FontStyle.Regular);
             chartArea.AxisY.LabelStyle.Font = new Font("Segoe UI", 9F);
             chartArea.AxisY.LabelStyle.Format = "N0";
@@ -498,8 +504,24 @@ namespace EscopeWindowsApp
             chartArea.AxisY.MinorGrid.Enabled = false;
             chartArea.AxisY.LineColor = Color.FromArgb(150, 150, 150);
 
+            // Explicitly disable all zooming, scrolling, and interactive behaviors
+            chartArea.CursorX.IsUserEnabled = false;
+            chartArea.CursorX.IsUserSelectionEnabled = false;
+            chartArea.CursorY.IsUserEnabled = false;
+            chartArea.CursorY.IsUserSelectionEnabled = false;
+            chartArea.AxisX.ScaleView.Zoomable = false;
+            chartArea.AxisY.ScaleView.Zoomable = false;
+            chartArea.AxisX.ScrollBar.Enabled = false;
+            chartArea.AxisY.ScrollBar.Enabled = false;
+            chartArea.AxisX.Enabled = AxisEnabled.True;
+            chartArea.AxisY.Enabled = AxisEnabled.True;
+            chartArea.AxisX.ScaleView.Size = double.NaN;
+            chartArea.AxisY.ScaleView.Size = double.NaN;
+
+            // Add chart area to chart
             dailyProfitLineChart.ChartAreas.Add(chartArea);
 
+            // Configure series
             Series profitSeries = new Series("DailyProfit")
             {
                 ChartType = SeriesChartType.Spline,
@@ -514,7 +536,21 @@ namespace EscopeWindowsApp
             };
             dailyProfitLineChart.Series.Add(profitSeries);
 
+            // Set chart size
             dailyProfitLineChart.Size = new Size(dailyProfitLineChart.Width + 50, dailyProfitLineChart.Height + 75);
+
+            // Reset any existing zoom
+            chartArea.AxisX.ScaleView.ZoomReset(0);
+            chartArea.AxisY.ScaleView.ZoomReset(0);
+
+            // Disable all mouse interactions to prevent zooming/scrolling
+            dailyProfitLineChart.MouseWheel += (s, e) => { /* Ignore mouse wheel */ };
+            dailyProfitLineChart.MouseDown += (s, e) => { /* Ignore mouse down */ };
+            dailyProfitLineChart.MouseMove += (s, e) => { /* Ignore mouse move */ };
+            dailyProfitLineChart.MouseClick += (s, e) => { /* Ignore mouse click */ };
+
+            // Debug: Log chart type to confirm control type
+            Console.WriteLine($"DailyProfitLineChart Type: {dailyProfitLineChart.GetType().FullName}");
         }
 
         private void LoadDailyProfitData()
@@ -659,6 +695,10 @@ namespace EscopeWindowsApp
                 }
 
                 dailyProfitLineChart.ChartAreas["ProfitArea"].RecalculateAxesScale();
+
+                // Reset zoom after data load
+                dailyProfitLineChart.ChartAreas["ProfitArea"].AxisX.ScaleView.ZoomReset(0);
+                dailyProfitLineChart.ChartAreas["ProfitArea"].AxisY.ScaleView.ZoomReset(0);
             }
             catch (Exception)
             {
@@ -673,7 +713,7 @@ namespace EscopeWindowsApp
 
         private void dailyProfitLineChart_Click(object sender, EventArgs e)
         {
-            ConfigureDailyProfitLineChart();
+            // Only reload data and reset zoom
             LoadDailyProfitData();
         }
 
@@ -1197,7 +1237,7 @@ namespace EscopeWindowsApp
                 purAmountLabel.Text = " 0.00";
                 saleReAmountLabel.Text = " 0.00";
                 profitAmoutLabel.Text = " 0.00";
-                profitAmoutLabel.ForeColor = Color.Black; // Default color in case of error
+                profitAmoutLabel.ForeColor = Color.Black;
             }
         }
 
@@ -1257,5 +1297,6 @@ namespace EscopeWindowsApp
             todayBtn_Click(sender, e);
         }
         private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
+        private void siticonePanel3_Paint(object sender, PaintEventArgs e) { }
     }
 }

@@ -119,10 +119,10 @@
             // 
             this.loadingDetailsLabel.AutoSize = true;
             this.loadingDetailsLabel.BackColor = System.Drawing.Color.White;
-            this.loadingDetailsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadingDetailsLabel.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadingDetailsLabel.Location = new System.Drawing.Point(59, 143);
             this.loadingDetailsLabel.Name = "loadingDetailsLabel";
-            this.loadingDetailsLabel.Size = new System.Drawing.Size(311, 208);
+            this.loadingDetailsLabel.Size = new System.Drawing.Size(326, 234);
             this.loadingDetailsLabel.TabIndex = 5;
             this.loadingDetailsLabel.Text = resources.GetString("loadingDetailsLabel.Text");
             // 
@@ -130,11 +130,11 @@
             // 
             this.loadingProgressBar.BackColor = System.Drawing.Color.White;
             this.loadingProgressBar.BorderRadius = 5;
-            this.loadingProgressBar.Location = new System.Drawing.Point(62, 377);
+            this.loadingProgressBar.Location = new System.Drawing.Point(58, 387);
             this.loadingProgressBar.Name = "loadingProgressBar";
             this.loadingProgressBar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
             this.loadingProgressBar.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(52)))), ((int)(((byte)(94)))));
-            this.loadingProgressBar.Size = new System.Drawing.Size(308, 14);
+            this.loadingProgressBar.Size = new System.Drawing.Size(323, 14);
             this.loadingProgressBar.TabIndex = 6;
             this.loadingProgressBar.Text = "Loading Bar";
             this.loadingProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;

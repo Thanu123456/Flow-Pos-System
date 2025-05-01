@@ -85,8 +85,6 @@
             this.quatationBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.wareHouseBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.wareHouseBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.transferBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.transferBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.reportsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.reportsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.settingBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -140,7 +138,6 @@
             this.userBtnPanel.SuspendLayout();
             this.qutationBtnPanel.SuspendLayout();
             this.wareHouseBtnPanel.SuspendLayout();
-            this.transferBtnPanel.SuspendLayout();
             this.reportsBtnPanel.SuspendLayout();
             this.settingBtnPanel.SuspendLayout();
             this.sidebarBtnPanel.SuspendLayout();
@@ -459,7 +456,6 @@
             this.sideBarPanel.Controls.Add(this.peoplesLayoutPanel);
             this.sideBarPanel.Controls.Add(this.qutationBtnPanel);
             this.sideBarPanel.Controls.Add(this.wareHouseBtnPanel);
-            this.sideBarPanel.Controls.Add(this.transferBtnPanel);
             this.sideBarPanel.Controls.Add(this.reportsBtnPanel);
             this.sideBarPanel.Controls.Add(this.settingBtnPanel);
             this.sideBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1083,45 +1079,10 @@
             this.wareHouseBtn.UseTransparentBackground = true;
             this.wareHouseBtn.Click += new System.EventHandler(this.wareHouseBtn_Click);
             // 
-            // transferBtnPanel
-            // 
-            this.transferBtnPanel.Controls.Add(this.transferBtn);
-            this.transferBtnPanel.Location = new System.Drawing.Point(0, 328);
-            this.transferBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.transferBtnPanel.Name = "transferBtnPanel";
-            this.transferBtnPanel.Size = new System.Drawing.Size(250, 41);
-            this.transferBtnPanel.TabIndex = 16;
-            // 
-            // transferBtn
-            // 
-            this.transferBtn.BackColor = System.Drawing.Color.Transparent;
-            this.transferBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.transferBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.transferBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.transferBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.transferBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.transferBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.transferBtn.FillColor = System.Drawing.Color.White;
-            this.transferBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.transferBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.transferBtn.Image = global::EscopeWindowsApp.Properties.Resources.transfer;
-            this.transferBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.transferBtn.ImageOffset = new System.Drawing.Point(14, 0);
-            this.transferBtn.Location = new System.Drawing.Point(-7, -4);
-            this.transferBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.transferBtn.Name = "transferBtn";
-            this.transferBtn.PressedColor = System.Drawing.Color.Navy;
-            this.transferBtn.Size = new System.Drawing.Size(266, 48);
-            this.transferBtn.TabIndex = 3;
-            this.transferBtn.Text = "          Transfer";
-            this.transferBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.transferBtn.UseTransparentBackground = true;
-            this.transferBtn.Click += new System.EventHandler(this.transferBtn_Click);
-            // 
             // reportsBtnPanel
             // 
             this.reportsBtnPanel.Controls.Add(this.reportsBtn);
-            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 369);
+            this.reportsBtnPanel.Location = new System.Drawing.Point(0, 328);
             this.reportsBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.reportsBtnPanel.Name = "reportsBtnPanel";
             this.reportsBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -1156,7 +1117,7 @@
             // settingBtnPanel
             // 
             this.settingBtnPanel.Controls.Add(this.settingBtn);
-            this.settingBtnPanel.Location = new System.Drawing.Point(0, 410);
+            this.settingBtnPanel.Location = new System.Drawing.Point(0, 369);
             this.settingBtnPanel.Margin = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.settingBtnPanel.Name = "settingBtnPanel";
             this.settingBtnPanel.Size = new System.Drawing.Size(250, 41);
@@ -1475,7 +1436,6 @@
             this.userBtnPanel.ResumeLayout(false);
             this.qutationBtnPanel.ResumeLayout(false);
             this.wareHouseBtnPanel.ResumeLayout(false);
-            this.transferBtnPanel.ResumeLayout(false);
             this.reportsBtnPanel.ResumeLayout(false);
             this.settingBtnPanel.ResumeLayout(false);
             this.sidebarBtnPanel.ResumeLayout(false);
@@ -1570,7 +1530,5 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel purRetPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetBtn;
         private System.Windows.Forms.Timer purchTransition;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel transferBtnPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton transferBtn;
     }
 }

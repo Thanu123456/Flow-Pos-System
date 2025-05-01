@@ -164,52 +164,65 @@
             // todayBtn
             // 
             this.todayBtn.BorderRadius = 8;
+            this.todayBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.todayBtn.Checked = true;
+            this.todayBtn.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.todayBtn.CheckedState.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.todayBtn.CheckedState.ForeColor = System.Drawing.Color.White;
             this.todayBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.todayBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.todayBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.todayBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.todayBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.todayBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.todayBtn.ForeColor = System.Drawing.Color.White;
+            this.todayBtn.FillColor = System.Drawing.Color.White;
+            this.todayBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+            this.todayBtn.ForeColor = System.Drawing.Color.Navy;
             this.todayBtn.Location = new System.Drawing.Point(19, 26);
             this.todayBtn.Name = "todayBtn";
             this.todayBtn.Size = new System.Drawing.Size(152, 43);
             this.todayBtn.TabIndex = 3;
-            this.todayBtn.Text = "Today";
+            this.todayBtn.Text = "TODAY";
             this.todayBtn.Click += new System.EventHandler(this.todayBtn_Click);
             // 
             // last7DaysBtn
             // 
             this.last7DaysBtn.BorderRadius = 8;
+            this.last7DaysBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.last7DaysBtn.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.last7DaysBtn.CheckedState.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.last7DaysBtn.CheckedState.ForeColor = System.Drawing.Color.White;
             this.last7DaysBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.last7DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.last7DaysBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.last7DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.last7DaysBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.last7DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.last7DaysBtn.ForeColor = System.Drawing.Color.White;
+            this.last7DaysBtn.FillColor = System.Drawing.Color.White;
+            this.last7DaysBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.last7DaysBtn.ForeColor = System.Drawing.Color.Navy;
             this.last7DaysBtn.Location = new System.Drawing.Point(193, 26);
             this.last7DaysBtn.Name = "last7DaysBtn";
             this.last7DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.last7DaysBtn.TabIndex = 4;
-            this.last7DaysBtn.Text = "This Week";
+            this.last7DaysBtn.Text = "THIS WEEK";
             this.last7DaysBtn.Click += new System.EventHandler(this.last7DaysBtn_Click);
             // 
             // Last30DaysBtn
             // 
             this.Last30DaysBtn.BorderRadius = 8;
+            this.Last30DaysBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.Last30DaysBtn.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.Last30DaysBtn.CheckedState.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Last30DaysBtn.CheckedState.ForeColor = System.Drawing.Color.White;
             this.Last30DaysBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.Last30DaysBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.Last30DaysBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.Last30DaysBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.Last30DaysBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.Last30DaysBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Last30DaysBtn.ForeColor = System.Drawing.Color.White;
+            this.Last30DaysBtn.FillColor = System.Drawing.Color.White;
+            this.Last30DaysBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Last30DaysBtn.ForeColor = System.Drawing.Color.Navy;
             this.Last30DaysBtn.Location = new System.Drawing.Point(367, 26);
             this.Last30DaysBtn.Name = "Last30DaysBtn";
             this.Last30DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.Last30DaysBtn.TabIndex = 5;
-            this.Last30DaysBtn.Text = "This Month";
+            this.Last30DaysBtn.Text = "THIS MONTH";
             this.Last30DaysBtn.Click += new System.EventHandler(this.Last30DaysBtn_Click);
             // 
             // dashTotSaleRetPanel
@@ -233,11 +246,11 @@
             this.saleReAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saleReAmountLabel.AutoSize = true;
             this.saleReAmountLabel.BackColor = System.Drawing.Color.Transparent;
-            this.saleReAmountLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleReAmountLabel.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleReAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.saleReAmountLabel.Location = new System.Drawing.Point(368, 54);
             this.saleReAmountLabel.Name = "saleReAmountLabel";
-            this.saleReAmountLabel.Size = new System.Drawing.Size(168, 37);
+            this.saleReAmountLabel.Size = new System.Drawing.Size(158, 36);
             this.saleReAmountLabel.TabIndex = 18;
             this.saleReAmountLabel.Text = "0000000.00";
             this.saleReAmountLabel.Click += new System.EventHandler(this.saleReAmountLabel_Click);
@@ -261,11 +274,11 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(300, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 37);
+            this.label2.Size = new System.Drawing.Size(67, 36);
             this.label2.TabIndex = 17;
             this.label2.Text = "LKR:";
             // 
@@ -273,11 +286,11 @@
             // 
             this.SaleRetLabel.AutoSize = true;
             this.SaleRetLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SaleRetLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaleRetLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaleRetLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.SaleRetLabel.Location = new System.Drawing.Point(302, 29);
             this.SaleRetLabel.Name = "SaleRetLabel";
-            this.SaleRetLabel.Size = new System.Drawing.Size(141, 25);
+            this.SaleRetLabel.Size = new System.Drawing.Size(126, 23);
             this.SaleRetLabel.TabIndex = 15;
             this.SaleRetLabel.Text = "SALES RETURN";
             // 
@@ -317,11 +330,11 @@
             this.purAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.purAmountLabel.AutoSize = true;
             this.purAmountLabel.BackColor = System.Drawing.Color.Transparent;
-            this.purAmountLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purAmountLabel.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.purAmountLabel.Location = new System.Drawing.Point(492, 53);
             this.purAmountLabel.Name = "purAmountLabel";
-            this.purAmountLabel.Size = new System.Drawing.Size(168, 37);
+            this.purAmountLabel.Size = new System.Drawing.Size(158, 36);
             this.purAmountLabel.TabIndex = 16;
             this.purAmountLabel.Text = "0000000.00";
             this.purAmountLabel.Click += new System.EventHandler(this.purAmountLabel_Click);
@@ -331,11 +344,11 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label3.Location = new System.Drawing.Point(427, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 37);
+            this.label3.Size = new System.Drawing.Size(67, 36);
             this.label3.TabIndex = 17;
             this.label3.Text = "LKR:";
             // 
@@ -344,11 +357,11 @@
             this.purLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.purLabel.AutoSize = true;
             this.purLabel.BackColor = System.Drawing.Color.Transparent;
-            this.purLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.purLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.purLabel.Location = new System.Drawing.Point(430, 28);
             this.purLabel.Name = "purLabel";
-            this.purLabel.Size = new System.Drawing.Size(117, 25);
+            this.purLabel.Size = new System.Drawing.Size(104, 23);
             this.purLabel.TabIndex = 15;
             this.purLabel.Text = "PURCHASES";
             // 
@@ -387,11 +400,11 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(300, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 37);
+            this.label1.Size = new System.Drawing.Size(67, 36);
             this.label1.TabIndex = 3;
             this.label1.Text = "LKR:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -401,11 +414,11 @@
             this.dashTotSalePriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dashTotSalePriceLabel.AutoSize = true;
             this.dashTotSalePriceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotSalePriceLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashTotSalePriceLabel.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashTotSalePriceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dashTotSalePriceLabel.Location = new System.Drawing.Point(368, 53);
             this.dashTotSalePriceLabel.Name = "dashTotSalePriceLabel";
-            this.dashTotSalePriceLabel.Size = new System.Drawing.Size(168, 37);
+            this.dashTotSalePriceLabel.Size = new System.Drawing.Size(158, 36);
             this.dashTotSalePriceLabel.TabIndex = 1;
             this.dashTotSalePriceLabel.Text = "0000000.00";
             this.dashTotSalePriceLabel.Click += new System.EventHandler(this.dashTotSalePriceLabel_Click);
@@ -414,11 +427,11 @@
             // 
             this.dashTotalSalesLabel.AutoSize = true;
             this.dashTotalSalesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.dashTotalSalesLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashTotalSalesLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashTotalSalesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dashTotalSalesLabel.Location = new System.Drawing.Point(302, 28);
             this.dashTotalSalesLabel.Name = "dashTotalSalesLabel";
-            this.dashTotalSalesLabel.Size = new System.Drawing.Size(64, 25);
+            this.dashTotalSalesLabel.Size = new System.Drawing.Size(57, 23);
             this.dashTotalSalesLabel.TabIndex = 0;
             this.dashTotalSalesLabel.Text = "SALES";
             this.dashTotalSalesLabel.Click += new System.EventHandler(this.numberOrderLabel_Click);
@@ -473,18 +486,22 @@
             // thisYearBtn
             // 
             this.thisYearBtn.BorderRadius = 8;
+            this.thisYearBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+            this.thisYearBtn.CheckedState.FillColor = System.Drawing.Color.Navy;
+            this.thisYearBtn.CheckedState.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thisYearBtn.CheckedState.ForeColor = System.Drawing.Color.White;
             this.thisYearBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.thisYearBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.thisYearBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.thisYearBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.thisYearBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.thisYearBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thisYearBtn.ForeColor = System.Drawing.Color.White;
-            this.thisYearBtn.Location = new System.Drawing.Point(547, 26);
+            this.thisYearBtn.FillColor = System.Drawing.Color.White;
+            this.thisYearBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thisYearBtn.ForeColor = System.Drawing.Color.Navy;
+            this.thisYearBtn.Location = new System.Drawing.Point(543, 26);
             this.thisYearBtn.Name = "thisYearBtn";
             this.thisYearBtn.Size = new System.Drawing.Size(152, 43);
             this.thisYearBtn.TabIndex = 6;
-            this.thisYearBtn.Text = "This Year";
+            this.thisYearBtn.Text = "THIS YEAR";
             this.thisYearBtn.Click += new System.EventHandler(this.thisYearBtn_Click);
             // 
             // dashTotPurPanel
@@ -524,11 +541,11 @@
             this.profitAmoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.profitAmoutLabel.AutoSize = true;
             this.profitAmoutLabel.BackColor = System.Drawing.Color.Transparent;
-            this.profitAmoutLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profitAmoutLabel.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profitAmoutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.profitAmoutLabel.Location = new System.Drawing.Point(496, 54);
             this.profitAmoutLabel.Name = "profitAmoutLabel";
-            this.profitAmoutLabel.Size = new System.Drawing.Size(168, 37);
+            this.profitAmoutLabel.Size = new System.Drawing.Size(158, 36);
             this.profitAmoutLabel.TabIndex = 20;
             this.profitAmoutLabel.Text = "0000000.00";
             this.profitAmoutLabel.Click += new System.EventHandler(this.profitAmoutLabel_Click);
@@ -538,11 +555,11 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.label6.Location = new System.Drawing.Point(431, 29);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 25);
+            this.label6.Size = new System.Drawing.Size(67, 23);
             this.label6.TabIndex = 19;
             this.label6.Text = "PROFIT";
             // 
@@ -551,11 +568,11 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label5.Location = new System.Drawing.Point(429, 54);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 37);
+            this.label5.Size = new System.Drawing.Size(67, 36);
             this.label5.TabIndex = 21;
             this.label5.Text = "LKR:";
             // 
@@ -577,11 +594,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(7, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(252, 32);
+            this.label4.Size = new System.Drawing.Size(215, 29);
             this.label4.TabIndex = 18;
             this.label4.Text = "Top Selling Product :";
             // 
@@ -602,6 +619,7 @@
             this.siticonePanel3.ShadowDecoration.Color = System.Drawing.Color.Gray;
             this.siticonePanel3.Size = new System.Drawing.Size(1369, 289);
             this.siticonePanel3.TabIndex = 15;
+            this.siticonePanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel3_Paint);
             // 
             // siticonePanel5
             // 
@@ -613,18 +631,18 @@
             this.siticonePanel5.FillColor = System.Drawing.Color.White;
             this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
             this.siticonePanel5.Name = "siticonePanel5";
-            this.siticonePanel5.Size = new System.Drawing.Size(899, 461);
+            this.siticonePanel5.Size = new System.Drawing.Size(916, 461);
             this.siticonePanel5.TabIndex = 19;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label8.Location = new System.Drawing.Point(16, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(378, 32);
+            this.label8.Size = new System.Drawing.Size(334, 29);
             this.label8.TabIndex = 19;
             this.label8.Text = "This Week Sales and Purchases :";
             // 
@@ -647,7 +665,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.salesPurchStackedColumn.Series.Add(series2);
-            this.salesPurchStackedColumn.Size = new System.Drawing.Size(865, 350);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(882, 350);
             this.salesPurchStackedColumn.TabIndex = 19;
             this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -669,18 +687,18 @@
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
             this.siticonePanel4.Location = new System.Drawing.Point(21, 866);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1331, 335);
+            this.siticonePanel4.Size = new System.Drawing.Size(1348, 335);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label7.Location = new System.Drawing.Point(7, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(158, 32);
+            this.label7.Size = new System.Drawing.Size(136, 29);
             this.label7.TabIndex = 21;
             this.label7.Text = "Daily Profit :";
             // 
@@ -703,7 +721,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1351, 210);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1368, 210);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -729,11 +747,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(10, 15);
+            this.label9.Location = new System.Drawing.Point(10, 8);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(153, 32);
+            this.label9.Size = new System.Drawing.Size(134, 29);
             this.label9.TabIndex = 43;
             this.label9.Text = "Stock Alert :";
             // 
@@ -745,14 +763,15 @@
             this.stockAlertDataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.stockAlertDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.stockAlertDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -774,7 +793,7 @@
             this.dataGridViewTextBoxColumn10});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -797,13 +816,13 @@
             this.stockAlertDataGrid.RowHeadersVisible = false;
             this.stockAlertDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.stockAlertDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.stockAlertDataGrid.RowTemplate.Height = 45;
+            this.stockAlertDataGrid.RowTemplate.Height = 35;
             this.stockAlertDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.stockAlertDataGrid.Size = new System.Drawing.Size(572, 360);
             this.stockAlertDataGrid.TabIndex = 42;
             this.stockAlertDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.stockAlertDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -811,16 +830,16 @@
             this.stockAlertDataGrid.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Height = 45;
             this.stockAlertDataGrid.ThemeStyle.ReadOnly = true;
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Height = 45;
+            this.stockAlertDataGrid.ThemeStyle.RowsStyle.Height = 35;
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.stockAlertDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockAlertDataGrid_CellContentClick);
@@ -889,11 +908,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label11.Location = new System.Drawing.Point(12, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(387, 32);
+            this.label11.Size = new System.Drawing.Size(336, 29);
             this.label11.TabIndex = 44;
             this.label11.Text = "Top 05 Customers (This Month) :";
             // 
@@ -907,7 +926,7 @@
             this.siticonePanel8.FillColor = System.Drawing.Color.White;
             this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
             this.siticonePanel8.Name = "siticonePanel8";
-            this.siticonePanel8.Size = new System.Drawing.Size(709, 530);
+            this.siticonePanel8.Size = new System.Drawing.Size(726, 530);
             this.siticonePanel8.TabIndex = 23;
             // 
             // topCustomerPieChart
@@ -930,7 +949,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.topCustomerPieChart.Series.Add(series4);
-            this.topCustomerPieChart.Size = new System.Drawing.Size(679, 448);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(696, 448);
             this.topCustomerPieChart.TabIndex = 45;
             this.topCustomerPieChart.Text = "chart2";
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -984,11 +1003,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label10.Location = new System.Drawing.Point(10, 12);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(370, 32);
+            this.label10.Size = new System.Drawing.Size(321, 29);
             this.label10.TabIndex = 46;
             this.label10.Text = "Top 05 Expenses (This Month) :";
             // 
@@ -1002,18 +1021,18 @@
             this.siticonePanel9.FillColor = System.Drawing.Color.White;
             this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
             this.siticonePanel9.Name = "siticonePanel9";
-            this.siticonePanel9.Size = new System.Drawing.Size(795, 307);
+            this.siticonePanel9.Size = new System.Drawing.Size(812, 307);
             this.siticonePanel9.TabIndex = 48;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label12.Location = new System.Drawing.Point(10, 12);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(223, 32);
+            this.label12.Size = new System.Drawing.Size(195, 29);
             this.label12.TabIndex = 46;
             this.label12.Text = "Expire Date Alert :";
             // 
@@ -1025,16 +1044,17 @@
             this.expireDateAlertGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
             this.expireDateAlertGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.expireDateAlertGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.expireDateAlertGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -1050,7 +1070,7 @@
             this.dataGridViewTextBoxColumn17});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
@@ -1073,13 +1093,13 @@
             this.expireDateAlertGridView.RowHeadersVisible = false;
             this.expireDateAlertGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.expireDateAlertGridView.RowTemplate.Height = 45;
+            this.expireDateAlertGridView.RowTemplate.Height = 35;
             this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expireDateAlertGridView.Size = new System.Drawing.Size(770, 221);
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(787, 221);
             this.expireDateAlertGridView.TabIndex = 45;
             this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -1087,16 +1107,16 @@
             this.expireDateAlertGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.expireDateAlertGridView.ThemeStyle.ReadOnly = true;
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Height = 45;
+            this.expireDateAlertGridView.ThemeStyle.RowsStyle.Height = 35;
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.expireDateAlertGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expireDateAlertGridView_CellContentClick);
@@ -1135,18 +1155,18 @@
             this.siticonePanel10.FillColor = System.Drawing.Color.White;
             this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
             this.siticonePanel10.Name = "siticonePanel10";
-            this.siticonePanel10.Size = new System.Drawing.Size(1331, 450);
+            this.siticonePanel10.Size = new System.Drawing.Size(1348, 450);
             this.siticonePanel10.TabIndex = 49;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label13.Location = new System.Drawing.Point(10, 12);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(169, 32);
+            this.label13.Size = new System.Drawing.Size(150, 29);
             this.label13.TabIndex = 46;
             this.label13.Text = "Recent Sales :";
             // 
@@ -1158,16 +1178,17 @@
             this.recentDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
             this.recentDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.recentDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.recentDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -1183,7 +1204,7 @@
             this.dataGridViewTextBoxColumn18});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
@@ -1206,13 +1227,13 @@
             this.recentDataGridView.RowHeadersVisible = false;
             this.recentDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.recentDataGridView.RowTemplate.Height = 45;
+            this.recentDataGridView.RowTemplate.Height = 35;
             this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.recentDataGridView.Size = new System.Drawing.Size(1303, 366);
+            this.recentDataGridView.Size = new System.Drawing.Size(1320, 366);
             this.recentDataGridView.TabIndex = 45;
             this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -1220,16 +1241,16 @@
             this.recentDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.recentDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.recentDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.recentDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recentDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.recentDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.recentDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.recentDataGridView.ThemeStyle.ReadOnly = true;
             this.recentDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.recentDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.recentDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recentDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recentDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.recentDataGridView.ThemeStyle.RowsStyle.Height = 45;
+            this.recentDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.recentDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.recentDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.recentDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.recentDataGridView_CellContentClick);
