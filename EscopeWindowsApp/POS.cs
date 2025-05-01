@@ -18,6 +18,10 @@ namespace EscopeWindowsApp
         private BindingSource bindingSource;
         private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
         private int itemNumberCounter = 1; // To assign unique item numbers in supDataGridView
+        private ListBox suggestionListBox; // ListBox for autocomplete suggestions
+        private Panel suggestionPanel;      // Panel to wrap ListBox for border
+        private Timer searchTimer;         // Timer for delayed search
+        private bool suppressTextChanged;  // Flag to prevent recursive TextChanged events
 
         public POS()
         {
@@ -53,6 +57,65 @@ namespace EscopeWindowsApp
             posCashRadioBtn.Checked = true; // Optional: Check by default
             paymentText.Enabled = true;
 
+            // Initialize suggestion ListBox and Panel
+            suggestionListBox = new ListBox
+            {
+                Size = new Size(posCusSearchText.Width, 100), // Match search bar width
+                Font = new Font("Calibri", 12),
+                Visible = true,
+                BorderStyle = BorderStyle.None // No border on ListBox
+            };
+            suggestionListBox.SelectedIndexChanged += SuggestionListBox_SelectedIndexChanged;
+            suggestionListBox.MouseClick += SuggestionListBox_MouseClick;
+            suggestionListBox.LostFocus += SuggestionListBox_LostFocus;
+
+            // Create a Panel to wrap the ListBox with a border
+            suggestionPanel = new Panel
+            {
+                Size = new Size(posCusSearchText.Width, 102), // +2 for border
+                BorderStyle = BorderStyle.FixedSingle,
+                Visible = false
+            };
+
+            // Position the panel directly below the search bar
+            Point searchBarLocation = posCusSearchText.Location;
+            Point panelLocation = new Point(
+                searchBarLocation.X,
+                searchBarLocation.Y + posCusSearchText.Height // Attach directly to the bottom
+            );
+
+            // Adjust for parent container if posCusSearchText is not directly on the form
+            if (posCusSearchText.Parent != this)
+            {
+                panelLocation = this.PointToClient(posCusSearchText.Parent.PointToScreen(panelLocation));
+            }
+
+            suggestionPanel.Location = panelLocation;
+            suggestionListBox.Location = new Point(1, 1); // Offset inside panel for border
+            suggestionListBox.Size = new Size(suggestionPanel.Width - 2, suggestionPanel.Height - 2);
+            suggestionPanel.Controls.Add(suggestionListBox);
+            this.Controls.Add(suggestionPanel);
+
+            // Ensure panel repositions if search bar moves or resizes
+            posCusSearchText.LocationChanged += (s, e) => UpdateSuggestionPanelPosition();
+            posCusSearchText.SizeChanged += (s, e) => UpdateSuggestionPanelPosition();
+
+            // Debug panel position
+            Debug.WriteLine($"suggestionPanel.Location: {suggestionPanel.Location}, posCusSearchText: {posCusSearchText.Location}, Height: {posCusSearchText.Height}");
+
+            // Initialize search timer
+            searchTimer = new Timer
+            {
+                Interval = 300 // Delay in milliseconds
+            };
+            searchTimer.Tick += SearchTimer_Tick;
+
+            // Subscribe to posCusSearchText events
+            posCusSearchText.TextChanged += PosCusSearchText_TextChanged;
+            posCusSearchText.KeyDown += PosCusSearchText_KeyDown;
+            posCusSearchText.GotFocus += PosCusSearchText_GotFocus;
+            posCusSearchText.LostFocus += PosCusSearchText_LostFocus;
+
             // Load product data on form load
             this.Load += POS_Load;
             ConfigureSupDataGridView();
@@ -67,6 +130,220 @@ namespace EscopeWindowsApp
             paymentText.KeyPress += TextBox_NumericalKeyPress;
 
             UpdatePayNowButtonState();
+        }
+
+        private void UpdateSuggestionPanelPosition()
+        {
+            if (suggestionPanel != null && posCusSearchText != null)
+            {
+                Point searchBarLocation = posCusSearchText.Location;
+                Point panelLocation = new Point(
+                    searchBarLocation.X,
+                    searchBarLocation.Y + posCusSearchText.Height
+                );
+                if (posCusSearchText.Parent != this)
+                {
+                    panelLocation = this.PointToClient(posCusSearchText.Parent.PointToScreen(panelLocation));
+                }
+                suggestionPanel.Location = panelLocation;
+                suggestionPanel.Width = posCusSearchText.Width;
+                suggestionListBox.Width = suggestionPanel.Width - 2;
+                suggestionListBox.Height = suggestionPanel.Height - 2;
+            }
+        }
+
+        private void PosCusSearchText_GotFocus(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(posCusSearchText.Text))
+            {
+                PerformCustomerSearch();
+            }
+        }
+
+        private void PosCusSearchText_LostFocus(object sender, EventArgs e)
+        {
+            // Delay hiding to allow click on ListBox
+            Timer hideTimer = new Timer { Interval = 200 };
+            hideTimer.Tick += (s, args) =>
+            {
+                if (!suggestionListBox.Focused && !posCusSearchText.Focused)
+                {
+                    suggestionPanel.Visible = false;
+                }
+                hideTimer.Stop();
+                hideTimer.Dispose();
+            };
+            hideTimer.Start();
+        }
+
+        private void SuggestionListBox_LostFocus(object sender, EventArgs e)
+        {
+            if (!posCusSearchText.Focused)
+            {
+                suggestionPanel.Visible = false;
+            }
+        }
+
+        private void PosCusSearchText_TextChanged(object sender, EventArgs e)
+        {
+            if (suppressTextChanged) return;
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
+
+        private void SearchTimer_Tick(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            PerformCustomerSearch();
+        }
+
+        private void PerformCustomerSearch()
+        {
+            string searchText = posCusSearchText.Text.Trim();
+            suggestionListBox.Items.Clear();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                suggestionPanel.Visible = false;
+                posClientNameLabel.Text = "Walk-In Customer";
+                posClientNumLabel.Text = "";
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT name, phone FROM customers WHERE name LIKE @search OR phone LIKE @search LIMIT 10";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@search", $"%{searchText}%");
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string name = reader["name"].ToString();
+                                string phone = reader["phone"].ToString();
+                                suggestionListBox.Items.Add(new CustomerItem(name, phone));
+                            }
+                        }
+                    }
+                }
+
+                if (suggestionListBox.Items.Count > 0)
+                {
+                    // Update panel position and size
+                    UpdateSuggestionPanelPosition();
+
+                    suggestionPanel.Visible = true;
+                    suggestionPanel.BringToFront();
+                    // Adjust Panel height based on items, max 5 visible items
+                    int itemHeight = suggestionListBox.ItemHeight;
+                    int maxVisibleItems = Math.Min(suggestionListBox.Items.Count, 5);
+                    int newHeight = maxVisibleItems * itemHeight + 2; // +2 for border
+                    suggestionPanel.Height = newHeight;
+                    suggestionListBox.Height = newHeight - 2;
+                    suggestionListBox.Width = suggestionPanel.Width - 2;
+                }
+                else
+                {
+                    suggestionPanel.Visible = false;
+                    posClientNameLabel.Text = "Not Found";
+                    posClientNumLabel.Text = "Not Found";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error searching customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                suggestionPanel.Visible = false;
+                posClientNameLabel.Text = "Error";
+                posClientNumLabel.Text = "Error";
+            }
+        }
+
+        private void PosCusSearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (suggestionPanel.Visible)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Down:
+                        if (suggestionListBox.SelectedIndex < suggestionListBox.Items.Count - 1)
+                        {
+                            suggestionListBox.SelectedIndex++;
+                        }
+                        e.Handled = true;
+                        break;
+                    case Keys.Up:
+                        if (suggestionListBox.SelectedIndex > 0)
+                        {
+                            suggestionListBox.SelectedIndex--;
+                        }
+                        e.Handled = true;
+                        break;
+                    case Keys.Enter:
+                        if (suggestionListBox.SelectedIndex >= 0)
+                        {
+                            SelectCustomer();
+                        }
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                        break;
+                    case Keys.Escape:
+                        suggestionPanel.Visible = false;
+                        posCusSearchText.Text = "";
+                        posClientNameLabel.Text = "Walk-In Customer";
+                        posClientNumLabel.Text = "";
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
+
+        private void SuggestionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (suggestionListBox.SelectedIndex >= 0)
+            {
+                CustomerItem selected = (CustomerItem)suggestionListBox.SelectedItem;
+                suppressTextChanged = true;
+                posCusSearchText.Text = selected.Name;
+                suppressTextChanged = false;
+            }
+        }
+
+        private void SuggestionListBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            SelectCustomer();
+        }
+
+        private void SelectCustomer()
+        {
+            if (suggestionListBox.SelectedIndex >= 0)
+            {
+                CustomerItem selected = (CustomerItem)suggestionListBox.SelectedItem;
+                posClientNameLabel.Text = selected.Name;
+                posClientNumLabel.Text = selected.Phone;
+                suggestionPanel.Visible = false;
+                posCusSearchText.Text = selected.Name;
+            }
+        }
+
+        private class CustomerItem
+        {
+            public string Name { get; }
+            public string Phone { get; }
+
+            public CustomerItem(string name, string phone)
+            {
+                Name = name;
+                Phone = phone;
+            }
+
+            public override string ToString()
+            {
+                return $"{Name} ({Phone})";
+            }
         }
 
         private void TextBox_NumericalKeyPress(object sender, KeyPressEventArgs e)
@@ -479,8 +756,6 @@ namespace EscopeWindowsApp
             UpdateAllLabels();
         }
 
-        #endregion
-
         #region Timer Methods
 
         private void TimeTimer_Tick(object sender, EventArgs e)
@@ -501,6 +776,9 @@ namespace EscopeWindowsApp
         {
             supDataGridView.AutoGenerateColumns = false;
             supDataGridView.Columns.Clear();
+
+            // Set the row height to 35 pixels
+            supDataGridView.RowTemplate.Height = 35;
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -982,6 +1260,8 @@ namespace EscopeWindowsApp
             posCashRadioBtn.Enabled = true;
             itemNumberCounter = 1;
             paymentText.Enabled = true;
+            posCusSearchText.Text = ""; // Clear the search text
+            suggestionPanel.Visible = false; // Hide the suggestion Panel
             UpdatePayNowButtonState();
         }
 
@@ -993,50 +1273,6 @@ namespace EscopeWindowsApp
 
         private void posClientNameLabel_Click(object sender, EventArgs e) { }
         private void posClientNumLabel_Click(object sender, EventArgs e) { }
-
-        private void posCusSearchText_TextChanged(object sender, EventArgs e)
-        {
-            string searchText = posCusSearchText.Text.Trim();
-
-            if (string.IsNullOrEmpty(searchText))
-            {
-                posClientNameLabel.Text = "Walk-In Customer";
-                posClientNumLabel.Text = "";
-                return;
-            }
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT name, phone FROM customers WHERE phone LIKE @phone LIMIT 1";
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@phone", $"%{searchText}%");
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                posClientNameLabel.Text = reader["name"].ToString();
-                                posClientNumLabel.Text = reader["phone"].ToString();
-                            }
-                            else
-                            {
-                                posClientNameLabel.Text = "Not Found";
-                                posClientNumLabel.Text = "Not Found";
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error searching customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                posClientNameLabel.Text = "Error";
-                posClientNumLabel.Text = "Error";
-            }
-        }
 
         private void posCreateCusBtn_Click(object sender, EventArgs e)
         {
@@ -1311,3 +1547,4 @@ namespace EscopeWindowsApp
         }
     }
 }
+#endregion

@@ -119,7 +119,7 @@
             this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
             this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -129,7 +129,7 @@
             this.grnProSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnProSearchText.Name = "grnProSearchText";
             this.grnProSearchText.PasswordChar = '\0';
-            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.grnProSearchText.PlaceholderText = "Search Products";
             this.grnProSearchText.SelectedText = "";
             this.grnProSearchText.Size = new System.Drawing.Size(400, 42);
@@ -307,7 +307,7 @@
             this.purReNoteText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.purReNoteText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.purReNoteText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.purReNoteText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.purReNoteText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purReNoteText.ForeColor = System.Drawing.Color.Gray;
             this.purReNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.purReNoteText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -316,7 +316,7 @@
             this.purReNoteText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.purReNoteText.Name = "purReNoteText";
             this.purReNoteText.PasswordChar = '\0';
-            this.purReNoteText.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.purReNoteText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.purReNoteText.PlaceholderText = "Note";
             this.purReNoteText.SelectedText = "";
             this.purReNoteText.Size = new System.Drawing.Size(1057, 42);
@@ -334,7 +334,7 @@
             this.grnCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.grnCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.grnCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.grnCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.grnCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnCancelBtn.ForeColor = System.Drawing.Color.White;
             this.grnCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.grnCancelBtn.Location = new System.Drawing.Point(984, 639);
@@ -355,7 +355,7 @@
             this.grnSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.grnSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.grnSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.grnSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnSaveBtn.ForeColor = System.Drawing.Color.White;
             this.grnSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.grnSaveBtn.Location = new System.Drawing.Point(879, 639);
@@ -368,10 +368,10 @@
             // createPurRetLabel
             // 
             this.createPurRetLabel.AutoSize = true;
-            this.createPurRetLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createPurRetLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createPurRetLabel.Location = new System.Drawing.Point(18, 50);
             this.createPurRetLabel.Name = "createPurRetLabel";
-            this.createPurRetLabel.Size = new System.Drawing.Size(202, 32);
+            this.createPurRetLabel.Size = new System.Drawing.Size(189, 29);
             this.createPurRetLabel.TabIndex = 85;
             this.createPurRetLabel.Text = "Purchases Return";
             // 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -170,11 +170,11 @@
             // grnNoLabel
             // 
             this.grnNoLabel.AutoSize = true;
-            this.grnNoLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnNoLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnNoLabel.ForeColor = System.Drawing.Color.White;
-            this.grnNoLabel.Location = new System.Drawing.Point(110, 11);
+            this.grnNoLabel.Location = new System.Drawing.Point(99, 11);
             this.grnNoLabel.Name = "grnNoLabel";
-            this.grnNoLabel.Size = new System.Drawing.Size(38, 18);
+            this.grnNoLabel.Size = new System.Drawing.Size(33, 19);
             this.grnNoLabel.TabIndex = 28;
             this.grnNoLabel.Text = "001";
             this.grnNoLabel.Click += new System.EventHandler(this.grnNoLabel_Click);
@@ -182,11 +182,11 @@
             // grnNoFixLabel
             // 
             this.grnNoFixLabel.AutoSize = true;
-            this.grnNoFixLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnNoFixLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnNoFixLabel.ForeColor = System.Drawing.Color.White;
             this.grnNoFixLabel.Location = new System.Drawing.Point(26, 11);
             this.grnNoFixLabel.Name = "grnNoFixLabel";
-            this.grnNoFixLabel.Size = new System.Drawing.Size(83, 18);
+            this.grnNoFixLabel.Size = new System.Drawing.Size(73, 19);
             this.grnNoFixLabel.TabIndex = 27;
             this.grnNoFixLabel.Text = "GRN NO :";
             this.grnNoFixLabel.Click += new System.EventHandler(this.creatProductLabel_Click);
@@ -227,11 +227,11 @@
             // ceaditPayementLabel
             // 
             this.ceaditPayementLabel.AutoSize = true;
-            this.ceaditPayementLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ceaditPayementLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
             this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(137, 18);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(119, 19);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -256,11 +256,11 @@
             // chequePaymentLabel
             // 
             this.chequePaymentLabel.AutoSize = true;
-            this.chequePaymentLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chequePaymentLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(70, 18);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(60, 19);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -284,11 +284,11 @@
             // cashPaymentLabel
             // 
             this.cashPaymentLabel.AutoSize = true;
-            this.cashPaymentLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashPaymentLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
             this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(49, 18);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(40, 19);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
             this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
@@ -314,11 +314,11 @@
             // 
             this.paymentMethLabel.AutoSize = true;
             this.paymentMethLabel.BackColor = System.Drawing.Color.Transparent;
-            this.paymentMethLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
-            this.paymentMethLabel.Location = new System.Drawing.Point(30, 223);
+            this.paymentMethLabel.Location = new System.Drawing.Point(36, 219);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(158, 17);
+            this.paymentMethLabel.Size = new System.Drawing.Size(148, 19);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
@@ -332,7 +332,7 @@
             this.previousGRNBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.previousGRNBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.previousGRNBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.previousGRNBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.previousGRNBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.previousGRNBtn.ForeColor = System.Drawing.Color.White;
             this.previousGRNBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.previousGRNBtn.Location = new System.Drawing.Point(933, 58);
@@ -386,10 +386,10 @@
             this.checkSerialNumber.CheckedState.BorderRadius = 5;
             this.checkSerialNumber.CheckedState.BorderThickness = 1;
             this.checkSerialNumber.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
-            this.checkSerialNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSerialNumber.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkSerialNumber.Location = new System.Drawing.Point(22, 315);
             this.checkSerialNumber.Name = "checkSerialNumber";
-            this.checkSerialNumber.Size = new System.Drawing.Size(203, 25);
+            this.checkSerialNumber.Size = new System.Drawing.Size(193, 23);
             this.checkSerialNumber.TabIndex = 82;
             this.checkSerialNumber.Text = "Available Serial Number";
             this.checkSerialNumber.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -403,11 +403,11 @@
             // 
             this.qUnitNameLabel.AutoSize = true;
             this.qUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.qUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.qUnitNameLabel.Location = new System.Drawing.Point(774, 96);
+            this.qUnitNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qUnitNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.qUnitNameLabel.Location = new System.Drawing.Point(774, 94);
             this.qUnitNameLabel.Name = "qUnitNameLabel";
-            this.qUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.qUnitNameLabel.Size = new System.Drawing.Size(29, 23);
             this.qUnitNameLabel.TabIndex = 82;
             this.qUnitNameLabel.Text = "Kg";
             this.qUnitNameLabel.Click += new System.EventHandler(this.qUnitNameLabel_Click);
@@ -416,11 +416,11 @@
             // 
             this.sUnitNameLabel.AutoSize = true;
             this.sUnitNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.sUnitNameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sUnitNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.sUnitNameLabel.Location = new System.Drawing.Point(589, 97);
+            this.sUnitNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sUnitNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.sUnitNameLabel.Location = new System.Drawing.Point(582, 95);
             this.sUnitNameLabel.Name = "sUnitNameLabel";
-            this.sUnitNameLabel.Size = new System.Drawing.Size(26, 19);
+            this.sUnitNameLabel.Size = new System.Drawing.Size(29, 23);
             this.sUnitNameLabel.TabIndex = 81;
             this.sUnitNameLabel.Text = "Kg";
             this.sUnitNameLabel.Click += new System.EventHandler(this.sUnitNameLabel_Click);
@@ -448,7 +448,7 @@
             this.grnUnitText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnUnitText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnUnitText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnUnitText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnUnitText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnUnitText.ForeColor = System.Drawing.Color.Black;
             this.grnUnitText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnUnitText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -471,7 +471,7 @@
             this.grnExpireDatePicker.BorderThickness = 1;
             this.grnExpireDatePicker.Checked = true;
             this.grnExpireDatePicker.FillColor = System.Drawing.Color.White;
-            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnExpireDatePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnExpireDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.grnExpireDatePicker.Location = new System.Drawing.Point(192, 122);
             this.grnExpireDatePicker.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
@@ -494,7 +494,7 @@
             this.addToListBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.addToListBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.addToListBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.addToListBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addToListBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addToListBtn.ForeColor = System.Drawing.Color.White;
             this.addToListBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.addToListBtn.Location = new System.Drawing.Point(718, 315);
@@ -563,7 +563,7 @@
             this.grnNetPriceText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnNetPriceText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnNetPriceText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnNetPriceText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnNetPriceText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnNetPriceText.ForeColor = System.Drawing.Color.Black;
             this.grnNetPriceText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnNetPriceText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -613,7 +613,7 @@
             this.grnWholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnWholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnWholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnWholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnWholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnWholePriText.ForeColor = System.Drawing.Color.Black;
             this.grnWholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnWholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -639,7 +639,7 @@
             this.grnRetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnRetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnRetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnRetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnRetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnRetPriText.ForeColor = System.Drawing.Color.Black;
             this.grnRetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnRetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -677,7 +677,7 @@
             this.grnCostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnCostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnCostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnCostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnCostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnCostPriText.ForeColor = System.Drawing.Color.Black;
             this.grnCostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnCostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -715,7 +715,7 @@
             this.grnQuantityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnQuantityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnQuantityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnQuantityText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnQuantityText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnQuantityText.ForeColor = System.Drawing.Color.Black;
             this.grnQuantityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnQuantityText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -738,8 +738,8 @@
             this.grnVarTypCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.grnVarTypCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnVarTypCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnVarTypCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.grnVarTypCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.grnVarTypCombo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnVarTypCombo.ForeColor = System.Drawing.Color.Black;
             this.grnVarTypCombo.ItemHeight = 36;
             this.grnVarTypCombo.Items.AddRange(new object[] {
             "Variation Type",
@@ -776,7 +776,7 @@
             this.grnStockText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnStockText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnStockText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnStockText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnStockText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnStockText.ForeColor = System.Drawing.Color.Black;
             this.grnStockText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnStockText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -826,7 +826,7 @@
             this.grnVarText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnVarText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnVarText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnVarText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnVarText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnVarText.ForeColor = System.Drawing.Color.Black;
             this.grnVarText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnVarText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -876,7 +876,7 @@
             this.grnProCatText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProCatText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProCatText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProCatText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnProCatText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProCatText.ForeColor = System.Drawing.Color.Black;
             this.grnProCatText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProCatText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -914,7 +914,7 @@
             this.grnProNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProNameText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnProNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProNameText.ForeColor = System.Drawing.Color.Black;
             this.grnProNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -937,8 +937,8 @@
             this.grnWarrantyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.grnWarrantyComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnWarrantyComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnWarrantyComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.grnWarrantyComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.grnWarrantyComboBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnWarrantyComboBox.ForeColor = System.Drawing.Color.Black;
             this.grnWarrantyComboBox.ItemHeight = 36;
             this.grnWarrantyComboBox.Location = new System.Drawing.Point(362, 36);
             this.grnWarrantyComboBox.Name = "grnWarrantyComboBox";
@@ -981,7 +981,7 @@
             this.grnProIDText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProIDText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProIDText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProIDText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.grnProIDText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProIDText.ForeColor = System.Drawing.Color.Black;
             this.grnProIDText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProIDText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -1002,48 +1002,49 @@
             this.grnDataGridView.AllowUserToDeleteRows = false;
             this.grnDataGridView.AllowUserToResizeColumns = false;
             this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.grnDataGridView.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.grnDataGridView.ColumnHeadersHeight = 35;
+            this.grnDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.grnDataGridView.GridColor = System.Drawing.Color.White;
-            this.grnDataGridView.Location = new System.Drawing.Point(22, 504);
+            this.grnDataGridView.Location = new System.Drawing.Point(22, 507);
             this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnDataGridView.Name = "grnDataGridView";
             this.grnDataGridView.ReadOnly = true;
             this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grnDataGridView.RowHeadersVisible = false;
             this.grnDataGridView.RowHeadersWidth = 22;
             this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1054,7 +1055,7 @@
             this.grnDataGridView.TabIndex = 78;
             this.grnDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.grnDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
@@ -1062,14 +1063,14 @@
             this.grnDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.grnDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.grnDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 45;
+            this.grnDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 35;
             this.grnDataGridView.ThemeStyle.ReadOnly = true;
             this.grnDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.grnDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.grnDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnDataGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnDataGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.grnDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.grnDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
@@ -1087,7 +1088,7 @@
             this.grnCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.grnCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.grnCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.grnCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.grnCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnCancelBtn.ForeColor = System.Drawing.Color.White;
             this.grnCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.grnCancelBtn.Location = new System.Drawing.Point(984, 648);
@@ -1108,7 +1109,7 @@
             this.grnSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.grnSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.grnSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.grnSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnSaveBtn.ForeColor = System.Drawing.Color.White;
             this.grnSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.grnSaveBtn.Location = new System.Drawing.Point(879, 648);
@@ -1129,7 +1130,7 @@
             this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
             this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;

@@ -148,7 +148,7 @@
             this.createExpNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createExpNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createExpNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createExpNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createExpNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createExpNameText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createExpNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createExpNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -156,6 +156,7 @@
             this.createExpNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createExpNameText.Name = "createExpNameText";
             this.createExpNameText.PasswordChar = '\0';
+            this.createExpNameText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.createExpNameText.PlaceholderText = "Name";
             this.createExpNameText.SelectedText = "";
             this.createExpNameText.Size = new System.Drawing.Size(348, 42);

@@ -90,7 +90,7 @@
             this.posRegSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.posRegSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.posRegSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.posRegSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.posRegSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.posRegSaveBtn.ForeColor = System.Drawing.Color.White;
             this.posRegSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.posRegSaveBtn.Location = new System.Drawing.Point(272, 201);
@@ -127,7 +127,7 @@
             this.cashInHandText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cashInHandText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cashInHandText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cashInHandText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashInHandText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashInHandText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cashInHandText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cashInHandText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -135,6 +135,7 @@
             this.cashInHandText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cashInHandText.Name = "cashInHandText";
             this.cashInHandText.PasswordChar = '\0';
+            this.cashInHandText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.cashInHandText.PlaceholderText = "Amount";
             this.cashInHandText.SelectedText = "";
             this.cashInHandText.Size = new System.Drawing.Size(348, 42);

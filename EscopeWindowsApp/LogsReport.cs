@@ -37,64 +37,70 @@ namespace EscopeWindowsApp
             {
                 Name = "session_start_time",
                 DataPropertyName = "session_start_time",
-                HeaderText = "Session Start Time",
+                HeaderText = "SESSION START TIME",
                 DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
-                Width = 150 // Adjust this value as needed
+                Width = 250 // Adjust this value as needed
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "session_end_time",
                 DataPropertyName = "session_end_time",
-                HeaderText = "Session End Time",
+                HeaderText = "SESSION END TIME",
                 DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
-                Width = 150 // Adjust this value as needed
+                Width = 250 // Adjust this value as needed
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "username",
                 DataPropertyName = "username",
-                HeaderText = "Username"
+                HeaderText = "USERNAME",
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "cash_in_hand",
                 DataPropertyName = "cash_in_hand",
-                HeaderText = "Cash in Hand",
-                DefaultCellStyle = { Format = "N2" }
+                HeaderText = "CASH IN HAND",
+                DefaultCellStyle = { Format = "N2" },
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "cash_amount",
                 DataPropertyName = "cash_amount",
-                HeaderText = "Cash Amount",
+                HeaderText = "CASH AMOUNT",
                 DefaultCellStyle = { Format = "N2" }
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "card_amount",
                 DataPropertyName = "card_amount",
-                HeaderText = "Card Amount",
+                HeaderText = "CARD AMOUNT",
                 DefaultCellStyle = { Format = "N2" }
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "total_sale_amount",
                 DataPropertyName = "total_sale_amount",
-                HeaderText = "Total Sale Amount",
+                HeaderText = "TOTAL SALE AMOUNT",
                 DefaultCellStyle = { Format = "N2" }
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "total_refund_amount",
                 DataPropertyName = "total_refund_amount",
-                HeaderText = "Total Refund Amount",
-                DefaultCellStyle = { Format = "N2" }
+                HeaderText = "TOTAL REFUND AMOUNT",
+                DefaultCellStyle = { Format = "N2" },
+                
             });
             logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "note",
                 DataPropertyName = "note",
-                HeaderText = "Note",
+                HeaderText = "NOTE",
                 Width = 200
             });
 

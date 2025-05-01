@@ -131,11 +131,11 @@
             this.proPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.proPriceLabel.AutoSize = true;
-            this.proPriceLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.proPriceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.proPriceLabel.Location = new System.Drawing.Point(22, 47);
             this.proPriceLabel.Name = "proPriceLabel";
-            this.proPriceLabel.Size = new System.Drawing.Size(209, 28);
+            this.proPriceLabel.Size = new System.Drawing.Size(165, 29);
             this.proPriceLabel.TabIndex = 26;
             this.proPriceLabel.Text = "Product Pricing";
             // 
@@ -212,7 +212,7 @@
             this.ty5WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty5WholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty5WholePriText.ForeColor = System.Drawing.Color.Black;
             this.ty5WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty5WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -237,7 +237,7 @@
             this.ty5RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty5RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty5RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty5RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty5RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -271,9 +271,9 @@
             this.priVar5NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.priVar5NameLbl.Location = new System.Drawing.Point(8, 368);
             this.priVar5NameLbl.Name = "priVar5NameLbl";
-            this.priVar5NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar5NameLbl.Size = new System.Drawing.Size(125, 23);
             this.priVar5NameLbl.TabIndex = 50;
-            this.priVar5NameLbl.Text = "Variation Name:";
+            this.priVar5NameLbl.Text = "Variation Type:";
             // 
             // ty5CostPriText
             // 
@@ -286,7 +286,7 @@
             this.ty5CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty5CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty5CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty5CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty5CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -311,7 +311,7 @@
             this.ty4WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4WholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty4WholePriText.ForeColor = System.Drawing.Color.Black;
             this.ty4WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty4WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -336,7 +336,7 @@
             this.ty4RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty4RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty4RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty4RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -370,9 +370,9 @@
             this.priVar4NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.priVar4NameLbl.Location = new System.Drawing.Point(8, 280);
             this.priVar4NameLbl.Name = "priVar4NameLbl";
-            this.priVar4NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar4NameLbl.Size = new System.Drawing.Size(125, 23);
             this.priVar4NameLbl.TabIndex = 45;
-            this.priVar4NameLbl.Text = "Variation Name:";
+            this.priVar4NameLbl.Text = "Variation Type:";
             // 
             // ty4CostPriText
             // 
@@ -385,7 +385,7 @@
             this.ty4CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty4CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty4CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty4CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty4CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -410,7 +410,7 @@
             this.ty3WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3WholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty3WholePriText.ForeColor = System.Drawing.Color.Black;
             this.ty3WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty3WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -435,7 +435,7 @@
             this.ty3RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty3RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty3RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty3RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -469,9 +469,9 @@
             this.priVar3NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.priVar3NameLbl.Location = new System.Drawing.Point(8, 195);
             this.priVar3NameLbl.Name = "priVar3NameLbl";
-            this.priVar3NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar3NameLbl.Size = new System.Drawing.Size(125, 23);
             this.priVar3NameLbl.TabIndex = 40;
-            this.priVar3NameLbl.Text = "Variation Name:";
+            this.priVar3NameLbl.Text = "Variation Type:";
             // 
             // ty3CostPriText
             // 
@@ -484,7 +484,7 @@
             this.ty3CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty3CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty3CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty3CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty3CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -509,7 +509,7 @@
             this.ty2WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2WholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty2WholePriText.ForeColor = System.Drawing.Color.Black;
             this.ty2WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty2WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -534,7 +534,7 @@
             this.ty2RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty2RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty2RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty2RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -568,9 +568,9 @@
             this.priVar2NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.priVar2NameLbl.Location = new System.Drawing.Point(8, 107);
             this.priVar2NameLbl.Name = "priVar2NameLbl";
-            this.priVar2NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar2NameLbl.Size = new System.Drawing.Size(125, 23);
             this.priVar2NameLbl.TabIndex = 35;
-            this.priVar2NameLbl.Text = "Variation Name:";
+            this.priVar2NameLbl.Text = "Variation Type:";
             // 
             // ty2CostPriText
             // 
@@ -583,7 +583,7 @@
             this.ty2CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty2CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty2CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty2CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty2CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -608,7 +608,7 @@
             this.ty1WholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1WholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1WholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1WholePriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1WholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty1WholePriText.ForeColor = System.Drawing.Color.Black;
             this.ty1WholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty1WholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -633,7 +633,7 @@
             this.ty1RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty1RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty1RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty1RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -667,9 +667,9 @@
             this.priVar1NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.priVar1NameLbl.Location = new System.Drawing.Point(8, 21);
             this.priVar1NameLbl.Name = "priVar1NameLbl";
-            this.priVar1NameLbl.Size = new System.Drawing.Size(134, 23);
+            this.priVar1NameLbl.Size = new System.Drawing.Size(125, 23);
             this.priVar1NameLbl.TabIndex = 30;
-            this.priVar1NameLbl.Text = "Variation Name:";
+            this.priVar1NameLbl.Text = "Variation Type:";
             // 
             // ty1CostPriText
             // 
@@ -682,7 +682,7 @@
             this.ty1CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ty1CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty1CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty1CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty1CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -719,7 +719,7 @@
             this.priceVarNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.priceVarNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.priceVarNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.priceVarNameText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.priceVarNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceVarNameText.ForeColor = System.Drawing.Color.Black;
             this.priceVarNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.priceVarNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -743,7 +743,7 @@
             this.priCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.priCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.priCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.priCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.priCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priCancelBtn.ForeColor = System.Drawing.Color.White;
             this.priCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.priCancelBtn.Location = new System.Drawing.Point(670, 694);
@@ -763,7 +763,7 @@
             this.priSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.priSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.priSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.priSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.priSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priSaveBtn.ForeColor = System.Drawing.Color.White;
             this.priSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.priSaveBtn.Location = new System.Drawing.Point(568, 694);
@@ -789,6 +789,7 @@
             this.Name = "ProductPricing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProductPricing";
+            this.Load += new System.EventHandler(this.ProductPricing_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.productPriMainPanel.ResumeLayout(false);

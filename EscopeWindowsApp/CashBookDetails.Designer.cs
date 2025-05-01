@@ -106,20 +106,20 @@
             // cashRegDetailsLabel
             // 
             this.cashRegDetailsLabel.AutoSize = true;
-            this.cashRegDetailsLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashRegDetailsLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashRegDetailsLabel.Location = new System.Drawing.Point(18, 50);
             this.cashRegDetailsLabel.Name = "cashRegDetailsLabel";
-            this.cashRegDetailsLabel.Size = new System.Drawing.Size(150, 25);
+            this.cashRegDetailsLabel.Size = new System.Drawing.Size(142, 23);
             this.cashRegDetailsLabel.TabIndex = 29;
             this.cashRegDetailsLabel.Text = "Register Details:";
             // 
             // cashRegDateLable
             // 
             this.cashRegDateLable.AutoSize = true;
-            this.cashRegDateLable.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashRegDateLable.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashRegDateLable.Location = new System.Drawing.Point(169, 50);
             this.cashRegDateLable.Name = "cashRegDateLable";
-            this.cashRegDateLable.Size = new System.Drawing.Size(53, 25);
+            this.cashRegDateLable.Size = new System.Drawing.Size(48, 23);
             this.cashRegDateLable.TabIndex = 30;
             this.cashRegDateLable.Text = "Date";
             this.cashRegDateLable.Click += new System.EventHandler(this.cashRegDateLable_Click);
@@ -162,20 +162,20 @@
             // cardLabel
             // 
             this.cardLabel.AutoSize = true;
-            this.cardLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cardLabel.Location = new System.Drawing.Point(3, 113);
             this.cardLabel.Name = "cardLabel";
-            this.cardLabel.Size = new System.Drawing.Size(50, 21);
+            this.cardLabel.Size = new System.Drawing.Size(47, 19);
             this.cardLabel.TabIndex = 39;
             this.cardLabel.Text = "Card :";
             // 
             // cardAmount
             // 
             this.cardAmount.AutoSize = true;
-            this.cardAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cardAmount.Location = new System.Drawing.Point(170, 113);
             this.cardAmount.Name = "cardAmount";
-            this.cardAmount.Size = new System.Drawing.Size(67, 21);
+            this.cardAmount.Size = new System.Drawing.Size(61, 19);
             this.cardAmount.TabIndex = 38;
             this.cardAmount.Text = "0000.00";
             this.cardAmount.Click += new System.EventHandler(this.cardAmount_Click);
@@ -183,20 +183,20 @@
             // cashLabel
             // 
             this.cashLabel.AutoSize = true;
-            this.cashLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashLabel.Location = new System.Drawing.Point(3, 78);
             this.cashLabel.Name = "cashLabel";
-            this.cashLabel.Size = new System.Drawing.Size(51, 21);
+            this.cashLabel.Size = new System.Drawing.Size(49, 19);
             this.cashLabel.TabIndex = 37;
             this.cashLabel.Text = "Cash :";
             // 
             // cashAmount
             // 
             this.cashAmount.AutoSize = true;
-            this.cashAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashAmount.Location = new System.Drawing.Point(170, 78);
             this.cashAmount.Name = "cashAmount";
-            this.cashAmount.Size = new System.Drawing.Size(67, 21);
+            this.cashAmount.Size = new System.Drawing.Size(61, 19);
             this.cashAmount.TabIndex = 36;
             this.cashAmount.Text = "0000.00";
             this.cashAmount.Click += new System.EventHandler(this.cashAmount_Click);
@@ -204,20 +204,20 @@
             // paymentTypeLabel
             // 
             this.paymentTypeLabel.AutoSize = true;
-            this.paymentTypeLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentTypeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentTypeLabel.Location = new System.Drawing.Point(3, 0);
             this.paymentTypeLabel.Name = "paymentTypeLabel";
-            this.paymentTypeLabel.Size = new System.Drawing.Size(132, 25);
+            this.paymentTypeLabel.Size = new System.Drawing.Size(121, 23);
             this.paymentTypeLabel.TabIndex = 32;
             this.paymentTypeLabel.Text = "Payment Type";
             // 
             // cashInHandAmount
             // 
             this.cashInHandAmount.AutoSize = true;
-            this.cashInHandAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashInHandAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashInHandAmount.Location = new System.Drawing.Point(170, 43);
             this.cashInHandAmount.Name = "cashInHandAmount";
-            this.cashInHandAmount.Size = new System.Drawing.Size(67, 21);
+            this.cashInHandAmount.Size = new System.Drawing.Size(61, 19);
             this.cashInHandAmount.TabIndex = 35;
             this.cashInHandAmount.Text = "0000.00";
             this.cashInHandAmount.Click += new System.EventHandler(this.cashInHandAmount_Click);
@@ -225,20 +225,20 @@
             // amountLabel
             // 
             this.amountLabel.AutoSize = true;
-            this.amountLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.amountLabel.Location = new System.Drawing.Point(170, 0);
             this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(82, 25);
+            this.amountLabel.Size = new System.Drawing.Size(74, 23);
             this.amountLabel.TabIndex = 33;
             this.amountLabel.Text = "Amount";
             // 
             // cashInHandLabel
             // 
             this.cashInHandLabel.AutoSize = true;
-            this.cashInHandLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashInHandLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashInHandLabel.Location = new System.Drawing.Point(3, 43);
             this.cashInHandLabel.Name = "cashInHandLabel";
-            this.cashInHandLabel.Size = new System.Drawing.Size(109, 21);
+            this.cashInHandLabel.Size = new System.Drawing.Size(103, 19);
             this.cashInHandLabel.TabIndex = 34;
             this.cashInHandLabel.Text = "Cash In Hand :";
             // 
@@ -278,20 +278,20 @@
             // subTotLabel
             // 
             this.subTotLabel.AutoSize = true;
-            this.subTotLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subTotLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subTotLabel.Location = new System.Drawing.Point(3, 76);
             this.subTotLabel.Name = "subTotLabel";
-            this.subTotLabel.Size = new System.Drawing.Size(85, 21);
+            this.subTotLabel.Size = new System.Drawing.Size(81, 19);
             this.subTotLabel.TabIndex = 39;
             this.subTotLabel.Text = "Sub Total :";
             // 
             // subTotAmount
             // 
             this.subTotAmount.AutoSize = true;
-            this.subTotAmount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subTotAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subTotAmount.Location = new System.Drawing.Point(170, 76);
             this.subTotAmount.Name = "subTotAmount";
-            this.subTotAmount.Size = new System.Drawing.Size(68, 21);
+            this.subTotAmount.Size = new System.Drawing.Size(61, 19);
             this.subTotAmount.TabIndex = 38;
             this.subTotAmount.Text = "0000.00";
             this.subTotAmount.Click += new System.EventHandler(this.subTotAmount_Click);
@@ -299,20 +299,20 @@
             // totRefundLabel
             // 
             this.totRefundLabel.AutoSize = true;
-            this.totRefundLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totRefundLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totRefundLabel.Location = new System.Drawing.Point(3, 38);
             this.totRefundLabel.Name = "totRefundLabel";
-            this.totRefundLabel.Size = new System.Drawing.Size(110, 21);
+            this.totRefundLabel.Size = new System.Drawing.Size(104, 19);
             this.totRefundLabel.TabIndex = 37;
             this.totRefundLabel.Text = "Total Refund :";
             // 
             // totRefAmount
             // 
             this.totRefAmount.AutoSize = true;
-            this.totRefAmount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totRefAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totRefAmount.Location = new System.Drawing.Point(170, 38);
             this.totRefAmount.Name = "totRefAmount";
-            this.totRefAmount.Size = new System.Drawing.Size(68, 21);
+            this.totRefAmount.Size = new System.Drawing.Size(61, 19);
             this.totRefAmount.TabIndex = 36;
             this.totRefAmount.Text = "0000.00";
             this.totRefAmount.Click += new System.EventHandler(this.totRefAmount_Click);
@@ -320,10 +320,10 @@
             // totSaleAmount
             // 
             this.totSaleAmount.AutoSize = true;
-            this.totSaleAmount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totSaleAmount.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totSaleAmount.Location = new System.Drawing.Point(170, 0);
             this.totSaleAmount.Name = "totSaleAmount";
-            this.totSaleAmount.Size = new System.Drawing.Size(68, 21);
+            this.totSaleAmount.Size = new System.Drawing.Size(61, 19);
             this.totSaleAmount.TabIndex = 35;
             this.totSaleAmount.Text = "0000.00";
             this.totSaleAmount.Click += new System.EventHandler(this.totSaleAmount_Click);
@@ -331,10 +331,10 @@
             // totSaleLabel
             // 
             this.totSaleLabel.AutoSize = true;
-            this.totSaleLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totSaleLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totSaleLabel.Location = new System.Drawing.Point(3, 0);
             this.totSaleLabel.Name = "totSaleLabel";
-            this.totSaleLabel.Size = new System.Drawing.Size(94, 21);
+            this.totSaleLabel.Size = new System.Drawing.Size(89, 19);
             this.totSaleLabel.TabIndex = 34;
             this.totSaleLabel.Text = "Total Sales :";
             // 
@@ -349,7 +349,7 @@
             this.cashbookDetailsCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.cashbookDetailsCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.cashbookDetailsCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cashbookDetailsCancelBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashbookDetailsCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashbookDetailsCancelBtn.ForeColor = System.Drawing.Color.White;
             this.cashbookDetailsCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.cashbookDetailsCancelBtn.Location = new System.Drawing.Point(308, 430);
@@ -370,7 +370,7 @@
             this.cashBookPrintBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.cashBookPrintBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.cashBookPrintBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.cashBookPrintBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashBookPrintBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashBookPrintBtn.ForeColor = System.Drawing.Color.White;
             this.cashBookPrintBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.cashBookPrintBtn.Location = new System.Drawing.Point(203, 430);

@@ -28,7 +28,6 @@ namespace EscopeWindowsApp
                 LoadExistingPricing();
             }
             SetupForm();
-
         }
 
         private void LoadVariationData()
@@ -289,50 +288,67 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Initialize the PricingDetails list
                 PricingDetails = new List<PricingDetail>();
-
-                // Arrays of textboxes for cost, retail, and wholesale prices
                 var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
                 var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
                 var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
+                int validVariations = 0;
 
-                // Loop through the variation types (assuming variationTypes is a List<string> from the form)
                 for (int i = 0; i < variationTypes.Count; i++)
                 {
-                    // Validate that all fields are filled
-                    if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
-                        string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
-                        string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                    bool isAnyFieldFilled = !string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                                            !string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
+                                            !string.IsNullOrWhiteSpace(wholeTexts[i].Text);
+                    bool isAllFieldsEmpty = string.IsNullOrWhiteSpace(costTexts[i].Text) &&
+                                            string.IsNullOrWhiteSpace(retailTexts[i].Text) &&
+                                            string.IsNullOrWhiteSpace(wholeTexts[i].Text);
+
+                    if (isAllFieldsEmpty)
                     {
-                        MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        PricingDetails = null; // Reset if validation fails
-                        return;
+                        continue; // Skip empty variations
                     }
 
-                    // Validate that inputs are numeric
-                    if (!decimal.TryParse(costTexts[i].Text, out decimal costPrice) ||
-                        !decimal.TryParse(retailTexts[i].Text, out decimal retailPrice) ||
-                        !decimal.TryParse(wholeTexts[i].Text, out decimal wholesalePrice))
+                    if (isAnyFieldFilled)
                     {
-                        MessageBox.Show($"Please enter valid numeric values for {variationTypes[i]}.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        PricingDetails = null; // Reset if validation fails
-                        return;
-                    }
+                        if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                            string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
+                            string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                        {
+                            MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            PricingDetails = null;
+                            return;
+                        }
 
-                    // Add validated pricing details to the list
-                    PricingDetails.Add(new PricingDetail
-                    {
-                        VariationType = variationTypes[i],
-                        CostPrice = costPrice,
-                        RetailPrice = retailPrice,
-                        WholesalePrice = wholesalePrice
-                    });
+                        if (!decimal.TryParse(costTexts[i].Text, out decimal costPrice) ||
+                            !decimal.TryParse(retailTexts[i].Text, out decimal retailPrice) ||
+                            !decimal.TryParse(wholeTexts[i].Text, out decimal wholesalePrice))
+                        {
+                            MessageBox.Show($"Please enter valid numeric values for {variationTypes[i]}.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            PricingDetails = null;
+                            return;
+                        }
+
+                        PricingDetails.Add(new PricingDetail
+                        {
+                            VariationType = variationTypes[i],
+                            CostPrice = costPrice,
+                            RetailPrice = retailPrice,
+                            WholesalePrice = wholesalePrice
+                        });
+                        validVariations++;
+                    }
                 }
 
-                // If we reach here, all details are valid; set DialogResult and close
+                if (validVariations < 1)
+                {
+                    MessageBox.Show("Please provide complete pricing details for at least two variations.",
+                        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    PricingDetails = null;
+                    return;
+                }
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -340,7 +356,7 @@ namespace EscopeWindowsApp
             {
                 MessageBox.Show($"Error saving pricing details: {ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                PricingDetails = null; // Reset on error
+                PricingDetails = null;
             }
         }
 
@@ -348,6 +364,10 @@ namespace EscopeWindowsApp
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void ProductPricing_Load(object sender, EventArgs e)
+        {
         }
     }
 

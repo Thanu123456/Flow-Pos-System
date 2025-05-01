@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barProIDText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.barProIDLabel = new System.Windows.Forms.Label();
             this.barProNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -75,7 +75,7 @@
             this.barProIDText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barProIDText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barProIDText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barProIDText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barProIDText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barProIDText.ForeColor = System.Drawing.Color.Black;
             this.barProIDText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barProIDText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -94,11 +94,11 @@
             // 
             this.barProIDLabel.AutoSize = true;
             this.barProIDLabel.BackColor = System.Drawing.Color.Transparent;
-            this.barProIDLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barProIDLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barProIDLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barProIDLabel.Location = new System.Drawing.Point(14, 11);
+            this.barProIDLabel.Location = new System.Drawing.Point(16, 18);
             this.barProIDLabel.Name = "barProIDLabel";
-            this.barProIDLabel.Size = new System.Drawing.Size(105, 25);
+            this.barProIDLabel.Size = new System.Drawing.Size(98, 23);
             this.barProIDLabel.TabIndex = 25;
             this.barProIDLabel.Text = "Product ID:";
             // 
@@ -113,7 +113,7 @@
             this.barProNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barProNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barProNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barProNameText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barProNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barProNameText.ForeColor = System.Drawing.Color.Black;
             this.barProNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barProNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -132,11 +132,11 @@
             // 
             this.barProNameLabel.AutoSize = true;
             this.barProNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.barProNameLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barProNameLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barProNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barProNameLabel.Location = new System.Drawing.Point(140, 11);
+            this.barProNameLabel.Location = new System.Drawing.Point(142, 18);
             this.barProNameLabel.Name = "barProNameLabel";
-            this.barProNameLabel.Size = new System.Drawing.Size(137, 25);
+            this.barProNameLabel.Size = new System.Drawing.Size(125, 23);
             this.barProNameLabel.TabIndex = 64;
             this.barProNameLabel.Text = "Product Name:";
             // 
@@ -144,11 +144,11 @@
             // 
             this.barQuantityLabel.AutoSize = true;
             this.barQuantityLabel.BackColor = System.Drawing.Color.Transparent;
-            this.barQuantityLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barQuantityLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barQuantityLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barQuantityLabel.Location = new System.Drawing.Point(627, 12);
+            this.barQuantityLabel.Location = new System.Drawing.Point(629, 19);
             this.barQuantityLabel.Name = "barQuantityLabel";
-            this.barQuantityLabel.Size = new System.Drawing.Size(88, 25);
+            this.barQuantityLabel.Size = new System.Drawing.Size(83, 23);
             this.barQuantityLabel.TabIndex = 78;
             this.barQuantityLabel.Text = "Quantity:";
             // 
@@ -163,7 +163,7 @@
             this.barQuantityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barQuantityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barQuantityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barQuantityText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barQuantityText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barQuantityText.ForeColor = System.Drawing.Color.Black;
             this.barQuantityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barQuantityText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -189,11 +189,11 @@
             this.barStartRangeText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barStartRangeText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barStartRangeText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barStartRangeText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barStartRangeText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barStartRangeText.ForeColor = System.Drawing.Color.Black;
             this.barStartRangeText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barStartRangeText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.barStartRangeText.Location = new System.Drawing.Point(375, 141);
+            this.barStartRangeText.Location = new System.Drawing.Point(375, 143);
             this.barStartRangeText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barStartRangeText.Name = "barStartRangeText";
             this.barStartRangeText.PasswordChar = '\0';
@@ -210,7 +210,7 @@
             this.barStartRangeLabel.BackColor = System.Drawing.Color.Transparent;
             this.barStartRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barStartRangeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barStartRangeLabel.Location = new System.Drawing.Point(307, 141);
+            this.barStartRangeLabel.Location = new System.Drawing.Point(307, 146);
             this.barStartRangeLabel.Name = "barStartRangeLabel";
             this.barStartRangeLabel.Size = new System.Drawing.Size(52, 23);
             this.barStartRangeLabel.TabIndex = 80;
@@ -227,11 +227,11 @@
             this.barEndRangeText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barEndRangeText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barEndRangeText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barEndRangeText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barEndRangeText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barEndRangeText.ForeColor = System.Drawing.Color.Black;
             this.barEndRangeText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barEndRangeText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.barEndRangeText.Location = new System.Drawing.Point(375, 191);
+            this.barEndRangeText.Location = new System.Drawing.Point(375, 196);
             this.barEndRangeText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barEndRangeText.Name = "barEndRangeText";
             this.barEndRangeText.PasswordChar = '\0';
@@ -248,7 +248,7 @@
             this.barEndRangeLabel.BackColor = System.Drawing.Color.Transparent;
             this.barEndRangeLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barEndRangeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barEndRangeLabel.Location = new System.Drawing.Point(307, 191);
+            this.barEndRangeLabel.Location = new System.Drawing.Point(307, 196);
             this.barEndRangeLabel.Name = "barEndRangeLabel";
             this.barEndRangeLabel.Size = new System.Drawing.Size(44, 23);
             this.barEndRangeLabel.TabIndex = 82;
@@ -260,48 +260,48 @@
             this.barDataGridView.AllowUserToDeleteRows = false;
             this.barDataGridView.AllowUserToResizeColumns = false;
             this.barDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.barDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.barDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.barDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.barDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.barDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.barDataGridView.ColumnHeadersHeight = 25;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.barDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.barDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.barDataGridView.GridColor = System.Drawing.Color.White;
             this.barDataGridView.Location = new System.Drawing.Point(12, 383);
             this.barDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.barDataGridView.Name = "barDataGridView";
             this.barDataGridView.ReadOnly = true;
             this.barDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.barDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.barDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.barDataGridView.RowHeadersVisible = false;
             this.barDataGridView.RowHeadersWidth = 22;
             this.barDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -345,7 +345,7 @@
             this.barcodeSaveBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.barcodeSaveBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.barcodeSaveBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.barcodeSaveBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barcodeSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barcodeSaveBtn.ForeColor = System.Drawing.Color.White;
             this.barcodeSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.barcodeSaveBtn.Location = new System.Drawing.Point(575, 638);
@@ -366,7 +366,7 @@
             this.barcodeCancelBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.barcodeCancelBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.barcodeCancelBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.barcodeCancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.barcodeCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barcodeCancelBtn.ForeColor = System.Drawing.Color.White;
             this.barcodeCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
             this.barcodeCancelBtn.Location = new System.Drawing.Point(687, 638);
@@ -387,7 +387,7 @@
             this.barAddToListBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.barAddToListBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.barAddToListBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.barAddToListBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.barAddToListBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barAddToListBtn.ForeColor = System.Drawing.Color.White;
             this.barAddToListBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.barAddToListBtn.Location = new System.Drawing.Point(623, 254);
@@ -408,11 +408,11 @@
             this.barSingleText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barSingleText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.barSingleText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barSingleText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barSingleText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barSingleText.ForeColor = System.Drawing.Color.Black;
             this.barSingleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barSingleText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.barSingleText.Location = new System.Drawing.Point(18, 141);
+            this.barSingleText.Location = new System.Drawing.Point(18, 135);
             this.barSingleText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barSingleText.Name = "barSingleText";
             this.barSingleText.PasswordChar = '\0';
@@ -427,11 +427,11 @@
             // 
             this.barSingleLabel.AutoSize = true;
             this.barSingleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.barSingleLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barSingleLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barSingleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barSingleLabel.Location = new System.Drawing.Point(14, 105);
+            this.barSingleLabel.Location = new System.Drawing.Point(16, 106);
             this.barSingleLabel.Name = "barSingleLabel";
-            this.barSingleLabel.Size = new System.Drawing.Size(142, 25);
+            this.barSingleLabel.Size = new System.Drawing.Size(130, 23);
             this.barSingleLabel.TabIndex = 88;
             this.barSingleLabel.Text = "For Single Item:";
             // 
@@ -443,7 +443,7 @@
             this.checkRange.CheckedState.BorderThickness = 1;
             this.checkRange.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
             this.checkRange.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkRange.Location = new System.Drawing.Point(311, 105);
+            this.checkRange.Location = new System.Drawing.Point(311, 107);
             this.checkRange.Name = "checkRange";
             this.checkRange.Size = new System.Drawing.Size(145, 25);
             this.checkRange.TabIndex = 90;
@@ -537,11 +537,11 @@
             // 
             this.barVarTypLabel.AutoSize = true;
             this.barVarTypLabel.BackColor = System.Drawing.Color.Transparent;
-            this.barVarTypLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barVarTypLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barVarTypLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.barVarTypLabel.Location = new System.Drawing.Point(453, 12);
+            this.barVarTypLabel.Location = new System.Drawing.Point(455, 19);
             this.barVarTypLabel.Name = "barVarTypLabel";
-            this.barVarTypLabel.Size = new System.Drawing.Size(136, 25);
+            this.barVarTypLabel.Size = new System.Drawing.Size(125, 23);
             this.barVarTypLabel.TabIndex = 75;
             this.barVarTypLabel.Text = "Variation Type:";
             // 
@@ -553,7 +553,7 @@
             this.barVarTypCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.barVarTypCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.barVarTypCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.barVarTypCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.barVarTypCombo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barVarTypCombo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.barVarTypCombo.ItemHeight = 36;
             this.barVarTypCombo.Items.AddRange(new object[] {
