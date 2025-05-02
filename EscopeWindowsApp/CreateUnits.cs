@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -44,7 +45,7 @@ namespace EscopeWindowsApp
 
         private void LoadBaseUnits()
         {
-            string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+            string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -139,7 +140,7 @@ namespace EscopeWindowsApp
             {
                 try
                 {
-                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();

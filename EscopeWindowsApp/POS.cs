@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -16,7 +17,7 @@ namespace EscopeWindowsApp
         private Timer dateTimer;       // Timer for date updates
         private DataTable productsTable;
         private BindingSource bindingSource;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private int itemNumberCounter = 1; // To assign unique item numbers in supDataGridView
         private ListBox suggestionListBox; // ListBox for autocomplete suggestions
         private Panel suggestionPanel;      // Panel to wrap ListBox for border

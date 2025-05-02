@@ -3,12 +3,13 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class PreviousGRN : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable grnTable;
         private BindingSource bindingSource;
 
@@ -16,10 +17,11 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             bindingSource = new BindingSource();
-            // Wire up events like Production
+            // Wire up events
             preGRNDataGridView.CellPainting += PreGRNDataGridView_CellPainting;
             preGRNDataGridView.CellFormatting += PreGRNDataGridView_CellFormatting;
             preGRNDataGridView.CellContentClick += PreGRNDataGridView_CellContentClick;
+            preGRNDataGridView.CellDoubleClick += PreGRNDataGridView_CellDoubleClick; // New double-click event
         }
 
         private void PreviousGRN_Load(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace EscopeWindowsApp
                 Name = "grn_no",
                 HeaderText = "GRN NUMBER",
                 Width = 150,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont } // Explicitly set font
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -70,7 +72,7 @@ namespace EscopeWindowsApp
                 Name = "total_amount",
                 HeaderText = "TOTAL AMOUNT",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" } // Currency format
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" }
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -78,29 +80,27 @@ namespace EscopeWindowsApp
                 Name = "date",
                 HeaderText = "DATE",
                 Width = 140,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" } // Date format
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" }
             });
 
-            // Add Delete button column (styled like Production)
+            // Add Delete button column
             preGRNDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
                 HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this GRN",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont } // Ensure button text (if any) uses same font
+                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
             });
 
             // Prevent the empty row at the end
             preGRNDataGridView.AllowUserToAddRows = false;
 
-            // Styling consistent with Production, enforce uniform font
+            // Styling
             preGRNDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            preGRNDataGridView.DefaultCellStyle.Font = gridFont; // Set globally
+            preGRNDataGridView.DefaultCellStyle.Font = gridFont;
             preGRNDataGridView.RowHeadersVisible = false;
-
-            // Ensure no inherited or runtime font changes
-            preGRNDataGridView.Font = gridFont; // Set at grid level as fallback
+            preGRNDataGridView.Font = gridFont;
         }
 
         private void LoadGRNData()
@@ -118,7 +118,7 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Replace DBNull with default values (like Production)
+                // Replace DBNull with default values
                 foreach (DataRow row in grnTable.Rows)
                 {
                     for (int i = 0; i < grnTable.Columns.Count; i++)
@@ -151,34 +151,31 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex < 0) return;
 
-            // Handle null values like Production
+            // Handle null values
             if (e.Value == DBNull.Value || e.Value == null)
             {
                 e.Value = "N/A";
                 e.FormattingApplied = true;
             }
 
-            // Ensure font consistency in CellFormatting
+            // Ensure font consistency
             e.CellStyle.Font = new Font("Segoe UI", 9F);
         }
 
         private void PreGRNDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && preGRNDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
             {
                 try
                 {
-                    if (preGRNDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-                    {
-                        e.PaintBackground(e.CellBounds, true);
-                        Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
-                        int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                        if (iconSize <= 0) iconSize = 16;
-                        int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                        e.Handled = true;
-                    }
+                    e.PaintBackground(e.CellBounds, true);
+                    Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
+                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                    if (iconSize <= 0) iconSize = 16;
+                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                    e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                    e.Handled = true;
                 }
                 catch (Exception ex)
                 {
@@ -194,7 +191,6 @@ namespace EscopeWindowsApp
                 DataGridViewRow row = preGRNDataGridView.Rows[e.RowIndex];
                 string grnNo = row.Cells["grn_no"].Value.ToString();
 
-                // Confirmation prompt styled like Production
                 DialogResult result = MessageBox.Show($"Are you sure you want to delete GRN '{grnNo}'?\nThis will also remove associated items and update stock.",
                     "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -265,7 +261,6 @@ namespace EscopeWindowsApp
                             }
                         }
 
-                        // Refresh the DataGridView
                         LoadGRNData();
                         MessageBox.Show($"GRN '{grnNo}' deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -274,6 +269,158 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error deleting GRN: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void PreGRNDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            try
+            {
+                string grnNo = preGRNDataGridView.Rows[e.RowIndex].Cells["grn_no"].Value?.ToString();
+                if (string.IsNullOrEmpty(grnNo)) return;
+
+                int grnId;
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT id FROM grn WHERE grn_no = @grnNo";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@grnNo", grnNo);
+                        object result = cmd.ExecuteScalar();
+                        if (result == null || !int.TryParse(result.ToString(), out grnId))
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                DataTable detailsTable = new DataTable();
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            gi.product_id,
+                            p.name AS product_name,
+                            gi.variation_type,
+                            gi.unit,
+                            gi.quantity,
+                            gi.cost_price,
+                            gi.net_price
+                        FROM grn_items gi
+                        INNER JOIN products p ON gi.product_id = p.id
+                        WHERE gi.grn_id = @grnId";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@grnId", grnId);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(detailsTable);
+                        }
+                    }
+                }
+
+                Form detailsForm = new Form
+                {
+                    Text = $"GRN Products - {grnNo}",
+                    Size = new Size(850, 300),
+                    StartPosition = FormStartPosition.CenterScreen,
+                    BackColor = Color.White,
+                    MinimumSize = new Size(850, 300),
+                    MaximumSize = new Size(850, 300),
+                    MaximizeBox = false,
+                    MinimizeBox = false,
+                    AutoScroll = false
+                };
+
+                DataGridView detailsGrid = new DataGridView
+                {
+                    Dock = DockStyle.Fill,
+                    AutoGenerateColumns = false,
+                    AllowUserToAddRows = false,
+                    AllowUserToDeleteRows = false,
+                    AllowUserToResizeRows = false,
+                    AllowUserToResizeColumns = false,
+                    BackgroundColor = Color.White,
+                    RowTemplate = { Height = 35 },
+                    ColumnHeadersHeight = 45,
+                    ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
+                    ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle { Font = new Font("Segoe UI", 10F, FontStyle.Bold) }
+                };
+
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "product_id",
+                    HeaderText = "PRODUCT ID",
+                    Width = 100
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "product_name",
+                    HeaderText = "PRODUCT NAME",
+                    Width = 180
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "variation_type",
+                    HeaderText = "VARIATION TYPE",
+                    Width = 120
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "unit",
+                    HeaderText = "UNIT",
+                    Width = 100
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "quantity",
+                    HeaderText = "QUANTITY",
+                    Width = 100
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "cost_price",
+                    HeaderText = "COST PRICE",
+                    Width = 100,
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+                });
+                detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "net_price",
+                    HeaderText = "NET PRICE",
+                    Width = 100,
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+                });
+
+                detailsGrid.DataSource = detailsTable;
+                detailsGrid.CellFormatting += (s, args) =>
+                {
+                    if (args.RowIndex < 0) return;
+                    if (args.Value == DBNull.Value || args.Value == null || (args.Value is string str && string.IsNullOrWhiteSpace(str)))
+                    {
+                        args.Value = "N/A";
+                        args.FormattingApplied = true;
+                    }
+                    else if (detailsGrid.Columns[args.ColumnIndex].DataPropertyName == "product_id")
+                    {
+                        if (int.TryParse(args.Value.ToString(), out int id))
+                        {
+                            args.Value = $"PRO{id:D3}";
+                            args.FormattingApplied = true;
+                        }
+                    }
+                };
+
+                detailsForm.Controls.Add(detailsGrid);
+                detailsForm.ShowDialog();
+            }
+            catch (Exception)
+            {
+                // Silently fail to avoid disrupting user experience
             }
         }
 
@@ -308,8 +455,8 @@ namespace EscopeWindowsApp
         {
             LoadGRNData();
             preGRNSearchText.Text = string.Empty;
-            filterDateComboBox.SelectedIndex = 0; // Reset to "Select Date"
-            filterPaymentComboBox.SelectedIndex = 0; // Reset to "Select Payment Method"
+            filterDateComboBox.SelectedIndex = 0;
+            filterPaymentComboBox.SelectedIndex = 0;
             bindingSource.Filter = null;
         }
 
@@ -317,8 +464,7 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // If "Select Date" is selected, show all data
-                if (filterDateComboBox.SelectedIndex == 0) // "Select Date"
+                if (filterDateComboBox.SelectedIndex == 0)
                 {
                     bindingSource.Filter = null;
                     return;
@@ -333,7 +479,7 @@ namespace EscopeWindowsApp
                         filter = $"date >= '{now.ToString("yyyy-MM-dd 00:00:00")}' AND date <= '{now.ToString("yyyy-MM-dd 23:59:59")}'";
                         break;
                     case "THIS WEEK":
-                        DateTime startOfWeek = now.AddDays(-(int)now.DayOfWeek); // Sunday as start
+                        DateTime startOfWeek = now.AddDays(-(int)now.DayOfWeek);
                         filter = $"date >= '{startOfWeek.ToString("yyyy-MM-dd 00:00:00")}' AND date <= '{now.ToString("yyyy-MM-dd 23:59:59")}'";
                         break;
                     case "LAST WEEK":
@@ -355,6 +501,7 @@ namespace EscopeWindowsApp
                 bindingSource.Filter = null;
             }
         }
+
         private void preGRNDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -364,7 +511,7 @@ namespace EscopeWindowsApp
         {
             try
             {
-                if (filterPaymentComboBox.SelectedIndex == 0) // "Select Payment Method"
+                if (filterPaymentComboBox.SelectedIndex == 0)
                 {
                     bindingSource.Filter = null;
                     return;

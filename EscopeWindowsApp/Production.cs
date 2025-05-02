@@ -3,6 +3,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -11,7 +12,7 @@ namespace EscopeWindowsApp
         private DataTable productsTable;
         private BindingSource bindingSource;
         private int currentIndex = 0;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
 
         public Production()
         {

@@ -26,24 +26,6 @@ namespace EscopeWindowsApp
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private Font gridFont = new Font("Segoe UI", 12F);
 
-        // Animation fields for pie charts
-        private Dictionary<Chart, int> lastHoveredPointIndices = new Dictionary<Chart, int>();
-        private Dictionary<Chart, Dictionary<int, Color>> originalColors = new Dictionary<Chart, Dictionary<int, Color>>();
-        private Dictionary<Chart, Dictionary<int, string>> originalGradients = new Dictionary<Chart, Dictionary<int, string>>();
-        private Dictionary<Chart, Dictionary<int, Color>> originalSecondaryColors = new Dictionary<Chart, Dictionary<int, Color>>();
-        private Dictionary<Chart, Dictionary<int, Font>> originalFonts = new Dictionary<Chart, Dictionary<int, Font>>();
-        private Dictionary<Chart, Timer> loadingTimers = new Dictionary<Chart, Timer>();
-        private Dictionary<Chart, Timer> hoverTimers = new Dictionary<Chart, Timer>();
-        private Dictionary<Chart, int> animationSteps = new Dictionary<Chart, int>();
-        private Dictionary<Chart, Dictionary<int, double>> sliceProgress = new Dictionary<Chart, Dictionary<int, double>>();
-        private Dictionary<Chart, double> currentHoverRadius = new Dictionary<Chart, double>();
-        private Dictionary<Chart, int> currentHoverOpacity = new Dictionary<Chart, int>();
-        private Dictionary<Chart, Color> currentHoverColor = new Dictionary<Chart, Color>();
-        private Dictionary<Chart, bool> isHovering = new Dictionary<Chart, bool>();
-        private Dictionary<Chart, Dictionary<int, double>> originalYValues = new Dictionary<Chart, Dictionary<int, double>>();
-        private Dictionary<Chart, double> titleOpacity = new Dictionary<Chart, double>();
-        private Dictionary<Chart, double> titleOffset = new Dictionary<Chart, double>();
-
         public DashBoardForm()
         {
             InitializeComponent();
@@ -56,41 +38,6 @@ namespace EscopeWindowsApp
             recentDataGridView.CellFormatting += RecentDataGridView_CellFormatting;
             expireDateAlertGridView.CellFormatting += ExpireDateAlertGridView_CellFormatting;
             stockAlertDataGrid.CellFormatting += StockAlertDataGrid_CellFormatting;
-
-            // Initialize animation dictionaries for each pie chart
-            InitializeChartAnimation(topCustomerPieChart);
-            InitializeChartAnimation(topExpensesDoughnutChart);
-            InitializeChartAnimation(topProductsPieChart);
-
-            // Add hover event handlers
-            topCustomerPieChart.MouseMove += PieChart_MouseMove;
-            topCustomerPieChart.MouseLeave += PieChart_MouseLeave;
-            topExpensesDoughnutChart.MouseMove += PieChart_MouseMove;
-            topExpensesDoughnutChart.MouseLeave += PieChart_MouseLeave;
-            topProductsPieChart.MouseMove += PieChart_MouseMove;
-            topProductsPieChart.MouseLeave += PieChart_MouseLeave;
-        }
-
-        private void InitializeChartAnimation(Chart chart)
-        {
-            lastHoveredPointIndices[chart] = -1;
-            originalColors[chart] = new Dictionary<int, Color>();
-            originalGradients[chart] = new Dictionary<int, string>();
-            originalSecondaryColors[chart] = new Dictionary<int, Color>();
-            originalFonts[chart] = new Dictionary<int, Font>();
-            originalYValues[chart] = new Dictionary<int, double>();
-            sliceProgress[chart] = new Dictionary<int, double>();
-            animationSteps[chart] = 0;
-            currentHoverRadius[chart] = 100.0;
-            currentHoverOpacity[chart] = 0;
-            currentHoverColor[chart] = Color.Transparent;
-            isHovering[chart] = false;
-            titleOpacity[chart] = 1.0;
-            titleOffset[chart] = -50.0;
-            loadingTimers[chart] = new Timer { Interval = 30 };
-            loadingTimers[chart].Tick += (s, e) => LoadingAnimationTick(chart);
-            hoverTimers[chart] = new Timer { Interval = 15 };
-            hoverTimers[chart].Tick += (s, e) => HoverAnimationTick(chart);
         }
 
         private void DashBoardForm_Load(object sender, EventArgs e)
@@ -305,7 +252,8 @@ namespace EscopeWindowsApp
             Series series = new Series("TopCustomers")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = false,
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY{C2}",
                 ["PointDepth"] = "0"
@@ -324,12 +272,6 @@ namespace EscopeWindowsApp
             topCustomerPieChart.Legends[0].CustomItems.Clear();
 
             topCustomerPieChart.Titles.Clear();
-            topCustomerPieChart.Titles.Add(new Title
-            {
-                Text = "Loading...",
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                ForeColor = Color.Gray
-            });
         }
 
         private void ConfigureTopExpensesDoughnutChart()
@@ -338,7 +280,8 @@ namespace EscopeWindowsApp
             Series series = new Series("TopExpenses")
             {
                 ChartType = SeriesChartType.Doughnut,
-                IsValueShownAsLabel = false,
+                IsValueShownAsLabel = true,
+                Label = "#PERCENT{P0}",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY{C2}",
                 ["PointDepth"] = "0"
@@ -357,12 +300,6 @@ namespace EscopeWindowsApp
             topExpensesDoughnutChart.Legends[0].CustomItems.Clear();
 
             topExpensesDoughnutChart.Titles.Clear();
-            topExpensesDoughnutChart.Titles.Add(new Title
-            {
-                Text = "Loading...",
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                ForeColor = Color.Gray
-            });
         }
 
         private void ConfigureTopProductsPieChart()
@@ -372,7 +309,7 @@ namespace EscopeWindowsApp
             {
                 ChartType = SeriesChartType.Pie,
                 IsValueShownAsLabel = true,
-                Label = "#VALX",
+                Label = "#PERCENT{P0}",
                 Font = new Font("Segoe UI", 9F),
                 ToolTip = "#VALX: #VALY",
                 ["PointDepth"] = "0"
@@ -391,12 +328,6 @@ namespace EscopeWindowsApp
             topProductsPieChart.Legends[0].CustomItems.Clear();
 
             topProductsPieChart.Titles.Clear();
-            topProductsPieChart.Titles.Add(new Title
-            {
-                Text = "Loading...",
-                Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                ForeColor = Color.Gray
-            });
         }
 
         private void ConfigureSalesPurchColumnChart()
@@ -705,19 +636,6 @@ namespace EscopeWindowsApp
                 topCustomersTable = new DataTable();
                 topCustomerPieChart.Series["TopCustomers"].Points.Clear();
                 topCustomerPieChart.Titles.Clear();
-                topCustomerPieChart.Titles.Add(new Title
-                {
-                    Text = "Loading...",
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                    ForeColor = Color.Gray
-                });
-
-                originalColors[topCustomerPieChart].Clear();
-                originalGradients[topCustomerPieChart].Clear();
-                originalSecondaryColors[topCustomerPieChart].Clear();
-                originalFonts[topCustomerPieChart].Clear();
-                originalYValues[topCustomerPieChart].Clear();
-                StartLoadingAnimation(topCustomerPieChart);
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
@@ -757,28 +675,12 @@ namespace EscopeWindowsApp
                     point.BackGradientStyle = GradientStyle.None;
                     point.BackSecondaryColor = Color.Transparent;
                     point.Font = new Font("Segoe UI", 9F);
-                    originalColors[topCustomerPieChart][pointIndex] = point.Color;
-                    originalGradients[topCustomerPieChart][pointIndex] = point.BackGradientStyle.ToString();
-                    originalSecondaryColors[topCustomerPieChart][pointIndex] = point.BackSecondaryColor;
-                    originalFonts[topCustomerPieChart][pointIndex] = point.Font;
-                    originalYValues[topCustomerPieChart][pointIndex] = (double)totalSpent;
-
-                    LegendItem customItem = new LegendItem
-                    {
-                        Name = customerName,
-                        Color = point.Color,
-                        MarkerStyle = MarkerStyle.Circle,
-                        MarkerSize = 8
-                    };
-                    topCustomerPieChart.Legends[0].CustomItems.Add(customItem);
 
                     colorIndex++;
                 }
 
                 if (topCustomerPieChart.Series["TopCustomers"].Points.Count == 0)
                 {
-                    loadingTimers[topCustomerPieChart].Stop();
-                    topCustomerPieChart.Titles.Clear();
                     topCustomerPieChart.Titles.Add(new Title
                     {
                         Text = "No Customer Data Available",
@@ -789,12 +691,10 @@ namespace EscopeWindowsApp
             }
             catch (Exception)
             {
-                loadingTimers[topCustomerPieChart].Stop();
                 topCustomersTable = new DataTable();
                 topCustomersTable.Columns.Add("customer_name", typeof(string));
                 topCustomersTable.Columns.Add("total_spent", typeof(decimal));
                 topCustomerPieChart.Series["TopCustomers"].Points.Clear();
-                topCustomerPieChart.Titles.Clear();
                 topCustomerPieChart.Titles.Add(new Title
                 {
                     Text = "Error Loading Data",
@@ -811,19 +711,6 @@ namespace EscopeWindowsApp
                 topExpensesTable = new DataTable();
                 topExpensesDoughnutChart.Series["TopExpenses"].Points.Clear();
                 topExpensesDoughnutChart.Titles.Clear();
-                topExpensesDoughnutChart.Titles.Add(new Title
-                {
-                    Text = "Loading...",
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                    ForeColor = Color.Gray
-                });
-
-                originalColors[topExpensesDoughnutChart].Clear();
-                originalGradients[topExpensesDoughnutChart].Clear();
-                originalSecondaryColors[topExpensesDoughnutChart].Clear();
-                originalFonts[topExpensesDoughnutChart].Clear();
-                originalYValues[topExpensesDoughnutChart].Clear();
-                StartLoadingAnimation(topExpensesDoughnutChart);
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
@@ -860,28 +747,12 @@ namespace EscopeWindowsApp
                     point.BackGradientStyle = GradientStyle.None;
                     point.BackSecondaryColor = Color.Transparent;
                     point.Font = new Font("Segoe UI", 9F);
-                    originalColors[topExpensesDoughnutChart][pointIndex] = point.Color;
-                    originalGradients[topExpensesDoughnutChart][pointIndex] = point.BackGradientStyle.ToString();
-                    originalSecondaryColors[topExpensesDoughnutChart][pointIndex] = point.BackSecondaryColor;
-                    originalFonts[topExpensesDoughnutChart][pointIndex] = point.Font;
-                    originalYValues[topExpensesDoughnutChart][pointIndex] = (double)totalAmount;
-
-                    LegendItem customItem = new LegendItem
-                    {
-                        Name = expenseTitle,
-                        Color = point.Color,
-                        MarkerStyle = MarkerStyle.Circle,
-                        MarkerSize = 8
-                    };
-                    topExpensesDoughnutChart.Legends[0].CustomItems.Add(customItem);
 
                     colorIndex++;
                 }
 
                 if (topExpensesDoughnutChart.Series["TopExpenses"].Points.Count == 0)
                 {
-                    loadingTimers[topExpensesDoughnutChart].Stop();
-                    topExpensesDoughnutChart.Titles.Clear();
                     topExpensesDoughnutChart.Titles.Add(new Title
                     {
                         Text = "No Expense Data Available",
@@ -892,12 +763,10 @@ namespace EscopeWindowsApp
             }
             catch (Exception)
             {
-                loadingTimers[topExpensesDoughnutChart].Stop();
                 topExpensesTable = new DataTable();
                 topExpensesTable.Columns.Add("expense_title", typeof(string));
                 topExpensesTable.Columns.Add("total_amount", typeof(decimal));
                 topExpensesDoughnutChart.Series["TopExpenses"].Points.Clear();
-                topExpensesDoughnutChart.Titles.Clear();
                 topExpensesDoughnutChart.Titles.Add(new Title
                 {
                     Text = "Error Loading Data",
@@ -913,19 +782,6 @@ namespace EscopeWindowsApp
             {
                 topProductsPieChart.Series["TopProducts"].Points.Clear();
                 topProductsPieChart.Titles.Clear();
-                topProductsPieChart.Titles.Add(new Title
-                {
-                    Text = "Loading...",
-                    Font = new Font("Segoe UI", 12F, FontStyle.Regular),
-                    ForeColor = Color.Gray
-                });
-
-                originalColors[topProductsPieChart].Clear();
-                originalGradients[topProductsPieChart].Clear();
-                originalSecondaryColors[topProductsPieChart].Clear();
-                originalFonts[topProductsPieChart].Clear();
-                originalYValues[topProductsPieChart].Clear();
-                StartLoadingAnimation(topProductsPieChart);
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
@@ -947,17 +803,16 @@ namespace EscopeWindowsApp
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             Color[] colors = new Color[] {
-                                Color.FromArgb(54, 162, 235),  // Blue
-                                Color.FromArgb(255, 99, 132),  // Pink
-                                Color.FromArgb(255, 206, 86),  // Yellow
-                                Color.FromArgb(75, 192, 192),  // Teal
-                                Color.FromArgb(153, 102, 255)  // Purple
+                                Color.FromArgb(54, 162, 235),
+                                Color.FromArgb(255, 99, 132),
+                                Color.FromArgb(255, 206, 86),
+                                Color.FromArgb(75, 192, 192),
+                                Color.FromArgb(153, 102, 255)
                             };
                             int colorIndex = 0;
 
                             topProductsPieChart.Legends[0].CustomItems.Clear();
 
-                            // Use a HashSet to track unique display names
                             HashSet<string> uniqueDisplayNames = new HashSet<string>();
 
                             while (reader.Read())
@@ -967,7 +822,6 @@ namespace EscopeWindowsApp
                                 string displayName = variationType == "N/A" ? productName : $"{productName} ({variationType})";
                                 decimal totalQuantity = Convert.ToDecimal(reader["total_quantity"]);
 
-                                // Add the data point to the chart
                                 int pointIndex = topProductsPieChart.Series["TopProducts"].Points.AddXY(displayName, totalQuantity);
                                 var point = topProductsPieChart.Series["TopProducts"].Points[pointIndex];
 
@@ -976,23 +830,9 @@ namespace EscopeWindowsApp
                                 point.BackGradientStyle = GradientStyle.None;
                                 point.BackSecondaryColor = Color.Transparent;
                                 point.Font = new Font("Segoe UI", 9F);
-                                originalColors[topProductsPieChart][pointIndex] = point.Color;
-                                originalGradients[topProductsPieChart][pointIndex] = point.BackGradientStyle.ToString();
-                                originalSecondaryColors[topProductsPieChart][pointIndex] = point.BackSecondaryColor;
-                                originalFonts[topProductsPieChart][pointIndex] = point.Font;
-                                originalYValues[topProductsPieChart][pointIndex] = (double)totalQuantity;
 
-                                // Add legend item only if the display name is unique
                                 if (uniqueDisplayNames.Add(displayName))
                                 {
-                                    LegendItem customItem = new LegendItem
-                                    {
-                                        Name = displayName,
-                                        Color = point.Color,
-                                        MarkerStyle = MarkerStyle.Circle,
-                                        MarkerSize = 8
-                                    };
-                                    topProductsPieChart.Legends[0].CustomItems.Add(customItem);
                                     colorIndex++;
                                 }
                             }
@@ -1002,8 +842,6 @@ namespace EscopeWindowsApp
 
                 if (topProductsPieChart.Series["TopProducts"].Points.Count == 0)
                 {
-                    loadingTimers[topProductsPieChart].Stop();
-                    topProductsPieChart.Titles.Clear();
                     topProductsPieChart.Titles.Add(new Title
                     {
                         Text = "No Sales Data for Current Month",
@@ -1014,9 +852,7 @@ namespace EscopeWindowsApp
             }
             catch (Exception)
             {
-                loadingTimers[topProductsPieChart].Stop();
                 topProductsPieChart.Series["TopProducts"].Points.Clear();
-                topProductsPieChart.Titles.Clear();
                 topProductsPieChart.Titles.Add(new Title
                 {
                     Text = "Error Loading Data",
@@ -1275,163 +1111,6 @@ namespace EscopeWindowsApp
             int g = Math.Min(255, (int)(color.G * 1.3));
             int b = Math.Min(255, (int)(color.B * 1.3));
             return Color.FromArgb(color.A, r, g, b);
-        }
-
-        private void StartLoadingAnimation(Chart chart)
-        {
-            animationSteps[chart] = 0;
-            sliceProgress[chart].Clear();
-            for (int i = 0; i < chart.Series[0].Points.Count; i++)
-            {
-                sliceProgress[chart][i] = 0.0;
-                chart.Series[0].Points[i]["PieStartAngle"] = "0";
-                chart.Series[0].Points[i]["PieSweepAngle"] = "0";
-                chart.Series[0].Points[i].Color = Color.FromArgb(0, chart.Series[0].Points[i].Color);
-            }
-            titleOpacity[chart] = 1.0;
-            titleOffset[chart] = -50.0;
-            loadingTimers[chart].Start();
-        }
-
-        private void LoadingAnimationTick(Chart chart)
-        {
-            animationSteps[chart]++;
-            int totalSteps = 33;
-            double progress = (double)animationSteps[chart] / totalSteps;
-
-            double scaleProgress = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.Pow(-2 * progress + 2, 3) / 2;
-            double scale = 0.8 + 0.3 * scaleProgress - 0.1 * Math.Sin(scaleProgress * Math.PI);
-
-            double cumulativeAngle = 0;
-            for (int i = 0; i < chart.Series[0].Points.Count; i++)
-            {
-                double sliceProgressValue = Math.Min(1.0, progress * chart.Series[0].Points.Count - i);
-                if (sliceProgressValue < 0) sliceProgressValue = 0;
-                sliceProgress[chart][i] = sliceProgressValue;
-
-                double originalAngle = originalYValues[chart][i] / originalYValues[chart].Values.Sum() * 360;
-                double currentAngle = originalAngle * sliceProgressValue;
-
-                chart.Series[0].Points[i]["PieStartAngle"] = cumulativeAngle.ToString();
-                chart.Series[0].Points[i]["PieSweepAngle"] = currentAngle.ToString();
-                chart.Series[0].Points[i].Color = Color.FromArgb((int)(255 * sliceProgressValue), originalColors[chart][i]);
-                chart.Series[0].Points[i]["PieRadius"] = (100 * scale).ToString();
-
-                cumulativeAngle += currentAngle;
-            }
-
-            string titleText = chart == topCustomerPieChart ? "Top Customers" : chart == topExpensesDoughnutChart ? "Top Expenses" : "Top Products";
-            titleOpacity[chart] = 1.0 - progress;
-            titleOffset[chart] = -50.0 * (1.0 - progress);
-            chart.Titles[0].Text = progress < 0.5 ? "Loading..." : titleText;
-            chart.Titles[0].ForeColor = Color.FromArgb((int)(255 * (progress < 0.5 ? titleOpacity[chart] : progress)), progress < 0.5 ? Color.Gray : Color.Black);
-            chart.Titles[0].Position.X = (float)(5 + titleOffset[chart] / 10);
-
-            if (animationSteps[chart] >= totalSteps)
-            {
-                loadingTimers[chart].Stop();
-                for (int i = 0; i < chart.Series[0].Points.Count; i++)
-                {
-                    chart.Series[0].Points[i]["PieRadius"] = "100";
-                    chart.Series[0].Points[i].Color = originalColors[chart][i];
-                }
-                chart.Titles[0].Text = titleText;
-                chart.Titles[0].ForeColor = Color.Black;
-                chart.Titles[0].Position.X = 5;
-            }
-
-            chart.Invalidate();
-        }
-
-        private void StartHoverAnimation(Chart chart, int pointIndex, bool isHovering)
-        {
-            this.isHovering[chart] = isHovering;
-            lastHoveredPointIndices[chart] = isHovering ? pointIndex : -1;
-            animationSteps[chart] = 0;
-            hoverTimers[chart].Start();
-        }
-
-        private void HoverAnimationTick(Chart chart)
-        {
-            animationSteps[chart]++;
-            int totalSteps = 17;
-            double progress = (double)animationSteps[chart] / totalSteps;
-
-            double easeProgress = 1 - Math.Pow(1 - progress, 3);
-            double targetRadius = isHovering[chart] ? 110.0 : 100.0;
-            double targetOpacity = isHovering[chart] ? 100 : 0;
-            Color targetColor = isHovering[chart] && lastHoveredPointIndices[chart] >= 0
-                ? Color.FromArgb(
-                    Math.Min(255, originalColors[chart][lastHoveredPointIndices[chart]].R + 50),
-                    Math.Min(255, originalColors[chart][lastHoveredPointIndices[chart]].G + 50),
-                    Math.Min(255, originalColors[chart][lastHoveredPointIndices[chart]].B + 50))
-                : Color.Transparent;
-
-            currentHoverRadius[chart] = currentHoverRadius[chart] + (targetRadius - currentHoverRadius[chart]) * easeProgress;
-            currentHoverOpacity[chart] = (int)(currentHoverOpacity[chart] + (targetOpacity - currentHoverOpacity[chart]) * easeProgress);
-            currentHoverColor[chart] = Color.FromArgb(
-                (int)(currentHoverColor[chart].R + (targetColor.R - currentHoverColor[chart].R) * easeProgress),
-                (int)(currentHoverColor[chart].G + (targetColor.G - currentHoverColor[chart].G) * easeProgress),
-                (int)(currentHoverColor[chart].B + (targetColor.B - currentHoverColor[chart].B) * easeProgress));
-
-            for (int i = 0; i < chart.Series[0].Points.Count; i++)
-            {
-                chart.Series[0].Points[i]["PieRadius"] = (i == lastHoveredPointIndices[chart] && isHovering[chart] ? currentHoverRadius[chart] : 100.0).ToString();
-                chart.Series[0].Points[i].Color = i == lastHoveredPointIndices[chart] && isHovering[chart] ? currentHoverColor[chart] : originalColors[chart][i];
-                chart.Series[0].Points[i].BackSecondaryColor = i == lastHoveredPointIndices[chart] && isHovering[chart]
-                    ? Color.FromArgb(currentHoverOpacity[chart], 50, 50, 50)
-                    : originalSecondaryColors[chart][i];
-                chart.Legends[0].Font = i == lastHoveredPointIndices[chart] && isHovering[chart]
-                    ? new Font("Segoe UI", 9F, FontStyle.Bold)
-                    : originalFonts[chart][i];
-                if (chart.Legends[0].CustomItems.Count > i)
-                {
-                    chart.Legends[0].CustomItems[i].MarkerSize = i == lastHoveredPointIndices[chart] && isHovering[chart] ? 10 : 8;
-                }
-            }
-
-            if (animationSteps[chart] >= totalSteps)
-            {
-                hoverTimers[chart].Stop();
-                for (int i = 0; i < chart.Series[0].Points.Count; i++)
-                {
-                    chart.Series[0].Points[i]["PieRadius"] = isHovering[chart] && i == lastHoveredPointIndices[chart] ? "110" : "100";
-                    chart.Series[0].Points[i].Color = isHovering[chart] && i == lastHoveredPointIndices[chart] ? targetColor : originalColors[chart][i];
-                    chart.Series[0].Points[i].BackSecondaryColor = isHovering[chart] && i == lastHoveredPointIndices[chart]
-                        ? Color.FromArgb(100, 50, 50, 50)
-                        : originalSecondaryColors[chart][i];
-                }
-            }
-
-            chart.Invalidate();
-        }
-
-        private void PieChart_MouseMove(object sender, MouseEventArgs e)
-        {
-            Chart chart = (Chart)sender;
-            var hit = chart.HitTest(e.X, e.Y);
-            int pointIndex = hit.PointIndex;
-
-            if (pointIndex >= 0 && hit.ChartElementType == ChartElementType.DataPoint)
-            {
-                if (lastHoveredPointIndices[chart] != pointIndex)
-                {
-                    StartHoverAnimation(chart, pointIndex, true);
-                }
-            }
-            else if (lastHoveredPointIndices[chart] != -1)
-            {
-                StartHoverAnimation(chart, -1, false);
-            }
-        }
-
-        private void PieChart_MouseLeave(object sender, EventArgs e)
-        {
-            Chart chart = (Chart)sender;
-            if (lastHoveredPointIndices[chart] != -1)
-            {
-                StartHoverAnimation(chart, -1, false);
-            }
         }
 
         private void RecentDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -1698,5 +1377,6 @@ namespace EscopeWindowsApp
         }
         private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
         private void siticonePanel3_Paint(object sender, PaintEventArgs e) { }
+        private void siticonePanel7_Paint(object sender, PaintEventArgs e) { }
     }
 }

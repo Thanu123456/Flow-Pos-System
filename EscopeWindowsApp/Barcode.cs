@@ -14,13 +14,14 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using System.IO;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class Barcode : Form
     {
         private Bitmap generatedBarcode; // Store the generated barcode image
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;"; // Same as other forms
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString; // Same as other forms
 
         public Barcode()
         {

@@ -13,12 +13,13 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using ClosedXML.Excel;
 using System.IO;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class SuppliersReport : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable suppliersTable;
 
         public SuppliersReport()

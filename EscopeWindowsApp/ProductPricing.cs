@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -7,7 +8,7 @@ namespace EscopeWindowsApp
 {
     public partial class ProductPricing : Form
     {
-        private readonly string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"]?.ConnectionString;
         private int variationId;
         private string variationName;
         private string selectedVariationType;

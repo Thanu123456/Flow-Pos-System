@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace EscopeWindowsApp
         private DataTable expensesTable;
         private BindingSource bindingSource;
         private int currentIndex = 0;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
 
         public ExpensesForm()
         {

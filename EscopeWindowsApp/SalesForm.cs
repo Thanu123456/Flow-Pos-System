@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace EscopeWindowsApp
         private DataTable salesTable; // Data source for sales
         private BindingSource bindingSource; // Binding source for filtering
         private int currentIndex = 0; // Current index for navigation
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private Font gridFont = new Font("Segoe UI", 9F); // Uniform font for DataGridView
 
         public SalesForm()
