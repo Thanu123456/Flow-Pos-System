@@ -5,12 +5,13 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class Refund : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable billProductsTable;
         private int selectedProductId;
         private decimal totalRefundAmount = 0m;
@@ -561,11 +562,11 @@ namespace EscopeWindowsApp
 
                             // Update stock
                             string updateStockQuery = @"
-                        UPDATE stock 
-                        SET stock = stock + @quantity 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                        LIMIT 1";
+                                UPDATE stock 
+                                SET stock = stock + @quantity 
+                                WHERE product_id = @productId 
+                                AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                LIMIT 1";
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);

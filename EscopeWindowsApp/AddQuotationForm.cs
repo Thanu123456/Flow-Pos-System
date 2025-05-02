@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -22,7 +23,7 @@ namespace EscopeWindowsApp
         private Timer dateTimer;       // Timer for date updates
         private DataTable productsTable;
         private BindingSource bindingSource;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private int itemNumberCounter = 1; // To assign unique item numbers in addQuotaDataGridView
 
         public AddQuotationForm()

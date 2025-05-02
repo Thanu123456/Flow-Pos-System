@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -133,7 +134,7 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using BCrypt.Net;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -267,7 +268,7 @@ namespace EscopeWindowsApp
             {
                 try
                 {
-                    string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+                    string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();
