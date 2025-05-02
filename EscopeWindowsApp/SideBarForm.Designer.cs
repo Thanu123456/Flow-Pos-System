@@ -95,6 +95,7 @@
             this.siticoneControlBox1 = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.sideBarTopPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.posBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.timePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -108,7 +109,6 @@
             this.salesTransition = new System.Windows.Forms.Timer(this.components);
             this.peoplesTransition = new System.Windows.Forms.Timer(this.components);
             this.purchTransition = new System.Windows.Forms.Timer(this.components);
-            this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.manuLayoutPanel.SuspendLayout();
             this.manuBtnPanel.SuspendLayout();
             this.proBtnPanel.SuspendLayout();
@@ -145,10 +145,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.siticonePanel1.SuspendLayout();
             this.sideBarTopPanel.SuspendLayout();
+            this.siticonePanel2.SuspendLayout();
             this.posBtnPanel.SuspendLayout();
             this.timePanel.SuspendLayout();
             this.userProfilePanel.SuspendLayout();
-            this.siticonePanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // manuTransition
@@ -1233,12 +1233,23 @@
             this.sideBarTopPanel.Size = new System.Drawing.Size(1386, 66);
             this.sideBarTopPanel.TabIndex = 9;
             // 
+            // siticonePanel2
+            // 
+            this.siticonePanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel2.Controls.Add(this.posBtnPanel);
+            this.siticonePanel2.Controls.Add(this.timePanel);
+            this.siticonePanel2.Controls.Add(this.userProfilePanel);
+            this.siticonePanel2.Location = new System.Drawing.Point(897, 3);
+            this.siticonePanel2.Name = "siticonePanel2";
+            this.siticonePanel2.Size = new System.Drawing.Size(477, 58);
+            this.siticonePanel2.TabIndex = 9;
+            // 
             // posBtnPanel
             // 
             this.posBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.posBtnPanel.BackColor = System.Drawing.Color.Transparent;
             this.posBtnPanel.Controls.Add(this.posBtn);
-            this.posBtnPanel.Location = new System.Drawing.Point(239, 3);
+            this.posBtnPanel.Location = new System.Drawing.Point(194, 3);
             this.posBtnPanel.Margin = new System.Windows.Forms.Padding(0);
             this.posBtnPanel.Name = "posBtnPanel";
             this.posBtnPanel.Size = new System.Drawing.Size(109, 53);
@@ -1274,7 +1285,7 @@
             this.timePanel.BackColor = System.Drawing.Color.Transparent;
             this.timePanel.Controls.Add(this.dateLabel);
             this.timePanel.Controls.Add(this.timeLabel);
-            this.timePanel.Location = new System.Drawing.Point(21, 3);
+            this.timePanel.Location = new System.Drawing.Point(5, 0);
             this.timePanel.Margin = new System.Windows.Forms.Padding(0);
             this.timePanel.Name = "timePanel";
             this.timePanel.Size = new System.Drawing.Size(187, 53);
@@ -1288,9 +1299,9 @@
             this.dateLabel.Location = new System.Drawing.Point(3, 28);
             this.dateLabel.Margin = new System.Windows.Forms.Padding(0);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(183, 23);
+            this.dateLabel.Size = new System.Drawing.Size(165, 23);
             this.dateLabel.TabIndex = 10;
-            this.dateLabel.Text = "00000000000000000000";
+            this.dateLabel.Text = "000000000000000000";
             this.dateLabel.Click += new System.EventHandler(this.dateLabel_Click);
             // 
             // timeLabel
@@ -1310,7 +1321,7 @@
             this.userProfilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.userProfilePanel.BackColor = System.Drawing.Color.Transparent;
             this.userProfilePanel.Controls.Add(this.userProfileBtn);
-            this.userProfilePanel.Location = new System.Drawing.Point(379, 3);
+            this.userProfilePanel.Location = new System.Drawing.Point(315, 3);
             this.userProfilePanel.Margin = new System.Windows.Forms.Padding(0);
             this.userProfilePanel.Name = "userProfilePanel";
             this.userProfilePanel.Size = new System.Drawing.Size(162, 53);
@@ -1386,17 +1397,6 @@
             this.purchTransition.Interval = 10;
             this.purchTransition.Tick += new System.EventHandler(this.purchTransition_Tick);
             // 
-            // siticonePanel2
-            // 
-            this.siticonePanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticonePanel2.Controls.Add(this.posBtnPanel);
-            this.siticonePanel2.Controls.Add(this.timePanel);
-            this.siticonePanel2.Controls.Add(this.userProfilePanel);
-            this.siticonePanel2.Location = new System.Drawing.Point(833, 3);
-            this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(541, 58);
-            this.siticonePanel2.TabIndex = 9;
-            // 
             // SideBarForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1455,11 +1455,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
             this.siticonePanel1.ResumeLayout(false);
             this.sideBarTopPanel.ResumeLayout(false);
+            this.siticonePanel2.ResumeLayout(false);
             this.posBtnPanel.ResumeLayout(false);
             this.timePanel.ResumeLayout(false);
             this.timePanel.PerformLayout();
             this.userProfilePanel.ResumeLayout(false);
-            this.siticonePanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
