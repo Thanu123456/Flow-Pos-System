@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class CreatePurchasesReturn : Form
     {
-        private readonly string _connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable _grnTable = new DataTable();
         private DataTable _grnItemsTable = new DataTable();
         private string _returnNote = string.Empty;
@@ -518,10 +519,10 @@ namespace EscopeWindowsApp
                             }
 
                             string insertReturnQuery = @"
-                        INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, created_at)
-                        VALUES (@grnNo, @returnNo, @note, @totalAmount, NOW());
-                        SELECT LAST_INSERT_ID();
-                    ";
+                                INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, created_at)
+                                VALUES (@grnNo, @returnNo, @note, @totalAmount, NOW());
+                                SELECT LAST_INSERT_ID();
+                            ";
 
                             long returnId;
                             using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
@@ -534,19 +535,19 @@ namespace EscopeWindowsApp
                             }
 
                             string insertDetailsQuery = @"
-                        INSERT INTO purchase_return_details 
-                        (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
-                        VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
-                    ";
+                                INSERT INTO purchase_return_details 
+                                (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                                VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
+                            ";
 
                             string checkStockQuery = @"
-                        SELECT COALESCE(stock, 0) AS stockCoffee
-                        FROM stock 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
-                        LIMIT 1
-                    ";
+                            SELECT COALESCE(stock, 0) AS stockCoffee
+                            FROM stock 
+                            WHERE product_id = @productId 
+                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
+                            LIMIT 1
+                        ";
 
                             string updateStockQuery = @"
                         INSERT INTO stock (product_id, variation_type, stock, unit)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -7,8 +8,7 @@ namespace EscopeWindowsApp
 {
     public partial class LogsReport : Form
     {
-        private readonly string _connectionString =
-            "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
 
         // Instantiating up front means you never hit an NRE on logsTable.
         private DataTable _logsTable = new DataTable();

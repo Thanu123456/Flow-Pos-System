@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace EscopeWindowsApp
     {
         private DataTable baseUnitsTable;
         private BindingSource bindingSource;
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
 
         public BaseUnit()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -7,7 +8,7 @@ namespace EscopeWindowsApp
 {
     public partial class Quotations : Form
     {
-        private readonly string _connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable _quotationsTable = new DataTable(); // Table to hold quotation data
         private int currentIndex = 0; // Current index for navigation
 

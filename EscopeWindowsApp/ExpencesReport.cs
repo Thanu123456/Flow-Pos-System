@@ -13,12 +13,13 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using ClosedXML.Excel;
 using System.IO;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class ExpencesReport : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private DataTable expensesTable;
 
         public ExpencesReport()
@@ -270,13 +271,13 @@ namespace EscopeWindowsApp
             {
                 DataGridViewRow row = expencesReportDataGrid.Rows[e.RowIndex];
                 string details = $@"Expense Details:
-ID: {row.Cells["id"].Value}
-Date: {row.Cells["expense_date"].Value}
-Title: {row.Cells["title"].Value}
-Warehouse Name: {row.Cells["warehouse_name"].Value ?? "N/A"}
-Category Name: {row.Cells["category_name"].Value ?? "N/A"}
-Amount: {row.Cells["amount"].Value}
-Details: {row.Cells["details"].Value ?? "N/A"}";
+                    ID: {row.Cells["id"].Value}
+                    Date: {row.Cells["expense_date"].Value}
+                    Title: {row.Cells["title"].Value}
+                    Warehouse Name: {row.Cells["warehouse_name"].Value ?? "N/A"}
+                    Category Name: {row.Cells["category_name"].Value ?? "N/A"}
+                    Amount: {row.Cells["amount"].Value}
+                    Details: {row.Cells["details"].Value ?? "N/A"}";
                 MessageBox.Show(details, "Expense Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

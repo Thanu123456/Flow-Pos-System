@@ -4,12 +4,13 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Linq;
 using System.Drawing;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class GRNForm : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private string paymentMethod;
         private bool isFormLoading = true;
         private int? currentProductId = null;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace EscopeWindowsApp
 {
     public partial class CloseRegister : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private ErrorProvider totCashErrorProvider;
 
         public CloseRegister()

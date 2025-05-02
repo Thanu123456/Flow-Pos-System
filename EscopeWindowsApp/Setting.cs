@@ -11,12 +11,13 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
     public partial class Setting : Form
     {
-        private string connectionString = "server=localhost;database=pos_system;uid=root;pwd=7777;";
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private ErrorProvider nameErrorProvider = new ErrorProvider();
         private ErrorProvider emailErrorProvider = new ErrorProvider();
         private ErrorProvider phoneErrorProvider = new ErrorProvider();
