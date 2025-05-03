@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace EscopeWindowsApp
 {
@@ -15,6 +16,7 @@ namespace EscopeWindowsApp
         private int editProductId = -1;
         private ErrorProvider nameErrorProvider = new ErrorProvider();
         private ErrorProvider categoryErrorProvider = new ErrorProvider();
+        private ErrorProvider upcErrorProvider = new ErrorProvider();
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private byte[] productImageData;
         private string selectedVariationType;
@@ -47,6 +49,7 @@ namespace EscopeWindowsApp
         {
             nameErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             categoryErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            upcErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
         private void CreateProduct_Load(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace EscopeWindowsApp
                         SELECT 
                             p.name, c.name AS category, p.image_path, p.unit_id, p.warehouse_id, 
                             p.supplier_id, p.brand_id, p.variation_type_id, v.name AS variation_name,
-                            pr.cost_price, pr.retail_price, pr.wholesale_price
+                            pr.cost_price, pr.retail_price, pr.wholesale_price, p.barcode
                         FROM products p
                         LEFT JOIN categories c ON p.category_id = c.id
                         LEFT JOIN variations v ON p.variation_type_id = v.id
@@ -129,6 +132,7 @@ namespace EscopeWindowsApp
                             {
                                 createProductNameText.Text = reader.GetString("name");
                                 ProCatComboox.Text = reader.IsDBNull(reader.GetOrdinal("category")) ? "Select Category" : reader.GetString("category");
+                                upcNumberText.Text = reader.IsDBNull(reader.GetOrdinal("barcode")) ? "" : reader.GetString("barcode");
 
                                 if (!reader.IsDBNull(reader.GetOrdinal("image_path")))
                                 {
@@ -379,9 +383,34 @@ namespace EscopeWindowsApp
             return true;
         }
 
+        private bool ValidateUPC()
+        {
+            string upc = upcNumberText.Text.Trim();
+            if (string.IsNullOrEmpty(upc))
+            {
+                upcErrorProvider.SetError(upcNumberText, string.Empty);
+                return true; // UPC can be null
+            }
+
+            if (!Regex.IsMatch(upc, @"^\d+$"))
+            {
+                upcErrorProvider.SetError(upcNumberText, "UPC/EAN must be numeric.");
+                return false;
+            }
+
+            if (upc.Length < 12)
+            {
+                upcErrorProvider.SetError(upcNumberText, "UPC/EAN must be at least 12 digits.");
+                return false;
+            }
+
+            upcErrorProvider.SetError(upcNumberText, string.Empty);
+            return true;
+        }
+
         private void UpdateSaveButtonState()
         {
-            creProSaveBtn.Enabled = ValidateProductName() && ValidateCategory();
+            creProSaveBtn.Enabled = ValidateProductName() && ValidateCategory() && ValidateUPC();
         }
 
         private void createProductNameText_TextChanged(object sender, EventArgs e)
@@ -393,6 +422,12 @@ namespace EscopeWindowsApp
         private void ProCatComboox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValidateCategory();
+            UpdateSaveButtonState();
+        }
+
+        private void upcNumberText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateUPC();
             UpdateSaveButtonState();
         }
 
@@ -417,7 +452,7 @@ namespace EscopeWindowsApp
 
         private void creProSaveBtn_Click(object sender, EventArgs e)
         {
-            if (!ValidateProductName() || !ValidateCategory())
+            if (!ValidateProductName() || !ValidateCategory() || !ValidateUPC())
             {
                 MessageBox.Show("Please correct the errors before saving.", "Validation Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -431,13 +466,30 @@ namespace EscopeWindowsApp
                     conn.Open();
                     int productId;
 
+                    // Check for duplicate UPC/EAN
+                    if (!string.IsNullOrEmpty(upcNumberText.Text.Trim()))
+                    {
+                        string checkQuery = "SELECT COUNT(*) FROM products WHERE barcode = @barcode AND id != @productId";
+                        using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                        {
+                            checkCmd.Parameters.AddWithValue("@barcode", upcNumberText.Text.Trim());
+                            checkCmd.Parameters.AddWithValue("@productId", isEditMode ? editProductId : -1);
+                            if ((long)checkCmd.ExecuteScalar() > 0)
+                            {
+                                MessageBox.Show("This UPC/EAN is already used by another product.", "Validation Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
+
                     string query = isEditMode
                         ? "UPDATE products SET name = @name, category_id = (SELECT id FROM categories WHERE name = @category), " +
                           "image_path = @imagePath, unit_id = @unitId, warehouse_id = @warehouseId, supplier_id = @supplierId, " +
-                          "brand_id = @brandId, variation_type_id = @variationTypeId WHERE id = @productId"
+                          "brand_id = @brandId, variation_type_id = @variationTypeId, barcode = @barcode WHERE id = @productId"
                         : "INSERT INTO products (name, category_id, image_path, unit_id, warehouse_id, supplier_id, " +
-                          "brand_id, variation_type_id, stock) VALUES (@name, (SELECT id FROM categories WHERE name = @category), " +
-                          "@imagePath, @unitId, @warehouseId, @supplierId, @brandId, @variationTypeId, @stock)";
+                          "brand_id, variation_type_id, stock, barcode) VALUES (@name, (SELECT id FROM categories WHERE name = @category), " +
+                          "@imagePath, @unitId, @warehouseId, @supplierId, @brandId, @variationTypeId, @stock, @barcode)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -456,6 +508,7 @@ namespace EscopeWindowsApp
                         cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
                         cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
                         cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
+                        cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(upcNumberText.Text.Trim()) ? (object)DBNull.Value : upcNumberText.Text.Trim());
                         if (!isEditMode)
                             cmd.Parameters.AddWithValue("@stock", 0);
 
@@ -627,7 +680,7 @@ namespace EscopeWindowsApp
                 }
                 else
                 {
-                    singlePricingPanel.Enabled = false; // Disable singlePricingPanel in create mode
+                    singlePricingPanel.Enabled = false;
                     int variationId = (int)creProVarTypeComboBox.SelectedValue;
                     int productId = -1;
 
