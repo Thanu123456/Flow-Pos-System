@@ -115,104 +115,16 @@ namespace EscopeWindowsApp
                                     return;
                                 }
 
-                                DataRow product = products.Rows[0];
-                                int productId = Convert.ToInt32(product["id"]);
-                                string productName = product["name"].ToString();
-                                string variationType = product["variation_name"].ToString() ?? "N/A";
-                                string unit = product["unit_name"].ToString() ?? "N/A";
-                                decimal costPrice = Convert.ToDecimal(product["cost_price"]);
-                                decimal retailPrice = Convert.ToDecimal(product["retail_price"]);
-                                decimal wholesalePrice = Convert.ToDecimal(product["wholesale_price"]);
-                                decimal quantity = 1;
-                                decimal netPrice = quantity * costPrice;
-                                string warranty = "No Warranty"; // Default
-                                string formattedProductId = $"PRO{productId:D3}";
+                                int productId = Convert.ToInt32(products.Rows[0]["id"]);
+                                Console.WriteLine($"Product found: ID={productId}, Name={products.Rows[0]["name"]}");
 
-                                Console.WriteLine($"Product found: ID={productId}, Name={productName}");
-
-                                // Update DataGridView on UI thread
+                                // Update UI textboxes on UI thread
                                 BeginInvoke(new Action(() =>
                                 {
-                                    if (isSerialNumberRequired)
-                                    {
-                                        if (quantity != (int)quantity)
-                                        {
-                                            MessageBox.Show("Serial numbers require whole number quantities.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            return;
-                                        }
-
-                                        AddBarcodeForm barcodeForm = new AddBarcodeForm(productId.ToString(), variationType, (int)quantity);
-                                        barcodeForm.FormClosed += (s, args) =>
-                                        {
-                                            if (barcodeForm.IsSaved)
-                                            {
-                                                foreach (DataGridViewRow row in grnDataGridView.Rows)
-                                                {
-                                                    if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
-                                                        row.Cells["VariationType"].Value.ToString() == variationType)
-                                                    {
-                                                        decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
-                                                        decimal newQuantity = existingQuantity + quantity;
-                                                        row.Cells["Quantity"].Value = newQuantity;
-                                                        row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                                                        Console.WriteLine($"Updated existing row: ProductID={formattedProductId}, New Quantity={newQuantity}");
-                                                        return;
-                                                    }
-                                                }
-
-                                                grnDataGridView.Rows.Add(
-                                                    formattedProductId,
-                                                    productName,
-                                                    variationType,
-                                                    quantity.ToString(),
-                                                    costPrice.ToString("F2"),
-                                                    retailPrice.ToString("F2"),
-                                                    wholesalePrice.ToString("F2"),
-                                                    netPrice.ToString("F2"),
-                                                    DateTime.Now.ToString("yyyy-MM-dd"),
-                                                    warranty,
-                                                    unit,
-                                                    "Yes"
-                                                );
-
-                                                Console.WriteLine($"Added to DataGridView: ProductID={formattedProductId}, Quantity={quantity}");
-                                            }
-                                        };
-                                        barcodeForm.ShowDialog();
-                                    }
-                                    else
-                                    {
-                                        foreach (DataGridViewRow row in grnDataGridView.Rows)
-                                        {
-                                            if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
-                                                row.Cells["VariationType"].Value.ToString() == variationType)
-                                            {
-                                                decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
-                                                decimal newQuantity = existingQuantity + quantity;
-                                                row.Cells["Quantity"].Value = newQuantity;
-                                                row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                                                Console.WriteLine($"Updated existing row: ProductID={formattedProductId}, New Quantity={newQuantity}");
-                                                return;
-                                            }
-                                        }
-
-                                        grnDataGridView.Rows.Add(
-                                            formattedProductId,
-                                            productName,
-                                            variationType,
-                                            quantity.ToString(),
-                                            costPrice.ToString("F2"),
-                                            retailPrice.ToString("F2"),
-                                            wholesalePrice.ToString("F2"),
-                                            netPrice.ToString("F2"),
-                                            DateTime.Now.ToString("yyyy-MM-dd"),
-                                            warranty,
-                                            unit,
-                                            "No"
-                                        );
-
-                                        Console.WriteLine($"Added to DataGridView: ProductID={formattedProductId}, Quantity={quantity}");
-                                    }
+                                    FillProductDetails(productId);
+                                    grnQuantityText.Text = "1";
+                                    UpdateNetPrice();
+                                    Console.WriteLine($"Filled product details for ProductID=PRO{productId:D3}, Quantity=1");
                                 }));
                             }
                             catch (Exception ex)
@@ -422,7 +334,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    // Enhanced query to include all data needed for DataGridView
                     string query = @"
                         SELECT p.id, p.name, p.barcode, 
                                c.name AS category, 
@@ -874,7 +785,7 @@ namespace EscopeWindowsApp
                                 decimal newQuantity = existingQuantity + quantity;
                                 row.Cells["Quantity"].Value = newQuantity;
                                 row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                                ClearItemFields();
+                                ClearItemFields(); // Clear all textboxes and controls
                                 return;
                             }
                         }
@@ -894,7 +805,7 @@ namespace EscopeWindowsApp
                             "Yes"
                         );
 
-                        ClearItemFields();
+                        ClearItemFields(); // Clear all textboxes and controls
                     }
                 };
                 barcodeForm.ShowDialog();
@@ -910,7 +821,7 @@ namespace EscopeWindowsApp
                         decimal newQuantity = existingQuantity + quantity;
                         row.Cells["Quantity"].Value = newQuantity;
                         row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                        ClearItemFields();
+                        ClearItemFields(); // Clear all textboxes and controls
                         return;
                     }
                 }
@@ -930,24 +841,42 @@ namespace EscopeWindowsApp
                     "No"
                 );
 
-                ClearItemFields();
+                ClearItemFields(); // Clear all textboxes and controls
             }
         }
 
         private void ClearItemFields()
         {
+            // Clear all textboxes
+            grnProIDText.Text = "";
+            grnProNameText.Text = "";
+            grnProCatText.Text = "";
+            grnVarText.Text = "";
+            grnStockText.Text = "";
             grnQuantityText.Text = "";
+            grnCostPriText.Text = "";
+            grnRetPriText.Text = "";
+            grnWholePriText.Text = "";
             grnNetPriceText.Text = "0.00";
-            grnExpireDatePicker.Value = DateTime.Now;
+            grnUnitText.Text = "";
+            grnProSearchText.Text = ""; // Clear the search textbox as well
+
+            // Reset comboboxes
+            grnVarTypCombo.Items.Clear();
+            grnVarTypCombo.Enabled = false;
             grnWarrantyComboBox.SelectedIndex = 0;
 
-            if (currentProductId.HasValue)
-            {
-                if (currentVariationType == null)
-                    LoadStockForNoVariation(currentProductId.Value);
-                else
-                    LoadStockForVariation(currentProductId.Value, currentVariationType);
-            }
+            // Reset date picker
+            grnExpireDatePicker.Value = DateTime.Now;
+
+            // Reset internal state
+            currentProductId = null;
+            currentVariationType = null;
+            isSerialNumberRequired = false;
+            checkSerialNumber.Checked = false;
+
+            // Update unit labels
+            UpdateUnitLabels();
         }
         #endregion
 
