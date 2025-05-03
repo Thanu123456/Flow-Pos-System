@@ -91,6 +91,7 @@
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticoneAnimateWindow1 = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
+            this.webcamScanBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
@@ -1147,11 +1148,33 @@
             this.grnProSearchText.TabIndex = 29;
             this.grnProSearchText.TextChanged += new System.EventHandler(this.grnProSearchText_TextChanged);
             // 
+            // webcamScanBtn
+            // 
+            this.webcamScanBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.webcamScanBtn.Animated = true;
+            this.webcamScanBtn.BackColor = System.Drawing.Color.Transparent;
+            this.webcamScanBtn.BorderRadius = 8;
+            this.webcamScanBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.webcamScanBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.webcamScanBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.webcamScanBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.webcamScanBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.webcamScanBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.webcamScanBtn.ForeColor = System.Drawing.Color.White;
+            this.webcamScanBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.webcamScanBtn.Location = new System.Drawing.Point(22, 391);
+            this.webcamScanBtn.Name = "webcamScanBtn";
+            this.webcamScanBtn.Size = new System.Drawing.Size(126, 45);
+            this.webcamScanBtn.TabIndex = 83;
+            this.webcamScanBtn.Text = "Add to List";
+            this.webcamScanBtn.Click += new System.EventHandler(this.webcamScanBtn_Click);
+            // 
             // GRNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.webcamScanBtn);
             this.Controls.Add(this.grnProSearchText);
             this.Controls.Add(this.grnCancelBtn);
             this.Controls.Add(this.grnSaveBtn);
@@ -1246,5 +1269,6 @@
         private System.Windows.Forms.Label qUnitNameLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkSerialNumber;
         private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow siticoneAnimateWindow1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton webcamScanBtn;
     }
 }

@@ -5,6 +5,11 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Drawing;
 using System.Configuration;
+using AForge.Video;
+using AForge.Video.DirectShow;
+using ZXing;
+using ZXing.Common;
+using System.Threading.Tasks;
 
 namespace EscopeWindowsApp
 {
@@ -17,13 +22,286 @@ namespace EscopeWindowsApp
         private string currentVariationType = null;
         private bool isSerialNumberRequired = false;
         private ListBox suggestionListBox;
+        private FilterInfoCollection videoDevices;
+        private VideoCaptureDevice videoSource;
+        private bool isScanning = false;
+        private bool isProcessingScan = false;
 
         public GRNForm()
         {
             InitializeComponent();
             InitializeSuggestionListBox();
+            InitializeWebcam();
         }
 
+        #region Webcam Handling
+        private void InitializeWebcam()
+        {
+            try
+            {
+                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                if (videoDevices.Count == 0)
+                {
+                    MessageBox.Show("No webcam devices found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    webcamScanBtn.Enabled = false;
+                    return;
+                }
+
+                videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                videoSource.NewFrame += VideoSource_NewFrame;
+                webcamScanBtn.Text = "Start Webcam Scan";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error initializing webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                webcamScanBtn.Enabled = false;
+                Console.WriteLine($"Webcam initialization error: {ex}");
+            }
+        }
+
+        private async void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            if (isProcessingScan) return;
+            isProcessingScan = true;
+
+            using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
+            {
+                try
+                {
+                    // Configure BarcodeReader
+                    BarcodeReader barcodeReader = new BarcodeReader
+                    {
+                        AutoRotate = true,
+                        Options = new DecodingOptions
+                        {
+                            TryHarder = true,
+                            PossibleFormats = new[]
+                            {
+                                BarcodeFormat.EAN_13,
+                                BarcodeFormat.EAN_8,
+                                BarcodeFormat.UPC_A,
+                                BarcodeFormat.UPC_E,
+                                BarcodeFormat.CODE_128,
+                                BarcodeFormat.CODE_39,
+                                BarcodeFormat.QR_CODE
+                            }
+                        }
+                    };
+
+                    var result = barcodeReader.Decode(bitmap);
+                    if (result != null)
+                    {
+                        string scannedBarcode = result.Text.Trim();
+                        Console.WriteLine($"Barcode scanned: '{scannedBarcode}' (Length: {scannedBarcode.Length})");
+
+                        // Stop webcam immediately
+                        await Task.Run(() => StopWebcam());
+
+                        // Process barcode off UI thread
+                        await Task.Run(async () =>
+                        {
+                            try
+                            {
+                                // Find product
+                                DataTable products = SearchProducts(scannedBarcode);
+                                Console.WriteLine($"SearchProducts returned {products.Rows.Count} rows for barcode: '{scannedBarcode}'");
+
+                                if (products.Rows.Count == 0)
+                                {
+                                    BeginInvoke(new Action(() =>
+                                    {
+                                        MessageBox.Show($"No product found for barcode: '{scannedBarcode}'.\nPlease verify the barcode exists in the products table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }));
+                                    return;
+                                }
+
+                                DataRow product = products.Rows[0];
+                                int productId = Convert.ToInt32(product["id"]);
+                                string productName = product["name"].ToString();
+                                string variationType = product["variation_name"].ToString() ?? "N/A";
+                                string unit = product["unit_name"].ToString() ?? "N/A";
+                                decimal costPrice = Convert.ToDecimal(product["cost_price"]);
+                                decimal retailPrice = Convert.ToDecimal(product["retail_price"]);
+                                decimal wholesalePrice = Convert.ToDecimal(product["wholesale_price"]);
+                                decimal quantity = 1;
+                                decimal netPrice = quantity * costPrice;
+                                string warranty = "No Warranty"; // Default
+                                string formattedProductId = $"PRO{productId:D3}";
+
+                                Console.WriteLine($"Product found: ID={productId}, Name={productName}");
+
+                                // Update DataGridView on UI thread
+                                BeginInvoke(new Action(() =>
+                                {
+                                    if (isSerialNumberRequired)
+                                    {
+                                        if (quantity != (int)quantity)
+                                        {
+                                            MessageBox.Show("Serial numbers require whole number quantities.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return;
+                                        }
+
+                                        AddBarcodeForm barcodeForm = new AddBarcodeForm(productId.ToString(), variationType, (int)quantity);
+                                        barcodeForm.FormClosed += (s, args) =>
+                                        {
+                                            if (barcodeForm.IsSaved)
+                                            {
+                                                foreach (DataGridViewRow row in grnDataGridView.Rows)
+                                                {
+                                                    if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
+                                                        row.Cells["VariationType"].Value.ToString() == variationType)
+                                                    {
+                                                        decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
+                                                        decimal newQuantity = existingQuantity + quantity;
+                                                        row.Cells["Quantity"].Value = newQuantity;
+                                                        row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                                                        Console.WriteLine($"Updated existing row: ProductID={formattedProductId}, New Quantity={newQuantity}");
+                                                        return;
+                                                    }
+                                                }
+
+                                                grnDataGridView.Rows.Add(
+                                                    formattedProductId,
+                                                    productName,
+                                                    variationType,
+                                                    quantity.ToString(),
+                                                    costPrice.ToString("F2"),
+                                                    retailPrice.ToString("F2"),
+                                                    wholesalePrice.ToString("F2"),
+                                                    netPrice.ToString("F2"),
+                                                    DateTime.Now.ToString("yyyy-MM-dd"),
+                                                    warranty,
+                                                    unit,
+                                                    "Yes"
+                                                );
+
+                                                Console.WriteLine($"Added to DataGridView: ProductID={formattedProductId}, Quantity={quantity}");
+                                            }
+                                        };
+                                        barcodeForm.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        foreach (DataGridViewRow row in grnDataGridView.Rows)
+                                        {
+                                            if (row.Cells["ProductID"].Value.ToString() == formattedProductId &&
+                                                row.Cells["VariationType"].Value.ToString() == variationType)
+                                            {
+                                                decimal existingQuantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
+                                                decimal newQuantity = existingQuantity + quantity;
+                                                row.Cells["Quantity"].Value = newQuantity;
+                                                row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
+                                                Console.WriteLine($"Updated existing row: ProductID={formattedProductId}, New Quantity={newQuantity}");
+                                                return;
+                                            }
+                                        }
+
+                                        grnDataGridView.Rows.Add(
+                                            formattedProductId,
+                                            productName,
+                                            variationType,
+                                            quantity.ToString(),
+                                            costPrice.ToString("F2"),
+                                            retailPrice.ToString("F2"),
+                                            wholesalePrice.ToString("F2"),
+                                            netPrice.ToString("F2"),
+                                            DateTime.Now.ToString("yyyy-MM-dd"),
+                                            warranty,
+                                            unit,
+                                            "No"
+                                        );
+
+                                        Console.WriteLine($"Added to DataGridView: ProductID={formattedProductId}, Quantity={quantity}");
+                                    }
+                                }));
+                            }
+                            catch (Exception ex)
+                            {
+                                BeginInvoke(new Action(() =>
+                                {
+                                    MessageBox.Show($"Error processing barcode '{scannedBarcode}': {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }));
+                                Console.WriteLine($"Barcode processing error: {ex}");
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Console.WriteLine("No barcode detected in frame.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        MessageBox.Show($"Error decoding barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }));
+                    Console.WriteLine($"Barcode decoding error: {ex}");
+                }
+                finally
+                {
+                    isProcessingScan = false;
+                }
+            }
+        }
+
+        private void webcamScanBtn_Click(object sender, EventArgs e)
+        {
+            if (!isScanning)
+            {
+                StartWebcam();
+            }
+            else
+            {
+                StopWebcam();
+            }
+        }
+
+        private void StartWebcam()
+        {
+            if (videoSource != null && !videoSource.IsRunning)
+            {
+                try
+                {
+                    videoSource.Start();
+                    isScanning = true;
+                    webcamScanBtn.Text = "Stop Webcam Scan";
+                    Console.WriteLine("Webcam started.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error starting webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    webcamScanBtn.Enabled = false;
+                    Console.WriteLine($"Webcam start error: {ex}");
+                }
+            }
+        }
+
+        private void StopWebcam()
+        {
+            if (videoSource != null && videoSource.IsRunning)
+            {
+                try
+                {
+                    videoSource.SignalToStop();
+                    {
+                        videoSource.Stop();
+                        Console.WriteLine("Webcam forcefully stopped due to timeout.");
+                    }
+                    isScanning = false;
+                    webcamScanBtn.Text = "Start Webcam Scan";
+                    Console.WriteLine("Webcam stopped.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error stopping webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine($"Webcam stop error: {ex}");
+                }
+            }
+        }
+        #endregion
+
+        #region Form Initialization
         private void InitializeSuggestionListBox()
         {
             suggestionListBox = new ListBox
@@ -70,12 +348,14 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading GRNForm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"GRNForm load error: {ex}");
             }
             finally
             {
                 isFormLoading = false;
             }
         }
+        #endregion
 
         #region Payment Method Handling
         private void cashPaymentRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -122,7 +402,7 @@ namespace EscopeWindowsApp
                     suggestionListBox.Visible = suggestionListBox.Items.Count > 0;
                     if (suggestionListBox.Visible)
                     {
-                        suggestionListBox.BringToFront(); // Ensure ListBox is in front of other controls
+                        suggestionListBox.BringToFront();
                     }
                 }
             }
@@ -136,25 +416,58 @@ namespace EscopeWindowsApp
         {
             try
             {
+                searchText = searchText.Trim();
+                Console.WriteLine($"Searching products with text: '{searchText}'");
+
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT id, name FROM products WHERE name LIKE @searchText OR id = @searchId ORDER BY name";
+                    // Enhanced query to include all data needed for DataGridView
+                    string query = @"
+                        SELECT p.id, p.name, p.barcode, 
+                               c.name AS category, 
+                               v.name AS variation_name, 
+                               u.unit_name, 
+                               pr.cost_price, pr.retail_price, pr.wholesale_price
+                        FROM products p
+                        LEFT JOIN categories c ON p.category_id = c.id
+                        LEFT JOIN variations v ON p.variation_type_id = v.id
+                        LEFT JOIN units u ON p.unit_id = u.id
+                        LEFT JOIN pricing pr ON p.id = pr.product_id AND pr.variation_type IS NULL
+                        WHERE p.barcode = @searchText
+                           OR p.barcode LIKE @searchTextLike
+                           OR p.name LIKE @searchTextLike
+                           OR p.id = @searchId
+                        ORDER BY p.name";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
+                        cmd.Parameters.AddWithValue("@searchText", searchText);
+                        cmd.Parameters.AddWithValue("@searchTextLike", "%" + searchText + "%");
                         int searchId = searchText.StartsWith("PRO") && int.TryParse(searchText.Substring(3), out int id) ? id : (int.TryParse(searchText, out id) ? id : -1);
                         cmd.Parameters.AddWithValue("@searchId", searchId != -1 ? searchId : (object)DBNull.Value);
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
+
+                        Console.WriteLine($"Query executed: {query}");
+                        Console.WriteLine($"Parameters: searchText='{searchText}', searchTextLike='%{searchText}%', searchId={searchId}");
+                        Console.WriteLine($"Rows returned: {dt.Rows.Count}");
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            Console.WriteLine($"Found: ID={row["id"]}, Name={row["name"]}, Barcode={row["barcode"]}, Unit={row["unit_name"]}, CostPrice={row["cost_price"]}");
+                        }
+
                         return dt;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error searching products for '{searchText}': {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Search products error: {ex}");
                 return new DataTable();
             }
         }
@@ -305,7 +618,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error filling product details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error filling product details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Fill product details error: {ex}");
             }
         }
 
@@ -335,7 +652,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading variation types: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error loading variation types: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Load variation types error: {ex}");
             }
         }
 
@@ -371,7 +692,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Load single pricing error: {ex}");
             }
         }
 
@@ -394,7 +719,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error loading stock for product without variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Load stock no variation error: {ex}");
                 grnStockText.Text = "0";
             }
         }
@@ -444,7 +773,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading pricing details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error loading pricing details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Load pricing details error: {ex}");
             }
         }
 
@@ -468,7 +801,11 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading stock for variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error loading stock for variation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+                Console.WriteLine($"Load stock variation error: {ex}");
                 grnStockText.Text = "0";
             }
         }
@@ -721,6 +1058,7 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving GRN: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Save GRN error: {ex}");
             }
         }
 
@@ -779,6 +1117,7 @@ namespace EscopeWindowsApp
         }
         #endregion
 
+        #region Barcode Form
         private void OpenAddBarcodeForm(string productId, string variationType, decimal quantity)
         {
             try
@@ -797,8 +1136,10 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error opening barcode form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Open barcode form error: {ex}");
             }
         }
+        #endregion
 
         #region Cancel
         private void grnCancelBtn_Click(object sender, EventArgs e)
@@ -883,9 +1224,24 @@ namespace EscopeWindowsApp
         private void qUnitNameLabel_Click(object sender, EventArgs e) { }
         #endregion
 
+        #region Serial Number Handling
         private void checkSerialNumber_CheckedChanged(object sender, EventArgs e)
         {
             isSerialNumberRequired = checkSerialNumber.Checked;
         }
+        #endregion
+
+        #region Form Closing
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            StopWebcam();
+            if (videoSource != null)
+            {
+                videoSource.NewFrame -= VideoSource_NewFrame;
+                videoSource = null;
+            }
+            base.OnFormClosing(e);
+        }
+        #endregion
     }
 }
