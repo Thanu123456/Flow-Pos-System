@@ -220,9 +220,9 @@
             this.paymentMethPanel.Controls.Add(this.cashPaymentLabel);
             this.paymentMethPanel.Controls.Add(this.cashPaymentRadioBtn);
             this.paymentMethPanel.FillColor = System.Drawing.Color.Transparent;
-            this.paymentMethPanel.Location = new System.Drawing.Point(22, 230);
+            this.paymentMethPanel.Location = new System.Drawing.Point(22, 301);
             this.paymentMethPanel.Name = "paymentMethPanel";
-            this.paymentMethPanel.Size = new System.Drawing.Size(182, 134);
+            this.paymentMethPanel.Size = new System.Drawing.Size(182, 135);
             this.paymentMethPanel.TabIndex = 27;
             // 
             // ceaditPayementLabel
@@ -317,7 +317,7 @@
             this.paymentMethLabel.BackColor = System.Drawing.Color.Transparent;
             this.paymentMethLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
-            this.paymentMethLabel.Location = new System.Drawing.Point(36, 219);
+            this.paymentMethLabel.Location = new System.Drawing.Point(36, 290);
             this.paymentMethLabel.Name = "paymentMethLabel";
             this.paymentMethLabel.Size = new System.Drawing.Size(148, 19);
             this.paymentMethLabel.TabIndex = 27;
@@ -1162,9 +1162,9 @@
             this.webcamScanBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.webcamScanBtn.ForeColor = System.Drawing.Color.White;
             this.webcamScanBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.webcamScanBtn.Location = new System.Drawing.Point(22, 391);
+            this.webcamScanBtn.Location = new System.Drawing.Point(22, 226);
             this.webcamScanBtn.Name = "webcamScanBtn";
-            this.webcamScanBtn.Size = new System.Drawing.Size(126, 45);
+            this.webcamScanBtn.Size = new System.Drawing.Size(182, 45);
             this.webcamScanBtn.TabIndex = 83;
             this.webcamScanBtn.Text = "Add to List";
             this.webcamScanBtn.Click += new System.EventHandler(this.webcamScanBtn_Click);
