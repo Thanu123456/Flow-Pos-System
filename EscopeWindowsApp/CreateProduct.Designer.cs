@@ -58,6 +58,8 @@
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.addProBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.singlePricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.varTypeLabel = new System.Windows.Forms.Label();
             this.singleWholeLbl = new System.Windows.Forms.Label();
             this.singleRetLbl = new System.Windows.Forms.Label();
             this.singleCostLbl = new System.Windows.Forms.Label();
@@ -66,8 +68,8 @@
             this.singleRetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.singleTypeNameLbl = new System.Windows.Forms.Label();
             this.singleCostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.varTypeLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.upcNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createProductMainPanel.SuspendLayout();
             this.creProImagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).BeginInit();
@@ -93,6 +95,8 @@
             // 
             this.createProductMainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.createProductMainPanel.BorderRadius = 8;
+            this.createProductMainPanel.Controls.Add(this.label2);
+            this.createProductMainPanel.Controls.Add(this.upcNumberText);
             this.createProductMainPanel.Controls.Add(this.creProImagePanel);
             this.createProductMainPanel.Controls.Add(this.enabalVTypeCheckBox);
             this.createProductMainPanel.Controls.Add(this.creProWareComboBox);
@@ -113,7 +117,7 @@
             this.createProductMainPanel.FillColor = System.Drawing.Color.White;
             this.createProductMainPanel.Location = new System.Drawing.Point(27, 90);
             this.createProductMainPanel.Name = "createProductMainPanel";
-            this.createProductMainPanel.Size = new System.Drawing.Size(713, 412);
+            this.createProductMainPanel.Size = new System.Drawing.Size(713, 487);
             this.createProductMainPanel.TabIndex = 23;
             this.createProductMainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createProductMainPanel_Paint);
             // 
@@ -127,7 +131,7 @@
             this.creProImagePanel.Controls.Add(this.productImagePictureBox);
             this.creProImagePanel.Location = new System.Drawing.Point(365, 303);
             this.creProImagePanel.Name = "creProImagePanel";
-            this.creProImagePanel.Size = new System.Drawing.Size(154, 100);
+            this.creProImagePanel.Size = new System.Drawing.Size(232, 162);
             this.creProImagePanel.TabIndex = 63;
             // 
             // createProductMultipleImgBtn
@@ -141,9 +145,9 @@
             this.createProductMultipleImgBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
             this.createProductMultipleImgBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.createProductMultipleImgBtn.ForeColor = System.Drawing.Color.White;
-            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(116, 65);
+            this.createProductMultipleImgBtn.Location = new System.Drawing.Point(170, 108);
             this.createProductMultipleImgBtn.Name = "createProductMultipleImgBtn";
-            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(36, 33);
+            this.createProductMultipleImgBtn.Size = new System.Drawing.Size(59, 51);
             this.createProductMultipleImgBtn.TabIndex = 56;
             this.createProductMultipleImgBtn.Text = "+";
             this.createProductMultipleImgBtn.Click += new System.EventHandler(this.createProductMultipleImgBtn_Click);
@@ -153,7 +157,7 @@
             this.productImagePictureBox.BackColor = System.Drawing.Color.Transparent;
             this.productImagePictureBox.Location = new System.Drawing.Point(3, 3);
             this.productImagePictureBox.Name = "productImagePictureBox";
-            this.productImagePictureBox.Size = new System.Drawing.Size(148, 95);
+            this.productImagePictureBox.Size = new System.Drawing.Size(226, 156);
             this.productImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.productImagePictureBox.TabIndex = 62;
             this.productImagePictureBox.TabStop = false;
@@ -448,7 +452,7 @@
             this.creProSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creProSaveBtn.ForeColor = System.Drawing.Color.White;
             this.creProSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.creProSaveBtn.Location = new System.Drawing.Point(803, 523);
+            this.creProSaveBtn.Location = new System.Drawing.Point(803, 607);
             this.creProSaveBtn.Name = "creProSaveBtn";
             this.creProSaveBtn.Size = new System.Drawing.Size(95, 45);
             this.creProSaveBtn.TabIndex = 57;
@@ -468,7 +472,7 @@
             this.creProCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creProCancelBtn.ForeColor = System.Drawing.Color.White;
             this.creProCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.creProCancelBtn.Location = new System.Drawing.Point(905, 523);
+            this.creProCancelBtn.Location = new System.Drawing.Point(905, 607);
             this.creProCancelBtn.Name = "creProCancelBtn";
             this.creProCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.creProCancelBtn.TabIndex = 56;
@@ -547,9 +551,34 @@
             this.singlePricingPanel.FillColor = System.Drawing.Color.White;
             this.singlePricingPanel.Location = new System.Drawing.Point(757, 90);
             this.singlePricingPanel.Name = "singlePricingPanel";
-            this.singlePricingPanel.Size = new System.Drawing.Size(241, 412);
+            this.singlePricingPanel.Size = new System.Drawing.Size(241, 487);
             this.singlePricingPanel.TabIndex = 58;
             this.singlePricingPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.singlePricingPanel_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(9, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 19);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Vartiation Type:";
+            // 
+            // varTypeLabel
+            // 
+            this.varTypeLabel.AutoSize = true;
+            this.varTypeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.varTypeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.varTypeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.varTypeLabel.Location = new System.Drawing.Point(121, 70);
+            this.varTypeLabel.Name = "varTypeLabel";
+            this.varTypeLabel.Size = new System.Drawing.Size(22, 19);
+            this.varTypeLabel.TabIndex = 39;
+            this.varTypeLabel.Text = "M";
+            this.varTypeLabel.Click += new System.EventHandler(this.varTypeLabel_Click);
             // 
             // singleWholeLbl
             // 
@@ -688,37 +717,50 @@
             this.singleCostPriText.TabIndex = 29;
             this.singleCostPriText.TextChanged += new System.EventHandler(this.singleCostPriText_TextChanged);
             // 
-            // varTypeLabel
+            // label2
             // 
-            this.varTypeLabel.AutoSize = true;
-            this.varTypeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.varTypeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.varTypeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.varTypeLabel.Location = new System.Drawing.Point(121, 70);
-            this.varTypeLabel.Name = "varTypeLabel";
-            this.varTypeLabel.Size = new System.Drawing.Size(22, 19);
-            this.varTypeLabel.TabIndex = 39;
-            this.varTypeLabel.Text = "M";
-            this.varTypeLabel.Click += new System.EventHandler(this.varTypeLabel_Click);
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(19, 362);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 23);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "UPC/EAN Number:";
             // 
-            // label1
+            // upcNumberText
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(9, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 19);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Vartiation Type:";
+            this.upcNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.upcNumberText.BorderRadius = 8;
+            this.upcNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.upcNumberText.DefaultText = "";
+            this.upcNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.upcNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.upcNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.upcNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.upcNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.upcNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upcNumberText.ForeColor = System.Drawing.Color.Black;
+            this.upcNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.upcNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.upcNumberText.Location = new System.Drawing.Point(23, 391);
+            this.upcNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.upcNumberText.Name = "upcNumberText";
+            this.upcNumberText.PasswordChar = '\0';
+            this.upcNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.upcNumberText.PlaceholderText = "UPC/EAN Number";
+            this.upcNumberText.SelectedText = "";
+            this.upcNumberText.Size = new System.Drawing.Size(327, 42);
+            this.upcNumberText.TabIndex = 64;
+            this.upcNumberText.TextChanged += new System.EventHandler(this.upcNumberText_TextChanged);
             // 
             // CreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1023, 585);
+            this.ClientSize = new System.Drawing.Size(1023, 669);
             this.Controls.Add(this.singlePricingPanel);
             this.Controls.Add(this.creProCancelBtn);
             this.Controls.Add(this.creProSaveBtn);
@@ -786,5 +828,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel creProImagePanel;
         private System.Windows.Forms.Label varTypeLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox upcNumberText;
     }
 }
