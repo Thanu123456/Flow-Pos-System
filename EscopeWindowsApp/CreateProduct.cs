@@ -11,7 +11,7 @@ namespace EscopeWindowsApp
 {
     public partial class CreateProduct : Form
     {
-        private List<PricingDetail> pricingDetails;
+        private List<PricingData> pricingDetails;
         private bool isEditMode = false;
         private int editProductId = -1;
         private ErrorProvider nameErrorProvider = new ErrorProvider();
@@ -35,9 +35,9 @@ namespace EscopeWindowsApp
                 creProSaveBtn.Text = "Update";
                 createProductNameText.ReadOnly = true;
                 selectedVariationType = variationType;
-                // Disable variation type controls in edit mode
                 enabalVTypeCheckBox.Enabled = false;
                 creProVarTypeComboBox.Enabled = false;
+                upcNumberText.Enabled = string.IsNullOrEmpty(variationType) || variationType == "N/A";
             }
 
             createProductNameText.Text = name;
@@ -111,7 +111,7 @@ namespace EscopeWindowsApp
                         SELECT 
                             p.name, c.name AS category, p.image_path, p.unit_id, p.warehouse_id, 
                             p.supplier_id, p.brand_id, p.variation_type_id, v.name AS variation_name,
-                            pr.cost_price, pr.retail_price, pr.wholesale_price, p.barcode
+                            pr.cost_price, pr.retail_price, p.barcode
                         FROM products p
                         LEFT JOIN categories c ON p.category_id = c.id
                         LEFT JOIN variations v ON p.variation_type_id = v.id
@@ -167,9 +167,9 @@ namespace EscopeWindowsApp
 
                                 creProVarTypeComboBox.SelectedValue = variationTypeId;
                                 enabalVTypeCheckBox.Checked = variationTypeId != 0;
-                                enabalVTypeCheckBox.Enabled = false; // Disable in edit mode
-                                creProVarTypeComboBox.Enabled = false; // Disable in edit mode
-                                singlePricingPanel.Enabled = true;
+                                enabalVTypeCheckBox.Enabled = false;
+                                creProVarTypeComboBox.Enabled = false;
+                                singlePricingPanel.Enabled = variationTypeId == 0 || !string.IsNullOrEmpty(selectedVariationType);
 
                                 if (variationTypeId != 0)
                                 {
@@ -186,7 +186,6 @@ namespace EscopeWindowsApp
                                 {
                                     singleCostPriText.Text = reader.GetDecimal("cost_price").ToString();
                                     singleRetPriText.Text = reader.GetDecimal("retail_price").ToString();
-                                    singleWholePriText.Text = reader.GetDecimal("wholesale_price").ToString();
                                 }
                             }
                         }
@@ -388,6 +387,12 @@ namespace EscopeWindowsApp
 
         private bool ValidateUPC()
         {
+            if (enabalVTypeCheckBox.Checked)
+            {
+                upcErrorProvider.SetError(upcNumberText, string.Empty);
+                return true; // UPC is handled in ProductPricing for variations
+            }
+
             string upc = upcNumberText.Text.Trim();
             if (string.IsNullOrEmpty(upc))
             {
@@ -467,10 +472,8 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    int productId;
 
-                    // Check for duplicate UPC/EAN
-                    if (!string.IsNullOrEmpty(upcNumberText.Text.Trim()))
+                    if (!enabalVTypeCheckBox.Checked && !string.IsNullOrEmpty(upcNumberText.Text.Trim()))
                     {
                         string checkQuery = "SELECT COUNT(*) FROM products WHERE barcode = @barcode AND id != @productId";
                         using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
@@ -486,70 +489,51 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    string query = isEditMode
-                        ? "UPDATE products SET name = @name, category_id = (SELECT id FROM categories WHERE name = @category), " +
-                          "image_path = @imagePath, unit_id = @unitId, warehouse_id = @warehouseId, supplier_id = @supplierId, " +
-                          "brand_id = @brandId, variation_type_id = @variationTypeId, barcode = @barcode WHERE id = @productId"
-                        : "INSERT INTO products (name, category_id, image_path, unit_id, warehouse_id, supplier_id, " +
-                          "brand_id, variation_type_id, stock, barcode) VALUES (@name, (SELECT id FROM categories WHERE name = @category), " +
-                          "@imagePath, @unitId, @warehouseId, @supplierId, @brandId, @variationTypeId, @stock, @barcode)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
-                        cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
-                        if (productImageData != null)
-                        {
-                            cmd.Parameters.AddWithValue("@imagePath", productImageData);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@imagePath", DBNull.Value);
-                        }
-                        cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
-                        cmd.Parameters.AddWithValue("@warehouseId", (int)creProWareComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProWareComboBox.SelectedValue);
-                        cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
-                        cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
-                        cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
-                        cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(upcNumberText.Text.Trim()) ? (object)DBNull.Value : upcNumberText.Text.Trim());
-                        if (!isEditMode)
-                            cmd.Parameters.AddWithValue("@stock", 0);
-
-                        if (isEditMode)
-                        {
-                            cmd.Parameters.AddWithValue("@productId", editProductId);
-                            cmd.ExecuteNonQuery();
-                            productId = editProductId;
-                        }
-                        else
-                        {
-                            cmd.ExecuteNonQuery();
-                            productId = (int)cmd.LastInsertedId;
-                        }
-                    }
-
                     if (isEditMode)
                     {
+                        string query = @"
+                            UPDATE products 
+                            SET name = @name, 
+                                category_id = (SELECT id FROM categories WHERE name = @category), 
+                                image_path = @imagePath, 
+                                unit_id = @unitId, 
+                                warehouse_id = @warehouseId, 
+                                supplier_id = @supplierId, 
+                                brand_id = @brandId, 
+                                variation_type_id = @variationTypeId, 
+                                barcode = @barcode 
+                            WHERE id = @productId";
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                            cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
+                            cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
+                            cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
+                            cmd.Parameters.AddWithValue("@warehouseId", (int)creProWareComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProWareComboBox.SelectedValue);
+                            cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
+                            cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
+                            cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
+                            cmd.Parameters.AddWithValue("@barcode", (enabalVTypeCheckBox.Checked || string.IsNullOrEmpty(upcNumberText.Text.Trim())) ? (object)DBNull.Value : upcNumberText.Text.Trim());
+                            cmd.Parameters.AddWithValue("@productId", editProductId);
+                            cmd.ExecuteNonQuery();
+                        }
+
                         string pricingQuery = (int)creProVarTypeComboBox.SelectedValue == 0 || string.IsNullOrEmpty(varTypeLabel.Text)
-                            ? "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice, wholesale_price = @wholesalePrice " +
-                              "WHERE product_id = @productId AND variation_type IS NULL"
-                            : "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice, wholesale_price = @wholesalePrice " +
-                              "WHERE product_id = @productId AND variation_type = @variationType";
+                            ? "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice WHERE product_id = @productId AND variation_type IS NULL"
+                            : "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice WHERE product_id = @productId AND variation_type = @variationType";
 
                         using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
                         {
                             if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
-                                string.IsNullOrWhiteSpace(singleRetPriText.Text) ||
-                                string.IsNullOrWhiteSpace(singleWholePriText.Text))
+                                string.IsNullOrWhiteSpace(singleRetPriText.Text))
                             {
                                 MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-                            pricingCmd.Parameters.AddWithValue("@productId", productId);
+                            pricingCmd.Parameters.AddWithValue("@productId", editProductId);
                             pricingCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
                             pricingCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
-                            pricingCmd.Parameters.AddWithValue("@wholesalePrice", decimal.Parse(singleWholePriText.Text));
                             if ((int)creProVarTypeComboBox.SelectedValue != 0 && !string.IsNullOrEmpty(varTypeLabel.Text))
                             {
                                 pricingCmd.Parameters.AddWithValue("@variationType", varTypeLabel.Text);
@@ -561,58 +545,109 @@ namespace EscopeWindowsApp
                     {
                         if ((int)creProVarTypeComboBox.SelectedValue != 0 && pricingDetails != null && pricingDetails.Count > 0)
                         {
-                            string deleteQuery = "DELETE FROM pricing WHERE product_id = @productId";
-                            using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn))
-                            {
-                                deleteCmd.Parameters.AddWithValue("@productId", productId);
-                                deleteCmd.ExecuteNonQuery();
-                            }
-
                             foreach (var detail in pricingDetails)
                             {
-                                string insertQuery = "INSERT INTO pricing (product_id, variation_id, variation_type, cost_price, retail_price, wholesale_price) " +
-                                                    "VALUES (@productId, @variationId, @variationType, @costPrice, @retailPrice, @wholesalePrice)";
-                                using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                                string productQuery = @"
+                                    INSERT INTO products (
+                                        name, category_id, image_path, unit_id, warehouse_id, 
+                                        supplier_id, brand_id, variation_type_id, stock, barcode
+                                    ) VALUES (
+                                        @name, (SELECT id FROM categories WHERE name = @category), 
+                                        @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
+                                        @variationTypeId, @stock, @barcode
+                                    )";
+                                using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                                 {
-                                    insertCmd.Parameters.AddWithValue("@productId", productId);
-                                    insertCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
-                                    insertCmd.Parameters.AddWithValue("@variationType", detail.VariationType);
-                                    insertCmd.Parameters.AddWithValue("@costPrice", detail.CostPrice);
-                                    insertCmd.Parameters.AddWithValue("@retailPrice", detail.RetailPrice);
-                                    insertCmd.Parameters.AddWithValue("@wholesalePrice", detail.WholesalePrice);
-                                    insertCmd.ExecuteNonQuery();
+                                    string variationName = $"{createProductNameText.Text.Trim()} ({detail.TypeName})";
+                                    cmd.Parameters.AddWithValue("@name", variationName);
+                                    cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
+                                    cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
+                                    cmd.Parameters.AddWithValue("@warehouseId", (int)creProWareComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProWareComboBox.SelectedValue);
+                                    cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
+                                    cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
+                                    cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue);
+                                    cmd.Parameters.AddWithValue("@stock", 0);
+                                    cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(detail.UPC) ? (object)DBNull.Value : detail.UPC);
+                                    cmd.ExecuteNonQuery();
+
+                                    int newProductId = (int)cmd.LastInsertedId;
+
+                                    string pricingQuery = @"
+                                        INSERT INTO pricing (
+                                            product_id, variation_id, variation_type, cost_price, retail_price
+                                        ) VALUES (
+                                            @productId, @variationId, @variationType, @costPrice, @retailPrice
+                                        )";
+                                    using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
+                                    {
+                                        pricingCmd.Parameters.AddWithValue("@productId", newProductId);
+                                        pricingCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
+                                        pricingCmd.Parameters.AddWithValue("@variationType", detail.TypeName);
+                                        pricingCmd.Parameters.AddWithValue("@costPrice", detail.CostPrice);
+                                        pricingCmd.Parameters.AddWithValue("@retailPrice", detail.RetailPrice);
+                                        pricingCmd.ExecuteNonQuery();
+                                    }
                                 }
                             }
                         }
                         else
                         {
-                            string pricingQuery = "INSERT INTO pricing (product_id, variation_id, variation_type, cost_price, retail_price, wholesale_price) " +
-                                                 "VALUES (@productId, @variationId, @variationType, @costPrice, @retailPrice, @wholesalePrice)";
-                            using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
+                            string productQuery = @"
+                                INSERT INTO products (
+                                    name, category_id, image_path, unit_id, warehouse_id, 
+                                    supplier_id, brand_id, variation_type_id, stock, barcode
+                                ) VALUES (
+                                    @name, (SELECT id FROM categories WHERE name = @category), 
+                                    @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
+                                    @variationTypeId, @stock, @barcode
+                                )";
+                            using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                             {
-                                if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
-                                    string.IsNullOrWhiteSpace(singleRetPriText.Text) ||
-                                    string.IsNullOrWhiteSpace(singleWholePriText.Text))
+                                cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                                cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
+                                cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
+                                cmd.Parameters.AddWithValue("@warehouseId", (int)creProWareComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProWareComboBox.SelectedValue);
+                                cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
+                                cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
+                                cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
+                                cmd.Parameters.AddWithValue("@stock", 0);
+                                cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(upcNumberText.Text.Trim()) ? (object)DBNull.Value : upcNumberText.Text.Trim());
+                                cmd.ExecuteNonQuery();
+
+                                int productId = (int)cmd.LastInsertedId;
+
+                                string pricingQuery = @"
+                                    INSERT INTO pricing (
+                                        product_id, variation_id, variation_type, cost_price, retail_price
+                                    ) VALUES (
+                                        @productId, @variationId, @variationType, @costPrice, @retailPrice
+                                    )";
+                                using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
                                 {
-                                    MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    return;
+                                    if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
+                                        string.IsNullOrWhiteSpace(singleRetPriText.Text))
+                                    {
+                                        MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        return;
+                                    }
+                                    pricingCmd.Parameters.AddWithValue("@productId", productId);
+                                    pricingCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
+                                    pricingCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
+                                    if ((int)creProVarTypeComboBox.SelectedValue == 0)
+                                    {
+                                        pricingCmd.Parameters.AddWithValue("@variationId", DBNull.Value);
+                                        pricingCmd.Parameters.AddWithValue("@variationType", DBNull.Value);
+                                    }
+                                    else
+                                    {
+                                        pricingCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
+                                        pricingCmd.Parameters.AddWithValue("@variationType", varTypeLabel.Text);
+                                    }
+                                    pricingCmd.ExecuteNonQuery();
                                 }
-                                pricingCmd.Parameters.AddWithValue("@productId", productId);
-                                pricingCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
-                                pricingCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
-                                pricingCmd.Parameters.AddWithValue("@wholesalePrice", decimal.Parse(singleWholePriText.Text));
-                                if ((int)creProVarTypeComboBox.SelectedValue == 0)
-                                {
-                                    pricingCmd.Parameters.AddWithValue("@variationId", DBNull.Value);
-                                    pricingCmd.Parameters.AddWithValue("@variationType", DBNull.Value);
-                                }
-                                else
-                                {
-                                    pricingCmd.Parameters.AddWithValue("@variationId", (int)creProVarTypeComboBox.SelectedValue);
-                                    pricingCmd.Parameters.AddWithValue("@variationType", varTypeLabel.Text);
-                                }
-                                pricingCmd.ExecuteNonQuery();
                             }
                         }
                     }
@@ -639,6 +674,7 @@ namespace EscopeWindowsApp
         {
             if (creProVarTypeComboBox.SelectedIndex > 0)
             {
+                upcNumberText.Enabled = false;
                 if (isEditMode)
                 {
                     varTypeLabel.Text = creProVarTypeComboBox.Text;
@@ -651,7 +687,7 @@ namespace EscopeWindowsApp
                         {
                             conn.Open();
                             string query = @"
-                                SELECT cost_price, retail_price, wholesale_price
+                                SELECT cost_price, retail_price
                                 FROM pricing
                                 WHERE product_id = @productId AND variation_type = @variationType";
                             using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -664,13 +700,11 @@ namespace EscopeWindowsApp
                                     {
                                         singleCostPriText.Text = reader.GetDecimal("cost_price").ToString();
                                         singleRetPriText.Text = reader.GetDecimal("retail_price").ToString();
-                                        singleWholePriText.Text = reader.GetDecimal("wholesale_price").ToString();
                                     }
                                     else
                                     {
                                         singleCostPriText.Text = "";
                                         singleRetPriText.Text = "";
-                                        singleWholePriText.Text = "";
                                     }
                                 }
                             }
@@ -701,17 +735,18 @@ namespace EscopeWindowsApp
                             pricingDetails = null;
                             creProVarTypeComboBox.SelectedIndex = 0;
                             singlePricingPanel.Enabled = false;
+                            upcNumberText.Enabled = true;
                         }
                     }
                 }
             }
             else
             {
+                upcNumberText.Enabled = true;
                 varTypeLabel.Text = "";
                 varTypeLabel.Visible = false;
                 singleCostPriText.Text = "";
                 singleRetPriText.Text = "";
-                singleWholePriText.Text = "";
                 singlePricingPanel.Enabled = !isEditMode && !enabalVTypeCheckBox.Checked;
                 pricingDetails = null;
             }
@@ -720,6 +755,7 @@ namespace EscopeWindowsApp
         private void enabalVTypeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             creProVarTypeComboBox.Enabled = enabalVTypeCheckBox.Checked;
+            upcNumberText.Enabled = !enabalVTypeCheckBox.Checked;
             singlePricingPanel.Enabled = isEditMode ? enabalVTypeCheckBox.Checked : !enabalVTypeCheckBox.Checked;
             if (!enabalVTypeCheckBox.Checked)
             {
@@ -728,7 +764,6 @@ namespace EscopeWindowsApp
                 varTypeLabel.Visible = false;
                 singleCostPriText.Text = "";
                 singleRetPriText.Text = "";
-                singleWholePriText.Text = "";
                 pricingDetails = null;
             }
         }

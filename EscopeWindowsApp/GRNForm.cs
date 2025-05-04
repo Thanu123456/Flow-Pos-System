@@ -84,7 +84,6 @@ namespace EscopeWindowsApp
                     grnDataGridView.Columns.Add("Quantity", "Quantity");
                     grnDataGridView.Columns.Add("CostPrice", "Cost Price");
                     grnDataGridView.Columns.Add("RetailPrice", "Retail Price");
-                    grnDataGridView.Columns.Add("WholesalePrice", "Wholesale Price");
                     grnDataGridView.Columns.Add("NetPrice", "Net Price");
                     grnDataGridView.Columns.Add("ExpiryDate", "Expiry Date");
                     grnDataGridView.Columns.Add("Warranty", "Warranty");
@@ -181,12 +180,12 @@ namespace EscopeWindowsApp
                                c.name AS category, 
                                v.name AS variation_name, 
                                u.unit_name, 
-                               pr.cost_price, pr.retail_price, pr.wholesale_price
+                               pr.cost_price, pr.retail_price
                         FROM products p
                         LEFT JOIN categories c ON p.category_id = c.id
                         LEFT JOIN variations v ON p.variation_type_id = v.id
                         LEFT JOIN units u ON p.unit_id = u.id
-                        LEFT JOIN pricing pr ON p.id = pr.product_id AND pr.variation_type IS NULL
+                        LEFT JOIN pricing pr ON p.id = pr.product_id
                         WHERE p.barcode = @searchText
                            OR p.barcode LIKE @searchTextLike
                            OR p.name LIKE @searchTextLike
@@ -386,7 +385,11 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT DISTINCT variation_type FROM pricing WHERE product_id = @productId AND variation_type IS NOT NULL";
+                    string query = @"
+                        SELECT DISTINCT pr.variation_type 
+                        FROM pricing pr
+                        JOIN products p ON pr.product_id = p.id
+                        WHERE p.id = @productId AND pr.variation_type IS NOT NULL";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@productId", productId);
@@ -420,7 +423,7 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT cost_price, retail_price, wholesale_price FROM pricing " +
+                    string query = "SELECT cost_price, retail_price FROM pricing " +
                                   "WHERE product_id = @productId AND variation_type IS NULL LIMIT 1";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -431,11 +434,9 @@ namespace EscopeWindowsApp
                             {
                                 grnCostPriText.Text = reader["cost_price"].ToString();
                                 grnRetPriText.Text = reader["retail_price"].ToString();
-                                grnWholePriText.Text = reader["wholesale_price"].ToString();
 
                                 grnCostPriText.ReadOnly = true;
                                 grnRetPriText.ReadOnly = true;
-                                grnWholePriText.ReadOnly = true;
 
                                 UpdateNetPrice();
                             }
@@ -447,9 +448,15 @@ namespace EscopeWindowsApp
             {
                 BeginInvoke(new Action(() =>
                 {
-                    MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error loadingstatic void LoadSinglePricing(int productId): {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                        BeginInvoke(new Action(() =>
+                        {
+                            MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }));
+                        Console.WriteLine($"Load single pricing error: {ex}");
+                    }
                 }));
-                Console.WriteLine($"Load single pricing error: {ex}");
             }
         }
 
@@ -500,7 +507,7 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT cost_price, retail_price, wholesale_price FROM pricing " +
+                    string query = "SELECT cost_price, retail_price FROM pricing " +
                                   "WHERE product_id = @productId AND variation_type = @variationType LIMIT 1";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -512,11 +519,9 @@ namespace EscopeWindowsApp
                             {
                                 grnCostPriText.Text = reader["cost_price"].ToString();
                                 grnRetPriText.Text = reader["retail_price"].ToString();
-                                grnWholePriText.Text = reader["wholesale_price"].ToString();
 
                                 grnCostPriText.ReadOnly = true;
                                 grnRetPriText.ReadOnly = true;
-                                grnWholePriText.ReadOnly = true;
 
                                 UpdateNetPrice();
                             }
@@ -642,7 +647,6 @@ namespace EscopeWindowsApp
                             grnQuantityText.Text,
                             grnCostPriText.Text,
                             grnRetPriText.Text,
-                            grnWholePriText.Text,
                             grnNetPriceText.Text,
                             expiryDate,
                             warranty,
@@ -678,7 +682,6 @@ namespace EscopeWindowsApp
                     grnQuantityText.Text,
                     grnCostPriText.Text,
                     grnRetPriText.Text,
-                    grnWholePriText.Text,
                     grnNetPriceText.Text,
                     expiryDate,
                     warranty,
@@ -700,7 +703,6 @@ namespace EscopeWindowsApp
             grnQuantityText.Text = "";
             grnCostPriText.Text = "";
             grnRetPriText.Text = "";
-            grnWholePriText.Text = "";
             grnNetPriceText.Text = "0.00";
             grnUnitText.Text = "";
             grnProSearchText.Text = "";
@@ -767,14 +769,15 @@ namespace EscopeWindowsApp
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
                                 string expiryDateStr = row.Cells["ExpiryDate"].Value?.ToString();
-                                object expiryDate = string.IsNullOrEmpty(expiryDateStr) ? (object)DBNull.Value : DateTime.Parse(expiryDateStr);
+                                // Use a default date (e.g., 2099-12-31) if no expiry date is provided
+                                object expiryDate = string.IsNullOrEmpty(expiryDateStr) ? new DateTime(2099, 12, 31) : DateTime.Parse(expiryDateStr);
                                 string warranty = row.Cells["Warranty"].Value?.ToString() ?? "No Warranty";
                                 string unit = row.Cells["Unit"].Value?.ToString();
                                 string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();
 
                                 string itemQuery = @"
-                                    INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
-                                    VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
+                            INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
+                            VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
                                 using (MySqlCommand itemCmd = new MySqlCommand(itemQuery, conn, transaction))
                                 {
                                     itemCmd.Parameters.AddWithValue("@grnId", grnId);
@@ -791,9 +794,9 @@ namespace EscopeWindowsApp
                                 }
 
                                 string stockQuery = @"
-                                    INSERT INTO stock (product_id, variation_type, stock, unit)
-                                    VALUES (@productId, @variationType, @quantity, @unit)
-                                    ON DUPLICATE KEY UPDATE stock = stock + @quantity, unit = @unit";
+                            INSERT INTO stock (product_id, variation_type, stock, unit)
+                            VALUES (@productId, @variationType, @quantity, @unit)
+                            ON DUPLICATE KEY UPDATE stock = stock + @quantity, unit = @unit";
                                 using (MySqlCommand stockCmd = new MySqlCommand(stockQuery, conn, transaction))
                                 {
                                     stockCmd.Parameters.AddWithValue("@productId", productId);
@@ -847,7 +850,6 @@ namespace EscopeWindowsApp
             grnQuantityText.Text = "";
             grnCostPriText.Text = "";
             grnRetPriText.Text = "";
-            grnWholePriText.Text = "";
             grnNetPriceText.Text = "0.00";
             grnUnitText.Text = "";
             expireDateCheckBox.Checked = false;
@@ -960,7 +962,6 @@ namespace EscopeWindowsApp
         private void cashPaymentLabel_Click(object sender, EventArgs e) { }
         private void grnCostPriText_TextChanged(object sender, EventArgs e) { }
         private void grnRetPriText_TextChanged(object sender, EventArgs e) { }
-        private void grnWholePriText_TextChanged(object sender, EventArgs e) { }
         private void grnNetPriceText_TextChanged(object sender, EventArgs e) { }
         private void grnStockText_TextChanged(object sender, EventArgs e) { }
         private void grnVarText_TextChanged(object sender, EventArgs e) { }
