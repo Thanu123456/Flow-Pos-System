@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Drawing;
 using System.Configuration;
+using System.IO.Ports;
+using System.Timers;
 
 namespace EscopeWindowsApp
 {
@@ -17,15 +19,214 @@ namespace EscopeWindowsApp
         private string currentVariationType = null;
         private bool isSerialNumberRequired = false;
         private ListBox suggestionListBox;
+        private bool isUsbScannerEnabled = false;
+        private bool isBluetoothScannerEnabled = false;
+        private SerialPort bluetoothSerialPort;
+        private string scannedBarcodeBuffer = "";
+        private System.Timers.Timer usbScanTimer;
+        private const int USB_SCAN_TIMEOUT = 100; // 100ms timeout to detect end of USB scan
 
         public GRNForm()
         {
             InitializeComponent();
             InitializeSuggestionListBox();
+            InitializeBluetoothScanner();
+            InitializeUsbScanTimer();
+            CustomizeDateTimePicker();
 
             // Disable DateTimePicker by default
             grnExpireDatePicker.Enabled = false;
+
+            // Subscribe to form key press event for scanner input and Enter key handling
+            this.KeyPreview = true;
+            this.KeyDown += GRNForm_KeyDown; // For Enter key
+            this.KeyPress += GRNForm_KeyPress; // For USB scanner input
         }
+
+        #region DateTimePicker Customization
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White
+            grnExpireDatePicker.BackColor = Color.White;
+
+            
+
+            // Subscribe to hover events
+            grnExpireDatePicker.MouseEnter += GrnExpireDatePicker_MouseEnter;
+            grnExpireDatePicker.MouseLeave += GrnExpireDatePicker_MouseLeave;
+        }
+
+        private void GrnExpireDatePicker_MouseEnter(object sender, EventArgs e)
+        {
+            // Set hover color to White (same as fill color)
+            grnExpireDatePicker.BackColor = Color.White;
+        }
+
+        private void GrnExpireDatePicker_MouseLeave(object sender, EventArgs e)
+        {
+            // Revert to fill color (White) when mouse leaves
+            grnExpireDatePicker.BackColor = Color.White;
+        }
+        #endregion
+
+        #region Scanner Initialization and Handling
+        private void InitializeBluetoothScanner()
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames();
+                if (ports.Length > 0)
+                {
+                    bluetoothSerialPort = new SerialPort(ports[0], 9600)
+                    {
+                        ReadTimeout = 500,
+                        WriteTimeout = 500
+                    };
+                    bluetoothSerialPort.DataReceived += BluetoothSerialPort_DataReceived;
+                }
+                else
+                {
+                    bluetoothSerialPort = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error initializing Bluetooth scanner: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bluetoothSerialPort = null;
+            }
+        }
+
+        private void InitializeUsbScanTimer()
+        {
+            usbScanTimer = new System.Timers.Timer(USB_SCAN_TIMEOUT)
+            {
+                AutoReset = false
+            };
+            usbScanTimer.Elapsed += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(scannedBarcodeBuffer))
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        ProcessScannedBarcode(scannedBarcodeBuffer.Trim());
+                        scannedBarcodeBuffer = "";
+                    }));
+                }
+            };
+        }
+
+        private void BluetoothSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                string data = bluetoothSerialPort.ReadExisting().Trim();
+                if (!string.IsNullOrEmpty(data))
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        ProcessScannedBarcode(data);
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error reading Bluetooth scanner data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+            }
+        }
+
+        private void usbScanToggleBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isUsbScannerEnabled = usbScanToggleBtn.Checked;
+            if (isUsbScannerEnabled)
+            {
+                MessageBox.Show("USB Scanner enabled. Scan a barcode to auto-fill product details.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.ActiveControl = null;
+            }
+            else
+            {
+                MessageBox.Show("USB Scanner disabled.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void bluToggleBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isBluetoothScannerEnabled = bluToggleBtn.Checked;
+            try
+            {
+                if (isBluetoothScannerEnabled)
+                {
+                    if (bluetoothSerialPort != null && !bluetoothSerialPort.IsOpen)
+                    {
+                        bluetoothSerialPort.Open();
+                        MessageBox.Show("Bluetooth Scanner enabled. Scan a barcode to auto-fill product details.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.ActiveControl = null;
+                    }
+                    else if (bluetoothSerialPort == null)
+                    {
+                        MessageBox.Show("No COM ports found for Bluetooth scanner. Please configure manually.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        bluToggleBtn.Checked = false;
+                        isBluetoothScannerEnabled = false;
+                    }
+                }
+                else
+                {
+                    if (bluetoothSerialPort != null && bluetoothSerialPort.IsOpen)
+                    {
+                        bluetoothSerialPort.Close();
+                        MessageBox.Show("Bluetooth Scanner disabled.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error toggling Bluetooth scanner: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isBluetoothScannerEnabled = false;
+                bluToggleBtn.Checked = false;
+            }
+        }
+
+        private void GRNForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                addToListBtn_Click(this, EventArgs.Empty); // Trigger addToListBtn click
+            }
+        }
+
+        private void GRNForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (isUsbScannerEnabled)
+            {
+                scannedBarcodeBuffer += e.KeyChar;
+                usbScanTimer.Stop();
+                usbScanTimer.Start(); // Restart timer to detect end of scan
+                e.Handled = true; // Prevent character from being entered into focused control
+            }
+        }
+
+        private void ProcessScannedBarcode(string barcode)
+        {
+            if (!string.IsNullOrEmpty(barcode))
+            {
+                DataTable products = SearchProducts(barcode);
+                if (products.Rows.Count > 0)
+                {
+                    int productId = Convert.ToInt32(products.Rows[0]["id"]);
+                    FillProductDetails(productId);
+                    grnQuantityText.Text = "1";
+                    UpdateNetPrice();
+                }
+                else
+                {
+                    MessageBox.Show($"No product found for barcode: '{barcode}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        #endregion
 
         #region Webcam Handling
         private void webcamScanBtn_Click(object sender, EventArgs e)
@@ -35,21 +236,7 @@ namespace EscopeWindowsApp
                 if (codeReader.ShowDialog() == DialogResult.OK)
                 {
                     string scannedBarcode = codeReader.ScannedCode;
-                    if (!string.IsNullOrEmpty(scannedBarcode))
-                    {
-                        DataTable products = SearchProducts(scannedBarcode);
-                        if (products.Rows.Count > 0)
-                        {
-                            int productId = Convert.ToInt32(products.Rows[0]["id"]);
-                            FillProductDetails(productId);
-                            grnQuantityText.Text = "1";
-                            UpdateNetPrice();
-                        }
-                        else
-                        {
-                            MessageBox.Show($"No product found for barcode: '{scannedBarcode}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    ProcessScannedBarcode(scannedBarcode);
                 }
             }
         }
@@ -133,7 +320,7 @@ namespace EscopeWindowsApp
         #region Product Search
         private void grnProSearchText_TextChanged(object sender, EventArgs e)
         {
-            if (isFormLoading) return;
+            if (isFormLoading || isUsbScannerEnabled || isBluetoothScannerEnabled) return;
 
             string searchText = grnProSearchText.Text.Trim();
             suggestionListBox.Items.Clear();
@@ -448,15 +635,9 @@ namespace EscopeWindowsApp
             {
                 BeginInvoke(new Action(() =>
                 {
-                    MessageBox.Show($"Error loadingstatic void LoadSinglePricing(int productId): {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            {
-                        BeginInvoke(new Action(() =>
-                        {
-                            MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }));
-                        Console.WriteLine($"Load single pricing error: {ex}");
-                    }
+                    MessageBox.Show($"Error loading single pricing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }));
+                Console.WriteLine($"Load single pricing error: {ex}");
             }
         }
 
@@ -610,8 +791,8 @@ namespace EscopeWindowsApp
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             string unit = grnUnitText.Text;
 
-            // Determine expiry date
-            string expiryDate = expireDateCheckBox.Checked ? grnExpireDatePicker.Value.ToString("yyyy-MM-dd") : null;
+            // Determine expiry date for display
+            string expiryDateDisplay = expireDateCheckBox.Checked ? grnExpireDatePicker.Value.ToString("yyyy-MM-dd") : "N/A";
 
             if (isSerialNumberRequired)
             {
@@ -648,7 +829,7 @@ namespace EscopeWindowsApp
                             grnCostPriText.Text,
                             grnRetPriText.Text,
                             grnNetPriceText.Text,
-                            expiryDate,
+                            expiryDateDisplay,
                             warranty,
                             unit,
                             "Yes"
@@ -683,7 +864,7 @@ namespace EscopeWindowsApp
                     grnCostPriText.Text,
                     grnRetPriText.Text,
                     grnNetPriceText.Text,
-                    expiryDate,
+                    expiryDateDisplay,
                     warranty,
                     unit,
                     "No"
@@ -769,8 +950,7 @@ namespace EscopeWindowsApp
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
                                 string expiryDateStr = row.Cells["ExpiryDate"].Value?.ToString();
-                                // Use a default date (e.g., 2099-12-31) if no expiry date is provided
-                                object expiryDate = string.IsNullOrEmpty(expiryDateStr) ? new DateTime(2099, 12, 31) : DateTime.Parse(expiryDateStr);
+                                object expiryDate = expiryDateStr == "N/A" ? new DateTime(2099, 12, 31) : DateTime.Parse(expiryDateStr);
                                 string warranty = row.Cells["Warranty"].Value?.ToString() ?? "No Warranty";
                                 string unit = row.Cells["Unit"].Value?.ToString();
                                 string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();

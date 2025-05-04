@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grnBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -91,6 +91,10 @@
             this.grnProSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.siticoneAnimateWindow1 = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow(this.components);
             this.webcamScanBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.usbScanToggleBtn = new Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch();
+            this.bluToggleBtn = new Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.grnNoLabelPanel.SuspendLayout();
@@ -219,7 +223,7 @@
             this.paymentMethPanel.Controls.Add(this.cashPaymentLabel);
             this.paymentMethPanel.Controls.Add(this.cashPaymentRadioBtn);
             this.paymentMethPanel.FillColor = System.Drawing.Color.Transparent;
-            this.paymentMethPanel.Location = new System.Drawing.Point(22, 301);
+            this.paymentMethPanel.Location = new System.Drawing.Point(22, 361);
             this.paymentMethPanel.Name = "paymentMethPanel";
             this.paymentMethPanel.Size = new System.Drawing.Size(182, 135);
             this.paymentMethPanel.TabIndex = 27;
@@ -227,11 +231,11 @@
             // ceaditPayementLabel
             // 
             this.ceaditPayementLabel.AutoSize = true;
-            this.ceaditPayementLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ceaditPayementLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ceaditPayementLabel.ForeColor = System.Drawing.Color.Black;
-            this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 98);
+            this.ceaditPayementLabel.Location = new System.Drawing.Point(44, 97);
             this.ceaditPayementLabel.Name = "ceaditPayementLabel";
-            this.ceaditPayementLabel.Size = new System.Drawing.Size(119, 19);
+            this.ceaditPayementLabel.Size = new System.Drawing.Size(128, 21);
             this.ceaditPayementLabel.TabIndex = 33;
             this.ceaditPayementLabel.Text = "Creadit Supplier";
             this.ceaditPayementLabel.Click += new System.EventHandler(this.ceaditPayementLabel_Click);
@@ -256,11 +260,11 @@
             // chequePaymentLabel
             // 
             this.chequePaymentLabel.AutoSize = true;
-            this.chequePaymentLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chequePaymentLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chequePaymentLabel.ForeColor = System.Drawing.Color.Black;
-            this.chequePaymentLabel.Location = new System.Drawing.Point(44, 64);
+            this.chequePaymentLabel.Location = new System.Drawing.Point(44, 63);
             this.chequePaymentLabel.Name = "chequePaymentLabel";
-            this.chequePaymentLabel.Size = new System.Drawing.Size(60, 19);
+            this.chequePaymentLabel.Size = new System.Drawing.Size(66, 21);
             this.chequePaymentLabel.TabIndex = 31;
             this.chequePaymentLabel.Text = "Cheque";
             // 
@@ -284,11 +288,11 @@
             // cashPaymentLabel
             // 
             this.cashPaymentLabel.AutoSize = true;
-            this.cashPaymentLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashPaymentLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cashPaymentLabel.ForeColor = System.Drawing.Color.Black;
-            this.cashPaymentLabel.Location = new System.Drawing.Point(44, 28);
+            this.cashPaymentLabel.Location = new System.Drawing.Point(44, 27);
             this.cashPaymentLabel.Name = "cashPaymentLabel";
-            this.cashPaymentLabel.Size = new System.Drawing.Size(40, 19);
+            this.cashPaymentLabel.Size = new System.Drawing.Size(44, 21);
             this.cashPaymentLabel.TabIndex = 29;
             this.cashPaymentLabel.Text = "Cash";
             this.cashPaymentLabel.Click += new System.EventHandler(this.cashPaymentLabel_Click);
@@ -314,11 +318,11 @@
             // 
             this.paymentMethLabel.AutoSize = true;
             this.paymentMethLabel.BackColor = System.Drawing.Color.Transparent;
-            this.paymentMethLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentMethLabel.ForeColor = System.Drawing.Color.Black;
-            this.paymentMethLabel.Location = new System.Drawing.Point(36, 290);
+            this.paymentMethLabel.Location = new System.Drawing.Point(33, 350);
             this.paymentMethLabel.Name = "paymentMethLabel";
-            this.paymentMethLabel.Size = new System.Drawing.Size(148, 19);
+            this.paymentMethLabel.Size = new System.Drawing.Size(160, 21);
             this.paymentMethLabel.TabIndex = 27;
             this.paymentMethLabel.Text = "PAYMENT METHOD :";
             // 
@@ -407,10 +411,10 @@
             this.checkSerialNumber.CheckedState.BorderRadius = 5;
             this.checkSerialNumber.CheckedState.BorderThickness = 1;
             this.checkSerialNumber.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
-            this.checkSerialNumber.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSerialNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkSerialNumber.Location = new System.Drawing.Point(22, 315);
             this.checkSerialNumber.Name = "checkSerialNumber";
-            this.checkSerialNumber.Size = new System.Drawing.Size(193, 23);
+            this.checkSerialNumber.Size = new System.Drawing.Size(203, 25);
             this.checkSerialNumber.TabIndex = 82;
             this.checkSerialNumber.Text = "Available Serial Number";
             this.checkSerialNumber.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -469,7 +473,7 @@
             this.grnUnitText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnUnitText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnUnitText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnUnitText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnUnitText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnUnitText.ForeColor = System.Drawing.Color.Black;
             this.grnUnitText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnUnitText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -564,7 +568,7 @@
             this.grnNetPriceLbl.BackColor = System.Drawing.Color.Transparent;
             this.grnNetPriceLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnNetPriceLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnNetPriceLbl.Location = new System.Drawing.Point(629, 23);
+            this.grnNetPriceLbl.Location = new System.Drawing.Point(562, 23);
             this.grnNetPriceLbl.Name = "grnNetPriceLbl";
             this.grnNetPriceLbl.Size = new System.Drawing.Size(84, 23);
             this.grnNetPriceLbl.TabIndex = 42;
@@ -582,18 +586,18 @@
             this.grnNetPriceText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnNetPriceText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnNetPriceText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnNetPriceText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnNetPriceText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnNetPriceText.ForeColor = System.Drawing.Color.Black;
             this.grnNetPriceText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnNetPriceText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnNetPriceText.Location = new System.Drawing.Point(633, 52);
+            this.grnNetPriceText.Location = new System.Drawing.Point(564, 52);
             this.grnNetPriceText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnNetPriceText.Name = "grnNetPriceText";
             this.grnNetPriceText.PasswordChar = '\0';
             this.grnNetPriceText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.grnNetPriceText.PlaceholderText = "Net Price";
             this.grnNetPriceText.SelectedText = "";
-            this.grnNetPriceText.Size = new System.Drawing.Size(180, 42);
+            this.grnNetPriceText.Size = new System.Drawing.Size(250, 42);
             this.grnNetPriceText.TabIndex = 41;
             this.grnNetPriceText.TextChanged += new System.EventHandler(this.grnNetPriceText_TextChanged);
             // 
@@ -603,7 +607,7 @@
             this.grnRetLbl.BackColor = System.Drawing.Color.Transparent;
             this.grnRetLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnRetLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grnRetLbl.Location = new System.Drawing.Point(221, 23);
+            this.grnRetLbl.Location = new System.Drawing.Point(288, 23);
             this.grnRetLbl.Name = "grnRetLbl";
             this.grnRetLbl.Size = new System.Drawing.Size(99, 23);
             this.grnRetLbl.TabIndex = 39;
@@ -620,18 +624,18 @@
             this.grnRetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnRetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnRetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnRetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnRetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnRetPriText.ForeColor = System.Drawing.Color.Black;
             this.grnRetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnRetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.grnRetPriText.Location = new System.Drawing.Point(223, 52);
+            this.grnRetPriText.Location = new System.Drawing.Point(292, 52);
             this.grnRetPriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grnRetPriText.Name = "grnRetPriText";
             this.grnRetPriText.PasswordChar = '\0';
             this.grnRetPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.grnRetPriText.PlaceholderText = "Retail Price";
             this.grnRetPriText.SelectedText = "";
-            this.grnRetPriText.Size = new System.Drawing.Size(180, 42);
+            this.grnRetPriText.Size = new System.Drawing.Size(250, 42);
             this.grnRetPriText.TabIndex = 38;
             this.grnRetPriText.TextChanged += new System.EventHandler(this.grnRetPriText_TextChanged);
             // 
@@ -658,7 +662,7 @@
             this.grnCostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnCostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnCostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnCostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnCostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnCostPriText.ForeColor = System.Drawing.Color.Black;
             this.grnCostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnCostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -669,7 +673,7 @@
             this.grnCostPriText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.grnCostPriText.PlaceholderText = "Cost Price";
             this.grnCostPriText.SelectedText = "";
-            this.grnCostPriText.Size = new System.Drawing.Size(180, 42);
+            this.grnCostPriText.Size = new System.Drawing.Size(250, 42);
             this.grnCostPriText.TabIndex = 37;
             this.grnCostPriText.TextChanged += new System.EventHandler(this.grnCostPriText_TextChanged);
             // 
@@ -696,7 +700,7 @@
             this.grnQuantityText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnQuantityText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnQuantityText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnQuantityText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnQuantityText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnQuantityText.ForeColor = System.Drawing.Color.Black;
             this.grnQuantityText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnQuantityText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -757,7 +761,7 @@
             this.grnStockText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnStockText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnStockText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnStockText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnStockText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnStockText.ForeColor = System.Drawing.Color.Black;
             this.grnStockText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnStockText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -807,7 +811,7 @@
             this.grnVarText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnVarText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnVarText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnVarText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnVarText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnVarText.ForeColor = System.Drawing.Color.Black;
             this.grnVarText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnVarText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -857,7 +861,7 @@
             this.grnProCatText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProCatText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProCatText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProCatText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProCatText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProCatText.ForeColor = System.Drawing.Color.Black;
             this.grnProCatText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProCatText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -895,7 +899,7 @@
             this.grnProNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProNameText.ForeColor = System.Drawing.Color.Black;
             this.grnProNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -962,7 +966,7 @@
             this.grnProIDText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProIDText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProIDText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProIDText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProIDText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProIDText.ForeColor = System.Drawing.Color.Black;
             this.grnProIDText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProIDText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -983,49 +987,49 @@
             this.grnDataGridView.AllowUserToDeleteRows = false;
             this.grnDataGridView.AllowUserToResizeColumns = false;
             this.grnDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.grnDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.grnDataGridView.ColumnHeadersHeight = 35;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.grnDataGridView.ColumnHeadersHeight = 45;
             this.grnDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grnDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.grnDataGridView.GridColor = System.Drawing.Color.White;
             this.grnDataGridView.Location = new System.Drawing.Point(22, 507);
             this.grnDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.grnDataGridView.Name = "grnDataGridView";
             this.grnDataGridView.ReadOnly = true;
             this.grnDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grnDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.grnDataGridView.RowHeadersVisible = false;
             this.grnDataGridView.RowHeadersWidth = 22;
             this.grnDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -1047,7 +1051,7 @@
             this.grnDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.grnDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 35;
+            this.grnDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.grnDataGridView.ThemeStyle.ReadOnly = true;
             this.grnDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.grnDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -1111,7 +1115,7 @@
             this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
             this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -1142,18 +1146,82 @@
             this.webcamScanBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
             this.webcamScanBtn.ForeColor = System.Drawing.Color.White;
             this.webcamScanBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.webcamScanBtn.Location = new System.Drawing.Point(22, 226);
+            this.webcamScanBtn.Location = new System.Drawing.Point(22, 219);
             this.webcamScanBtn.Name = "webcamScanBtn";
             this.webcamScanBtn.Size = new System.Drawing.Size(182, 45);
             this.webcamScanBtn.TabIndex = 83;
             this.webcamScanBtn.Text = "Scan web cam";
             this.webcamScanBtn.Click += new System.EventHandler(this.webcamScanBtn_Click);
             // 
+            // usbScanToggleBtn
+            // 
+            this.usbScanToggleBtn.CheckedState.BorderColor = System.Drawing.Color.Green;
+            this.usbScanToggleBtn.CheckedState.FillColor = System.Drawing.Color.Green;
+            this.usbScanToggleBtn.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.usbScanToggleBtn.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.usbScanToggleBtn.Location = new System.Drawing.Point(22, 276);
+            this.usbScanToggleBtn.Name = "usbScanToggleBtn";
+            this.usbScanToggleBtn.Size = new System.Drawing.Size(38, 24);
+            this.usbScanToggleBtn.TabIndex = 84;
+            this.usbScanToggleBtn.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.usbScanToggleBtn.UncheckedState.BorderRadius = 8;
+            this.usbScanToggleBtn.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.usbScanToggleBtn.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.usbScanToggleBtn.UncheckedState.InnerBorderRadius = 8;
+            this.usbScanToggleBtn.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.usbScanToggleBtn.CheckedChanged += new System.EventHandler(this.usbScanToggleBtn_CheckedChanged);
+            // 
+            // bluToggleBtn
+            // 
+            this.bluToggleBtn.CheckedState.BorderColor = System.Drawing.Color.Green;
+            this.bluToggleBtn.CheckedState.FillColor = System.Drawing.Color.Green;
+            this.bluToggleBtn.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.bluToggleBtn.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.bluToggleBtn.Location = new System.Drawing.Point(22, 306);
+            this.bluToggleBtn.Name = "bluToggleBtn";
+            this.bluToggleBtn.Size = new System.Drawing.Size(38, 24);
+            this.bluToggleBtn.TabIndex = 85;
+            this.bluToggleBtn.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.bluToggleBtn.UncheckedState.BorderRadius = 8;
+            this.bluToggleBtn.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.bluToggleBtn.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.bluToggleBtn.UncheckedState.InnerBorderRadius = 8;
+            this.bluToggleBtn.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.bluToggleBtn.CheckedChanged += new System.EventHandler(this.bluToggleBtn_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(66, 279);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 21);
+            this.label1.TabIndex = 86;
+            this.label1.Text = "USB Scanner";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(66, 309);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(145, 21);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "Bluetooth Scanner";
+            // 
             // GRNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.bluToggleBtn);
+            this.Controls.Add(this.usbScanToggleBtn);
             this.Controls.Add(this.webcamScanBtn);
             this.Controls.Add(this.grnProSearchText);
             this.Controls.Add(this.grnCancelBtn);
@@ -1249,5 +1317,9 @@
         private Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow siticoneAnimateWindow1;
         private Siticone.Desktop.UI.WinForms.SiticoneButton webcamScanBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox expireDateCheckBox;
+        private Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch bluToggleBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch usbScanToggleBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
