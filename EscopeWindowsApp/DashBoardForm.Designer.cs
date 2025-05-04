@@ -626,7 +626,7 @@
             this.siticonePanel5.FillColor = System.Drawing.Color.White;
             this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
             this.siticonePanel5.Name = "siticonePanel5";
-            this.siticonePanel5.Size = new System.Drawing.Size(899, 461);
+            this.siticonePanel5.Size = new System.Drawing.Size(882, 461);
             this.siticonePanel5.TabIndex = 19;
             // 
             // label8
@@ -660,7 +660,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.salesPurchStackedColumn.Series.Add(series2);
-            this.salesPurchStackedColumn.Size = new System.Drawing.Size(865, 350);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(848, 350);
             this.salesPurchStackedColumn.TabIndex = 19;
             this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -682,7 +682,7 @@
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
             this.siticonePanel4.Location = new System.Drawing.Point(21, 866);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1331, 335);
+            this.siticonePanel4.Size = new System.Drawing.Size(1314, 335);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
@@ -716,7 +716,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1351, 210);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1334, 210);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -920,7 +920,7 @@
             this.siticonePanel8.FillColor = System.Drawing.Color.White;
             this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
             this.siticonePanel8.Name = "siticonePanel8";
-            this.siticonePanel8.Size = new System.Drawing.Size(709, 530);
+            this.siticonePanel8.Size = new System.Drawing.Size(692, 530);
             this.siticonePanel8.TabIndex = 23;
             // 
             // topCustomerPieChart
@@ -943,7 +943,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.topCustomerPieChart.Series.Add(series4);
-            this.topCustomerPieChart.Size = new System.Drawing.Size(679, 448);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(662, 448);
             this.topCustomerPieChart.TabIndex = 45;
             this.topCustomerPieChart.Text = "chart2";
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -1016,7 +1016,7 @@
             this.siticonePanel9.FillColor = System.Drawing.Color.White;
             this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
             this.siticonePanel9.Name = "siticonePanel9";
-            this.siticonePanel9.Size = new System.Drawing.Size(795, 307);
+            this.siticonePanel9.Size = new System.Drawing.Size(778, 307);
             this.siticonePanel9.TabIndex = 48;
             // 
             // label12
@@ -1089,7 +1089,7 @@
             this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expireDateAlertGridView.RowTemplate.Height = 35;
             this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expireDateAlertGridView.Size = new System.Drawing.Size(770, 221);
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(753, 221);
             this.expireDateAlertGridView.TabIndex = 45;
             this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1149,7 +1149,7 @@
             this.siticonePanel10.FillColor = System.Drawing.Color.White;
             this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
             this.siticonePanel10.Name = "siticonePanel10";
-            this.siticonePanel10.Size = new System.Drawing.Size(1331, 450);
+            this.siticonePanel10.Size = new System.Drawing.Size(1314, 450);
             this.siticonePanel10.TabIndex = 49;
             // 
             // label13
@@ -1222,7 +1222,7 @@
             this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.recentDataGridView.RowTemplate.Height = 35;
             this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.recentDataGridView.Size = new System.Drawing.Size(1303, 366);
+            this.recentDataGridView.Size = new System.Drawing.Size(1286, 366);
             this.recentDataGridView.TabIndex = 45;
             this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
