@@ -35,11 +35,13 @@ namespace EscopeWindowsApp
                 creProSaveBtn.Text = "Update";
                 createProductNameText.ReadOnly = true;
                 selectedVariationType = variationType;
+                // Disable variation type controls in edit mode
+                enabalVTypeCheckBox.Enabled = false;
+                creProVarTypeComboBox.Enabled = false;
             }
 
             createProductNameText.Text = name;
             ProCatComboox.Text = category;
-            creProVarTypeComboBox.Enabled = false;
 
             this.Load += CreateProduct_Load;
             UpdateSaveButtonState();
@@ -165,7 +167,8 @@ namespace EscopeWindowsApp
 
                                 creProVarTypeComboBox.SelectedValue = variationTypeId;
                                 enabalVTypeCheckBox.Checked = variationTypeId != 0;
-                                creProVarTypeComboBox.Enabled = variationTypeId != 0;
+                                enabalVTypeCheckBox.Enabled = false; // Disable in edit mode
+                                creProVarTypeComboBox.Enabled = false; // Disable in edit mode
                                 singlePricingPanel.Enabled = true;
 
                                 if (variationTypeId != 0)

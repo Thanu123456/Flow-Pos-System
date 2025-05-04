@@ -291,6 +291,12 @@
     <Compile Include="CloseRegister.Designer.cs">
       <DependentUpon>CloseRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodeReaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeReaderForm.Designer.cs">
+      <DependentUpon>CodeReaderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateBaseUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -608,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CloseRegister.resx">
       <DependentUpon>CloseRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CodeReaderForm.resx">
+      <DependentUpon>CodeReaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBaseUnit.resx">
       <DependentUpon>CreateBaseUnit.cs</DependentUpon>
