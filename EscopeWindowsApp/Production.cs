@@ -50,36 +50,44 @@ namespace EscopeWindowsApp
                 Name = "product_name",
                 HeaderText = "PRODUCT NAME"
             });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "category_name",
                 Name = "category_name",
                 HeaderText = "CATEGORY"
             });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "unit_name",
                 Name = "unit_name",
                 HeaderText = "UNIT"
             });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "brand_name",
                 Name = "brand_name",
                 HeaderText = "BRAND"
             });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "variation_name",
                 Name = "variation_name",
                 HeaderText = "VARIATION"
             });
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "variation_type",
                 Name = "variation_type",
                 HeaderText = "VARIATION TYPE"
             });
+
+            
+
             ProductDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "retail_price",
@@ -181,28 +189,28 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                SELECT 
-                    p.id,
-                    p.variation_type_id,
-                    p.name AS product_name,
-                    c.name AS category_name,
-                    u.unit_name,
-                    b.name AS brand_name,
-                    v.name AS variation_name,
-                    pr.variation_type,
-                    pr.retail_price,
-                    pr.wholesale_price,
-                    SUM(COALESCE(s.stock, 0)) AS stock
-                FROM products p
-                LEFT JOIN categories c ON p.category_id = c.id
-                LEFT JOIN units u ON p.unit_id = u.id
-                LEFT JOIN brands b ON p.brand_id = b.id
-                LEFT JOIN variations v ON p.variation_type_id = v.id
-                LEFT JOIN pricing pr ON p.id = pr.product_id
-                LEFT JOIN stock s ON p.id = s.product_id AND 
-                    (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
-                GROUP BY p.id, p.variation_type_id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, pr.retail_price, pr.wholesale_price
-                ORDER BY p.id, pr.variation_type";
+                        SELECT 
+                            p.id,
+                            p.variation_type_id,
+                            p.name AS product_name,
+                            c.name AS category_name,
+                            u.unit_name,
+                            b.name AS brand_name,
+                            v.name AS variation_name,
+                            pr.variation_type,
+                            p.barcode,
+                            pr.retail_price,
+                            SUM(COALESCE(s.stock, 0)) AS stock
+                        FROM products p
+                        LEFT JOIN categories c ON p.category_id = c.id
+                        LEFT JOIN units u ON p.unit_id = u.id
+                        LEFT JOIN brands b ON p.brand_id = b.id
+                        LEFT JOIN variations v ON p.variation_type_id = v.id
+                        LEFT JOIN pricing pr ON p.id = pr.product_id
+                        LEFT JOIN stock s ON p.id = s.product_id AND 
+                            (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
+                        GROUP BY p.id, p.variation_type_id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, p.barcode, pr.retail_price
+                        ORDER BY p.id, pr.variation_type";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
@@ -221,12 +229,13 @@ namespace EscopeWindowsApp
                             else if (productsTable.Columns[i].DataType == typeof(decimal))
                                 row[i] = 0.00m;
                             else if (productsTable.Columns[i].DataType == typeof(int))
-                                 row[i] = 0;
+                                row[i] = 0;
                         }
                     }
                 }
 
                 bindingSource.DataSource = productsTable;
+                ProductDataGridView.DataSource = bindingSource;
             }
             catch (Exception ex)
             {
@@ -235,6 +244,14 @@ namespace EscopeWindowsApp
                 productsTable.Columns.Add("id", typeof(int));
                 productsTable.Columns.Add("variation_type_id", typeof(int));
                 productsTable.Columns.Add("product_name", typeof(string));
+                productsTable.Columns.Add("category_name", typeof(string));
+                productsTable.Columns.Add("unit_name", typeof(string));
+                productsTable.Columns.Add("brand_name", typeof(string));
+                productsTable.Columns.Add("variation_name", typeof(string));
+                productsTable.Columns.Add("variation_type", typeof(string));
+                productsTable.Columns.Add("barcode", typeof(string));
+                productsTable.Columns.Add("retail_price", typeof(decimal));
+                productsTable.Columns.Add("stock", typeof(int));
                 bindingSource.DataSource = productsTable;
             }
         }
@@ -250,7 +267,8 @@ namespace EscopeWindowsApp
                                            $"category_name LIKE '%{searchText}%' OR " +
                                            $"brand_name LIKE '%{searchText}%' OR " +
                                            $"variation_name LIKE '%{searchText}%' OR " +
-                                           $"variation_type LIKE '%{searchText}%'";
+                                           $"variation_type LIKE '%{searchText}%' OR " +
+                                           $"barcode LIKE '%{searchText}%'";
                 }
                 else
                 {
@@ -370,6 +388,7 @@ namespace EscopeWindowsApp
                                             string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId AND variation_type = @variationType";
                                             string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_type = @variationType";
                                             string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId AND variation_type = @variationType";
+                                            string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
 
                                             using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
                                             {
@@ -389,6 +408,12 @@ namespace EscopeWindowsApp
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
                                         }

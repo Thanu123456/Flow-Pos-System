@@ -6,6 +6,7 @@ using AForge.Video.DirectShow;
 using ZXing;
 using ZXing.Common;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace EscopeWindowsApp
 {
@@ -13,14 +14,15 @@ namespace EscopeWindowsApp
     {
         private FilterInfoCollection videoDevices;
         private VideoCaptureDevice videoSource;
-        private bool isScanning = false;
-        private bool isProcessingScan = false;
+        private bool isDecoding = false;
+        private BarcodeReader barcodeReader;
         public string ScannedCode { get; private set; }
 
         public CodeReaderForm()
         {
             InitializeComponent();
             InitializeWebcam();
+            InitializeBarcodeReader();
         }
 
         private void InitializeWebcam()
@@ -45,6 +47,19 @@ namespace EscopeWindowsApp
             }
         }
 
+        private void InitializeBarcodeReader()
+        {
+            barcodeReader = new BarcodeReader
+            {
+                AutoRotate = true,
+                Options = new DecodingOptions
+                {
+                    TryHarder = true
+                    // Removed PossibleFormats to allow detection of all barcode types
+                }
+            };
+        }
+
         private void CodeReaderForm_Load(object sender, EventArgs e)
         {
             StartWebcam();
@@ -57,7 +72,6 @@ namespace EscopeWindowsApp
                 try
                 {
                     videoSource.Start();
-                    isScanning = true;
                 }
                 catch (Exception ex)
                 {
@@ -75,7 +89,6 @@ namespace EscopeWindowsApp
                 {
                     videoSource.SignalToStop();
                     videoSource.WaitForStop();
-                    isScanning = false;
                 }
                 catch (Exception ex)
                 {
@@ -84,63 +97,62 @@ namespace EscopeWindowsApp
             }
         }
 
-        private async void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            if (isProcessingScan) return;
-            isProcessingScan = true;
+            Bitmap frame = (Bitmap)eventArgs.Frame.Clone();
 
-            using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
+            if (dispalyCodePictureBox.InvokeRequired)
             {
-                try
+                dispalyCodePictureBox.Invoke(new Action(() =>
                 {
-                    if (dispalyCodePictureBox.InvokeRequired)
-                    {
-                        dispalyCodePictureBox.Invoke(new Action(() =>
-                        {
-                            dispalyCodePictureBox.Image = (Bitmap)bitmap.Clone();
-                        }));
-                    }
-                    else
-                    {
-                        dispalyCodePictureBox.Image = (Bitmap)bitmap.Clone();
-                    }
+                    dispalyCodePictureBox.Image = frame;
+                }));
+            }
+            else
+            {
+                dispalyCodePictureBox.Image = frame;
+            }
 
-                    BarcodeReader barcodeReader = new BarcodeReader
+            if (!isDecoding)
+            {
+                isDecoding = true;
+                Bitmap frameToDecode = (Bitmap)frame.Clone();
+                Task.Run(() =>
+                {
+                    Debug.WriteLine("Attempting to decode frame");
+                    try
                     {
-                        AutoRotate = true,
-                        Options = new DecodingOptions
+                        // Save the frame for manual testing (remove this after debugging)
+                        frameToDecode.Save("frame.png", System.Drawing.Imaging.ImageFormat.Png);
+
+                        var result = barcodeReader.Decode(frameToDecode);
+                        if (result != null)
                         {
-                            TryHarder = true,
-                            PossibleFormats = new[]
+                            Debug.WriteLine($"Barcode found: {result.Text}");
+                            ScannedCode = result.Text.Trim();
+                            this.Invoke(new Action(() =>
                             {
-                                BarcodeFormat.EAN_13,
-                                BarcodeFormat.EAN_8,
-                                BarcodeFormat.UPC_A,
-                                BarcodeFormat.UPC_E,
-                                BarcodeFormat.CODE_128,
-                                BarcodeFormat.CODE_39,
-                                BarcodeFormat.QR_CODE
-                            }
+                                StopWebcam();
+                                this.DialogResult = DialogResult.OK;
+                                this.Close();
+                            }));
                         }
-                    };
-
-                    var result = barcodeReader.Decode(bitmap);
-                    if (result != null)
-                    {
-                        ScannedCode = result.Text.Trim();
-                        await Task.Run(() => StopWebcam());
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        else
+                        {
+                            Debug.WriteLine("No barcode found in frame");
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Frame processing error: {ex}");
-                }
-                finally
-                {
-                    isProcessingScan = false;
-                }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Decoding error: {ex}");
+                        MessageBox.Show($"Decoding error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        frameToDecode.Dispose();
+                        isDecoding = false;
+                    }
+                });
             }
         }
 

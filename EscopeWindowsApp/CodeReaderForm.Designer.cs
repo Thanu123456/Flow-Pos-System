@@ -55,7 +55,7 @@
             this.controlPanel.BackColor = System.Drawing.Color.White;
             this.controlPanel.Controls.Add(this.createBrandsCloseBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(513, 4);
+            this.controlPanel.Location = new System.Drawing.Point(529, 4);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(65, 30);
             this.controlPanel.TabIndex = 1;
@@ -84,6 +84,7 @@
             this.dispalyCodePictureBox.Location = new System.Drawing.Point(12, 75);
             this.dispalyCodePictureBox.Name = "dispalyCodePictureBox";
             this.dispalyCodePictureBox.Size = new System.Drawing.Size(566, 288);
+            this.dispalyCodePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.dispalyCodePictureBox.TabIndex = 71;
             this.dispalyCodePictureBox.TabStop = false;
             this.dispalyCodePictureBox.Click += new System.EventHandler(this.dispalyCodePictureBox_Click);
@@ -97,6 +98,7 @@
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CodeReaderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CodeReaderForm";
             this.Load += new System.EventHandler(this.CodeReaderForm_Load);
             this.headerPanel.ResumeLayout(false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace EscopeWindowsApp
 {
@@ -14,7 +15,7 @@ namespace EscopeWindowsApp
         private string selectedVariationType;
         private List<string> variationTypes;
         private int productId;
-        public List<PricingDetail> PricingDetails { get; private set; }
+        public List<PricingData> PricingDetails { get; private set; }
 
         public ProductPricing(int variationId, int productId = -1, string selectedVariationType = null)
         {
@@ -79,7 +80,7 @@ namespace EscopeWindowsApp
             var typeLabels = new[] { priVarType1Lbl, priVarType2Lbl, priVarType3Lbl, priVarType4Lbl, priVarType5Lbl };
             var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
             var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
-            var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
+            var upcTexts = new[] { ty1UPCNumberText, ty2UPCNumberText, ty3UPCNumberText, ty4UPCNumberText, ty5UPCNumberText };
 
             if (selectedVariationType != null)
             {
@@ -94,7 +95,7 @@ namespace EscopeWindowsApp
                             typeLabels[i].Text = variationTypes[i];
                             costTexts[i].Enabled = true;
                             retailTexts[i].Enabled = true;
-                            wholeTexts[i].Enabled = true;
+                            upcTexts[i].Enabled = true;
                         }
                         else
                         {
@@ -102,7 +103,7 @@ namespace EscopeWindowsApp
                             typeLabels[i].Text = i < variationTypes.Count ? variationTypes[i] : "";
                             costTexts[i].Enabled = false;
                             retailTexts[i].Enabled = false;
-                            wholeTexts[i].Enabled = false;
+                            upcTexts[i].Enabled = false;
                         }
                     }
                 }
@@ -121,7 +122,7 @@ namespace EscopeWindowsApp
                         typeLabels[i].Text = variationTypes[i];
                         costTexts[i].Enabled = true;
                         retailTexts[i].Enabled = true;
-                        wholeTexts[i].Enabled = true;
+                        upcTexts[i].Enabled = true;
                     }
                     else
                     {
@@ -129,10 +130,10 @@ namespace EscopeWindowsApp
                         typeLabels[i].Text = "";
                         costTexts[i].Enabled = false;
                         retailTexts[i].Enabled = false;
-                        wholeTexts[i].Enabled = false;
+                        upcTexts[i].Enabled = false;
                         costTexts[i].Text = "";
                         retailTexts[i].Text = "";
-                        wholeTexts[i].Text = "";
+                        upcTexts[i].Text = "";
                     }
                 }
             }
@@ -145,11 +146,14 @@ namespace EscopeWindowsApp
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT variation_type, cost_price, retail_price, wholesale_price " +
-                                   "FROM pricing WHERE product_id = @productId AND variation_id = @variationId";
+                    string query = @"
+                        SELECT pr.variation_type, pr.cost_price, pr.retail_price, p.barcode
+                        FROM pricing pr
+                        JOIN products p ON pr.product_id = p.id
+                        WHERE pr.product_id = @productId AND pr.variation_id = @variationId";
                     if (selectedVariationType != null)
                     {
-                        query += " AND variation_type = @selectedVariationType";
+                        query += " AND pr.variation_type = @selectedVariationType";
                     }
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -166,30 +170,30 @@ namespace EscopeWindowsApp
                                 string variationType = reader.GetString("variation_type");
                                 decimal costPrice = reader.GetDecimal("cost_price");
                                 decimal retailPrice = reader.GetDecimal("retail_price");
-                                decimal wholesalePrice = reader.GetDecimal("wholesale_price");
+                                string barcode = reader.IsDBNull(reader.GetOrdinal("barcode")) ? "" : reader.GetString("barcode");
 
                                 int index = variationTypes.IndexOf(variationType);
                                 if (index >= 0 && index < 5)
                                 {
                                     ty1CostPriText.Text = index == 0 ? costPrice.ToString() : ty1CostPriText.Text;
                                     ty1RetPriText.Text = index == 0 ? retailPrice.ToString() : ty1RetPriText.Text;
-                                    ty1WholePriText.Text = index == 0 ? wholesalePrice.ToString() : ty1WholePriText.Text;
+                                    ty1UPCNumberText.Text = index == 0 ? barcode : ty1UPCNumberText.Text;
 
                                     ty2CostPriText.Text = index == 1 ? costPrice.ToString() : ty2CostPriText.Text;
                                     ty2RetPriText.Text = index == 1 ? retailPrice.ToString() : ty2RetPriText.Text;
-                                    ty2WholePriText.Text = index == 1 ? wholesalePrice.ToString() : ty2WholePriText.Text;
+                                    ty2UPCNumberText.Text = index == 1 ? barcode : ty2UPCNumberText.Text;
 
                                     ty3CostPriText.Text = index == 2 ? costPrice.ToString() : ty3CostPriText.Text;
                                     ty3RetPriText.Text = index == 2 ? retailPrice.ToString() : ty3RetPriText.Text;
-                                    ty3WholePriText.Text = index == 2 ? wholesalePrice.ToString() : ty3WholePriText.Text;
+                                    ty3UPCNumberText.Text = index == 2 ? barcode : ty3UPCNumberText.Text;
 
                                     ty4CostPriText.Text = index == 3 ? costPrice.ToString() : ty4CostPriText.Text;
                                     ty4RetPriText.Text = index == 3 ? retailPrice.ToString() : ty4RetPriText.Text;
-                                    ty4WholePriText.Text = index == 3 ? wholesalePrice.ToString() : ty4WholePriText.Text;
+                                    ty4UPCNumberText.Text = index == 3 ? barcode : ty4UPCNumberText.Text;
 
                                     ty5CostPriText.Text = index == 4 ? costPrice.ToString() : ty5CostPriText.Text;
                                     ty5RetPriText.Text = index == 4 ? retailPrice.ToString() : ty5RetPriText.Text;
-                                    ty5WholePriText.Text = index == 4 ? wholesalePrice.ToString() : ty5WholePriText.Text;
+                                    ty5UPCNumberText.Text = index == 4 ? barcode : ty5UPCNumberText.Text;
                                 }
                             }
                         }
@@ -202,13 +206,47 @@ namespace EscopeWindowsApp
             }
         }
 
+        private bool ValidateUPC(string upc, int index, MySqlConnection conn)
+        {
+            if (string.IsNullOrEmpty(upc))
+            {
+                return true; // UPC can be null
+            }
+
+            if (!Regex.IsMatch(upc, @"^\d+$"))
+            {
+                MessageBox.Show($"UPC for {variationTypes[index]} must be numeric.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (upc.Length < 12)
+            {
+                MessageBox.Show($"UPC for {variationTypes[index]} must be at least 12 digits.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            string checkQuery = "SELECT COUNT(*) FROM products WHERE barcode = @barcode AND id != @productId";
+            using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+            {
+                checkCmd.Parameters.AddWithValue("@barcode", upc);
+                checkCmd.Parameters.AddWithValue("@productId", productId);
+                if ((long)checkCmd.ExecuteScalar() > 0)
+                {
+                    MessageBox.Show($"UPC for {variationTypes[index]} is already used by another product.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void priSaveBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
                 var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
-                var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
+                var upcTexts = new[] { ty1UPCNumberText, ty2UPCNumberText, ty3UPCNumberText, ty4UPCNumberText, ty5UPCNumberText };
 
                 if (selectedVariationType != null)
                 {
@@ -216,26 +254,32 @@ namespace EscopeWindowsApp
                     if (index >= 0)
                     {
                         if (string.IsNullOrWhiteSpace(costTexts[index].Text) ||
-                            string.IsNullOrWhiteSpace(retailTexts[index].Text) ||
-                            string.IsNullOrWhiteSpace(wholeTexts[index].Text))
+                            string.IsNullOrWhiteSpace(retailTexts[index].Text))
                         {
                             MessageBox.Show("Please fill in all pricing fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
+
                         decimal costPrice = decimal.Parse(costTexts[index].Text);
                         decimal retailPrice = decimal.Parse(retailTexts[index].Text);
-                        decimal wholesalePrice = decimal.Parse(wholeTexts[index].Text);
+                        string upc = upcTexts[index].Text.Trim();
 
                         using (MySqlConnection conn = new MySqlConnection(connectionString))
                         {
                             conn.Open();
-                            string updateQuery = "UPDATE pricing SET cost_price = @costPrice, retail_price = @retailPrice, wholesale_price = @wholesalePrice " +
-                                                 "WHERE product_id = @productId AND variation_id = @variationId AND variation_type = @variationType";
+                            if (!ValidateUPC(upc, index, conn))
+                            {
+                                return;
+                            }
+
+                            string updateQuery = @"
+                                UPDATE pricing 
+                                SET cost_price = @costPrice, retail_price = @retailPrice
+                                WHERE product_id = @productId AND variation_id = @variationId AND variation_type = @variationType";
                             using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@costPrice", costPrice);
                                 cmd.Parameters.AddWithValue("@retailPrice", retailPrice);
-                                cmd.Parameters.AddWithValue("@wholesalePrice", wholesalePrice);
                                 cmd.Parameters.AddWithValue("@productId", productId);
                                 cmd.Parameters.AddWithValue("@variationId", variationId);
                                 cmd.Parameters.AddWithValue("@variationType", selectedVariationType);
@@ -245,6 +289,14 @@ namespace EscopeWindowsApp
                                     MessageBox.Show("No pricing record found to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
+                            }
+
+                            string updateProductQuery = "UPDATE products SET barcode = @barcode WHERE id = @productId";
+                            using (MySqlCommand cmd = new MySqlCommand(updateProductQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(upc) ? (object)DBNull.Value : upc);
+                                cmd.Parameters.AddWithValue("@productId", productId);
+                                cmd.ExecuteNonQuery();
                             }
                         }
                         DialogResult = DialogResult.OK;
@@ -257,22 +309,32 @@ namespace EscopeWindowsApp
                 }
                 else
                 {
-                    PricingDetails = new List<PricingDetail>();
+                    PricingDetails = new List<PricingData>();
                     for (int i = 0; i < variationTypes.Count; i++)
                     {
-                        if (string.IsNullOrWhiteSpace(costTexts[i].Text) || string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
-                            string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                        if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                            string.IsNullOrWhiteSpace(retailTexts[i].Text))
                         {
-                            MessageBox.Show("Please fill in all pricing fields for enabled variations.", "Validation Error",
+                            MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.", "Validation Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-                        PricingDetails.Add(new PricingDetail
+
+                        using (MySqlConnection conn = new MySqlConnection(connectionString))
                         {
-                            VariationType = variationTypes[i],
+                            conn.Open();
+                            if (!ValidateUPC(upcTexts[i].Text.Trim(), i, conn))
+                            {
+                                return;
+                            }
+                        }
+
+                        PricingDetails.Add(new PricingData
+                        {
+                            TypeName = variationTypes[i],
                             CostPrice = decimal.Parse(costTexts[i].Text),
                             RetailPrice = decimal.Parse(retailTexts[i].Text),
-                            WholesalePrice = decimal.Parse(wholeTexts[i].Text)
+                            UPC = string.IsNullOrEmpty(upcTexts[i].Text.Trim()) ? null : upcTexts[i].Text.Trim()
                         });
                     }
                     DialogResult = DialogResult.OK;
@@ -289,62 +351,71 @@ namespace EscopeWindowsApp
         {
             try
             {
-                PricingDetails = new List<PricingDetail>();
+                PricingDetails = new List<PricingData>();
                 var costTexts = new[] { ty1CostPriText, ty2CostPriText, ty3CostPriText, ty4CostPriText, ty5CostPriText };
                 var retailTexts = new[] { ty1RetPriText, ty2RetPriText, ty3RetPriText, ty4RetPriText, ty5RetPriText };
-                var wholeTexts = new[] { ty1WholePriText, ty2WholePriText, ty3WholePriText, ty4WholePriText, ty5WholePriText };
+                var upcTexts = new[] { ty1UPCNumberText, ty2UPCNumberText, ty3UPCNumberText, ty4UPCNumberText, ty5UPCNumberText };
                 int validVariations = 0;
 
-                for (int i = 0; i < variationTypes.Count; i++)
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-                    bool isAnyFieldFilled = !string.IsNullOrWhiteSpace(costTexts[i].Text) ||
-                                            !string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
-                                            !string.IsNullOrWhiteSpace(wholeTexts[i].Text);
-                    bool isAllFieldsEmpty = string.IsNullOrWhiteSpace(costTexts[i].Text) &&
-                                            string.IsNullOrWhiteSpace(retailTexts[i].Text) &&
-                                            string.IsNullOrWhiteSpace(wholeTexts[i].Text);
-
-                    if (isAllFieldsEmpty)
+                    conn.Open();
+                    for (int i = 0; i < variationTypes.Count; i++)
                     {
-                        continue; // Skip empty variations
-                    }
+                        bool isAnyFieldFilled = !string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                                                !string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
+                                                !string.IsNullOrWhiteSpace(upcTexts[i].Text);
+                        bool isAllFieldsEmpty = string.IsNullOrWhiteSpace(costTexts[i].Text) &&
+                                                string.IsNullOrWhiteSpace(retailTexts[i].Text) &&
+                                                string.IsNullOrWhiteSpace(upcTexts[i].Text);
 
-                    if (isAnyFieldFilled)
-                    {
-                        if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
-                            string.IsNullOrWhiteSpace(retailTexts[i].Text) ||
-                            string.IsNullOrWhiteSpace(wholeTexts[i].Text))
+                        if (isAllFieldsEmpty)
                         {
-                            MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.",
-                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            PricingDetails = null;
-                            return;
+                            continue;
                         }
 
-                        if (!decimal.TryParse(costTexts[i].Text, out decimal costPrice) ||
-                            !decimal.TryParse(retailTexts[i].Text, out decimal retailPrice) ||
-                            !decimal.TryParse(wholeTexts[i].Text, out decimal wholesalePrice))
+                        if (isAnyFieldFilled)
                         {
-                            MessageBox.Show($"Please enter valid numeric values for {variationTypes[i]}.",
-                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            PricingDetails = null;
-                            return;
-                        }
+                            if (string.IsNullOrWhiteSpace(costTexts[i].Text) ||
+                                string.IsNullOrWhiteSpace(retailTexts[i].Text))
+                            {
+                                MessageBox.Show($"Please fill in all pricing fields for {variationTypes[i]}.",
+                                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                PricingDetails = null;
+                                return;
+                            }
 
-                        PricingDetails.Add(new PricingDetail
-                        {
-                            VariationType = variationTypes[i],
-                            CostPrice = costPrice,
-                            RetailPrice = retailPrice,
-                            WholesalePrice = wholesalePrice
-                        });
-                        validVariations++;
+                            if (!decimal.TryParse(costTexts[i].Text, out decimal costPrice) ||
+                                !decimal.TryParse(retailTexts[i].Text, out decimal retailPrice))
+                            {
+                                MessageBox.Show($"Please enter valid numeric values for {variationTypes[i]}.",
+                                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                PricingDetails = null;
+                                return;
+                            }
+
+                            string upc = upcTexts[i].Text.Trim();
+                            if (!ValidateUPC(upc, i, conn))
+                            {
+                                PricingDetails = null;
+                                return;
+                            }
+
+                            PricingDetails.Add(new PricingData
+                            {
+                                TypeName = variationTypes[i],
+                                CostPrice = costPrice,
+                                RetailPrice = retailPrice,
+                                UPC = string.IsNullOrEmpty(upc) ? null : upc
+                            });
+                            validVariations++;
+                        }
                     }
                 }
 
                 if (validVariations < 1)
                 {
-                    MessageBox.Show("Please provide complete pricing details for at least two variations.",
+                    MessageBox.Show("Please provide complete pricing details for at least one variation.",
                         "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     PricingDetails = null;
                     return;
@@ -370,13 +441,25 @@ namespace EscopeWindowsApp
         private void ProductPricing_Load(object sender, EventArgs e)
         {
         }
-    }
 
-    public class PricingDetail
-    {
-        public string VariationType { get; set; }
-        public decimal CostPrice { get; set; }
-        public decimal RetailPrice { get; set; }
-        public decimal WholesalePrice { get; set; }
+        private void ty1UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ty2UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ty3UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ty4UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ty5UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
