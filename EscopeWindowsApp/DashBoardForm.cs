@@ -255,7 +255,7 @@ namespace EscopeWindowsApp
                 IsValueShownAsLabel = true,
                 Label = "#PERCENT{P0}",
                 Font = new Font("Segoe UI", 9F),
-                ToolTip = "#VALX: #VALY{C2}",
+                ToolTip = "#VALX: #VALY{N2} LKR",
                 ["PointDepth"] = "0"
             };
             topCustomerPieChart.Series.Add(series);
@@ -283,7 +283,7 @@ namespace EscopeWindowsApp
                 IsValueShownAsLabel = true,
                 Label = "#PERCENT{P0}",
                 Font = new Font("Segoe UI", 9F),
-                ToolTip = "#VALX: #VALY{C2}",
+                ToolTip = "#VALX: #VALY{N2} LKR",
                 ["PointDepth"] = "0"
             };
             topExpensesDoughnutChart.Series.Add(series);
@@ -338,14 +338,14 @@ namespace EscopeWindowsApp
             {
                 ChartType = SeriesChartType.Column,
                 Color = Color.FromArgb(64, 64, 128),
-                ToolTip = "Sales on #VALX: #VALY{N2} LKR (in thousands)"
+                ToolTip = "Sales on : #VALY{N2} LKR (in thousands)"
             };
 
             Series purchSeries = new Series("Purchases")
             {
                 ChartType = SeriesChartType.Column,
                 Color = Color.FromArgb(200, 200, 230),
-                ToolTip = "Purchases on #VALX: #VALY{N2} LKR (in thousands)"
+                ToolTip = "Purchases on : #VALY{N2} LKR (in thousands)"
             };
 
             salesPurchStackedColumn.Series.Add(salesSeries);

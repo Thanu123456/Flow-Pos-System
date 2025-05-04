@@ -5,11 +5,6 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Drawing;
 using System.Configuration;
-using AForge.Video;
-using AForge.Video.DirectShow;
-using ZXing;
-using ZXing.Common;
-using System.Threading.Tasks;
 
 namespace EscopeWindowsApp
 {
@@ -22,192 +17,39 @@ namespace EscopeWindowsApp
         private string currentVariationType = null;
         private bool isSerialNumberRequired = false;
         private ListBox suggestionListBox;
-        private FilterInfoCollection videoDevices;
-        private VideoCaptureDevice videoSource;
-        private bool isScanning = false;
-        private bool isProcessingScan = false;
 
         public GRNForm()
         {
             InitializeComponent();
             InitializeSuggestionListBox();
-            InitializeWebcam();
+
+            // Disable DateTimePicker by default
+            grnExpireDatePicker.Enabled = false;
         }
 
         #region Webcam Handling
-        private void InitializeWebcam()
-        {
-            try
-            {
-                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-                if (videoDevices.Count == 0)
-                {
-                    MessageBox.Show("No webcam devices found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    webcamScanBtn.Enabled = false;
-                    return;
-                }
-
-                videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
-                videoSource.NewFrame += VideoSource_NewFrame;
-                webcamScanBtn.Text = "Start Webcam Scan";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error initializing webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                webcamScanBtn.Enabled = false;
-                Console.WriteLine($"Webcam initialization error: {ex}");
-            }
-        }
-
-        private async void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
-        {
-            if (isProcessingScan) return;
-            isProcessingScan = true;
-
-            using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
-            {
-                try
-                {
-                    // Configure BarcodeReader
-                    BarcodeReader barcodeReader = new BarcodeReader
-                    {
-                        AutoRotate = true,
-                        Options = new DecodingOptions
-                        {
-                            TryHarder = true,
-                            PossibleFormats = new[]
-                            {
-                                BarcodeFormat.EAN_13,
-                                BarcodeFormat.EAN_8,
-                                BarcodeFormat.UPC_A,
-                                BarcodeFormat.UPC_E,
-                                BarcodeFormat.CODE_128,
-                                BarcodeFormat.CODE_39,
-                                BarcodeFormat.QR_CODE
-                            }
-                        }
-                    };
-
-                    var result = barcodeReader.Decode(bitmap);
-                    if (result != null)
-                    {
-                        string scannedBarcode = result.Text.Trim();
-                        Console.WriteLine($"Barcode scanned: '{scannedBarcode}' (Length: {scannedBarcode.Length})");
-
-                        // Stop webcam immediately
-                        await Task.Run(() => StopWebcam());
-
-                        // Process barcode off UI thread
-                        await Task.Run(async () =>
-                        {
-                            try
-                            {
-                                // Find product
-                                DataTable products = SearchProducts(scannedBarcode);
-                                Console.WriteLine($"SearchProducts returned {products.Rows.Count} rows for barcode: '{scannedBarcode}'");
-
-                                if (products.Rows.Count == 0)
-                                {
-                                    BeginInvoke(new Action(() =>
-                                    {
-                                        MessageBox.Show($"No product found for barcode: '{scannedBarcode}'.\nPlease verify the barcode exists in the products table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }));
-                                    return;
-                                }
-
-                                int productId = Convert.ToInt32(products.Rows[0]["id"]);
-                                Console.WriteLine($"Product found: ID={productId}, Name={products.Rows[0]["name"]}");
-
-                                // Update UI textboxes on UI thread
-                                BeginInvoke(new Action(() =>
-                                {
-                                    FillProductDetails(productId);
-                                    grnQuantityText.Text = "1";
-                                    UpdateNetPrice();
-                                    Console.WriteLine($"Filled product details for ProductID=PRO{productId:D3}, Quantity=1");
-                                }));
-                            }
-                            catch (Exception ex)
-                            {
-                                BeginInvoke(new Action(() =>
-                                {
-                                    MessageBox.Show($"Error processing barcode '{scannedBarcode}': {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }));
-                                Console.WriteLine($"Barcode processing error: {ex}");
-                            }
-                        });
-                    }
-                    else
-                    {
-                        Console.WriteLine("No barcode detected in frame.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    BeginInvoke(new Action(() =>
-                    {
-                        MessageBox.Show($"Error decoding barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }));
-                    Console.WriteLine($"Barcode decoding error: {ex}");
-                }
-                finally
-                {
-                    isProcessingScan = false;
-                }
-            }
-        }
-
         private void webcamScanBtn_Click(object sender, EventArgs e)
         {
-            if (!isScanning)
+            using (CodeReaderForm codeReader = new CodeReaderForm())
             {
-                StartWebcam();
-            }
-            else
-            {
-                StopWebcam();
-            }
-        }
-
-        private void StartWebcam()
-        {
-            if (videoSource != null && !videoSource.IsRunning)
-            {
-                try
+                if (codeReader.ShowDialog() == DialogResult.OK)
                 {
-                    videoSource.Start();
-                    isScanning = true;
-                    webcamScanBtn.Text = "Stop Webcam Scan";
-                    Console.WriteLine("Webcam started.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error starting webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    webcamScanBtn.Enabled = false;
-                    Console.WriteLine($"Webcam start error: {ex}");
-                }
-            }
-        }
-
-        private void StopWebcam()
-        {
-            if (videoSource != null && videoSource.IsRunning)
-            {
-                try
-                {
-                    videoSource.SignalToStop();
+                    string scannedBarcode = codeReader.ScannedCode;
+                    if (!string.IsNullOrEmpty(scannedBarcode))
                     {
-                        videoSource.Stop();
-                        Console.WriteLine("Webcam forcefully stopped due to timeout.");
+                        DataTable products = SearchProducts(scannedBarcode);
+                        if (products.Rows.Count > 0)
+                        {
+                            int productId = Convert.ToInt32(products.Rows[0]["id"]);
+                            FillProductDetails(productId);
+                            grnQuantityText.Text = "1";
+                            UpdateNetPrice();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No product found for barcode: '{scannedBarcode}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    isScanning = false;
-                    webcamScanBtn.Text = "Start Webcam Scan";
-                    Console.WriteLine("Webcam stopped.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error stopping webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine($"Webcam stop error: {ex}");
                 }
             }
         }
@@ -763,6 +605,9 @@ namespace EscopeWindowsApp
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             string unit = grnUnitText.Text;
 
+            // Determine expiry date
+            string expiryDate = expireDateCheckBox.Checked ? grnExpireDatePicker.Value.ToString("yyyy-MM-dd") : null;
+
             if (isSerialNumberRequired)
             {
                 if (quantity != (int)quantity)
@@ -785,7 +630,7 @@ namespace EscopeWindowsApp
                                 decimal newQuantity = existingQuantity + quantity;
                                 row.Cells["Quantity"].Value = newQuantity;
                                 row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                                ClearItemFields(); // Clear all textboxes and controls
+                                ClearItemFields();
                                 return;
                             }
                         }
@@ -799,13 +644,13 @@ namespace EscopeWindowsApp
                             grnRetPriText.Text,
                             grnWholePriText.Text,
                             grnNetPriceText.Text,
-                            grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
+                            expiryDate,
                             warranty,
                             unit,
                             "Yes"
                         );
 
-                        ClearItemFields(); // Clear all textboxes and controls
+                        ClearItemFields();
                     }
                 };
                 barcodeForm.ShowDialog();
@@ -821,7 +666,7 @@ namespace EscopeWindowsApp
                         decimal newQuantity = existingQuantity + quantity;
                         row.Cells["Quantity"].Value = newQuantity;
                         row.Cells["NetPrice"].Value = (newQuantity * Convert.ToDecimal(row.Cells["CostPrice"].Value)).ToString("F2");
-                        ClearItemFields(); // Clear all textboxes and controls
+                        ClearItemFields();
                         return;
                     }
                 }
@@ -835,19 +680,18 @@ namespace EscopeWindowsApp
                     grnRetPriText.Text,
                     grnWholePriText.Text,
                     grnNetPriceText.Text,
-                    grnExpireDatePicker.Value.ToString("yyyy-MM-dd"),
+                    expiryDate,
                     warranty,
                     unit,
                     "No"
                 );
 
-                ClearItemFields(); // Clear all textboxes and controls
+                ClearItemFields();
             }
         }
 
         private void ClearItemFields()
         {
-            // Clear all textboxes
             grnProIDText.Text = "";
             grnProNameText.Text = "";
             grnProCatText.Text = "";
@@ -859,23 +703,22 @@ namespace EscopeWindowsApp
             grnWholePriText.Text = "";
             grnNetPriceText.Text = "0.00";
             grnUnitText.Text = "";
-            grnProSearchText.Text = ""; // Clear the search textbox as well
+            grnProSearchText.Text = "";
 
-            // Reset comboboxes
             grnVarTypCombo.Items.Clear();
             grnVarTypCombo.Enabled = false;
             grnWarrantyComboBox.SelectedIndex = 0;
 
-            // Reset date picker
+            // Reset expiry date
+            expireDateCheckBox.Checked = false;
+            grnExpireDatePicker.Enabled = false;
             grnExpireDatePicker.Value = DateTime.Now;
 
-            // Reset internal state
             currentProductId = null;
             currentVariationType = null;
             isSerialNumberRequired = false;
             checkSerialNumber.Checked = false;
 
-            // Update unit labels
             UpdateUnitLabels();
         }
         #endregion
@@ -923,7 +766,8 @@ namespace EscopeWindowsApp
                                 decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["CostPrice"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["NetPrice"].Value);
-                                DateTime expiryDate = Convert.ToDateTime(row.Cells["ExpiryDate"].Value);
+                                string expiryDateStr = row.Cells["ExpiryDate"].Value?.ToString();
+                                object expiryDate = string.IsNullOrEmpty(expiryDateStr) ? (object)DBNull.Value : DateTime.Parse(expiryDateStr);
                                 string warranty = row.Cells["Warranty"].Value?.ToString() ?? "No Warranty";
                                 string unit = row.Cells["Unit"].Value?.ToString();
                                 string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();
@@ -1006,6 +850,8 @@ namespace EscopeWindowsApp
             grnWholePriText.Text = "";
             grnNetPriceText.Text = "0.00";
             grnUnitText.Text = "";
+            expireDateCheckBox.Checked = false;
+            grnExpireDatePicker.Enabled = false;
             grnExpireDatePicker.Value = DateTime.Now;
             grnWarrantyComboBox.SelectedIndex = 0;
             currentProductId = null;
@@ -1099,6 +945,11 @@ namespace EscopeWindowsApp
         #endregion
 
         #region Expiry Date and Miscellaneous
+        private void expireDateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            grnExpireDatePicker.Enabled = expireDateCheckBox.Checked;
+        }
+
         private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e) { }
         private void grnNoLabel_Click(object sender, EventArgs e) { }
         private void creatProductLabel_Click(object sender, EventArgs e) { }
@@ -1157,19 +1008,6 @@ namespace EscopeWindowsApp
         private void checkSerialNumber_CheckedChanged(object sender, EventArgs e)
         {
             isSerialNumberRequired = checkSerialNumber.Checked;
-        }
-        #endregion
-
-        #region Form Closing
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            StopWebcam();
-            if (videoSource != null)
-            {
-                videoSource.NewFrame -= VideoSource_NewFrame;
-                videoSource = null;
-            }
-            base.OnFormClosing(e);
         }
         #endregion
     }
