@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.creatProductLabel = new System.Windows.Forms.Label();
             this.createProductMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.upcNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creProImagePanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.createProductMultipleImgBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productImagePictureBox = new System.Windows.Forms.PictureBox();
@@ -60,16 +62,12 @@
             this.singlePricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.label1 = new System.Windows.Forms.Label();
             this.varTypeLabel = new System.Windows.Forms.Label();
-            this.singleWholeLbl = new System.Windows.Forms.Label();
             this.singleRetLbl = new System.Windows.Forms.Label();
             this.singleCostLbl = new System.Windows.Forms.Label();
             this.priVar2NameLbl = new System.Windows.Forms.Label();
-            this.singleWholePriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.singleRetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.singleTypeNameLbl = new System.Windows.Forms.Label();
             this.singleCostPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.upcNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createProductMainPanel.SuspendLayout();
             this.creProImagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productImagePictureBox)).BeginInit();
@@ -120,6 +118,44 @@
             this.createProductMainPanel.Size = new System.Drawing.Size(713, 487);
             this.createProductMainPanel.TabIndex = 23;
             this.createProductMainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.createProductMainPanel_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(19, 362);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 23);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "UPC/EAN Number:";
+            // 
+            // upcNumberText
+            // 
+            this.upcNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.upcNumberText.BorderRadius = 8;
+            this.upcNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.upcNumberText.DefaultText = "";
+            this.upcNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.upcNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.upcNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.upcNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.upcNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.upcNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upcNumberText.ForeColor = System.Drawing.Color.Black;
+            this.upcNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.upcNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.upcNumberText.Location = new System.Drawing.Point(23, 391);
+            this.upcNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.upcNumberText.Name = "upcNumberText";
+            this.upcNumberText.PasswordChar = '\0';
+            this.upcNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.upcNumberText.PlaceholderText = "UPC/EAN Number";
+            this.upcNumberText.SelectedText = "";
+            this.upcNumberText.Size = new System.Drawing.Size(327, 42);
+            this.upcNumberText.TabIndex = 64;
+            this.upcNumberText.TextChanged += new System.EventHandler(this.upcNumberText_TextChanged);
             // 
             // creProImagePanel
             // 
@@ -540,11 +576,9 @@
             this.singlePricingPanel.BorderRadius = 8;
             this.singlePricingPanel.Controls.Add(this.label1);
             this.singlePricingPanel.Controls.Add(this.varTypeLabel);
-            this.singlePricingPanel.Controls.Add(this.singleWholeLbl);
             this.singlePricingPanel.Controls.Add(this.singleRetLbl);
             this.singlePricingPanel.Controls.Add(this.singleCostLbl);
             this.singlePricingPanel.Controls.Add(this.priVar2NameLbl);
-            this.singlePricingPanel.Controls.Add(this.singleWholePriText);
             this.singlePricingPanel.Controls.Add(this.singleRetPriText);
             this.singlePricingPanel.Controls.Add(this.singleTypeNameLbl);
             this.singlePricingPanel.Controls.Add(this.singleCostPriText);
@@ -580,18 +614,6 @@
             this.varTypeLabel.Text = "M";
             this.varTypeLabel.Click += new System.EventHandler(this.varTypeLabel_Click);
             // 
-            // singleWholeLbl
-            // 
-            this.singleWholeLbl.AutoSize = true;
-            this.singleWholeLbl.BackColor = System.Drawing.Color.Transparent;
-            this.singleWholeLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.singleWholeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.singleWholeLbl.Location = new System.Drawing.Point(10, 299);
-            this.singleWholeLbl.Name = "singleWholeLbl";
-            this.singleWholeLbl.Size = new System.Drawing.Size(137, 23);
-            this.singleWholeLbl.TabIndex = 38;
-            this.singleWholeLbl.Text = "Wholesale Price:";
-            // 
             // singleRetLbl
             // 
             this.singleRetLbl.AutoSize = true;
@@ -626,32 +648,6 @@
             this.priVar2NameLbl.Name = "priVar2NameLbl";
             this.priVar2NameLbl.Size = new System.Drawing.Size(0, 23);
             this.priVar2NameLbl.TabIndex = 35;
-            // 
-            // singleWholePriText
-            // 
-            this.singleWholePriText.BackColor = System.Drawing.Color.Transparent;
-            this.singleWholePriText.BorderRadius = 8;
-            this.singleWholePriText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.singleWholePriText.DefaultText = "";
-            this.singleWholePriText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.singleWholePriText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.singleWholePriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.singleWholePriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.singleWholePriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.singleWholePriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.singleWholePriText.ForeColor = System.Drawing.Color.Black;
-            this.singleWholePriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.singleWholePriText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.singleWholePriText.Location = new System.Drawing.Point(13, 330);
-            this.singleWholePriText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.singleWholePriText.Name = "singleWholePriText";
-            this.singleWholePriText.PasswordChar = '\0';
-            this.singleWholePriText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.singleWholePriText.PlaceholderText = "Wholesale Price";
-            this.singleWholePriText.SelectedText = "";
-            this.singleWholePriText.Size = new System.Drawing.Size(210, 45);
-            this.singleWholePriText.TabIndex = 33;
-            this.singleWholePriText.TextChanged += new System.EventHandler(this.singleWholePriText_TextChanged);
             // 
             // singleRetPriText
             // 
@@ -717,44 +713,6 @@
             this.singleCostPriText.TabIndex = 29;
             this.singleCostPriText.TextChanged += new System.EventHandler(this.singleCostPriText_TextChanged);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(19, 362);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 23);
-            this.label2.TabIndex = 65;
-            this.label2.Text = "UPC/EAN Number:";
-            // 
-            // upcNumberText
-            // 
-            this.upcNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.upcNumberText.BorderRadius = 8;
-            this.upcNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.upcNumberText.DefaultText = "";
-            this.upcNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.upcNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.upcNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.upcNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.upcNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.upcNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upcNumberText.ForeColor = System.Drawing.Color.Black;
-            this.upcNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.upcNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.upcNumberText.Location = new System.Drawing.Point(23, 391);
-            this.upcNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.upcNumberText.Name = "upcNumberText";
-            this.upcNumberText.PasswordChar = '\0';
-            this.upcNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.upcNumberText.PlaceholderText = "UPC/EAN Number";
-            this.upcNumberText.SelectedText = "";
-            this.upcNumberText.Size = new System.Drawing.Size(327, 42);
-            this.upcNumberText.TabIndex = 64;
-            this.upcNumberText.TextChanged += new System.EventHandler(this.upcNumberText_TextChanged);
-            // 
             // CreateProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -816,13 +774,11 @@
         private System.Windows.Forms.Label creProWareLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel singlePricingPanel;
         private System.Windows.Forms.Label priVar2NameLbl;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleWholePriText;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleRetPriText;
         private System.Windows.Forms.Label singleTypeNameLbl;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox singleCostPriText;
         private System.Windows.Forms.Label singleRetLbl;
         private System.Windows.Forms.Label singleCostLbl;
-        private System.Windows.Forms.Label singleWholeLbl;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox enabalVTypeCheckBox;
         private System.Windows.Forms.PictureBox productImagePictureBox;
         private Siticone.Desktop.UI.WinForms.SiticonePanel creProImagePanel;
