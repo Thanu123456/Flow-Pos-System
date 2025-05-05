@@ -283,6 +283,10 @@ namespace EscopeWindowsApp
                 grnWarrantyComboBox.Items.AddRange(new object[] { "No Warranty", "6 Months", "1 Year", "2 Years" });
                 grnWarrantyComboBox.SelectedIndex = 0;
 
+                // Set the next GRN ID on the label
+                int nextId = GetNextGRNId();
+                grnNoLabel.Text = nextId.ToString("D4"); // Format as "0066"
+
                 UpdateUnitLabels();
             }
             catch (Exception ex)
@@ -1132,8 +1136,42 @@ namespace EscopeWindowsApp
             grnExpireDatePicker.Enabled = expireDateCheckBox.Checked;
         }
 
+        private int GetNextGRNId()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT MAX(id) FROM grn";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result) + 1;
+                    }
+                    else
+                    {
+                        return 1; // If no GRNs exist, start with 1
+                    }
+                }
+            }
+        }
+
         private void siticoneDateTimePicker1_ValueChanged(object sender, EventArgs e) { }
-        private void grnNoLabel_Click(object sender, EventArgs e) { }
+        private void grnNoLabel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int nextId = GetNextGRNId();
+                grnNoLabel.Text = nextId.ToString("D4"); // Format as "0066"
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error getting next GRN ID: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void creatProductLabel_Click(object sender, EventArgs e) { }
         private void grnPictureBox_Click(object sender, EventArgs e) { }
         private void ceaditPayementLabel_Click(object sender, EventArgs e) { }
