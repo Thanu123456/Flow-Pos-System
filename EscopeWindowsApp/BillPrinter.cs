@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Drawing.Imaging;
 using System.Drawing;
+using ZXing;
+using ZXing.Common;
 
 namespace EscopeWindowsApp
 {
@@ -90,10 +92,29 @@ namespace EscopeWindowsApp
             }
         }
 
+        private static string GenerateBarcodeImage(string billNo)
+        {
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions
+                {
+                    Height = 50,
+                    Width = 200
+                }
+            };
+            using (var bitmap = writer.Write(billNo))
+            {
+                string tempPath = Path.Combine(Path.GetTempPath(), $"barcode_{Guid.NewGuid()}.png");
+                bitmap.Save(tempPath, ImageFormat.Png);
+                return tempPath;
+            }
+        }
+
         private static string GenerateBillPDF(string billNo, string customerName, string userName, int totalItems, string paymentMethod, decimal totalPrice, decimal discount, decimal cashPaid, decimal balance, List<CartItem> cartItems, bool isSmallReceipt)
         {
             string pdfPath = Path.Combine(Environment.CurrentDirectory, $"{billNo}_{(isSmallReceipt ? "receipt" : "A4")}.pdf");
-            string tempImagePath = null;
+            List<string> tempFiles = new List<string>();
 
             Document document = new Document();
             Section section = document.AddSection();
@@ -117,25 +138,40 @@ namespace EscopeWindowsApp
             }
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
-            titleStyle.Font.Size = isSmallReceipt ? 12 : 20;
+            titleStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
+            titleStyle.Font.Size = isSmallReceipt ? 14 : 20;
             titleStyle.Font.Bold = true;
             titleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-            titleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 5 : 10;
+            titleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 6 : 10;
 
             Style subtitleStyle = document.Styles.AddStyle("Subtitle", "Normal");
-            subtitleStyle.Font.Size = isSmallReceipt ? 10 : 14;
+            subtitleStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
+            subtitleStyle.Font.Size = isSmallReceipt ? 12 : 14;
             subtitleStyle.Font.Bold = true;
             subtitleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-            subtitleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 5 : 10;
+            subtitleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 6 : 10;
 
             Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
-            bodyStyle.Font.Size = isSmallReceipt ? 8 : 10;
-            bodyStyle.ParagraphFormat.SpaceAfter = 2;
+            bodyStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
+            bodyStyle.Font.Size = isSmallReceipt ? 10 : 10;
+            bodyStyle.ParagraphFormat.SpaceAfter = 3;
 
             Style tableHeaderStyle = document.Styles.AddStyle("TableHeader", "Normal");
-            tableHeaderStyle.Font.Size = isSmallReceipt ? 8 : 10;
+            tableHeaderStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
+            tableHeaderStyle.Font.Size = isSmallReceipt ? 10 : 10;
             tableHeaderStyle.Font.Bold = true;
             tableHeaderStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+            Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
+            boldBodyStyle.Font.Bold = true;
+
+            Style italicBodyStyle = document.Styles.AddStyle("ItalicBody", "Body");
+            italicBodyStyle.Font.Italic = true;
+
+            Style footerStyle = document.Styles.AddStyle("Footer", "Body");
+            footerStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
+            footerStyle.Font.Size = isSmallReceipt ? 8 : 9;
+            footerStyle.Font.Italic = true;
 
             CompanyDetails company = LoadCompanyDetails();
 
@@ -151,8 +187,9 @@ namespace EscopeWindowsApp
                         {
                             using (var image = Image.FromStream(ms))
                             {
-                                tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
+                                string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
                                 image.Save(tempImagePath, ImageFormat.Png);
+                                tempFiles.Add(tempImagePath);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
                                 pdfImage.Width = Unit.FromMillimeter(50);
                                 pdfImage.LockAspectRatio = true;
@@ -171,7 +208,7 @@ namespace EscopeWindowsApp
 
                 Paragraph storeName = section.AddParagraph();
                 storeName.Style = "Title";
-                storeName.AddText(company.Name);
+                storeName.AddText(company.Name.ToUpper());
 
                 Paragraph address = section.AddParagraph();
                 address.Style = "Body";
@@ -180,35 +217,53 @@ namespace EscopeWindowsApp
 
                 Paragraph phone = section.AddParagraph();
                 phone.Style = "Body";
-                phone.AddText($"Tel.: {company.PhoneNumber}");
+                phone.AddText($"Tel: {company.PhoneNumber}");
                 phone.Format.Alignment = ParagraphAlignment.Center;
 
-                Paragraph separator1 = section.AddParagraph();
-                separator1.Style = "Body";
-                separator1.AddText("............................");
-                separator1.Format.Alignment = ParagraphAlignment.Center;
-                section.AddParagraph().Format.SpaceAfter = 5;
+                Paragraph email = section.AddParagraph();
+                email.Style = "Body";
+                email.AddText($"Email: {company.Email}");
+                email.Format.Alignment = ParagraphAlignment.Center;
+
+                Table separator1 = section.AddTable();
+                separator1.AddColumn(Unit.FromMillimeter(70));
+                Row sepRow1 = separator1.AddRow();
+                sepRow1.Borders.Top.Width = 0;
+                sepRow1.Borders.Left.Width = 0;
+                sepRow1.Borders.Right.Width = 0;
+                sepRow1.Borders.Bottom.Width = 0.5;
+                section.AddParagraph().Format.SpaceAfter = 6;
 
                 Table cashierTable = section.AddTable();
                 cashierTable.AddColumn(Unit.FromMillimeter(35));
                 cashierTable.AddColumn(Unit.FromMillimeter(35));
 
                 Row cashierRow1 = cashierTable.AddRow();
-                cashierRow1.Cells[0].AddParagraph("Cashier:").Style = "Body";
-                cashierRow1.Cells[1].AddParagraph("#3").Style = "Body";
+                cashierRow1.Cells[0].AddParagraph("CASHIER:").Style = "BoldBody";
+                cashierRow1.Cells[1].AddParagraph(userName).Style = "Body";
                 cashierRow1.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
-                Row cashierRow2 = cashierTable.AddRow();
-                cashierRow2.Cells[0].AddParagraph($"Manager: {userName}").Style = "Body";
+                Row dateRow = cashierTable.AddRow();
+                dateRow.Cells[0].AddParagraph("DATE:").Style = "BoldBody";
+                dateRow.Cells[1].AddParagraph(DateTime.Now.ToString("yyyy-MM-dd")).Style = "Body";
+                dateRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+
+                Row timeRow = cashierTable.AddRow();
+                timeRow.Cells[0].AddParagraph("TIME:").Style = "BoldBody";
+                timeRow.Cells[1].AddParagraph(DateTime.Now.ToString("HH:mm:ss")).Style = "Body";
+                timeRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row billNoRow = cashierTable.AddRow();
-                billNoRow.Cells[0].AddParagraph($"Bill No: {billNo}").Style = "Body";
+                billNoRow.Cells[0].AddParagraph($"BILL NO: {billNo}").Style = "BoldBody";
 
-                Paragraph separator2 = section.AddParagraph();
-                separator2.Style = "Body";
-                separator2.AddText("............................");
-                separator2.Format.Alignment = ParagraphAlignment.Center;
-                section.AddParagraph().Format.SpaceAfter = 5;
+                Table separator2 = section.AddTable();
+                separator2.AddColumn(Unit.FromMillimeter(70));
+                Row sepRow2 = separator2.AddRow();
+                sepRow2.Borders.Top.Width = 0;
+                sepRow2.Borders.Left.Width = 0;
+                sepRow2.Borders.Right.Width = 0;
+                sepRow2.Borders.Bottom.Width = 0.5;
+                section.AddParagraph().Format.SpaceAfter = 6;
 
                 Table itemsHeaderTable = section.AddTable();
                 itemsHeaderTable.AddColumn(Unit.FromMillimeter(35));
@@ -216,9 +271,10 @@ namespace EscopeWindowsApp
                 itemsHeaderTable.AddColumn(Unit.FromMillimeter(20));
 
                 Row itemsHeaderRow = itemsHeaderTable.AddRow();
-                itemsHeaderRow.Cells[0].AddParagraph("Name").Style = "Body";
-                itemsHeaderRow.Cells[1].AddParagraph("Qty").Style = "Body";
-                itemsHeaderRow.Cells[2].AddParagraph("Price").Style = "Body";
+                itemsHeaderRow.Shading.Color = Colors.LightGray;
+                itemsHeaderRow.Cells[0].AddParagraph("ITEM").Style = "TableHeader";
+                itemsHeaderRow.Cells[1].AddParagraph("QTY").Style = "TableHeader";
+                itemsHeaderRow.Cells[2].AddParagraph("PRICE").Style = "TableHeader";
                 itemsHeaderRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
 
                 foreach (var item in cartItems)
@@ -231,81 +287,82 @@ namespace EscopeWindowsApp
                     Row itemRow = itemRowTable.AddRow();
                     itemRow.Cells[0].AddParagraph($"{item.ProductName} ({item.VariationType})").Style = "Body";
                     string displayUnit;
-                    if (item.Unit == "Liter")
-                    {
-                        displayUnit = "L";
-                    }
-                    else if (item.Unit == "Kilogram")
-                    {
-                        displayUnit = "Kg";
-                    }
-                    else if (item.Unit == "Meter")
-                    {
-                        displayUnit = "M";
-                    }
-                    else
-                    {
-                        displayUnit = item.Unit;
-                    }
+                    if (item.Unit == "Liter") displayUnit = "L";
+                    else if (item.Unit == "Kilogram") displayUnit = "Kg";
+                    else if (item.Unit == "Meter") displayUnit = "M";
+                    else displayUnit = item.Unit;
                     string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : $"{item.Quantity:N2} {displayUnit}";
                     itemRow.Cells[1].AddParagraph(qtyText).Style = "Body";
                     itemRow.Cells[2].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
                     itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
                 }
 
-                Paragraph separator3 = section.AddParagraph();
-                separator3.Style = "Body";
-                separator3.AddText("............................");
-                separator3.Format.Alignment = ParagraphAlignment.Center;
-                section.AddParagraph().Format.SpaceAfter = 5;
+                Table separator3 = section.AddTable();
+                separator3.AddColumn(Unit.FromMillimeter(70));
+                Row sepRow3 = separator3.AddRow();
+                sepRow3.Borders.Top.Width = 0;
+                sepRow3.Borders.Left.Width = 0;
+                sepRow3.Borders.Right.Width = 0;
+                sepRow3.Borders.Bottom.Width = 0.5;
+                section.AddParagraph().Format.SpaceAfter = 6;
 
                 Table summaryTable = section.AddTable();
                 summaryTable.AddColumn(Unit.FromMillimeter(35));
                 summaryTable.AddColumn(Unit.FromMillimeter(35));
+                summaryTable.Shading.Color = Colors.WhiteSmoke;
 
                 Row summaryRow1 = summaryTable.AddRow();
-                summaryRow1.Cells[0].AddParagraph("Sub TOTAL").Style = "Subtitle";
+                summaryRow1.Cells[0].AddParagraph("SUB TOTAL").Style = "Subtitle";
                 summaryRow1.Cells[1].AddParagraph($"LKR {totalPrice + discount:N2}").Style = "Subtitle";
                 summaryRow1.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow2 = summaryTable.AddRow();
-                summaryRow2.Cells[0].AddParagraph("Discount").Style = "Body";
+                summaryRow2.Cells[0].AddParagraph("DISCOUNT").Style = "Body";
                 summaryRow2.Cells[1].AddParagraph($"LKR {discount:N2}").Style = "Body";
                 summaryRow2.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow3 = summaryTable.AddRow();
-                summaryRow3.Cells[0].AddParagraph("Total").Style = "Body";
-                summaryRow3.Cells[1].AddParagraph($"LKR {totalPrice:N2}").Style = "Body";
+                summaryRow3.Cells[0].AddParagraph("TOTAL").Style = "BoldBody";
+                summaryRow3.Cells[0].Format.Font.Size = 12;
+                summaryRow3.Cells[1].AddParagraph($"LKR {totalPrice:N2}").Style = "BoldBody";
+                summaryRow3.Cells[1].Format.Font.Size = 12;
                 summaryRow3.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow4 = summaryTable.AddRow();
-                summaryRow4.Cells[0].AddParagraph("Payment Method").Style = "Body";
+                summaryRow4.Cells[0].AddParagraph("PAYMENT METHOD").Style = "Body";
                 summaryRow4.Cells[1].AddParagraph(paymentMethod).Style = "Body";
                 summaryRow4.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+
+                Row itemsCountRow = summaryTable.AddRow();
+                itemsCountRow.Cells[0].AddParagraph("NO. OF ITEMS").Style = "Body";
+                itemsCountRow.Cells[1].AddParagraph(totalItems.ToString()).Style = "Body";
+                itemsCountRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 if (paymentMethod == "Cash")
                 {
                     Row summaryRow5 = summaryTable.AddRow();
-                    summaryRow5.Cells[0].AddParagraph("Cash").Style = "Body";
-                    summaryRow5.Cells[1].AddParagraph($"LKR {cashPaid:N2}").Style = "Body";
+                    Paragraph cashLabel = summaryRow5.Cells[0].AddParagraph("CASH");
+                    cashLabel.Style = "BoldBody";
+                    Paragraph cashValue = summaryRow5.Cells[1].AddParagraph($"LKR {cashPaid:N2}");
+                    cashValue.Style = "BoldBody";
                     summaryRow5.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                     Row summaryRow6 = summaryTable.AddRow();
-                    summaryRow6.Cells[0].AddParagraph("Balance").Style = "Body";
-                    summaryRow6.Cells[1].AddParagraph($"LKR {balance:N2}").Style = "Body";
+                    Paragraph balanceLabel = summaryRow6.Cells[0].AddParagraph("BALANCE");
+                    balanceLabel.Style = "BoldBody";
+                    Paragraph balanceValue = summaryRow6.Cells[1].AddParagraph($"LKR {balance:N2}");
+                    balanceValue.Style = "BoldBody";
                     summaryRow6.Cells[1].Format.Alignment = ParagraphAlignment.Right;
                 }
 
-                Paragraph separator4 = section.AddParagraph();
-                separator4.Style = "Body";
-                separator4.AddText("............................");
-                separator4.Format.Alignment = ParagraphAlignment.Center;
-                section.AddParagraph().Format.SpaceAfter = 5;
-
-                Paragraph barcode = section.AddParagraph();
-                barcode.Style = "Body";
-                barcode.AddText("██████████████████████████");
-                barcode.Format.Alignment = ParagraphAlignment.Center;
+                Table separator4 = section.AddTable();
+                separator4.AddColumn(Unit.FromMillimeter(70));
+                Row sepRow4 = separator4.AddRow();
+                sepRow4.Borders.Top.Width = 0;
+                sepRow4.Borders.Left.Width = 0;
+                sepRow4.Borders.Right.Width = 0;
+                sepRow4.Borders.Bottom.Width = 0.5;
+                section.AddParagraph().Format.SpaceAfter = 6;
 
                 Paragraph thankYou = section.AddParagraph();
                 thankYou.Style = "Subtitle";
@@ -313,9 +370,36 @@ namespace EscopeWindowsApp
                 thankYou.Format.Alignment = ParagraphAlignment.Center;
 
                 Paragraph gladToSee = section.AddParagraph();
-                gladToSee.Style = "Body";
+                gladToSee.Style = "ItalicBody";
                 gladToSee.AddText("Glad to see you again!");
                 gladToSee.Format.Alignment = ParagraphAlignment.Center;
+
+                string barcodePath = GenerateBarcodeImage(billNo);
+                tempFiles.Add(barcodePath);
+                Paragraph barcodePara = section.AddParagraph();
+                barcodePara.Format.Alignment = ParagraphAlignment.Center;
+                var barcodeImage = barcodePara.AddImage(barcodePath);
+                barcodeImage.Width = Unit.FromMillimeter(60);
+                barcodeImage.LockAspectRatio = true;
+                section.AddParagraph().Format.SpaceAfter = 6;
+
+                Table footerSeparator = section.AddTable();
+                footerSeparator.AddColumn(Unit.FromMillimeter(70));
+                Row footerSepRow = footerSeparator.AddRow();
+                footerSepRow.Borders.Top.Width = 0;
+                footerSepRow.Borders.Left.Width = 0;
+                footerSepRow.Borders.Right.Width = 0;
+                footerSepRow.Borders.Bottom.Width = 0.5;
+
+                Paragraph footer = section.AddParagraph();
+                footer.Style = "Footer";
+                footer.AddText("Software by E-Scope International");
+                footer.Format.Alignment = ParagraphAlignment.Center;
+
+                Paragraph mobile = section.AddParagraph();
+                mobile.Style = "Footer";
+                mobile.AddText("Mobile: 0778877288");
+                mobile.Format.Alignment = ParagraphAlignment.Center;
             }
             else
             {
@@ -335,8 +419,9 @@ namespace EscopeWindowsApp
                         {
                             using (var image = Image.FromStream(ms))
                             {
-                                tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
+                                string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
                                 image.Save(tempImagePath, ImageFormat.Png);
+                                tempFiles.Add(tempImagePath);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
                                 pdfImage.Width = Unit.FromCentimeter(3);
                                 pdfImage.LockAspectRatio = true;
@@ -493,15 +578,18 @@ namespace EscopeWindowsApp
             }
             finally
             {
-                if (!string.IsNullOrEmpty(tempImagePath) && File.Exists(tempImagePath))
+                foreach (var tempFile in tempFiles)
                 {
-                    try
+                    if (File.Exists(tempFile))
                     {
-                        File.Delete(tempImagePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error deleting temporary logo file: {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        try
+                        {
+                            File.Delete(tempFile);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error deleting temporary file: {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }
