@@ -100,7 +100,8 @@ namespace EscopeWindowsApp
                 Options = new EncodingOptions
                 {
                     Height = 50,
-                    Width = 200
+                    Width = 200,
+                    PureBarcode = true
                 }
             };
             using (var bitmap = writer.Write(billNo))
@@ -122,11 +123,22 @@ namespace EscopeWindowsApp
             if (isSmallReceipt)
             {
                 section.PageSetup.PageWidth = Unit.FromMillimeter(80);
-                section.PageSetup.PageHeight = Unit.FromMillimeter(297);
+
+                // Calculate dynamic height
+                int headerHeight = 60; // mm for logo, company details, cashier info, separators
+                int itemsHeaderHeight = 10; // mm for items table header
+                int itemRowHeight = 15; // mm per item row, increased for text wrapping
+                int summaryBaseHeight = 40; // mm for summary section without extra rows
+                int summaryExtraHeight = paymentMethod == "Cash" ? 20 : 0; // Extra height for cash payment details
+                int footerHeight = 50; // mm for thank you, barcode, footer text, mobile, separator
+
+                int totalHeight = headerHeight + itemsHeaderHeight + (itemRowHeight * cartItems.Count) + summaryBaseHeight + summaryExtraHeight + footerHeight;
+
+                section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
                 section.PageSetup.LeftMargin = Unit.FromMillimeter(5);
                 section.PageSetup.RightMargin = Unit.FromMillimeter(5);
                 section.PageSetup.TopMargin = Unit.FromMillimeter(5);
-                section.PageSetup.BottomMargin = Unit.FromMillimeter(5);
+                section.PageSetup.BottomMargin = Unit.FromMillimeter(0); // No extra space below footer
             }
             else
             {
@@ -138,29 +150,29 @@ namespace EscopeWindowsApp
             }
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
-            titleStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
-            titleStyle.Font.Size = isSmallReceipt ? 14 : 20;
+            titleStyle.Font.Name = "Arial";
+            titleStyle.Font.Size = 10;
             titleStyle.Font.Bold = true;
             titleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
             titleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 6 : 10;
 
             Style subtitleStyle = document.Styles.AddStyle("Subtitle", "Normal");
-            subtitleStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
-            subtitleStyle.Font.Size = isSmallReceipt ? 12 : 14;
+            subtitleStyle.Font.Name = "Arial";
+            subtitleStyle.Font.Size = 10;
             subtitleStyle.Font.Bold = true;
             subtitleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
             subtitleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 6 : 10;
 
             Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
-            bodyStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
-            bodyStyle.Font.Size = isSmallReceipt ? 10 : 10;
+            bodyStyle.Font.Name = "Arial";
+            bodyStyle.Font.Size = isSmallReceipt ? 7 : 10;
             bodyStyle.ParagraphFormat.SpaceAfter = 3;
 
             Style tableHeaderStyle = document.Styles.AddStyle("TableHeader", "Normal");
-            tableHeaderStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
-            tableHeaderStyle.Font.Size = isSmallReceipt ? 10 : 10;
+            tableHeaderStyle.Font.Name = "Arial";
+            tableHeaderStyle.Font.Size = isSmallReceipt ? 7 : 10;
             tableHeaderStyle.Font.Bold = true;
-            tableHeaderStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+            tableHeaderStyle.ParagraphFormat.Alignment = ParagraphAlignment.Left;
 
             Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
             boldBodyStyle.Font.Bold = true;
@@ -169,9 +181,12 @@ namespace EscopeWindowsApp
             italicBodyStyle.Font.Italic = true;
 
             Style footerStyle = document.Styles.AddStyle("Footer", "Body");
-            footerStyle.Font.Name = "Arial"; // Changed from Helvetica to Arial
-            footerStyle.Font.Size = isSmallReceipt ? 8 : 9;
+            footerStyle.Font.Name = "Arial";
+            footerStyle.Font.Size = 10;
             footerStyle.Font.Italic = true;
+
+            Style priceStyle = document.Styles.AddStyle("Price", "Body");
+            priceStyle.ParagraphFormat.Alignment = ParagraphAlignment.Right;
 
             CompanyDetails company = LoadCompanyDetails();
 
@@ -188,7 +203,11 @@ namespace EscopeWindowsApp
                             using (var image = Image.FromStream(ms))
                             {
                                 string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
-                                image.Save(tempImagePath, ImageFormat.Png);
+                                using (var highQualityImage = new Bitmap(image))
+                                {
+                                    highQualityImage.SetResolution(300, 300);
+                                    highQualityImage.Save(tempImagePath, ImageFormat.Png);
+                                }
                                 tempFiles.Add(tempImagePath);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
                                 pdfImage.Width = Unit.FromMillimeter(50);
@@ -274,7 +293,7 @@ namespace EscopeWindowsApp
                 itemsHeaderRow.Shading.Color = Colors.LightGray;
                 itemsHeaderRow.Cells[0].AddParagraph("ITEM").Style = "TableHeader";
                 itemsHeaderRow.Cells[1].AddParagraph("QTY").Style = "TableHeader";
-                itemsHeaderRow.Cells[2].AddParagraph("PRICE").Style = "TableHeader";
+                itemsHeaderRow.Cells[2].AddParagraph("PRICE (LKR)").Style = "TableHeader";
                 itemsHeaderRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
 
                 foreach (var item in cartItems)
@@ -285,7 +304,9 @@ namespace EscopeWindowsApp
                     itemRowTable.AddColumn(Unit.FromMillimeter(20));
 
                     Row itemRow = itemRowTable.AddRow();
-                    itemRow.Cells[0].AddParagraph($"{item.ProductName} ({item.VariationType})").Style = "Body";
+                    string itemDisplayText = (item.VariationType == "N/A" || string.IsNullOrEmpty(item.VariationType)) ? item.ProductName : $"{item.ProductName} ({item.VariationType})";
+                    itemRow.Cells[0].AddParagraph(itemDisplayText).Style = "Body";
+                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
                     string displayUnit;
                     if (item.Unit == "Liter") displayUnit = "L";
                     else if (item.Unit == "Kilogram") displayUnit = "Kg";
@@ -293,8 +314,8 @@ namespace EscopeWindowsApp
                     else displayUnit = item.Unit;
                     string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : $"{item.Quantity:N2} {displayUnit}";
                     itemRow.Cells[1].AddParagraph(qtyText).Style = "Body";
-                    itemRow.Cells[2].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
-                    itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+                    itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Left;
+                    itemRow.Cells[2].AddParagraph($"{item.TotalPrice:N2}").Style = "Price";
                 }
 
                 Table separator3 = section.AddTable();
@@ -323,9 +344,7 @@ namespace EscopeWindowsApp
 
                 Row summaryRow3 = summaryTable.AddRow();
                 summaryRow3.Cells[0].AddParagraph("TOTAL").Style = "BoldBody";
-                summaryRow3.Cells[0].Format.Font.Size = 12;
                 summaryRow3.Cells[1].AddParagraph($"LKR {totalPrice:N2}").Style = "BoldBody";
-                summaryRow3.Cells[1].Format.Font.Size = 12;
                 summaryRow3.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow4 = summaryTable.AddRow();
@@ -383,14 +402,6 @@ namespace EscopeWindowsApp
                 barcodeImage.LockAspectRatio = true;
                 section.AddParagraph().Format.SpaceAfter = 6;
 
-                Table footerSeparator = section.AddTable();
-                footerSeparator.AddColumn(Unit.FromMillimeter(70));
-                Row footerSepRow = footerSeparator.AddRow();
-                footerSepRow.Borders.Top.Width = 0;
-                footerSepRow.Borders.Left.Width = 0;
-                footerSepRow.Borders.Right.Width = 0;
-                footerSepRow.Borders.Bottom.Width = 0.5;
-
                 Paragraph footer = section.AddParagraph();
                 footer.Style = "Footer";
                 footer.AddText("Software by E-Scope International");
@@ -400,6 +411,14 @@ namespace EscopeWindowsApp
                 mobile.Style = "Footer";
                 mobile.AddText("Mobile: 0778877288");
                 mobile.Format.Alignment = ParagraphAlignment.Center;
+
+                Table footerSeparator = section.AddTable();
+                footerSeparator.AddColumn(Unit.FromMillimeter(70));
+                Row footerSepRow = footerSeparator.AddRow();
+                footerSepRow.Borders.Top.Width = 0;
+                footerSepRow.Borders.Left.Width = 0;
+                footerSepRow.Borders.Right.Width = 0;
+                footerSepRow.Borders.Bottom.Width = 0.5;
             }
             else
             {
@@ -420,7 +439,11 @@ namespace EscopeWindowsApp
                             using (var image = Image.FromStream(ms))
                             {
                                 string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
-                                image.Save(tempImagePath, ImageFormat.Png);
+                                using (var highQualityImage = new Bitmap(image))
+                                {
+                                    highQualityImage.SetResolution(300, 300);
+                                    highQualityImage.Save(tempImagePath, ImageFormat.Png);
+                                }
                                 tempFiles.Add(tempImagePath);
                                 var pdfImage = logoPara.AddImage(tempImagePath);
                                 pdfImage.Width = Unit.FromCentimeter(3);
@@ -489,23 +512,24 @@ namespace EscopeWindowsApp
                 tableHeaderRow.Cells[0].AddParagraph("NO").Style = "TableHeader";
                 tableHeaderRow.Cells[1].AddParagraph("PRODUCT").Style = "TableHeader";
                 tableHeaderRow.Cells[2].AddParagraph("PRICE").Style = "TableHeader";
+                tableHeaderRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
                 tableHeaderRow.Cells[3].AddParagraph("QTY").Style = "TableHeader";
                 tableHeaderRow.Cells[4].AddParagraph("TOTAL").Style = "TableHeader";
+                tableHeaderRow.Cells[4].Format.Alignment = ParagraphAlignment.Right;
 
                 foreach (var item in cartItems)
                 {
                     Row itemRow = itemsTable.AddRow();
                     itemRow.Cells[0].AddParagraph(item.ItemNumber.ToString()).Style = "Body";
-                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[1].AddParagraph($"{item.ProductName} ({item.VariationType})").Style = "Body";
+                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+                    string itemDisplayText = (item.VariationType == "N/A" || string.IsNullOrEmpty(item.VariationType)) ? item.ProductName : $"{item.ProductName} ({item.VariationType})";
+                    itemRow.Cells[1].AddParagraph(itemDisplayText).Style = "Body";
                     itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Left;
-                    itemRow.Cells[2].AddParagraph($"LKR {item.Price:N2}").Style = "Body";
-                    itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+                    itemRow.Cells[2].AddParagraph($"LKR {item.Price:N2}").Style = "Price";
                     string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : item.Quantity.ToString("N2");
                     itemRow.Cells[3].AddParagraph(qtyText).Style = "Body";
-                    itemRow.Cells[3].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[4].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
-                    itemRow.Cells[4].Format.Alignment = ParagraphAlignment.Center;
+                    itemRow.Cells[3].Format.Alignment = ParagraphAlignment.Left;
+                    itemRow.Cells[4].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Price";
                 }
 
                 // Add empty rows to match the invoice design (up to 7 rows)
