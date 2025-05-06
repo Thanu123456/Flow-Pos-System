@@ -425,7 +425,7 @@ namespace EscopeWindowsApp
                             if (reader.Read())
                             {
                                 refClientNameLabel.Text = reader["customer"].ToString();
-                                refClientNumLabel.Text = "N/A"; // Phone not stored in sales table
+                                refClientNumLabel.Text = "N/A";
                                 Debug.WriteLine($"Found bill {billNo} with customer: {refClientNameLabel.Text}");
                             }
                             else
@@ -438,12 +438,12 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Fetch product details
+                    // Fetch product details using product_id directly
                     billProductsTable = new DataTable();
                     string detailsQuery = @"
                         SELECT 
                             sd.id AS sales_detail_id,
-                            COALESCE(p.id, 0) AS product_id,
+                            sd.product_id,
                             sd.product_name,
                             COALESCE(sd.variation_type, 'N/A') AS variation_type,
                             sd.unit,
@@ -453,24 +453,12 @@ namespace EscopeWindowsApp
                             s.sale_date
                         FROM sales_details sd
                         JOIN sales s ON sd.bill_no = s.bill_no
-                        LEFT JOIN products p ON LOWER(TRIM(sd.product_name)) = LOWER(TRIM(p.name))
                         WHERE sd.bill_no = @billNo";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(detailsQuery, connection))
                     {
                         adapter.SelectCommand.Parameters.AddWithValue("@billNo", billNo);
                         adapter.Fill(billProductsTable);
                         Debug.WriteLine($"Retrieved {billProductsTable.Rows.Count} rows for bill {billNo}.");
-                        // Log DataTable column names for debugging
-                        Debug.WriteLine("billProductsTable columns: " + string.Join(", ", billProductsTable.Columns.Cast<DataColumn>().Select(c => c.ColumnName)));
-                        // Log rows where product_id is 0 (failed join)
-                        foreach (DataRow row in billProductsTable.Rows)
-                        {
-                            int productId = Convert.ToInt32(row["product_id"]);
-                            if (productId == 0)
-                            {
-                                Debug.WriteLine($"Failed to find product_id for product_name='{row["product_name"]}' in bill {billNo}.");
-                            }
-                        }
                     }
 
                     if (billProductsTable.Rows.Count == 0)
@@ -481,12 +469,11 @@ namespace EscopeWindowsApp
                     }
                     else
                     {
-                        billProductDataGrid.DataSource = null; // Clear existing data
+                        billProductDataGrid.DataSource = null;
                         billProductDataGrid.DataSource = billProductsTable;
                         billProductDataGrid.Refresh();
                         Debug.WriteLine("billProductDataGrid bound to billProductsTable.");
 
-                        // Select the first row if available
                         if (billProductDataGrid.Rows.Count > 0)
                         {
                             billProductDataGrid.Rows[0].Selected = true;
@@ -750,8 +737,8 @@ namespace EscopeWindowsApp
 
                             // Insert into refunds table
                             string refundQuery = @"
-                        INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date)
-                        VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW())";
+                                INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date)
+                                VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW())";
                             using (MySqlCommand refundCommand = new MySqlCommand(refundQuery, connection, transaction))
                             {
                                 refundCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -781,14 +768,15 @@ namespace EscopeWindowsApp
                                 Debug.WriteLine($"Stock update for Product ID {productId}, Variation: {variationType ?? "NULL"}, Quantity: {quantity}, Rows Affected: {rowsAffected}");
                                 if (rowsAffected == 0)
                                 {
-                                    MessageBox.Show($"Warning: Stock not updated for Product ID {productId}, Variation: {variationType ?? "NULL"}", "Stock Update Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    transaction.Rollback();
+                                    MessageBox.Show($"Error: Stock not found for Product ID {productId}, Variation: {variationType ?? "NULL"}. Transaction rolled back.", "Stock Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
                                 }
                             }
                         }
 
                         transaction.Commit();
 
-                        // Update SessionManager with the total refund amount
                         SessionManager.TotalRefund += totalRefundAmount;
 
                         MessageBox.Show("Refund processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
