@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
 using System.Configuration;
+using System.IO.Ports;
+using System.Timers;
 
 namespace EscopeWindowsApp
 {
@@ -15,6 +17,12 @@ namespace EscopeWindowsApp
         private DataTable billProductsTable;
         private int selectedProductId;
         private decimal totalRefundAmount = 0m;
+        private bool isUsbScannerEnabled = false;
+        private bool isBluetoothScannerEnabled = false;
+        private SerialPort bluetoothSerialPort;
+        private string scannedBarcodeBuffer = "";
+        private System.Timers.Timer usbScanTimer;
+        private const int USB_SCAN_TIMEOUT = 100; // 100ms timeout to detect end of USB scan
 
         public Refund()
         {
@@ -33,10 +41,208 @@ namespace EscopeWindowsApp
             // Initialize DataTable
             billProductsTable = new DataTable();
             ClearBillDetails();
+
+            // Initialize scanners
+            InitializeBluetoothScanner();
+            InitializeUsbScanTimer();
+
+            // Subscribe to form key press event for USB scanner input
+            this.KeyPreview = true;
+            this.KeyPress += Refund_KeyPress;
+
+            // Subscribe to FormClosing event for cleanup
+            this.FormClosing += Refund_FormClosing;
         }
 
-        #region DataGridView Configuration
+        #region Scanner Initialization and Handling
+        private void InitializeBluetoothScanner()
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames();
+                if (ports.Length > 0)
+                {
+                    bluetoothSerialPort = new SerialPort(ports[0], 9600)
+                    {
+                        ReadTimeout = 500,
+                        WriteTimeout = 500
+                    };
+                    bluetoothSerialPort.DataReceived += BluetoothSerialPort_DataReceived;
+                }
+                else
+                {
+                    bluetoothSerialPort = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error initializing Bluetooth scanner: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bluetoothSerialPort = null;
+            }
+        }
 
+        private void InitializeUsbScanTimer()
+        {
+            usbScanTimer = new System.Timers.Timer(USB_SCAN_TIMEOUT)
+            {
+                AutoReset = false
+            };
+            usbScanTimer.Elapsed += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(scannedBarcodeBuffer))
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        ProcessScannedBarcode(scannedBarcodeBuffer.Trim());
+                        scannedBarcodeBuffer = "";
+                    }));
+                }
+            };
+        }
+
+        private void BluetoothSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                string data = bluetoothSerialPort.ReadExisting().Trim();
+                if (!string.IsNullOrEmpty(data))
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        ProcessScannedBarcode(data);
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"Error reading Bluetooth scanner data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }));
+            }
+        }
+
+        private void Refund_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (isUsbScannerEnabled)
+            {
+                scannedBarcodeBuffer += e.KeyChar;
+                usbScanTimer.Stop();
+                usbScanTimer.Start(); // Restart timer to detect end of scan
+                e.Handled = true; // Prevent character from being entered into focused control
+            }
+        }
+
+        private void ProcessScannedBarcode(string billNo)
+        {
+            if (!string.IsNullOrEmpty(billNo))
+            {
+                billSearchTextBox.Text = billNo;
+                LoadBillDetails(billNo);
+                Debug.WriteLine($"Processed scanned bill number: {billNo}");
+            }
+        }
+
+        private void refuntWebcamScanBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (CodeReaderForm codeReader = new CodeReaderForm())
+                {
+                    if (codeReader.ShowDialog() == DialogResult.OK)
+                    {
+                        string scannedBillNo = codeReader.ScannedCode;
+                        ProcessScannedBarcode(scannedBillNo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error scanning barcode with webcam: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine($"Webcam scan error: {ex.Message}");
+            }
+        }
+
+        private void refundUSBScanToggleBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isUsbScannerEnabled = refundUSBScanToggleBtn.Checked;
+            if (isUsbScannerEnabled)
+            {
+                MessageBox.Show("USB Scanner enabled. Scan a bill barcode to auto-fill bill details.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.ActiveControl = null;
+            }
+            else
+            {
+                MessageBox.Show("USB Scanner disabled.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                scannedBarcodeBuffer = "";
+                usbScanTimer.Stop();
+            }
+            Debug.WriteLine($"USB Scanner {(isUsbScannerEnabled ? "enabled" : "disabled")}");
+        }
+
+        private void refundBluToggleBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            isBluetoothScannerEnabled = refundBluToggleBtn.Checked;
+            try
+            {
+                if (isBluetoothScannerEnabled)
+                {
+                    if (bluetoothSerialPort != null && !bluetoothSerialPort.IsOpen)
+                    {
+                        bluetoothSerialPort.Open();
+                        MessageBox.Show("Bluetooth Scanner enabled. Scan a bill barcode to auto-fill bill details.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.ActiveControl = null;
+                    }
+                    else if (bluetoothSerialPort == null)
+                    {
+                        MessageBox.Show("No COM ports found for Bluetooth scanner. Please configure manually.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        refundBluToggleBtn.Checked = false;
+                        isBluetoothScannerEnabled = false;
+                    }
+                }
+                else
+                {
+                    if (bluetoothSerialPort != null && bluetoothSerialPort.IsOpen)
+                    {
+                        bluetoothSerialPort.Close();
+                        MessageBox.Show("Bluetooth Scanner disabled.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error toggling Bluetooth scanner: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isBluetoothScannerEnabled = false;
+                refundBluToggleBtn.Checked = false;
+                Debug.WriteLine($"Bluetooth scanner toggle error: {ex.Message}");
+            }
+            Debug.WriteLine($"Bluetooth Scanner {(isBluetoothScannerEnabled ? "enabled" : "disabled")}");
+        }
+        #endregion
+
+        #region Cleanup
+        private void Refund_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Clean up scanner resources
+            if (bluetoothSerialPort != null)
+            {
+                if (bluetoothSerialPort.IsOpen)
+                {
+                    bluetoothSerialPort.Close();
+                }
+                bluetoothSerialPort.Dispose();
+                bluetoothSerialPort = null;
+            }
+            if (usbScanTimer != null)
+            {
+                usbScanTimer.Dispose();
+                usbScanTimer = null;
+            }
+            Debug.WriteLine("Scanner resources cleaned up in Refund_FormClosing.");
+        }
+        #endregion
+
+        #region DataGridView Configuration
         private void ConfigureBillProductDataGridView()
         {
             billProductDataGrid.AutoGenerateColumns = false;
@@ -187,7 +393,6 @@ namespace EscopeWindowsApp
             refItemDataGridView.AllowUserToAddRows = false;
             refItemDataGridView.CellPainting += refItemDataGridView_CellPainting;
         }
-
         #endregion
 
         private void billSearchTextBox_TextChanged(object sender, EventArgs e)
@@ -586,7 +791,7 @@ namespace EscopeWindowsApp
                         // Update SessionManager with the total refund amount
                         SessionManager.TotalRefund += totalRefundAmount;
 
-                        //MessageBox.Show("Refund processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Refund processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearBillDetails();
                         billSearchTextBox.Text = "";
                         Debug.WriteLine($"Refund processed for bill {billNo}.");
