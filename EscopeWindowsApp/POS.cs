@@ -25,6 +25,7 @@ namespace EscopeWindowsApp
         private bool suppressTextChanged;  // Flag to prevent recursive TextChanged events
         private string username; // Store username
         private string userEmail;
+        private TextBox scannerInputTextBox; // Hidden TextBox for scanner input
 
         public POS(string username, string userEmail)
         {
@@ -122,6 +123,16 @@ namespace EscopeWindowsApp
             posCusSearchText.GotFocus += PosCusSearchText_GotFocus;
             posCusSearchText.LostFocus += PosCusSearchText_LostFocus;
 
+            // Initialize hidden TextBox for scanner input
+            scannerInputTextBox = new TextBox
+            {
+                Location = new Point(-100, -100), // Off-screen
+                Size = new Size(0, 0), // Invisible
+                Multiline = false
+            };
+            scannerInputTextBox.KeyPress += ScannerInputTextBox_KeyPress;
+            this.Controls.Add(scannerInputTextBox);
+
             // Load product data on form load
             this.Load += POS_Load;
             ConfigureSupDataGridView();
@@ -136,6 +147,110 @@ namespace EscopeWindowsApp
             paymentText.KeyPress += TextBox_NumericalKeyPress;
 
             UpdatePayNowButtonState();
+        }
+
+        private void ScannerInputTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string barcode = scannerInputTextBox.Text.Trim();
+                if (!string.IsNullOrEmpty(barcode))
+                {
+                    ProcessScannedBarcode(barcode);
+                }
+                scannerInputTextBox.Clear();
+                e.Handled = true;
+            }
+        }
+
+        private void ProcessScannedBarcode(string barcode)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            p.id,
+                            p.name AS product_name,
+                            pr.variation_type,
+                            u.unit_name,
+                            SUM(COALESCE(s.stock, 0)) AS stock,
+                            pr.retail_price,
+                            p.image_path
+                        FROM products p
+                        LEFT JOIN units u ON p.unit_id = u.id
+                        LEFT JOIN pricing pr ON p.id = pr.product_id
+                        LEFT JOIN stock s ON p.id = s.product_id AND 
+                            (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
+                        WHERE p.barcode = @barcode
+                        GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
+                        LIMIT 1";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@barcode", barcode);
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Create a temporary DataRow to mimic posProductDataGrid row
+                                DataTable tempTable = productsTable.Clone();
+                                DataRow tempRow = tempTable.NewRow();
+                                tempRow["id"] = reader["id"];
+                                tempRow["product_name"] = reader["product_name"];
+                                tempRow["variation_type"] = reader["variation_type"] != DBNull.Value ? reader["variation_type"] : "N/A";
+                                tempRow["unit_name"] = reader["unit_name"] != DBNull.Value ? reader["unit_name"] : "N/A";
+                                tempRow["stock"] = reader["stock"];
+                                tempRow["retail_price"] = reader["retail_price"];
+                                tempRow["image_path"] = reader["image_path"] != DBNull.Value ? reader["image_path"] : null;
+                                tempTable.Rows.Add(tempRow);
+
+                                // Find matching row in posProductDataGrid
+                                foreach (DataGridViewRow row in posProductDataGrid.Rows)
+                                {
+                                    if (Convert.ToInt32(row.Cells["id"].Value) == Convert.ToInt32(tempRow["id"]) &&
+                                        row.Cells["variation_type"].Value.ToString() == tempRow["variation_type"].ToString())
+                                    {
+                                        decimal stock = Convert.ToDecimal(tempRow["stock"]);
+                                        if (stock <= 0)
+                                        {
+                                            MessageBox.Show($"Cannot add {tempRow["product_name"]} ({tempRow["variation_type"]}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return;
+                                        }
+
+                                        string unitName = tempRow["unit_name"].ToString();
+                                        if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
+                                        {
+                                            using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, tempRow["product_name"].ToString(), tempRow["variation_type"].ToString()))
+                                            {
+                                                if (weightForm.ShowDialog() == DialogResult.OK)
+                                                {
+                                                    decimal quantity = weightForm.GetQuantity();
+                                                    AddToCart(row, quantity);
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            AddToCart(row, 1m);
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Product with barcode {barcode} not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UpdateSuggestionPanelPosition()
@@ -1358,8 +1473,8 @@ namespace EscopeWindowsApp
 
                         // Insert sale record
                         string salesQuery = @"
-                    INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
-                    VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
+                            INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
+                            VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
                         using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection, transaction))
                         {
                             salesCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -1373,14 +1488,14 @@ namespace EscopeWindowsApp
 
                         // Insert sales details and update stock
                         string detailsQuery = @"
-                    INSERT INTO sales_details (bill_no, product_name, variation_type, unit, quantity, price, total_price)
-                    VALUES (@billNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
+                            INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
+                            VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
                         string updateStockQuery = @"
-                    UPDATE stock 
-                    SET stock = stock - @quantity 
-                    WHERE product_id = @productId 
-                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                    LIMIT 1";
+                            UPDATE stock 
+                            SET stock = GREATEST(0, stock - @quantity) 
+                            WHERE product_id = @productId 
+                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                            LIMIT 1";
 
                         foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
@@ -1389,10 +1504,11 @@ namespace EscopeWindowsApp
                             if (variationType == "N/A") variationType = null;
                             decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
 
-                            // Insert sales details
+                            // Insert sales details with product_id
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
                             {
                                 detailsCommand.Parameters.AddWithValue("@billNo", billNo);
+                                detailsCommand.Parameters.AddWithValue("@productId", productId);
                                 detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
                                 detailsCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
                                 detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
@@ -1402,7 +1518,7 @@ namespace EscopeWindowsApp
                                 detailsCommand.ExecuteNonQuery();
                             }
 
-                            // Update stock
+                            // Update stock with negative stock prevention
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);
@@ -1412,11 +1528,9 @@ namespace EscopeWindowsApp
                                 Debug.WriteLine($"Stock update for Product ID {productId}, Variation: {variationType ?? "NULL"}, Quantity: {quantity}, Rows Affected: {rowsAffected}");
                                 if (rowsAffected == 0)
                                 {
-                                    MessageBox.Show($"Warning: Stock not updated for Product ID {productId}, Variation: {variationType ?? "NULL"}", "Stock Update Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
-                                else if (rowsAffected > 1)
-                                {
-                                    MessageBox.Show($"Error: Multiple stock rows updated for Product ID {productId}, Variation: {variationType ?? "NULL"}. Please check the stock table for duplicates.", "Stock Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    transaction.Rollback();
+                                    MessageBox.Show($"Error: Stock not found for Product ID {productId}, Variation: {variationType ?? "NULL"}. Transaction rolled back.", "Stock Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
                                 }
                             }
                         }
@@ -1447,7 +1561,6 @@ namespace EscopeWindowsApp
 
                         BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
 
-                        // Reset form and refresh products
                         resetBtn_Click(sender, e);
                         LoadProductsData();
                     }
@@ -1569,6 +1682,18 @@ namespace EscopeWindowsApp
             }
             LogOutForm logOutForm = new LogOutForm(this.username, this.userEmail);
             logOutForm.Show();
+        }
+
+        private void webcamscan_Click(object sender, EventArgs e)
+        {
+            using (CodeReaderForm codeReader = new CodeReaderForm())
+            {
+                if (codeReader.ShowDialog() == DialogResult.OK)
+                {
+                    string scannedBarcode = codeReader.ScannedCode;
+                    ProcessScannedBarcode(scannedBarcode);
+                }
+            }
         }
     }
 }
