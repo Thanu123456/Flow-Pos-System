@@ -106,6 +106,7 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cashBooktimer = new System.Windows.Forms.Timer(this.components);
             this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.webcamscan = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
@@ -160,6 +161,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.posBillPanel.BackColor = System.Drawing.Color.Transparent;
             this.posBillPanel.BorderRadius = 8;
+            this.posBillPanel.Controls.Add(this.webcamscan);
             this.posBillPanel.Controls.Add(this.supDataGridView);
             this.posBillPanel.Controls.Add(this.paymentPanel);
             this.posBillPanel.Controls.Add(this.posCreateCusBtn);
@@ -1235,6 +1237,27 @@
             this.siticoneTextBox1.TabIndex = 84;
             this.siticoneTextBox1.TextChanged += new System.EventHandler(this.siticoneTextBox1_TextChanged);
             // 
+            // webcamscan
+            // 
+            this.webcamscan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.webcamscan.Animated = true;
+            this.webcamscan.BackColor = System.Drawing.Color.White;
+            this.webcamscan.BorderRadius = 8;
+            this.webcamscan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.webcamscan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.webcamscan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.webcamscan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.webcamscan.FillColor = System.Drawing.Color.DarkRed;
+            this.webcamscan.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.webcamscan.ForeColor = System.Drawing.Color.White;
+            this.webcamscan.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.webcamscan.Location = new System.Drawing.Point(352, 16);
+            this.webcamscan.Name = "webcamscan";
+            this.webcamscan.Size = new System.Drawing.Size(101, 41);
+            this.webcamscan.TabIndex = 86;
+            this.webcamscan.Text = "Webcam";
+            this.webcamscan.Click += new System.EventHandler(this.webcamscan_Click);
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1344,5 +1367,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton refundBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel userProfilePanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userPOSProfileBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton webcamscan;
     }
 }
