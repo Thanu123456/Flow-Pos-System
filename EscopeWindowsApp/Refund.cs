@@ -23,6 +23,7 @@ namespace EscopeWindowsApp
         private string scannedBarcodeBuffer = "";
         private System.Timers.Timer usbScanTimer;
         private const int USB_SCAN_TIMEOUT = 100; // 100ms timeout to detect end of USB scan
+        private ListBox billSuggestionListBox; // ListBox for bill suggestions
 
         public Refund()
         {
@@ -46,6 +47,9 @@ namespace EscopeWindowsApp
             InitializeBluetoothScanner();
             InitializeUsbScanTimer();
 
+            // Initialize suggestion ListBox
+            InitializeBillSuggestionListBox();
+
             // Subscribe to form key press event for USB scanner input
             this.KeyPreview = true;
             this.KeyPress += Refund_KeyPress;
@@ -53,6 +57,24 @@ namespace EscopeWindowsApp
             // Subscribe to FormClosing event for cleanup
             this.FormClosing += Refund_FormClosing;
         }
+
+        #region Suggestion ListBox Initialization
+        private void InitializeBillSuggestionListBox()
+        {
+            billSuggestionListBox = new ListBox
+            {
+                Visible = false,
+                Width = billSearchTextBox.Width,
+                Font = billSearchTextBox.Font,
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(billSearchTextBox.Location.X, billSearchTextBox.Location.Y + billSearchTextBox.Height + 2)
+            };
+            this.Controls.Add(billSuggestionListBox);
+
+            billSuggestionListBox.Click += BillSuggestionListBox_Click;
+            billSuggestionListBox.KeyDown += BillSuggestionListBox_KeyDown;
+        }
+        #endregion
 
         #region Scanner Initialization and Handling
         private void InitializeBluetoothScanner()
@@ -397,14 +419,135 @@ namespace EscopeWindowsApp
 
         private void billSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            string billNo = billSearchTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(billNo))
+            string searchText = billSearchTextBox.Text.Trim();
+            billSuggestionListBox.Items.Clear();
+            billSuggestionListBox.Visible = false;
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                DataTable bills = SearchBills(searchText);
+                if (bills.Rows.Count > 0)
+                {
+                    foreach (DataRow row in bills.Rows)
+                    {
+                        billSuggestionListBox.Items.Add(row["bill_no"].ToString());
+                    }
+                    billSuggestionListBox.Visible = billSuggestionListBox.Items.Count > 0;
+                    if (billSuggestionListBox.Visible)
+                    {
+                        billSuggestionListBox.BringToFront();
+                    }
+                }
+            }
+            else
             {
                 ClearBillDetails();
-                return;
             }
+        }
 
-            LoadBillDetails(billNo);
+        private DataTable SearchBills(string searchText)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT bill_no FROM sales WHERE bill_no LIKE @searchTextLike";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@searchTextLike", "%" + searchText + "%");
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error searching bills: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        private void BillSuggestionListBox_Click(object sender, EventArgs e)
+        {
+            if (billSuggestionListBox.SelectedItem != null)
+            {
+                SelectBillSuggestion();
+            }
+        }
+
+        private void BillSuggestionListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && billSuggestionListBox.SelectedItem != null)
+            {
+                SelectBillSuggestion();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                billSuggestionListBox.Visible = false;
+                billSearchTextBox.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void SelectBillSuggestion()
+        {
+            if (billSuggestionListBox.SelectedItem != null)
+            {
+                string selectedBillNo = billSuggestionListBox.SelectedItem.ToString();
+                billSearchTextBox.Text = selectedBillNo;
+                LoadBillDetails(selectedBillNo);
+                billSuggestionListBox.Visible = false;
+                billSearchTextBox.Focus();
+            }
+        }
+
+        private void billSearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (billSuggestionListBox.Visible)
+            {
+                if (e.KeyCode == Keys.Down)
+                {
+                    if (billSuggestionListBox.Items.Count > 0)
+                    {
+                        billSuggestionListBox.SelectedIndex = Math.Min(billSuggestionListBox.SelectedIndex + 1, billSuggestionListBox.Items.Count - 1);
+                        e.Handled = true;
+                    }
+                }
+                else if (e.KeyCode == Keys.Up)
+                {
+                    if (billSuggestionListBox.Items.Count > 0)
+                    {
+                        billSuggestionListBox.SelectedIndex = Math.Max(billSuggestionListBox.SelectedIndex - 1, 0);
+                        e.Handled = true;
+                    }
+                }
+                else if (e.KeyCode == Keys.Enter && billSuggestionListBox.SelectedItem != null)
+                {
+                    SelectBillSuggestion();
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Escape)
+                {
+                    billSuggestionListBox.Visible = false;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void billSearchTextBox_Leave(object sender, EventArgs e)
+        {
+            var timer = new System.Windows.Forms.Timer { Interval = 200 };
+            timer.Tick += (s, args) =>
+            {
+                billSuggestionListBox.Visible = false;
+                timer.Stop();
+                timer.Dispose();
+            };
+            timer.Start();
         }
 
         private void LoadBillDetails(string billNo)
