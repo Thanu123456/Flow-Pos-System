@@ -213,7 +213,7 @@
             this.billSearchTextBox.BorderColor = System.Drawing.Color.Silver;
             this.billSearchTextBox.BorderRadius = 8;
             this.billSearchTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.billSearchTextBox.DefaultText = "";
+            this.billSearchTextBox.DefaultText = "BILL_";
             this.billSearchTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.billSearchTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.billSearchTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
