@@ -1,0 +1,526 @@
+﻿namespace EscopeWindowsApp
+{
+    partial class CalculatorForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.createUnitsCloseBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.calculatorBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.clearBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.divideBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.percentageBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.cutBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.substractBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.equalBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.plusBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no7Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no8Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no9Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no4Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no5Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no6Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no1Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no2Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no3Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no00Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.no0Btn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.dotBtn = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.numbersLabel = new System.Windows.Forms.Label();
+            this.finalNumLabel = new System.Windows.Forms.Label();
+            this.headerPanel.SuspendLayout();
+            this.controlPanel.SuspendLayout();
+            this.siticonePanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // headerPanel
+            // 
+            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.Controls.Add(this.controlPanel);
+            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerPanel.FillColor = System.Drawing.Color.White;
+            this.headerPanel.Location = new System.Drawing.Point(0, 0);
+            this.headerPanel.Name = "headerPanel";
+            this.headerPanel.Size = new System.Drawing.Size(568, 34);
+            this.headerPanel.TabIndex = 80;
+            // 
+            // controlPanel
+            // 
+            this.controlPanel.BackColor = System.Drawing.Color.White;
+            this.controlPanel.Controls.Add(this.createUnitsCloseBtn);
+            this.controlPanel.FillColor = System.Drawing.Color.White;
+            this.controlPanel.Location = new System.Drawing.Point(519, 1);
+            this.controlPanel.Name = "controlPanel";
+            this.controlPanel.Size = new System.Drawing.Size(49, 30);
+            this.controlPanel.TabIndex = 1;
+            // 
+            // createUnitsCloseBtn
+            // 
+            this.createUnitsCloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createUnitsCloseBtn.BorderRadius = 8;
+            this.createUnitsCloseBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.createUnitsCloseBtn.IconColor = System.Drawing.Color.White;
+            this.createUnitsCloseBtn.Location = new System.Drawing.Point(9, 2);
+            this.createUnitsCloseBtn.Name = "createUnitsCloseBtn";
+            this.createUnitsCloseBtn.Size = new System.Drawing.Size(28, 26);
+            this.createUnitsCloseBtn.TabIndex = 0;
+            // 
+            // calculatorBorderlessForm
+            // 
+            this.calculatorBorderlessForm.BorderRadius = 25;
+            this.calculatorBorderlessForm.ContainerControl = this;
+            this.calculatorBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
+            this.calculatorBorderlessForm.TransparentWhileDrag = true;
+            // 
+            // siticonePanel1
+            // 
+            this.siticonePanel1.Controls.Add(this.finalNumLabel);
+            this.siticonePanel1.Controls.Add(this.numbersLabel);
+            this.siticonePanel1.FillColor = System.Drawing.Color.White;
+            this.siticonePanel1.Location = new System.Drawing.Point(12, 40);
+            this.siticonePanel1.Name = "siticonePanel1";
+            this.siticonePanel1.Size = new System.Drawing.Size(544, 100);
+            this.siticonePanel1.TabIndex = 81;
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.clearBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.clearBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.clearBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.clearBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.clearBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.clearBtn.ForeColor = System.Drawing.Color.White;
+            this.clearBtn.Location = new System.Drawing.Point(12, 159);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.clearBtn.Size = new System.Drawing.Size(84, 83);
+            this.clearBtn.TabIndex = 82;
+            this.clearBtn.Text = "C";
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
+            // divideBtn
+            // 
+            this.divideBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.divideBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.divideBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.divideBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.divideBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.divideBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.divideBtn.ForeColor = System.Drawing.Color.White;
+            this.divideBtn.Location = new System.Drawing.Point(162, 159);
+            this.divideBtn.Name = "divideBtn";
+            this.divideBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.divideBtn.Size = new System.Drawing.Size(84, 83);
+            this.divideBtn.TabIndex = 83;
+            this.divideBtn.Text = "/";
+            this.divideBtn.Click += new System.EventHandler(this.divideBtn_Click);
+            // 
+            // percentageBtn
+            // 
+            this.percentageBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.percentageBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.percentageBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.percentageBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.percentageBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.percentageBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.percentageBtn.ForeColor = System.Drawing.Color.White;
+            this.percentageBtn.Location = new System.Drawing.Point(326, 159);
+            this.percentageBtn.Name = "percentageBtn";
+            this.percentageBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.percentageBtn.Size = new System.Drawing.Size(84, 83);
+            this.percentageBtn.TabIndex = 84;
+            this.percentageBtn.Text = "%";
+            this.percentageBtn.Click += new System.EventHandler(this.percentageBtn_Click);
+            // 
+            // cutBtn
+            // 
+            this.cutBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cutBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cutBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cutBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cutBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.cutBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.cutBtn.ForeColor = System.Drawing.Color.White;
+            this.cutBtn.Location = new System.Drawing.Point(469, 159);
+            this.cutBtn.Name = "cutBtn";
+            this.cutBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.cutBtn.Size = new System.Drawing.Size(84, 83);
+            this.cutBtn.TabIndex = 85;
+            this.cutBtn.Text = "C";
+            this.cutBtn.Click += new System.EventHandler(this.cutBtn_Click);
+            // 
+            // substractBtn
+            // 
+            this.substractBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.substractBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.substractBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.substractBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.substractBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.substractBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.substractBtn.ForeColor = System.Drawing.Color.White;
+            this.substractBtn.Location = new System.Drawing.Point(469, 270);
+            this.substractBtn.Name = "substractBtn";
+            this.substractBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.substractBtn.Size = new System.Drawing.Size(84, 83);
+            this.substractBtn.TabIndex = 86;
+            this.substractBtn.Text = "-";
+            this.substractBtn.Click += new System.EventHandler(this.substractBtn_Click);
+            // 
+            // equalBtn
+            // 
+            this.equalBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.equalBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.equalBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.equalBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.equalBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.equalBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.equalBtn.ForeColor = System.Drawing.Color.White;
+            this.equalBtn.Location = new System.Drawing.Point(469, 495);
+            this.equalBtn.Name = "equalBtn";
+            this.equalBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.equalBtn.Size = new System.Drawing.Size(84, 83);
+            this.equalBtn.TabIndex = 87;
+            this.equalBtn.Text = "=";
+            this.equalBtn.Click += new System.EventHandler(this.equalBtn_Click);
+            // 
+            // plusBtn
+            // 
+            this.plusBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.plusBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.plusBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.plusBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.plusBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(159)))), ((int)(((byte)(66)))));
+            this.plusBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.plusBtn.ForeColor = System.Drawing.Color.White;
+            this.plusBtn.Location = new System.Drawing.Point(469, 376);
+            this.plusBtn.Name = "plusBtn";
+            this.plusBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.plusBtn.Size = new System.Drawing.Size(84, 83);
+            this.plusBtn.TabIndex = 88;
+            this.plusBtn.Text = "+";
+            this.plusBtn.Click += new System.EventHandler(this.plusBtn_Click);
+            // 
+            // no7Btn
+            // 
+            this.no7Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no7Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no7Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no7Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no7Btn.FillColor = System.Drawing.Color.White;
+            this.no7Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no7Btn.ForeColor = System.Drawing.Color.Black;
+            this.no7Btn.Location = new System.Drawing.Point(25, 260);
+            this.no7Btn.Name = "no7Btn";
+            this.no7Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no7Btn.Size = new System.Drawing.Size(71, 67);
+            this.no7Btn.TabIndex = 89;
+            this.no7Btn.Text = "7";
+            this.no7Btn.Click += new System.EventHandler(this.no7Btn_Click);
+            // 
+            // no8Btn
+            // 
+            this.no8Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no8Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no8Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no8Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no8Btn.FillColor = System.Drawing.Color.White;
+            this.no8Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no8Btn.ForeColor = System.Drawing.Color.Black;
+            this.no8Btn.Location = new System.Drawing.Point(175, 260);
+            this.no8Btn.Name = "no8Btn";
+            this.no8Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no8Btn.Size = new System.Drawing.Size(71, 67);
+            this.no8Btn.TabIndex = 90;
+            this.no8Btn.Text = "8";
+            this.no8Btn.Click += new System.EventHandler(this.no8Btn_Click);
+            // 
+            // no9Btn
+            // 
+            this.no9Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no9Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no9Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no9Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no9Btn.FillColor = System.Drawing.Color.White;
+            this.no9Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no9Btn.ForeColor = System.Drawing.Color.Black;
+            this.no9Btn.Location = new System.Drawing.Point(339, 260);
+            this.no9Btn.Name = "no9Btn";
+            this.no9Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no9Btn.Size = new System.Drawing.Size(71, 67);
+            this.no9Btn.TabIndex = 91;
+            this.no9Btn.Text = "9";
+            this.no9Btn.Click += new System.EventHandler(this.no9Btn_Click);
+            // 
+            // no4Btn
+            // 
+            this.no4Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no4Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no4Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no4Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no4Btn.FillColor = System.Drawing.Color.White;
+            this.no4Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no4Btn.ForeColor = System.Drawing.Color.Black;
+            this.no4Btn.Location = new System.Drawing.Point(25, 343);
+            this.no4Btn.Name = "no4Btn";
+            this.no4Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no4Btn.Size = new System.Drawing.Size(71, 67);
+            this.no4Btn.TabIndex = 92;
+            this.no4Btn.Text = "4";
+            this.no4Btn.Click += new System.EventHandler(this.no4Btn_Click);
+            // 
+            // no5Btn
+            // 
+            this.no5Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no5Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no5Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no5Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no5Btn.FillColor = System.Drawing.Color.White;
+            this.no5Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no5Btn.ForeColor = System.Drawing.Color.Black;
+            this.no5Btn.Location = new System.Drawing.Point(175, 343);
+            this.no5Btn.Name = "no5Btn";
+            this.no5Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no5Btn.Size = new System.Drawing.Size(71, 67);
+            this.no5Btn.TabIndex = 93;
+            this.no5Btn.Text = "5";
+            this.no5Btn.Click += new System.EventHandler(this.no5Btn_Click);
+            // 
+            // no6Btn
+            // 
+            this.no6Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no6Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no6Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no6Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no6Btn.FillColor = System.Drawing.Color.White;
+            this.no6Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no6Btn.ForeColor = System.Drawing.Color.Black;
+            this.no6Btn.Location = new System.Drawing.Point(339, 343);
+            this.no6Btn.Name = "no6Btn";
+            this.no6Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no6Btn.Size = new System.Drawing.Size(71, 67);
+            this.no6Btn.TabIndex = 94;
+            this.no6Btn.Text = "6";
+            this.no6Btn.Click += new System.EventHandler(this.no6Btn_Click);
+            // 
+            // no1Btn
+            // 
+            this.no1Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no1Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no1Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no1Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no1Btn.FillColor = System.Drawing.Color.White;
+            this.no1Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no1Btn.ForeColor = System.Drawing.Color.Black;
+            this.no1Btn.Location = new System.Drawing.Point(25, 430);
+            this.no1Btn.Name = "no1Btn";
+            this.no1Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no1Btn.Size = new System.Drawing.Size(71, 67);
+            this.no1Btn.TabIndex = 95;
+            this.no1Btn.Text = "1";
+            this.no1Btn.Click += new System.EventHandler(this.no1Btn_Click);
+            // 
+            // no2Btn
+            // 
+            this.no2Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no2Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no2Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no2Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no2Btn.FillColor = System.Drawing.Color.White;
+            this.no2Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no2Btn.ForeColor = System.Drawing.Color.Black;
+            this.no2Btn.Location = new System.Drawing.Point(175, 430);
+            this.no2Btn.Name = "no2Btn";
+            this.no2Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no2Btn.Size = new System.Drawing.Size(71, 67);
+            this.no2Btn.TabIndex = 96;
+            this.no2Btn.Text = "2";
+            this.no2Btn.Click += new System.EventHandler(this.no2Btn_Click);
+            // 
+            // no3Btn
+            // 
+            this.no3Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no3Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no3Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no3Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no3Btn.FillColor = System.Drawing.Color.White;
+            this.no3Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no3Btn.ForeColor = System.Drawing.Color.Black;
+            this.no3Btn.Location = new System.Drawing.Point(339, 430);
+            this.no3Btn.Name = "no3Btn";
+            this.no3Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no3Btn.Size = new System.Drawing.Size(71, 67);
+            this.no3Btn.TabIndex = 97;
+            this.no3Btn.Text = "3";
+            this.no3Btn.Click += new System.EventHandler(this.no3Btn_Click);
+            // 
+            // no00Btn
+            // 
+            this.no00Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no00Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no00Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no00Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no00Btn.FillColor = System.Drawing.Color.White;
+            this.no00Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.no00Btn.ForeColor = System.Drawing.Color.Black;
+            this.no00Btn.Location = new System.Drawing.Point(331, 511);
+            this.no00Btn.Name = "no00Btn";
+            this.no00Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no00Btn.Size = new System.Drawing.Size(79, 67);
+            this.no00Btn.TabIndex = 98;
+            this.no00Btn.Text = "00";
+            this.no00Btn.Click += new System.EventHandler(this.no00Btn_Click);
+            // 
+            // no0Btn
+            // 
+            this.no0Btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.no0Btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.no0Btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.no0Btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.no0Btn.FillColor = System.Drawing.Color.White;
+            this.no0Btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.no0Btn.ForeColor = System.Drawing.Color.Black;
+            this.no0Btn.Location = new System.Drawing.Point(175, 511);
+            this.no0Btn.Name = "no0Btn";
+            this.no0Btn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.no0Btn.Size = new System.Drawing.Size(71, 67);
+            this.no0Btn.TabIndex = 99;
+            this.no0Btn.Text = "0";
+            this.no0Btn.Click += new System.EventHandler(this.no0Btn_Click);
+            // 
+            // dotBtn
+            // 
+            this.dotBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.dotBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.dotBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.dotBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.dotBtn.FillColor = System.Drawing.Color.White;
+            this.dotBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F);
+            this.dotBtn.ForeColor = System.Drawing.Color.Black;
+            this.dotBtn.Location = new System.Drawing.Point(25, 511);
+            this.dotBtn.Name = "dotBtn";
+            this.dotBtn.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.dotBtn.Size = new System.Drawing.Size(71, 67);
+            this.dotBtn.TabIndex = 100;
+            this.dotBtn.Text = ".";
+            this.dotBtn.Click += new System.EventHandler(this.dotBtn_Click);
+            // 
+            // numbersLabel
+            // 
+            this.numbersLabel.AutoSize = true;
+            this.numbersLabel.BackColor = System.Drawing.Color.Transparent;
+            this.numbersLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numbersLabel.Location = new System.Drawing.Point(16, 11);
+            this.numbersLabel.Name = "numbersLabel";
+            this.numbersLabel.Size = new System.Drawing.Size(28, 32);
+            this.numbersLabel.TabIndex = 0;
+            this.numbersLabel.Text = "0";
+            this.numbersLabel.Click += new System.EventHandler(this.numbersLabel_Click);
+            // 
+            // finalNumLabel
+            // 
+            this.finalNumLabel.AutoSize = true;
+            this.finalNumLabel.BackColor = System.Drawing.Color.Transparent;
+            this.finalNumLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finalNumLabel.Location = new System.Drawing.Point(380, 46);
+            this.finalNumLabel.Name = "finalNumLabel";
+            this.finalNumLabel.Size = new System.Drawing.Size(38, 45);
+            this.finalNumLabel.TabIndex = 1;
+            this.finalNumLabel.Text = "0";
+            this.finalNumLabel.Click += new System.EventHandler(this.finalNumLabel_Click);
+            // 
+            // CalculatorForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(568, 581);
+            this.Controls.Add(this.dotBtn);
+            this.Controls.Add(this.no0Btn);
+            this.Controls.Add(this.no00Btn);
+            this.Controls.Add(this.no3Btn);
+            this.Controls.Add(this.no2Btn);
+            this.Controls.Add(this.no1Btn);
+            this.Controls.Add(this.no6Btn);
+            this.Controls.Add(this.no5Btn);
+            this.Controls.Add(this.no4Btn);
+            this.Controls.Add(this.no9Btn);
+            this.Controls.Add(this.no8Btn);
+            this.Controls.Add(this.no7Btn);
+            this.Controls.Add(this.plusBtn);
+            this.Controls.Add(this.equalBtn);
+            this.Controls.Add(this.substractBtn);
+            this.Controls.Add(this.cutBtn);
+            this.Controls.Add(this.percentageBtn);
+            this.Controls.Add(this.divideBtn);
+            this.Controls.Add(this.clearBtn);
+            this.Controls.Add(this.siticonePanel1);
+            this.Controls.Add(this.headerPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "CalculatorForm";
+            this.Text = "CalculatorForm";
+            this.Load += new System.EventHandler(this.CalculatorForm_Load);
+            this.headerPanel.ResumeLayout(false);
+            this.controlPanel.ResumeLayout(false);
+            this.siticonePanel1.ResumeLayout(false);
+            this.siticonePanel1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private Siticone.Desktop.UI.WinForms.SiticonePanel headerPanel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox createUnitsCloseBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm calculatorBorderlessForm;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton clearBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton plusBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton equalBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton substractBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton cutBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton percentageBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton divideBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton dotBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no0Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no00Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no3Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no2Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no1Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no6Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no5Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no4Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no9Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no8Btn;
+        private Siticone.Desktop.UI.WinForms.SiticoneCircleButton no7Btn;
+        private System.Windows.Forms.Label numbersLabel;
+        private System.Windows.Forms.Label finalNumLabel;
+    }
+}
