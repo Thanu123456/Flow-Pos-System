@@ -2,7 +2,6 @@
 using System;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
@@ -13,7 +12,6 @@ namespace EscopeWindowsApp
         private BindingSource bindingSource; // Binding source for filtering
         private int currentIndex = 0; // Current index for navigation
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
-        private Font gridFont = new Font("Segoe UI", 9F); // Uniform font for DataGridView
 
         public SalesForm()
         {
@@ -39,63 +37,54 @@ namespace EscopeWindowsApp
             saleDataGridView.AutoGenerateColumns = false;
             saleDataGridView.Columns.Clear();
 
-            // Add columns with consistent styling
+            // Add columns without font styling
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "bill_no",
                 Name = "bill_no",
-                HeaderText = "REFERENCE NO",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+                HeaderText = "REFERENCE NO"
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "customer",
                 Name = "customer",
-                HeaderText = "CUSTOMER",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+                HeaderText = "CUSTOMER"
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "user_name",
                 Name = "user_name",
-                HeaderText = "USER NAME",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+                HeaderText = "USER NAME"
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "quantity_of_items",
                 Name = "quantity_of_items",
-                HeaderText = "QUANTITY OF ITEMS",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+                HeaderText = "QUANTITY OF ITEMS"
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "payment_method",
                 Name = "payment_method",
-                HeaderText = "PAYMENT METHOD",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+                HeaderText = "PAYMENT METHOD"
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "total_price",
                 Name = "total_price",
                 HeaderText = "TOTAL PRICE",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" } // Currency format
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" } // Currency format
             });
             saleDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "sale_date",
                 Name = "sale_date",
                 HeaderText = "SALE DATE",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" } // Date format
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Date format
             });
 
             // Prevent the empty row at the end
             saleDataGridView.AllowUserToAddRows = false;
-
-            // Set column headers font
-            saleDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            saleDataGridView.DefaultCellStyle.Font = gridFont;
         }
 
         private void LoadSalesData()

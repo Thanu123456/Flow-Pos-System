@@ -19,6 +19,7 @@ namespace EscopeWindowsApp
             int warehouseId = 0, int categoryId = 0, decimal amount = 0, string details = "")
         {
             InitializeComponent();
+            CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
             SetupErrorProviders();
 
             if (expenseId != -1)
@@ -38,6 +39,14 @@ namespace EscopeWindowsApp
 
             this.Load += CreateExpenses_Load;
             UpdateSaveButtonState();
+        }
+
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
+            creExpDateTimePicker.FillColor = System.Drawing.Color.White;
+            creExpDateTimePicker.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
+           // creExpDateTimePicker.BorderColor = System.Drawing.Color.Silver; // Subtle border
         }
 
         private void SetupErrorProviders()

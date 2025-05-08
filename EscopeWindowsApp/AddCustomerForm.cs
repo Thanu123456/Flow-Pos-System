@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using System.Drawing; // For Color.White
 
 namespace EscopeWindowsApp
 {
@@ -23,6 +24,7 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             SetupErrorProviders();
+            CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
 
             if (customerId != -1)
             {
@@ -42,6 +44,16 @@ namespace EscopeWindowsApp
 
             UpdateSaveButtonState();
         }
+
+        #region DateTimePicker Customization
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White for SiticoneDateTimePicker
+            createCusDateTime.FillColor = Color.White;
+            createCusDateTime.HoverState.FillColor = Color.White; // Maintain white on hover
+            createCusDateTime.BorderColor = Color.Gray; // Optional: subtle border
+        }
+        #endregion
 
         private void SetupErrorProviders()
         {
@@ -192,12 +204,10 @@ namespace EscopeWindowsApp
 
         private void createCusPanel_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void headerPanel_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void cusSaveBtn_Click(object sender, EventArgs e)

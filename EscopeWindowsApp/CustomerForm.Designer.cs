@@ -34,20 +34,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusAllPgLabel = new System.Windows.Forms.Label();
-            this.cusOfLabel = new System.Windows.Forms.Label();
-            this.cusPgRangeLabel = new System.Windows.Forms.Label();
-            this.cusPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.cusRecordsPerLabel = new System.Windows.Forms.Label();
             this.cusBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.cusFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusFilterBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.selectCusDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.cusDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.cusBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).BeginInit();
@@ -64,7 +57,7 @@
             this.cusSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cusSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.cusSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cusSearchText.ForeColor = System.Drawing.Color.Gray;
             this.cusSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cusSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -100,80 +93,6 @@
             this.createCusBtn.TabIndex = 5;
             this.createCusBtn.Text = "Craete Customer";
             this.createCusBtn.Click += new System.EventHandler(this.createCusBtn_Click);
-            // 
-            // cusAllPgLabel
-            // 
-            this.cusAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cusAllPgLabel.AutoSize = true;
-            this.cusAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cusAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.cusAllPgLabel.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.cusAllPgLabel.Name = "cusAllPgLabel";
-            this.cusAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.cusAllPgLabel.TabIndex = 32;
-            this.cusAllPgLabel.Text = "500";
-            // 
-            // cusOfLabel
-            // 
-            this.cusOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cusOfLabel.AutoSize = true;
-            this.cusOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cusOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.cusOfLabel.Name = "cusOfLabel";
-            this.cusOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.cusOfLabel.TabIndex = 31;
-            this.cusOfLabel.Text = "of";
-            // 
-            // cusPgRangeLabel
-            // 
-            this.cusPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cusPgRangeLabel.AutoSize = true;
-            this.cusPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cusPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.cusPgRangeLabel.Name = "cusPgRangeLabel";
-            this.cusPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.cusPgRangeLabel.TabIndex = 30;
-            this.cusPgRangeLabel.Text = "0-50";
-            // 
-            // cusPageCombo
-            // 
-            this.cusPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cusPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.cusPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.cusPageCombo.BorderRadius = 8;
-            this.cusPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cusPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cusPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cusPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cusPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.cusPageCombo.ItemHeight = 30;
-            this.cusPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.cusPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.cusPageCombo.Name = "cusPageCombo";
-            this.cusPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.cusPageCombo.StartIndex = 0;
-            this.cusPageCombo.TabIndex = 29;
-            this.cusPageCombo.SelectedIndexChanged += new System.EventHandler(this.cusPageCombo_SelectedIndexChanged);
-            // 
-            // cusRecordsPerLabel
-            // 
-            this.cusRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cusRecordsPerLabel.AutoSize = true;
-            this.cusRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cusRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cusRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.cusRecordsPerLabel.Name = "cusRecordsPerLabel";
-            this.cusRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.cusRecordsPerLabel.TabIndex = 28;
-            this.cusRecordsPerLabel.Text = "Records per page";
             // 
             // cusBtnPanel
             // 
@@ -259,26 +178,6 @@
             this.cusLastBtn.TabIndex = 8;
             this.cusLastBtn.Click += new System.EventHandler(this.cusLastBtn_Click);
             // 
-            // cusFilterBtn
-            // 
-            this.cusFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cusFilterBtn.Animated = true;
-            this.cusFilterBtn.BorderRadius = 8;
-            this.cusFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusFilterBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusFilterBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusFilterBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusFilterBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.cusFilterBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cusFilterBtn.ForeColor = System.Drawing.Color.White;
-            this.cusFilterBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.cusFilterBtn.Image = global::EscopeWindowsApp.Properties.Resources.whitefilter;
-            this.cusFilterBtn.Location = new System.Drawing.Point(810, 30);
-            this.cusFilterBtn.Name = "cusFilterBtn";
-            this.cusFilterBtn.Size = new System.Drawing.Size(42, 42);
-            this.cusFilterBtn.TabIndex = 34;
-            this.cusFilterBtn.Click += new System.EventHandler(this.cusFilterBtn_Click);
-            // 
             // cusRefreshBtn
             // 
             this.cusRefreshBtn.Animated = true;
@@ -305,28 +204,6 @@
             this.siticonePanel1.Name = "siticonePanel1";
             this.siticonePanel1.Size = new System.Drawing.Size(338, 72);
             this.siticonePanel1.TabIndex = 36;
-            // 
-            // selectCusDateTime
-            // 
-            this.selectCusDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectCusDateTime.BackColor = System.Drawing.Color.Transparent;
-            this.selectCusDateTime.BorderColor = System.Drawing.Color.Gray;
-            this.selectCusDateTime.BorderRadius = 8;
-            this.selectCusDateTime.BorderThickness = 1;
-            this.selectCusDateTime.Checked = true;
-            this.selectCusDateTime.FillColor = System.Drawing.Color.White;
-            this.selectCusDateTime.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.selectCusDateTime.ForeColor = System.Drawing.Color.Black;
-            this.selectCusDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.selectCusDateTime.Location = new System.Drawing.Point(870, 30);
-            this.selectCusDateTime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.selectCusDateTime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.selectCusDateTime.Name = "selectCusDateTime";
-            this.selectCusDateTime.Size = new System.Drawing.Size(268, 42);
-            this.selectCusDateTime.TabIndex = 37;
-            this.selectCusDateTime.UseTransparentBackground = true;
-            this.selectCusDateTime.Value = new System.DateTime(2025, 2, 28, 12, 17, 13, 576);
-            this.selectCusDateTime.ValueChanged += new System.EventHandler(this.selectCusDateTime_ValueChanged);
             // 
             // cusDataGridView
             // 
@@ -416,14 +293,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.cusDataGridView);
             this.Controls.Add(this.cusRefreshBtn);
-            this.Controls.Add(this.selectCusDateTime);
-            this.Controls.Add(this.cusFilterBtn);
             this.Controls.Add(this.cusBtnPanel);
-            this.Controls.Add(this.cusAllPgLabel);
-            this.Controls.Add(this.cusOfLabel);
-            this.Controls.Add(this.cusPgRangeLabel);
-            this.Controls.Add(this.cusPageCombo);
-            this.Controls.Add(this.cusRecordsPerLabel);
             this.Controls.Add(this.createCusBtn);
             this.Controls.Add(this.cusSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -438,7 +308,6 @@
             this.cusBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -446,20 +315,13 @@
 
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox cusSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneButton createCusBtn;
-        private System.Windows.Forms.Label cusAllPgLabel;
-        private System.Windows.Forms.Label cusOfLabel;
-        private System.Windows.Forms.Label cusPgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cusPageCombo;
-        private System.Windows.Forms.Label cusRecordsPerLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel cusBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusLastBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton cusFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton cusRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
-        private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectCusDateTime;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView cusDataGridView;
     }
 }

@@ -81,7 +81,7 @@
             // dispalyCodePictureBox
             // 
             this.dispalyCodePictureBox.ImageRotate = 0F;
-            this.dispalyCodePictureBox.Location = new System.Drawing.Point(12, 75);
+            this.dispalyCodePictureBox.Location = new System.Drawing.Point(12, 63);
             this.dispalyCodePictureBox.Name = "dispalyCodePictureBox";
             this.dispalyCodePictureBox.Size = new System.Drawing.Size(566, 288);
             this.dispalyCodePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

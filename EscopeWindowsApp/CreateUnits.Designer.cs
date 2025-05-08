@@ -66,7 +66,7 @@
             this.shortUnitNameTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.shortUnitNameTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.shortUnitNameTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.shortUnitNameTextBox.Font = new System.Drawing.Font("Calibri", 12F);
+            this.shortUnitNameTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shortUnitNameTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.shortUnitNameTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.shortUnitNameTextBox.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -163,7 +163,7 @@
             this.createUnitNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUnitNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.createUnitNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUnitNameText.Font = new System.Drawing.Font("Calibri", 12F);
+            this.createUnitNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUnitNameText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUnitNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.createUnitNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -243,9 +243,9 @@
             this.baseUnitComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baseUnitComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.baseUnitComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.baseUnitComboBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baseUnitComboBox.ForeColor = System.Drawing.Color.Black;
-            this.baseUnitComboBox.ItemHeight = 30;
+            this.baseUnitComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.baseUnitComboBox.ForeColor = System.Drawing.Color.Gray;
+            this.baseUnitComboBox.ItemHeight = 36;
             this.baseUnitComboBox.Items.AddRange(new object[] {
             "Select Base Unit",
             "Kg",
@@ -254,7 +254,7 @@
             "L"});
             this.baseUnitComboBox.Location = new System.Drawing.Point(21, 311);
             this.baseUnitComboBox.Name = "baseUnitComboBox";
-            this.baseUnitComboBox.Size = new System.Drawing.Size(348, 36);
+            this.baseUnitComboBox.Size = new System.Drawing.Size(348, 42);
             this.baseUnitComboBox.StartIndex = 0;
             this.baseUnitComboBox.TabIndex = 81;
             this.baseUnitComboBox.SelectedIndexChanged += new System.EventHandler(this.baseUnitComboBox_SelectedIndexChanged);

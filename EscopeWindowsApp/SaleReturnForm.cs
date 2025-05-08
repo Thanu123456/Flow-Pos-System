@@ -17,11 +17,20 @@ namespace EscopeWindowsApp
         public SaleReturnForm()
         {
             InitializeComponent();
+            CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
             bindingSource = new BindingSource();
             LoadSaleReturnsData();
             // Explicitly wire all events
             saleReDataGridView.CellFormatting += SaleReDataGridView_CellFormatting;
             saleReDataGridView.CellContentClick += SaleReDataGridView_CellContentClick;
+        }
+
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
+            selectSaleReDateTime.FillColor = System.Drawing.Color.White;
+            selectSaleReDateTime.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
+            selectSaleReDateTime.BorderColor = System.Drawing.Color.Gray; // Subtle border
         }
 
         private void SaleReturnForm_Load(object sender, EventArgs e)

@@ -38,6 +38,11 @@
             this.productPriMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.priceLabel = new System.Windows.Forms.Label();
             this.pricingPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.ty5UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty4UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty3UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty2UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.ty1UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.ty5RetPriText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.priVarType5Lbl = new System.Windows.Forms.Label();
             this.priVar5NameLbl = new System.Windows.Forms.Label();
@@ -62,11 +67,6 @@
             this.priceVarNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.priCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.priSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.ty1UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty2UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty3UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty4UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ty5UPCNumberText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.productPriMainPanel.SuspendLayout();
@@ -201,6 +201,136 @@
             this.pricingPanel.Size = new System.Drawing.Size(695, 453);
             this.pricingPanel.TabIndex = 27;
             // 
+            // ty5UPCNumberText
+            // 
+            this.ty5UPCNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.ty5UPCNumberText.BorderRadius = 8;
+            this.ty5UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty5UPCNumberText.DefaultText = "";
+            this.ty5UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty5UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty5UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty5UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty5UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty5UPCNumberText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty5UPCNumberText.ForeColor = System.Drawing.Color.Black;
+            this.ty5UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty5UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty5UPCNumberText.Location = new System.Drawing.Point(471, 398);
+            this.ty5UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty5UPCNumberText.Name = "ty5UPCNumberText";
+            this.ty5UPCNumberText.PasswordChar = '\0';
+            this.ty5UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty5UPCNumberText.PlaceholderText = "UPC/EAN Number";
+            this.ty5UPCNumberText.SelectedText = "";
+            this.ty5UPCNumberText.Size = new System.Drawing.Size(210, 42);
+            this.ty5UPCNumberText.TabIndex = 57;
+            this.ty5UPCNumberText.TextChanged += new System.EventHandler(this.ty5UPCNumberText_TextChanged);
+            // 
+            // ty4UPCNumberText
+            // 
+            this.ty4UPCNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.ty4UPCNumberText.BorderRadius = 8;
+            this.ty4UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty4UPCNumberText.DefaultText = "";
+            this.ty4UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty4UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty4UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty4UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4UPCNumberText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty4UPCNumberText.ForeColor = System.Drawing.Color.Black;
+            this.ty4UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty4UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty4UPCNumberText.Location = new System.Drawing.Point(471, 310);
+            this.ty4UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty4UPCNumberText.Name = "ty4UPCNumberText";
+            this.ty4UPCNumberText.PasswordChar = '\0';
+            this.ty4UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty4UPCNumberText.PlaceholderText = "UPC/EAN Number";
+            this.ty4UPCNumberText.SelectedText = "";
+            this.ty4UPCNumberText.Size = new System.Drawing.Size(210, 42);
+            this.ty4UPCNumberText.TabIndex = 56;
+            this.ty4UPCNumberText.TextChanged += new System.EventHandler(this.ty4UPCNumberText_TextChanged);
+            // 
+            // ty3UPCNumberText
+            // 
+            this.ty3UPCNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.ty3UPCNumberText.BorderRadius = 8;
+            this.ty3UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty3UPCNumberText.DefaultText = "";
+            this.ty3UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty3UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty3UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty3UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3UPCNumberText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty3UPCNumberText.ForeColor = System.Drawing.Color.Black;
+            this.ty3UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty3UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty3UPCNumberText.Location = new System.Drawing.Point(471, 225);
+            this.ty3UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty3UPCNumberText.Name = "ty3UPCNumberText";
+            this.ty3UPCNumberText.PasswordChar = '\0';
+            this.ty3UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty3UPCNumberText.PlaceholderText = "UPC/EAN Number";
+            this.ty3UPCNumberText.SelectedText = "";
+            this.ty3UPCNumberText.Size = new System.Drawing.Size(210, 42);
+            this.ty3UPCNumberText.TabIndex = 55;
+            this.ty3UPCNumberText.TextChanged += new System.EventHandler(this.ty3UPCNumberText_TextChanged);
+            // 
+            // ty2UPCNumberText
+            // 
+            this.ty2UPCNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.ty2UPCNumberText.BorderRadius = 8;
+            this.ty2UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty2UPCNumberText.DefaultText = "";
+            this.ty2UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty2UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty2UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty2UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2UPCNumberText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty2UPCNumberText.ForeColor = System.Drawing.Color.Black;
+            this.ty2UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty2UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty2UPCNumberText.Location = new System.Drawing.Point(471, 137);
+            this.ty2UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty2UPCNumberText.Name = "ty2UPCNumberText";
+            this.ty2UPCNumberText.PasswordChar = '\0';
+            this.ty2UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty2UPCNumberText.PlaceholderText = "UPC/EAN Number";
+            this.ty2UPCNumberText.SelectedText = "";
+            this.ty2UPCNumberText.Size = new System.Drawing.Size(210, 42);
+            this.ty2UPCNumberText.TabIndex = 54;
+            this.ty2UPCNumberText.TextChanged += new System.EventHandler(this.ty2UPCNumberText_TextChanged);
+            // 
+            // ty1UPCNumberText
+            // 
+            this.ty1UPCNumberText.BackColor = System.Drawing.Color.Transparent;
+            this.ty1UPCNumberText.BorderRadius = 8;
+            this.ty1UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ty1UPCNumberText.DefaultText = "";
+            this.ty1UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.ty1UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.ty1UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.ty1UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1UPCNumberText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty1UPCNumberText.ForeColor = System.Drawing.Color.Black;
+            this.ty1UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ty1UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.ty1UPCNumberText.Location = new System.Drawing.Point(471, 51);
+            this.ty1UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ty1UPCNumberText.Name = "ty1UPCNumberText";
+            this.ty1UPCNumberText.PasswordChar = '\0';
+            this.ty1UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.ty1UPCNumberText.PlaceholderText = "UPC/EAN Number";
+            this.ty1UPCNumberText.SelectedText = "";
+            this.ty1UPCNumberText.Size = new System.Drawing.Size(210, 42);
+            this.ty1UPCNumberText.TabIndex = 53;
+            this.ty1UPCNumberText.TextChanged += new System.EventHandler(this.ty1UPCNumberText_TextChanged);
+            // 
             // ty5RetPriText
             // 
             this.ty5RetPriText.BackColor = System.Drawing.Color.Transparent;
@@ -212,7 +342,7 @@
             this.ty5RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty5RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty5RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty5RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty5RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -261,7 +391,7 @@
             this.ty5CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty5CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty5CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty5CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty5CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty5CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -286,7 +416,7 @@
             this.ty4RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty4RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty4RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty4RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty4RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -335,7 +465,7 @@
             this.ty4CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty4CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty4CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty4CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty4CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty4CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -360,7 +490,7 @@
             this.ty3RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty3RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty3RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty3RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty3RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -409,7 +539,7 @@
             this.ty3CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty3CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty3CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty3CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty3CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty3CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -434,7 +564,7 @@
             this.ty2RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty2RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty2RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty2RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty2RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -483,7 +613,7 @@
             this.ty2CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty2CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty2CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty2CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty2CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty2CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -508,7 +638,7 @@
             this.ty1RetPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1RetPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1RetPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1RetPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty1RetPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty1RetPriText.ForeColor = System.Drawing.Color.Black;
             this.ty1RetPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty1RetPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -557,7 +687,7 @@
             this.ty1CostPriText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1CostPriText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.ty1CostPriText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1CostPriText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ty1CostPriText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ty1CostPriText.ForeColor = System.Drawing.Color.Black;
             this.ty1CostPriText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ty1CostPriText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -594,7 +724,7 @@
             this.priceVarNameText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.priceVarNameText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.priceVarNameText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.priceVarNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceVarNameText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceVarNameText.ForeColor = System.Drawing.Color.Black;
             this.priceVarNameText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.priceVarNameText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -647,136 +777,6 @@
             this.priSaveBtn.TabIndex = 59;
             this.priSaveBtn.Text = "Save";
             this.priSaveBtn.Click += new System.EventHandler(this.priSaveBtn_Click_2);
-            // 
-            // ty1UPCNumberText
-            // 
-            this.ty1UPCNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.ty1UPCNumberText.BorderRadius = 8;
-            this.ty1UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty1UPCNumberText.DefaultText = "";
-            this.ty1UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty1UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty1UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty1UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1UPCNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ty1UPCNumberText.ForeColor = System.Drawing.Color.Black;
-            this.ty1UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty1UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty1UPCNumberText.Location = new System.Drawing.Point(471, 51);
-            this.ty1UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty1UPCNumberText.Name = "ty1UPCNumberText";
-            this.ty1UPCNumberText.PasswordChar = '\0';
-            this.ty1UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty1UPCNumberText.PlaceholderText = "UPC/EAN Number";
-            this.ty1UPCNumberText.SelectedText = "";
-            this.ty1UPCNumberText.Size = new System.Drawing.Size(210, 42);
-            this.ty1UPCNumberText.TabIndex = 53;
-            this.ty1UPCNumberText.TextChanged += new System.EventHandler(this.ty1UPCNumberText_TextChanged);
-            // 
-            // ty2UPCNumberText
-            // 
-            this.ty2UPCNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.ty2UPCNumberText.BorderRadius = 8;
-            this.ty2UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty2UPCNumberText.DefaultText = "";
-            this.ty2UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty2UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty2UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty2UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2UPCNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ty2UPCNumberText.ForeColor = System.Drawing.Color.Black;
-            this.ty2UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty2UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty2UPCNumberText.Location = new System.Drawing.Point(471, 137);
-            this.ty2UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty2UPCNumberText.Name = "ty2UPCNumberText";
-            this.ty2UPCNumberText.PasswordChar = '\0';
-            this.ty2UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty2UPCNumberText.PlaceholderText = "UPC/EAN Number";
-            this.ty2UPCNumberText.SelectedText = "";
-            this.ty2UPCNumberText.Size = new System.Drawing.Size(210, 42);
-            this.ty2UPCNumberText.TabIndex = 54;
-            this.ty2UPCNumberText.TextChanged += new System.EventHandler(this.ty2UPCNumberText_TextChanged);
-            // 
-            // ty3UPCNumberText
-            // 
-            this.ty3UPCNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.ty3UPCNumberText.BorderRadius = 8;
-            this.ty3UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty3UPCNumberText.DefaultText = "";
-            this.ty3UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty3UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty3UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty3UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3UPCNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ty3UPCNumberText.ForeColor = System.Drawing.Color.Black;
-            this.ty3UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty3UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty3UPCNumberText.Location = new System.Drawing.Point(471, 225);
-            this.ty3UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty3UPCNumberText.Name = "ty3UPCNumberText";
-            this.ty3UPCNumberText.PasswordChar = '\0';
-            this.ty3UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty3UPCNumberText.PlaceholderText = "UPC/EAN Number";
-            this.ty3UPCNumberText.SelectedText = "";
-            this.ty3UPCNumberText.Size = new System.Drawing.Size(210, 42);
-            this.ty3UPCNumberText.TabIndex = 55;
-            this.ty3UPCNumberText.TextChanged += new System.EventHandler(this.ty3UPCNumberText_TextChanged);
-            // 
-            // ty4UPCNumberText
-            // 
-            this.ty4UPCNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.ty4UPCNumberText.BorderRadius = 8;
-            this.ty4UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty4UPCNumberText.DefaultText = "";
-            this.ty4UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty4UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty4UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty4UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4UPCNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ty4UPCNumberText.ForeColor = System.Drawing.Color.Black;
-            this.ty4UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty4UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty4UPCNumberText.Location = new System.Drawing.Point(471, 310);
-            this.ty4UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty4UPCNumberText.Name = "ty4UPCNumberText";
-            this.ty4UPCNumberText.PasswordChar = '\0';
-            this.ty4UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty4UPCNumberText.PlaceholderText = "UPC/EAN Number";
-            this.ty4UPCNumberText.SelectedText = "";
-            this.ty4UPCNumberText.Size = new System.Drawing.Size(210, 42);
-            this.ty4UPCNumberText.TabIndex = 56;
-            this.ty4UPCNumberText.TextChanged += new System.EventHandler(this.ty4UPCNumberText_TextChanged);
-            // 
-            // ty5UPCNumberText
-            // 
-            this.ty5UPCNumberText.BackColor = System.Drawing.Color.Transparent;
-            this.ty5UPCNumberText.BorderRadius = 8;
-            this.ty5UPCNumberText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ty5UPCNumberText.DefaultText = "";
-            this.ty5UPCNumberText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.ty5UPCNumberText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.ty5UPCNumberText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty5UPCNumberText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.ty5UPCNumberText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5UPCNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ty5UPCNumberText.ForeColor = System.Drawing.Color.Black;
-            this.ty5UPCNumberText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ty5UPCNumberText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.ty5UPCNumberText.Location = new System.Drawing.Point(471, 398);
-            this.ty5UPCNumberText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ty5UPCNumberText.Name = "ty5UPCNumberText";
-            this.ty5UPCNumberText.PasswordChar = '\0';
-            this.ty5UPCNumberText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.ty5UPCNumberText.PlaceholderText = "UPC/EAN Number";
-            this.ty5UPCNumberText.SelectedText = "";
-            this.ty5UPCNumberText.Size = new System.Drawing.Size(210, 42);
-            this.ty5UPCNumberText.TabIndex = 57;
-            this.ty5UPCNumberText.TextChanged += new System.EventHandler(this.ty5UPCNumberText_TextChanged);
             // 
             // ProductPricing
             // 
