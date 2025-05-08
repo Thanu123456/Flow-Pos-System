@@ -230,19 +230,19 @@ namespace EscopeWindowsApp
         {
             // Ensure columns are correctly formatted
             if (expencesReportDataGrid.Columns["id"] != null)
-                expencesReportDataGrid.Columns["id"].HeaderText = "ID";
+                expencesReportDataGrid.Columns["id"].HeaderText = "EXPENSES ID";
             if (expencesReportDataGrid.Columns["expense_date"] != null)
-                expencesReportDataGrid.Columns["expense_date"].HeaderText = "Date";
+                expencesReportDataGrid.Columns["expense_date"].HeaderText = "DATE";
             if (expencesReportDataGrid.Columns["title"] != null)
-                expencesReportDataGrid.Columns["title"].HeaderText = "Title";
+                expencesReportDataGrid.Columns["title"].HeaderText = "TITLE";
             if (expencesReportDataGrid.Columns["warehouse_name"] != null)
-                expencesReportDataGrid.Columns["warehouse_name"].HeaderText = "Warehouse Name";
+                expencesReportDataGrid.Columns["warehouse_name"].HeaderText = "WAREHOUSE";
             if (expencesReportDataGrid.Columns["category_name"] != null)
-                expencesReportDataGrid.Columns["category_name"].HeaderText = "Category Name";
+                expencesReportDataGrid.Columns["category_name"].HeaderText = "CATEGORY";
             if (expencesReportDataGrid.Columns["amount"] != null)
-                expencesReportDataGrid.Columns["amount"].HeaderText = "Amount";
+                expencesReportDataGrid.Columns["amount"].HeaderText = "AMOUNT";
             if (expencesReportDataGrid.Columns["details"] != null)
-                expencesReportDataGrid.Columns["details"].HeaderText = "Details";
+                expencesReportDataGrid.Columns["details"].HeaderText = "DETAILS";
 
             // Adjust column widths
             expencesReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace EscopeWindowsApp
 {
@@ -19,7 +20,9 @@ namespace EscopeWindowsApp
             UpdateSessionDetails();
         }
 
-        private void SetupErrorProviders()
+        private void SetupErrorProviders
+
+()
         {
             totCashErrorProvider = new ErrorProvider(this);
         }
@@ -224,25 +227,18 @@ namespace EscopeWindowsApp
                     SessionManager.ResetSession();
 
                     // Show success message
-                    MessageBox.Show("Register closed successfully! Returning to login...", "Success",
+                    MessageBox.Show("Register closed successfully!", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Close all open forms except this one (to avoid issues while iterating)
-                    Form[] openForms = Application.OpenForms.Cast<Form>().ToArray();
-                    foreach (Form form in openForms)
+                    // Close all open forms
+                    foreach (Form form in Application.OpenForms.Cast<Form>().ToArray())
                     {
-                        if (form != this)
-                        {
-                            form.Close();
-                        }
+                        form.Close();
                     }
 
-                    // Show the LoginForm non-modally to restart the workflow
-                    LoginForm loginForm = new LoginForm();
-                    loginForm.Show();
-
-                    // Close this form
-                    this.Close();
+                    // Restart the application with command-line argument to start with LoginForm
+                    Process.Start(Application.ExecutablePath, "--start-with-login");
+                    Application.Exit();
                 }
             }
             catch (Exception ex)
@@ -252,9 +248,6 @@ namespace EscopeWindowsApp
             }
         }
 
-       
-        
-        
         private void closeRegCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();

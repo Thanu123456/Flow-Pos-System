@@ -36,6 +36,9 @@ namespace EscopeWindowsApp
             this.username = username;
             this.userEmail = userEmail;
 
+            // Display company name on load
+            LoadCompanyDetails();
+
             // Initialize and start the time timer
             timeTimer = new Timer();
             timeTimer.Interval = 1000;
@@ -147,6 +150,35 @@ namespace EscopeWindowsApp
             paymentText.KeyPress += TextBox_NumericalKeyPress;
 
             UpdatePayNowButtonState();
+        }
+
+        private void DisplayCompanyName()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT name FROM company_details LIMIT 1";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            companyNameLabel.Text = result.ToString();
+                        }
+                        else
+                        {
+                            companyNameLabel.Text = "Company Name Not Found";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading company name: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                companyNameLabel.Text = "Error";
+            }
         }
 
         private void ScannerInputTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -877,6 +909,8 @@ namespace EscopeWindowsApp
             UpdateAllLabels();
         }
 
+        #endregion
+
         #region Timer Methods
 
         private void TimeTimer_Tick(object sender, EventArgs e)
@@ -1386,7 +1420,6 @@ namespace EscopeWindowsApp
             UpdatePayNowButtonState();
         }
 
-        private void label1_Click(object sender, EventArgs e) { }
         private void cashBookBtn_Click_1(object sender, EventArgs e)
         {
             cashBooktimer.Start();
@@ -1435,6 +1468,10 @@ namespace EscopeWindowsApp
 
         private void posHoldFormBtn_Click(object sender, EventArgs e) { }
         private void posTimeLabel_Click(object sender, EventArgs e) { }
+
+        private void companyNameLabel_Click(object sender, EventArgs e)
+        {
+        }
 
         #endregion
 
@@ -1578,7 +1615,7 @@ namespace EscopeWindowsApp
             if (btnExpand == false)
             {
                 cashBookFlowPanel.Height += 10;
-                if (cashBookFlowPanel.Height >= 123)
+                if (cashBookFlowPanel.Height >= 187)
                 {
                     cashBooktimer.Stop();
                     btnExpand = true;
@@ -1587,7 +1624,7 @@ namespace EscopeWindowsApp
             else
             {
                 cashBookFlowPanel.Height -= 10;
-                if (cashBookFlowPanel.Height <= 41)
+                if (cashBookFlowPanel.Height <= 62)
                 {
                     cashBooktimer.Stop();
                     btnExpand = false;
@@ -1714,6 +1751,106 @@ namespace EscopeWindowsApp
             CalculatorForm calculatorForm = new CalculatorForm();
             calculatorForm.Show();
         }
+
+        private void cashBookFlowPanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        // Single definition of DisplayCompanyName
+        private void LoadCompanyDetails()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT name, logo FROM company_details LIMIT 1";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Set company name
+                                companyNameLabel.Text = reader["name"] != DBNull.Value ? reader["name"].ToString() : "Company Name Not Found";
+
+                                // Set company logo
+                                if (reader["logo"] != DBNull.Value)
+                                {
+                                    byte[] logoData = (byte[])reader["logo"];
+                                    Debug.WriteLine($"Logo data size: {logoData.Length} bytes");
+                                    using (MemoryStream ms = new MemoryStream(logoData))
+                                    {
+                                        Image logoImage = Image.FromStream(ms);
+                                        logoPicBox.Image = logoImage;
+                                        logoPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+                                        Debug.WriteLine($"Logo dimensions: {logoImage.Width}x{logoImage.Height}");
+                                    }
+                                }
+                                else
+                                {
+                                    logoPicBox.Image = null;
+                                    Debug.WriteLine("No logo found in company_details.");
+                                }
+                            }
+                            else
+                            {
+                                companyNameLabel.Text = "Company Name Not Found";
+                                logoPicBox.Image = null;
+                                Debug.WriteLine("No records found in company_details.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading company details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                companyNameLabel.Text = "Error";
+                logoPicBox.Image = null;
+                Debug.WriteLine($"Error loading company details: {ex.Message}");
+            }
+        }
+        private void LoadCompanyLogo()
+{
+    try
+    {
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            string query = "SELECT logo FROM company_details LIMIT 1"; // Adjust column name if different
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    byte[] logoData = (byte[])result;
+                    using (MemoryStream ms = new MemoryStream(logoData))
+                    {
+                        logoPicBox.Image = Image.FromStream(ms);
+                        logoPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                }
+                else
+                {
+                    logoPicBox.Image = null;
+                    Debug.WriteLine("No logo found in company_details.");
+                }
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error loading company logo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        logoPicBox.Image = null;
+        Debug.WriteLine($"Error loading logo: {ex.Message}");
     }
 }
-#endregion
+
+// Updated logoPicBox_Click method
+private void logoPicBox_Click(object sender, EventArgs e)
+{
+    LoadCompanyLogo(); // Reload the logo when the PictureBox is clicked
+}
+    }
+}
