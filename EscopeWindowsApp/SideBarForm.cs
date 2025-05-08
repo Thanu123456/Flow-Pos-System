@@ -30,7 +30,7 @@ namespace EscopeWindowsApp
         Quotations quatationsForm;
         WarehouseForm warehouseForm;
         
-        Transfer transferForm;
+        
         Reports reportsForm;
         Setting settingForm;
         PurchasesForm purchasesForm;
@@ -513,7 +513,7 @@ namespace EscopeWindowsApp
 
         private void TransferForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            transferForm = null;
+           
             Console.WriteLine("TransferForm closed");
         }
 
