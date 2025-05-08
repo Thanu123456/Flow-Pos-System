@@ -15,499 +15,938 @@ using MigraDoc.Rendering;
 using System.IO;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Drawing.Printing;
+
+// Aliases to resolve ambiguous references
+using WinForms = System.Windows.Forms;
+using SysDrawing = System.Drawing;
 
 namespace EscopeWindowsApp
 {
     public partial class Barcode : Form
     {
         private Bitmap generatedBarcode; // Store the generated barcode image
-        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString; // Same as other forms
+        private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
+        private DataTable productsTable;
+        private BindingSource bindingSource;
+        private ListBox suggestionListBox; // ListBox for autocomplete suggestions
+        private Panel suggestionPanel;      // Panel to wrap ListBox for border
+        private Timer searchTimer;         // Timer for delayed search
+        private bool suppressTextChanged;  // Flag to prevent recursive TextChanged events
+        private int itemNumberCounter = 1; // To assign unique item numbers in serialNoDataGridView
 
         public Barcode()
         {
             InitializeComponent();
+            this.AutoScroll = false; // Disable auto-scroll for the main Barcode form
+
+            // Initialize BindingSource and DataTable for products
+            bindingSource = new BindingSource();
+            productsTable = new DataTable();
+
+            // Initialize suggestion ListBox and Panel
+            suggestionListBox = new ListBox
+            {
+                Size = new Size(productSearchText.Width, 100),
+                Font = new SysDrawing.Font("Calibri", 12),
+                Visible = true,
+                BorderStyle = WinForms.BorderStyle.None
+            };
+            suggestionListBox.SelectedIndexChanged += SuggestionListBox_SelectedIndexChanged;
+            suggestionListBox.MouseClick += SuggestionListBox_MouseClick;
+            suggestionListBox.LostFocus += SuggestionListBox_LostFocus;
+
+            suggestionPanel = new Panel
+            {
+                Size = new Size(productSearchText.Width, 102),
+                BorderStyle = WinForms.BorderStyle.FixedSingle,
+                Visible = false
+            };
+
+            Point searchBarLocation = productSearchText.Location;
+            Point panelLocation = new Point(
+                searchBarLocation.X,
+                searchBarLocation.Y + productSearchText.Height
+            );
+
+            if (productSearchText.Parent != this)
+            {
+                panelLocation = this.PointToClient(productSearchText.Parent.PointToScreen(panelLocation));
+            }
+
+            suggestionPanel.Location = panelLocation;
+            suggestionListBox.Location = new Point(1, 1);
+            suggestionListBox.Size = new Size(suggestionPanel.Width - 2, suggestionPanel.Height - 2);
+            suggestionPanel.Controls.Add(suggestionListBox);
+            this.Controls.Add(suggestionPanel);
+
+            productSearchText.LocationChanged += (s, e) => UpdateSuggestionPanelPosition();
+            productSearchText.SizeChanged += (s, e) => UpdateSuggestionPanelPosition();
+
+            // Initialize search timer
+            searchTimer = new Timer
+            {
+                Interval = 300
+            };
+            searchTimer.Tick += SearchTimer_Tick;
+
+            // Subscribe to search events
+            productSearchText.TextChanged += productSearchText_TextChanged;
+            productSearchText.KeyDown += ProductSearchText_KeyDown;
+            productSearchText.GotFocus += ProductSearchText_GotFocus;
+            productSearchText.LostFocus += ProductSearchText_LostFocus;
+
+            // Ensure CellContentClick is subscribed
+            serialNoDataGridView.CellContentClick += serialNoDataGridView_CellContentClick;
         }
 
         private void Barcode_Load(object sender, EventArgs e)
         {
-            // Initialize the DataGridView columns on form load
             InitializeSerialNoDataGridView();
-            // Load all serial numbers initially
-            LoadSerialNumbers("");
+            LoadProductsData();
         }
 
         private void InitializeSerialNoDataGridView()
         {
+            serialNoDataGridView.AutoGenerateColumns = false;
             serialNoDataGridView.Columns.Clear();
-            serialNoDataGridView.Columns.Add("Count", "Count");
-            serialNoDataGridView.Columns.Add("ProductID", "Product ID");
-            serialNoDataGridView.Columns.Add("ProductName", "Product Name");
-            serialNoDataGridView.Columns.Add("VariationType", "Variation Type");
-            serialNoDataGridView.Columns.Add("SerialNumber", "Serial Number");
-            serialNoDataGridView.Columns.Add("Date", "Date");
-            serialNoDataGridView.AllowUserToAddRows = false; // Disable adding rows manually
+            serialNoDataGridView.RowTemplate.Height = 35;
+
+            DataGridViewTextBoxColumn productIdColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "product_id",
+                HeaderText = "PRODUCT ID",
+                DataPropertyName = "id",
+                Width = 80
+            };
+            productIdColumn.DefaultCellStyle.Format = "\"PRO\"000"; // Format as PRO followed by zero-padded ID
+            serialNoDataGridView.Columns.Add(productIdColumn);
+
+            serialNoDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "product_name",
+                HeaderText = "PRODUCT NAME",
+                DataPropertyName = "name",
+                Width = 200
+            });
+
+            serialNoDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "brand_name",
+                HeaderText = "BRAND",
+                DataPropertyName = "brand_name",
+                Width = 100
+            });
+
+            serialNoDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "variation_type_name",
+                HeaderText = "VARIATION TYPE",
+                DataPropertyName = "variation_type_name",
+                Width = 80
+            });
+
+            serialNoDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "upc_number",
+                HeaderText = "UPC NO",
+                DataPropertyName = "barcode",
+                Width = 120
+            });
+
+            DataGridViewButtonColumn decreaseColumn = new DataGridViewButtonColumn
+            {
+                Name = "decrease",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = false,
+                Width = 30 // Increased width for better clickability
+            };
+            serialNoDataGridView.Columns.Add(decreaseColumn);
+
+            serialNoDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "quantity",
+                HeaderText = "QUANTITY",
+                Width = 40,
+                DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+
+            DataGridViewButtonColumn increaseColumn = new DataGridViewButtonColumn
+            {
+                Name = "increase",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = false,
+                Width = 30 // Increased width for better clickability
+            };
+            serialNoDataGridView.Columns.Add(increaseColumn);
+
+            DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
+            {
+                Name = "delete",
+                HeaderText = "",
+                Text = "",
+                UseColumnTextForButtonValue = false,
+                Width = 30 // Increased width for better clickability
+            };
+            serialNoDataGridView.Columns.Add(deleteColumn);
+
+            serialNoDataGridView.AllowUserToAddRows = false;
+            serialNoDataGridView.CellPainting += SerialNoDataGridView_CellPainting;
         }
 
-        private void enterProIDtextBox_TextChanged(object sender, EventArgs e)
+        private void LoadProductsData()
         {
-            // Clear the barcode picture box if the product ID changes
-            barcodePictureBox.Image = null;
-            generatedBarcode = null;
+            try
+            {
+                productsTable = new DataTable();
+                productsTable.Columns.Add("id", typeof(int));
+                productsTable.Columns.Add("name", typeof(string));
+                productsTable.Columns.Add("brand_name", typeof(string));
+                productsTable.Columns.Add("variation_type_name", typeof(string));
+                productsTable.Columns.Add("barcode", typeof(string));
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            p.id,
+                            p.name,
+                            IFNULL(b.name, 'N/A') AS brand_name,
+                            IFNULL(v.type1, 'N/A') AS variation_type_name,
+                            p.barcode
+                        FROM products p
+                        LEFT JOIN brands b ON p.brand_id = b.id
+                        LEFT JOIN variations v ON p.variation_type_id = v.id
+                        WHERE p.barcode IS NOT NULL AND p.barcode != ''
+                        ORDER BY p.id";
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.Fill(productsTable);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                productsTable = new DataTable();
+                productsTable.Columns.Add("id", typeof(int));
+                productsTable.Columns.Add("name", typeof(string));
+                productsTable.Columns.Add("brand_name", typeof(string));
+                productsTable.Columns.Add("variation_type_name", typeof(string));
+                productsTable.Columns.Add("barcode", typeof(string));
+            }
         }
 
         private void generateBtn_Click(object sender, EventArgs e)
         {
-            // Validate the product ID
-            string productId = enterProIDtextBox.Text.Trim();
-            if (string.IsNullOrEmpty(productId))
+            if (serialNoDataGridView.Rows.Count == 0)
             {
-                MessageBox.Show("Please enter a product ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a product to generate barcode.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Get the product name
-            string productName = productNameTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(productName))
+            DataGridViewRow selectedRow = serialNoDataGridView.SelectedRows.Count > 0 ? serialNoDataGridView.SelectedRows[0] : serialNoDataGridView.Rows[0];
+            string barcodeText = selectedRow.Cells["upc_number"].Value.ToString();
+
+            if (string.IsNullOrEmpty(barcodeText))
             {
-                productName = "Unknown Product"; // Default name if not provided
+                MessageBox.Show("Selected product has no UPC number.", "Invalid Barcode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            // Generate the barcode with higher resolution for better print and PDF quality
-            generatedBarcode = GenerateBarcode(productId, productName);
-            if (generatedBarcode != null)
+            // Validate and adjust barcode length to get 12-digit base
+            barcodeText = ValidateBarcodeLength(barcodeText);
+            if (barcodeText == null)
             {
-                // Display the barcode in the picture box
-                barcodePictureBox.Image = generatedBarcode;
+                MessageBox.Show("Invalid UPC number length. Must be 13 or 14 digits with a valid 12-digit base.", "Invalid Barcode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
 
-        private Bitmap GenerateBarcode(string productId, string productName)
-        {
             try
             {
-                // Barcode size in mm
-                double barcodeWidthMm = 70; // 70 mm
-                double barcodeHeightMm = 29.7; // 29.7 mm
-
-                // Calculate pixel size at 300 DPI for high quality
-                double pixelsPerMm = 300.0 / 25.4;
-                int width = (int)(barcodeWidthMm * pixelsPerMm); // 70 mm at 300 DPI
-                int height = (int)(barcodeHeightMm * pixelsPerMm); // 29.7 mm at 300 DPI
-
-                // Initialize the barcode writer
-                var barcodeWriter = new BarcodeWriter
+                BarcodeWriter writer = new BarcodeWriter
                 {
-                    Format = BarcodeFormat.CODE_128, // Use Code 128 for product barcodes
+                    Format = BarcodeFormat.EAN_13,
                     Options = new ZXing.Common.EncodingOptions
                     {
-                        Width = width,
-                        Height = height,
-                        Margin = 10 // Margin around the barcode
+                        Width = 300,
+                        Height = 100,
+                        Margin = 10
                     }
                 };
-
-                // Encode the product ID
-                string barcodeData = $"PRO{productId:D3}"; // Format like "PRO001"
-
-                // Generate the barcode image
-                var barcodeBitmap = barcodeWriter.Write(barcodeData);
-
-                // Create a new bitmap to include the product name and ID below the barcode
-                int textHeight = (int)(20 * (300.0 / 72.0)); // 20 pixels at 72 DPI, scaled to 300 DPI
-                var finalBitmap = new Bitmap(width, height + textHeight * 2); // Space for two lines of text
-                using (var graphics = Graphics.FromImage(finalBitmap))
-                {
-                    graphics.Clear(System.Drawing.Color.White);
-                    graphics.DrawImage(barcodeBitmap, 0, 0); // Draw the barcode
-
-                    // Improve rendering quality
-                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-                    // Draw the product name and ID below the barcode with a font scaled for 300 DPI
-                    float fontSize = 12 * (300.0f / 72.0f); // Scale font size from 72 DPI to 300 DPI
-                    using (var font = new System.Drawing.Font("Arial", fontSize))
-                    {
-                        graphics.DrawString($"Product: {productName}", font, Brushes.Black, new PointF(10, height));
-                        graphics.DrawString($"ID: {barcodeData}", font, Brushes.Black, new PointF(10, height + textHeight));
-                    }
-                }
-
-                return finalBitmap;
+                generatedBarcode = writer.Write(barcodeText);
+                MessageBox.Show("Barcode generated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error generating barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-        }
-
-        private void barcodePictureBox_Click(object sender, EventArgs e)
-        {
-            // Optional: Add functionality if the user clicks the barcode picture box
-        }
-
-        private void qtytextBox_TextChanged(object sender, EventArgs e)
-        {
-            // Validate the quantity input
-            if (!int.TryParse(qtytextBox.Text, out int quantity) || quantity <= 0)
-            {
-                qtytextBox.Text = "1"; // Default to 1 if invalid
-            }
-            else if (quantity > 100) // Arbitrary upper limit to prevent excessive printing
-            {
-                qtytextBox.Text = "100";
-                MessageBox.Show("Maximum quantity is 100.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void printBtn_Click(object sender, EventArgs e)
         {
-            if (generatedBarcode == null)
+            if (serialNoDataGridView.Rows.Count == 0)
             {
-                MessageBox.Show("Please generate a barcode first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No products selected for printing.", "Empty Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!int.TryParse(qtytextBox.Text, out int quantity) || quantity <= 0)
+            int totalBarcodes = 0;
+            foreach (DataGridViewRow row in serialNoDataGridView.Rows)
             {
-                MessageBox.Show("Please enter a valid quantity greater than 0.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                totalBarcodes += Convert.ToInt32(row.Cells["quantity"].Value);
             }
 
-            var barcodeImages = new List<Bitmap>();
-            for (int i = 0; i < quantity; i++)
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1169); // A4 size in pixels at 100 DPI (8.27 x 11.69 inches)
+            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // No margins for full A4 usage
+
+            int currentPage = 0;
+            int barcodesPerPage = 30; // 3 columns x 10 rows
+            int barcodesProcessed = 0;
+
+            printDoc.PrintPage += (s, args) =>
             {
-                barcodeImages.Add(new Bitmap(generatedBarcode));
-            }
+                int pageWidth = args.PageBounds.Width;
+                int pageHeight = args.PageBounds.Height;
 
-            PrintBarcodesOnA4(barcodeImages, true);
-        }
+                // Calculate optimal sizing
+                int barcodesPerRow = 3;
+                int barcodesPerColumn = 10;
+                int maxBarcodesThisPage = Math.Min(barcodesPerPage, totalBarcodes - (currentPage * barcodesPerPage));
 
-        private void saveAsPdfBtn_Click(object sender, EventArgs e)
-        {
-            if (generatedBarcode == null)
-            {
-                MessageBox.Show("Please generate a barcode first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                // Calculate exact barcode dimensions to fill the entire page width
+                int barcodeWidth = pageWidth / barcodesPerRow;
+                int verticalSpace = pageHeight / barcodesPerColumn;
+                int barcodeHeight = (int)(verticalSpace * 0.85); // Use 85% of vertical space for barcode
+                int labelHeight = (int)(verticalSpace * 0.15); // Use 15% of vertical space for label
 
-            if (!int.TryParse(qtytextBox.Text, out int quantity) || quantity <= 0)
-            {
-                MessageBox.Show("Please enter a valid quantity greater than 0.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                int barcodeCount = 0;
+                int yStart = 5; // Small top margin
 
-            var barcodeImages = new List<Bitmap>();
-            for (int i = 0; i < quantity; i++)
-            {
-                barcodeImages.Add(new Bitmap(generatedBarcode));
-            }
-
-            SaveBarcodesAsPDF(barcodeImages);
-        }
-
-        private void PrintBarcodesOnA4(List<Bitmap> barcodeImages, bool showPreview = false)
-        {
-            if (barcodeImages == null || barcodeImages.Count == 0)
-            {
-                MessageBox.Show("No barcodes to print.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using (var printDocument = new System.Drawing.Printing.PrintDocument())
+                foreach (DataGridViewRow row in serialNoDataGridView.Rows)
                 {
-                    printDocument.DefaultPageSettings.PrinterResolution = new System.Drawing.Printing.PrinterResolution
+                    string barcodeText = row.Cells["upc_number"].Value.ToString();
+                    int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+                    string productName = row.Cells["product_name"].Value.ToString();
+
+                    // Validate barcode
+                    barcodeText = ValidateBarcodeLength(barcodeText);
+                    if (barcodeText == null)
                     {
-                        X = 300,
-                        Y = 300
-                    };
+                        MessageBox.Show($"Invalid UPC number for product: {productName}", "Invalid Barcode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
 
-                    printDocument.PrintPage += (sender, e) =>
+                    for (int i = 0; i < quantity && barcodeCount < maxBarcodesThisPage; i++)
                     {
-                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                        e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-
-                        float a4Width = 8.27f * 96;
-                        float a4Height = 11.69f * 96;
-                        float margin = 0.5f * 96;
-
-                        float labelWidth = (a4Width - 2 * margin) / 3;
-                        float labelHeight = (a4Height - 2 * margin) / 10;
-
-                        int labelsPerRow = 3;
-                        int labelsPerColumn = 10;
-                        int totalLabelsPerPage = labelsPerRow * labelsPerColumn;
-
-                        float pixelsPerMm = 96.0f / 25.4f;
-                        float barcodeWidth = 70 * pixelsPerMm;
-                        float barcodeHeight = 29.7f * pixelsPerMm + 20;
-
-                        int currentImageIndex = 0;
-
-                        for (int page = 0; currentImageIndex < barcodeImages.Count; page++)
+                        if (barcodesProcessed >= (currentPage * barcodesPerPage) && barcodeCount < maxBarcodesThisPage)
                         {
-                            float startX = margin;
-                            float startY = margin;
+                            // Calculate position
+                            int column = barcodeCount % barcodesPerRow;
+                            int rowPosition = barcodeCount / barcodesPerRow;
 
-                            for (int i = 0; i < totalLabelsPerPage && currentImageIndex < barcodeImages.Count; i++)
+                            int x = column * barcodeWidth;
+                            int y = yStart + (rowPosition * verticalSpace);
+
+                            try
                             {
-                                int row = i / labelsPerRow;
-                                int col = i % labelsPerRow;
-
-                                float x = startX + col * labelWidth;
-                                float y = startY + row * labelHeight;
-
-                                float xOffset = (labelWidth - barcodeWidth) / 2;
-                                float yOffset = (labelHeight - barcodeHeight) / 2;
-                                float drawX = x + xOffset;
-                                float drawY = y + yOffset;
-
-                                e.Graphics.DrawImage(barcodeImages[currentImageIndex], drawX, drawY, barcodeWidth, barcodeHeight);
-                                currentImageIndex++;
-                            }
-
-                            e.HasMorePages = currentImageIndex < barcodeImages.Count;
-                        }
-                    };
-
-                    if (showPreview)
-                    {
-                        using (var printPreviewDialog = new PrintPreviewDialog())
-                        {
-                            printPreviewDialog.Document = printDocument;
-                            if (printPreviewDialog.ShowDialog() == DialogResult.OK)
-                            {
-                                using (var printDialog = new PrintDialog())
+                                // Generate and draw barcode
+                                BarcodeWriter writer = new BarcodeWriter
                                 {
-                                    printDialog.Document = printDocument;
-                                    if (printDialog.ShowDialog() == DialogResult.OK)
+                                    Format = BarcodeFormat.EAN_13,
+                                    Options = new ZXing.Common.EncodingOptions
                                     {
-                                        printDocument.Print();
+                                        Width = barcodeWidth - 2, // Leave tiny margin
+                                        Height = barcodeHeight - 2,
+                                        Margin = 0 // No margin to maximize space
                                     }
+                                };
+
+                                using (Bitmap barcode = writer.Write(barcodeText))
+                                {
+                                    // Center the barcode in its cell
+                                    int xOffset = (barcodeWidth - (barcodeWidth - 2)) / 2;
+                                    args.Graphics.DrawImage(barcode, x + xOffset, y, barcodeWidth - 2, barcodeHeight - 2);
                                 }
+
+                                // Draw product name below barcode
+                                using (SysDrawing.Font font = new SysDrawing.Font("Arial", 9, FontStyle.Regular))
+                                {
+                                    // Truncate product name if too long
+                                    string displayName = productName;
+                                    SizeF textSize = args.Graphics.MeasureString(displayName, font);
+
+                                    while (textSize.Width > (barcodeWidth - 4) && displayName.Length > 5)
+                                    {
+                                        displayName = displayName.Substring(0, displayName.Length - 1);
+                                        textSize = args.Graphics.MeasureString(displayName + "...", font);
+                                    }
+
+                                    if (displayName.Length < productName.Length)
+                                        displayName += "...";
+
+                                    // Center text below barcode
+                                    float textX = x + ((barcodeWidth - textSize.Width) / 2);
+                                    float textY = y + barcodeHeight;
+
+                                    args.Graphics.DrawString(
+                                        displayName,
+                                        font,
+                                        Brushes.Black,
+                                        new PointF(textX, textY)
+                                    );
+                                }
+
+                                barcodeCount++;
                             }
-                        }
-                    }
-                    else
-                    {
-                        using (var printDialog = new PrintDialog())
-                        {
-                            printDialog.Document = printDocument;
-                            if (printDialog.ShowDialog() == DialogResult.OK)
+                            catch (Exception ex)
                             {
-                                printDocument.Print();
+                                MessageBox.Show($"Error generating barcode for printing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                continue;
                             }
                         }
+                        barcodesProcessed++;
+                        if (barcodesProcessed >= (currentPage + 1) * barcodesPerPage) break;
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error printing barcodes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                foreach (var bitmap in barcodeImages)
-                {
-                    bitmap?.Dispose();
-                }
-            }
-        }
-
-        private void SaveBarcodesAsPDF(List<Bitmap> barcodeImages)
-        {
-            if (barcodeImages == null || barcodeImages.Count == 0)
-            {
-                MessageBox.Show("No barcodes to save.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using (var saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                saveFileDialog.DefaultExt = "pdf";
-                saveFileDialog.AddExtension = true;
-                saveFileDialog.FileName = "Barcodes.pdf";
-
-                if (saveFileDialog.ShowDialog() != DialogResult.OK)
-                {
-                    return;
+                    if (barcodesProcessed >= (currentPage + 1) * barcodesPerPage) break;
                 }
 
+                currentPage++;
+                args.HasMorePages = currentPage * barcodesPerPage < totalBarcodes;
+            };
+
+            PrintDialog printDialog = new PrintDialog
+            {
+                Document = printDoc,
+                AllowSomePages = true
+            };
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
                 try
                 {
-                    using (var pdfDocument = new PdfDocument())
-                    {
-                        pdfDocument.Options.CompressContentStreams = true;
-                        pdfDocument.Options.NoCompression = false;
-
-                        double a4Width = 8.27 * 72;
-                        double a4Height = 11.69 * 72;
-                        double margin = 0.5 * 72;
-
-                        double labelWidth = (a4Width - 2 * margin) / 3;
-                        double labelHeight = (a4Height - 2 * margin) / 10;
-
-                        int labelsPerRow = 3;
-                        int labelsPerColumn = 10;
-                        int totalLabelsPerPage = labelsPerRow * labelsPerColumn;
-
-                        double pointsPerMm = 72.0 / 25.4;
-                        double barcodeWidth = 70 * pointsPerMm;
-                        double barcodeHeight = 29.7 * pointsPerMm + 20;
-
-                        int currentImageIndex = 0;
-
-                        while (currentImageIndex < barcodeImages.Count)
-                        {
-                            PdfPage page = pdfDocument.AddPage();
-                            page.Width = a4Width;
-                            page.Height = a4Height;
-
-                            using (XGraphics gfx = XGraphics.FromPdfPage(page, XGraphicsUnit.Point))
-                            {
-                                double startX = margin;
-                                double startY = margin;
-
-                                for (int i = 0; i < totalLabelsPerPage && currentImageIndex < barcodeImages.Count; i++)
-                                {
-                                    int row = i / labelsPerRow;
-                                    int col = i % labelsPerRow;
-
-                                    double x = startX + col * labelWidth;
-                                    double y = startY + row * labelHeight;
-
-                                    double xOffset = (labelWidth - barcodeWidth) / 2;
-                                    double yOffset = (labelHeight - barcodeHeight) / 2;
-                                    double drawX = x + xOffset;
-                                    double drawY = y + yOffset;
-
-                                    using (var ms = new MemoryStream())
-                                    {
-                                        barcodeImages[currentImageIndex].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                                        ms.Position = 0;
-                                        XImage xImage = XImage.FromStream(ms);
-                                        gfx.DrawImage(xImage, drawX, drawY, barcodeWidth, barcodeHeight);
-                                    }
-
-                                    currentImageIndex++;
-                                }
-                            }
-                        }
-
-                        pdfDocument.Save(saveFileDialog.FileName);
-                    }
-
-                    MessageBox.Show("PDF saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    barcodesProcessed = 0; // Reset for actual printing
+                    currentPage = 0; // Reset page counter
+                    printDoc.Print();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error saving PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    foreach (var bitmap in barcodeImages)
-                    {
-                        bitmap?.Dispose();
-                    }
+                    MessageBox.Show($"Error printing: {ex.Message}", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void productNameTextBox_TextChanged(object sender, EventArgs e)
+        private void previewBtn_Click(object sender, EventArgs e)
         {
-            // Optional: Add functionality if needed when product name changes
-        }
+            if (serialNoDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No products selected for preview.", "Empty Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-        private void enterProIDtextBox_TextChanged_1(object sender, EventArgs e)
-        {
-            barcodePictureBox.Image = null;
-            generatedBarcode = null;
-        }
+            int totalBarcodes = 0;
+            foreach (DataGridViewRow row in serialNoDataGridView.Rows)
+            {
+                totalBarcodes += Convert.ToInt32(row.Cells["quantity"].Value);
+            }
 
-        private void productNameTextBox_TextChanged_1(object sender, EventArgs e)
-        {
-            // Optional: Add functionality if needed when the product name changes
+            // Create a bitmap with initial A4 size, extend as needed
+            Bitmap previewBitmap = new Bitmap(595, 842);
+            Graphics gfx = Graphics.FromImage(previewBitmap);
+            gfx.Clear(System.Drawing.Color.White);
+
+            int x = 20, y = 20;
+            int barcodesPerRow = 3;
+            int barcodeWidth = 180;
+            int barcodeHeight = 70;
+            int spacing = 10;
+            int maxY = 842 - 40; // Initial A4 height minus bottom margin
+            int barcodeCount = 0;
+
+            foreach (DataGridViewRow row in serialNoDataGridView.Rows)
+            {
+                string barcodeText = row.Cells["upc_number"].Value.ToString();
+                int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+
+                barcodeText = ValidateBarcodeLength(barcodeText);
+                if (barcodeText == null)
+                {
+                    MessageBox.Show($"Invalid UPC number for product: {row.Cells["product_name"].Value}", "Invalid Barcode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+
+                for (int i = 0; i < quantity; i++)
+                {
+                    if (y > maxY)
+                    {
+                        // Extend the bitmap height
+                        Bitmap newBitmap = new Bitmap(595, previewBitmap.Height + (barcodeHeight + 40));
+                        using (Graphics newGfx = Graphics.FromImage(newBitmap))
+                        {
+                            newGfx.Clear(System.Drawing.Color.White);
+                            newGfx.DrawImage(previewBitmap, 0, 0);
+                        }
+                        previewBitmap.Dispose();
+                        previewBitmap = newBitmap;
+                        gfx.Dispose();
+                        gfx = Graphics.FromImage(previewBitmap);
+                        maxY = previewBitmap.Height - 40;
+                    }
+
+                    try
+                    {
+                        BarcodeWriter writer = new BarcodeWriter
+                        {
+                            Format = BarcodeFormat.EAN_13,
+                            Options = new ZXing.Common.EncodingOptions
+                            {
+                                Width = barcodeWidth,
+                                Height = barcodeHeight,
+                                Margin = 5
+                            }
+                        };
+                        using (Bitmap barcode = writer.Write(barcodeText))
+                        {
+                            gfx.DrawImage(barcode, x, y, barcodeWidth, barcodeHeight);
+                        }
+
+                        string productName = row.Cells["product_name"].Value.ToString();
+                        using (SysDrawing.Font font = new SysDrawing.Font("Arial", 8))
+                        {
+                            SizeF textSize = gfx.MeasureString(productName, font);
+                            float textX = x + (barcodeWidth - textSize.Width) / 2;
+                            gfx.DrawString(
+                                productName,
+                                font,
+                                Brushes.Black,
+                                new RectangleF(textX, y + barcodeHeight, barcodeWidth, 20)
+                            );
+                        }
+
+                        x += barcodeWidth + spacing;
+                        if ((barcodeCount + 1) % barcodesPerRow == 0)
+                        {
+                            x = 20;
+                            y += barcodeHeight + 40;
+                        }
+
+                        barcodeCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error generating barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        continue;
+                    }
+                }
+            }
+
+            gfx.Dispose();
+            // Show the preview in the BarcodePreview form
+            BarcodePreview previewForm = new BarcodePreview((Bitmap)previewBitmap.Clone());
+            previewForm.ShowDialog();
+            previewBitmap.Dispose();
         }
 
         private void productSearchText_TextChanged(object sender, EventArgs e)
         {
-            // Search serial_numbers table by product name, product ID, or serial number
-            string searchText = productSearchText.Text.Trim();
-            LoadSerialNumbers(searchText);
+            if (suppressTextChanged) return;
+            searchTimer.Stop();
+            searchTimer.Start();
         }
 
-        private void LoadSerialNumbers(string searchText)
+        private void SearchTimer_Tick(object sender, EventArgs e)
         {
+            searchTimer.Stop();
+            PerformProductSearch();
+        }
+
+        private void PerformProductSearch()
+        {
+            string searchText = productSearchText.Text.Trim();
+            suggestionListBox.Items.Clear();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                suggestionPanel.Visible = false;
+                return;
+            }
+
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    conn.Open();
+                    connection.Open();
                     string query = @"
-                        SELECT product_id, product_name, variation_type, serial_number, created_at
-                        FROM serial_numbers
-                        WHERE product_name LIKE @searchText
-                           OR product_id = @productId
-                           OR serial_number LIKE @searchText
-                        ORDER BY created_at DESC";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        SELECT 
+                            p.id,
+                            p.name,
+                            IFNULL(b.name, 'N/A') AS brand_name,
+                            IFNULL(v.type1, 'N/A') AS variation_type_name,
+                            p.barcode
+                        FROM products p
+                        LEFT JOIN brands b ON p.brand_id = b.id
+                        LEFT JOIN variations v ON p.variation_type_id = v.id
+                        WHERE (p.name LIKE @search OR p.id = @id) 
+                        AND p.barcode IS NOT NULL AND p.barcode != ''
+                        LIMIT 10";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@searchText", $"%{searchText}%");
-                        cmd.Parameters.AddWithValue("@productId", int.TryParse(searchText, out int id) ? id : (object)DBNull.Value);
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        command.Parameters.AddWithValue("@search", $"%{searchText}%");
+                        command.Parameters.AddWithValue("@id", int.TryParse(searchText, out int id) ? id : -1);
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            serialNoDataGridView.Rows.Clear();
-                            int count = 1;
                             while (reader.Read())
                             {
-                                serialNoDataGridView.Rows.Add(
-                                    count++.ToString(),
-                                    reader["product_id"].ToString(),
-                                    reader["product_name"].ToString(),
-                                    reader["variation_type"]?.ToString() ?? "N/A",
-                                    reader["serial_number"].ToString(),
-                                    Convert.ToDateTime(reader["created_at"]).ToString("yyyy-MM-dd HH:mm:ss")
-                                );
+                                suggestionListBox.Items.Add(new ProductItem(
+                                    reader["name"].ToString(),
+                                    reader["barcode"].ToString(),
+                                    reader["variation_type_name"].ToString()
+                                ));
                             }
                         }
                     }
                 }
+
+                if (suggestionListBox.Items.Count > 0)
+                {
+                    UpdateSuggestionPanelPosition();
+                    suggestionPanel.Visible = true;
+                    suggestionPanel.BringToFront();
+                    int itemHeight = suggestionListBox.ItemHeight;
+                    int maxVisibleItems = Math.Min(suggestionListBox.Items.Count, 5);
+                    int newHeight = maxVisibleItems * itemHeight + 2;
+                    suggestionPanel.Height = newHeight;
+                    suggestionListBox.Height = newHeight - 2;
+                    suggestionListBox.Width = suggestionPanel.Width - 2;
+                }
+                else
+                {
+                    suggestionPanel.Visible = false;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading serial numbers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                suggestionPanel.Visible = false;
+            }
+        }
+
+        private void ProductSearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (suggestionPanel.Visible)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Down:
+                        if (suggestionListBox.SelectedIndex < suggestionListBox.Items.Count - 1)
+                        {
+                            suggestionListBox.SelectedIndex++;
+                        }
+                        e.Handled = true;
+                        break;
+                    case Keys.Up:
+                        if (suggestionListBox.SelectedIndex > 0)
+                        {
+                            suggestionListBox.SelectedIndex--;
+                        }
+                        e.Handled = true;
+                        break;
+                    case Keys.Enter:
+                        if (suggestionListBox.SelectedIndex >= 0)
+                        {
+                            SelectProduct();
+                        }
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                        break;
+                    case Keys.Escape:
+                        suggestionPanel.Visible = false;
+                        productSearchText.Text = "";
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
+
+        private void ProductSearchText_GotFocus(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(productSearchText.Text))
+            {
+                PerformProductSearch();
+            }
+        }
+
+        private void ProductSearchText_LostFocus(object sender, EventArgs e)
+        {
+            Timer hideTimer = new Timer { Interval = 200 };
+            hideTimer.Tick += (s, args) =>
+            {
+                if (!suggestionListBox.Focused && !productSearchText.Focused)
+                {
+                    suggestionPanel.Visible = false;
+                }
+                hideTimer.Stop();
+                hideTimer.Dispose();
+            };
+            hideTimer.Start();
+        }
+
+        private void SuggestionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (suggestionListBox.SelectedIndex >= 0)
+            {
+                ProductItem selected = (ProductItem)suggestionListBox.SelectedItem;
+                suppressTextChanged = true;
+                productSearchText.Text = selected.Name;
+                suppressTextChanged = false;
+            }
+        }
+
+        private void SuggestionListBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            SelectProduct();
+        }
+
+        private void SuggestionListBox_LostFocus(object sender, EventArgs e)
+        {
+            if (!productSearchText.Focused)
+            {
+                suggestionPanel.Visible = false;
+            }
+        }
+
+        private void SelectProduct()
+        {
+            if (suggestionListBox.SelectedIndex >= 0)
+            {
+                ProductItem selected = (ProductItem)suggestionListBox.SelectedItem;
+                productSearchText.Text = selected.Name;
+                suggestionPanel.Visible = false;
+
+                // Check if the product is already in the DataGridView
+                bool productExists = false;
+                foreach (DataGridViewRow row in serialNoDataGridView.Rows)
+                {
+                    if (row.Cells["product_name"].Value?.ToString() == selected.Name &&
+                        row.Cells["upc_number"].Value?.ToString() == selected.Barcode)
+                    {
+                        productExists = true;
+                        int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+                        row.Cells["quantity"].Value = quantity + 1; // Increment quantity
+                        break;
+                    }
+                }
+
+                // If product doesn't exist, add it as a new row
+                if (!productExists)
+                {
+                    foreach (DataRow row in productsTable.Rows)
+                    {
+                        if (row["name"].ToString() == selected.Name && row["barcode"].ToString() == selected.Barcode)
+                        {
+                            serialNoDataGridView.Rows.Add(
+                                row["id"],
+                                row["name"],
+                                row["brand_name"],
+                                row["variation_type_name"],
+                                row["barcode"],
+                                null,
+                                1, // Default quantity to 1
+                                null,
+                                null
+                            );
+                            break;
+                        }
+                    }
+                }
+
+                // Clear the search bar and keep focus
+                suppressTextChanged = true;
+                productSearchText.Text = "";
+                suppressTextChanged = false;
+                productSearchText.Focus();
+            }
+        }
+
+        private void UpdateSuggestionPanelPosition()
+        {
+            if (suggestionPanel != null && productSearchText != null)
+            {
+                Point searchBarLocation = productSearchText.Location;
+                Point panelLocation = new Point(
+                    searchBarLocation.X,
+                    searchBarLocation.Y + productSearchText.Height
+                );
+                if (productSearchText.Parent != this)
+                {
+                    panelLocation = this.PointToClient(productSearchText.Parent.PointToScreen(panelLocation));
+                }
+                suggestionPanel.Location = panelLocation;
+                suggestionPanel.Width = productSearchText.Width;
+                suggestionListBox.Width = suggestionPanel.Width - 2;
+                suggestionListBox.Height = suggestionPanel.Height - 2;
+            }
+        }
+
+        private void SerialNoDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "decrease")
+                {
+                    e.PaintBackground(e.CellBounds, true);
+                    try
+                    {
+                        Image minusIcon = Properties.Resources.posminus1;
+                        int iconSize = 24;
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(minusIcon, x, y, iconSize, iconSize);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading minus icon: {ex.Message}", "Resource Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string text = "-";
+                        using (SysDrawing.Font font = new SysDrawing.Font("Arial", 8))
+                        {
+                            SizeF size = e.Graphics.MeasureString(text, font);
+                            PointF location = new PointF(
+                                e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
+                                e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
+                            );
+                            e.Graphics.DrawString(text, font, Brushes.Black, location);
+                        }
+                    }
+                    e.Handled = true;
+                }
+                else if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "increase")
+                {
+                    e.PaintBackground(e.CellBounds, true);
+                    try
+                    {
+                        Image plusIcon = Properties.Resources.posplus1;
+                        int iconSize = 24;
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(plusIcon, x, y, iconSize, iconSize);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading plus icon: {ex.Message}", "Resource Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string text = "+";
+                        using (SysDrawing.Font font = new SysDrawing.Font("Arial", 8))
+                        {
+                            SizeF size = e.Graphics.MeasureString(text, font);
+                            PointF location = new PointF(
+                                e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
+                                e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
+                            );
+                            e.Graphics.DrawString(text, font, Brushes.Black, location);
+                        }
+                    }
+                    e.Handled = true;
+                }
+                else if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "delete")
+                {
+                    e.PaintBackground(e.CellBounds, true);
+                    try
+                    {
+                        Image deleteIcon = Properties.Resources.delete;
+                        int iconSize = 24;
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
+                        e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading delete icon: {ex.Message}", "Resource Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string text = "X";
+                        using (SysDrawing.Font font = new SysDrawing.Font("Arial", 8))
+                        {
+                            SizeF size = e.Graphics.MeasureString(text, font);
+                            PointF location = new PointF(
+                                e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
+                                e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
+                            );
+                            e.Graphics.DrawString(text, font, Brushes.Black, location);
+                        }
+                    }
+                    e.Handled = true;
+                }
             }
         }
 
         private void serialNoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Auto-fill text boxes and copy serial number to clipboard when SerialNumber column is clicked
-            if (e.RowIndex >= 0 && e.ColumnIndex == serialNoDataGridView.Columns["SerialNumber"].Index)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = serialNoDataGridView.Rows[e.RowIndex];
-                string serialNumber = row.Cells["SerialNumber"].Value?.ToString();
-                string productName = row.Cells["ProductName"].Value?.ToString();
-
-                if (!string.IsNullOrEmpty(serialNumber))
+                if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "decrease")
                 {
-                    // Auto-fill the text boxes
-                    enterProIDtextBox.Text = serialNumber; // Set serial number in enterProIDtextBox
-                    productNameTextBox.Text = productName ?? "Unknown Product"; // Set product name, default to "Unknown Product" if null
-
-                    // Copy to clipboard (existing functionality)
-                    Clipboard.SetText(serialNumber);
-                    
+                    int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+                    if (quantity > 1)
+                    {
+                        row.Cells["quantity"].Value = quantity - 1;
+                    }
+                }
+                else if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "increase")
+                {
+                    int quantity = Convert.ToInt32(row.Cells["quantity"].Value);
+                    row.Cells["quantity"].Value = quantity + 1;
+                }
+                else if (serialNoDataGridView.Columns[e.ColumnIndex].Name == "delete")
+                {
+                    serialNoDataGridView.Rows.RemoveAt(e.RowIndex);
+                    ReassignItemNumbers();
                 }
             }
+        }
+
+        private void ReassignItemNumbers()
+        {
+            itemNumberCounter = 1;
+            foreach (DataGridViewRow row in serialNoDataGridView.Rows)
+            {
+                // Note: There is no "item_number" column in the DataGridView; this may be a leftover from previous code.
+                // If you intended to use "product_id" or another column, update accordingly.
+                // row.Cells["item_number"].Value = itemNumberCounter++;
+            }
+        }
+
+        private class ProductItem
+        {
+            public string Name { get; }
+            public string Barcode { get; }
+            public string VariationType { get; }
+
+            public ProductItem(string name, string barcode, string variationType)
+            {
+                Name = name;
+                Barcode = barcode;
+                VariationType = variationType;
+            }
+
+            public override string ToString()
+            {
+                return $"{Name} (Variation: {VariationType})";
+            }
+        }
+
+        private string ValidateBarcodeLength(string barcodeText)
+        {
+            if (string.IsNullOrEmpty(barcodeText) || !long.TryParse(barcodeText, out _))
+                return null;
+
+            string digits = new string(barcodeText.Where(char.IsDigit).ToArray());
+            if (digits.Length >= 13 && digits.Length <= 14)
+            {
+                return digits.Substring(0, 12); // Return first 12 digits for ZXing to calculate check digit
+            }
+            return null;
         }
     }
 }

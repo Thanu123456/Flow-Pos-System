@@ -936,6 +936,7 @@
             // 
             // posDateLabel
             // 
+            this.posDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.posDateLabel.BackColor = System.Drawing.Color.Transparent;
             this.posDateLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.posDateLabel.ForeColor = System.Drawing.Color.Red;
