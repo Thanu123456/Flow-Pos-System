@@ -598,7 +598,7 @@ namespace EscopeWindowsApp
             DataGridViewButtonColumn addColumn = new DataGridViewButtonColumn
             {
                 Name = "AddColumn",
-                HeaderText = "Add",
+                HeaderText = "",
                 Text = "",
                 UseColumnTextForButtonValue = false,
                 Width = 50
@@ -1020,7 +1020,7 @@ namespace EscopeWindowsApp
             DataGridViewButtonColumn removeColumn = new DataGridViewButtonColumn
             {
                 Name = "remove",
-                HeaderText = "Delete",
+                HeaderText = "",
                 Text = "",
                 UseColumnTextForButtonValue = false,
                 Width = 80

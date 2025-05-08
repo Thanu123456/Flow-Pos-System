@@ -41,11 +41,6 @@
             this.expCatPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expCatNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expCatLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.expCatAllPgLabel = new System.Windows.Forms.Label();
-            this.expCatOfLabel = new System.Windows.Forms.Label();
-            this.expCatPgRangeLabel = new System.Windows.Forms.Label();
-            this.expCatPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.expCatRecordsPerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.expCatDataGridView)).BeginInit();
             this.expCatBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +61,6 @@
             this.expCatDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.expCatDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -161,7 +155,7 @@
             this.expCatSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expCatSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.expCatSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expCatSearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expCatSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expCatSearchText.ForeColor = System.Drawing.Color.Gray;
             this.expCatSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.expCatSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -282,90 +276,12 @@
             this.expCatLastBtn.TabIndex = 8;
             this.expCatLastBtn.Click += new System.EventHandler(this.expCatLastBtn_Click);
             // 
-            // expCatAllPgLabel
-            // 
-            this.expCatAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expCatAllPgLabel.AutoSize = true;
-            this.expCatAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expCatAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expCatAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.expCatAllPgLabel.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.expCatAllPgLabel.Name = "expCatAllPgLabel";
-            this.expCatAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.expCatAllPgLabel.TabIndex = 48;
-            this.expCatAllPgLabel.Text = "500";
-            // 
-            // expCatOfLabel
-            // 
-            this.expCatOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expCatOfLabel.AutoSize = true;
-            this.expCatOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expCatOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expCatOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.expCatOfLabel.Name = "expCatOfLabel";
-            this.expCatOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.expCatOfLabel.TabIndex = 47;
-            this.expCatOfLabel.Text = "of";
-            // 
-            // expCatPgRangeLabel
-            // 
-            this.expCatPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expCatPgRangeLabel.AutoSize = true;
-            this.expCatPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expCatPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expCatPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.expCatPgRangeLabel.Name = "expCatPgRangeLabel";
-            this.expCatPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.expCatPgRangeLabel.TabIndex = 46;
-            this.expCatPgRangeLabel.Text = "0-50";
-            // 
-            // expCatPageCombo
-            // 
-            this.expCatPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expCatPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.expCatPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.expCatPageCombo.BorderRadius = 8;
-            this.expCatPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.expCatPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.expCatPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expCatPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.expCatPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expCatPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.expCatPageCombo.ItemHeight = 30;
-            this.expCatPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.expCatPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.expCatPageCombo.Name = "expCatPageCombo";
-            this.expCatPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.expCatPageCombo.StartIndex = 0;
-            this.expCatPageCombo.TabIndex = 45;
-            // 
-            // expCatRecordsPerLabel
-            // 
-            this.expCatRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.expCatRecordsPerLabel.AutoSize = true;
-            this.expCatRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expCatRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.expCatRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.expCatRecordsPerLabel.Name = "expCatRecordsPerLabel";
-            this.expCatRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.expCatRecordsPerLabel.TabIndex = 44;
-            this.expCatRecordsPerLabel.Text = "Records per page";
-            // 
             // ExpensesCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
-            this.Controls.Add(this.expCatAllPgLabel);
-            this.Controls.Add(this.expCatOfLabel);
-            this.Controls.Add(this.expCatPgRangeLabel);
-            this.Controls.Add(this.expCatPageCombo);
-            this.Controls.Add(this.expCatRecordsPerLabel);
             this.Controls.Add(this.expCatBtnPanel);
             this.Controls.Add(this.createExpCatBtn);
             this.Controls.Add(this.expCatDataGridView);
@@ -382,7 +298,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.expCatDataGridView)).EndInit();
             this.expCatBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -397,10 +312,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton expCatPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expCatNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expCatLastBtn;
-        private System.Windows.Forms.Label expCatAllPgLabel;
-        private System.Windows.Forms.Label expCatOfLabel;
-        private System.Windows.Forms.Label expCatPgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox expCatPageCombo;
-        private System.Windows.Forms.Label expCatRecordsPerLabel;
     }
 }

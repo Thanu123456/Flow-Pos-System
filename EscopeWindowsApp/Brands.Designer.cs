@@ -33,11 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createBrandsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.brandsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.brandsRecordsPerLabel = new System.Windows.Forms.Label();
-            this.brandsAllPgLabel = new System.Windows.Forms.Label();
-            this.brandsOfLabel = new System.Windows.Forms.Label();
-            this.brandsPgRangeLabel = new System.Windows.Forms.Label();
             this.brandsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.brandsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -69,79 +64,6 @@
             this.createBrandsBtn.TabIndex = 22;
             this.createBrandsBtn.Text = "Create Brand";
             this.createBrandsBtn.Click += new System.EventHandler(this.createBrandsBtn_Click);
-            // 
-            // brandsPageCombo
-            // 
-            this.brandsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.brandsPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.brandsPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.brandsPageCombo.BorderRadius = 8;
-            this.brandsPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.brandsPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.brandsPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.brandsPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.brandsPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.brandsPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.brandsPageCombo.ItemHeight = 30;
-            this.brandsPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.brandsPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.brandsPageCombo.Name = "brandsPageCombo";
-            this.brandsPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.brandsPageCombo.StartIndex = 0;
-            this.brandsPageCombo.TabIndex = 39;
-            // 
-            // brandsRecordsPerLabel
-            // 
-            this.brandsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.brandsRecordsPerLabel.AutoSize = true;
-            this.brandsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.brandsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.brandsRecordsPerLabel.Name = "brandsRecordsPerLabel";
-            this.brandsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.brandsRecordsPerLabel.TabIndex = 38;
-            this.brandsRecordsPerLabel.Text = "Records per page";
-            this.brandsRecordsPerLabel.Click += new System.EventHandler(this.brandsRecordsPerLabel_Click);
-            // 
-            // brandsAllPgLabel
-            // 
-            this.brandsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.brandsAllPgLabel.AutoSize = true;
-            this.brandsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.brandsAllPgLabel.Location = new System.Drawing.Point(297, 742);
-            this.brandsAllPgLabel.Name = "brandsAllPgLabel";
-            this.brandsAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.brandsAllPgLabel.TabIndex = 37;
-            this.brandsAllPgLabel.Text = "500";
-            // 
-            // brandsOfLabel
-            // 
-            this.brandsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.brandsOfLabel.AutoSize = true;
-            this.brandsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.brandsOfLabel.Location = new System.Drawing.Point(276, 742);
-            this.brandsOfLabel.Name = "brandsOfLabel";
-            this.brandsOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.brandsOfLabel.TabIndex = 36;
-            this.brandsOfLabel.Text = "of";
-            // 
-            // brandsPgRangeLabel
-            // 
-            this.brandsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.brandsPgRangeLabel.AutoSize = true;
-            this.brandsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.brandsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.brandsPgRangeLabel.Name = "brandsPgRangeLabel";
-            this.brandsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.brandsPgRangeLabel.TabIndex = 35;
-            this.brandsPgRangeLabel.Text = "0-50";
             // 
             // brandsBtnPanel
             // 
@@ -256,7 +178,7 @@
             this.brandsSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.brandsSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.brandsSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.brandsSearchText.Font = new System.Drawing.Font("Calibri", 12F);
+            this.brandsSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brandsSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.brandsSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.brandsSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -358,11 +280,6 @@
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
             this.Controls.Add(this.brandsDataGridView);
-            this.Controls.Add(this.brandsPageCombo);
-            this.Controls.Add(this.brandsRecordsPerLabel);
-            this.Controls.Add(this.brandsAllPgLabel);
-            this.Controls.Add(this.brandsOfLabel);
-            this.Controls.Add(this.brandsPgRangeLabel);
             this.Controls.Add(this.brandsBtnPanel);
             this.Controls.Add(this.createBrandsBtn);
             this.Controls.Add(this.brandsRefreshBtn);
@@ -380,7 +297,6 @@
             this.brandsBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.brandsDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -388,11 +304,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton createBrandsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton brandsRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox brandsSearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox brandsPageCombo;
-        private System.Windows.Forms.Label brandsRecordsPerLabel;
-        private System.Windows.Forms.Label brandsAllPgLabel;
-        private System.Windows.Forms.Label brandsOfLabel;
-        private System.Windows.Forms.Label brandsPgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel brandsBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton brandsFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton brandsPrevBtn;

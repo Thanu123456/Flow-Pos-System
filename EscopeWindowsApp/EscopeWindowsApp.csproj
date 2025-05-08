@@ -558,12 +558,6 @@
     <Compile Include="SuppliersReport.Designer.cs">
       <DependentUpon>SuppliersReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transfer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transfer.Designer.cs">
-      <DependentUpon>Transfer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Units.cs">
       <SubType>Form</SubType>
     </Compile>

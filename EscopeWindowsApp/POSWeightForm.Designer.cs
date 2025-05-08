@@ -118,7 +118,7 @@
             this.kilogramText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.kilogramText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.kilogramText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.kilogramText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kilogramText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kilogramText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.kilogramText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.kilogramText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -213,7 +213,7 @@
             this.gramText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.gramText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.gramText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gramText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gramText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gramText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gramText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.gramText.IconLeftOffset = new System.Drawing.Point(10, 0);
@@ -266,7 +266,7 @@
             this.unitShortName.BackColor = System.Drawing.Color.Transparent;
             this.unitShortName.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitShortName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.unitShortName.Location = new System.Drawing.Point(53, 326);
+            this.unitShortName.Location = new System.Drawing.Point(49, 318);
             this.unitShortName.Name = "unitShortName";
             this.unitShortName.Size = new System.Drawing.Size(29, 23);
             this.unitShortName.TabIndex = 76;
@@ -287,7 +287,7 @@
             // 
             this.blank_r.AutoSize = true;
             this.blank_r.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blank_r.Location = new System.Drawing.Point(78, 330);
+            this.blank_r.Location = new System.Drawing.Point(74, 322);
             this.blank_r.Name = "blank_r";
             this.blank_r.Size = new System.Drawing.Size(14, 19);
             this.blank_r.TabIndex = 78;
@@ -297,7 +297,7 @@
             // 
             this.blank_l.AutoSize = true;
             this.blank_l.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blank_l.Location = new System.Drawing.Point(43, 329);
+            this.blank_l.Location = new System.Drawing.Point(39, 321);
             this.blank_l.Name = "blank_l";
             this.blank_l.Size = new System.Drawing.Size(14, 19);
             this.blank_l.TabIndex = 79;
