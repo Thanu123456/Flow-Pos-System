@@ -786,6 +786,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-ledger-50.png" />
+    <None Include="Resources\icons8-webcam-50.png" />
+    <None Include="Resources\icons8-calculate-50.png" />
+    <None Include="Resources\icons8-divide-60.png" />
+    <None Include="Resources\icons8-percentage-64.png" />
+    <None Include="Resources\icons8-subtract-60.png" />
+    <None Include="Resources\icons8-add-64.png" />
+    <None Include="Resources\icons8-multiply-60.png" />
+    <None Include="Resources\icons8-equal-sign-60.png" />
+    <None Include="Resources\backspace-60.png" />
     <None Include="Resources\avatar2.png" />
     <None Include="Resources\icons8-stocks-growth-96.png" />
     <None Include="Resources\icons8-buy-96.png" />

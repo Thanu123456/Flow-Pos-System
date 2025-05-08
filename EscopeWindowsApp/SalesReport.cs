@@ -138,19 +138,19 @@ namespace EscopeWindowsApp
         {
             // Ensure columns are correctly formatted
             if (salesReportDataGrid.Columns["bill_no"] != null)
-                salesReportDataGrid.Columns["bill_no"].HeaderText = "Bill Number";
+                salesReportDataGrid.Columns["bill_no"].HeaderText = "BILL NO";
             if (salesReportDataGrid.Columns["customer"] != null)
-                salesReportDataGrid.Columns["customer"].HeaderText = "Customer Name";
+                salesReportDataGrid.Columns["customer"].HeaderText = "CUSTOMER";
             if (salesReportDataGrid.Columns["user_name"] != null)
-                salesReportDataGrid.Columns["user_name"].HeaderText = "Username";
+                salesReportDataGrid.Columns["user_name"].HeaderText = "USERNAME";
             if (salesReportDataGrid.Columns["quantity_of_items"] != null)
-                salesReportDataGrid.Columns["quantity_of_items"].HeaderText = "Quantity of Items";
+                salesReportDataGrid.Columns["quantity_of_items"].HeaderText = "QUANTITY OF ITEMS";
             if (salesReportDataGrid.Columns["payment_method"] != null)
-                salesReportDataGrid.Columns["payment_method"].HeaderText = "Payment Method";
+                salesReportDataGrid.Columns["payment_method"].HeaderText = "PAYMENT METHOD";
             if (salesReportDataGrid.Columns["total_price"] != null)
-                salesReportDataGrid.Columns["total_price"].HeaderText = "Total Price";
+                salesReportDataGrid.Columns["total_price"].HeaderText = "TOTAL PRICE";
             if (salesReportDataGrid.Columns["sale_date"] != null)
-                salesReportDataGrid.Columns["sale_date"].HeaderText = "Sale Date";
+                salesReportDataGrid.Columns["sale_date"].HeaderText = "SALE DATE";
 
             // Adjust column widths
             salesReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

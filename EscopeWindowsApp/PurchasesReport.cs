@@ -119,12 +119,12 @@ namespace EscopeWindowsApp
             if (purReportDataGrid.Columns["grn_no"] != null)
                 purReportDataGrid.Columns["grn_no"].HeaderText = "GRN Number";
             if (purReportDataGrid.Columns["payment_method"] != null)
-                purReportDataGrid.Columns["payment_method"].HeaderText = "Payment Method";
+                purReportDataGrid.Columns["payment_method"].HeaderText = "PAYMENT METHOD";
             if (purReportDataGrid.Columns["total_amount"] != null)
-                purReportDataGrid.Columns["total_amount"].HeaderText = "Total Amount";
+                purReportDataGrid.Columns["total_amount"].HeaderText = "TOTAL AMOUNT";
             if (purReportDataGrid.Columns["date"] != null)
             {
-                purReportDataGrid.Columns["date"].HeaderText = "Date";
+                purReportDataGrid.Columns["date"].HeaderText = "DATE";
                 purReportDataGrid.Columns["date"].DefaultCellStyle.Format = "yyyy-MM-dd";
             }
             purReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

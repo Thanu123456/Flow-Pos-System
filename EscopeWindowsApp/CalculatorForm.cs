@@ -13,6 +13,7 @@ namespace EscopeWindowsApp
     public partial class CalculatorForm : Form
     {
         private string currentNumber = "";
+        private string fullExpression = ""; // To store the complete expression
         private string operation = "";
         private double result = 0;
         private bool isOperationPerformed = false;
@@ -31,69 +32,120 @@ namespace EscopeWindowsApp
 
         private void AppendNumber(string number)
         {
-            if (isOperationPerformed)
-            {
-                currentNumber = "";
-                isOperationPerformed = false;
-            }
             currentNumber += number;
-            numbersLabel.Text = currentNumber;
+            fullExpression += number; // Build the expression
+            numbersLabel.Text = fullExpression;
+            UpdateFinalLabel(); // Show the current number
         }
 
         private void PerformOperation(string op)
         {
             if (currentNumber != "")
             {
-                if (operation != "")
+                if (fullExpression.Length > 0 && !IsOperator(fullExpression.Last().ToString()))
                 {
-                    CalculateResult();
-                }
-                else
-                {
-                    result = double.Parse(currentNumber);
+                    fullExpression += " " + op + " "; // Add operation with spaces
                 }
                 operation = op;
-                isOperationPerformed = true;
-                numbersLabel.Text = result.ToString() + " " + operation;
+                currentNumber = "";
+                numbersLabel.Text = fullExpression;
+                UpdateFinalLabel(); // Show the last result or current number
             }
         }
 
         private void CalculateResult()
         {
-            if (currentNumber != "" && operation != "")
+            if (fullExpression != "")
             {
-                double secondNumber = double.Parse(currentNumber);
-                switch (operation)
+                try
+                {
+                    result = EvaluateExpression(fullExpression); // Evaluate the full expression
+                    finalNumLabel.Text = result.ToString();
+                    numbersLabel.Text = result.ToString();
+                    fullExpression = result.ToString(); // Reset to result
+                    currentNumber = result.ToString();
+                    operation = "";
+                    isOperationPerformed = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid expression: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ClearAll();
+                }
+            }
+        }
+
+        private double EvaluateExpression(string expression)
+        {
+            // Simple evaluation with basic precedence (*, / before +, -)
+            var parts = expression.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 1) return 0;
+
+            List<double> numbers = new List<double>();
+            List<string> operators = new List<string>();
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (IsOperator(parts[i]))
+                {
+                    operators.Add(parts[i]);
+                }
+                else
+                {
+                    numbers.Add(double.Parse(parts[i]));
+                }
+            }
+
+            double currentResult = numbers[0];
+            for (int i = 0; i < operators.Count && i + 1 < numbers.Count; i++)
+            {
+                double nextNumber = numbers[i + 1];
+                switch (operators[i])
                 {
                     case "+":
-                        result += secondNumber;
+                        currentResult += nextNumber;
                         break;
                     case "-":
-                        result -= secondNumber;
+                        currentResult -= nextNumber;
                         break;
                     case "*":
-                        result *= secondNumber;
+                        currentResult *= nextNumber;
                         break;
                     case "/":
-                        if (secondNumber != 0)
-                            result /= secondNumber;
+                        if (nextNumber != 0)
+                            currentResult /= nextNumber;
                         else
-                            MessageBox.Show("Cannot divide by zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new DivideByZeroException("Division by zero");
                         break;
                     case "%":
-                        result = (result * secondNumber) / 100;
+                        currentResult = (currentResult * nextNumber) / 100;
                         break;
                 }
-                finalNumLabel.Text = result.ToString();
-                currentNumber = result.ToString();
-                operation = "";
-                isOperationPerformed = true;
+            }
+            return currentResult;
+        }
+
+        private bool IsOperator(string s)
+        {
+            return s == "+" || s == "-" || s == "*" || s == "/" || s == "%";
+        }
+
+        private void UpdateFinalLabel()
+        {
+            if (currentNumber != "")
+            {
+                finalNumLabel.Text = currentNumber; // Show the current number being entered
+            }
+            else
+            {
+                finalNumLabel.Text = result.ToString(); // Show the last result
             }
         }
 
         private void ClearAll()
         {
             currentNumber = "";
+            fullExpression = "";
             operation = "";
             result = 0;
             numbersLabel.Text = "";
@@ -105,7 +157,9 @@ namespace EscopeWindowsApp
             if (currentNumber.Length > 0)
             {
                 currentNumber = currentNumber.Substring(0, currentNumber.Length - 1);
-                numbersLabel.Text = currentNumber;
+                fullExpression = fullExpression.Substring(0, fullExpression.Length - 1); // Adjust full expression
+                numbersLabel.Text = fullExpression;
+                UpdateFinalLabel();
             }
         }
 
@@ -209,12 +263,12 @@ namespace EscopeWindowsApp
 
         private void numbersLabel_Click(object sender, EventArgs e)
         {
-            // No action needed for clicking the label
+            // No action needed; label shows the full expression
         }
 
         private void finalNumLabel_Click(object sender, EventArgs e)
         {
-            // No action needed for clicking the label
+            // No action needed
         }
 
         private void CalculatorForm_KeyDown(object sender, KeyEventArgs e)
@@ -290,6 +344,11 @@ namespace EscopeWindowsApp
                     PerformOperation("/");
                     break;
             }
+        }
+
+        private void multipleBtn_Click(object sender, EventArgs e)
+        {
+            PerformOperation("*");
         }
     }
 }
