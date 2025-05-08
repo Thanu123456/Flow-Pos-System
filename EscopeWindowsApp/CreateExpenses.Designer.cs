@@ -143,7 +143,7 @@
             this.creExpCatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creExpCatComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpCatComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpCatComboBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpCatComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creExpCatComboBox.ItemHeight = 36;
             this.creExpCatComboBox.Items.AddRange(new object[] {
@@ -165,7 +165,7 @@
             this.creExpWarehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creExpWarehouseComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpWarehouseComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpWarehouseComboBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpWarehouseComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.creExpWarehouseComboBox.ItemHeight = 36;
             this.creExpWarehouseComboBox.Items.AddRange(new object[] {
@@ -182,10 +182,12 @@
             // creExpDateTimePicker
             // 
             this.creExpDateTimePicker.BackColor = System.Drawing.Color.Transparent;
+            this.creExpDateTimePicker.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.creExpDateTimePicker.BorderRadius = 8;
+            this.creExpDateTimePicker.BorderThickness = 1;
             this.creExpDateTimePicker.Checked = true;
             this.creExpDateTimePicker.FillColor = System.Drawing.Color.White;
-            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creExpDateTimePicker.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creExpDateTimePicker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.creExpDateTimePicker.Location = new System.Drawing.Point(21, 52);
@@ -210,7 +212,7 @@
             this.creExpDetailsext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpDetailsext.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpDetailsext.Font = new System.Drawing.Font("Calibri", 12F);
+            this.creExpDetailsext.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpDetailsext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDetailsext.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpDetailsext.Location = new System.Drawing.Point(494, 231);
@@ -248,7 +250,7 @@
             this.creExpAmountText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpAmountText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpAmountText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpAmountText.Font = new System.Drawing.Font("Calibri", 12F);
+            this.creExpAmountText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creExpAmountText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpAmountText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpAmountText.Location = new System.Drawing.Point(21, 231);
@@ -323,7 +325,7 @@
             // 
             this.creExpTitleText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.creExpTitleText.BackColor = System.Drawing.Color.Transparent;
-            this.creExpTitleText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.creExpTitleText.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.creExpTitleText.BorderRadius = 8;
             this.creExpTitleText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.creExpTitleText.DefaultText = "";
@@ -332,7 +334,7 @@
             this.creExpTitleText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.creExpTitleText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.creExpTitleText.Font = new System.Drawing.Font("Calibri", 12F);
+            this.creExpTitleText.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.creExpTitleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpTitleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpTitleText.Location = new System.Drawing.Point(494, 52);

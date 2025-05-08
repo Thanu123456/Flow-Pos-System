@@ -18,12 +18,21 @@ namespace EscopeWindowsApp
         public SupplierForm()
         {
             InitializeComponent();
+            CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
             bindingSource = new BindingSource();
             LoadSuppliersData();
             // Explicitly wire all events
             supDataGridView.CellPainting += SupDataGridView_CellPainting;
             supDataGridView.CellFormatting += SupDataGridView_CellFormatting;
             supDataGridView.CellContentClick += supDataGridView_CellContentClick; // Ensure click event is hooked
+        }
+
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
+            selectSupDateTime.FillColor = System.Drawing.Color.White;
+            selectSupDateTime.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
+            selectSupDateTime.BorderColor = System.Drawing.Color.Gray; // Subtle border
         }
 
         private void SupplierForm_Load(object sender, EventArgs e)

@@ -39,11 +39,6 @@
             this.userPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.userAllPgLabel = new System.Windows.Forms.Label();
-            this.userOfLabel = new System.Windows.Forms.Label();
-            this.userPgRangeLabel = new System.Windows.Forms.Label();
-            this.userPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.userRecordsPerLabel = new System.Windows.Forms.Label();
             this.userRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.userBtnPanel.SuspendLayout();
@@ -88,7 +83,7 @@
             this.createUserBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createUserBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createUserBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.createUserBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserBtn.ForeColor = System.Drawing.Color.White;
             this.createUserBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.createUserBtn.Location = new System.Drawing.Point(1158, 30);
@@ -180,78 +175,6 @@
             this.userLastBtn.Size = new System.Drawing.Size(26, 26);
             this.userLastBtn.TabIndex = 8;
             this.userLastBtn.Click += new System.EventHandler(this.userLastBtn_Click);
-            // 
-            // userAllPgLabel
-            // 
-            this.userAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.userAllPgLabel.AutoSize = true;
-            this.userAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.userAllPgLabel.Name = "userAllPgLabel";
-            this.userAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.userAllPgLabel.TabIndex = 27;
-            this.userAllPgLabel.Text = "500";
-            // 
-            // userOfLabel
-            // 
-            this.userOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.userOfLabel.AutoSize = true;
-            this.userOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.userOfLabel.Name = "userOfLabel";
-            this.userOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.userOfLabel.TabIndex = 26;
-            this.userOfLabel.Text = "of";
-            // 
-            // userPgRangeLabel
-            // 
-            this.userPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.userPgRangeLabel.AutoSize = true;
-            this.userPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.userPgRangeLabel.Name = "userPgRangeLabel";
-            this.userPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.userPgRangeLabel.TabIndex = 25;
-            this.userPgRangeLabel.Text = "0-50";
-            // 
-            // userPageCombo
-            // 
-            this.userPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.userPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.userPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.userPageCombo.BorderRadius = 8;
-            this.userPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.userPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.userPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.userPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.userPageCombo.ItemHeight = 30;
-            this.userPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.userPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.userPageCombo.Name = "userPageCombo";
-            this.userPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.userPageCombo.StartIndex = 0;
-            this.userPageCombo.TabIndex = 24;
-            // 
-            // userRecordsPerLabel
-            // 
-            this.userRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.userRecordsPerLabel.AutoSize = true;
-            this.userRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.userRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.userRecordsPerLabel.Name = "userRecordsPerLabel";
-            this.userRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.userRecordsPerLabel.TabIndex = 23;
-            this.userRecordsPerLabel.Text = "Records per page";
             // 
             // userRefreshBtn
             // 
@@ -359,11 +282,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.userDataGridView);
             this.Controls.Add(this.userRefreshBtn);
-            this.Controls.Add(this.userAllPgLabel);
-            this.Controls.Add(this.userOfLabel);
-            this.Controls.Add(this.userPgRangeLabel);
-            this.Controls.Add(this.userPageCombo);
-            this.Controls.Add(this.userRecordsPerLabel);
             this.Controls.Add(this.userBtnPanel);
             this.Controls.Add(this.createUserBtn);
             this.Controls.Add(this.userSearchText);
@@ -380,7 +298,6 @@
             this.userBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -393,11 +310,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton userPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userLastBtn;
-        private System.Windows.Forms.Label userAllPgLabel;
-        private System.Windows.Forms.Label userOfLabel;
-        private System.Windows.Forms.Label userPgRangeLabel;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox userPageCombo;
-        private System.Windows.Forms.Label userRecordsPerLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton userRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView userDataGridView;
     }

@@ -28,16 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.unitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.unitsRecordsPerLabel = new System.Windows.Forms.Label();
-            this.unitsAllPgLabel = new System.Windows.Forms.Label();
-            this.unitsOfLabel = new System.Windows.Forms.Label();
-            this.unitsPgRangeLabel = new System.Windows.Forms.Label();
             this.unitsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.unitsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.unitsPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -59,7 +54,7 @@
             this.createUnitsBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.createUnitsBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.createUnitsBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.createUnitsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createUnitsBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUnitsBtn.ForeColor = System.Drawing.Color.White;
             this.createUnitsBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.createUnitsBtn.Location = new System.Drawing.Point(1158, 30);
@@ -68,78 +63,6 @@
             this.createUnitsBtn.TabIndex = 26;
             this.createUnitsBtn.Text = "Create Unit";
             this.createUnitsBtn.Click += new System.EventHandler(this.createUnitsBtn_Click);
-            // 
-            // unitsPageCombo
-            // 
-            this.unitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.unitsPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.unitsPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.unitsPageCombo.BorderRadius = 8;
-            this.unitsPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.unitsPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.unitsPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.unitsPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.unitsPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.unitsPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.unitsPageCombo.ItemHeight = 30;
-            this.unitsPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.unitsPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.unitsPageCombo.Name = "unitsPageCombo";
-            this.unitsPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.unitsPageCombo.StartIndex = 0;
-            this.unitsPageCombo.TabIndex = 45;
-            // 
-            // unitsRecordsPerLabel
-            // 
-            this.unitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.unitsRecordsPerLabel.AutoSize = true;
-            this.unitsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.unitsRecordsPerLabel.Name = "unitsRecordsPerLabel";
-            this.unitsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.unitsRecordsPerLabel.TabIndex = 44;
-            this.unitsRecordsPerLabel.Text = "Records per page";
-            // 
-            // unitsAllPgLabel
-            // 
-            this.unitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.unitsAllPgLabel.AutoSize = true;
-            this.unitsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsAllPgLabel.Location = new System.Drawing.Point(295, 742);
-            this.unitsAllPgLabel.Name = "unitsAllPgLabel";
-            this.unitsAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.unitsAllPgLabel.TabIndex = 43;
-            this.unitsAllPgLabel.Text = "500";
-            // 
-            // unitsOfLabel
-            // 
-            this.unitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.unitsOfLabel.AutoSize = true;
-            this.unitsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsOfLabel.Location = new System.Drawing.Point(274, 742);
-            this.unitsOfLabel.Name = "unitsOfLabel";
-            this.unitsOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.unitsOfLabel.TabIndex = 42;
-            this.unitsOfLabel.Text = "of";
-            // 
-            // unitsPgRangeLabel
-            // 
-            this.unitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.unitsPgRangeLabel.AutoSize = true;
-            this.unitsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.unitsPgRangeLabel.Name = "unitsPgRangeLabel";
-            this.unitsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.unitsPgRangeLabel.TabIndex = 41;
-            this.unitsPgRangeLabel.Text = "0-50";
             // 
             // unitsBtnPanel
             // 
@@ -275,48 +198,48 @@
             this.unitsDataGridView.AllowUserToDeleteRows = false;
             this.unitsDataGridView.AllowUserToResizeColumns = false;
             this.unitsDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.unitsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.unitsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.unitsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.unitsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.unitsDataGridView.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.unitsDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.unitsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.unitsDataGridView.GridColor = System.Drawing.Color.White;
             this.unitsDataGridView.Location = new System.Drawing.Point(17, 100);
             this.unitsDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.unitsDataGridView.Name = "unitsDataGridView";
             this.unitsDataGridView.ReadOnly = true;
             this.unitsDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.unitsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.unitsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.unitsDataGridView.RowHeadersVisible = false;
             this.unitsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.unitsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -354,11 +277,6 @@
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
             this.Controls.Add(this.unitsDataGridView);
-            this.Controls.Add(this.unitsPageCombo);
-            this.Controls.Add(this.unitsRecordsPerLabel);
-            this.Controls.Add(this.unitsAllPgLabel);
-            this.Controls.Add(this.unitsOfLabel);
-            this.Controls.Add(this.unitsPgRangeLabel);
             this.Controls.Add(this.unitsBtnPanel);
             this.Controls.Add(this.createUnitsBtn);
             this.Controls.Add(this.unitsFilterBtn);
@@ -376,7 +294,6 @@
             this.unitsBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.unitsDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -384,11 +301,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton createUnitsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton unitsFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox unitsSearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox unitsPageCombo;
-        private System.Windows.Forms.Label unitsRecordsPerLabel;
-        private System.Windows.Forms.Label unitsAllPgLabel;
-        private System.Windows.Forms.Label unitsOfLabel;
-        private System.Windows.Forms.Label unitsPgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel unitsBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton unitsFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton unitsPrevBtn;

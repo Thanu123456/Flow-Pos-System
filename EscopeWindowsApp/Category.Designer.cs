@@ -33,11 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.createCategoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.categoryPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.categorytRecordsPerLabel = new System.Windows.Forms.Label();
-            this.categoryAllPgLabel = new System.Windows.Forms.Label();
-            this.categoryOfLabel = new System.Windows.Forms.Label();
-            this.categoryPgRangeLabel = new System.Windows.Forms.Label();
             this.categoryBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.categoryFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.categoryPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -70,78 +65,6 @@
             this.createCategoryBtn.TabIndex = 14;
             this.createCategoryBtn.Text = "Create Category";
             this.createCategoryBtn.Click += new System.EventHandler(this.createCategoryBtn_Click);
-            // 
-            // categoryPageCombo
-            // 
-            this.categoryPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.categoryPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.categoryPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.categoryPageCombo.BorderRadius = 8;
-            this.categoryPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.categoryPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.categoryPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.categoryPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.categoryPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.categoryPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.categoryPageCombo.ItemHeight = 30;
-            this.categoryPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.categoryPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.categoryPageCombo.Name = "categoryPageCombo";
-            this.categoryPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.categoryPageCombo.StartIndex = 0;
-            this.categoryPageCombo.TabIndex = 27;
-            // 
-            // categorytRecordsPerLabel
-            // 
-            this.categorytRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.categorytRecordsPerLabel.AutoSize = true;
-            this.categorytRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categorytRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categorytRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.categorytRecordsPerLabel.Name = "categorytRecordsPerLabel";
-            this.categorytRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.categorytRecordsPerLabel.TabIndex = 26;
-            this.categorytRecordsPerLabel.Text = "Records per page";
-            // 
-            // categoryAllPgLabel
-            // 
-            this.categoryAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.categoryAllPgLabel.AutoSize = true;
-            this.categoryAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryAllPgLabel.Location = new System.Drawing.Point(297, 742);
-            this.categoryAllPgLabel.Name = "categoryAllPgLabel";
-            this.categoryAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.categoryAllPgLabel.TabIndex = 25;
-            this.categoryAllPgLabel.Text = "500";
-            // 
-            // categoryOfLabel
-            // 
-            this.categoryOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.categoryOfLabel.AutoSize = true;
-            this.categoryOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryOfLabel.Location = new System.Drawing.Point(276, 742);
-            this.categoryOfLabel.Name = "categoryOfLabel";
-            this.categoryOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.categoryOfLabel.TabIndex = 24;
-            this.categoryOfLabel.Text = "of";
-            // 
-            // categoryPgRangeLabel
-            // 
-            this.categoryPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.categoryPgRangeLabel.AutoSize = true;
-            this.categoryPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.categoryPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.categoryPgRangeLabel.Name = "categoryPgRangeLabel";
-            this.categoryPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.categoryPgRangeLabel.TabIndex = 23;
-            this.categoryPgRangeLabel.Text = "0-50";
             // 
             // categoryBtnPanel
             // 
@@ -259,7 +182,7 @@
             this.categorySearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.categorySearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.categorySearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.categorySearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categorySearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categorySearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.categorySearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.categorySearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -271,7 +194,7 @@
             this.categorySearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.categorySearchText.PlaceholderText = "Search";
             this.categorySearchText.SelectedText = "";
-            this.categorySearchText.Size = new System.Drawing.Size(400, 41);
+            this.categorySearchText.Size = new System.Drawing.Size(400, 42);
             this.categorySearchText.TabIndex = 12;
             this.categorySearchText.TextChanged += new System.EventHandler(this.categorySearchText_TextChanged);
             // 
@@ -291,7 +214,6 @@
             this.categoryDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.categoryDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -362,11 +284,6 @@
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
             this.Controls.Add(this.categoryDataGridView);
-            this.Controls.Add(this.categoryPageCombo);
-            this.Controls.Add(this.categorytRecordsPerLabel);
-            this.Controls.Add(this.categoryAllPgLabel);
-            this.Controls.Add(this.categoryOfLabel);
-            this.Controls.Add(this.categoryPgRangeLabel);
             this.Controls.Add(this.categoryBtnPanel);
             this.Controls.Add(this.createCategoryBtn);
             this.Controls.Add(this.categoryRefreshBtn);
@@ -392,11 +309,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton createCategoryBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton categoryRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox categorySearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox categoryPageCombo;
-        private System.Windows.Forms.Label categorytRecordsPerLabel;
-        private System.Windows.Forms.Label categoryAllPgLabel;
-        private System.Windows.Forms.Label categoryOfLabel;
-        private System.Windows.Forms.Label categoryPgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton categoryFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel categoryBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton categoryPrevBtn;

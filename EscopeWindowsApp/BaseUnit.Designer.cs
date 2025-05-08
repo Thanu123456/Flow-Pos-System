@@ -33,11 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.baseUnitsPageCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
-            this.baseUnitsRecordsPerLabel = new System.Windows.Forms.Label();
-            this.baseUnitsAllPgLabel = new System.Windows.Forms.Label();
-            this.baseUnitsOfLabel = new System.Windows.Forms.Label();
-            this.baseUnitsPgRangeLabel = new System.Windows.Forms.Label();
             this.baseUnitsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.baseUnitsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.baseUnitsPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -69,79 +64,6 @@
             this.baseUnitsBtn.TabIndex = 30;
             this.baseUnitsBtn.Text = "Create Base Unit";
             this.baseUnitsBtn.Click += new System.EventHandler(this.baseUnitsBtn_Click);
-            // 
-            // baseUnitsPageCombo
-            // 
-            this.baseUnitsPageCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.baseUnitsPageCombo.BackColor = System.Drawing.Color.Transparent;
-            this.baseUnitsPageCombo.BorderColor = System.Drawing.Color.Black;
-            this.baseUnitsPageCombo.BorderRadius = 8;
-            this.baseUnitsPageCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.baseUnitsPageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.baseUnitsPageCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.baseUnitsPageCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.baseUnitsPageCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.baseUnitsPageCombo.ForeColor = System.Drawing.Color.Black;
-            this.baseUnitsPageCombo.ItemHeight = 30;
-            this.baseUnitsPageCombo.Items.AddRange(new object[] {
-            "0-10",
-            "0-15",
-            "0-50",
-            "0-80"});
-            this.baseUnitsPageCombo.Location = new System.Drawing.Point(141, 734);
-            this.baseUnitsPageCombo.Name = "baseUnitsPageCombo";
-            this.baseUnitsPageCombo.Size = new System.Drawing.Size(85, 36);
-            this.baseUnitsPageCombo.StartIndex = 0;
-            this.baseUnitsPageCombo.TabIndex = 51;
-            // 
-            // baseUnitsRecordsPerLabel
-            // 
-            this.baseUnitsRecordsPerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.baseUnitsRecordsPerLabel.AutoSize = true;
-            this.baseUnitsRecordsPerLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baseUnitsRecordsPerLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsRecordsPerLabel.Location = new System.Drawing.Point(13, 742);
-            this.baseUnitsRecordsPerLabel.Name = "baseUnitsRecordsPerLabel";
-            this.baseUnitsRecordsPerLabel.Size = new System.Drawing.Size(122, 19);
-            this.baseUnitsRecordsPerLabel.TabIndex = 50;
-            this.baseUnitsRecordsPerLabel.Text = "Records per page";
-            // 
-            // baseUnitsAllPgLabel
-            // 
-            this.baseUnitsAllPgLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.baseUnitsAllPgLabel.AutoSize = true;
-            this.baseUnitsAllPgLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baseUnitsAllPgLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsAllPgLabel.Location = new System.Drawing.Point(297, 742);
-            this.baseUnitsAllPgLabel.Name = "baseUnitsAllPgLabel";
-            this.baseUnitsAllPgLabel.Size = new System.Drawing.Size(33, 19);
-            this.baseUnitsAllPgLabel.TabIndex = 49;
-            this.baseUnitsAllPgLabel.Text = "500";
-            // 
-            // baseUnitsOfLabel
-            // 
-            this.baseUnitsOfLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.baseUnitsOfLabel.AutoSize = true;
-            this.baseUnitsOfLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baseUnitsOfLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsOfLabel.Location = new System.Drawing.Point(276, 742);
-            this.baseUnitsOfLabel.Name = "baseUnitsOfLabel";
-            this.baseUnitsOfLabel.Size = new System.Drawing.Size(22, 19);
-            this.baseUnitsOfLabel.TabIndex = 48;
-            this.baseUnitsOfLabel.Text = "of";
-            this.baseUnitsOfLabel.Click += new System.EventHandler(this.baseUnitsOfLabel_Click);
-            // 
-            // baseUnitsPgRangeLabel
-            // 
-            this.baseUnitsPgRangeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.baseUnitsPgRangeLabel.AutoSize = true;
-            this.baseUnitsPgRangeLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baseUnitsPgRangeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.baseUnitsPgRangeLabel.Location = new System.Drawing.Point(237, 742);
-            this.baseUnitsPgRangeLabel.Name = "baseUnitsPgRangeLabel";
-            this.baseUnitsPgRangeLabel.Size = new System.Drawing.Size(38, 19);
-            this.baseUnitsPgRangeLabel.TabIndex = 47;
-            this.baseUnitsPgRangeLabel.Text = "0-50";
             // 
             // baseUnitsBtnPanel
             // 
@@ -256,7 +178,7 @@
             this.baseUnitSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.baseUnitSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.baseUnitSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.baseUnitSearchText.Font = new System.Drawing.Font("Calibri", 12F);
+            this.baseUnitSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseUnitSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.baseUnitSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.baseUnitSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -357,11 +279,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.baseUnitDataGridView);
-            this.Controls.Add(this.baseUnitsPageCombo);
-            this.Controls.Add(this.baseUnitsRecordsPerLabel);
-            this.Controls.Add(this.baseUnitsAllPgLabel);
-            this.Controls.Add(this.baseUnitsOfLabel);
-            this.Controls.Add(this.baseUnitsPgRangeLabel);
             this.Controls.Add(this.baseUnitsBtnPanel);
             this.Controls.Add(this.baseUnitsBtn);
             this.Controls.Add(this.baseUnitFilterBtn);
@@ -378,7 +295,6 @@
             this.baseUnitsBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.baseUnitDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -386,11 +302,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitsBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitFilterBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox baseUnitSearchText;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox baseUnitsPageCombo;
-        private System.Windows.Forms.Label baseUnitsRecordsPerLabel;
-        private System.Windows.Forms.Label baseUnitsAllPgLabel;
-        private System.Windows.Forms.Label baseUnitsOfLabel;
-        private System.Windows.Forms.Label baseUnitsPgRangeLabel;
         private Siticone.Desktop.UI.WinForms.SiticonePanel baseUnitsBtnPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitsFirstBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton baseUnitsPrevBtn;

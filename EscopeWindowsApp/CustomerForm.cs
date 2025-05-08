@@ -248,25 +248,12 @@ namespace EscopeWindowsApp
             }
         }
 
-        private void cusFilterBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime selectedDate = selectCusDateTime.Value.Date;
-                bindingSource.Filter = $"created_at >= #{selectedDate:yyyy-MM-dd}# AND created_at < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error applying date filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                bindingSource.Filter = null;
-            }
-        }
+        
 
         private void cusRefreshBtn_Click(object sender, EventArgs e)
         {
             LoadCustomersData();
             cusSearchText.Text = string.Empty;
-            selectCusDateTime.Value = DateTime.Now;
             bindingSource.Filter = null; // Explicitly clear any existing filter
         }
 

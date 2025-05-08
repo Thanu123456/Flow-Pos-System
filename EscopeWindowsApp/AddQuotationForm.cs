@@ -25,11 +25,42 @@ namespace EscopeWindowsApp
         private BindingSource bindingSource;
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
         private int itemNumberCounter = 1; // To assign unique item numbers in addQuotaDataGridView
+        private Panel scrollablePanel;     // Panel for scrollable content
 
         public AddQuotationForm()
         {
             InitializeComponent();
             createQuoText.Text = "Walk-In Customer";
+            CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
+
+            // Fix headerPanel to prevent scrolling
+            headerPanel.Parent = this; // Make headerPanel a direct child of the form
+            headerPanel.Dock = DockStyle.Top;
+            headerPanel.AutoScroll = false;
+            headerPanel.BringToFront();
+
+            // Create a scrollable panel for other controls
+            scrollablePanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                Top = headerPanel.Height, // Position below headerPanel
+                Height = this.ClientSize.Height - headerPanel.Height
+            };
+            this.Controls.Add(scrollablePanel);
+
+            // Move scrollable controls to scrollablePanel
+            foreach (Control control in this.Controls.Cast<Control>().ToList())
+            {
+                if (control != headerPanel && control != scrollablePanel)
+                {
+                    this.Controls.Remove(control);
+                    scrollablePanel.Controls.Add(control);
+                }
+            }
+
+            // Handle form scrolling to keep headerPanel fixed
+            this.Scroll += (s, e) => headerPanel.Location = new Point(0, 0);
 
             // Initialize and start the time timer
             timeTimer = new Timer();
@@ -61,6 +92,16 @@ namespace EscopeWindowsApp
             quotaProductDataGrid.CellPainting += quotaProductDataGrid_CellPainting;
             quotaProductDataGrid.CellFormatting += quotaProductDataGrid_CellFormatting;
         }
+
+        #region DateTimePicker Customization
+        private void CustomizeDateTimePicker()
+        {
+            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
+            createQuotaDateTime.FillColor = System.Drawing.Color.White;
+            createQuotaDateTime.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
+            createQuotaDateTime.BorderColor = System.Drawing.Color.Gray; // Subtle border
+        }
+        #endregion
 
         private void TextBox_NumericalKeyPress(object sender, KeyPressEventArgs e)
         {
@@ -478,14 +519,12 @@ namespace EscopeWindowsApp
 
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
-            // Assuming you have a label to display time, similar to POS form
-            // You can add a label in your form designer if needed
+            // Assuming you have a label to display time
         }
 
         private void DateTimer_Tick(object sender, EventArgs e)
         {
-            // Assuming you have a label to display date, similar to POS form
-            // You can add a label in your form designer if needed
+            // Assuming you have a label to display date
         }
 
         #endregion
@@ -879,7 +918,7 @@ namespace EscopeWindowsApp
 
         private void createQuoText_TextChanged(object sender, EventArgs e)
         {
-            // Optional: You can add logic to validate or search for customer name
+            // Optional: Add logic to validate or search for customer name
         }
 
         private void createQuoSearchText_TextChanged(object sender, EventArgs e)
@@ -1252,10 +1291,9 @@ namespace EscopeWindowsApp
             }
         }
 
-        #endregion
-
         private void headerPanel_Paint(object sender, PaintEventArgs e)
         {
         }
     }
 }
+#endregion

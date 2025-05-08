@@ -319,10 +319,10 @@
             this.addtoListBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.addtoListBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.addtoListBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.addtoListBtn.FillColor = System.Drawing.Color.SlateBlue;
+            this.addtoListBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.addtoListBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.addtoListBtn.ForeColor = System.Drawing.Color.White;
-            this.addtoListBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.addtoListBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.addtoListBtn.Location = new System.Drawing.Point(13, 168);
             this.addtoListBtn.Name = "addtoListBtn";
             this.addtoListBtn.Size = new System.Drawing.Size(553, 42);
@@ -870,7 +870,7 @@
             this.refuntWebcamScanBtn.Name = "refuntWebcamScanBtn";
             this.refuntWebcamScanBtn.Size = new System.Drawing.Size(153, 56);
             this.refuntWebcamScanBtn.TabIndex = 94;
-            this.refuntWebcamScanBtn.Text = "Scan web cam";
+            this.refuntWebcamScanBtn.Text = "Web Cam Scanner";
             this.refuntWebcamScanBtn.Click += new System.EventHandler(this.refuntWebcamScanBtn_Click);
             // 
             // Refund

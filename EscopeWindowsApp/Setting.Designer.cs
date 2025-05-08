@@ -46,6 +46,8 @@
             this.siticoneHtmlLabel1 = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.copyrightlabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
             this.logobox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.websiteBtn = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.setLogoBox)).BeginInit();
             this.setPanel.SuspendLayout();
             this.siticonePanel11.SuspendLayout();
@@ -300,6 +302,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.setPanel.BackColor = System.Drawing.Color.Transparent;
             this.setPanel.BorderRadius = 8;
+            this.setPanel.Controls.Add(this.label1);
+            this.setPanel.Controls.Add(this.websiteBtn);
             this.setPanel.Controls.Add(this.setSaveBtn);
             this.setPanel.Controls.Add(this.setImgUploadBtn);
             this.setPanel.Controls.Add(this.setAddressLabel);
@@ -366,6 +370,46 @@
             this.logobox.TabIndex = 0;
             this.logobox.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(696, 203);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 23);
+            this.label1.TabIndex = 85;
+            this.label1.Text = "WebSite:";
+            // 
+            // websiteBtn
+            // 
+            this.websiteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.websiteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.websiteBtn.BorderColor = System.Drawing.Color.Gray;
+            this.websiteBtn.BorderRadius = 8;
+            this.websiteBtn.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.websiteBtn.DefaultText = "";
+            this.websiteBtn.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.websiteBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.websiteBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.websiteBtn.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.websiteBtn.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.websiteBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.websiteBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.websiteBtn.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.websiteBtn.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.websiteBtn.Location = new System.Drawing.Point(700, 233);
+            this.websiteBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.websiteBtn.Name = "websiteBtn";
+            this.websiteBtn.PasswordChar = '\0';
+            this.websiteBtn.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.websiteBtn.PlaceholderText = "Enter Your Website";
+            this.websiteBtn.SelectedText = "";
+            this.websiteBtn.Size = new System.Drawing.Size(600, 42);
+            this.websiteBtn.TabIndex = 84;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,5 +458,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel siticoneHtmlLabel1;
         private Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel copyrightlabel;
         private Siticone.Desktop.UI.WinForms.SiticonePictureBox logobox;
+        private System.Windows.Forms.Label label1;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox websiteBtn;
     }
 }

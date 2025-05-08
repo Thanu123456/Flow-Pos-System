@@ -46,26 +46,10 @@ namespace EscopeWindowsApp
         #region DateTimePicker Customization
         private void CustomizeDateTimePicker()
         {
-            // Set fill color to White
-            grnExpireDatePicker.BackColor = Color.White;
-
-            
-
-            // Subscribe to hover events
-            grnExpireDatePicker.MouseEnter += GrnExpireDatePicker_MouseEnter;
-            grnExpireDatePicker.MouseLeave += GrnExpireDatePicker_MouseLeave;
-        }
-
-        private void GrnExpireDatePicker_MouseEnter(object sender, EventArgs e)
-        {
-            // Set hover color to White (same as fill color)
-            grnExpireDatePicker.BackColor = Color.White;
-        }
-
-        private void GrnExpireDatePicker_MouseLeave(object sender, EventArgs e)
-        {
-            // Revert to fill color (White) when mouse leaves
-            grnExpireDatePicker.BackColor = Color.White;
+            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
+            grnExpireDatePicker.FillColor = System.Drawing.Color.White;
+            grnExpireDatePicker.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
+            //grnExpireDatePicker.BorderColor = System.Drawing.Color.Gray; // Subtle border
         }
         #endregion
 
