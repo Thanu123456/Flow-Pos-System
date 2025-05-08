@@ -1695,6 +1695,25 @@ namespace EscopeWindowsApp
                 }
             }
         }
+
+        private void calculatorFormBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CalculatorForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            CalculatorForm calculatorForm = new CalculatorForm();
+            calculatorForm.Show();
+        }
     }
 }
 #endregion
