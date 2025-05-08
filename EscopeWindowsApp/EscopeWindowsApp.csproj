@@ -266,6 +266,12 @@
     <Compile Include="Barcode.Designer.cs">
       <DependentUpon>Barcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="BarcodePreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BarcodePreview.Designer.cs">
+      <DependentUpon>BarcodePreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode.resx">
       <DependentUpon>Barcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BarcodePreview.resx">
+      <DependentUpon>BarcodePreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUnit.resx">
       <DependentUpon>BaseUnit.cs</DependentUpon>
