@@ -19,94 +19,10 @@ namespace EscopeWindowsApp
             InitializeComponent();
 
             // Wire up events in case they're not hooked in the designer:
-            this.Load += LogsReport_Load;
+            this.Load += LogsReport_Load_1;
             logsSearchText.TextChanged += LogsSearchText_TextChanged;
             logsReportFilterBtn.Click += LogsReportFilterBtn_Click;
             selectLogDateTime.ValueChanged += SelectLogDateTime_ValueChanged;
-        }
-
-        private void LogsReport_Load(object sender, EventArgs e)
-        {
-            // Define columns only once:
-            logsReportDataGrid.AutoGenerateColumns = false;
-            logsReportDataGrid.ReadOnly = true;
-            logsReportDataGrid.AllowUserToAddRows = false;
-            logsReportDataGrid.Columns.Clear();
-
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "session_start_time",
-                DataPropertyName = "session_start_time",
-                HeaderText = "SESSION START TIME",
-                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
-                Width = 250 // Adjust this value as needed
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "session_end_time",
-                DataPropertyName = "session_end_time",
-                HeaderText = "SESSION END TIME",
-                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
-                Width = 250 // Adjust this value as needed
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "username",
-                DataPropertyName = "username",
-                HeaderText = "USERNAME",
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "cash_in_hand",
-                DataPropertyName = "cash_in_hand",
-                HeaderText = "CASH IN HAND",
-                DefaultCellStyle = { Format = "N2" },
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "cash_amount",
-                DataPropertyName = "cash_amount",
-                HeaderText = "CASH AMOUNT",
-                DefaultCellStyle = { Format = "N2" }
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "card_amount",
-                DataPropertyName = "card_amount",
-                HeaderText = "CARD AMOUNT",
-                DefaultCellStyle = { Format = "N2" }
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "total_sale_amount",
-                DataPropertyName = "total_sale_amount",
-                HeaderText = "TOTAL SALE AMOUNT",
-                DefaultCellStyle = { Format = "N2" }
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "total_refund_amount",
-                DataPropertyName = "total_refund_amount",
-                HeaderText = "TOTAL REFUND AMOUNT",
-                DefaultCellStyle = { Format = "N2" },
-                
-            });
-            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "note",
-                DataPropertyName = "note",
-                HeaderText = "NOTE",
-                Width = 200
-            });
-
-            // Load everything to start
-            _selectedDate = null;
-            LoadLogsData();
         }
 
         private void LoadLogsData()
@@ -214,7 +130,86 @@ namespace EscopeWindowsApp
 
         private void LogsReport_Load_1(object sender, EventArgs e)
         {
+            // Define columns only once:
+            logsReportDataGrid.AutoGenerateColumns = false;
+            logsReportDataGrid.ReadOnly = true;
+            logsReportDataGrid.AllowUserToAddRows = false;
+            logsReportDataGrid.Columns.Clear();
 
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "session_start_time",
+                DataPropertyName = "session_start_time",
+                HeaderText = "SESSION START TIME",
+                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
+                Width = 250 // Adjust this value as needed
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "session_end_time",
+                DataPropertyName = "session_end_time",
+                HeaderText = "SESSION END TIME",
+                DefaultCellStyle = { Format = "yyyy-MM-dd HH:mm:ss" },
+                Width = 250 // Adjust this value as needed
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "username",
+                DataPropertyName = "username",
+                HeaderText = "USERNAME",
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "cash_in_hand",
+                DataPropertyName = "cash_in_hand",
+                HeaderText = "CASH IN HAND",
+                DefaultCellStyle = { Format = "N2" },
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "cash_amount",
+                DataPropertyName = "cash_amount",
+                HeaderText = "CASH AMOUNT",
+                DefaultCellStyle = { Format = "N2" }
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "card_amount",
+                DataPropertyName = "card_amount",
+                HeaderText = "CARD AMOUNT",
+                DefaultCellStyle = { Format = "N2" }
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "total_sale_amount",
+                DataPropertyName = "total_sale_amount",
+                HeaderText = "TOTAL SALE AMOUNT",
+                DefaultCellStyle = { Format = "N2" }
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "total_refund_amount",
+                DataPropertyName = "total_refund_amount",
+                HeaderText = "TOTAL REFUND AMOUNT",
+                DefaultCellStyle = { Format = "N2" },
+
+            });
+            logsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "note",
+                DataPropertyName = "note",
+                HeaderText = "NOTE",
+                Width = 200
+            });
+
+            // Load everything to start
+            _selectedDate = null;
+            LoadLogsData();
         }
     }
 }

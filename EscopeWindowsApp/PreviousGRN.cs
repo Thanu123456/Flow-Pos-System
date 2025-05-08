@@ -47,7 +47,7 @@ namespace EscopeWindowsApp
             preGRNDataGridView.Columns.Clear();
 
             // Define the uniform font for all cells
-            Font gridFont = new Font("Segoe UI", 9F);
+            
 
             // Add columns for grn table
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -56,7 +56,7 @@ namespace EscopeWindowsApp
                 Name = "grn_no",
                 HeaderText = "GRN NUMBER",
                 Width = 150,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+               
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -64,7 +64,7 @@ namespace EscopeWindowsApp
                 Name = "payment_method",
                 HeaderText = "PAYMENT METHOD",
                 Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+               
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -72,7 +72,7 @@ namespace EscopeWindowsApp
                 Name = "total_amount",
                 HeaderText = "TOTAL AMOUNT",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "N2" }
+                
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -80,7 +80,7 @@ namespace EscopeWindowsApp
                 Name = "date",
                 HeaderText = "DATE",
                 Width = 140,
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont, Format = "yyyy-MM-dd HH:mm:ss" }
+                
             });
 
             // Add Delete button column
@@ -90,17 +90,16 @@ namespace EscopeWindowsApp
                 HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this GRN",
-                DefaultCellStyle = new DataGridViewCellStyle { Font = gridFont }
+               
             });
 
             // Prevent the empty row at the end
             preGRNDataGridView.AllowUserToAddRows = false;
 
             // Styling
-            preGRNDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            preGRNDataGridView.DefaultCellStyle.Font = gridFont;
+           
             preGRNDataGridView.RowHeadersVisible = false;
-            preGRNDataGridView.Font = gridFont;
+          
         }
 
         private void LoadGRNData()
@@ -159,7 +158,7 @@ namespace EscopeWindowsApp
             }
 
             // Ensure font consistency
-            e.CellStyle.Font = new Font("Segoe UI", 9F);
+            e.CellStyle.Font = new Font("Segoe UI", 12F);
         }
 
         private void PreGRNDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

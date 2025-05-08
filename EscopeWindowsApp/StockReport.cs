@@ -157,32 +157,32 @@ namespace EscopeWindowsApp
             // Ensure columns are correctly formatted and in the desired order
             if (stockReportDataGrid.Columns["product_name"] != null)
             {
-                stockReportDataGrid.Columns["product_name"].HeaderText = "Product Name";
+                stockReportDataGrid.Columns["product_name"].HeaderText = "PRODUCT NAME";
                 stockReportDataGrid.Columns["product_name"].DisplayIndex = 0;
             }
             if (stockReportDataGrid.Columns["category_name"] != null)
             {
-                stockReportDataGrid.Columns["category_name"].HeaderText = "Category";
+                stockReportDataGrid.Columns["category_name"].HeaderText = "CATEGORY";
                 stockReportDataGrid.Columns["category_name"].DisplayIndex = 1;
             }
             if (stockReportDataGrid.Columns["brand_name"] != null)
             {
-                stockReportDataGrid.Columns["brand_name"].HeaderText = "Brand Name";
+                stockReportDataGrid.Columns["brand_name"].HeaderText = "BRAND";
                 stockReportDataGrid.Columns["brand_name"].DisplayIndex = 2;
             }
             if (stockReportDataGrid.Columns["variation_type"] != null)
             {
-                stockReportDataGrid.Columns["variation_type"].HeaderText = "Variation Type";
+                stockReportDataGrid.Columns["variation_type"].HeaderText = "VARIATION TYPE";
                 stockReportDataGrid.Columns["variation_type"].DisplayIndex = 3;
             }
             if (stockReportDataGrid.Columns["unit_name"] != null)
             {
-                stockReportDataGrid.Columns["unit_name"].HeaderText = "Unit Name";
+                stockReportDataGrid.Columns["unit_name"].HeaderText = "UNIT";
                 stockReportDataGrid.Columns["unit_name"].DisplayIndex = 4;
             }
             if (stockReportDataGrid.Columns["stock"] != null)
             {
-                stockReportDataGrid.Columns["stock"].HeaderText = "Stock";
+                stockReportDataGrid.Columns["stock"].HeaderText = "STOCK";
                 stockReportDataGrid.Columns["stock"].DisplayIndex = 5;
             }
 
