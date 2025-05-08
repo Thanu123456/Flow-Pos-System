@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCustomerForm));
             this.createCusCityText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusAddressText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.addCusEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -414,6 +415,7 @@
             this.Controls.Add(this.createCusPanel);
             this.Controls.Add(this.createCusLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(100, 15);
             this.MaximumSize = new System.Drawing.Size(1000, 500);
             this.MinimumSize = new System.Drawing.Size(1000, 500);
