@@ -34,8 +34,29 @@ namespace EscopeWindowsApp
             // Remove LoadBaseUnits call here
             this.Load += CreateUnits_Load; // Add Load event handler
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreateUnits_KeyDown;
         }
 
+        private void CreateUnits_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creCatSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creCatCancelBtn.PerformClick();
+            }
+        }
 
         private void SetupErrorProviders()
         {
@@ -205,6 +226,7 @@ namespace EscopeWindowsApp
                 MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void CreateUnits_Load(object sender, EventArgs e)
         {
             LoadBaseUnits();
@@ -212,7 +234,6 @@ namespace EscopeWindowsApp
 
         private void baseUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void creCatCancelBtn_Click(object sender, EventArgs e)

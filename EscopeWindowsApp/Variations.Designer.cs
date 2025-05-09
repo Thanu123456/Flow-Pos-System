@@ -160,7 +160,7 @@
             this.variationsRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.variationsRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.variationsRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.variationsRefreshBtn.Location = new System.Drawing.Point(427, 30);
+            this.variationsRefreshBtn.Location = new System.Drawing.Point(618, 29);
             this.variationsRefreshBtn.Name = "variationsRefreshBtn";
             this.variationsRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.variationsRefreshBtn.TabIndex = 17;

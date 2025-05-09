@@ -46,6 +46,45 @@ namespace EscopeWindowsApp
             // Since we're editing, password fields are optional (user may not want to change the password)
             createUserPassText.Text = ""; // Leave blank
             createUserCpassText.Text = ""; // Leave blank
+
+            // Set default password visibility to hidden
+            createUserPassText.UseSystemPasswordChar = true;
+            createUserCpassText.UseSystemPasswordChar = true;
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += AddUserForm_KeyDown;
+
+            // Restrict createUserPhoneText to numeric input and max 10 digits
+            createUserPhoneText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                else if (char.IsDigit(e.KeyChar) && createUserPhoneText.Text.Length >= 10)
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
+        private void AddUserForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                createSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                createCancelBtn.PerformClick();
+            }
         }
 
         private ErrorProvider firstNameErrorProvider;
@@ -130,10 +169,9 @@ namespace EscopeWindowsApp
                 return false;
             }
 
-            string phonePattern = @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$";
-            if (!Regex.IsMatch(createUserPhoneText.Text, phonePattern))
+            if (createUserPhoneText.Text.Length != 10 || !createUserPhoneText.Text.All(char.IsDigit))
             {
-                phoneErrorProvider.SetError(createUserPhoneText, "Invalid phone number format");
+                phoneErrorProvider.SetError(createUserPhoneText, "Phone number must be exactly 10 digits.");
                 return false;
             }
 
@@ -348,6 +386,18 @@ namespace EscopeWindowsApp
         private void addUserNameText_TextChanged(object sender, EventArgs e)
         {
             UpdateSaveButtonState();
+        }
+
+        private void passShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Toggle password visibility for createUserPassText based on checkbox state
+            createUserPassText.UseSystemPasswordChar = !passShowCheckBox.Checked;
+        }
+
+        private void cPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Toggle password visibility for createUserCpassText based on checkbox state
+            createUserCpassText.UseSystemPasswordChar = !cPassShowCheckBox.Checked;
         }
     }
 }

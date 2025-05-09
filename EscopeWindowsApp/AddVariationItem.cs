@@ -36,6 +36,28 @@ namespace EscopeWindowsApp
             addVarTypeTextBox5.Text = type5;
 
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += AddVariationItem_KeyDown;
+        }
+
+        private void AddVariationItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creVarSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                CreVarCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProviders()

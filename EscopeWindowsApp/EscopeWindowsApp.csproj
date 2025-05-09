@@ -780,6 +780,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\closedeye.png" />
+    <None Include="Resources\eye.png" />
     <None Include="Resources\icons8-ledger-50.png" />
     <None Include="Resources\icons8-webcam-50.png" />
     <None Include="Resources\icons8-calculate-50.png" />

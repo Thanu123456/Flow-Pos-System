@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using System.Linq; // Added to resolve the 'All' method error
 
 namespace EscopeWindowsApp
 {
@@ -41,6 +42,41 @@ namespace EscopeWindowsApp
             createSupItemText.Text = item;
 
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += AddSupplierForm_KeyDown;
+
+            // Restrict createSupPhoneText to numeric input and max 10 digits
+            createSupPhoneText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                else if (char.IsDigit(e.KeyChar) && createSupPhoneText.Text.Length >= 10)
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
+        private void AddSupplierForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                supSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                supCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProviders()
@@ -98,10 +134,9 @@ namespace EscopeWindowsApp
                 phoneErrorProvider.SetError(createSupPhoneText, "Phone number is required.");
                 return false;
             }
-            string phonePattern = @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$";
-            if (!Regex.IsMatch(createSupPhoneText.Text, phonePattern))
+            if (createSupPhoneText.Text.Length != 10 || !createSupPhoneText.Text.All(char.IsDigit))
             {
-                phoneErrorProvider.SetError(createSupPhoneText, "Invalid phone number format.");
+                phoneErrorProvider.SetError(createSupPhoneText, "Phone number must be exactly 10 digits.");
                 return false;
             }
             phoneErrorProvider.SetError(createSupPhoneText, string.Empty);

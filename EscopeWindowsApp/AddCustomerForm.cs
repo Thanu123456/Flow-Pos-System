@@ -43,6 +43,13 @@ namespace EscopeWindowsApp
             createCusAddressText.Text = address;
 
             UpdateSaveButtonState();
+
+            // Enable Enter key to trigger save
+            this.KeyPreview = true;
+            this.KeyDown += AddCustomerForm_KeyDown;
+
+            // Restrict phone textbox to numeric input
+            CreateCusPhoneText.KeyPress += CreateCusPhoneText_KeyPress;
         }
 
         #region DateTimePicker Customization
@@ -68,6 +75,29 @@ namespace EscopeWindowsApp
         private void AddCustomerForm_Load(object sender, EventArgs e)
         {
             UpdateSaveButtonState();
+        }
+
+        private void AddCustomerForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && cusSaveBtn.Enabled)
+            {
+                cusSaveBtn.PerformClick();
+                e.Handled = true;
+            }
+        }
+
+        private void CreateCusPhoneText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (e.g., backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            // Limit to 10 digits
+            if (CreateCusPhoneText.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private bool ValidateCustomerName()
@@ -110,10 +140,10 @@ namespace EscopeWindowsApp
                 phoneErrorProvider.SetError(CreateCusPhoneText, "Phone number is required.");
                 return false;
             }
-            string phonePattern = @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$";
+            string phonePattern = @"^\d{10}$";
             if (!Regex.IsMatch(CreateCusPhoneText.Text, phonePattern))
             {
-                phoneErrorProvider.SetError(CreateCusPhoneText, "Invalid phone number format.");
+                phoneErrorProvider.SetError(CreateCusPhoneText, "Phone number must be exactly 10 digits.");
                 return false;
             }
             phoneErrorProvider.SetError(CreateCusPhoneText, string.Empty);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -39,6 +40,42 @@ namespace EscopeWindowsApp
 
             this.Load += CreateExpenses_Load;
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreateExpenses_KeyDown;
+
+            // Restrict creExpAmountText to numeric input only
+            creExpAmountText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
+        private void CreateExpenses_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creExpSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creExpCancelBtn.PerformClick();
+            }
         }
 
         private void CustomizeDateTimePicker()
@@ -46,7 +83,7 @@ namespace EscopeWindowsApp
             // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
             creExpDateTimePicker.FillColor = System.Drawing.Color.White;
             creExpDateTimePicker.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
-           // creExpDateTimePicker.BorderColor = System.Drawing.Color.Silver; // Subtle border
+                                                                                    // creExpDateTimePicker.BorderColor = System.Drawing.Color.Silver; // Subtle border
         }
 
         private void SetupErrorProviders()
