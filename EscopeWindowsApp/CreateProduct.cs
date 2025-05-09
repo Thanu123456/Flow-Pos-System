@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace EscopeWindowsApp
 {
@@ -45,6 +46,59 @@ namespace EscopeWindowsApp
 
             this.Load += CreateProduct_Load;
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreateProduct_KeyDown;
+
+            // Restrict text boxes to numeric input only
+            singleCostPriText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                }
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            };
+            singleRetPriText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                }
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            };
+            upcNumberText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
+        private void CreateProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creProSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creProCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProviders()

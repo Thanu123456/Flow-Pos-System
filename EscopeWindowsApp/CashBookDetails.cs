@@ -31,6 +31,21 @@ namespace EscopeWindowsApp
                 initTimer.Dispose();
             };
             initTimer.Start();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CashBookDetails_KeyDown;
+        }
+
+        private void CashBookDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Escape key to trigger Cancel button
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                cashbookDetailsCancelBtn.PerformClick();
+            }
         }
 
         private void CashBookDetails_Load(object sender, EventArgs e)

@@ -41,6 +41,41 @@ namespace EscopeWindowsApp
             addWarehouseZipCodeText.Text = zipCode;
 
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += AddWarehouseForm_KeyDown;
+
+            // Restrict addWarehousePhoneText to numeric input and max 10 digits
+            addWarehousePhoneText.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                else if (char.IsDigit(e.KeyChar) && addWarehousePhoneText.Text.Length >= 10)
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
+        private void AddWarehouseForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                addWarehouseSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                addWarehouseCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProviders()

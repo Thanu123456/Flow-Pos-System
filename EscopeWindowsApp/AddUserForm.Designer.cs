@@ -43,7 +43,6 @@
             this.createUserPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.CreateUserRoleCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.createUserCpassText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.createUserPassText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createUserEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createUserPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createUserLastText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -53,6 +52,9 @@
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.createUserPassText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.passShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
+            this.cPassShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
             this.createUserPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -193,6 +195,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.createUserPanel.BorderRadius = 8;
+            this.createUserPanel.Controls.Add(this.cPassShowCheckBox);
+            this.createUserPanel.Controls.Add(this.passShowCheckBox);
             this.createUserPanel.Controls.Add(this.CreateUserRoleCombo);
             this.createUserPanel.Controls.Add(this.createUserCpassText);
             this.createUserPanel.Controls.Add(this.createUserPassText);
@@ -252,6 +256,7 @@
             this.createUserCpassText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createUserCpassText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.createUserCpassText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createUserCpassText.IconRightOffset = new System.Drawing.Point(10, 0);
             this.createUserCpassText.Location = new System.Drawing.Point(494, 250);
             this.createUserCpassText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.createUserCpassText.Name = "createUserCpassText";
@@ -262,32 +267,6 @@
             this.createUserCpassText.Size = new System.Drawing.Size(443, 42);
             this.createUserCpassText.TabIndex = 29;
             this.createUserCpassText.TextChanged += new System.EventHandler(this.createUserCpassText_TextChanged);
-            // 
-            // createUserPassText
-            // 
-            this.createUserPassText.BackColor = System.Drawing.Color.Transparent;
-            this.createUserPassText.BorderColor = System.Drawing.Color.Gray;
-            this.createUserPassText.BorderRadius = 8;
-            this.createUserPassText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.createUserPassText.DefaultText = "";
-            this.createUserPassText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.createUserPassText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.createUserPassText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createUserPassText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.createUserPassText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserPassText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createUserPassText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.createUserPassText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.createUserPassText.Location = new System.Drawing.Point(21, 250);
-            this.createUserPassText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.createUserPassText.Name = "createUserPassText";
-            this.createUserPassText.PasswordChar = '\0';
-            this.createUserPassText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.createUserPassText.PlaceholderText = "Enter Password";
-            this.createUserPassText.SelectedText = "";
-            this.createUserPassText.Size = new System.Drawing.Size(441, 42);
-            this.createUserPassText.TabIndex = 28;
-            this.createUserPassText.TextChanged += new System.EventHandler(this.createUserPassText_TextChanged);
             // 
             // createUserEmailText
             // 
@@ -455,6 +434,61 @@
             this.closeBtn.Size = new System.Drawing.Size(26, 26);
             this.closeBtn.TabIndex = 0;
             // 
+            // createUserPassText
+            // 
+            this.createUserPassText.BackColor = System.Drawing.Color.Transparent;
+            this.createUserPassText.BorderColor = System.Drawing.Color.Gray;
+            this.createUserPassText.BorderRadius = 8;
+            this.createUserPassText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.createUserPassText.DefaultText = "";
+            this.createUserPassText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.createUserPassText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.createUserPassText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createUserPassText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.createUserPassText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createUserPassText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createUserPassText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.createUserPassText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.createUserPassText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.createUserPassText.Location = new System.Drawing.Point(21, 250);
+            this.createUserPassText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createUserPassText.Name = "createUserPassText";
+            this.createUserPassText.PasswordChar = '\0';
+            this.createUserPassText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.createUserPassText.PlaceholderText = "Enter Password";
+            this.createUserPassText.SelectedText = "";
+            this.createUserPassText.Size = new System.Drawing.Size(441, 42);
+            this.createUserPassText.TabIndex = 28;
+            this.createUserPassText.TextChanged += new System.EventHandler(this.createUserPassText_TextChanged);
+            // 
+            // passShowCheckBox
+            // 
+            this.passShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.passShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.passShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.passShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.passShowCheckBox.ImageRotate = 0F;
+            this.passShowCheckBox.Location = new System.Drawing.Point(423, 259);
+            this.passShowCheckBox.Name = "passShowCheckBox";
+            this.passShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.passShowCheckBox.TabIndex = 33;
+            this.passShowCheckBox.UseTransparentBackground = true;
+            this.passShowCheckBox.CheckedChanged += new System.EventHandler(this.passShowCheckBox_CheckedChanged);
+            // 
+            // cPassShowCheckBox
+            // 
+            this.cPassShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.cPassShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.cPassShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.cPassShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.cPassShowCheckBox.ImageRotate = 0F;
+            this.cPassShowCheckBox.Location = new System.Drawing.Point(900, 259);
+            this.cPassShowCheckBox.Name = "cPassShowCheckBox";
+            this.cPassShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.cPassShowCheckBox.TabIndex = 34;
+            this.cPassShowCheckBox.UseTransparentBackground = true;
+            this.cPassShowCheckBox.CheckedChanged += new System.EventHandler(this.cPassShowCheckBox_CheckedChanged);
+            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,5 +541,7 @@
         private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox cPassShowCheckBox;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox passShowCheckBox;
     }
 }

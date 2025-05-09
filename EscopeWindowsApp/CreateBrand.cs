@@ -41,6 +41,28 @@ namespace EscopeWindowsApp
             }
 
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreateBrand_KeyDown;
+        }
+
+        private void CreateBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creBrandsSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creBrandsCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProviders()
@@ -174,20 +196,14 @@ namespace EscopeWindowsApp
                 MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void creBrandsLogoBox_Click_1(object sender, EventArgs e)
+        {
+            // This method is empty and can be removed
+        }
 
         private void creBrandsCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void creBrandsLogoBox_Click(object sender, EventArgs e)
-        {
-            // This method is redundant since creBrandImgUploadBtn_Click handles image upload
-        }
-
-        private void creBrandsLogoBox_Click_1(object sender, EventArgs e)
-        {
-            // This method is empty and can be removed
         }
     }
 }

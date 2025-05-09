@@ -23,6 +23,19 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             SetupErrorProviders();
+
+            // Set default password visibility to hidden
+            loginPasswordTextbox.UseSystemPasswordChar = true;
+            loginPassShowCheckBox.Checked = false;
+
+            // Match checkbox style with AddUserForm
+            loginPassShowCheckBox.Text = "Show Password";
+            loginPassShowCheckBox.AutoSize = true;
+            loginPassShowCheckBox.Font = new Font("Segoe UI", 9F);
+
+            // Enable key preview to capture keyboard events
+            this.KeyPreview = true;
+            this.KeyDown += LoginForm_KeyDown;
         }
 
         private void SetupErrorProviders()
@@ -134,7 +147,7 @@ namespace EscopeWindowsApp
                                     }
                                     else if (role == "Owner")
                                     {
-                                        SideBarForm sideBarForm = new SideBarForm(username, userEmail); // Pass username and email
+                                        SideBarForm sideBarForm = new SideBarForm(username, userEmail);
                                         sideBarForm.FormClosed += (s, args) => this.Close();
                                         sideBarForm.Show();
                                     }
@@ -165,6 +178,36 @@ namespace EscopeWindowsApp
             {
                 MessageBox.Show($"Error during login: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void loginPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Toggle password visibility based on checkbox state
+            loginPasswordTextbox.UseSystemPasswordChar = !loginPassShowCheckBox.Checked;
+
+            // Update checkbox text for better UX
+            loginPassShowCheckBox.Text = loginPassShowCheckBox.Checked ? "Hide Password" : "Show Password";
+
+            // Set focus back to password field
+            loginPasswordTextbox.Focus();
+        }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Trigger login button on Enter key
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                loginBtn.PerformClick();
+            }
+            // Toggle show/hide password with Ctrl + S
+            else if (e.Control && e.KeyCode == Keys.S)
+            {
+                loginPassShowCheckBox.Checked = !loginPassShowCheckBox.Checked;
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
             }
         }
     }
