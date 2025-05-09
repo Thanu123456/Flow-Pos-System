@@ -40,6 +40,28 @@ namespace EscopeWindowsApp
             grnSaveBtn.Click += grnSaveBtn_Click;
             grnCancelBtn.Click += grnCancelBtn_Click;
             purReNoteText.TextChanged += purReNoteText_TextChanged;
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreatePurchasesReturn_KeyDown;
+        }
+
+        private void CreatePurchasesReturn_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                grnSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                grnCancelBtn.PerformClick();
+            }
         }
 
         private void CreatePurchasesReturn_Load(object sender, EventArgs e)
@@ -671,6 +693,7 @@ namespace EscopeWindowsApp
             _grnItemsTable.Clear();
             grnProductDataGridView.DataSource = null;
             LoadGRNData();
+            this.Close(); // Close the form after resetting
         }
 
         private void purReNoteText_TextChanged(object sender, EventArgs e)

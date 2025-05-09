@@ -260,5 +260,20 @@ namespace EscopeWindowsApp
             base.OnActivated(e);
             UpdateLogOutButtonState();
         }
+
+        private void currentPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // this is the current password show/hide toggle button
+        }
+
+        private void newPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // this is the new password show/hide toggle button
+        }
+
+        private void confirmPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // this is the confirm password show/hide toggle button
+        }
     }
 }

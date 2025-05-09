@@ -42,6 +42,7 @@
             this.loginBtn = new Siticone.Desktop.UI.WinForms.SiticoneGradientButton();
             this.loginCloseControlBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.loginMinimizeControlBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
+            this.loginPassShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginPictureBox3)).BeginInit();
@@ -224,11 +225,26 @@
             this.loginMinimizeControlBtn.Size = new System.Drawing.Size(29, 29);
             this.loginMinimizeControlBtn.TabIndex = 20;
             // 
+            // loginPassShowCheckBox
+            // 
+            this.loginPassShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.loginPassShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.loginPassShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.loginPassShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.loginPassShowCheckBox.ImageRotate = 0F;
+            this.loginPassShowCheckBox.Location = new System.Drawing.Point(333, 254);
+            this.loginPassShowCheckBox.Name = "loginPassShowCheckBox";
+            this.loginPassShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.loginPassShowCheckBox.TabIndex = 34;
+            this.loginPassShowCheckBox.UseTransparentBackground = true;
+            this.loginPassShowCheckBox.CheckedChanged += new System.EventHandler(this.loginPassShowCheckBox_CheckedChanged);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.loginPassShowCheckBox);
             this.Controls.Add(this.loginMinimizeControlBtn);
             this.Controls.Add(this.loginCloseControlBtn);
             this.Controls.Add(this.loginBtn);
@@ -267,5 +283,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneGradientButton loginBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox loginCloseControlBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox loginMinimizeControlBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox loginPassShowCheckBox;
     }
 }

@@ -29,6 +29,28 @@ namespace EscopeWindowsApp
             // Pre-fill form fields
             createBaseUnitNameText.Text = name;
             UpdateSaveButtonState();
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += CreateBaseUnit_KeyDown;
+        }
+
+        private void CreateBaseUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creCatSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                creCatCancelBtn.PerformClick();
+            }
         }
 
         private void SetupErrorProvider()

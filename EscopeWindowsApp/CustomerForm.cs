@@ -11,13 +11,15 @@ namespace EscopeWindowsApp
     {
         private DataTable customersTable;
         private BindingSource bindingSource;
-        private int currentIndex = 0;
+        private int currentIndex = -1; // Start with -1 to indicate no selection
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
 
         public CustomerForm()
         {
             InitializeComponent();
             bindingSource = new BindingSource();
+            // Hook up BindingSource events to track position
+            bindingSource.PositionChanged += BindingSource_PositionChanged;
             LoadCustomersData();
             // Explicitly wire all events
             cusDataGridView.CellPainting += CustomerDataGridView_CellPainting;
@@ -25,10 +27,17 @@ namespace EscopeWindowsApp
             cusDataGridView.CellContentClick += cusDataGridView_CellContentClick; // Ensure click event is hooked
         }
 
+        private void BindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            // Sync currentIndex with the BindingSource position
+            currentIndex = bindingSource.Position;
+        }
+
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             ConfigureDataGridView();
             cusDataGridView.DataSource = bindingSource;
+            UpdateNavigation();
         }
 
         private void ConfigureDataGridView()
@@ -186,6 +195,18 @@ namespace EscopeWindowsApp
                 }
 
                 bindingSource.DataSource = customersTable;
+
+                // Reset currentIndex and sync with BindingSource
+                if (customersTable.Rows.Count > 0)
+                {
+                    bindingSource.Position = 0; // Move to the first row
+                }
+                else
+                {
+                    bindingSource.Position = -1; // No rows, no selection
+                }
+
+                UpdateNavigation();
             }
             catch (Exception ex)
             {
@@ -200,7 +221,18 @@ namespace EscopeWindowsApp
                 customersTable.Columns.Add("address", typeof(string));
                 customersTable.Columns.Add("created_at", typeof(DateTime));
                 bindingSource.DataSource = customersTable;
+                bindingSource.Position = -1; // No rows, no selection
+                UpdateNavigation();
             }
+        }
+
+        private void UpdateNavigation()
+        {
+            // Enable/disable navigation buttons based on row count and position
+            cusFirstBtn.Enabled = bindingSource.Count > 0 && bindingSource.Position > 0;
+            cusPrevBtn.Enabled = bindingSource.Count > 0 && bindingSource.Position > 0;
+            cusNextBtn.Enabled = bindingSource.Count > 0 && bindingSource.Position < bindingSource.Count - 1;
+            cusLastBtn.Enabled = bindingSource.Count > 0 && bindingSource.Position < bindingSource.Count - 1;
         }
 
         private void createCusBtn_Click(object sender, EventArgs e)
@@ -240,15 +272,27 @@ namespace EscopeWindowsApp
                 {
                     bindingSource.Filter = null;
                 }
+
+                // Reset position after filtering
+                if (bindingSource.Count > 0)
+                {
+                    bindingSource.Position = 0; // Move to the first row
+                }
+                else
+                {
+                    bindingSource.Position = -1; // No rows, no selection
+                }
+
+                UpdateNavigation();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error applying search filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
+                bindingSource.Position = -1; // No rows, no selection
+                UpdateNavigation();
             }
         }
-
-        
 
         private void cusRefreshBtn_Click(object sender, EventArgs e)
         {
@@ -259,125 +303,166 @@ namespace EscopeWindowsApp
 
         private void cusDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Log event details for debugging
+            Console.WriteLine($"CellContentClick triggered: RowIndex={e.RowIndex}, ColumnIndex={e.ColumnIndex}, Rows.Count={cusDataGridView.Rows.Count}");
+
+            // Validate row index
+            if (e.RowIndex >= 0 && e.RowIndex < cusDataGridView.Rows.Count)
             {
-                DataGridViewRow row = cusDataGridView.Rows[e.RowIndex];
-                string columnName = cusDataGridView.Columns[e.ColumnIndex].Name;
-
-                // Debugging: Confirm the column clicked
-                Console.WriteLine($"Clicked column: {columnName}");
-
-                if (columnName == "EditColumn")
+                try
                 {
-                    try
+                    DataGridViewRow row = cusDataGridView.Rows[e.RowIndex];
+                    if (row == null || row.IsNewRow) // Additional safety check
+                    {
+                        Console.WriteLine("Row is null or new row, skipping.");
+                        return;
+                    }
+
+                    string columnName = cusDataGridView.Columns[e.ColumnIndex].Name;
+                    Console.WriteLine($"Clicked column: {columnName}");
+
+                    if (columnName == "EditColumn")
                     {
                         int customerId = Convert.ToInt32(row.Cells["id"].Value);
-                        string name = row.Cells["name"].Value.ToString();
-                        string email = row.Cells["email"].Value.ToString();
-                        string phone = row.Cells["phone"].Value.ToString();
-                        string city = row.Cells["city"].Value.ToString();
-                        string address = row.Cells["address"].Value.ToString();
 
-                        // Fetch DOB from the database since it's not in the grid
+                        // Fetch the latest customer data from the database instead of using grid data
+                        string name, email, phone, city, address;
                         DateTime dob;
                         using (MySqlConnection connection = new MySqlConnection(connectionString))
                         {
                             connection.Open();
-                            string query = "SELECT dob FROM customers WHERE id = @customerId";
+                            string query = "SELECT name, email, phone, dob, city, address FROM customers WHERE id = @customerId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@customerId", customerId);
-                                object result = command.ExecuteScalar();
-                                dob = result == null || result == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(result);
+                                using (MySqlDataReader reader = command.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        name = reader["name"].ToString();
+                                        email = reader["email"].ToString();
+                                        phone = reader["phone"].ToString();
+                                        dob = Convert.ToDateTime(reader["dob"]);
+                                        city = reader["city"].ToString();
+                                        address = reader["address"].ToString();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Customer not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Check if an AddCustomerForm is already open for this customer
+                        foreach (Form form in Application.OpenForms)
+                        {
+                            if (form is AddCustomerForm existingForm && existingForm.Tag is int existingId && existingId == customerId)
+                            {
+                                if (form.WindowState == FormWindowState.Minimized)
+                                {
+                                    form.WindowState = FormWindowState.Normal;
+                                }
+                                form.BringToFront();
+                                form.Activate();
+                                return;
                             }
                         }
 
                         AddCustomerForm editForm = new AddCustomerForm(customerId, name, email, phone, dob, city, address);
+                        editForm.Tag = customerId; // Tag the form with the customer ID for identification
                         editForm.FormClosed += (s, args) => LoadCustomersData();
                         editForm.Show();
 
                         Console.WriteLine($"Edit button clicked for customer ID: {customerId}");
                     }
-                    catch (Exception ex)
+                    else if (columnName == "DeleteColumn")
                     {
-                        MessageBox.Show($"Error opening edit form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else if (columnName == "DeleteColumn")
-                {
-                    int customerId = Convert.ToInt32(row.Cells["id"].Value);
-                    string formattedId = $"cus{customerId:D3}";
+                        int customerId = Convert.ToInt32(row.Cells["id"].Value);
+                        string formattedId = $"cus{customerId:D3}";
 
-                    DialogResult result = MessageBox.Show(
-                        $"Are you sure you want to delete customer {formattedId}?",
-                        "Confirm Delete",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
+                        DialogResult result = MessageBox.Show(
+                            $"Are you sure you want to delete customer {formattedId}?",
+                            "Confirm Delete",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
 
-                    if (result == DialogResult.Yes)
-                    {
-                        try
+                        if (result == DialogResult.Yes)
                         {
-                            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                            // Temporarily disable the grid to prevent further clicks during delete
+                            cusDataGridView.Enabled = false;
+                            try
                             {
-                                connection.Open();
-                                string query = "DELETE FROM customers WHERE id = @customerId";
-                                using (MySqlCommand command = new MySqlCommand(query, connection))
+                                using (MySqlConnection connection = new MySqlConnection(connectionString))
                                 {
-                                    command.Parameters.AddWithValue("@customerId", customerId);
-                                    command.ExecuteNonQuery();
+                                    connection.Open();
+                                    string query = "DELETE FROM customers WHERE id = @customerId";
+                                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                                    {
+                                        command.Parameters.AddWithValue("@customerId", customerId);
+                                        command.ExecuteNonQuery();
+                                    }
                                 }
+                                LoadCustomersData();
+                                MessageBox.Show($"Customer {formattedId} deleted successfully.", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                            LoadCustomersData();
-                            MessageBox.Show($"Customer {formattedId} deleted successfully.", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            finally
+                            {
+                                cusDataGridView.Enabled = true;
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Error deleting customer: {ex.Message}", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
 
-                    Console.WriteLine($"Delete button clicked for customer ID: {customerId}");
+                        Console.WriteLine($"Delete button clicked for customer ID: {customerId}");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception in CellContentClick: {ex.Message}");
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Invalid RowIndex: {e.RowIndex}, Rows.Count={cusDataGridView.Rows.Count}");
             }
         }
 
         private void cusFirstBtn_Click(object sender, EventArgs e)
         {
-            if (cusDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = 0;
-                cusDataGridView.CurrentCell = cusDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = 0;
+                UpdateNavigation();
             }
         }
 
         private void cusPrevBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex > 0)
+            if (bindingSource.Count > 0 && bindingSource.Position > 0)
             {
-                currentIndex--;
-                cusDataGridView.CurrentCell = cusDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position--;
+                UpdateNavigation();
             }
         }
 
         private void cusNextBtn_Click(object sender, EventArgs e)
         {
-            if (currentIndex < cusDataGridView.Rows.Count - 1)
+            if (bindingSource.Count > 0 && bindingSource.Position < bindingSource.Count - 1)
             {
-                currentIndex++;
-                cusDataGridView.CurrentCell = cusDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position++;
+                UpdateNavigation();
             }
         }
 
         private void cusLastBtn_Click(object sender, EventArgs e)
         {
-            if (cusDataGridView.Rows.Count > 0)
+            if (bindingSource.Count > 0)
             {
-                currentIndex = cusDataGridView.Rows.Count - 1;
-                cusDataGridView.CurrentCell = cusDataGridView.Rows[currentIndex].Cells[0];
+                bindingSource.Position = bindingSource.Count - 1;
+                UpdateNavigation();
             }
         }
 

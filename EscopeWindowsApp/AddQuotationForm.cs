@@ -91,6 +91,38 @@ namespace EscopeWindowsApp
 
             quotaProductDataGrid.CellPainting += quotaProductDataGrid_CellPainting;
             quotaProductDataGrid.CellFormatting += quotaProductDataGrid_CellFormatting;
+
+            // Enable key preview to capture keyboard events at the form level
+            this.KeyPreview = true;
+            this.KeyDown += AddQuotationForm_KeyDown;
+        }
+
+        private void AddQuotationForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger Save button
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Check if the active control is a multiline textbox or DataGridView in edit mode
+                if (ActiveControl is TextBox textBox && textBox.Multiline)
+                {
+                    return; // Allow Enter to work as newline in multiline textboxes like createQuotaNoteText
+                }
+                if (quotaProductDataGrid.IsCurrentCellInEditMode || addQuotaDataGridView.IsCurrentCellInEditMode)
+                {
+                    return; // Allow Enter to commit edits in DataGridView
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                quotaSaveBtn.PerformClick();
+            }
+            // Handle Escape key to trigger Cancel button
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                quotaCancelBtn.PerformClick();
+            }
         }
 
         #region DateTimePicker Customization

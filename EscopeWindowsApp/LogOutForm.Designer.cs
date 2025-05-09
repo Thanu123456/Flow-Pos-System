@@ -45,6 +45,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.confirmPasswordBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.logOutBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.currentPassShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
+            this.newPassShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
+            this.confirmPassShowCheckBox = new Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userCirclePictureBox1)).BeginInit();
@@ -313,11 +316,56 @@
             this.logOutBtn.Text = "LogOut";
             this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click);
             // 
+            // currentPassShowCheckBox
+            // 
+            this.currentPassShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.currentPassShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.currentPassShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.currentPassShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.currentPassShowCheckBox.ImageRotate = 0F;
+            this.currentPassShowCheckBox.Location = new System.Drawing.Point(335, 220);
+            this.currentPassShowCheckBox.Name = "currentPassShowCheckBox";
+            this.currentPassShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.currentPassShowCheckBox.TabIndex = 82;
+            this.currentPassShowCheckBox.UseTransparentBackground = true;
+            this.currentPassShowCheckBox.CheckedChanged += new System.EventHandler(this.currentPassShowCheckBox_CheckedChanged);
+            // 
+            // newPassShowCheckBox
+            // 
+            this.newPassShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.newPassShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.newPassShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.newPassShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.newPassShowCheckBox.ImageRotate = 0F;
+            this.newPassShowCheckBox.Location = new System.Drawing.Point(335, 315);
+            this.newPassShowCheckBox.Name = "newPassShowCheckBox";
+            this.newPassShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.newPassShowCheckBox.TabIndex = 83;
+            this.newPassShowCheckBox.UseTransparentBackground = true;
+            this.newPassShowCheckBox.CheckedChanged += new System.EventHandler(this.newPassShowCheckBox_CheckedChanged);
+            // 
+            // confirmPassShowCheckBox
+            // 
+            this.confirmPassShowCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.confirmPassShowCheckBox.CheckedState.Image = global::EscopeWindowsApp.Properties.Resources.eye;
+            this.confirmPassShowCheckBox.Image = global::EscopeWindowsApp.Properties.Resources.closedeye;
+            this.confirmPassShowCheckBox.ImageOffset = new System.Drawing.Point(0, 0);
+            this.confirmPassShowCheckBox.ImageRotate = 0F;
+            this.confirmPassShowCheckBox.Location = new System.Drawing.Point(335, 409);
+            this.confirmPassShowCheckBox.Name = "confirmPassShowCheckBox";
+            this.confirmPassShowCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.confirmPassShowCheckBox.TabIndex = 84;
+            this.confirmPassShowCheckBox.UseTransparentBackground = true;
+            this.confirmPassShowCheckBox.CheckedChanged += new System.EventHandler(this.confirmPassShowCheckBox_CheckedChanged);
+            // 
             // LogOutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 538);
+            this.Controls.Add(this.confirmPassShowCheckBox);
+            this.Controls.Add(this.newPassShowCheckBox);
+            this.Controls.Add(this.currentPassShowCheckBox);
             this.Controls.Add(this.confirmPasswordBtn);
             this.Controls.Add(this.logOutBtn);
             this.Controls.Add(this.label4);
@@ -363,5 +411,8 @@
         private System.Windows.Forms.Label label2;
         private Siticone.Desktop.UI.WinForms.SiticoneButton confirmPasswordBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton logOutBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox confirmPassShowCheckBox;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox newPassShowCheckBox;
+        private Siticone.Desktop.UI.WinForms.SiticoneImageCheckBox currentPassShowCheckBox;
     }
 }
