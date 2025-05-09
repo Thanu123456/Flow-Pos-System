@@ -149,7 +149,6 @@
             // 
             // variationsRefreshBtn
             // 
-            this.variationsRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.variationsRefreshBtn.BorderRadius = 8;
             this.variationsRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.variationsRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
