@@ -40,21 +40,21 @@ namespace EscopeWindowsApp
             {
                 Name = "quotation_no",
                 DataPropertyName = "quotation_no",
-                HeaderText = "Quotation Number",
+                HeaderText = "QUATATION NO",
                 Width = 150
             });
             quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "customer_name",
                 DataPropertyName = "customer_name",
-                HeaderText = "Customer Name",
+                HeaderText = "CUSTOMER",
                 Width = 150
             });
             quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "quotation_date",
                 DataPropertyName = "quotation_date",
-                HeaderText = "Date",
+                HeaderText = "DATE",
                 DefaultCellStyle = { Format = "yyyy-MM-dd" },
                 Width = 100
             });
@@ -62,14 +62,14 @@ namespace EscopeWindowsApp
             {
                 Name = "quantity_of_items",
                 DataPropertyName = "quantity_of_items",
-                HeaderText = "Quantity",
+                HeaderText = "QUANTITY",
                 Width = 80
             });
             quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "subtotal",
                 DataPropertyName = "subtotal",
-                HeaderText = "Sub Total",
+                HeaderText = "SUB TOTAL",
                 DefaultCellStyle = { Format = "N2" },
                 Width = 100
             });
@@ -77,7 +77,7 @@ namespace EscopeWindowsApp
             {
                 Name = "discount_amount",
                 DataPropertyName = "discount_amount",
-                HeaderText = "Discount Amount",
+                HeaderText = "DISCOUNT",
                 DefaultCellStyle = { Format = "N2" },
                 Width = 120
             });
@@ -85,7 +85,7 @@ namespace EscopeWindowsApp
             {
                 Name = "shipping_charge",
                 DataPropertyName = "shipping_charge",
-                HeaderText = "Shipping Charge",
+                HeaderText = "SHIPPING COST",
                 DefaultCellStyle = { Format = "N2" },
                 Width = 120
             });
@@ -93,7 +93,7 @@ namespace EscopeWindowsApp
             {
                 Name = "total_amount",
                 DataPropertyName = "total_amount",
-                HeaderText = "Total Amount",
+                HeaderText = "TOTAL",
                 DefaultCellStyle = { Format = "N2" },
                 Width = 100
             });
@@ -101,14 +101,14 @@ namespace EscopeWindowsApp
             {
                 Name = "shipping_address",
                 DataPropertyName = "shipping_address",
-                HeaderText = "Shipping Address",
+                HeaderText = "ADDRESS",
                 Width = 150
             });
             quotaDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "notes",
                 DataPropertyName = "notes",
-                HeaderText = "Notes",
+                HeaderText = "NOTE",
                 Width = 200
             });
 
