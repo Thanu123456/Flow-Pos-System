@@ -37,43 +37,43 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Warehouse ID"
+                HeaderText = "WAREHOUSE ID"
             });
             wareDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "name",
                 Name = "name",
-                HeaderText = "Name"
+                HeaderText = "NAME"
             });
             wareDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "email",
                 Name = "email",
-                HeaderText = "Email"
+                HeaderText = "EMAIL"
             });
             wareDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "phone",
                 Name = "phone",
-                HeaderText = "Phone"
+                HeaderText = "PHONE"
             });
             wareDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "city",
                 Name = "city",
-                HeaderText = "City"
+                HeaderText = "CITY"
             });
             wareDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "zip_code",
                 Name = "zip_code",
-                HeaderText = "Zip Code"
+                HeaderText = "ZIP CODE"
             });
 
             wareDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this warehouse"
             });
@@ -81,7 +81,7 @@ namespace EscopeWindowsApp
             wareDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this warehouse"
             });
