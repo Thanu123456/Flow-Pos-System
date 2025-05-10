@@ -24,12 +24,59 @@ namespace EscopeWindowsApp
             this.productId = productId;
             this.selectedVariationType = selectedVariationType;
 
+            // Set AcceptButton and CancelButton for Enter and Esc key handling
+            this.AcceptButton = priSaveBtn;
+            this.CancelButton = priCancelBtn;
+
+            // Attach KeyPress event handlers for numeric input restriction
+            ty1CostPriText.KeyPress += PriceTextBox_KeyPress;
+            ty1RetPriText.KeyPress += PriceTextBox_KeyPress;
+            ty1UPCNumberText.KeyPress += UPCTextBox_KeyPress;
+
+            ty2CostPriText.KeyPress += PriceTextBox_KeyPress;
+            ty2RetPriText.KeyPress += PriceTextBox_KeyPress;
+            ty2UPCNumberText.KeyPress += UPCTextBox_KeyPress;
+
+            ty3CostPriText.KeyPress += PriceTextBox_KeyPress;
+            ty3RetPriText.KeyPress += PriceTextBox_KeyPress;
+            ty3UPCNumberText.KeyPress += UPCTextBox_KeyPress;
+
+            ty4CostPriText.KeyPress += PriceTextBox_KeyPress;
+            ty4RetPriText.KeyPress += PriceTextBox_KeyPress;
+            ty4UPCNumberText.KeyPress += UPCTextBox_KeyPress;
+
+            ty5CostPriText.KeyPress += PriceTextBox_KeyPress;
+            ty5RetPriText.KeyPress += PriceTextBox_KeyPress;
+            ty5UPCNumberText.KeyPress += UPCTextBox_KeyPress;
+
             LoadVariationData();
             if (productId != -1)
             {
                 LoadExistingPricing();
             }
             SetupForm();
+        }
+
+        // KeyPress handler for price fields (allows digits and one decimal point)
+        private void PriceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // KeyPress handler for UPC fields (allows only digits)
+        private void UPCTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void LoadVariationData()
@@ -459,6 +506,10 @@ namespace EscopeWindowsApp
         }
 
         private void ty5UPCNumberText_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ty1CostPriText_TextChanged(object sender, EventArgs e)
         {
         }
     }
