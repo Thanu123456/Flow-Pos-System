@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpensesForm));
             this.createExpBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.expBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -287,12 +288,13 @@
             this.Controls.Add(this.expRefreshBtn);
             this.Controls.Add(this.expSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
             this.Name = "ExpensesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ExpensesForm";
+            this.Text = "Expenses ";
             this.Load += new System.EventHandler(this.ExpensesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.expDataGridView)).EndInit();
             this.expBtnPanel.ResumeLayout(false);

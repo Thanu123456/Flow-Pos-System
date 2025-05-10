@@ -421,7 +421,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 500);
             this.Name = "AddCustomerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddCustomerForm";
+            this.Text = "Create Customer";
             this.Load += new System.EventHandler(this.AddCustomerForm_Load);
             this.createCusPanel.ResumeLayout(false);
             this.createCusPanel.PerformLayout();

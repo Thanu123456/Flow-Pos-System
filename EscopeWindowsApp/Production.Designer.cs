@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Production));
             this.createProductBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.productFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -308,6 +309,7 @@
             this.Controls.Add(this.createProductBtn);
             this.Controls.Add(this.productionSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -315,7 +317,7 @@
             this.Name = "Production";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Production";
+            this.Text = "Producs";
             this.Load += new System.EventHandler(this.Production_Load_1);
             this.productBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();

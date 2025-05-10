@@ -583,7 +583,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddBarcodeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddBarcodeForm";
+            this.Text = "Add Searial Numbers";
             this.Load += new System.EventHandler(this.AddBarcodeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barDataGridView)).EndInit();
             this.headerPanel.ResumeLayout(false);

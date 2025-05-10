@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barcode));
             this.generateBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.printBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -101,7 +102,7 @@
             this.productSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.productSearchText.PlaceholderText = "Search";
             this.productSearchText.SelectedText = "";
-            this.productSearchText.Size = new System.Drawing.Size(720, 42);
+            this.productSearchText.Size = new System.Drawing.Size(400, 42);
             this.productSearchText.TabIndex = 86;
             this.productSearchText.TextChanged += new System.EventHandler(this.productSearchText_TextChanged);
             // 
@@ -212,6 +213,7 @@
             this.Controls.Add(this.printBtn);
             this.Controls.Add(this.generateBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;

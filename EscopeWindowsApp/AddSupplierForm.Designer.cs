@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddSupplierForm));
             this.createSupEmailText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createSupPhoneText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createSupNameText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -434,11 +435,12 @@
             this.Controls.Add(this.createSupLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1000, 500);
             this.MinimumSize = new System.Drawing.Size(1000, 500);
             this.Name = "AddSupplierForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddSupplierForm";
+            this.Text = "Create Suppliers";
             this.Load += new System.EventHandler(this.AddSupplierForm_Load);
             this.createSupPanel.ResumeLayout(false);
             this.createSupPanel.PerformLayout();

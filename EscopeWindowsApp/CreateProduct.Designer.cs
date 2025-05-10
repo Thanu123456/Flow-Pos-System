@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateProduct));
             this.creatProductLabel = new System.Windows.Forms.Label();
             this.createProductMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -726,12 +727,13 @@
             this.Controls.Add(this.createProductMainPanel);
             this.Controls.Add(this.creatProductLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(100, 15);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(763, 463);
             this.Name = "CreateProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateProduct";
+            this.Text = "Create Product";
             this.Load += new System.EventHandler(this.CreateProduct_Load);
             this.createProductMainPanel.ResumeLayout(false);
             this.createProductMainPanel.PerformLayout();

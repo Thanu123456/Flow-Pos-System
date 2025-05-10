@@ -58,6 +58,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoardForm));
             this.todayBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.last7DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.Last30DaysBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -1336,6 +1337,7 @@
             this.Controls.Add(this.siticonePanel1);
             this.Controls.Add(this.siticonePanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -1343,7 +1345,7 @@
             this.Name = "DashBoardForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "DashBoardForm";
+            this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.DashBoardForm_Load);
             this.dashTotSaleRetPanel.ResumeLayout(false);
             this.dashTotSaleRetPanel.PerformLayout();

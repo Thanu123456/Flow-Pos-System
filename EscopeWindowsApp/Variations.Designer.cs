@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Variations));
             this.createVariationsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.variationsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.variationsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -159,7 +160,7 @@
             this.variationsRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.variationsRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.variationsRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.variationsRefreshBtn.Location = new System.Drawing.Point(618, 29);
+            this.variationsRefreshBtn.Location = new System.Drawing.Point(427, 29);
             this.variationsRefreshBtn.Name = "variationsRefreshBtn";
             this.variationsRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.variationsRefreshBtn.TabIndex = 17;
@@ -282,6 +283,7 @@
             this.Controls.Add(this.variationsRefreshBtn);
             this.Controls.Add(this.variationsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);

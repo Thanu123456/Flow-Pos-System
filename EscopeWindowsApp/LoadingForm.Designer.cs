@@ -171,9 +171,10 @@
             this.Controls.Add(this.loadingPictureBox2);
             this.Controls.Add(this.loadingPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoadingForm";
+            this.Text = "Flow POS";
             this.Load += new System.EventHandler(this.LoadingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingPictureBox2)).EndInit();

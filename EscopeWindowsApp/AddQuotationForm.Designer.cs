@@ -37,6 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddQuotationForm));
             this.createQuotaLabel = new System.Windows.Forms.Label();
             this.createQuotaPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.quotaProductDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
@@ -856,7 +857,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(983, 34);
+            this.headerPanel.Size = new System.Drawing.Size(1000, 34);
             this.headerPanel.TabIndex = 28;
             this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
@@ -867,7 +868,7 @@
             this.controlPanel.Controls.Add(this.minimumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(903, 3);
+            this.controlPanel.Location = new System.Drawing.Point(920, 3);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(92, 30);
             this.controlPanel.TabIndex = 1;
@@ -938,16 +939,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1000, 788);
+            this.ClientSize = new System.Drawing.Size(1017, 788);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.createQuotaPanel);
             this.Controls.Add(this.createQuotaLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1000, 718);
             this.Name = "AddQuotationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddQuotation";
+            this.Text = "Create Quotation";
             this.Load += new System.EventHandler(this.AddQuotationForm_Load);
             this.createQuotaPanel.ResumeLayout(false);
             this.createQuotaPanel.PerformLayout();

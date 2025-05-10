@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBrand));
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.createBrandsCloseBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -242,11 +243,12 @@
             this.Controls.Add(this.createBrandsNameText);
             this.Controls.Add(this.createBrandsLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(400, 440);
             this.MinimumSize = new System.Drawing.Size(400, 440);
             this.Name = "CreateBrand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateBrand";
+            this.Text = "Create Brand";
             this.Load += new System.EventHandler(this.CreateBrand_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);

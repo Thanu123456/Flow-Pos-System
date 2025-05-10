@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUnits));
             this.unitsBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.shortUnitNameTextBox = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.creCatSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -275,11 +276,12 @@
             this.Controls.Add(this.createUnitNameText);
             this.Controls.Add(this.createUnitsLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(400, 440);
             this.MinimumSize = new System.Drawing.Size(400, 440);
             this.Name = "CreateUnits";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateUnits";
+            this.Text = "Create Unit";
             this.Load += new System.EventHandler(this.CreateUnits_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
