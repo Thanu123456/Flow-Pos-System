@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductPricing));
             this.priceBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -790,11 +791,12 @@
             this.Controls.Add(this.proPriceLabel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(793, 756);
             this.MinimumSize = new System.Drawing.Size(793, 718);
             this.Name = "ProductPricing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProductPricing";
+            this.Text = "Prices";
             this.Load += new System.EventHandler(this.ProductPricing_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);

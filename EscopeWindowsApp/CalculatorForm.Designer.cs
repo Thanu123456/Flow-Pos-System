@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculatorForm));
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.createUnitsCloseBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -576,11 +577,12 @@
             this.Controls.Add(this.siticonePanel1);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(385, 602);
             this.MinimumSize = new System.Drawing.Size(385, 602);
             this.Name = "CalculatorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CalculatorForm";
+            this.Text = "Calculator";
             this.Load += new System.EventHandler(this.CalculatorForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);

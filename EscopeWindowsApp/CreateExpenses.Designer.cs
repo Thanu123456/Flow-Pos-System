@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateExpenses));
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
@@ -216,7 +217,7 @@
             this.creExpDetailsext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpDetailsext.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpDetailsext.Location = new System.Drawing.Point(494, 231);
-            this.creExpDetailsext.Margin = new System.Windows.Forms.Padding(4);
+            this.creExpDetailsext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpDetailsext.Name = "creExpDetailsext";
             this.creExpDetailsext.PasswordChar = '\0';
             this.creExpDetailsext.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -254,7 +255,7 @@
             this.creExpAmountText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpAmountText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpAmountText.Location = new System.Drawing.Point(21, 231);
-            this.creExpAmountText.Margin = new System.Windows.Forms.Padding(4);
+            this.creExpAmountText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpAmountText.Name = "creExpAmountText";
             this.creExpAmountText.PasswordChar = '\0';
             this.creExpAmountText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -338,7 +339,7 @@
             this.creExpTitleText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.creExpTitleText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.creExpTitleText.Location = new System.Drawing.Point(494, 52);
-            this.creExpTitleText.Margin = new System.Windows.Forms.Padding(4);
+            this.creExpTitleText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.creExpTitleText.Name = "creExpTitleText";
             this.creExpTitleText.PasswordChar = '\0';
             this.creExpTitleText.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -408,11 +409,12 @@
             this.Controls.Add(this.creExpLabel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1000, 500);
             this.MinimumSize = new System.Drawing.Size(1000, 500);
             this.Name = "CreateExpenses";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateExpenses";
+            this.Text = "Create Expenses";
             this.Load += new System.EventHandler(this.CreateExpenses_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);

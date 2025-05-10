@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Brands));
             this.createBrandsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.brandsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.brandsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -285,6 +286,7 @@
             this.Controls.Add(this.brandsRefreshBtn);
             this.Controls.Add(this.brandsSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogOutForm));
             this.logOutBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -380,11 +381,12 @@
             this.Controls.Add(this.userCirclePictureBox1);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(400, 538);
             this.MinimumSize = new System.Drawing.Size(400, 538);
             this.Name = "LogOutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LogOutForm";
+            this.Text = "Profile";
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userCirclePictureBox1)).EndInit();

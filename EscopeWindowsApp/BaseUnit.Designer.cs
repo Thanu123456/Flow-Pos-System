@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseUnit));
             this.baseUnitsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.baseUnitsBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.baseUnitsFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -284,13 +285,14 @@
             this.Controls.Add(this.baseUnitFilterBtn);
             this.Controls.Add(this.baseUnitSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
             this.Name = "BaseUnit";
             this.ShowInTaskbar = false;
-            this.Text = "BaseUnit";
+            this.Text = "Base Units";
             this.Load += new System.EventHandler(this.BaseUnit_Load);
             this.baseUnitsBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.baseUnitDataGridView)).EndInit();
