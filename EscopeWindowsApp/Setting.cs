@@ -37,6 +37,8 @@ namespace EscopeWindowsApp
             setLogoBox.SizeMode = PictureBoxSizeMode.CenterImage; // Prevent stretching in PictureBox
             // Restrict phone number input
             setPhoneNotext.KeyPress += setPhoneNotext_KeyPress;
+            // Set Enter key to trigger save button
+            this.AcceptButton = setSaveBtn;
         }
 
         private void SetupErrorProviders()
@@ -146,13 +148,13 @@ namespace EscopeWindowsApp
                 return false;
             }
 
-            // Regex pattern for a single phone number
-            string phonePattern = @"^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$";
+            // Regex pattern for a single phone number (digits only)
+            string phonePattern = @"^\d+$";
             foreach (string phone in phoneNumbers)
             {
                 if (!Regex.IsMatch(phone.Trim(), phonePattern))
                 {
-                    phoneErrorProvider.SetError(setPhoneNotext, "Each phone number must be valid.");
+                    phoneErrorProvider.SetError(setPhoneNotext, "Each phone number must contain only digits.");
                     return false;
                 }
             }
@@ -211,10 +213,15 @@ namespace EscopeWindowsApp
 
         private void setPhoneNotext_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow digits, +, -, (, ), space, /, and control keys (e.g., Backspace)
-            if (!char.IsDigit(e.KeyChar) && !"+-()/ ".Contains(e.KeyChar) && !char.IsControl(e.KeyChar))
+            // Allow digits and '/' only, plus control keys (e.g., Backspace)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && !char.IsControl(e.KeyChar))
             {
-                e.Handled = true; // Prevent the character from being entered
+                e.Handled = true; // Prevent non-numeric and non-/ characters
+            }
+            // Prevent multiple '/' characters
+            if (e.KeyChar == '/' && setPhoneNotext.Text.Contains('/'))
+            {
+                e.Handled = true;
             }
         }
 

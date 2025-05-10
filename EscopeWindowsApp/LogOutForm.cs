@@ -29,6 +29,20 @@ namespace EscopeWindowsApp
             this.userEmail = userEmail;
             SetupErrorProviders();
             InitializeForm();
+
+            // Set default password visibility to hidden
+            currentUserPasswordText.UseSystemPasswordChar = true;
+            newUserPasswordText.UseSystemPasswordChar = true;
+            reNewUserPasswordText.UseSystemPasswordChar = true;
+
+            // Enable key preview to capture Enter key
+            this.KeyPreview = true;
+            this.KeyDown += LogOutForm_KeyDown;
+
+            // Restrict password text boxes to numeric input
+            currentUserPasswordText.KeyPress += PasswordTextBox_KeyPress;
+            newUserPasswordText.KeyPress += PasswordTextBox_KeyPress;
+            reNewUserPasswordText.KeyPress += PasswordTextBox_KeyPress;
         }
 
         private void SetupErrorProviders()
@@ -42,14 +56,13 @@ namespace EscopeWindowsApp
         {
             userNameLabel.Text = username;
             userEmailLabel.Text = userEmail;
-            UpdateLogOutButtonState(); // Check POS form state on initialization
+            UpdateLogOutButtonState();
         }
 
-        // New method to check if POS form is open and update logOutBtn state
         private void UpdateLogOutButtonState()
         {
             bool isPOSOpen = Application.OpenForms.OfType<POS>().Any();
-            logOutBtn.Enabled = !isPOSOpen; // Disable if POS form is open
+            logOutBtn.Enabled = !isPOSOpen;
         }
 
         private bool ValidateCurrentPassword()
@@ -144,7 +157,6 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Verify current password
                     string query = "SELECT password FROM users WHERE email = @email";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -173,7 +185,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Update password
                     string hashedNewPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
                     string updateQuery = "UPDATE users SET password = @password WHERE email = @email";
                     using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection))
@@ -214,7 +225,6 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Update session_logs with session_end_time
                     string updateQuery = "UPDATE session_logs SET session_end_time = @endTime WHERE username = @username AND session_end_time IS NULL";
                     using (MySqlCommand command = new MySqlCommand(updateQuery, connection))
                     {
@@ -239,22 +249,18 @@ namespace EscopeWindowsApp
 
         private void userNameLabel_Click(object sender, EventArgs e)
         {
-            // No action needed for click
         }
 
         private void userEmailLabel_Click(object sender, EventArgs e)
         {
-            // No action needed for click
         }
 
-        // Handle form shown event to update button state
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
             UpdateLogOutButtonState();
         }
 
-        // Handle form activated event to update button state
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
@@ -263,17 +269,48 @@ namespace EscopeWindowsApp
 
         private void currentPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            // this is the current password show/hide toggle button
+            currentUserPasswordText.UseSystemPasswordChar = !currentPassShowCheckBox.Checked;
+            currentUserPasswordText.Focus();
         }
 
         private void newPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            // this is the new password show/hide toggle button
+            newUserPasswordText.UseSystemPasswordChar = !newPassShowCheckBox.Checked;
+            newUserPasswordText.Focus();
         }
 
         private void confirmPassShowCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            // this is the confirm password show/hide toggle button
+            reNewUserPasswordText.UseSystemPasswordChar = !confirmPassShowCheckBox.Checked;
+            reNewUserPasswordText.Focus();
+        }
+
+        private void LogOutForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                confirmPasswordBtn.PerformClick();
+            }
+        }
+
+        private void PasswordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (char.IsDigit(e.KeyChar))
+            {
+                // Instead of casting to TextBox, use the sender's Text property through dynamic typing
+                // or get the specific control type
+                var textbox = sender as Control;
+                if (textbox != null && textbox.Text.Length >= 4)
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

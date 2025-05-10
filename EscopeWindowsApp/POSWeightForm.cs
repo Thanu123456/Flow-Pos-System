@@ -19,32 +19,40 @@ namespace EscopeWindowsApp
             this.productName = productName;
             this.variationType = variationType;
             ConfigureForm();
+
+            // Enable key preview to capture keyboard events
+            this.KeyPreview = true;
+            this.KeyDown += POSWeightForm_KeyDown;
+
+            // Attach KeyPress event handlers for numeric input restriction
+            kilogramText.KeyPress += NumericTextBox_KeyPress;
+            gramText.KeyPress += NumericTextBox_KeyPress;
         }
 
         private void ConfigureForm()
         {
             switch (unitName.ToLower())
             {
-                case "kilogram": // Corrected from "killogram"
+                case "kilogram":
                     kilogramLabel.Text = "Kilogram";
-                    kilogramNameLabel.Text = "Kilogram:"; // Update label next to kilogramText
+                    kilogramNameLabel.Text = "Kilogram:";
                     gramLabel.Text = "Gram";
                     unitShortName.Text = "Kg";
-                    unitsCal.Text = "Kilogram"; // Update unitsCal label
+                    unitsCal.Text = "Kilogram";
                     break;
                 case "liter":
                     kilogramLabel.Text = "Liter";
-                    kilogramNameLabel.Text = "Liter:"; // Update label next to kilogramText
+                    kilogramNameLabel.Text = "Liter:";
                     gramLabel.Text = "Milliliter";
                     unitShortName.Text = "L";
-                    unitsCal.Text = "Liter"; // Update unitsCal label
+                    unitsCal.Text = "Liter";
                     break;
                 case "meter":
                     kilogramLabel.Text = "Meter";
-                    kilogramNameLabel.Text = "Meter:"; // Update label next to kilogramText
+                    kilogramNameLabel.Text = "Meter:";
                     gramLabel.Text = "Centimeter";
                     unitShortName.Text = "m";
-                    unitsCal.Text = "Meter"; // Update unitsCal label
+                    unitsCal.Text = "Meter";
                     break;
                 default:
                     kilogramLabel.Text = unitName;
@@ -177,6 +185,36 @@ namespace EscopeWindowsApp
             this.Close();
         }
 
+        // Keyboard event handler for Enter and Esc keys
+        private void POSWeightForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                kiloSaveBtn.PerformClick();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                kiloCancelBtn.PerformClick();
+                e.Handled = true;
+            }
+        }
+
+        // Numeric input restriction for text boxes
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Block non-numeric input
+            }
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
         // Event handlers
         private void kilogramLabel_Click(object sender, EventArgs e) { }
 
@@ -184,10 +222,9 @@ namespace EscopeWindowsApp
 
         private void kilogramNameLabel_Click(object sender, EventArgs e)
         {
-            // Update the label to display the unit name (e.g., "Kilogram:", "Liter:", "Meter:")
             switch (unitName.ToLower())
             {
-                case "kilogram": // Corrected from "killogram"
+                case "kilogram":
                     kilogramNameLabel.Text = "Kilogram:";
                     break;
                 case "liter":
@@ -206,10 +243,9 @@ namespace EscopeWindowsApp
 
         private void unitsCal_Click(object sender, EventArgs e)
         {
-            // Update the label to display the unit name (e.g., "Kilogram", "Liter", "Meter")
             switch (unitName.ToLower())
             {
-                case "kilogram": // Corrected from "killogram"
+                case "kilogram":
                     unitsCal.Text = "Kilogram";
                     break;
                 case "liter":

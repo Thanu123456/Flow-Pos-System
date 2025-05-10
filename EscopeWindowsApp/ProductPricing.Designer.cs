@@ -700,6 +700,7 @@
             this.ty1CostPriText.SelectedText = "";
             this.ty1CostPriText.Size = new System.Drawing.Size(210, 42);
             this.ty1CostPriText.TabIndex = 29;
+            this.ty1CostPriText.TextChanged += new System.EventHandler(this.ty1CostPriText_TextChanged);
             // 
             // priceVarNameLabel
             // 
