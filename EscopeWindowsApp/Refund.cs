@@ -54,9 +54,51 @@ namespace EscopeWindowsApp
             this.KeyPreview = true;
             this.KeyPress += Refund_KeyPress;
 
+            // Add KeyDown event for Enter and Esc key handling
+            this.KeyDown += Refund_KeyDown;
+
             // Subscribe to FormClosing event for cleanup
             this.FormClosing += Refund_FormClosing;
         }
+
+        #region Keyboard Event Handling
+        private void Refund_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Handle Enter key to trigger addtoListBtn
+            if (e.KeyCode == Keys.Enter && !billSuggestionListBox.Visible)
+            {
+                addtoListBtn.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+            }
+            // Handle Esc key to close the form
+            else if (e.KeyCode == Keys.Escape && !billSuggestionListBox.Visible)
+            {
+                this.Close();
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+            }
+        }
+        #endregion
+
+        #region Numeric Input Restriction for refQTYText
+        private void refQTYText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, a single decimal point, and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Block non-numeric input
+            }
+            else if (e.KeyChar == '.' && refQTYText.Text.Contains('.'))
+            {
+                e.Handled = true; // Prevent multiple decimal points
+            }
+            else if (e.KeyChar == '.' && refQTYText.Text.Length == 0)
+            {
+                e.Handled = true; // Prevent decimal point as the first character
+            }
+        }
+        #endregion
 
         #region Suggestion ListBox Initialization
         private void InitializeBillSuggestionListBox()
@@ -707,18 +749,6 @@ namespace EscopeWindowsApp
         private void refQTYText_TextChanged(object sender, EventArgs e)
         {
             // User enters refund quantity here
-        }
-
-        private void refQTYText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == '.' && refQTYText.Text.Contains("."))
-            {
-                e.Handled = true;
-            }
         }
 
         private void addtoListBtn_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -18,6 +19,13 @@ namespace EscopeWindowsApp
             SetupErrorProviders();
             this.userName = username;
             this.userEmail = email;
+
+            // Enable key preview to capture keyboard events
+            this.KeyPreview = true;
+            this.KeyDown += POSRegister_KeyDown;
+
+            // Restrict cashInHandText to numeric input
+            cashInHandText.KeyPress += CashInHandText_KeyPress;
         }
 
         private void SetupErrorProviders()
@@ -29,6 +37,7 @@ namespace EscopeWindowsApp
         {
             // Reset the session when the form loads (new cashier session)
             SessionManager.ResetSession();
+            UpdateSaveButtonState(); // Initialize button state
         }
 
         private bool ValidateCashInHand()
@@ -56,13 +65,20 @@ namespace EscopeWindowsApp
             return true;
         }
 
+        private void UpdateSaveButtonState()
+        {
+            posRegSaveBtn.Enabled = ValidateCashInHand();
+        }
+
         private void cashInHandText_TextChanged(object sender, EventArgs e)
         {
             ValidateCashInHand();
+            UpdateSaveButtonState();
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
+            // This method appears unused; keeping it as is per the original code
         }
 
         private void posRegSaveBtn_Click(object sender, EventArgs e)
@@ -95,12 +111,10 @@ namespace EscopeWindowsApp
                     // Initialize SessionManager with Cash in Hand and session start time
                     SessionManager.CashInHand = decimal.Parse(cashInHandText.Text);
                     SessionManager.SessionStartTime = DateTime.Now;
-
                 }
 
                 this.Hide();
                 POS posForm = new POS(this.userName, this.userEmail);
-
                 posForm.FormClosed += (s, args) => this.Close();
                 posForm.Show();
             }
@@ -114,6 +128,43 @@ namespace EscopeWindowsApp
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void POSRegister_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Trigger posRegSaveBtn on Enter key
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+                posRegSaveBtn.PerformClick();
+            }
+        }
+
+        private void CashInHandText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, a single decimal point, and control keys (e.g., backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Block non-numeric input except decimal point
+            }
+            else if (e.KeyChar == '.' && cashInHandText.Text.Contains('.'))
+            {
+                e.Handled = true; // Prevent multiple decimal points
+            }
+            else if (e.KeyChar == '.' && cashInHandText.Text.Length == 0)
+            {
+                e.Handled = true; // Prevent decimal point as the first character
+            }
+            else if (char.IsDigit(e.KeyChar))
+            {
+                // Prevent more than 2 decimal places
+                int decimalIndex = cashInHandText.Text.IndexOf('.');
+                if (decimalIndex >= 0 && cashInHandText.Text.Length - decimalIndex > 2)
+                {
+                    e.Handled = true; // Block additional digits after 2 decimal places
+                }
+            }
         }
     }
 }
