@@ -323,6 +323,46 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FlowPOS_Logo_01 {
+            get {
+                object obj = ResourceManager.GetObject("FlowPOS Logo-01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlowPOS_Logo_03 {
+            get {
+                object obj = ResourceManager.GetObject("FlowPOS Logo-03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlowPOS_Logo_031 {
+            get {
+                object obj = ResourceManager.GetObject("FlowPOS Logo-031", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlowPOS_Logo_032 {
+            get {
+                object obj = ResourceManager.GetObject("FlowPOS Logo-032", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GRN {
             get {
                 object obj = ResourceManager.GetObject("GRN", resourceCulture);
@@ -1006,6 +1046,16 @@ namespace EscopeWindowsApp.Properties {
         internal static System.Drawing.Bitmap Units {
             get {
                 object obj = ResourceManager.GetObject("Units", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Untitled_1_01 {
+            get {
+                object obj = ResourceManager.GetObject("Untitled-1-01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

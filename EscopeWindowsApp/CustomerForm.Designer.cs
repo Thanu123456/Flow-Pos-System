@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.cusSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.createCusBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.cusBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -297,13 +298,14 @@
             this.Controls.Add(this.createCusBtn);
             this.Controls.Add(this.cusSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
             this.Name = "CustomerForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CustomerForm";
+            this.Text = "Customers";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
             this.cusBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cusDataGridView)).EndInit();

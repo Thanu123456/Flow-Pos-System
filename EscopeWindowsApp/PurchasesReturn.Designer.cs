@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchasesReturn));
             this.purRetDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.createPurRetBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.purRetRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -285,9 +286,10 @@
             this.Controls.Add(this.purRetRefreshBtn);
             this.Controls.Add(this.purRetSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1920, 10880);
             this.Name = "PurchasesReturn";
-            this.Text = "PurchasesReturn";
+            this.Text = "Purchases Returns";
             this.Load += new System.EventHandler(this.PurchasesReturn_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.purRetDataGridView)).EndInit();
             this.expBtnPanel.ResumeLayout(false);

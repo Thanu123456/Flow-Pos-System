@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierForm));
             this.createSupBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.supBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.supFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -342,13 +343,14 @@
             this.Controls.Add(this.createSupBtn);
             this.Controls.Add(this.supSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
             this.Name = "SupplierForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SupplierForm";
+            this.Text = "Suppliers";
             this.Load += new System.EventHandler(this.SupplierForm_Load);
             this.supBtnPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.supDataGridView)).EndInit();

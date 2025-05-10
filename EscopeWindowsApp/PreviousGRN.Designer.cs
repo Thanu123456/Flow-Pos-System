@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreviousGRN));
             this.preGRNDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
@@ -310,9 +311,10 @@
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.preGRNDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreviousGRN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PreviousGRN";
+            this.Text = "Previous GRN";
             this.Load += new System.EventHandler(this.PreviousGRN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.preGRNDataGridView)).EndInit();
             this.headerPanel.ResumeLayout(false);

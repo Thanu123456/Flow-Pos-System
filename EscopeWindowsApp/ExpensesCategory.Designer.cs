@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpensesCategory));
             this.expCatDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.expCatRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.expCatSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -288,12 +289,13 @@
             this.Controls.Add(this.expCatRefreshBtn);
             this.Controls.Add(this.expCatSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
             this.Name = "ExpensesCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ExpensesCategory";
+            this.Text = "Expenses Categories";
             this.Load += new System.EventHandler(this.ExpensesCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.expCatDataGridView)).EndInit();
             this.expCatBtnPanel.ResumeLayout(false);

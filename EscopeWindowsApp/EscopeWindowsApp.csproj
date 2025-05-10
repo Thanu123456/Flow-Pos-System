@@ -780,6 +780,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\FlowPOS Logo-032.png" />
+    <None Include="Resources\FlowPOS Logo-031.png" />
+    <None Include="Resources\FlowPOS Logo-03.png" />
+    <None Include="Resources\FlowPOS Logo-01.png" />
+    <None Include="Resources\Untitled-1-01.png" />
     <None Include="Resources\closedeye.png" />
     <None Include="Resources\eye.png" />
     <None Include="Resources\icons8-ledger-50.png" />
