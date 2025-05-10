@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using BCrypt.Net;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace EscopeWindowsApp
 {
@@ -233,18 +234,17 @@ namespace EscopeWindowsApp
                         command.ExecuteNonQuery();
                     }
                 }
+
+                // Restart the application with --start-with-login argument
+                string executablePath = Application.ExecutablePath;
+                Process.Start(executablePath, "--start-with-login");
+                Application.Exit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error logging out: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
             }
-
-            this.Hide();
-            LoginForm loginForm = new LoginForm();
-            loginForm.FormClosed += (s, args) => this.Close();
-            loginForm.Show();
         }
 
         private void userNameLabel_Click(object sender, EventArgs e)
@@ -303,8 +303,6 @@ namespace EscopeWindowsApp
             }
             else if (char.IsDigit(e.KeyChar))
             {
-                // Instead of casting to TextBox, use the sender's Text property through dynamic typing
-                // or get the specific control type
                 var textbox = sender as Control;
                 if (textbox != null && textbox.Text.Length >= 4)
                 {

@@ -48,14 +48,14 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "bill_no",
                 Name = "bill_no",
-                HeaderText = "Bill No"
+                HeaderText = "BILL NO",
             });
 
             saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "product_name",
                 Name = "product_name",
-                HeaderText = "Product Name",
+                HeaderText = "PRODUCT NAME",
                 Width = 150
             });
 
@@ -63,7 +63,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "variation_type",
                 Name = "variation_type",
-                HeaderText = "Variation Type",
+                HeaderText = "VARIATION TYPE",
                 Width = 100
             });
 
@@ -71,7 +71,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "unit",
                 Name = "unit",
-                HeaderText = "Unit",
+                HeaderText = "UNIT",
                 Width = 80
             });
 
@@ -79,7 +79,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "quantity",
                 Name = "quantity",
-                HeaderText = "Quantity",
+                HeaderText = "QUANTITY",
                 Width = 80,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
@@ -88,7 +88,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "price",
                 Name = "price",
-                HeaderText = "Price",
+                HeaderText = "PRICE",
                 Width = 100,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
@@ -97,7 +97,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "total_price",
                 Name = "total_price",
-                HeaderText = "Total Refund",
+                HeaderText = "TOTAL",
                 Width = 100,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
@@ -106,7 +106,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "refund_date",
                 Name = "refund_date",
-                HeaderText = "Refund Date",
+                HeaderText = "REFUND DATE",
                 Width = 120,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" }
             });
