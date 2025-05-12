@@ -327,5 +327,24 @@ namespace EscopeWindowsApp
             PurchasesReport purchasesReport = new PurchasesReport();
             purchasesReport.Show();
         }
+
+        private void creditReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CreaditReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            CreaditReport creaditReport = new CreaditReport();
+            creaditReport.Show();
+        }
     }
 }

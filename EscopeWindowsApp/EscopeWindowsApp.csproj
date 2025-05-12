@@ -309,6 +309,12 @@
     <Compile Include="CodeReaderForm.Designer.cs">
       <DependentUpon>CodeReaderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreaditReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreaditReport.Designer.cs">
+      <DependentUpon>CreaditReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateBaseUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -629,6 +635,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeReaderForm.resx">
       <DependentUpon>CodeReaderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreaditReport.resx">
+      <DependentUpon>CreaditReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBaseUnit.resx">
       <DependentUpon>CreateBaseUnit.cs</DependentUpon>
