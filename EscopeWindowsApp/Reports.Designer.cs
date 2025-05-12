@@ -320,6 +320,7 @@
             this.creditReportBtn.Size = new System.Drawing.Size(297, 129);
             this.creditReportBtn.TabIndex = 19;
             this.creditReportBtn.Text = "CREADIT REPORT";
+            this.creditReportBtn.Click += new System.EventHandler(this.creditReportBtn_Click);
             // 
             // Reports
             // 

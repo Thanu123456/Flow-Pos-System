@@ -41,15 +41,38 @@ namespace EscopeWindowsApp
             this.KeyPreview = true;
             this.KeyDown += GRNForm_KeyDown; // For Enter key
             this.KeyPress += GRNForm_KeyPress; // For USB scanner input
+
+            // Add KeyPress event handlers for numeric-only input
+            grnQuantityText.KeyPress += NumericTextBox_KeyPress;
+            grnCostPriText.KeyPress += NumericTextBox_KeyPress;
+            grnRetPriText.KeyPress += NumericTextBox_KeyPress;
+            grnNetPriceText.KeyPress += NumericTextBox_KeyPress;
         }
+
+        #region Numeric Input Validation
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control characters (like backspace), digits, and a single decimal point
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Prevent non-numeric input
+                return;
+            }
+
+            // Allow only one decimal point
+            TextBox textBox = sender as TextBox;
+            if (e.KeyChar == '.' && textBox.Text.Contains("."))
+            {
+                e.Handled = true; // Prevent additional decimal points
+            }
+        }
+        #endregion
 
         #region DateTimePicker Customization
         private void CustomizeDateTimePicker()
         {
-            // Set fill color to White for SiticoneDateTimePicker using System.Drawing.Color
             grnExpireDatePicker.FillColor = System.Drawing.Color.White;
-            grnExpireDatePicker.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
-            //grnExpireDatePicker.BorderColor = System.Drawing.Color.Gray; // Subtle border
+            grnExpireDatePicker.HoverState.FillColor = System.Drawing.Color.White;
         }
         #endregion
 
@@ -177,7 +200,7 @@ namespace EscopeWindowsApp
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-                addToListBtn_Click(this, EventArgs.Empty); // Trigger addToListBtn click
+                addToListBtn_Click(this, EventArgs.Empty);
             }
         }
 
@@ -187,8 +210,8 @@ namespace EscopeWindowsApp
             {
                 scannedBarcodeBuffer += e.KeyChar;
                 usbScanTimer.Stop();
-                usbScanTimer.Start(); // Restart timer to detect end of scan
-                e.Handled = true; // Prevent character from being entered into focused control
+                usbScanTimer.Start();
+                e.Handled = true;
             }
         }
 
@@ -267,9 +290,8 @@ namespace EscopeWindowsApp
                 grnWarrantyComboBox.Items.AddRange(new object[] { "No Warranty", "6 Months", "1 Year", "2 Years" });
                 grnWarrantyComboBox.SelectedIndex = 0;
 
-                // Set the next GRN ID on the label
                 int nextId = GetNextGRNId();
-                grnNoLabel.Text = nextId.ToString("D4"); // Format as "0066"
+                grnNoLabel.Text = nextId.ToString("D4");
 
                 UpdateUnitLabels();
             }
@@ -779,7 +801,6 @@ namespace EscopeWindowsApp
             string warranty = grnWarrantyComboBox.SelectedItem?.ToString() ?? "No Warranty";
             string unit = grnUnitText.Text;
 
-            // Determine expiry date for display
             string expiryDateDisplay = expireDateCheckBox.Checked ? grnExpireDatePicker.Value.ToString("yyyy-MM-dd") : "N/A";
 
             if (isSerialNumberRequired)
@@ -880,7 +901,6 @@ namespace EscopeWindowsApp
             grnVarTypCombo.Enabled = false;
             grnWarrantyComboBox.SelectedIndex = 0;
 
-            // Reset expiry date
             expireDateCheckBox.Checked = false;
             grnExpireDatePicker.Enabled = false;
             grnExpireDatePicker.Value = DateTime.Now;
@@ -1135,7 +1155,7 @@ namespace EscopeWindowsApp
                     }
                     else
                     {
-                        return 1; // If no GRNs exist, start with 1
+                        return 1;
                     }
                 }
             }
@@ -1147,14 +1167,13 @@ namespace EscopeWindowsApp
             try
             {
                 int nextId = GetNextGRNId();
-                grnNoLabel.Text = nextId.ToString("D4"); // Format as "0066"
+                grnNoLabel.Text = nextId.ToString("D4");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error getting next GRN ID: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void creatProductLabel_Click(object sender, EventArgs e) { }
         private void grnPictureBox_Click(object sender, EventArgs e) { }
