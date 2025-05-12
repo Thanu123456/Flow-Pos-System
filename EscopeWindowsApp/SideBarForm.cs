@@ -29,12 +29,10 @@ namespace EscopeWindowsApp
         UserForm userForm;
         Quotations quatationsForm;
         WarehouseForm warehouseForm;
-        
-        
         Reports reportsForm;
         Setting settingForm;
         PurchasesForm purchasesForm;
-        PurchasesReturn purchasesReturnForm; // New field for PurchasesReturnForm
+        PurchasesReturn purchasesReturnForm;
         private Control currentCheckedButton = null;
         private Color checkedColor = Color.LightBlue;
         private Color uncheckedColor = SystemColors.Control;
@@ -83,7 +81,7 @@ namespace EscopeWindowsApp
                 settingBtn, sidebarBtn, proBtn, proCatBtn, varBtn,
                 brandBtn, unitsBtn, baseUnitBtn, salesListBtn, salesRetBtn,
                 barcodePrtBtn, creExpBtn, expCatBtn, cusBtn, supBtn, userBtn,
-                purBtn, purPanelBtn, purRetBtn
+                purBtn, purPanelBtn, purRetBtn, posBtn, userProfileBtn
             };
 
             foreach (Control ctrl in sidebarButtons)
@@ -143,16 +141,19 @@ namespace EscopeWindowsApp
 
         private void CheckButton(Control control)
         {
-            if (currentCheckedButton != null && currentCheckedButton != control)
+            if (currentCheckedButton != control)
             {
-                currentCheckedButton.BackColor = uncheckedColor;
-                currentCheckedButton.Refresh(); // Force UI update
-                Console.WriteLine($"Unchecked previous button: {currentCheckedButton.Name}, BackColor: {currentCheckedButton.BackColor}");
+                if (currentCheckedButton != null)
+                {
+                    currentCheckedButton.BackColor = uncheckedColor;
+                    currentCheckedButton.Refresh();
+                    Console.WriteLine($"Unchecked previous button: {currentCheckedButton.Name}, BackColor: {currentCheckedButton.BackColor}");
+                }
+                control.BackColor = checkedColor;
+                control.Refresh();
+                currentCheckedButton = control;
+                Console.WriteLine($"Checked new button: {control.Name}, BackColor: {control.BackColor}");
             }
-            control.BackColor = checkedColor;
-            control.Refresh(); // Force UI update
-            currentCheckedButton = control;
-            Console.WriteLine($"Checked new button: {control.Name}, BackColor: {control.BackColor}");
         }
 
         private void TimeTimer_Tick(object sender, EventArgs e)
@@ -344,8 +345,6 @@ namespace EscopeWindowsApp
                     salesBtnPanel.Width = 250;
                     salesListBtnPanel.Width = 250;
                     salesRetBtnPanel.Width = 250;
-                    qutationBtnPanel.Width = 250;
-                    barcodePrtBtnPanel.Width = 250;
                     baseUnitBtnPanel.Width = 250;
                     unitsBtnPanel.Width = 250;
                     brandBtnPanel.Width = 250;
@@ -353,6 +352,7 @@ namespace EscopeWindowsApp
                     proBtnPanel.Width = 250;
                     manuBtnPanel.Width = 250;
                     sidebarBtnPanel.Width = 250;
+                    purBtnPanel.Width = 250;
                 }
             }
             else
@@ -378,8 +378,6 @@ namespace EscopeWindowsApp
                     salesBtnPanel.Width = 56;
                     salesListBtnPanel.Width = 56;
                     salesRetBtnPanel.Width = 56;
-                    qutationBtnPanel.Width = 56;
-                    barcodePrtBtnPanel.Width = 56;
                     baseUnitBtnPanel.Width = 56;
                     unitsBtnPanel.Width = 56;
                     brandBtnPanel.Width = 56;
@@ -387,6 +385,7 @@ namespace EscopeWindowsApp
                     proBtnPanel.Width = 56;
                     manuBtnPanel.Width = 56;
                     sidebarBtnPanel.Width = 56;
+                    purBtnPanel.Width = 56;
                     CollapseAllPanels();
                 }
             }
@@ -402,7 +401,6 @@ namespace EscopeWindowsApp
         {
             Console.WriteLine($"MDI children before closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
-            // Close all existing MDI children
             foreach (Form child in this.MdiChildren.ToList())
             {
                 if (child != null && !child.IsDisposed)
@@ -415,8 +413,7 @@ namespace EscopeWindowsApp
                             pc.AllowProgrammaticClose = true;
                         }
                         child.Close();
-                        child.Dispose(); // Explicitly dispose to release resources
-                        Console.WriteLine($"Successfully closed and disposed MDI child: {child.Name}");
+                        Console.WriteLine($"Successfully closed MDI child: {child.Name}");
                     }
                     catch (Exception ex)
                     {
@@ -427,7 +424,6 @@ namespace EscopeWindowsApp
 
             Console.WriteLine($"MDI children after closing: {string.Join(", ", this.MdiChildren.Select(f => f.Name))}");
 
-            // Open the new form
             if (form == null || form.IsDisposed)
             {
                 form = new T();
@@ -479,9 +475,8 @@ namespace EscopeWindowsApp
 
         private void sideBarPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Empty method to satisfy designer event binding
         }
-
-        
 
         private void quatationBtn_Click(object sender, EventArgs e)
         {
@@ -511,12 +506,6 @@ namespace EscopeWindowsApp
             Console.WriteLine("WarehouseForm closed");
         }
 
-        private void TransferForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           
-            Console.WriteLine("TransferForm closed");
-        }
-
         private void reportsBtn_Click(object sender, EventArgs e)
         {
             CheckButton(reportsBtn);
@@ -543,10 +532,6 @@ namespace EscopeWindowsApp
         {
             settingForm = null;
             Console.WriteLine("SettingForm closed");
-        }
-
-        private void sidebarBtnPanel_Paint(object sender, PaintEventArgs e)
-        {
         }
 
         private void proBtn_Click(object sender, EventArgs e)
@@ -751,31 +736,13 @@ namespace EscopeWindowsApp
             ExpandSidebarIfCollapsed();
             CollapseAllPanels();
 
-            foreach (Form child in this.MdiChildren.ToList())
+            // Ensure a default MDI child is open
+            if (!this.MdiChildren.Any())
             {
-                if (!child.IsDisposed)
-                {
-                    Console.WriteLine($"Attempting to close MDI child: {child.Name}, Visible: {child.Visible}, IsHandleCreated: {child.IsHandleCreated}");
-                    try
-                    {
-                        if (child is IProgrammaticCloseable pc)
-                        {
-                            pc.AllowProgrammaticClose = true;
-                        }
-                        child.Close();
-                        Console.WriteLine($"Successfully closed MDI child: {child.Name}");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error closing MDI child {child.Name}: {ex.Message}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"MDI child {child.Name} is already disposed");
-                }
+                OpenFormAndClosePrevious(ref dashBoardForm, (form) => form.FormClosed += DashBoardForm_FormClosed);
             }
 
+            // Check if POSRegister is already open
             foreach (Form form in Application.OpenForms)
             {
                 if (form is POSRegister)
@@ -790,11 +757,14 @@ namespace EscopeWindowsApp
                 }
             }
 
-            POSRegister posRegister = new POSRegister(userName, userEmail);
+            // Open new POSRegister as a non-MDI form
+            POSRegister newPosRegister = new POSRegister(userName, userEmail);
+            newPosRegister.FormClosed += (s, args) => Console.WriteLine("POSRegister closed");
+            newPosRegister.StartPosition = FormStartPosition.CenterScreen;
             Console.WriteLine("Opening new POSRegister");
             try
             {
-                posRegister.Show();
+                newPosRegister.Show();
                 Console.WriteLine("Successfully shown POSRegister");
             }
             catch (Exception ex)
@@ -874,6 +844,17 @@ namespace EscopeWindowsApp
 
         private void userProfileBtn_Click(object sender, EventArgs e)
         {
+            CheckButton(userProfileBtn);
+            ExpandSidebarIfCollapsed();
+            CollapseAllPanels();
+
+            // Ensure a default MDI child is open
+            if (!this.MdiChildren.Any())
+            {
+                OpenFormAndClosePrevious(ref dashBoardForm, (form) => form.FormClosed += DashBoardForm_FormClosed);
+            }
+
+            // Check if LogOutForm is already open
             foreach (Form form in Application.OpenForms)
             {
                 if (form is LogOutForm)
@@ -887,9 +868,12 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            LogOutForm logOutForm = new LogOutForm(this.userName, this.userEmail);
-            logOutForm.Show();
-            
+
+            // Open new LogOutForm as a non-MDI form
+            LogOutForm newLogOutForm = new LogOutForm(this.userName, this.userEmail);
+            newLogOutForm.FormClosed += (s, args) => Console.WriteLine("LogOutForm closed");
+            newLogOutForm.StartPosition = FormStartPosition.CenterScreen;
+            newLogOutForm.Show();
         }
     }
 }

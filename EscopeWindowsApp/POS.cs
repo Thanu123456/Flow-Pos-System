@@ -818,13 +818,16 @@ namespace EscopeWindowsApp
 
         private void posProductDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn")
+            if (e.RowIndex >= 0 &&
+                (posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn" ||
+                 posProductDataGrid.Columns[e.ColumnIndex].Name == "image_path"))
             {
                 DataGridViewRow row = posProductDataGrid.Rows[e.RowIndex];
                 decimal stock = Convert.ToDecimal(row.Cells["stock"].Value);
                 if (stock <= 0)
                 {
-                    MessageBox.Show($"Cannot add {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Cannot add {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}) to cart. Stock is 0.",
+                        "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
