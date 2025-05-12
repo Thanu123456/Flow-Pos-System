@@ -278,6 +278,12 @@
     <Compile Include="BaseUnit.Designer.cs">
       <DependentUpon>BaseUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bill.Designer.cs">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </Compile>
     <Compile Include="BillPrinter.cs" />
     <Compile Include="Brands.cs">
       <SubType>Form</SubType>
@@ -617,6 +623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaseUnit.resx">
       <DependentUpon>BaseUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bill.resx">
+      <DependentUpon>Bill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Brands.resx">
       <DependentUpon>Brands.cs</DependentUpon>
