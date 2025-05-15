@@ -156,22 +156,23 @@ namespace EscopeWindowsApp
             subtitleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
             subtitleStyle.ParagraphFormat.SpaceAfter = isSmallReceipt ? 6 : 10;
 
+            // Replace all instances of "Courier New" with "Arial" in style definitions
             Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
-            bodyStyle.Font.Name = "Courier New";
+            bodyStyle.Font.Name = "Arial"; // Changed from Courier New
             bodyStyle.Font.Size = isSmallReceipt ? 9 : 10;
             bodyStyle.ParagraphFormat.SpaceAfter = 3;
 
             Style tableDataStyle = document.Styles.AddStyle("TableData", "Body");
-            tableDataStyle.Font.Name = "Courier New";
-            tableDataStyle.Font.Size = isSmallReceipt ? 9 : 10;
-
-            Style priceStyle = document.Styles.AddStyle("PriceStyle", "TableData");
-            priceStyle.Font.Bold = true;
+            tableDataStyle.Font.Name = "Arial"; // Changed from Courier New
+            tableDataStyle.Font.Size = isSmallReceipt ? 8 : 10;
 
             Style tableHeaderStyle = document.Styles.AddStyle("TableHeader", "Normal");
-            tableHeaderStyle.Font.Name = "Courier New";
+            tableHeaderStyle.Font.Name = "Arial"; // Changed from Courier New
             tableHeaderStyle.Font.Size = isSmallReceipt ? 9 : 10;
             tableHeaderStyle.Font.Bold = true;
+
+            Style priceStyle = document.Styles.AddStyle("PriceStyle", "TableData");
+            priceStyle.Font.Bold = false;
 
             Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
             boldBodyStyle.Font.Bold = true;
@@ -245,7 +246,8 @@ namespace EscopeWindowsApp
                 sepRow1.Borders.Left.Width = 0;
                 sepRow1.Borders.Right.Width = 0;
                 sepRow1.Borders.Bottom.Width = 0.5;
-                sepRow1.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap; section.AddParagraph().Format.SpaceAfter = 6;
+                sepRow1.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
+                section.AddParagraph().Format.SpaceAfter = 6;
 
                 Table cashierTable = section.AddTable();
                 cashierTable.AddColumn(Unit.FromMillimeter(37));
@@ -278,49 +280,50 @@ namespace EscopeWindowsApp
                 sepRow2.Borders.Left.Width = 0;
                 sepRow2.Borders.Right.Width = 0;
                 sepRow2.Borders.Bottom.Width = 0.5;
-                sepRow1.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
+                sepRow2.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
                 section.AddParagraph().Format.SpaceAfter = 6;
 
-                Table itemsHeaderTable = section.AddTable();
-                itemsHeaderTable.AddColumn(Unit.FromMillimeter(17));
-                itemsHeaderTable.AddColumn(Unit.FromMillimeter(19));
-                itemsHeaderTable.AddColumn(Unit.FromMillimeter(19));
-                itemsHeaderTable.AddColumn(Unit.FromMillimeter(19));
+                // Updated items table with adjusted column widths
+                Table itemsTable = section.AddTable();
+                itemsTable.AddColumn(Unit.FromMillimeter(30)); // PRODUCT (increased to 30mm)
+                itemsTable.AddColumn(Unit.FromMillimeter(14)); // QTY
+                itemsTable.AddColumn(Unit.FromMillimeter(15)); // U/PRICE
+                itemsTable.AddColumn(Unit.FromMillimeter(15)); // AMOUNT
 
-                Row itemsHeaderRow = itemsHeaderTable.AddRow();
-                itemsHeaderRow.Shading.Color = Colors.LightGray;
-                itemsHeaderRow.Cells[0].AddParagraph("QTY").Style = "TableHeader";
-                itemsHeaderRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-                itemsHeaderRow.Cells[1].AddParagraph("U/PRICE").Style = "TableHeader";
-                itemsHeaderRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
-                itemsHeaderRow.Cells[2].AddParagraph("PRICE").Style = "TableHeader";
-                itemsHeaderRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
-                itemsHeaderRow.Cells[3].AddParagraph("VALUE").Style = "TableHeader";
-                itemsHeaderRow.Cells[3].Format.Alignment = ParagraphAlignment.Right;
+                // Add header row
+                Row headerRow = itemsTable.AddRow();
+                headerRow.Shading.Color = Colors.LightGray;
+                headerRow.Cells[0].AddParagraph("PRODUCT").Style = "TableHeader";
+                headerRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+                headerRow.Cells[1].AddParagraph("QTY").Style = "TableHeader";
+                headerRow.Cells[1].Format.Alignment = ParagraphAlignment.Right; // Fixed
+                headerRow.Cells[2].AddParagraph("U/PRICE").Style = "TableHeader";
+                headerRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+                headerRow.Cells[3].AddParagraph("AMOUNT").Style = "TableHeader";
+                headerRow.Cells[3].Format.Alignment = ParagraphAlignment.Right;
 
+                // Add item rows
                 foreach (var item in cartItems)
                 {
-                    Table productTable = section.AddTable();
-                    productTable.AddColumn(Unit.FromMillimeter(74));
+                    // Add row for product name
+                    Row nameRow = itemsTable.AddRow();
+                    nameRow.Cells[0].MergeRight = 3; // Merge all four cells
+                    string productDisplay = item.ProductName.ToUpper();
+                    if (!string.IsNullOrEmpty(item.VariationType) && item.VariationType != "N/A")
+                    {
+                        productDisplay += " " + item.VariationType;
+                    }
+                    if (productDisplay.Length > 40) productDisplay = productDisplay.Substring(0, 40);
+                    nameRow.Cells[0].AddParagraph(productDisplay).Style = "TableData";
+                    nameRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
 
-                    Row productRow = productTable.AddRow();
-                    string variation = string.IsNullOrEmpty(item.VariationType) || item.VariationType == "N/A" ? "" : $" {item.VariationType}";
-                    string productDisplay = item.ProductName.ToUpper() + variation;
-                    if (productDisplay.Length > 30) productDisplay = productDisplay.Substring(0, 30); // Truncate to fit
-                    productRow.Cells[0].AddParagraph(productDisplay).Style = "TableData";
-                    productRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
-
-                    Table itemRowTable = section.AddTable();
-                    itemRowTable.AddColumn(Unit.FromMillimeter(17));
-                    itemRowTable.AddColumn(Unit.FromMillimeter(19));
-                    itemRowTable.AddColumn(Unit.FromMillimeter(19));
-                    itemRowTable.AddColumn(Unit.FromMillimeter(19));
-
-                    Row itemRow = itemRowTable.AddRow();
+                    // Add row for details
+                    Row detailRow = itemsTable.AddRow();
+                    detailRow.Cells[0].AddParagraph(""); // Empty cell under PRODUCT
                     string qtyText;
                     if (item.Unit == "Pieces")
                     {
-                        qtyText = item.Quantity.ToString("N0").PadLeft(7, ' ');
+                        qtyText = item.Quantity.ToString("N0");
                     }
                     else
                     {
@@ -331,22 +334,16 @@ namespace EscopeWindowsApp
                             "Meter" => "M",
                             _ => item.Unit
                         };
-                        qtyText = $"{item.Quantity:N2}{unitAbbrev}".PadLeft(7, ' ');
+                        qtyText = $"{item.Quantity:N2}{unitAbbrev}";
                     }
-                    itemRow.Cells[0].AddParagraph(qtyText).Style = "TableData";
-                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-
-                    string unitPriceText = string.Format("{0,10:0.00}", item.Price);
-                    itemRow.Cells[1].AddParagraph(unitPriceText).Style = "TableData";
-                    itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
-
-                    string priceText = string.Format("{0,10:0.00}", item.Price);
-                    itemRow.Cells[2].AddParagraph(priceText).Style = "TableData";
-                    itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
-
-                    string valueText = string.Format("{0,10:0.00}", item.TotalPrice);
-                    itemRow.Cells[3].AddParagraph(valueText).Style = "PriceStyle";
-                    itemRow.Cells[3].Format.Alignment = ParagraphAlignment.Right;
+                    detailRow.Cells[1].AddParagraph(qtyText).Style = "TableData";
+                    detailRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+                    string unitPriceText = item.Price.ToString("0.00"); // Removed padding
+                    detailRow.Cells[2].AddParagraph(unitPriceText).Style = "TableData";
+                    detailRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+                    string amountText = item.TotalPrice.ToString("0.00"); // Removed padding
+                    detailRow.Cells[3].AddParagraph(amountText).Style = "PriceStyle";
+                    detailRow.Cells[3].Format.Alignment = ParagraphAlignment.Right;
                 }
 
                 Table separator3 = section.AddTable();
@@ -356,7 +353,7 @@ namespace EscopeWindowsApp
                 sepRow3.Borders.Left.Width = 0;
                 sepRow3.Borders.Right.Width = 0;
                 sepRow3.Borders.Bottom.Width = 0.5;
-                sepRow1.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
+                sepRow3.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
                 section.AddParagraph().Format.SpaceAfter = 6;
 
                 Table summaryTable = section.AddTable();
@@ -367,7 +364,7 @@ namespace EscopeWindowsApp
                 Row summaryRow1 = summaryTable.AddRow();
                 summaryRow1.Cells[0].AddParagraph("SUB TOTAL").Style = "BoldBody";
                 summaryRow1.Cells[0].Format.Alignment = ParagraphAlignment.Left;
-                summaryRow1.Cells[1].AddParagraph($"LKR{string.Format("{0,12:0.00}", totalPrice + discount)}").Style = "BoldBody";
+                summaryRow1.Cells[1].AddParagraph($"LKR{(totalPrice + discount).ToString("0.00")}").Style = "BoldBody";
                 summaryRow1.Cells[1].Format.Alignment = ParagraphAlignment.Right;
 
                 Row summaryRow2 = summaryTable.AddRow();
@@ -416,7 +413,7 @@ namespace EscopeWindowsApp
                 sepRow4.Borders.Left.Width = 0;
                 sepRow4.Borders.Right.Width = 0;
                 sepRow4.Borders.Bottom.Width = 0.5;
-                sepRow1.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
+                sepRow4.Borders.Bottom.Style = MigraDoc.DocumentObjectModel.BorderStyle.DashLargeGap;
                 section.AddParagraph().Format.SpaceAfter = 6;
 
                 string barcodePath = GenerateBarcodeImage(billNo);
@@ -514,37 +511,41 @@ namespace EscopeWindowsApp
                 Table itemsTable = section.AddTable();
                 itemsTable.Borders.Width = 0.5;
                 itemsTable.Borders.Color = Colors.Black;
-                itemsTable.AddColumn(Unit.FromCentimeter(2));
                 itemsTable.AddColumn(Unit.FromCentimeter(8));
                 itemsTable.AddColumn(Unit.FromCentimeter(3));
-                itemsTable.AddColumn(Unit.FromCentimeter(2));
                 itemsTable.AddColumn(Unit.FromCentimeter(3));
+                itemsTable.AddColumn(Unit.FromCentimeter(4));
 
                 Row tableHeaderRow = itemsTable.AddRow();
                 tableHeaderRow.HeadingFormat = true;
                 tableHeaderRow.Format.Font.Bold = true;
                 tableHeaderRow.Shading.Color = Colors.DarkBlue;
                 tableHeaderRow.Format.Font.Color = Colors.White;
-                tableHeaderRow.Cells[0].AddParagraph("NO").Style = "TableHeader";
-                tableHeaderRow.Cells[1].AddParagraph("PRODUCT").Style = "TableHeader";
-                tableHeaderRow.Cells[2].AddParagraph("PRICE").Style = "TableHeader";
-                tableHeaderRow.Cells[3].AddParagraph("QTY").Style = "TableHeader";
-                tableHeaderRow.Cells[4].AddParagraph("TOTAL").Style = "TableHeader";
+                tableHeaderRow.Cells[0].AddParagraph("PRODUCT");
+                tableHeaderRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+                tableHeaderRow.Cells[1].AddParagraph("QTY").Style = "TableHeader";
+                tableHeaderRow.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+                tableHeaderRow.Cells[2].AddParagraph("U/PRICE").Style = "TableHeader";
+                tableHeaderRow.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+                tableHeaderRow.Cells[3].AddParagraph("AMOUNT").Style = "TableHeader";
+                tableHeaderRow.Cells[3].Format.Alignment = ParagraphAlignment.Center;
 
                 foreach (var item in cartItems)
                 {
                     Row itemRow = itemsTable.AddRow();
-                    itemRow.Cells[0].AddParagraph(item.ItemNumber.ToString()).Style = "Body";
-                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[1].AddParagraph($"{item.ProductName} ({item.VariationType})").Style = "Body";
-                    itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Left;
+                    string variation = string.IsNullOrEmpty(item.VariationType) || item.VariationType == "N/A" ? "" : $" ({item.VariationType})";
+                    itemRow.Cells[0].AddParagraph(item.ProductName + variation).Style = "Body";
+                    itemRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+
+                    string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : item.Quantity.ToString("N2");
+                    itemRow.Cells[1].AddParagraph(qtyText).Style = "Body";
+                    itemRow.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+
                     itemRow.Cells[2].AddParagraph($"LKR {item.Price:N2}").Style = "Body";
                     itemRow.Cells[2].Format.Alignment = ParagraphAlignment.Center;
-                    string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("N0") : item.Quantity.ToString("N2");
-                    itemRow.Cells[3].AddParagraph(qtyText).Style = "Body";
+
+                    itemRow.Cells[3].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
                     itemRow.Cells[3].Format.Alignment = ParagraphAlignment.Center;
-                    itemRow.Cells[4].AddParagraph($"LKR {item.TotalPrice:N2}").Style = "Body";
-                    itemRow.Cells[4].Format.Alignment = ParagraphAlignment.Center;
                 }
 
                 int remainingRows = 7 - cartItems.Count;
@@ -555,7 +556,6 @@ namespace EscopeWindowsApp
                     emptyRow.Cells[1].AddParagraph("").Style = "Body";
                     emptyRow.Cells[2].AddParagraph("").Style = "Body";
                     emptyRow.Cells[3].AddParagraph("").Style = "Body";
-                    emptyRow.Cells[4].AddParagraph("").Style = "Body";
                 }
 
                 section.AddParagraph().Format.SpaceAfter = 10;

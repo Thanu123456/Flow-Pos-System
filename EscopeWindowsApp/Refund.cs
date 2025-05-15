@@ -899,6 +899,31 @@ namespace EscopeWindowsApp
                     connection.Open();
                     using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
+                        // Updated: Lock stock rows for all products to prevent concurrent modifications
+                        var stockKeys = refItemDataGridView.Rows.Cast<DataGridViewRow>()
+                            .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString() })
+                            .Distinct()
+                            .ToList();
+
+                        string lockQuery = "SELECT product_id, variation_type, stock FROM stock WHERE ";
+                        for (int i = 0; i < stockKeys.Count; i++)
+                        {
+                            if (i > 0) lockQuery += " OR ";
+                            lockQuery += $"(product_id = @pid{i} AND variation_type = @vtype{i})";
+                        }
+                        lockQuery += " FOR UPDATE";
+
+                        using (MySqlCommand lockCmd = new MySqlCommand(lockQuery, connection, transaction))
+                        {
+                            for (int i = 0; i < stockKeys.Count; i++)
+                            {
+                                lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
+                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                            }
+                            lockCmd.ExecuteNonQuery(); // Locks the rows
+                        }
+
                         foreach (DataGridViewRow row in refItemDataGridView.Rows)
                         {
                             int productId = Convert.ToInt32(row.Cells["product_id"].Value);
@@ -910,8 +935,8 @@ namespace EscopeWindowsApp
 
                             // Insert into refunds table
                             string refundQuery = @"
-                                INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date)
-                                VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW())";
+                        INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date)
+                        VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW())";
                             using (MySqlCommand refundCommand = new MySqlCommand(refundQuery, connection, transaction))
                             {
                                 refundCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -927,11 +952,11 @@ namespace EscopeWindowsApp
 
                             // Update stock
                             string updateStockQuery = @"
-                                UPDATE stock 
-                                SET stock = stock + @quantity 
-                                WHERE product_id = @productId 
-                                AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                                LIMIT 1";
+                        UPDATE stock 
+                        SET stock = stock + @quantity 
+                        WHERE product_id = @productId 
+                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                        LIMIT 1";
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);
