@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 
 namespace EscopeWindowsApp
 {
@@ -541,10 +542,10 @@ namespace EscopeWindowsApp
                             }
 
                             string insertReturnQuery = @"
-                                INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, created_at)
-                                VALUES (@grnNo, @returnNo, @note, @totalAmount, NOW());
-                                SELECT LAST_INSERT_ID();
-                            ";
+                        INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, created_at)
+                        VALUES (@grnNo, @returnNo, @note, @totalAmount, NOW());
+                        SELECT LAST_INSERT_ID();
+                    ";
 
                             long returnId;
                             using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
@@ -556,35 +557,37 @@ namespace EscopeWindowsApp
                                 returnId = Convert.ToInt64(cmd.ExecuteScalar());
                             }
 
+                            // Updated: Lock stock rows for all products to prevent concurrent modifications
+                            var stockKeys = grnProductDataGridView.Rows.Cast<DataGridViewRow>()
+                                .Where(row => row.Cells["return_quantity"].Value != null && Convert.ToDecimal(row.Cells["return_quantity"].Value) > 0)
+                                .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString(), Unit = row.Cells["unit"].Value.ToString() })
+                                .Distinct()
+                                .ToList();
+
+                            string lockQuery = "SELECT product_id, variation_type, unit, stock FROM stock WHERE ";
+                            for (int i = 0; i < stockKeys.Count; i++)
+                            {
+                                if (i > 0) lockQuery += " OR ";
+                                lockQuery += $"(product_id = @pid{i} AND variation_type = @vtype{i} AND unit = @unit{i})";
+                            }
+                            lockQuery += " FOR UPDATE";
+
+                            using (MySqlCommand lockCmd = new MySqlCommand(lockQuery, connection, transaction))
+                            {
+                                for (int i = 0; i < stockKeys.Count; i++)
+                                {
+                                    lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
+                                    // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                    lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                                    lockCmd.Parameters.AddWithValue($"@unit{i}", stockKeys[i].Unit == "N/A" ? (object)DBNull.Value : stockKeys[i].Unit);
+                                }
+                                lockCmd.ExecuteNonQuery();
+                            }
+
                             string insertDetailsQuery = @"
-                                INSERT INTO purchase_return_details 
-                                (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
-                                VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
-                            ";
-
-                            string checkStockQuery = @"
-                            SELECT COALESCE(stock, 0) AS stockCoffee
-                            FROM stock 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
-                            LIMIT 1
-                        ";
-
-                            string updateStockQuery = @"
-                        INSERT INTO stock (product_id, variation_type, stock, unit)
-                        SELECT @productId, @variationType, -@quantity, @unit
-                        WHERE NOT EXISTS (
-                            SELECT 1 FROM stock 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
-                        );
-                        UPDATE stock 
-                        SET stock = stock - @quantity 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL));
+                        INSERT INTO purchase_return_details 
+                        (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                        VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
                     ";
 
                             // Track processed products to avoid duplicates
@@ -594,7 +597,7 @@ namespace EscopeWindowsApp
                             {
                                 if (row.Cells["product_id"].Value == null ||
                                     row.Cells["return_quantity"].Value == null ||
-                                    Convert.ToInt32(row.Cells["return_quantity"].Value) == 0)
+                                    Convert.ToDecimal(row.Cells["return_quantity"].Value) == 0)
                                 {
                                     continue;
                                 }
@@ -605,12 +608,16 @@ namespace EscopeWindowsApp
                                     variationType = null;
 
                                 string unit = row.Cells["unit"].Value?.ToString();
-                                int returnQuantity = Convert.ToInt32(row.Cells["return_quantity"].Value);
+                                if (string.IsNullOrEmpty(unit) || unit == "N/A")
+                                    unit = null;
+
+                                // Updated: Changed returnQuantity to decimal for precise stock handling
+                                decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
 
                                 // Create a unique key for the product
-                                string productKey = $"{productId}_{variationType ?? "null"}_{unit ?? "null"}";
+                                string productKey = $"{productId}{variationType ?? "null"}{unit ?? "null"}";
                                 if (processedProducts.Contains(productKey))
                                 {
                                     System.Diagnostics.Debug.WriteLine($"Skipping duplicate product: {productKey}");
@@ -618,24 +625,28 @@ namespace EscopeWindowsApp
                                 }
                                 processedProducts.Add(productKey);
 
-                                // Check current stock
-                                int currentStock = 0;
-                                using (MySqlCommand cmd = new MySqlCommand(checkStockQuery, connection, transaction))
+                                // Updated: Check stock using decimal for accurate quantity validation
+                                string checkStockQuery = @"
+                            SELECT stock 
+                            FROM stock 
+                            WHERE product_id = @productId 
+                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
+                            LIMIT 1";
+                                using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
                                 {
-                                    cmd.Parameters.AddWithValue("@productId", productId);
-                                    cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    var result = cmd.ExecuteScalar();
-                                    currentStock = Convert.ToInt32(result);
-                                }
+                                    checkCmd.Parameters.AddWithValue("@productId", productId);
+                                    checkCmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                    checkCmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                    var result = checkCmd.ExecuteScalar();
+                                    decimal currentStock = result != null ? Convert.ToDecimal(result) : 0m;
 
-                                // Validate stock
-                                if (currentStock < returnQuantity)
-                                {
-                                    transaction.Rollback();
-                                    MessageBox.Show($"Cannot return {returnQuantity} units of Product ID {productId}. Only {currentStock} units available in stock.", "Insufficient Stock",
-                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
+                                    if (currentStock < returnQuantity)
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show($"Cannot return {returnQuantity} units of Product ID {productId}. Only {currentStock} units available.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
                                 }
 
                                 // Insert purchase return details
@@ -651,14 +662,19 @@ namespace EscopeWindowsApp
                                     cmd.ExecuteNonQuery();
                                 }
 
-                                // Update stock (reduce by return quantity)
+                                // Updated: Update stock using decimal quantity for precise reduction
+                                string updateStockQuery = @"
+                            UPDATE stock 
+                            SET stock = stock - @quantity 
+                            WHERE product_id = @productId 
+                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
                                 using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
                                 {
+                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
                                     cmd.Parameters.AddWithValue("@productId", productId);
                                     cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
                                     cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-
                                     int rowsAffected = cmd.ExecuteNonQuery();
                                     System.Diagnostics.Debug.WriteLine($"Stock update for Product ID {productId}: Rows affected = {rowsAffected}, Reduced by {returnQuantity}");
                                 }

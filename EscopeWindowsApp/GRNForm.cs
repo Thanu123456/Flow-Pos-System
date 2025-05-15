@@ -936,6 +936,7 @@ namespace EscopeWindowsApp
                     conn.Open();
                     using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
+                        // Insert into grn table
                         string grnQuery = "INSERT INTO grn (grn_no, payment_method, total_amount, date) " +
                                           "VALUES (@grnNo, @paymentMethod, @totalAmount, @date)";
                         using (MySqlCommand cmd = new MySqlCommand(grnQuery, conn, transaction))
@@ -947,6 +948,8 @@ namespace EscopeWindowsApp
                             cmd.Parameters.AddWithValue("@date", DateTime.Now);
                             cmd.ExecuteNonQuery();
                             long grnId = cmd.LastInsertedId;
+
+                            StockManager stockManager = new StockManager(connectionString);
 
                             foreach (DataGridViewRow row in grnDataGridView.Rows)
                             {
@@ -963,6 +966,7 @@ namespace EscopeWindowsApp
                                 string unit = row.Cells["Unit"].Value?.ToString();
                                 string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();
 
+                                // Insert into grn_items
                                 string itemQuery = @"
                             INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
                             VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
@@ -981,26 +985,8 @@ namespace EscopeWindowsApp
                                     itemCmd.ExecuteNonQuery();
                                 }
 
-                                string stockQuery = @"
-                            INSERT INTO stock (product_id, variation_type, stock, unit)
-                            VALUES (@productId, @variationType, @quantity, @unit)
-                            ON DUPLICATE KEY UPDATE stock = stock + @quantity, unit = @unit";
-                                using (MySqlCommand stockCmd = new MySqlCommand(stockQuery, conn, transaction))
-                                {
-                                    stockCmd.Parameters.AddWithValue("@productId", productId);
-                                    stockCmd.Parameters.AddWithValue("@variationType", varType ?? (object)DBNull.Value);
-                                    stockCmd.Parameters.AddWithValue("@quantity", quantity);
-                                    stockCmd.Parameters.AddWithValue("@unit", unit == "N/A" ? (object)DBNull.Value : unit);
-                                    stockCmd.ExecuteNonQuery();
-                                }
-
-                                string productStockQuery = "UPDATE products SET stock = stock + @quantity WHERE id = @productId";
-                                using (MySqlCommand productCmd = new MySqlCommand(productStockQuery, conn, transaction))
-                                {
-                                    productCmd.Parameters.AddWithValue("@quantity", quantity);
-                                    productCmd.Parameters.AddWithValue("@productId", productId);
-                                    productCmd.ExecuteNonQuery();
-                                }
+                                // Update stock using StockManager
+                                stockManager.UpdateStock(productId, varType, quantity, unit, true);
                             }
 
                             transaction.Commit();
