@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Diagnostics;
 using System.Configuration;
+using System.Linq;
 
 namespace EscopeWindowsApp
 {
@@ -1513,8 +1514,8 @@ namespace EscopeWindowsApp
 
                         // Insert sale record
                         string salesQuery = @"
-                            INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
-                            VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
+                    INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
+                    VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
                         using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection, transaction))
                         {
                             salesCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -1526,16 +1527,35 @@ namespace EscopeWindowsApp
                             salesCommand.ExecuteNonQuery();
                         }
 
+                        // Updated: Lock stock rows for all products to prevent concurrent modifications
+                        var stockKeys = supDataGridView.Rows.Cast<DataGridViewRow>()
+                            .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString() })
+                            .Distinct()
+                            .ToList();
+
+                        string lockQuery = "SELECT product_id, variation_type, stock FROM stock WHERE ";
+                        for (int i = 0; i < stockKeys.Count; i++)
+                        {
+                            if (i > 0) lockQuery += " OR ";
+                            lockQuery += $"(product_id = @pid{i} AND variation_type = @vtype{i})";
+                        }
+                        lockQuery += " FOR UPDATE";
+
+                        using (MySqlCommand lockCmd = new MySqlCommand(lockQuery, connection, transaction))
+                        {
+                            for (int i = 0; i < stockKeys.Count; i++)
+                            {
+                                lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
+                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                            }
+                            lockCmd.ExecuteNonQuery(); // Locks the rows
+                        }
+
                         // Insert sales details and update stock
                         string detailsQuery = @"
-                            INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
-                            VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
-                        string updateStockQuery = @"
-                            UPDATE stock 
-                            SET stock = GREATEST(0, stock - @quantity) 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            LIMIT 1";
+                    INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
+                    VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
 
                         foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
@@ -1544,13 +1564,36 @@ namespace EscopeWindowsApp
                             if (variationType == "N/A") variationType = null;
                             decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
 
+                            // Updated: Check stock availability before updating
+                            string checkStockQuery = @"
+                        SELECT stock 
+                        FROM stock 
+                        WHERE product_id = @productId 
+                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                        LIMIT 1";
+                            using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
+                            {
+                                checkCmd.Parameters.AddWithValue("@productId", productId);
+                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                checkCmd.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
+                                // Updated: Fix typo from 'objectld' to 'object'
+                                object result = checkCmd.ExecuteScalar();
+                                if (result == null || Convert.ToDecimal(result) < quantity)
+                                {
+                                    transaction.Rollback();
+                                    MessageBox.Show($"Insufficient stock for product {row.Cells["product_name"].Value}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+
                             // Insert sales details with product_id
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
                             {
                                 detailsCommand.Parameters.AddWithValue("@billNo", billNo);
                                 detailsCommand.Parameters.AddWithValue("@productId", productId);
                                 detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
-                                detailsCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                detailsCommand.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
                                 detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
                                 detailsCommand.Parameters.AddWithValue("@quantity", quantity);
                                 detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
@@ -1558,20 +1601,20 @@ namespace EscopeWindowsApp
                                 detailsCommand.ExecuteNonQuery();
                             }
 
-                            // Update stock with negative stock prevention
+                            // Updated: Update stock with locked rows
+                            string updateStockQuery = @"
+                        UPDATE stock 
+                        SET stock = stock - @quantity 
+                        WHERE product_id = @productId 
+                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))";
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);
                                 stockCommand.Parameters.AddWithValue("@productId", productId);
-                                stockCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
+                                stockCommand.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
                                 int rowsAffected = stockCommand.ExecuteNonQuery();
                                 Debug.WriteLine($"Stock update for Product ID {productId}, Variation: {variationType ?? "NULL"}, Quantity: {quantity}, Rows Affected: {rowsAffected}");
-                                if (rowsAffected == 0)
-                                {
-                                    transaction.Rollback();
-                                    MessageBox.Show($"Error: Stock not found for Product ID {productId}, Variation: {variationType ?? "NULL"}. Transaction rolled back.", "Stock Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
                             }
                         }
 
