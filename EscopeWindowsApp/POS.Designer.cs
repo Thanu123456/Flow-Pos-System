@@ -725,6 +725,7 @@
             this.holdBtn.Size = new System.Drawing.Size(296, 42);
             this.holdBtn.TabIndex = 67;
             this.holdBtn.Text = "Hold";
+            this.holdBtn.Click += new System.EventHandler(this.holdBtn_Click);
             // 
             // resetBtn
             // 

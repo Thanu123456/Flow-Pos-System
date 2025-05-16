@@ -406,6 +406,12 @@
     <Compile Include="GRNForm.Designer.cs">
       <DependentUpon>GRNForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoldForm.Designer.cs">
+      <DependentUpon>HoldForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoldReference.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -691,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GRNForm.resx">
       <DependentUpon>GRNForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoldForm.resx">
+      <DependentUpon>HoldForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoldReference.resx">
       <DependentUpon>HoldReference.cs</DependentUpon>
