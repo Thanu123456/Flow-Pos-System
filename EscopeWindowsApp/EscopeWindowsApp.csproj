@@ -406,6 +406,12 @@
     <Compile Include="GRNForm.Designer.cs">
       <DependentUpon>GRNForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoldReference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoldReference.Designer.cs">
+      <DependentUpon>HoldReference.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -686,6 +692,9 @@
     <EmbeddedResource Include="GRNForm.resx">
       <DependentUpon>GRNForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HoldReference.resx">
+      <DependentUpon>HoldReference.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -791,6 +800,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-warning-48.png" />
     <None Include="Resources\FlowPOS Logo-032.png" />
     <None Include="Resources\FlowPOS Logo-031.png" />
     <None Include="Resources\FlowPOS Logo-03.png" />
