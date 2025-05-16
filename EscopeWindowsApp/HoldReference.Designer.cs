@@ -110,6 +110,7 @@
             this.refNumberText.SelectedText = "";
             this.refNumberText.Size = new System.Drawing.Size(356, 42);
             this.refNumberText.TabIndex = 72;
+            this.refNumberText.TextChanged += new System.EventHandler(this.refNumberText_TextChanged);
             // 
             // createCategoryLabel
             // 
@@ -159,6 +160,7 @@
             this.holdOkayBtn.Size = new System.Drawing.Size(95, 45);
             this.holdOkayBtn.TabIndex = 78;
             this.holdOkayBtn.Text = "Yes! Ok";
+            this.holdOkayBtn.Click += new System.EventHandler(this.holdOkayBtn_Click);
             // 
             // holdCancelBtn
             // 
@@ -178,6 +180,7 @@
             this.holdCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.holdCancelBtn.TabIndex = 77;
             this.holdCancelBtn.Text = "Cancel";
+            this.holdCancelBtn.Click += new System.EventHandler(this.holdCancelBtn_Click);
             // 
             // siticonePictureBox1
             // 
@@ -211,6 +214,7 @@
             this.Name = "HoldReference";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HoldReference";
+            this.Load += new System.EventHandler(this.HoldReference_Load);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();

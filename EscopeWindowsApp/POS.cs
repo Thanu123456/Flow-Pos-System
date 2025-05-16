@@ -1470,7 +1470,24 @@ namespace EscopeWindowsApp
             posDateLabel.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy");
         }
 
-        private void posHoldFormBtn_Click(object sender, EventArgs e) { }
+        private void posHoldFormBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is HoldForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            HoldForm holdForm = new HoldForm(this);
+            holdForm.Show();
+        }
         private void posTimeLabel_Click(object sender, EventArgs e) { }
 
         private void companyNameLabel_Click(object sender, EventArgs e)
@@ -1893,10 +1910,170 @@ namespace EscopeWindowsApp
     }
 }
 
-// Updated logoPicBox_Click method
-private void logoPicBox_Click(object sender, EventArgs e)
-{
-    LoadCompanyLogo(); // Reload the logo when the PictureBox is clicked
-}
+        // Updated logoPicBox_Click method
+        private void logoPicBox_Click(object sender, EventArgs e)
+        {
+            LoadCompanyLogo(); // Reload the logo when the PictureBox is clicked
+        }
+
+        private void SaveHeldSale(string referenceNumber)
+        {
+            if (supDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No items to hold.", "Empty Cart", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        // Insert into held_sales
+                        string insertHeaderQuery = "INSERT INTO held_sales (reference_number, hold_date) VALUES (@refNumber, @holdDate)";
+                        using (MySqlCommand cmd = new MySqlCommand(insertHeaderQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@refNumber", referenceNumber);
+                            cmd.Parameters.AddWithValue("@holdDate", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Get the hold_id
+                        string getHoldIdQuery = "SELECT LAST_INSERT_ID()";
+                        long holdId;
+                        using (MySqlCommand cmd = new MySqlCommand(getHoldIdQuery, connection, transaction))
+                        {
+                            holdId = Convert.ToInt64(cmd.ExecuteScalar());
+                        }
+
+                        // Insert details
+                        string insertDetailQuery = @"
+                    INSERT INTO held_sale_details (hold_id, product_id, variation_type, quantity, price)
+                    VALUES (@holdId, @productId, @variationType, @quantity, @price)";
+                        foreach (DataGridViewRow row in supDataGridView.Rows)
+                        {
+                            int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                            string variationType = row.Cells["variation_type"].Value.ToString();
+                            if (variationType == "N/A") variationType = null;
+                            decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                            decimal price = Convert.ToDecimal(row.Cells["price"].Value);
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertDetailQuery, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@holdId", holdId);
+                                cmd.Parameters.AddWithValue("@productId", productId);
+                                cmd.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
+                                cmd.Parameters.AddWithValue("@quantity", quantity);
+                                cmd.Parameters.AddWithValue("@price", price);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show("Sale held successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        supDataGridView.Rows.Clear();
+                        ReassignItemNumbers();
+                        UpdateAllLabels();
+                    }
+                }
+            }
+            catch (MySqlException ex) when (ex.Number == 1062) // Duplicate entry
+            {
+                MessageBox.Show("Reference number already exists. Please choose a different one.", "Duplicate Reference", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error holding sale: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        public void LoadHeldSale(int holdId)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT 
+                    hsd.product_id,
+                    p.name AS product_name,
+                    hsd.variation_type,
+                    u.unit_name,
+                    hsd.quantity,
+                    hsd.price
+                FROM held_sale_details hsd
+                JOIN products p ON hsd.product_id = p.id
+                LEFT JOIN units u ON p.unit_id = u.id
+                WHERE hsd.hold_id = @holdId";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@holdId", holdId);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            supDataGridView.Rows.Clear();
+                            itemNumberCounter = 1;
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                string variationType = row["variation_type"] != DBNull.Value ? row["variation_type"].ToString() : "N/A";
+                                supDataGridView.Rows.Add(
+                                    itemNumberCounter++,
+                                    row["product_id"],
+                                    row["product_name"],
+                                    variationType,
+                                    row["unit_name"],
+                                    null,
+                                    row["quantity"],
+                                    null,
+                                    row["price"],
+                                    Convert.ToDecimal(row["quantity"]) * Convert.ToDecimal(row["price"]),
+                                    null
+                                );
+                            }
+                        }
+                    }
+
+                    // Delete the held sale after retrieving
+                    string deleteDetailsQuery = "DELETE FROM held_sale_details WHERE hold_id = @holdId";
+                    using (MySqlCommand cmd = new MySqlCommand(deleteDetailsQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@holdId", holdId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    string deleteHeaderQuery = "DELETE FROM held_sales WHERE hold_id = @holdId";
+                    using (MySqlCommand cmd = new MySqlCommand(deleteHeaderQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@holdId", holdId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    UpdateAllLabels();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading held sale: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void holdBtn_Click(object sender, EventArgs e)
+        {
+            using (HoldReference holdReference = new HoldReference())
+            {
+                if (holdReference.ShowDialog() == DialogResult.OK)
+                {
+                    string referenceNumber = holdReference.ReferenceNumber;
+                    SaveHeldSale(referenceNumber);
+                }
+            }
+        }
     }
 }
