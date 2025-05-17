@@ -57,6 +57,7 @@
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(610, 34);
             this.headerPanel.TabIndex = 29;
+            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // controlPanel
             // 
@@ -101,6 +102,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BarcodePreview";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Barcode Preview";
             this.Load += new System.EventHandler(this.BarcodePreview_Load);
             this.headerPanel.ResumeLayout(false);

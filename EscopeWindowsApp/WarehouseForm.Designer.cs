@@ -249,7 +249,6 @@
             // 
             // wareFilterBtn
             // 
-            this.wareFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.wareFilterBtn.Animated = true;
             this.wareFilterBtn.BorderRadius = 8;
             this.wareFilterBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;

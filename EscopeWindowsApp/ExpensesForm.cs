@@ -82,7 +82,7 @@ namespace EscopeWindowsApp
             expDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "EditColumn",
-                HeaderText = "Edit",
+                HeaderText = "EDIT",
                 Width = 50,
                 ToolTipText = "Edit this expense"
             });
@@ -90,7 +90,7 @@ namespace EscopeWindowsApp
             expDataGridView.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "DeleteColumn",
-                HeaderText = "Delete",
+                HeaderText = "DELETE",
                 Width = 50,
                 ToolTipText = "Delete this expense"
             });
@@ -106,7 +106,7 @@ namespace EscopeWindowsApp
             if (expDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int expenseId = Convert.ToInt32(e.Value);
-                e.Value = $"exp{expenseId:D3}";
+                e.Value = $"EXP{expenseId:D3}";
                 e.FormattingApplied = true;
             }
             else if (expDataGridView.Columns[e.ColumnIndex].Name == "amount")
