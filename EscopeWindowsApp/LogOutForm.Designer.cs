@@ -281,7 +281,9 @@
             // 
             this.confirmPasswordBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.confirmPasswordBtn.Animated = true;
+            this.confirmPasswordBtn.BackColor = System.Drawing.Color.Transparent;
             this.confirmPasswordBtn.BorderRadius = 8;
+            this.confirmPasswordBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
             this.confirmPasswordBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.confirmPasswordBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.confirmPasswordBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -289,7 +291,7 @@
             this.confirmPasswordBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.confirmPasswordBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
             this.confirmPasswordBtn.ForeColor = System.Drawing.Color.White;
-            this.confirmPasswordBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.confirmPasswordBtn.HoverState.FillColor = System.Drawing.Color.Green;
             this.confirmPasswordBtn.Location = new System.Drawing.Point(171, 470);
             this.confirmPasswordBtn.Name = "confirmPasswordBtn";
             this.confirmPasswordBtn.Size = new System.Drawing.Size(95, 45);

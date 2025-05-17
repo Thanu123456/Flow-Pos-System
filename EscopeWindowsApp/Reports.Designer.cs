@@ -139,8 +139,8 @@
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            lineAnnotation1.AllowAnchorMoving = true;
-            lineAnnotation1.AllowMoving = true;
+            lineAnnotation1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            lineAnnotation1.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             lineAnnotation1.Name = "LineAnnotation1";
             this.chart1.Annotations.Add(lineAnnotation1);
             this.chart1.BackColor = System.Drawing.Color.Transparent;
@@ -150,17 +150,23 @@
             this.chart1.BorderSkin.BackColor = System.Drawing.Color.Transparent;
             this.chart1.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             this.chart1.BorderSkin.PageColor = System.Drawing.Color.Transparent;
+            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
             chartArea1.Area3DStyle.Enable3D = true;
-            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea1.Area3DStyle.Inclination = 10;
+            chartArea1.Area3DStyle.IsClustered = true;
+            chartArea1.Area3DStyle.Rotation = 20;
+            chartArea1.Area3DStyle.WallWidth = 1;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.BorderColor = System.Drawing.Color.DarkGray;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.BorderWidth = 0;
             chartArea1.Name = "ChartArea1";
+            chartArea1.ShadowColor = System.Drawing.Color.White;
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(658, 31);
             this.chart1.Margin = new System.Windows.Forms.Padding(0);
             this.chart1.MinimumSize = new System.Drawing.Size(420, 316);
             this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series1.ChartArea = "ChartArea1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
@@ -246,10 +252,10 @@
             this.purchasesReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.purchasesReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.purchasesReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.purchasesReportBtn.FillColor = System.Drawing.Color.OrangeRed;
+            this.purchasesReportBtn.FillColor = System.Drawing.Color.Tomato;
             this.purchasesReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.purchasesReportBtn.ForeColor = System.Drawing.Color.White;
-            this.purchasesReportBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.purchasesReportBtn.HoverState.FillColor = System.Drawing.Color.OrangeRed;
             this.purchasesReportBtn.Location = new System.Drawing.Point(358, 337);
             this.purchasesReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
             this.purchasesReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
@@ -291,7 +297,7 @@
             this.logHistoryBtn.FillColor = System.Drawing.Color.DarkOrange;
             this.logHistoryBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.logHistoryBtn.ForeColor = System.Drawing.Color.White;
-            this.logHistoryBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.logHistoryBtn.HoverState.FillColor = System.Drawing.Color.DarkGoldenrod;
             this.logHistoryBtn.Location = new System.Drawing.Point(29, 503);
             this.logHistoryBtn.MaximumSize = new System.Drawing.Size(297, 129);
             this.logHistoryBtn.MinimumSize = new System.Drawing.Size(297, 129);
@@ -312,7 +318,7 @@
             this.creditReportBtn.FillColor = System.Drawing.Color.Purple;
             this.creditReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.creditReportBtn.ForeColor = System.Drawing.Color.White;
-            this.creditReportBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.creditReportBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.creditReportBtn.Location = new System.Drawing.Point(358, 503);
             this.creditReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
             this.creditReportBtn.MinimumSize = new System.Drawing.Size(297, 129);

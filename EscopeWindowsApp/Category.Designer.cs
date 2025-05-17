@@ -152,7 +152,6 @@
             // 
             // categoryRefreshBtn
             // 
-            this.categoryRefreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.categoryRefreshBtn.Animated = true;
             this.categoryRefreshBtn.BackColor = System.Drawing.Color.Transparent;
             this.categoryRefreshBtn.BorderRadius = 8;
