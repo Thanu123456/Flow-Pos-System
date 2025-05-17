@@ -33,6 +33,10 @@ namespace EscopeWindowsApp
             createQuoText.Text = "Walk-In Customer";
             CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
 
+            // Set form properties
+            this.Height = 650; // Set fixed form height to 650 pixels
+            this.AutoScroll = false; // Disable form-level scrolling to avoid conflicts
+
             // Fix headerPanel to prevent scrolling
             headerPanel.Parent = this; // Make headerPanel a direct child of the form
             headerPanel.Dock = DockStyle.Top;
@@ -42,25 +46,62 @@ namespace EscopeWindowsApp
             // Create a scrollable panel for other controls
             scrollablePanel = new Panel
             {
-                Dock = DockStyle.Fill,
-                AutoScroll = true,
-                Top = headerPanel.Height, // Position below headerPanel
-                Height = this.ClientSize.Height - headerPanel.Height
+                Location = new Point(0, headerPanel.Height), // Position immediately below headerPanel
+                Size = new Size(this.ClientSize.Width, this.ClientSize.Height - headerPanel.Height), // Fill remaining space
+                AutoScroll = true, // Enable scrolling for content
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom // Ensure resizing
             };
             this.Controls.Add(scrollablePanel);
 
-            // Move scrollable controls to scrollablePanel
+            // Move scrollable controls to scrollablePanel and reset their positions
             foreach (Control control in this.Controls.Cast<Control>().ToList())
             {
                 if (control != headerPanel && control != scrollablePanel)
                 {
                     this.Controls.Remove(control);
+                    // Adjust control position to start at top of scrollablePanel
+                    control.Location = new Point(control.Location.X, control.Location.Y);
                     scrollablePanel.Controls.Add(control);
                 }
             }
 
-            // Handle form scrolling to keep headerPanel fixed
-            this.Scroll += (s, e) => headerPanel.Location = new Point(0, 0);
+            // Ensure scrollablePanel resizes with form
+            this.Resize += (s, e) =>
+            {
+                scrollablePanel.Size = new Size(this.ClientSize.Width, this.ClientSize.Height - headerPanel.Height);
+            };
+
+            // Set initial scroll position and adjust control positions on form load
+            this.Load += (s, e) =>
+            {
+                scrollablePanel.AutoScrollPosition = new Point(0, 0);
+
+                // Adjust createQuotaLabel position (move up by 40px)
+                if (scrollablePanel.Controls.Contains(createQuotaLabel))
+                {
+                    createQuotaLabel.Location = new Point(createQuotaLabel.Location.X, createQuotaLabel.Location.Y - 40);
+                }
+
+                // Reduce gap below createQuotaLabel
+                if (scrollablePanel.Controls.Count > 1)
+                {
+                    // Find the control immediately below createQuotaLabel
+                    Control nextControl = scrollablePanel.Controls
+                        .Cast<Control>()
+                        .Where(c => c.Top > createQuotaLabel.Top)
+                        .OrderBy(c => c.Top)
+                        .FirstOrDefault();
+
+                    if (nextControl != null)
+                    {
+                        // Position the next control 5 pixels below createQuotaLabel
+                        nextControl.Location = new Point(
+                            nextControl.Location.X,
+                            createQuotaLabel.Top + createQuotaLabel.Height + 5
+                        );
+                    }
+                }
+            };
 
             // Initialize and start the time timer
             timeTimer = new Timer();
@@ -1324,6 +1365,10 @@ namespace EscopeWindowsApp
         }
 
         private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void createQuotaLabel_Click(object sender, EventArgs e)
         {
         }
     }

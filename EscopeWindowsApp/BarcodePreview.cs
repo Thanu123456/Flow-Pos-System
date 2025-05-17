@@ -18,7 +18,35 @@ namespace EscopeWindowsApp
             barcodePreviewPicBox.Image = previewBitmap;
             barcodePreviewPicBox.SizeMode = PictureBoxSizeMode.Zoom;
             barcodePreviewPicBox.Size = new Size(595, 842); // A4 size in pixels at 72 DPI
-            this.AutoScroll = true; // Enable scrolling for the form
+
+            // Fix headerPanel to prevent scrolling
+            headerPanel.Parent = this; // Make headerPanel a direct child of the form
+            headerPanel.Dock = DockStyle.Top;
+            headerPanel.AutoScroll = false;
+            headerPanel.BringToFront();
+
+            // Create a scrollable panel for other controls
+            Panel scrollablePanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                Top = headerPanel.Height, // Position below headerPanel
+                Height = this.ClientSize.Height - headerPanel.Height
+            };
+            this.Controls.Add(scrollablePanel);
+
+            // Move scrollable controls to scrollablePanel
+            foreach (Control control in this.Controls.Cast<Control>().ToList())
+            {
+                if (control != headerPanel && control != scrollablePanel)
+                {
+                    this.Controls.Remove(control);
+                    scrollablePanel.Controls.Add(control);
+                }
+            }
+
+            // Handle form scrolling to keep headerPanel fixed
+            this.Scroll += (s, e) => headerPanel.Location = new Point(0, 0);
         }
 
         private void BarcodePreview_Load(object sender, EventArgs e)
@@ -30,5 +58,11 @@ namespace EscopeWindowsApp
         {
             // Handle click if necessary
         }
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+           
+        }
+       
     }
 }

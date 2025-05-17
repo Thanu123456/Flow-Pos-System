@@ -106,11 +106,12 @@
             // 
             this.createQuotaLabel.AutoSize = true;
             this.createQuotaLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createQuotaLabel.Location = new System.Drawing.Point(18, 50);
+            this.createQuotaLabel.Location = new System.Drawing.Point(18, 61);
             this.createQuotaLabel.Name = "createQuotaLabel";
             this.createQuotaLabel.Size = new System.Drawing.Size(186, 29);
             this.createQuotaLabel.TabIndex = 16;
             this.createQuotaLabel.Text = "Create Quotation";
+            this.createQuotaLabel.Click += new System.EventHandler(this.createQuotaLabel_Click);
             // 
             // createQuotaPanel
             // 
@@ -814,6 +815,7 @@
             // quotaCancelBtn
             // 
             this.quotaCancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.quotaCancelBtn.Animated = true;
             this.quotaCancelBtn.BorderRadius = 8;
             this.quotaCancelBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.quotaCancelBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -823,9 +825,9 @@
             this.quotaCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaCancelBtn.ForeColor = System.Drawing.Color.White;
             this.quotaCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.quotaCancelBtn.Location = new System.Drawing.Point(226, 14);
+            this.quotaCancelBtn.Location = new System.Drawing.Point(227, 3);
             this.quotaCancelBtn.Name = "quotaCancelBtn";
-            this.quotaCancelBtn.Size = new System.Drawing.Size(95, 45);
+            this.quotaCancelBtn.Size = new System.Drawing.Size(95, 46);
             this.quotaCancelBtn.TabIndex = 26;
             this.quotaCancelBtn.Text = "Cancel";
             this.quotaCancelBtn.Click += new System.EventHandler(this.quotaCancelBtn_Click);
@@ -833,6 +835,7 @@
             // quotaSaveBtn
             // 
             this.quotaSaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.quotaSaveBtn.Animated = true;
             this.quotaSaveBtn.BorderRadius = 8;
             this.quotaSaveBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.quotaSaveBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -842,9 +845,9 @@
             this.quotaSaveBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quotaSaveBtn.ForeColor = System.Drawing.Color.White;
             this.quotaSaveBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.quotaSaveBtn.Location = new System.Drawing.Point(122, 14);
+            this.quotaSaveBtn.Location = new System.Drawing.Point(123, 3);
             this.quotaSaveBtn.Name = "quotaSaveBtn";
-            this.quotaSaveBtn.Size = new System.Drawing.Size(95, 45);
+            this.quotaSaveBtn.Size = new System.Drawing.Size(95, 46);
             this.quotaSaveBtn.TabIndex = 25;
             this.quotaSaveBtn.Text = "Save";
             this.quotaSaveBtn.Click += new System.EventHandler(this.quotaSaveBtn_Click);
@@ -857,7 +860,7 @@
             this.headerPanel.FillColor = System.Drawing.Color.White;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1000, 34);
+            this.headerPanel.Size = new System.Drawing.Size(991, 34);
             this.headerPanel.TabIndex = 28;
             this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
@@ -868,7 +871,7 @@
             this.controlPanel.Controls.Add(this.minimumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(920, 3);
+            this.controlPanel.Location = new System.Drawing.Point(911, 3);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(92, 30);
             this.controlPanel.TabIndex = 1;
@@ -906,6 +909,7 @@
             // printPdfBtn
             // 
             this.printPdfBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.printPdfBtn.Animated = true;
             this.printPdfBtn.BorderRadius = 8;
             this.printPdfBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.printPdfBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -914,10 +918,10 @@
             this.printPdfBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.printPdfBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printPdfBtn.ForeColor = System.Drawing.Color.White;
-            this.printPdfBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.printPdfBtn.Location = new System.Drawing.Point(15, 14);
+            this.printPdfBtn.HoverState.FillColor = System.Drawing.Color.Green;
+            this.printPdfBtn.Location = new System.Drawing.Point(16, 3);
             this.printPdfBtn.Name = "printPdfBtn";
-            this.printPdfBtn.Size = new System.Drawing.Size(95, 45);
+            this.printPdfBtn.Size = new System.Drawing.Size(95, 46);
             this.printPdfBtn.TabIndex = 29;
             this.printPdfBtn.Text = "Print";
             this.printPdfBtn.Click += new System.EventHandler(this.printPdfBtn_Click);
@@ -928,9 +932,9 @@
             this.siticonePanel2.Controls.Add(this.printPdfBtn);
             this.siticonePanel2.Controls.Add(this.quotaSaveBtn);
             this.siticonePanel2.FillColor = System.Drawing.Color.Transparent;
-            this.siticonePanel2.Location = new System.Drawing.Point(643, 1051);
+            this.siticonePanel2.Location = new System.Drawing.Point(653, 1048);
             this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(329, 139);
+            this.siticonePanel2.Size = new System.Drawing.Size(329, 70);
             this.siticonePanel2.TabIndex = 30;
             // 
             // AddQuotationForm
@@ -939,7 +943,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1017, 788);
+            this.ClientSize = new System.Drawing.Size(1008, 788);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.siticonePanel2);
             this.Controls.Add(this.createQuotaPanel);
