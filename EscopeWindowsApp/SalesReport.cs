@@ -275,83 +275,30 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Sales Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Sales Report";
-                    document.Info.Author = "EscopeWindowsApp";
+                    // Create report using ReportDesigner
+                    ReportDesigner designer = new ReportDesigner();
+                    var document = designer.CreateSalesReportDocument(salesTable, dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily");
 
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Sales Report ({dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(3));  // Bill Number
-                    table.AddColumn(Unit.FromCentimeter(3));  // Customer Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Username
-                    table.AddColumn(Unit.FromCentimeter(2));  // Quantity of Items
-                    table.AddColumn(Unit.FromCentimeter(2));  // Payment Method
-                    table.AddColumn(Unit.FromCentimeter(2));  // Total Price
-                    table.AddColumn(Unit.FromCentimeter(3));  // Sale Date
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("Bill Number");
-                    headerRow.Cells[1].AddParagraph("Customer Name");
-                    headerRow.Cells[2].AddParagraph("Username");
-                    headerRow.Cells[3].AddParagraph("Quantity of Items");
-                    headerRow.Cells[4].AddParagraph("Payment Method");
-                    headerRow.Cells[5].AddParagraph("Total Price");
-                    headerRow.Cells[6].AddParagraph("Sale Date");
-
-                    // Add data rows
-                    foreach (DataRow row in salesTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["bill_no"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["customer"].ToString());
-                        dataRow.Cells[2].AddParagraph(row["user_name"].ToString());
-                        dataRow.Cells[3].AddParagraph(row["quantity_of_items"].ToString());
-                        dataRow.Cells[4].AddParagraph(row["payment_method"].ToString());
-                        dataRow.Cells[5].AddParagraph(row["total_price"].ToString());
-                        dataRow.Cells[6].AddParagraph(Convert.ToDateTime(row["sale_date"]).ToString("yyyy-MM-dd"));
-                    }
-
-                    // Render the document to PDF
+                    // Render and save the PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Open the PDF in the default browser
+                    // Open the PDF
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -363,10 +310,10 @@ namespace EscopeWindowsApp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please ensure a default browser is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Print the PDF using the default printer via the default PDF viewer
+                    // Print the PDF
                     try
                     {
                         System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
@@ -380,14 +327,14 @@ namespace EscopeWindowsApp
 
                         using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
                         {
-                            printProcess.WaitForExit(); // Wait for the printing process to complete
+                            printProcess.WaitForExit();
                         }
 
                         MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error printing PDF: {ex.Message}. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error printing PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
