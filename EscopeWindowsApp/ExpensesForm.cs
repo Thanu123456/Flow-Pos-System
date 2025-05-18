@@ -52,7 +52,8 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "expense_date",
                 Name = "expense_date",
-                HeaderText = "DATE"
+                HeaderText = "DATE",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Date format matching Sales form
             });
             expDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -76,7 +77,8 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "amount",
                 Name = "amount",
-                HeaderText = "AMOUNT"
+                HeaderText = "AMOUNT",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" } // Numeric format with 2 decimal places, no currency symbol
             });
 
             expDataGridView.Columns.Add(new DataGridViewButtonColumn
@@ -109,10 +111,31 @@ namespace EscopeWindowsApp
                 e.Value = $"EXP{expenseId:D3}";
                 e.FormattingApplied = true;
             }
+            else if (expDataGridView.Columns[e.ColumnIndex].Name == "expense_date")
+            {
+                if (e.Value is DateTime date && date != DateTime.MinValue)
+                {
+                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
             else if (expDataGridView.Columns[e.ColumnIndex].Name == "amount")
             {
-                e.Value = String.Format("{0:C}", e.Value);
-                e.FormattingApplied = true;
+                if (e.Value is decimal amount)
+                {
+                    e.Value = amount.ToString("N2"); // Format as numeric with 2 decimal places, no currency symbol
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
             }
         }
 
@@ -162,13 +185,13 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                        SELECT e.id, e.expense_date, e.title, 
-                               w.name AS warehouse_name, ec.name AS category_name, 
-                               e.amount, e.details, e.warehouse_id, e.category_id
-                        FROM expenses e
-                        LEFT JOIN warehouses w ON e.warehouse_id = w.id
-                        LEFT JOIN expenses_categories ec ON e.category_id = ec.id
-                        ORDER BY e.id ASC";
+                    SELECT e.id, e.expense_date, e.title, 
+                           w.name AS warehouse_name, ec.name AS category_name, 
+                           e.amount, e.details, e.warehouse_id, e.category_id
+                    FROM expenses e
+                    LEFT JOIN warehouses w ON e.warehouse_id = w.id
+                    LEFT JOIN expenses_categories ec ON e.category_id = ec.id
+                    ORDER BY e.id ASC";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
                         adapter.Fill(expensesTable);

@@ -96,7 +96,7 @@ namespace EscopeWindowsApp
             if (wareDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int warehouseId = Convert.ToInt32(e.Value);
-                e.Value = $"wh{warehouseId:D3}"; // Format as "wh001", "wh002", etc.
+                e.Value = $"WH{warehouseId:D3}"; // Format as "wh001", "wh002", etc.
                 e.FormattingApplied = true;
             }
         }
