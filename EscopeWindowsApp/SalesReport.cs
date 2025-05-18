@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
+using MySql.Data.MySqlClient;
 using ClosedXML.Excel;
-using System.IO;
 using System.Configuration;
+using System.IO;
 
 namespace EscopeWindowsApp
 {
@@ -25,8 +17,6 @@ namespace EscopeWindowsApp
         public SalesReport()
         {
             InitializeComponent();
-            // Hook up CellFormatting event
-            salesReportDataGrid.CellFormatting += SalesReportDataGrid_CellFormatting;
         }
 
         private void SalesReport_Load(object sender, EventArgs e)
@@ -52,17 +42,15 @@ namespace EscopeWindowsApp
                     connection.Open();
 
                     string query = @"
-                    SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date
-                    FROM sales
-                    WHERE 1=1";
+                        SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date
+                        FROM sales
+                        WHERE 1=1";
 
-                    // Add search filter if provided
                     if (!string.IsNullOrEmpty(searchText))
                     {
                         query += " AND (bill_no LIKE @searchText OR customer LIKE @searchText OR user_name LIKE @searchText)";
                     }
 
-                    // Add date filter
                     DateTime now = DateTime.Now;
                     if (dateFilter == "Daily")
                     {
@@ -81,26 +69,21 @@ namespace EscopeWindowsApp
                         query += " AND YEAR(sale_date) = @year";
                     }
 
-                    // Sort by sale_date in descending order to show the most recent sale first
-                    query += " ORDER BY sale_date DESC";
-
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Add parameters for search
                         if (!string.IsNullOrEmpty(searchText))
                         {
                             command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
                         }
 
-                        // Add parameters for date filter
                         if (dateFilter == "Daily")
                         {
                             command.Parameters.AddWithValue("@today", now.Date);
                         }
                         else if (dateFilter == "Weekly")
                         {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek); // Start of the week (Sunday)
-                            DateTime weekEnd = weekStart.AddDays(6); // End of the week (Saturday)
+                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
+                            DateTime weekEnd = weekStart.AddDays(6);
                             command.Parameters.AddWithValue("@weekStart", weekStart);
                             command.Parameters.AddWithValue("@weekEnd", weekEnd);
                         }
@@ -123,17 +106,14 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Configure DataGridView columns
                 ConfigureDataGridView();
 
-                // Enable or disable PDF and Excel buttons based on data
                 generateSalesPdfBtn.Enabled = salesTable.Rows.Count > 0;
                 generateSalesExcelBtn.Enabled = salesTable.Rows.Count > 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Disable buttons in case of error
                 generateSalesPdfBtn.Enabled = false;
                 generateSalesExcelBtn.Enabled = false;
             }
@@ -141,7 +121,6 @@ namespace EscopeWindowsApp
 
         private void ConfigureDataGridView()
         {
-            // Ensure columns are correctly formatted
             if (salesReportDataGrid.Columns["bill_no"] != null)
                 salesReportDataGrid.Columns["bill_no"].HeaderText = "BILL NO";
             if (salesReportDataGrid.Columns["customer"] != null)
@@ -153,50 +132,11 @@ namespace EscopeWindowsApp
             if (salesReportDataGrid.Columns["payment_method"] != null)
                 salesReportDataGrid.Columns["payment_method"].HeaderText = "PAYMENT METHOD";
             if (salesReportDataGrid.Columns["total_price"] != null)
-            {
                 salesReportDataGrid.Columns["total_price"].HeaderText = "TOTAL PRICE";
-                salesReportDataGrid.Columns["total_price"].DefaultCellStyle.Format = "N2"; // Format as numeric with 2 decimal places
-            }
             if (salesReportDataGrid.Columns["sale_date"] != null)
-            {
                 salesReportDataGrid.Columns["sale_date"].HeaderText = "SALE DATE";
-                salesReportDataGrid.Columns["sale_date"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss"; // Format matching Sales table
-            }
 
-            // Adjust column widths
             salesReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        private void SalesReportDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.Value == null) return;
-
-            if (salesReportDataGrid.Columns[e.ColumnIndex].Name == "sale_date")
-            {
-                if (e.Value is DateTime date && date != DateTime.MinValue)
-                {
-                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
-                    e.FormattingApplied = true;
-                }
-                else
-                {
-                    e.Value = "N/A";
-                    e.FormattingApplied = true;
-                }
-            }
-            else if (salesReportDataGrid.Columns[e.ColumnIndex].Name == "total_price")
-            {
-                if (e.Value is decimal amount)
-                {
-                    e.Value = amount.ToString("N2");
-                    e.FormattingApplied = true;
-                }
-                else
-                {
-                    e.Value = "N/A";
-                    e.FormattingApplied = true;
-                }
-            }
         }
 
         private void salesSearchText_TextChanged(object sender, EventArgs e)
@@ -213,21 +153,17 @@ namespace EscopeWindowsApp
 
         private void salesReportDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Display details in a message box
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = salesReportDataGrid.Rows[e.RowIndex];
-                string saleDate = row.Cells["sale_date"].Value is DateTime date && date != DateTime.MinValue
-                    ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                    : "N/A";
                 string details = $@"Sale Details:
-                Bill Number: {row.Cells["bill_no"].Value}
-                Customer Name: {row.Cells["customer"].Value}
-                Username: {row.Cells["user_name"].Value}
-                Quantity of Items: {row.Cells["quantity_of_items"].Value}
-                Payment Method: {row.Cells["payment_method"].Value}
-                Total Price: {row.Cells["total_price"].Value:N2}
-                Sale Date: {saleDate}";
+                    Bill Number: {row.Cells["bill_no"].Value}
+                    Customer Name: {row.Cells["customer"].Value}
+                    Username: {row.Cells["user_name"].Value}
+                    Quantity of Items: {row.Cells["quantity_of_items"].Value}
+                    Payment Method: {row.Cells["payment_method"].Value}
+                    Total Price: {row.Cells["total_price"].Value}
+                    Sale Date: {row.Cells["sale_date"].Value}";
                 MessageBox.Show(details, "Sale Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -241,7 +177,6 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Calculate the total amount based on the current filter
                 decimal totalAmount = 0m;
                 string dateFilter = dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily";
 
@@ -249,13 +184,11 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
 
-                    // Query to calculate the total amount based on the date filter
                     string query = @"
-                    SELECT SUM(total_price)
-                    FROM sales
-                    WHERE 1=1";
+                        SELECT SUM(total_price)
+                        FROM sales
+                        WHERE 1=1";
 
-                    // Add date filter
                     DateTime now = DateTime.Now;
                     if (dateFilter == "Daily")
                     {
@@ -276,15 +209,14 @@ namespace EscopeWindowsApp
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Add parameters for date filter
                         if (dateFilter == "Daily")
                         {
                             command.Parameters.AddWithValue("@today", now.Date);
                         }
                         else if (dateFilter == "Weekly")
                         {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek); // Start of the week (Sunday)
-                            DateTime weekEnd = weekStart.AddDays(6); // End of the week (Saturday)
+                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
+                            DateTime weekEnd = weekStart.AddDays(6);
                             command.Parameters.AddWithValue("@weekStart", weekStart);
                             command.Parameters.AddWithValue("@weekEnd", weekEnd);
                         }
@@ -298,7 +230,6 @@ namespace EscopeWindowsApp
                             command.Parameters.AddWithValue("@year", now.Year);
                         }
 
-                        // Execute the query
                         object result = command.ExecuteScalar();
                         if (result != DBNull.Value && result != null)
                         {
@@ -307,7 +238,6 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Update the label with the total amount
                 salesTotAmontLabel.Text = totalAmount.ToString("N2");
             }
             catch (Exception ex)
@@ -332,63 +262,9 @@ namespace EscopeWindowsApp
                         return;
                     }
 
-                    // Create report using ReportDesigner
                     ReportDesigner designer = new ReportDesigner();
                     var document = designer.CreateSalesReportDocument(salesTable, dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily");
 
-                    // Render and save the PDF
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Sales Report ({dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(3));  // Bill Number
-                    table.AddColumn(Unit.FromCentimeter(3));  // Customer Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Username
-                    table.AddColumn(Unit.FromCentimeter(2));  // Quantity of Items
-                    table.AddColumn(Unit.FromCentimeter(2));  // Payment Method
-                    table.AddColumn(Unit.FromCentimeter(2));  // Total Price
-                    table.AddColumn(Unit.FromCentimeter(3));  // Sale Date
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("Bill Number");
-                    headerRow.Cells[1].AddParagraph("Customer Name");
-                    headerRow.Cells[2].AddParagraph("Username");
-                    headerRow.Cells[3].AddParagraph("Quantity of Items");
-                    headerRow.Cells[4].AddParagraph("Payment Method");
-                    headerRow.Cells[5].AddParagraph("Total Price");
-                    headerRow.Cells[6].AddParagraph("Sale Date");
-
-                    // Add data rows
-                    foreach (DataRow row in salesTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["bill_no"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["customer"].ToString());
-                        dataRow.Cells[2].AddParagraph(row["user_name"].ToString());
-                        dataRow.Cells[3].AddParagraph(row["quantity_of_items"].ToString());
-                        dataRow.Cells[4].AddParagraph(row["payment_method"].ToString());
-                        dataRow.Cells[5].AddParagraph(Convert.ToDecimal(row["total_price"]).ToString("N2"));
-                        dataRow.Cells[6].AddParagraph(row["sale_date"] is DateTime date && date != DateTime.MinValue
-                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                            : "N/A");
-                    }
-
-                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
@@ -396,12 +272,12 @@ namespace EscopeWindowsApp
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Open the PDF
                     try
                     {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                         {
-                            FileName = saveFileDialog.FileName,
+                            FileName = fileUrl,
                             UseShellExecute = true
                         });
                     }
@@ -410,7 +286,6 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error opening PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Print the PDF
                     try
                     {
                         System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
@@ -445,28 +320,25 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Sales Report Excel";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Sales Report");
 
-                        // Add title
-                        string reportTitle = $"Sales Report ({dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Sales Report ({dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 7).Merge().Style.Font.Bold = true;
 
-                        // Add headers
                         worksheet.Cell(2, 1).Value = "Bill Number";
                         worksheet.Cell(2, 2).Value = "Customer Name";
                         worksheet.Cell(2, 3).Value = "Username";
@@ -476,25 +348,20 @@ namespace EscopeWindowsApp
                         worksheet.Cell(2, 7).Value = "Sale Date";
                         worksheet.Range(2, 1, 2, 7).Style.Font.Bold = true;
 
-                        // Add data rows
                         for (int i = 0; i < salesTable.Rows.Count; i++)
                         {
                             DataRow row = salesTable.Rows[i];
-                            worksheet.Cell(i + 3, 1).Value = row["bill_no"].ToString();
+                            worksheet.Cell(i + 3, 1).Value = row["bill_no"].ToString().Replace("BILL_", "");
                             worksheet.Cell(i + 3, 2).Value = row["customer"].ToString();
                             worksheet.Cell(i + 3, 3).Value = row["user_name"].ToString();
                             worksheet.Cell(i + 3, 4).Value = row["quantity_of_items"].ToString();
                             worksheet.Cell(i + 3, 5).Value = row["payment_method"].ToString();
                             worksheet.Cell(i + 3, 6).Value = Convert.ToDecimal(row["total_price"]).ToString("N2");
-                            worksheet.Cell(i + 3, 7).Value = row["sale_date"] is DateTime date && date != DateTime.MinValue
-                                ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                                : "N/A";
+                            worksheet.Cell(i + 3, 7).Value = row["sale_date"].ToString();
                         }
 
-                        // Adjust column widths
                         worksheet.Columns().AdjustToContents();
 
-                        // Save the Excel file to the user-selected location
                         workbook.SaveAs(saveFileDialog.FileName);
 
                         MessageBox.Show($"Excel generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

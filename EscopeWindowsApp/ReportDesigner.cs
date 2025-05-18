@@ -271,6 +271,11 @@ namespace EscopeWindowsApp
                 $"© 2020 All rights reserved. | Contact Us: 075 - 7119340");
             footer.Format.SpaceBefore = 10;
             footer.Format.Borders.Top.Width = 0.5;
+
+            // Right cell: Page number in "1/1" format
+            footer.AddPageField(); // Current page number
+            footer.AddText("/"); // Separator
+            footer.AddNumPagesField(); // Total page count
         }
     }
 }
