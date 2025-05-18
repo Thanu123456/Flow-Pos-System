@@ -263,6 +263,7 @@
             this.creditTotAmontLabel.Size = new System.Drawing.Size(34, 23);
             this.creditTotAmontLabel.TabIndex = 54;
             this.creditTotAmontLabel.Text = "0.00";
+            this.creditTotAmontLabel.Click += new System.EventHandler(this.creditTotAmontLabel_Click);
             // 
             // totalExpLabel
             // 

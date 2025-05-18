@@ -106,7 +106,7 @@ namespace EscopeWindowsApp
                 if (e.Value != null)
                 {
                     int userId = Convert.ToInt32(e.Value);
-                    e.Value = $"user{userId:D3}";
+                    e.Value = $"USER{userId:D3}";
                     e.FormattingApplied = true;
                 }
             }
