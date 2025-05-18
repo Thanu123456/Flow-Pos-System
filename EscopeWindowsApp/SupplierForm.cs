@@ -86,7 +86,8 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "created_at",
                 Name = "created_at",
-                HeaderText = "CREATED AT"
+                HeaderText = "CREATED AT",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Date format matching Sales form
             });
 
             supDataGridView.Columns.Add(new DataGridViewButtonColumn
@@ -118,7 +119,7 @@ namespace EscopeWindowsApp
                 if (e.Value != null)
                 {
                     int supplierId = Convert.ToInt32(e.Value);
-                    e.Value = $"sup{supplierId:D3}";
+                    e.Value = $"SUP{supplierId:D3}";
                     e.FormattingApplied = true;
                 }
             }

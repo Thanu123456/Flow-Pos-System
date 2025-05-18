@@ -18,6 +18,8 @@ namespace EscopeWindowsApp
         public CreaditReport()
         {
             InitializeComponent();
+            // Hook up CellFormatting event
+            supCreaditsReportDataGrid.CellFormatting += SupCreaditsReportDataGrid_CellFormatting;
         }
 
         private void CreaditReport_Load(object sender, EventArgs e)
@@ -25,20 +27,82 @@ namespace EscopeWindowsApp
             grnCreditTable = new DataTable();
             dateFilterSupCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
             dateFilterSupCombo.SelectedIndex = 0; // Default to Daily
-            SetupActionColumn();
             LoadGRNCreditData();
+            UpdateTotalCreditAmount();
         }
 
-        private void SetupActionColumn()
+        private void ConfigureDataGridView()
         {
-            DataGridViewImageColumn actionColumn = new DataGridViewImageColumn
+            supCreaditsReportDataGrid.AutoGenerateColumns = false;
+            supCreaditsReportDataGrid.Columns.Clear();
+
+            supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "grn_no",
+                DataPropertyName = "grn_no",
+                HeaderText = "GRN NO"
+            });
+            supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "supplier_name",
+                DataPropertyName = "supplier_name",
+                HeaderText = "SUPPLIER NAME"
+            });
+            supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "credit_amount",
+                DataPropertyName = "credit_amount",
+                HeaderText = "CREDIT AMOUNT",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" } // Format as numeric with 2 decimal places
+            });
+            supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "date",
+                DataPropertyName = "date",
+                HeaderText = "DATE",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Format matching Sales table
+            });
+            supCreaditsReportDataGrid.Columns.Add(new DataGridViewImageColumn
             {
                 Name = "Action",
                 HeaderText = "ACTION",
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
                 Image = Properties.Resources.export_pdf
-            };
-            supCreaditsReportDataGrid.Columns.Add(actionColumn);
+            });
+
+            supCreaditsReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void SupCreaditsReportDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.Value == null) return;
+
+            if (supCreaditsReportDataGrid.Columns[e.ColumnIndex].Name == "date")
+            {
+                if (e.Value is DateTime date && date != DateTime.MinValue)
+                {
+                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (supCreaditsReportDataGrid.Columns[e.ColumnIndex].Name == "credit_amount")
+            {
+                if (e.Value is decimal amount)
+                {
+                    e.Value = amount.ToString("N2");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void LoadGRNCreditData(string searchText = "", string dateFilter = "Daily")
@@ -49,21 +113,21 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                        SELECT 
-                            g.grn_no,
-                            (
-                                SELECT s.name
-                                FROM grn_items gi
-                                JOIN products p ON gi.product_id = p.id
-                                JOIN suppliers s ON p.supplier_id = s.id
-                                WHERE gi.grn_id = g.id
-                                ORDER BY gi.id
-                                LIMIT 1
-                            ) AS supplier_name,
-                            g.total_amount AS credit_amount,
-                            g.date
-                        FROM grn g
-                        WHERE g.payment_method = 'Credit'";
+                    SELECT 
+                        g.grn_no,
+                        (
+                            SELECT s.name
+                            FROM grn_items gi
+                            JOIN products p ON gi.product_id = p.id
+                            JOIN suppliers s ON p.supplier_id = s.id
+                            WHERE gi.grn_id = g.id
+                            ORDER BY gi.id
+                            LIMIT 1
+                        ) AS supplier_name,
+                        g.total_amount AS credit_amount,
+                        g.date
+                    FROM grn g
+                    WHERE g.payment_method = 'Credit'";
 
                     if (!string.IsNullOrEmpty(searchText))
                     {
@@ -120,33 +184,12 @@ namespace EscopeWindowsApp
                         {
                             grnCreditTable.Clear();
                             adapter.Fill(grnCreditTable);
-                            supCreaditsReportDataGrid.AutoGenerateColumns = false;
-
-                            if (supCreaditsReportDataGrid.Columns.Count == 1) // Only Action column exists
-                            {
-                                supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "grn_no", DataPropertyName = "grn_no", HeaderText = "GRN NO" });
-                                supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "supplier_name", DataPropertyName = "supplier_name", HeaderText = "SUPPLIER NAME" });
-                                supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "credit_amount", DataPropertyName = "credit_amount", HeaderText = "CREDIT AMOUNT" });
-                                supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "date", DataPropertyName = "date", HeaderText = "DATE" });
-
-                                supCreaditsReportDataGrid.Columns["grn_no"].DisplayIndex = 0;
-                                supCreaditsReportDataGrid.Columns["supplier_name"].DisplayIndex = 1;
-                                supCreaditsReportDataGrid.Columns["credit_amount"].DisplayIndex = 2;
-                                supCreaditsReportDataGrid.Columns["date"].DisplayIndex = 3;
-                                supCreaditsReportDataGrid.Columns["Action"].DisplayIndex = 4;
-                            }
-
                             supCreaditsReportDataGrid.DataSource = grnCreditTable;
                         }
                     }
                 }
 
-                if (supCreaditsReportDataGrid.Columns["credit_amount"] != null)
-                {
-                    supCreaditsReportDataGrid.Columns["credit_amount"].DefaultCellStyle.Format = "LKR #,##0.00";
-                }
-                supCreaditsReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                ConfigureDataGridView();
                 generateSupCreaditPdfBtn.Enabled = grnCreditTable.Rows.Count > 0;
                 generateSupCreaditExcelBtn.Enabled = grnCreditTable.Rows.Count > 0;
             }
@@ -158,14 +201,109 @@ namespace EscopeWindowsApp
             }
         }
 
+        private void UpdateTotalCreditAmount()
+        {
+            try
+            {
+                decimal totalAmount = 0m;
+                string dateFilter = dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily";
+                string searchText = supplierSearchText.Text;
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                    SELECT SUM(g.total_amount)
+                    FROM grn g
+                    WHERE g.payment_method = 'Credit'";
+
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        query += " AND (EXISTS (SELECT 1 FROM grn_items gi JOIN products p ON gi.product_id = p.id JOIN suppliers s ON p.supplier_id = s.id WHERE gi.grn_id = g.id AND (s.name LIKE @searchText OR s.id = @searchText)))";
+                    }
+
+                    DateTime now = DateTime.Now;
+                    if (dateFilter == "Daily")
+                    {
+                        query += " AND DATE(g.date) = @today";
+                    }
+                    else if (dateFilter == "Weekly")
+                    {
+                        query += " AND g.date >= @weekStart AND g.date <= @weekEnd";
+                    }
+                    else if (dateFilter == "Monthly")
+                    {
+                        query += " AND MONTH(g.date) = @month AND YEAR(g.date) = @year";
+                    }
+                    else if (dateFilter == "Yearly")
+                    {
+                        query += " AND YEAR(g.date) = @year";
+                    }
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        if (!string.IsNullOrEmpty(searchText))
+                        {
+                            command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
+                        }
+
+                        if (dateFilter == "Daily")
+                        {
+                            command.Parameters.AddWithValue("@today", now.Date);
+                        }
+                        else if (dateFilter == "Weekly")
+                        {
+                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
+                            DateTime weekEnd = weekStart.AddDays(6);
+                            command.Parameters.AddWithValue("@weekStart", weekStart);
+                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
+                        }
+                        else if (dateFilter == "Monthly")
+                        {
+                            command.Parameters.AddWithValue("@month", now.Month);
+                            command.Parameters.AddWithValue("@year", now.Year);
+                        }
+                        else if (dateFilter == "Yearly")
+                        {
+                            command.Parameters.AddWithValue("@year", now.Year);
+                        }
+
+                        object result = command.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            totalAmount = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                creditTotAmontLabel.Text = totalAmount.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calculating total credit amount: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                creditTotAmontLabel.Text = "0.00";
+            }
+        }
+
+        private void creditTotAmontLabel_Click(object sender, EventArgs e)
+        {
+            UpdateTotalCreditAmount();
+        }
+
         private void supplierSearchText_TextChanged(object sender, EventArgs e)
         {
-            LoadGRNCreditData(supplierSearchText.Text, dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily");
+            string searchText = supplierSearchText.Text;
+            string dateFilter = dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily";
+            LoadGRNCreditData(searchText, dateFilter);
+            UpdateTotalCreditAmount();
         }
 
         private void dateFilterSupCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadGRNCreditData(supplierSearchText.Text, dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily");
+            string searchText = supplierSearchText.Text;
+            string dateFilter = dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily";
+            LoadGRNCreditData(searchText, dateFilter);
+            UpdateTotalCreditAmount();
         }
 
         private void supCreaditsReportDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -195,12 +333,12 @@ namespace EscopeWindowsApp
                     {
                         connection.Open();
                         string query = @"
-                            SELECT 
-                                gi.product_id, p.name AS product_name, gi.variation_type, gi.unit, 
-                                gi.quantity, gi.cost_price, (gi.quantity * gi.cost_price) AS total_price
-                            FROM grn_items gi
-                            JOIN products p ON gi.product_id = p.id
-                            WHERE gi.grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
+                        SELECT 
+                            gi.product_id, p.name AS product_name, gi.variation_type, gi.unit, 
+                            gi.quantity, gi.cost_price, (gi.quantity * gi.cost_price) AS total_price
+                        FROM grn_items gi
+                        JOIN products p ON gi.product_id = p.id
+                        WHERE gi.grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
                         using (MySqlCommand command = new MySqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@grnNo", grnNo);
@@ -249,8 +387,8 @@ namespace EscopeWindowsApp
                         dataRow.Cells[1].AddParagraph(item["variation_type"]?.ToString() ?? "N/A");
                         dataRow.Cells[2].AddParagraph(item["unit"].ToString());
                         dataRow.Cells[3].AddParagraph(item["quantity"].ToString());
-                        dataRow.Cells[4].AddParagraph(item["cost_price"].ToString());
-                        dataRow.Cells[5].AddParagraph(item["total_price"].ToString());
+                        dataRow.Cells[4].AddParagraph(Convert.ToDecimal(item["cost_price"]).ToString("N2"));
+                        dataRow.Cells[5].AddParagraph(Convert.ToDecimal(item["total_price"]).ToString("N2"));
                     }
 
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -312,9 +450,11 @@ namespace EscopeWindowsApp
                     {
                         Row dataRow = table.AddRow();
                         dataRow.Cells[0].AddParagraph(row["grn_no"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["supplier_name"].ToString());
-                        dataRow.Cells[2].AddParagraph($"LKR {Convert.ToDecimal(row["credit_amount"]).ToString("N2")}");
-                        dataRow.Cells[3].AddParagraph(Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd"));
+                        dataRow.Cells[1].AddParagraph(row["supplier_name"]?.ToString() ?? "N/A");
+                        dataRow.Cells[2].AddParagraph(row["credit_amount"] is decimal amount ? amount.ToString("N2") : "N/A");
+                        dataRow.Cells[3].AddParagraph(row["date"] is DateTime date && date != DateTime.MinValue
+                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                            : "N/A");
                     }
 
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -361,10 +501,11 @@ namespace EscopeWindowsApp
                         {
                             DataRow row = grnCreditTable.Rows[i];
                             worksheet.Cell(i + 3, 1).Value = row["grn_no"].ToString();
-                            worksheet.Cell(i + 3, 2).Value = row["supplier_name"].ToString();
-                            worksheet.Cell(i + 3, 3).Value = Convert.ToDecimal(row["credit_amount"]);
-                            worksheet.Cell(i + 3, 3).Style.NumberFormat.Format = "LKR#,##0.00";
-                            worksheet.Cell(i + 3, 4).Value = Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd");
+                            worksheet.Cell(i + 3, 2).Value = row["supplier_name"]?.ToString() ?? "N/A";
+                            worksheet.Cell(i + 3, 3).Value = row["credit_amount"] is decimal amount ? amount.ToString("N2") : "N/A";
+                            worksheet.Cell(i + 3, 4).Value = row["date"] is DateTime date && date != DateTime.MinValue
+                                ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                                : "N/A";
                         }
 
                         worksheet.Columns().AdjustToContents();

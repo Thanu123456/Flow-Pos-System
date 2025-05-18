@@ -25,6 +25,8 @@ namespace EscopeWindowsApp
         public SalesReport()
         {
             InitializeComponent();
+            // Hook up CellFormatting event
+            salesReportDataGrid.CellFormatting += SalesReportDataGrid_CellFormatting;
         }
 
         private void SalesReport_Load(object sender, EventArgs e)
@@ -50,9 +52,9 @@ namespace EscopeWindowsApp
                     connection.Open();
 
                     string query = @"
-                        SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date
-                        FROM sales
-                        WHERE 1=1";
+                    SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date
+                    FROM sales
+                    WHERE 1=1";
 
                     // Add search filter if provided
                     if (!string.IsNullOrEmpty(searchText))
@@ -78,6 +80,9 @@ namespace EscopeWindowsApp
                     {
                         query += " AND YEAR(sale_date) = @year";
                     }
+
+                    // Sort by sale_date in descending order to show the most recent sale first
+                    query += " ORDER BY sale_date DESC";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -148,12 +153,50 @@ namespace EscopeWindowsApp
             if (salesReportDataGrid.Columns["payment_method"] != null)
                 salesReportDataGrid.Columns["payment_method"].HeaderText = "PAYMENT METHOD";
             if (salesReportDataGrid.Columns["total_price"] != null)
+            {
                 salesReportDataGrid.Columns["total_price"].HeaderText = "TOTAL PRICE";
+                salesReportDataGrid.Columns["total_price"].DefaultCellStyle.Format = "N2"; // Format as numeric with 2 decimal places
+            }
             if (salesReportDataGrid.Columns["sale_date"] != null)
+            {
                 salesReportDataGrid.Columns["sale_date"].HeaderText = "SALE DATE";
+                salesReportDataGrid.Columns["sale_date"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss"; // Format matching Sales table
+            }
 
             // Adjust column widths
             salesReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void SalesReportDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.Value == null) return;
+
+            if (salesReportDataGrid.Columns[e.ColumnIndex].Name == "sale_date")
+            {
+                if (e.Value is DateTime date && date != DateTime.MinValue)
+                {
+                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (salesReportDataGrid.Columns[e.ColumnIndex].Name == "total_price")
+            {
+                if (e.Value is decimal amount)
+                {
+                    e.Value = amount.ToString("N2");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void salesSearchText_TextChanged(object sender, EventArgs e)
@@ -174,14 +217,17 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = salesReportDataGrid.Rows[e.RowIndex];
+                string saleDate = row.Cells["sale_date"].Value is DateTime date && date != DateTime.MinValue
+                    ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                    : "N/A";
                 string details = $@"Sale Details:
-                    Bill Number: {row.Cells["bill_no"].Value}
-                    Customer Name: {row.Cells["customer"].Value}
-                    Username: {row.Cells["user_name"].Value}
-                    Quantity of Items: {row.Cells["quantity_of_items"].Value}
-                    Payment Method: {row.Cells["payment_method"].Value}
-                    Total Price: {row.Cells["total_price"].Value}
-                    Sale Date: {row.Cells["sale_date"].Value}";
+                Bill Number: {row.Cells["bill_no"].Value}
+                Customer Name: {row.Cells["customer"].Value}
+                Username: {row.Cells["user_name"].Value}
+                Quantity of Items: {row.Cells["quantity_of_items"].Value}
+                Payment Method: {row.Cells["payment_method"].Value}
+                Total Price: {row.Cells["total_price"].Value:N2}
+                Sale Date: {saleDate}";
                 MessageBox.Show(details, "Sale Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -205,9 +251,9 @@ namespace EscopeWindowsApp
 
                     // Query to calculate the total amount based on the date filter
                     string query = @"
-                        SELECT SUM(total_price)
-                        FROM sales
-                        WHERE 1=1";
+                    SELECT SUM(total_price)
+                    FROM sales
+                    WHERE 1=1";
 
                     // Add date filter
                     DateTime now = DateTime.Now;
@@ -262,7 +308,7 @@ namespace EscopeWindowsApp
                 }
 
                 // Update the label with the total amount
-                salesTotAmontLabel.Text = totalAmount.ToString("F2");
+                salesTotAmontLabel.Text = totalAmount.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -337,8 +383,10 @@ namespace EscopeWindowsApp
                         dataRow.Cells[2].AddParagraph(row["user_name"].ToString());
                         dataRow.Cells[3].AddParagraph(row["quantity_of_items"].ToString());
                         dataRow.Cells[4].AddParagraph(row["payment_method"].ToString());
-                        dataRow.Cells[5].AddParagraph(row["total_price"].ToString());
-                        dataRow.Cells[6].AddParagraph(Convert.ToDateTime(row["sale_date"]).ToString("yyyy-MM-dd"));
+                        dataRow.Cells[5].AddParagraph(Convert.ToDecimal(row["total_price"]).ToString("N2"));
+                        dataRow.Cells[6].AddParagraph(row["sale_date"] is DateTime date && date != DateTime.MinValue
+                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                            : "N/A");
                     }
 
                     // Render the document to PDF
@@ -351,19 +399,18 @@ namespace EscopeWindowsApp
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Open the PDF in the default browser
+                    // Open the PDF in the default viewer
                     try
                     {
-                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                         {
-                            FileName = fileUrl,
+                            FileName = saveFileDialog.FileName,
                             UseShellExecute = true
                         });
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please ensure a default browser is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening PDF: {ex.Message}. Please ensure a default PDF viewer is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     // Print the PDF using the default printer via the default PDF viewer
@@ -441,8 +488,10 @@ namespace EscopeWindowsApp
                             worksheet.Cell(i + 3, 3).Value = row["user_name"].ToString();
                             worksheet.Cell(i + 3, 4).Value = row["quantity_of_items"].ToString();
                             worksheet.Cell(i + 3, 5).Value = row["payment_method"].ToString();
-                            worksheet.Cell(i + 3, 6).Value = row["total_price"].ToString();
-                            worksheet.Cell(i + 3, 7).Value = row["sale_date"].ToString();
+                            worksheet.Cell(i + 3, 6).Value = Convert.ToDecimal(row["total_price"]).ToString("N2");
+                            worksheet.Cell(i + 3, 7).Value = row["sale_date"] is DateTime date && date != DateTime.MinValue
+                                ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                                : "N/A";
                         }
 
                         // Adjust column widths

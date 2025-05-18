@@ -25,6 +25,8 @@ namespace EscopeWindowsApp
         public ExpencesReport()
         {
             InitializeComponent();
+            // Hook up CellFormatting event
+            expencesReportDataGrid.CellFormatting += ExpencesReportDataGrid_CellFormatting;
         }
 
         private void ExpencesReport_Load(object sender, EventArgs e)
@@ -53,9 +55,9 @@ namespace EscopeWindowsApp
 
                     // Query to calculate the total amount based on the date filter and search text
                     string query = @"
-                        SELECT SUM(e.amount)
-                        FROM expenses e
-                        WHERE 1=1";
+                    SELECT SUM(e.amount)
+                    FROM expenses e
+                    WHERE 1=1";
 
                     // Add search filter if provided
                     if (!string.IsNullOrEmpty(searchText))
@@ -122,7 +124,7 @@ namespace EscopeWindowsApp
                 }
 
                 // Update the label with the total amount
-                expTotAmontLabel.Text = totalAmount.ToString("F2");
+                expTotAmontLabel.Text = totalAmount.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -140,11 +142,11 @@ namespace EscopeWindowsApp
                     connection.Open();
 
                     string query = @"
-                        SELECT e.id, e.expense_date, e.title, w.name AS warehouse_name, c.name AS category_name, e.amount, e.details
-                        FROM expenses e
-                        LEFT JOIN warehouses w ON e.warehouse_id = w.id
-                        LEFT JOIN categories c ON e.category_id = c.id
-                        WHERE 1=1";
+                    SELECT e.id, e.expense_date, e.title, w.name AS warehouse_name, c.name AS category_name, e.amount, e.details
+                    FROM expenses e
+                    LEFT JOIN warehouses w ON e.warehouse_id = w.id
+                    LEFT JOIN categories c ON e.category_id = c.id
+                    WHERE 1=1";
 
                     // Add search filter if provided
                     if (!string.IsNullOrEmpty(searchText))
@@ -232,7 +234,10 @@ namespace EscopeWindowsApp
             if (expencesReportDataGrid.Columns["id"] != null)
                 expencesReportDataGrid.Columns["id"].HeaderText = "EXPENSES ID";
             if (expencesReportDataGrid.Columns["expense_date"] != null)
+            {
                 expencesReportDataGrid.Columns["expense_date"].HeaderText = "DATE";
+                expencesReportDataGrid.Columns["expense_date"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss"; // Format matching Sales table
+            }
             if (expencesReportDataGrid.Columns["title"] != null)
                 expencesReportDataGrid.Columns["title"].HeaderText = "TITLE";
             if (expencesReportDataGrid.Columns["warehouse_name"] != null)
@@ -240,12 +245,55 @@ namespace EscopeWindowsApp
             if (expencesReportDataGrid.Columns["category_name"] != null)
                 expencesReportDataGrid.Columns["category_name"].HeaderText = "CATEGORY";
             if (expencesReportDataGrid.Columns["amount"] != null)
+            {
                 expencesReportDataGrid.Columns["amount"].HeaderText = "AMOUNT";
+                expencesReportDataGrid.Columns["amount"].DefaultCellStyle.Format = "N2"; // Format as numeric with 2 decimal places
+            }
             if (expencesReportDataGrid.Columns["details"] != null)
                 expencesReportDataGrid.Columns["details"].HeaderText = "DETAILS";
 
             // Adjust column widths
             expencesReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void ExpencesReportDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.Value == null) return;
+
+            if (expencesReportDataGrid.Columns[e.ColumnIndex].Name == "id")
+            {
+                if (e.Value is int id)
+                {
+                    e.Value = $"EXP{id:D3}";
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (expencesReportDataGrid.Columns[e.ColumnIndex].Name == "expense_date")
+            {
+                if (e.Value is DateTime date && date != DateTime.MinValue)
+                {
+                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (expencesReportDataGrid.Columns[e.ColumnIndex].Name == "amount")
+            {
+                if (e.Value is decimal amount)
+                {
+                    e.Value = amount.ToString("N2");
+                    e.FormattingApplied = true;
+                }
+                else
+                {
+                    e.Value = "N/A";
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         private void expencesSearchText_TextChanged(object sender, EventArgs e)
@@ -270,14 +318,19 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = expencesReportDataGrid.Rows[e.RowIndex];
+                string expenseId = row.Cells["id"].Value is int id ? $"EXP{id:D3}" : "N/A";
+                string expenseDate = row.Cells["expense_date"].Value is DateTime date && date != DateTime.MinValue
+                    ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                    : "N/A";
+                string amount = row.Cells["amount"].Value is decimal amt ? amt.ToString("N2") : "N/A";
                 string details = $@"Expense Details:
-                    ID: {row.Cells["id"].Value}
-                    Date: {row.Cells["expense_date"].Value}
-                    Title: {row.Cells["title"].Value}
-                    Warehouse Name: {row.Cells["warehouse_name"].Value ?? "N/A"}
-                    Category Name: {row.Cells["category_name"].Value ?? "N/A"}
-                    Amount: {row.Cells["amount"].Value}
-                    Details: {row.Cells["details"].Value ?? "N/A"}";
+                ID: {expenseId}
+                Date: {expenseDate}
+                Title: {row.Cells["title"].Value ?? "N/A"}
+                Warehouse Name: {row.Cells["warehouse_name"].Value ?? "N/A"}
+                Category Name: {row.Cells["category_name"].Value ?? "N/A"}
+                Amount: {amount}
+                Details: {row.Cells["details"].Value ?? "N/A"}";
                 MessageBox.Show(details, "Expense Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -343,12 +396,14 @@ namespace EscopeWindowsApp
                     foreach (DataRow row in expensesTable.Rows)
                     {
                         Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["id"].ToString());
-                        dataRow.Cells[1].AddParagraph(Convert.ToDateTime(row["expense_date"]).ToString("yyyy-MM-dd"));
-                        dataRow.Cells[2].AddParagraph(row["title"].ToString());
+                        dataRow.Cells[0].AddParagraph(row["id"] is int id ? $"EXP{id:D3}" : "N/A");
+                        dataRow.Cells[1].AddParagraph(row["expense_date"] is DateTime date && date != DateTime.MinValue
+                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                            : "N/A");
+                        dataRow.Cells[2].AddParagraph(row["title"]?.ToString() ?? "N/A");
                         dataRow.Cells[3].AddParagraph(row["warehouse_name"]?.ToString() ?? "N/A");
                         dataRow.Cells[4].AddParagraph(row["category_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[5].AddParagraph(row["amount"].ToString());
+                        dataRow.Cells[5].AddParagraph(row["amount"] is decimal amount ? amount.ToString("N2") : "N/A");
                         dataRow.Cells[6].AddParagraph(row["details"]?.ToString() ?? "N/A");
                     }
 
@@ -371,7 +426,7 @@ namespace EscopeWindowsApp
 
         private void expTotAmontLabel_Click(object sender, EventArgs e)
         {
-
+            UpdateTotalAmountLabel();
         }
 
         private void generateExcel_Click(object sender, EventArgs e)
@@ -413,12 +468,14 @@ namespace EscopeWindowsApp
                         for (int i = 0; i < expensesTable.Rows.Count; i++)
                         {
                             DataRow row = expensesTable.Rows[i];
-                            worksheet.Cell(i + 3, 1).Value = row["id"].ToString();
-                            worksheet.Cell(i + 3, 2).Value = row["expense_date"].ToString();
-                            worksheet.Cell(i + 3, 3).Value = row["title"].ToString();
+                            worksheet.Cell(i + 3, 1).Value = row["id"] is int id ? $"EXP{id:D3}" : "N/A";
+                            worksheet.Cell(i + 3, 2).Value = row["expense_date"] is DateTime date && date != DateTime.MinValue
+                                ? date.ToString("yyyy-MM-dd HH:mm:ss")
+                                : "N/A";
+                            worksheet.Cell(i + 3, 3).Value = row["title"]?.ToString() ?? "N/A";
                             worksheet.Cell(i + 3, 4).Value = row["warehouse_name"]?.ToString() ?? "N/A";
                             worksheet.Cell(i + 3, 5).Value = row["category_name"]?.ToString() ?? "N/A";
-                            worksheet.Cell(i + 3, 6).Value = row["amount"].ToString();
+                            worksheet.Cell(i + 3, 6).Value = row["amount"] is decimal amount ? amount.ToString("N2") : "N/A";
                             worksheet.Cell(i + 3, 7).Value = row["details"]?.ToString() ?? "N/A";
                         }
 
