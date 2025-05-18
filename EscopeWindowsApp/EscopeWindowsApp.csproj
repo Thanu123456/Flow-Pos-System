@@ -520,6 +520,7 @@
     <Compile Include="Refund.Designer.cs">
       <DependentUpon>Refund.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportDesigner.cs" />
     <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>

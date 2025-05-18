@@ -321,23 +321,22 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"SalesReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Sales Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Sales Report";
-                    document.Info.Author = "EscopeWindowsApp";
+                    // Create report using ReportDesigner
+                    ReportDesigner designer = new ReportDesigner();
+                    var document = designer.CreateSalesReportDocument(salesTable, dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily");
 
+                    // Render and save the PDF
                     // Add a section to the document
                     Section section = document.AddSection();
 
@@ -393,13 +392,11 @@ namespace EscopeWindowsApp
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Open the PDF in the default viewer
+                    // Open the PDF
                     try
                     {
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
@@ -410,10 +407,10 @@ namespace EscopeWindowsApp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error opening PDF: {ex.Message}. Please ensure a default PDF viewer is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Print the PDF using the default printer via the default PDF viewer
+                    // Print the PDF
                     try
                     {
                         System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
@@ -427,14 +424,14 @@ namespace EscopeWindowsApp
 
                         using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
                         {
-                            printProcess.WaitForExit(); // Wait for the printing process to complete
+                            printProcess.WaitForExit();
                         }
 
                         MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error printing PDF: {ex.Message}. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error printing PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
