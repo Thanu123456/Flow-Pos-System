@@ -27,6 +27,7 @@ namespace EscopeWindowsApp
         private string initialEmail;
         private string initialPhoneNumber;
         private string initialAddress;
+        private string initialWebsite;
         private byte[] initialLogoBytes;
         private bool logoChanged;
 
@@ -39,6 +40,8 @@ namespace EscopeWindowsApp
             setPhoneNotext.KeyPress += setPhoneNotext_KeyPress;
             // Set Enter key to trigger save button
             this.AcceptButton = setSaveBtn;
+            // Ensure website textbox TextChanged event is wired up
+            setWebSiteText.TextChanged += setWebSiteText_TextChanged;
         }
 
         private void SetupErrorProviders()
@@ -56,6 +59,7 @@ namespace EscopeWindowsApp
             initialEmail = setEmailText.Text;
             initialPhoneNumber = setPhoneNotext.Text;
             initialAddress = setAddressText.Text;
+            initialWebsite = setWebSiteText.Text;
             initialLogoBytes = GetImageBytes(setLogoBox.Image);
             logoChanged = false;
             UpdateSaveButtonState();
@@ -68,7 +72,7 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT name, email, phone_number, address, logo FROM company_details WHERE id = 1";
+                    string query = "SELECT name, email, phone_number, address, logo, website FROM company_details WHERE id = 1";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())
@@ -79,7 +83,7 @@ namespace EscopeWindowsApp
                                 setEmailText.Text = reader["email"]?.ToString() ?? "";
                                 setPhoneNotext.Text = reader["phone_number"]?.ToString() ?? "";
                                 setAddressText.Text = reader["address"]?.ToString() ?? "";
-
+                                setWebSiteText.Text = reader["website"]?.ToString() ?? "";
                                 if (!reader.IsDBNull(reader.GetOrdinal("logo")))
                                 {
                                     byte[] logoBytes = (byte[])reader["logo"];
@@ -169,7 +173,8 @@ namespace EscopeWindowsApp
             bool textChanged = settingNameText.Text != initialName ||
                               setEmailText.Text != initialEmail ||
                               setPhoneNotext.Text != initialPhoneNumber ||
-                              setAddressText.Text != initialAddress;
+                              setAddressText.Text != initialAddress ||
+                              setWebSiteText.Text != initialWebsite;
 
             // Check if logo has changed
             bool logoModified = logoChanged;
@@ -226,6 +231,11 @@ namespace EscopeWindowsApp
         }
 
         private void setAddressText_TextChanged(object sender, EventArgs e)
+        {
+            UpdateSaveButtonState();
+        }
+
+        private void setWebSiteText_TextChanged(object sender, EventArgs e)
         {
             UpdateSaveButtonState();
         }
@@ -335,7 +345,7 @@ namespace EscopeWindowsApp
                                 string updateQuery = @"
                                     UPDATE company_details 
                                     SET name = @name, email = @email, phone_number = @phone_number, 
-                                        address = @address, logo = @logo 
+                                        address = @address, logo = @logo, website = @website 
                                     WHERE id = 1";
                                 using (MySqlCommand command = new MySqlCommand(updateQuery, connection))
                                 {
@@ -344,6 +354,7 @@ namespace EscopeWindowsApp
                                     command.Parameters.AddWithValue("@phone_number", setPhoneNotext.Text.Trim() ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@address", setAddressText.Text.Trim() ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@website", setWebSiteText.Text.Trim() ?? (object)DBNull.Value);
                                     command.ExecuteNonQuery();
                                 }
                                 MessageBox.Show("Company details updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -352,8 +363,8 @@ namespace EscopeWindowsApp
                             {
                                 // Insert new record
                                 string insertQuery = @"
-                                    INSERT INTO company_details (id, name, email, phone_number, address, logo) 
-                                    VALUES (1, @name, @email, @phone_number, @address, @logo)";
+                                    INSERT INTO company_details (id, name, email, phone_number, address, logo, website) 
+                                    VALUES (1, @name, @email, @phone_number, @address, @logo, @website)";
                                 using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
                                 {
                                     command.Parameters.AddWithValue("@name", settingNameText.Text.Trim());
@@ -361,6 +372,7 @@ namespace EscopeWindowsApp
                                     command.Parameters.AddWithValue("@phone_number", setPhoneNotext.Text.Trim() ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@address", setAddressText.Text.Trim() ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@website", setWebSiteText.Text.Trim() ?? (object)DBNull.Value);
                                     command.ExecuteNonQuery();
                                 }
                                 MessageBox.Show("Company details saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -372,6 +384,7 @@ namespace EscopeWindowsApp
                     initialEmail = setEmailText.Text;
                     initialPhoneNumber = setPhoneNotext.Text;
                     initialAddress = setAddressText.Text;
+                    initialWebsite = setWebSiteText.Text;
                     initialLogoBytes = GetImageBytes(setLogoBox.Image);
                     logoChanged = false;
                     UpdateSaveButtonState();

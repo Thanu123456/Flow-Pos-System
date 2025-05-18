@@ -34,6 +34,11 @@ namespace EscopeWindowsApp
                 editUserId = userId;
                 this.Text = "Edit User"; // Change form title to indicate editing
                 createSaveBtn.Text = "Update"; // Change button text to "Update"
+                                               // Disable password fields and their show checkboxes in edit mode
+                createUserPassText.Enabled = false;
+                createUserCpassText.Enabled = false;
+                passShowCheckBox.Enabled = false;
+                cPassShowCheckBox.Enabled = false;
             }
 
             // Pre-fill the form fields

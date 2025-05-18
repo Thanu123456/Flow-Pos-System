@@ -101,7 +101,8 @@ namespace EscopeWindowsApp
                 DataPropertyName = "date",
                 Name = "date",
                 HeaderText = "DATE",
-                
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" }
+
             });
 
             // Prevent the empty row at the end
