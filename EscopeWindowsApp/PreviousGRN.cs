@@ -18,10 +18,8 @@ namespace EscopeWindowsApp
             InitializeComponent();
             bindingSource = new BindingSource();
             // Wire up events
-            preGRNDataGridView.CellPainting += PreGRNDataGridView_CellPainting;
             preGRNDataGridView.CellFormatting += PreGRNDataGridView_CellFormatting;
-            preGRNDataGridView.CellContentClick += PreGRNDataGridView_CellContentClick;
-            preGRNDataGridView.CellDoubleClick += PreGRNDataGridView_CellDoubleClick; // New double-click event
+            preGRNDataGridView.CellDoubleClick += PreGRNDataGridView_CellDoubleClick; // Keep double-click event
         }
 
         private void PreviousGRN_Load(object sender, EventArgs e)
@@ -46,9 +44,6 @@ namespace EscopeWindowsApp
             preGRNDataGridView.AutoGenerateColumns = false;
             preGRNDataGridView.Columns.Clear();
 
-            // Define the uniform font for all cells
-            
-
             // Add columns for grn table
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -56,7 +51,6 @@ namespace EscopeWindowsApp
                 Name = "grn_no",
                 HeaderText = "GRN NUMBER",
                 Width = 150,
-               
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -64,7 +58,6 @@ namespace EscopeWindowsApp
                 Name = "payment_method",
                 HeaderText = "PAYMENT METHOD",
                 Width = 120,
-               
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -72,7 +65,6 @@ namespace EscopeWindowsApp
                 Name = "total_amount",
                 HeaderText = "TOTAL AMOUNT",
                 Width = 100,
-                
             });
             preGRNDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -80,26 +72,13 @@ namespace EscopeWindowsApp
                 Name = "date",
                 HeaderText = "DATE",
                 Width = 140,
-                
-            });
-
-            // Add Delete button column
-            preGRNDataGridView.Columns.Add(new DataGridViewButtonColumn
-            {
-                Name = "DeleteColumn",
-                HeaderText = "DELETE",
-                Width = 50,
-                ToolTipText = "Delete this GRN",
-               
             });
 
             // Prevent the empty row at the end
             preGRNDataGridView.AllowUserToAddRows = false;
 
             // Styling
-           
             preGRNDataGridView.RowHeadersVisible = false;
-          
         }
 
         private void LoadGRNData()
@@ -159,116 +138,6 @@ namespace EscopeWindowsApp
 
             // Ensure font consistency
             e.CellStyle.Font = new Font("Segoe UI", 12F);
-        }
-
-        private void PreGRNDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && preGRNDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-            {
-                try
-                {
-                    e.PaintBackground(e.CellBounds, true);
-                    Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
-                    int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
-                    if (iconSize <= 0) iconSize = 16;
-                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
-                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
-                    e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
-                    e.Handled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error rendering delete icon: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void PreGRNDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && preGRNDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
-            {
-                DataGridViewRow row = preGRNDataGridView.Rows[e.RowIndex];
-                string grnNo = row.Cells["grn_no"].Value.ToString();
-
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete GRN '{grnNo}'?\nThis will also remove associated items and update stock.",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        using (MySqlConnection conn = new MySqlConnection(connectionString))
-                        {
-                            conn.Open();
-                            using (MySqlTransaction transaction = conn.BeginTransaction())
-                            {
-                                // Fetch grn_items to adjust stock
-                                string itemsQuery = "SELECT product_id, variation_type, quantity FROM grn_items WHERE grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
-                                using (MySqlCommand itemsCmd = new MySqlCommand(itemsQuery, conn, transaction))
-                                {
-                                    itemsCmd.Parameters.AddWithValue("@grnNo", grnNo);
-                                    using (MySqlDataReader reader = itemsCmd.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            int productId = reader.GetInt32("product_id");
-                                            string variationType = reader.IsDBNull(reader.GetOrdinal("variation_type")) ? null : reader.GetString("variation_type");
-                                            int quantity = reader.GetInt32("quantity");
-
-                                            // Reduce stock in stock table
-                                            string stockQuery = @"
-                                                UPDATE stock 
-                                                SET stock = GREATEST(stock - @quantity, 0)
-                                                WHERE product_id = @productId AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))";
-                                            using (MySqlCommand stockCmd = new MySqlCommand(stockQuery, conn, transaction))
-                                            {
-                                                stockCmd.Parameters.AddWithValue("@quantity", quantity);
-                                                stockCmd.Parameters.AddWithValue("@productId", productId);
-                                                stockCmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                                stockCmd.ExecuteNonQuery();
-                                            }
-
-                                            // Reduce total stock in products table
-                                            string productStockQuery = "UPDATE products SET stock = GREATEST(stock - @quantity, 0) WHERE id = @productId";
-                                            using (MySqlCommand productCmd = new MySqlCommand(productStockQuery, conn, transaction))
-                                            {
-                                                productCmd.Parameters.AddWithValue("@quantity", quantity);
-                                                productCmd.Parameters.AddWithValue("@productId", productId);
-                                                productCmd.ExecuteNonQuery();
-                                            }
-                                        }
-                                    }
-                                }
-
-                                // Delete grn_items
-                                string deleteItemsQuery = "DELETE FROM grn_items WHERE grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
-                                using (MySqlCommand deleteItemsCmd = new MySqlCommand(deleteItemsQuery, conn, transaction))
-                                {
-                                    deleteItemsCmd.Parameters.AddWithValue("@grnNo", grnNo);
-                                    deleteItemsCmd.ExecuteNonQuery();
-                                }
-
-                                // Delete grn record
-                                string deleteGrnQuery = "DELETE FROM grn WHERE grn_no = @grnNo";
-                                using (MySqlCommand deleteGrnCmd = new MySqlCommand(deleteGrnQuery, conn, transaction))
-                                {
-                                    deleteGrnCmd.Parameters.AddWithValue("@grnNo", grnNo);
-                                    deleteGrnCmd.ExecuteNonQuery();
-                                }
-
-                                transaction.Commit();
-                            }
-                        }
-
-                        LoadGRNData();
-                        MessageBox.Show($"GRN '{grnNo}' deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error deleting GRN: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
         }
 
         private void PreGRNDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -503,7 +372,7 @@ namespace EscopeWindowsApp
 
         private void preGRNDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // No longer needed since Delete column is removed
         }
 
         private void filterPaymentComboBox_SelectedIndexChanged(object sender, EventArgs e)

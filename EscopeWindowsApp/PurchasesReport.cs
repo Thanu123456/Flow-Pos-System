@@ -236,48 +236,30 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"PurchasesReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"PurchasesReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Purchases Report PDF";
+
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
                         return;
                     }
-                    Document document = new Document();
-                    document.Info.Title = "Purchases Report";
-                    document.Info.Author = "EscopeWindowsApp";
-                    Section section = document.AddSection();
-                    string reportTitle = $"Purchases Report ({dateFilterPurCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("GRN Number");
-                    headerRow.Cells[1].AddParagraph("Payment Method");
-                    headerRow.Cells[2].AddParagraph("Total Amount");
-                    headerRow.Cells[3].AddParagraph("Date");
-                    foreach (DataRow row in purchasesTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["grn_no"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["payment_method"].ToString());
-                        dataRow.Cells[2].AddParagraph(Convert.ToDecimal(row["total_amount"]).ToString("F2"));
-                        dataRow.Cells[3].AddParagraph(Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd"));
-                    }
+
+                    // Use ReportDesigner to generate the PDF
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    string dateFilter = dateFilterPurCombo.SelectedItem?.ToString() ?? "Daily";
+                    Document document = reportDesigner.CreatePurchasesReportDocument(purchasesTable, dateFilter);
+
+                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
+
+                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
+
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -289,27 +271,32 @@ namespace EscopeWindowsApp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please ensure a default browser is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    try
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                        try
                         {
-                            FileName = saveFileDialog.FileName,
-                            Verb = "print",
-                            CreateNoWindow = true,
-                            WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                            UseShellExecute = true
-                        };
-                        using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
-                        {
-                            printProcess.WaitForExit();
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error printing PDF: {ex.Message}. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -326,16 +313,18 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"PurchasesReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"PurchasesReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Purchases Report Excel";
+
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
                         return;
                     }
+
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Purchases Report");
-                        string reportTitle = $"Purchases Report ({dateFilterPurCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Purchases Report ({dateFilterPurCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 4).Merge().Style.Font.Bold = true;
                         worksheet.Cell(2, 1).Value = "GRN Number";

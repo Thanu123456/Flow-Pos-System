@@ -283,6 +283,18 @@ namespace EscopeWindowsApp
                     grnDataGridView.Columns.Add("Warranty", "Warranty");
                     grnDataGridView.Columns.Add("Unit", "Unit");
                     grnDataGridView.Columns.Add("SerialNumber", "Serial Number");
+
+                    // Add Delete column with icon
+                    DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "Delete",
+                        HeaderText = "DELETE",
+                        Text = ""
+                    };
+                    grnDataGridView.Columns.Add(deleteColumn);
+
+                    // Subscribe to CellPainting event for custom icon rendering
+                    grnDataGridView.CellPainting += grnDataGridView_CellPainting;
                 }
 
                 grnDataGridView.AllowUserToAddRows = false;
@@ -303,6 +315,21 @@ namespace EscopeWindowsApp
             finally
             {
                 isFormLoading = false;
+            }
+        }
+
+        private void grnDataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == grnDataGridView.Columns["Delete"].Index)
+            {
+                e.PaintBackground(e.CellBounds, true);
+                Image deleteIcon = Properties.Resources.delete ?? SystemIcons.Warning.ToBitmap();
+                int iconSize = (int)(Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 0.7);
+                if (iconSize <= 0) iconSize = 16;
+                int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+                e.Graphics.DrawImage(deleteIcon, x, y, iconSize, iconSize);
+                e.Handled = true;
             }
         }
         #endregion
@@ -914,6 +941,16 @@ namespace EscopeWindowsApp
         }
         #endregion
 
+        #region Delete Row Handling
+        private void grnDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == grnDataGridView.Columns["Delete"].Index)
+            {
+                grnDataGridView.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+        #endregion
+
         #region Save GRN
         private void grnSaveBtn_Click(object sender, EventArgs e)
         {
@@ -1174,7 +1211,6 @@ namespace EscopeWindowsApp
         private void grnVarText_TextChanged(object sender, EventArgs e) { }
         private void grnProCatText_TextChanged(object sender, EventArgs e) { }
         private void expireDateText_TextChanged(object sender, EventArgs e) { }
-        private void grnDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void grnWarrantyComboBox_SelectedIndexChanged(object sender, EventArgs e) { }
         private void grnProIDText_TextChanged(object sender, EventArgs e) { }
         private void grnProNameText_TextChanged(object sender, EventArgs e) { }
