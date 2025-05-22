@@ -80,6 +80,8 @@
             this.salesTransition = new System.Windows.Forms.Timer(this.components);
             this.peoplesTransition = new System.Windows.Forms.Timer(this.components);
             this.purchTransition = new System.Windows.Forms.Timer(this.components);
+            this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.grnBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashboardBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.manuBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.proBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -106,10 +108,12 @@
             this.wareHouseBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.reportsBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.settingBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticonePictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.posBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.userProfileBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.logoPicBox = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.sidebarBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.siticonePanel4 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.manuLayoutPanel.SuspendLayout();
             this.manuBtnPanel.SuspendLayout();
             this.proBtnPanel.SuspendLayout();
@@ -149,7 +153,10 @@
             this.posBtnPanel.SuspendLayout();
             this.timePanel.SuspendLayout();
             this.userProfilePanel.SuspendLayout();
+            this.siticonePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
+            this.siticonePanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // manuTransition
@@ -536,12 +543,13 @@
             // siticonePanel2
             // 
             this.siticonePanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel2.Controls.Add(this.siticonePanel3);
             this.siticonePanel2.Controls.Add(this.posBtnPanel);
             this.siticonePanel2.Controls.Add(this.timePanel);
             this.siticonePanel2.Controls.Add(this.userProfilePanel);
-            this.siticonePanel2.Location = new System.Drawing.Point(897, 3);
+            this.siticonePanel2.Location = new System.Drawing.Point(770, 3);
             this.siticonePanel2.Name = "siticonePanel2";
-            this.siticonePanel2.Size = new System.Drawing.Size(477, 58);
+            this.siticonePanel2.Size = new System.Drawing.Size(604, 58);
             this.siticonePanel2.TabIndex = 9;
             // 
             // posBtnPanel
@@ -549,7 +557,7 @@
             this.posBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.posBtnPanel.BackColor = System.Drawing.Color.Transparent;
             this.posBtnPanel.Controls.Add(this.posBtn);
-            this.posBtnPanel.Location = new System.Drawing.Point(194, 3);
+            this.posBtnPanel.Location = new System.Drawing.Point(201, 3);
             this.posBtnPanel.Margin = new System.Windows.Forms.Padding(0);
             this.posBtnPanel.Name = "posBtnPanel";
             this.posBtnPanel.Size = new System.Drawing.Size(109, 53);
@@ -561,7 +569,7 @@
             this.timePanel.BackColor = System.Drawing.Color.Transparent;
             this.timePanel.Controls.Add(this.dateLabel);
             this.timePanel.Controls.Add(this.timeLabel);
-            this.timePanel.Location = new System.Drawing.Point(5, 0);
+            this.timePanel.Location = new System.Drawing.Point(4, 3);
             this.timePanel.Margin = new System.Windows.Forms.Padding(0);
             this.timePanel.Name = "timePanel";
             this.timePanel.Size = new System.Drawing.Size(187, 53);
@@ -572,7 +580,7 @@
             this.dateLabel.BackColor = System.Drawing.Color.Transparent;
             this.dateLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateLabel.ForeColor = System.Drawing.Color.Red;
-            this.dateLabel.Location = new System.Drawing.Point(3, 28);
+            this.dateLabel.Location = new System.Drawing.Point(3, 29);
             this.dateLabel.Margin = new System.Windows.Forms.Padding(0);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(165, 23);
@@ -584,7 +592,7 @@
             // 
             this.timeLabel.BackColor = System.Drawing.Color.Transparent;
             this.timeLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeLabel.Location = new System.Drawing.Point(3, 2);
+            this.timeLabel.Location = new System.Drawing.Point(3, 3);
             this.timeLabel.Margin = new System.Windows.Forms.Padding(0);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(125, 27);
@@ -597,7 +605,7 @@
             this.userProfilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.userProfilePanel.BackColor = System.Drawing.Color.Transparent;
             this.userProfilePanel.Controls.Add(this.userProfileBtn);
-            this.userProfilePanel.Location = new System.Drawing.Point(315, 3);
+            this.userProfilePanel.Location = new System.Drawing.Point(442, 3);
             this.userProfilePanel.Margin = new System.Windows.Forms.Padding(0);
             this.userProfilePanel.Name = "userProfilePanel";
             this.userProfilePanel.Size = new System.Drawing.Size(162, 53);
@@ -646,6 +654,42 @@
             // 
             this.purchTransition.Interval = 10;
             this.purchTransition.Tick += new System.EventHandler(this.purchTransition_Tick);
+            // 
+            // siticonePanel3
+            // 
+            this.siticonePanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticonePanel3.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePanel3.Controls.Add(this.siticonePanel4);
+            this.siticonePanel3.Controls.Add(this.grnBtn);
+            this.siticonePanel3.Location = new System.Drawing.Point(322, 3);
+            this.siticonePanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.siticonePanel3.Name = "siticonePanel3";
+            this.siticonePanel3.Size = new System.Drawing.Size(109, 53);
+            this.siticonePanel3.TabIndex = 8;
+            // 
+            // grnBtn
+            // 
+            this.grnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grnBtn.BorderRadius = 8;
+            this.grnBtn.CustomImages.ImageSize = new System.Drawing.Size(15, 15);
+            this.grnBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.grnBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.grnBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.grnBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.grnBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.grnBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.grnBtn.ForeColor = System.Drawing.Color.White;
+            this.grnBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.grnBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.grnBtn.ImageSize = new System.Drawing.Size(30, 30);
+            this.grnBtn.Location = new System.Drawing.Point(2, 4);
+            this.grnBtn.Name = "grnBtn";
+            this.grnBtn.Size = new System.Drawing.Size(103, 45);
+            this.grnBtn.TabIndex = 6;
+            this.grnBtn.Text = "      GRN";
+            this.grnBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.grnBtn.TextOffset = new System.Drawing.Point(4, 0);
+            this.grnBtn.Click += new System.EventHandler(this.grnBtn_Click);
             // 
             // dashboardBtn
             // 
@@ -1222,6 +1266,7 @@
             this.quatationBtn.FillColor = System.Drawing.Color.White;
             this.quatationBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
             this.quatationBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.quatationBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.quatationBtn.Image = global::EscopeWindowsApp.Properties.Resources.quotation;
             this.quatationBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.quatationBtn.ImageOffset = new System.Drawing.Point(11, 0);
@@ -1249,6 +1294,7 @@
             this.wareHouseBtn.FillColor = System.Drawing.Color.White;
             this.wareHouseBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
             this.wareHouseBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.wareHouseBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.wareHouseBtn.Image = global::EscopeWindowsApp.Properties.Resources.warehouse;
             this.wareHouseBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.wareHouseBtn.ImageOffset = new System.Drawing.Point(14, 0);
@@ -1275,6 +1321,7 @@
             this.reportsBtn.FillColor = System.Drawing.Color.White;
             this.reportsBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
             this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.reportsBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.reportsBtn.Image = global::EscopeWindowsApp.Properties.Resources.reports;
             this.reportsBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.reportsBtn.ImageOffset = new System.Drawing.Point(14, 0);
@@ -1293,7 +1340,8 @@
             // 
             this.settingBtn.BackColor = System.Drawing.Color.Transparent;
             this.settingBtn.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
-            this.settingBtn.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.settingBtn.CheckedState.FillColor = System.Drawing.Color.RoyalBlue;
+            this.settingBtn.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.settingBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.settingBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.settingBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -1301,6 +1349,7 @@
             this.settingBtn.FillColor = System.Drawing.Color.White;
             this.settingBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Bold);
             this.settingBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.settingBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.settingBtn.Image = global::EscopeWindowsApp.Properties.Resources.setting;
             this.settingBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.settingBtn.ImageOffset = new System.Drawing.Point(14, 0);
@@ -1314,6 +1363,20 @@
             this.settingBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.settingBtn.UseTransparentBackground = true;
             this.settingBtn.Click += new System.EventHandler(this.settingBtn_Click);
+            // 
+            // siticonePictureBox1
+            // 
+            this.siticonePictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.siticonePictureBox1.BorderRadius = 8;
+            this.siticonePictureBox1.Image = global::EscopeWindowsApp.Properties.Resources.icons8_sell_stock_48;
+            this.siticonePictureBox1.ImageRotate = 0F;
+            this.siticonePictureBox1.Location = new System.Drawing.Point(2, 3);
+            this.siticonePictureBox1.Name = "siticonePictureBox1";
+            this.siticonePictureBox1.Size = new System.Drawing.Size(35, 34);
+            this.siticonePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.siticonePictureBox1.TabIndex = 7;
+            this.siticonePictureBox1.TabStop = false;
+            this.siticonePictureBox1.UseTransparentBackground = true;
             // 
             // posBtn
             // 
@@ -1398,6 +1461,17 @@
             this.sidebarBtn.TabIndex = 0;
             this.sidebarBtn.Click += new System.EventHandler(this.sidebarBtn_Click);
             // 
+            // siticonePanel4
+            // 
+            this.siticonePanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.siticonePanel4.BorderRadius = 6;
+            this.siticonePanel4.Controls.Add(this.siticonePictureBox1);
+            this.siticonePanel4.FillColor = System.Drawing.Color.White;
+            this.siticonePanel4.Location = new System.Drawing.Point(5, 8);
+            this.siticonePanel4.Name = "siticonePanel4";
+            this.siticonePanel4.Size = new System.Drawing.Size(40, 37);
+            this.siticonePanel4.TabIndex = 8;
+            // 
             // SideBarForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1460,7 +1534,10 @@
             this.timePanel.ResumeLayout(false);
             this.timePanel.PerformLayout();
             this.userProfilePanel.ResumeLayout(false);
+            this.siticonePanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
+            this.siticonePanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1546,5 +1623,9 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetBtn;
         private System.Windows.Forms.Timer purchTransition;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel2;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel3;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton grnBtn;
+        private Siticone.Desktop.UI.WinForms.SiticonePictureBox siticonePictureBox1;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel4;
     }
 }

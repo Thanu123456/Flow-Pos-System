@@ -30,11 +30,7 @@ namespace EscopeWindowsApp
             categoryDataGridView.DataSource = bindingSource; // Then bind data source
             LoadCategoriesData();       // Finally load data
 
-            if (categoriesTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No category data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+           
         }
 
         private void ConfigureDataGridView()
@@ -81,7 +77,7 @@ namespace EscopeWindowsApp
             if (categoryDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int categoryId = Convert.ToInt32(e.Value);
-                e.Value = $"cat{categoryId:D3}"; // Format as "cat001", "cat002", etc.
+                e.Value = $"CAT{categoryId:D3}"; // Format as "cat001", "cat002", etc.
                 e.FormattingApplied = true;
             }
         }
@@ -255,7 +251,7 @@ namespace EscopeWindowsApp
                 else if (columnName == "DeleteColumn")
                 {
                     int categoryId = Convert.ToInt32(row.Cells["id"].Value);
-                    string formattedId = $"cat{categoryId:D3}";
+                    string formattedId = $"CAT{categoryId:D3}";
 
                     DialogResult result = MessageBox.Show(
                         $"Are you sure you want to delete category {formattedId}?",

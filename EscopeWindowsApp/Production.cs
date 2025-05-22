@@ -131,7 +131,7 @@ namespace EscopeWindowsApp
                 if (e.Value != null)
                 {
                     int productId = Convert.ToInt32(e.Value);
-                    e.Value = $"pro{productId:D3}";
+                    e.Value = $"PRO{productId:D3}";
                     e.FormattingApplied = true;
                 }
             }
@@ -495,25 +495,6 @@ namespace EscopeWindowsApp
             createProduct.Show();
         }
 
-        private void grn_Btn_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is GRNForm)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-                }
-            }
-            GRNForm gRNForm = new GRNForm();
-            gRNForm.Show();
-        }
-
         private void adjPageCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
@@ -523,6 +504,11 @@ namespace EscopeWindowsApp
             ConfigureDataGridView();
             LoadProductsData();
             ProductDataGridView.DataSource = bindingSource;
+        }
+
+        private void ProductDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

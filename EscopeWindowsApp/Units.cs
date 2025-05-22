@@ -38,7 +38,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Unit ID"
+                HeaderText = "UNIT ID"
             });
             unitsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -76,7 +76,7 @@ namespace EscopeWindowsApp
             if (unitsDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int unitId = Convert.ToInt32(e.Value);
-                e.Value = $"un{unitId:D3}";
+                e.Value = $"UNI{unitId:D3}";
                 e.FormattingApplied = true;
             }
         }
@@ -221,6 +221,11 @@ namespace EscopeWindowsApp
                 currentIndex = unitsDataGridView.Rows.Count - 1;
                 unitsDataGridView.CurrentCell = unitsDataGridView.Rows[currentIndex].Cells[0];
             }
+        }
+
+        private void unitsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

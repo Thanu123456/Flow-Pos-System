@@ -84,7 +84,7 @@ namespace EscopeWindowsApp
             purRetDataGridView.AllowUserToAddRows = false;
             purRetDataGridView.ReadOnly = true;
             purRetDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            purRetDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+           // purRetDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             purRetDataGridView.RowTemplate.Height = 35;
             purRetDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             purRetDataGridView.BackgroundColor = Color.White;
