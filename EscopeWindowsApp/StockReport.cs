@@ -268,11 +268,10 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"StockReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"StockReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Stock Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -280,60 +279,11 @@ namespace EscopeWindowsApp
                         return; // User cancelled the dialog
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Stock Report";
-                    document.Info.Author = "EscopeWindowsApp";
-
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
+                    // Create an instance of ReportDesigner and generate the document
+                    ReportDesigner reportDesigner = new ReportDesigner();
                     string category = caterotyFilterCombo.SelectedItem?.ToString() ?? "All Categories";
-                    string stockFilter = checkZeroStocks.Checked ? "Zero Stock" : "Non-Zero Stock";
-                    string reportTitle = $"Stock Report - {category} ({stockFilter}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(4));  // Product Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Category
-                    table.AddColumn(Unit.FromCentimeter(3));  // Brand Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Variation Type
-                    table.AddColumn(Unit.FromCentimeter(3));  // Unit Name
-                    table.AddColumn(Unit.FromCentimeter(2));  // Stock
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("Product Name");
-                    headerRow.Cells[1].AddParagraph("Category");
-                    headerRow.Cells[2].AddParagraph("Brand Name");
-                    headerRow.Cells[3].AddParagraph("Variation Type");
-                    headerRow.Cells[4].AddParagraph("Unit Name");
-                    headerRow.Cells[5].AddParagraph("Stock");
-
-                    // Add data rows
-                    foreach (DataRow row in stockTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["product_name"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["category_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[2].AddParagraph(row["brand_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[3].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
-                        dataRow.Cells[4].AddParagraph(row["unit_name"]?.ToString() ?? "N/A");
-                        decimal stockValue = Convert.ToDecimal(row["stock"]);
-                        string unitName = row["unit_name"]?.ToString()?.ToLower() ?? "";
-                        dataRow.Cells[5].AddParagraph(unitName == "pieces" ? ((int)stockValue).ToString() : stockValue.ToString("F2"));
-                    }
+                    bool zeroStock = checkZeroStocks.Checked;
+                    Document document = reportDesigner.CreateStockReportDocument(stockTable, category, zeroStock);
 
                     // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -344,6 +294,46 @@ namespace EscopeWindowsApp
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -360,7 +350,7 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"StockReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"StockReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Stock Report Excel";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -375,7 +365,7 @@ namespace EscopeWindowsApp
                         // Add title
                         string category = caterotyFilterCombo.SelectedItem?.ToString() ?? "All Categories";
                         string stockFilter = checkZeroStocks.Checked ? "Zero Stock" : "Non-Zero Stock";
-                        string reportTitle = $"Stock Report - {category} ({stockFilter}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Stock Report - {category} ({stockFilter}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 6).Merge().Style.Font.Bold = true;
 

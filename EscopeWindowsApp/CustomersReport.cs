@@ -29,29 +29,21 @@ namespace EscopeWindowsApp
 
         private void CustomersReport_Load(object sender, EventArgs e)
         {
-            // Initialize DataTable for customers
             customersTable = new DataTable();
-
-            // Set up the date filter combo box
             dateFilterCusCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
-            dateFilterCusCombo.SelectedIndex = 0; // Default to Daily
-
-            // Set up the Action column in the DataGridView before loading data
+            dateFilterCusCombo.SelectedIndex = 0;
             SetupActionColumn();
-
-            // Load all customers initially
             LoadCustomersData();
         }
 
         private void SetupActionColumn()
         {
-            // Add an Action column with the export-pdf icon
             DataGridViewImageColumn actionColumn = new DataGridViewImageColumn
             {
                 Name = "Action",
                 HeaderText = "ACTION",
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
-                Image = Properties.Resources.export_pdf // Set the icon directly
+                Image = Properties.Resources.export_pdf
             };
             customersReportDataGrid.Columns.Add(actionColumn);
         }
@@ -63,8 +55,6 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    // Query to aggregate customer data by joining customers and sales tables
                     string query = @"
                         SELECT 
                             c.name AS customer_name, 
@@ -76,13 +66,11 @@ namespace EscopeWindowsApp
                         LEFT JOIN sales s ON c.name = s.customer
                         WHERE 1=1";
 
-                    // Add search filter if provided
                     if (!string.IsNullOrEmpty(searchText))
                     {
                         query += " AND (c.name LIKE @searchText OR c.phone LIKE @searchText)";
                     }
 
-                    // Add date filter (only apply if there are sales)
                     DateTime now = DateTime.Now;
                     if (dateFilter == "Daily")
                     {
@@ -105,21 +93,19 @@ namespace EscopeWindowsApp
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Add parameters for search
                         if (!string.IsNullOrEmpty(searchText))
                         {
                             command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
                         }
 
-                        // Add parameters for date filter
                         if (dateFilter == "Daily")
                         {
                             command.Parameters.AddWithValue("@today", now.Date);
                         }
                         else if (dateFilter == "Weekly")
                         {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek); // Start of the week (Sunday)
-                            DateTime weekEnd = weekStart.AddDays(6); // End of the week (Saturday)
+                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
+                            DateTime weekEnd = weekStart.AddDays(6);
                             command.Parameters.AddWithValue("@weekStart", weekStart);
                             command.Parameters.AddWithValue("@weekEnd", weekEnd);
                         }
@@ -137,9 +123,7 @@ namespace EscopeWindowsApp
                         {
                             customersTable.Clear();
                             adapter.Fill(customersTable);
-                            // Set AutoGenerateColumns to false to prevent overwriting the Action column
                             customersReportDataGrid.AutoGenerateColumns = false;
-                            // Define the columns manually to match the DataTable
                             if (customersReportDataGrid.Columns.Count == 1) // Only Action column exists initially
                             {
                                 customersReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "customer_name", DataPropertyName = "customer_name", HeaderText = "CUSTOMER" });
@@ -148,7 +132,6 @@ namespace EscopeWindowsApp
                                 customersReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "amount", DataPropertyName = "amount", HeaderText = "AMOUNT" });
                                 customersReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "paid", DataPropertyName = "paid", HeaderText = "CASH" });
 
-                                // Set the display order: customer_name, phone_number, total_sales, amount, paid, Action
                                 customersReportDataGrid.Columns["customer_name"].DisplayIndex = 0;
                                 customersReportDataGrid.Columns["phone_number"].DisplayIndex = 1;
                                 customersReportDataGrid.Columns["total_sales"].DisplayIndex = 2;
@@ -161,17 +144,13 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Configure DataGridView columns
                 ConfigureDataGridView();
-
-                // Enable or disable PDF and Excel buttons based on data
                 generateCustomersPdfBtn.Enabled = customersTable.Rows.Count > 0;
                 generateCustomersExcelBtn.Enabled = customersTable.Rows.Count > 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Disable buttons in case of error
                 generateCustomersPdfBtn.Enabled = false;
                 generateCustomersExcelBtn.Enabled = false;
             }
@@ -179,23 +158,12 @@ namespace EscopeWindowsApp
 
         private void ConfigureDataGridView()
         {
-            // Format amount and paid columns with currency symbol
             if (customersReportDataGrid.Columns["amount"] != null)
                 customersReportDataGrid.Columns["amount"].DefaultCellStyle.Format = "LKR #,##0.00";
             if (customersReportDataGrid.Columns["paid"] != null)
                 customersReportDataGrid.Columns["paid"].DefaultCellStyle.Format = "LKR #,##0.00";
 
-            // Adjust column widths
             customersReportDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Style the CUSTOMER column with a pink background
-            foreach (DataGridViewRow row in customersReportDataGrid.Rows)
-            {
-                //if (row.Cells["customer_name"] != null)
-                //{
-                //    row.Cells["customer_name"].Style.BackColor = System.Drawing.Color.FromArgb(255, 204, 204); // Light pink color
-                //}
-            }
         }
 
         private void customerSearchText_TextChanged(object sender, EventArgs e)
@@ -212,8 +180,7 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex >= 0 && customersReportDataGrid.Columns[e.ColumnIndex].Name == "Action")
             {
-                // Handle Action column click (export-pdf icon)
-                string customerName = customersReportDataGrid.Rows[e.RowIndex].Cells["customer_name"].Value.ToString();
+                string customerName = customersReportDataGrid.Rows[e.RowIndex].Cells["customer_name"].Value?.ToString() ?? "";
                 GenerateCustomerHistoryPdf(customerName);
             }
         }
@@ -222,26 +189,23 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"CustomerHistory_{customerName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"CustomerHistory_{customerName}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Customer History PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
-                    // Fetch the customer's full sales history
                     DataTable customerSales = new DataTable();
                     DataTable customerDetails = new DataTable();
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
                     {
                         connection.Open();
 
-                        // Fetch sales data
                         string salesQuery = @"
                             SELECT 
                                 s.bill_no, 
@@ -262,7 +226,6 @@ namespace EscopeWindowsApp
                             }
                         }
 
-                        // Fetch sales details for each bill
                         string detailsQuery = @"
                             SELECT 
                                 sd.bill_no, 
@@ -286,85 +249,41 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Create a new MigraDoc document
                     Document document = new Document();
                     document.Info.Title = $"Customer History - {customerName}";
                     document.Info.Author = "EscopeWindowsApp";
 
-                    // Add a section to the document
                     Section section = document.AddSection();
+                    section.PageSetup = document.DefaultPageSetup.Clone();
+                    section.PageSetup.TopMargin = Unit.FromCentimeter(4);
+                    section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
+                    section.PageSetup.RightMargin = Unit.FromCentimeter(2);
+                    section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
 
-                    // Add a title
+                    // Use the constructor to initialize ReportDesigner
+                    ReportDesigner reportDesigner = new ReportDesigner(document, section);
+
+                    // Call methods directly
+                    reportDesigner.DefineStyles();
+                    reportDesigner.AddHeader();
+
+                    // Add report title
                     Paragraph title = section.AddParagraph($"Customer Sales History: {customerName}");
                     title.Format.Font.Size = 14;
                     title.Format.Font.Bold = true;
+                    title.Format.Alignment = ParagraphAlignment.Center;
+                    title.Format.SpaceBefore = 20;
                     title.Format.SpaceAfter = 10;
 
-                    // Add sales history table
-                    foreach (DataRow sale in customerSales.Rows)
-                    {
-                        string billNo = sale["bill_no"].ToString();
-                        Paragraph billTitle = section.AddParagraph($"Bill Number: {billNo} (Date: {Convert.ToDateTime(sale["sale_date"]).ToString("yyyy-MM-dd")})");
-                        billTitle.Format.Font.Size = 12;
-                        billTitle.Format.Font.Bold = true;
-                        billTitle.Format.SpaceAfter = 5;
+                    // Call AddCustomerHistoryTable
+                    reportDesigner.AddCustomerHistoryTable(customerSales, customerDetails);
 
-                        // Sales summary
-                        Paragraph saleSummary = section.AddParagraph(
-                            $"Username: {sale["user_name"]}, " +
-                            $"Total Items: {sale["quantity_of_items"]}, " +
-                            $"Payment Method: {sale["payment_method"]}, " +
-                            $"Total Price: €{Convert.ToDecimal(sale["total_price"]).ToString("N2")}"
-                        );
-                        saleSummary.Format.SpaceAfter = 5;
+                    // Add footer
+                    reportDesigner.AddFooter();
 
-                        // Create a table for sales details
-                        Table table = section.AddTable();
-                        table.Borders.Width = 0.5;
-                        table.Rows.Height = 10;
-
-                        // Define columns
-                        table.AddColumn(Unit.FromCentimeter(4));  // Product Name
-                        table.AddColumn(Unit.FromCentimeter(3));  // Variation Type
-                        table.AddColumn(Unit.FromCentimeter(2));  // Unit
-                        table.AddColumn(Unit.FromCentimeter(2));  // Quantity
-                        table.AddColumn(Unit.FromCentimeter(2));  // Price
-                        table.AddColumn(Unit.FromCentimeter(2));  // Total Price
-
-                        // Add header row
-                        Row headerRow = table.AddRow();
-                        headerRow.HeadingFormat = true;
-                        headerRow.Format.Font.Bold = true;
-                        headerRow.Cells[0].AddParagraph("Product Name");
-                        headerRow.Cells[1].AddParagraph("Variation Type");
-                        headerRow.Cells[2].AddParagraph("Unit");
-                        headerRow.Cells[3].AddParagraph("Quantity");
-                        headerRow.Cells[4].AddParagraph("Price");
-                        headerRow.Cells[5].AddParagraph("Total Price");
-
-                        // Add sales details rows for this bill
-                        DataRow[] detailsRows = customerDetails.Select($"bill_no = '{billNo}'");
-                        foreach (DataRow detail in detailsRows)
-                        {
-                            Row dataRow = table.AddRow();
-                            dataRow.Cells[0].AddParagraph(detail["product_name"].ToString());
-                            dataRow.Cells[1].AddParagraph(detail["variation_type"]?.ToString() ?? "N/A");
-                            dataRow.Cells[2].AddParagraph(detail["unit"].ToString());
-                            dataRow.Cells[3].AddParagraph(detail["quantity"].ToString());
-                            dataRow.Cells[4].AddParagraph(detail["price"].ToString());
-                            dataRow.Cells[5].AddParagraph(detail["total_price"].ToString());
-                        }
-
-                        // Add spacing after each bill
-                        section.AddParagraph("").Format.SpaceAfter = 10;
-                    }
-
-                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"Customer history PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -372,7 +291,16 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error generating customer history PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string errorMessage = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorMessage += $"\nInner Exception: {ex.InnerException.Message}";
+                    if (ex.InnerException.StackTrace != null)
+                    {
+                        errorMessage += $"\nStack Trace: {ex.InnerException.StackTrace}";
+                    }
+                }
+                MessageBox.Show($"Error generating customer history PDF: {errorMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -380,75 +308,67 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"CustomersReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"CustomersReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Customers Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Customers Report";
-                    document.Info.Author = "EscopeWindowsApp";
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    string dateFilter = dateFilterCusCombo.SelectedItem?.ToString() ?? "Daily";
+                    Document document = reportDesigner.CreateCustomersReportDocument(customersTable, dateFilter);
 
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Customers Report ({dateFilterCusCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns (removed DUE)
-                    table.AddColumn(Unit.FromCentimeter(4));  // Customer
-                    table.AddColumn(Unit.FromCentimeter(3));  // Phone Number
-                    table.AddColumn(Unit.FromCentimeter(3));  // Total Sales
-                    table.AddColumn(Unit.FromCentimeter(3));  // Amount
-                    table.AddColumn(Unit.FromCentimeter(3));  // Paid
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("CUSTOMER");
-                    headerRow.Cells[1].AddParagraph("PHONE NUMBER");
-                    headerRow.Cells[2].AddParagraph("TOTAL SALES");
-                    headerRow.Cells[3].AddParagraph("AMOUNT");
-                    headerRow.Cells[4].AddParagraph("PAID");
-
-                    // Add data rows
-                    foreach (DataRow row in customersTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["customer_name"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["phone_number"].ToString());
-                        dataRow.Cells[2].AddParagraph(row["total_sales"]?.ToString() ?? "0");
-                        dataRow.Cells[3].AddParagraph($"€{Convert.ToDecimal(row["amount"] ?? 0).ToString("N2")}");
-                        dataRow.Cells[4].AddParagraph($"€{Convert.ToDecimal(row["paid"] ?? 0).ToString("N2")}");
-                    }
-
-                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -461,28 +381,25 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"CustomersReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"CustomersReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Customers Report Excel";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
+                        return;
                     }
 
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Customers Report");
 
-                        // Add title
-                        string reportTitle = $"Customers Report ({dateFilterCusCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Customers Report ({dateFilterCusCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 5).Merge().Style.Font.Bold = true;
 
-                        // Add headers (removed DUE)
                         worksheet.Cell(2, 1).Value = "CUSTOMER";
                         worksheet.Cell(2, 2).Value = "PHONE NUMBER";
                         worksheet.Cell(2, 3).Value = "TOTAL SALES";
@@ -490,7 +407,6 @@ namespace EscopeWindowsApp
                         worksheet.Cell(2, 5).Value = "PAID";
                         worksheet.Range(2, 1, 2, 5).Style.Font.Bold = true;
 
-                        // Add data rows
                         for (int i = 0; i < customersTable.Rows.Count; i++)
                         {
                             DataRow row = customersTable.Rows[i];
@@ -498,15 +414,13 @@ namespace EscopeWindowsApp
                             worksheet.Cell(i + 3, 2).Value = row["phone_number"].ToString();
                             worksheet.Cell(i + 3, 3).Value = row["total_sales"]?.ToString() ?? "0";
                             worksheet.Cell(i + 3, 4).Value = Convert.ToDecimal(row["amount"] ?? 0);
-                            worksheet.Cell(i + 3, 4).Style.NumberFormat.Format = "€#,##0.00";
+                            // Use LKR to match the DataGridView
+                            worksheet.Cell(i + 3, 4).Style.NumberFormat.Format = "LKR #,##0.00";
                             worksheet.Cell(i + 3, 5).Value = Convert.ToDecimal(row["paid"] ?? 0);
-                            worksheet.Cell(i + 3, 5).Style.NumberFormat.Format = "€#,##0.00";
+                            worksheet.Cell(i + 3, 5).Style.NumberFormat.Format = "LKR #,##0.00";
                         }
 
-                        // Adjust column widths
                         worksheet.Columns().AdjustToContents();
-
-                        // Save the Excel file to the user-selected location
                         workbook.SaveAs(saveFileDialog.FileName);
 
                         MessageBox.Show($"Excel generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

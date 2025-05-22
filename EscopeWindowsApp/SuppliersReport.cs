@@ -166,7 +166,7 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"SupplierHistory_{supplierName}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"SupplierHistory_{supplierName}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Supplier History PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -202,7 +202,7 @@ namespace EscopeWindowsApp
                             }
                         }
 
-                        // Fetch additional details for each GRN item (if needed)
+                        // Fetch additional details for each GRN item
                         string detailsQuery = @"
                             SELECT 
                                 gi.grn_id, 
@@ -235,77 +235,30 @@ namespace EscopeWindowsApp
 
                     // Add a section to the document
                     Section section = document.AddSection();
+                    section.PageSetup = document.DefaultPageSetup.Clone();
+                    section.PageSetup.TopMargin = Unit.FromCentimeter(4);
+                    section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
+                    section.PageSetup.RightMargin = Unit.FromCentimeter(2);
+                    section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
+
+                    // Use ReportDesigner to build the document
+                    ReportDesigner reportDesigner = new ReportDesigner(document, section);
+                    reportDesigner.DefineStyles();
+                    reportDesigner.AddHeader();
 
                     // Add a title
                     Paragraph title = section.AddParagraph($"Supplier Purchase History: {supplierName}");
                     title.Format.Font.Size = 14;
                     title.Format.Font.Bold = true;
+                    title.Format.Alignment = ParagraphAlignment.Center;
+                    title.Format.SpaceBefore = 20;
                     title.Format.SpaceAfter = 10;
 
-                    // Add purchase history table
-                    foreach (DataRow purchase in supplierPurchases.Rows)
-                    {
-                        string grnId = purchase["grn_id"].ToString();
-                        Paragraph grnTitle = section.AddParagraph($"GRN ID: {grnId}");
-                        grnTitle.Format.Font.Size = 12;
-                        grnTitle.Format.Font.Bold = true;
-                        grnTitle.Format.SpaceAfter = 5;
+                    // Add supplier history table
+                    reportDesigner.AddSupplierHistoryTable(supplierPurchases, purchaseDetails);
 
-                        // Purchase summary
-                        Paragraph purchaseSummary = section.AddParagraph(
-                            $"Product: {purchase["product_name"]}, " +
-                            $"Quantity: {purchase["quantity"]}, " +
-                            $"Cost Price: LKR {Convert.ToDecimal(purchase["cost_price"]).ToString("N2")}, " +
-                            $"Net Price: LKR {Convert.ToDecimal(purchase["net_price"]).ToString("N2")}"
-                        );
-                        purchaseSummary.Format.SpaceAfter = 5;
-
-                        // Create a table for purchase details
-                        Table table = section.AddTable();
-                        table.Borders.Width = 0.5;
-                        table.Rows.Height = 10;
-
-                        // Define columns
-                        table.AddColumn(Unit.FromCentimeter(4));  // Product Name
-                        table.AddColumn(Unit.FromCentimeter(3));  // Variation Type
-                        table.AddColumn(Unit.FromCentimeter(2));  // Unit
-                        table.AddColumn(Unit.FromCentimeter(2));  // Quantity
-                        table.AddColumn(Unit.FromCentimeter(2));  // Cost Price
-                        table.AddColumn(Unit.FromCentimeter(2));  // Net Price
-                        table.AddColumn(Unit.FromCentimeter(2));  // Expiry Date
-                        table.AddColumn(Unit.FromCentimeter(2));  // Warranty
-
-                        // Add header row
-                        Row headerRow = table.AddRow();
-                        headerRow.HeadingFormat = true;
-                        headerRow.Format.Font.Bold = true;
-                        headerRow.Cells[0].AddParagraph("Product Name");
-                        headerRow.Cells[1].AddParagraph("Variation Type");
-                        headerRow.Cells[2].AddParagraph("Unit");
-                        headerRow.Cells[3].AddParagraph("Quantity");
-                        headerRow.Cells[4].AddParagraph("Cost Price");
-                        headerRow.Cells[5].AddParagraph("Net Price");
-                        headerRow.Cells[6].AddParagraph("Expiry Date");
-                        headerRow.Cells[7].AddParagraph("Warranty");
-
-                        // Add purchase details rows for this GRN
-                        DataRow[] detailsRows = purchaseDetails.Select($"grn_id = '{grnId}'");
-                        foreach (DataRow detail in detailsRows)
-                        {
-                            Row dataRow = table.AddRow();
-                            dataRow.Cells[0].AddParagraph(detail["product_name"].ToString());
-                            dataRow.Cells[1].AddParagraph(detail["variation_type"]?.ToString() ?? "N/A");
-                            dataRow.Cells[2].AddParagraph(detail["unit"]?.ToString() ?? "N/A");
-                            dataRow.Cells[3].AddParagraph(detail["quantity"].ToString());
-                            dataRow.Cells[4].AddParagraph($"LKR {Convert.ToDecimal(detail["cost_price"]).ToString("N2")}");
-                            dataRow.Cells[5].AddParagraph($"LKR {Convert.ToDecimal(detail["net_price"]).ToString("N2")}");
-                            dataRow.Cells[6].AddParagraph(detail["expiry_date"] != DBNull.Value ? Convert.ToDateTime(detail["expiry_date"]).ToString("yyyy-MM-dd") : "N/A");
-                            dataRow.Cells[7].AddParagraph(detail["warranty"]?.ToString() ?? "N/A");
-                        }
-
-                        // Add spacing after each GRN
-                        section.AddParagraph("").Format.SpaceAfter = 10;
-                    }
+                    // Add footer
+                    reportDesigner.AddFooter();
 
                     // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -320,7 +273,16 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error generating supplier history PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string errorMessage = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorMessage += $"\nInner Exception: {ex.InnerException.Message}";
+                    if (ex.InnerException.StackTrace != null)
+                    {
+                        errorMessage += $"\nStack Trace: {ex.InnerException.StackTrace}";
+                    }
+                }
+                MessageBox.Show($"Error generating supplier history PDF: {errorMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -332,7 +294,7 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"SuppliersReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"SuppliersReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Suppliers Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -340,50 +302,9 @@ namespace EscopeWindowsApp
                         return; // User cancelled the dialog
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Suppliers Report";
-                    document.Info.Author = "EscopeWindowsApp";
-
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Suppliers Report - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(4));  // Supplier Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Phone Number
-                    table.AddColumn(Unit.FromCentimeter(3));  // Purchases
-                    table.AddColumn(Unit.FromCentimeter(3));  // Total Amount
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("SUPPLIER NAME");
-                    headerRow.Cells[1].AddParagraph("PHONE NUMBER");
-                    headerRow.Cells[2].AddParagraph("PURCHASES");
-                    headerRow.Cells[3].AddParagraph("TOTAL AMOUNT");
-
-                    // Add data rows
-                    foreach (DataRow row in suppliersTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["supplier_name"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["phone_number"].ToString());
-                        dataRow.Cells[2].AddParagraph(row["purchases"]?.ToString() ?? "0");
-                        dataRow.Cells[3].AddParagraph($"LKR {Convert.ToDecimal(row["total_amount"] ?? 0).ToString("N2")}");
-                    }
+                    // Use ReportDesigner to generate the PDF
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    Document document = reportDesigner.CreateSuppliersReportDocument(suppliersTable, "All Time");
 
                     // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -394,6 +315,46 @@ namespace EscopeWindowsApp
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -410,7 +371,7 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"SuppliersReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"SuppliersReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Suppliers Report Excel";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -423,7 +384,7 @@ namespace EscopeWindowsApp
                         var worksheet = workbook.Worksheets.Add("Suppliers Report");
 
                         // Add title
-                        string reportTitle = $"Suppliers Report - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Suppliers Report - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 4).Merge().Style.Font.Bold = true;
 
