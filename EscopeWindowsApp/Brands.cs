@@ -30,11 +30,7 @@ namespace EscopeWindowsApp
             brandsDataGridView.DataSource = bindingSource;
             LoadBrandsData();
 
-            if (brandsTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No brand data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void ConfigureDataGridView()
@@ -91,7 +87,7 @@ namespace EscopeWindowsApp
             if (brandsDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int brandId = Convert.ToInt32(e.Value);
-                e.Value = $"br{brandId:D3}";
+                e.Value = $"BRN{brandId:D3}";
                 e.FormattingApplied = true;
             }
         }
@@ -255,7 +251,7 @@ namespace EscopeWindowsApp
                 else if (brandsDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
                 {
                     int brandId = Convert.ToInt32(row["id"]);
-                    string formattedId = $"br{brandId:D3}";
+                    string formattedId = $"BRA{brandId:D3}";
 
                     DialogResult result = MessageBox.Show(
                         $"Are you sure you want to delete brand {formattedId}?",

@@ -30,11 +30,7 @@ namespace EscopeWindowsApp
             expDataGridView.DataSource = bindingSource;
             LoadExpensesData();
 
-            if (expensesTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No expense data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void ConfigureDataGridView()
@@ -46,7 +42,7 @@ namespace EscopeWindowsApp
             {
                 DataPropertyName = "id",
                 Name = "id",
-                HeaderText = "Expense ID"
+                HeaderText = "EXPENSES ID"
             });
             expDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {

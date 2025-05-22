@@ -96,7 +96,7 @@ namespace EscopeWindowsApp
             if (wareDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int warehouseId = Convert.ToInt32(e.Value);
-                e.Value = $"WH{warehouseId:D3}"; // Format as "wh001", "wh002", etc.
+                e.Value = $"WHO{warehouseId:D3}"; // Format as "wh001", "wh002", etc.
                 e.FormattingApplied = true;
             }
         }
@@ -278,7 +278,7 @@ namespace EscopeWindowsApp
                 if (wareDataGridView.Columns[e.ColumnIndex].Name == "DeleteColumn")
                 {
                     int warehouseId = Convert.ToInt32(row.Cells["id"].Value);
-                    string formattedId = $"wh{warehouseId:D3}";
+                    string formattedId = $"WHO{warehouseId:D3}";
 
                     DialogResult result = MessageBox.Show(
                         $"Are you sure you want to delete warehouse {formattedId}?",
@@ -354,10 +354,7 @@ namespace EscopeWindowsApp
         {
             ConfigureDataGridView();
             wareDataGridView.DataSource = bindingSource; // Bind after configuration
-            if (warehousesTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No warehouse data found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
     }
 }

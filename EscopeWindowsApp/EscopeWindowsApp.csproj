@@ -810,6 +810,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-sell-stock-48.png" />
     <None Include="Resources\icons8-warning-48.png" />
     <None Include="Resources\FlowPOS Logo-032.png" />
     <None Include="Resources\FlowPOS Logo-031.png" />

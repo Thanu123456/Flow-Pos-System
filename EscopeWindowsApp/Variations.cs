@@ -29,10 +29,7 @@ namespace EscopeWindowsApp
             variationsDataGridView.DataSource = bindingSource;
             LoadVariationsData();
 
-            if (variationsTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No variation data found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void ConfigureDataGridView()
@@ -149,7 +146,7 @@ namespace EscopeWindowsApp
             if (variationsDataGridView.Columns[e.ColumnIndex].Name == "VariationId")
             {
                 int variationId = Convert.ToInt32(e.Value);
-                e.Value = $"var{variationId:D3}";
+                e.Value = $"VAR{variationId:D3}";
                 e.FormattingApplied = true;
             }
         }

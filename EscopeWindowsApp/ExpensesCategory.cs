@@ -29,11 +29,7 @@ namespace EscopeWindowsApp
             expCatDataGridView.DataSource = bindingSource;
             LoadCategoriesData();
 
-            if (categoriesTable.Rows.Count == 0)
-            {
-                MessageBox.Show("No expense category data found.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
 
         private void ConfigureDataGridView()
@@ -78,7 +74,7 @@ namespace EscopeWindowsApp
             if (expCatDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int categoryId = Convert.ToInt32(e.Value);
-                e.Value = $"exp{categoryId:D3}";
+                e.Value = $"EXC{categoryId:D3}";
                 e.FormattingApplied = true;
             }
         }
