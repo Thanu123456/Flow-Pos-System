@@ -339,7 +339,6 @@ namespace EscopeWindowsApp
         {
             try
             {
-                // Show SaveFileDialog to let the user choose the save location
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
@@ -351,61 +350,9 @@ namespace EscopeWindowsApp
                         return; // User cancelled the dialog
                     }
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Expenses Report";
-                    document.Info.Author = "EscopeWindowsApp";
-
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Expenses Report ({dateFilterCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Create a table
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(1));  // ID
-                    table.AddColumn(Unit.FromCentimeter(3));  // Date
-                    table.AddColumn(Unit.FromCentimeter(3));  // Title
-                    table.AddColumn(Unit.FromCentimeter(3));  // Warehouse Name
-                    table.AddColumn(Unit.FromCentimeter(3));  // Category Name
-                    table.AddColumn(Unit.FromCentimeter(2));  // Amount
-                    table.AddColumn(Unit.FromCentimeter(5));  // Details
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("ID");
-                    headerRow.Cells[1].AddParagraph("Date");
-                    headerRow.Cells[2].AddParagraph("Title");
-                    headerRow.Cells[3].AddParagraph("Warehouse Name");
-                    headerRow.Cells[4].AddParagraph("Category Name");
-                    headerRow.Cells[5].AddParagraph("Amount");
-                    headerRow.Cells[6].AddParagraph("Details");
-
-                    // Add data rows
-                    foreach (DataRow row in expensesTable.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["id"] is int id ? $"EXP{id:D3}" : "N/A");
-                        dataRow.Cells[1].AddParagraph(row["expense_date"] is DateTime date && date != DateTime.MinValue
-                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                            : "N/A");
-                        dataRow.Cells[2].AddParagraph(row["title"]?.ToString() ?? "N/A");
-                        dataRow.Cells[3].AddParagraph(row["warehouse_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[4].AddParagraph(row["category_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[5].AddParagraph(row["amount"] is decimal amount ? amount.ToString("N2") : "N/A");
-                        dataRow.Cells[6].AddParagraph(row["details"]?.ToString() ?? "N/A");
-                    }
+                    // Create an instance of ReportDesigner and generate the document
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    Document document = reportDesigner.CreateExpensesReportDocument(expensesTable, dateFilterCombo.SelectedItem?.ToString() ?? "Daily");
 
                     // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
@@ -416,6 +363,46 @@ namespace EscopeWindowsApp
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

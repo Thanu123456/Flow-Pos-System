@@ -7,6 +7,7 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using ClosedXML.Excel;
 using System.Configuration;
+using System.IO;
 
 namespace EscopeWindowsApp
 {
@@ -322,11 +323,13 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"GRNDetail_{grnNo}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"GRNDetail_{grnNo}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save GRN Detail PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
                         return;
+                    }
 
                     DataTable grnDetails = new DataTable();
                     using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -349,54 +352,59 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    Document document = new Document();
-                    document.Info.Title = $"GRN Detail - GRN No: {grnNo}";
-                    document.Info.Author = "EscopeWindowsApp";
-                    Section section = document.AddSection();
+                    // Use ReportDesigner to generate the PDF
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    Document document = reportDesigner.CreateGRNCreditDetailReportDocument(grnDetails, grnNo);
 
-                    Paragraph title = section.AddParagraph($"GRN Detail: GRN No {grnNo}");
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    table.AddColumn(Unit.FromCentimeter(3));
-                    table.AddColumn(Unit.FromCentimeter(2));
-                    table.AddColumn(Unit.FromCentimeter(2));
-                    table.AddColumn(Unit.FromCentimeter(2));
-                    table.AddColumn(Unit.FromCentimeter(2));
-
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("Product Name");
-                    headerRow.Cells[1].AddParagraph("Variation Type");
-                    headerRow.Cells[2].AddParagraph("Unit");
-                    headerRow.Cells[3].AddParagraph("Quantity");
-                    headerRow.Cells[4].AddParagraph("Cost Price");
-                    headerRow.Cells[5].AddParagraph("Total Price");
-
-                    foreach (DataRow item in grnDetails.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(item["product_name"].ToString());
-                        dataRow.Cells[1].AddParagraph(item["variation_type"]?.ToString() ?? "N/A");
-                        dataRow.Cells[2].AddParagraph(item["unit"].ToString());
-                        dataRow.Cells[3].AddParagraph(item["quantity"].ToString());
-                        dataRow.Cells[4].AddParagraph(Convert.ToDecimal(item["cost_price"]).ToString("N2"));
-                        dataRow.Cells[5].AddParagraph(Convert.ToDecimal(item["total_price"]).ToString("N2"));
-                    }
-
+                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
+
+                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
-                    MessageBox.Show($"GRN detail PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -412,57 +420,68 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                    saveFileDialog.FileName = $"SuppliersCreditReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+                    saveFileDialog.FileName = $"SuppliersCreditReport_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
                     saveFileDialog.Title = "Save Suppliers Credit Report PDF";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
-                        return;
-
-                    Document document = new Document();
-                    document.Info.Title = "Suppliers Credit Report";
-                    document.Info.Author = "EscopeWindowsApp";
-                    Section section = document.AddSection();
-
-                    string reportTitle = $"Suppliers Credit Report ({dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    table.AddColumn(Unit.FromCentimeter(3));
-                    table.AddColumn(Unit.FromCentimeter(4));
-                    table.AddColumn(Unit.FromCentimeter(3));
-                    table.AddColumn(Unit.FromCentimeter(3));
-
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("GRN NO");
-                    headerRow.Cells[1].AddParagraph("SUPPLIER NAME");
-                    headerRow.Cells[2].AddParagraph("CREDIT AMOUNT");
-                    headerRow.Cells[3].AddParagraph("DATE");
-
-                    foreach (DataRow row in grnCreditTable.Rows)
                     {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row["grn_no"].ToString());
-                        dataRow.Cells[1].AddParagraph(row["supplier_name"]?.ToString() ?? "N/A");
-                        dataRow.Cells[2].AddParagraph(row["credit_amount"] is decimal amount ? amount.ToString("N2") : "N/A");
-                        dataRow.Cells[3].AddParagraph(row["date"] is DateTime date && date != DateTime.MinValue
-                            ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                            : "N/A");
+                        return;
                     }
 
+                    // Use ReportDesigner to generate the PDF
+                    ReportDesigner reportDesigner = new ReportDesigner();
+                    string dateFilter = dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily";
+                    Document document = reportDesigner.CreateSuppliersCreditReportDocument(grnCreditTable, dateFilter);
+
+                    // Render the document to PDF
                     PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
                     renderer.Document = document;
                     renderer.RenderDocument();
+
+                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Attempt to open in browser
+                    try
+                    {
+                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = fileUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Optional printing with user confirmation
+                    if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}. Please open the file at {saveFileDialog.FileName} in a PDF viewer and print manually. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -478,16 +497,18 @@ namespace EscopeWindowsApp
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-                    saveFileDialog.FileName = $"SuppliersCreditReport_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.xlsx";
+                    saveFileDialog.FileName = $"SuppliersCreditReport_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
                     saveFileDialog.Title = "Save Suppliers Credit Report Excel";
 
                     if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    {
                         return;
+                    }
 
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Suppliers Credit Report");
-                        string reportTitle = $"Suppliers Credit Report ({dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now.ToString("yyyy-MM-dd")}";
+                        string reportTitle = $"Suppliers Credit Report ({dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 4).Merge().Style.Font.Bold = true;
 
