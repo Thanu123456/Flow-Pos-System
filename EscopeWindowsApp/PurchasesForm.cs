@@ -109,7 +109,7 @@ namespace EscopeWindowsApp
             purDataGridView.AllowUserToAddRows = false;
 
             // Set column headers font and ensure consistent row styling
-            purDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+           // purDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.semi);
            
             purDataGridView.RowTemplate.Height = 35; // Ensure uniform row height
             purDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None; // Prevent auto-resizing

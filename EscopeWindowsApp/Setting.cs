@@ -343,10 +343,10 @@ namespace EscopeWindowsApp
                             {
                                 // Update existing record
                                 string updateQuery = @"
-                                    UPDATE company_details 
-                                    SET name = @name, email = @email, phone_number = @phone_number, 
-                                        address = @address, logo = @logo, website = @website 
-                                    WHERE id = 1";
+                            UPDATE company_details 
+                            SET name = @name, email = @email, phone_number = @phone_number, 
+                                address = @address, logo = @logo, website = @website 
+                            WHERE id = 1";
                                 using (MySqlCommand command = new MySqlCommand(updateQuery, connection))
                                 {
                                     command.Parameters.AddWithValue("@name", settingNameText.Text.Trim());
@@ -363,8 +363,8 @@ namespace EscopeWindowsApp
                             {
                                 // Insert new record
                                 string insertQuery = @"
-                                    INSERT INTO company_details (id, name, email, phone_number, address, logo, website) 
-                                    VALUES (1, @name, @email, @phone_number, @address, @logo, @website)";
+                            INSERT INTO company_details (id, name, email, phone_number, address, logo, website) 
+                            VALUES (1, @name, @email, @phone_number, @address, @logo, @website)";
                                 using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
                                 {
                                     command.Parameters.AddWithValue("@name", settingNameText.Text.Trim());
@@ -388,7 +388,9 @@ namespace EscopeWindowsApp
                     initialLogoBytes = GetImageBytes(setLogoBox.Image);
                     logoChanged = false;
                     UpdateSaveButtonState();
-                    this.Close();
+
+                    // REMOVED: this.Close(); - This was causing the empty form issue
+                    // The form should stay open after saving so user can continue working
                 }
                 catch (MySqlException myEx)
                 {

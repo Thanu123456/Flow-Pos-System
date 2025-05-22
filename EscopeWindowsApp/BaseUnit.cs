@@ -60,7 +60,7 @@ namespace EscopeWindowsApp
             if (baseUnitDataGridView.Columns[e.ColumnIndex].Name == "id")
             {
                 int baseUnitId = Convert.ToInt32(e.Value);
-                e.Value = $"bu{baseUnitId:D3}";
+                e.Value = $"BUI{baseUnitId:D3}";
                 e.FormattingApplied = true;
             }
         }

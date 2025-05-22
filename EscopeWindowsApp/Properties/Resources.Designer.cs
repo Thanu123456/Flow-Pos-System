@@ -483,6 +483,16 @@ namespace EscopeWindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_sell_stock_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-sell-stock-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_stocks_growth_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-stocks-growth-96", resourceCulture);

@@ -1373,7 +1373,7 @@ namespace EscopeWindowsApp
         private void label1_Click(object sender, EventArgs e) { }
         private void profitAmoutLabel_Click(object sender, EventArgs e)
         {
-            todayBtn_Click(sender, e);
+           
         }
         private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
         private void siticonePanel3_Paint(object sender, PaintEventArgs e) { }
