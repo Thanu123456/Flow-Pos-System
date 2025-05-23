@@ -109,7 +109,6 @@
             this.saleReDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleReDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -127,6 +126,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.saleReDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.saleReDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.saleReDataGridView.Enabled = false;
             this.saleReDataGridView.GridColor = System.Drawing.Color.White;
             this.saleReDataGridView.Location = new System.Drawing.Point(17, 100);
             this.saleReDataGridView.Name = "saleReDataGridView";
@@ -144,6 +145,8 @@
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.saleReDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.saleReDataGridView.RowTemplate.Height = 35;
+            this.saleReDataGridView.ShowEditingIcon = false;
+            this.saleReDataGridView.ShowRowErrors = false;
             this.saleReDataGridView.Size = new System.Drawing.Size(1352, 615);
             this.saleReDataGridView.TabIndex = 29;
             this.saleReDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
