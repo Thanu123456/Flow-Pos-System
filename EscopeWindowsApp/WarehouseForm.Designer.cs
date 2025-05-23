@@ -123,6 +123,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.wareDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.wareDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.wareDataGridView.Enabled = false;
             this.wareDataGridView.GridColor = System.Drawing.Color.White;
             this.wareDataGridView.Location = new System.Drawing.Point(17, 100);
             this.wareDataGridView.Name = "wareDataGridView";
@@ -138,6 +140,8 @@
             this.wareDataGridView.RowHeadersVisible = false;
             this.wareDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.wareDataGridView.RowTemplate.Height = 35;
+            this.wareDataGridView.ShowEditingIcon = false;
+            this.wareDataGridView.ShowRowErrors = false;
             this.wareDataGridView.Size = new System.Drawing.Size(1352, 614);
             this.wareDataGridView.TabIndex = 10;
             this.wareDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
