@@ -935,6 +935,7 @@
             // 
             // resonsToRefundCombo
             // 
+            this.resonsToRefundCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.resonsToRefundCombo.BackColor = System.Drawing.Color.Transparent;
             this.resonsToRefundCombo.BorderColor = System.Drawing.Color.Gray;
             this.resonsToRefundCombo.BorderRadius = 8;

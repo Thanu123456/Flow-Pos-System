@@ -180,7 +180,7 @@
             this.todayBtn.FillColor = System.Drawing.Color.White;
             this.todayBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
             this.todayBtn.ForeColor = System.Drawing.Color.Navy;
-            this.todayBtn.Location = new System.Drawing.Point(19, 26);
+            this.todayBtn.Location = new System.Drawing.Point(21, 34);
             this.todayBtn.Name = "todayBtn";
             this.todayBtn.Size = new System.Drawing.Size(152, 43);
             this.todayBtn.TabIndex = 3;
@@ -201,7 +201,7 @@
             this.last7DaysBtn.FillColor = System.Drawing.Color.White;
             this.last7DaysBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.last7DaysBtn.ForeColor = System.Drawing.Color.Navy;
-            this.last7DaysBtn.Location = new System.Drawing.Point(193, 26);
+            this.last7DaysBtn.Location = new System.Drawing.Point(195, 34);
             this.last7DaysBtn.Name = "last7DaysBtn";
             this.last7DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.last7DaysBtn.TabIndex = 4;
@@ -222,7 +222,7 @@
             this.Last30DaysBtn.FillColor = System.Drawing.Color.White;
             this.Last30DaysBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Last30DaysBtn.ForeColor = System.Drawing.Color.Navy;
-            this.Last30DaysBtn.Location = new System.Drawing.Point(367, 26);
+            this.Last30DaysBtn.Location = new System.Drawing.Point(369, 34);
             this.Last30DaysBtn.Name = "Last30DaysBtn";
             this.Last30DaysBtn.Size = new System.Drawing.Size(152, 43);
             this.Last30DaysBtn.TabIndex = 5;
@@ -471,6 +471,7 @@
             this.siticonePanel2.AutoSize = true;
             this.siticonePanel2.BackColor = System.Drawing.Color.Transparent;
             this.siticonePanel2.BorderRadius = 8;
+            this.siticonePanel2.Controls.Add(this.alertPanel);
             this.siticonePanel2.Controls.Add(this.thisYearBtn);
             this.siticonePanel2.Controls.Add(this.Last30DaysBtn);
             this.siticonePanel2.Controls.Add(this.last7DaysBtn);
@@ -480,7 +481,7 @@
             this.siticonePanel2.Location = new System.Drawing.Point(0, 0);
             this.siticonePanel2.Name = "siticonePanel2";
             this.siticonePanel2.ShadowDecoration.Color = System.Drawing.Color.Gray;
-            this.siticonePanel2.Size = new System.Drawing.Size(1369, 72);
+            this.siticonePanel2.Size = new System.Drawing.Size(1369, 80);
             this.siticonePanel2.TabIndex = 11;
             // 
             // thisYearBtn
@@ -497,7 +498,7 @@
             this.thisYearBtn.FillColor = System.Drawing.Color.White;
             this.thisYearBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thisYearBtn.ForeColor = System.Drawing.Color.Navy;
-            this.thisYearBtn.Location = new System.Drawing.Point(543, 26);
+            this.thisYearBtn.Location = new System.Drawing.Point(545, 34);
             this.thisYearBtn.Name = "thisYearBtn";
             this.thisYearBtn.Size = new System.Drawing.Size(152, 43);
             this.thisYearBtn.TabIndex = 6;
@@ -608,14 +609,13 @@
             this.siticonePanel3.AutoSize = true;
             this.siticonePanel3.BackColor = System.Drawing.Color.Transparent;
             this.siticonePanel3.BorderRadius = 12;
-            this.siticonePanel3.Controls.Add(this.alertPanel);
             this.siticonePanel3.Controls.Add(this.dashTPRPanel);
             this.siticonePanel3.Controls.Add(this.dashTotSalePanel);
             this.siticonePanel3.Controls.Add(this.dashTotPurPanel);
             this.siticonePanel3.Controls.Add(this.dashTotSaleRetPanel);
             this.siticonePanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.siticonePanel3.FillColor = System.Drawing.Color.Transparent;
-            this.siticonePanel3.Location = new System.Drawing.Point(0, 72);
+            this.siticonePanel3.Location = new System.Drawing.Point(0, 80);
             this.siticonePanel3.MinimumSize = new System.Drawing.Size(600, 125);
             this.siticonePanel3.Name = "siticonePanel3";
             this.siticonePanel3.ShadowDecoration.Color = System.Drawing.Color.Gray;
@@ -625,32 +625,33 @@
             // 
             // alertPanel
             // 
-            this.alertPanel.BorderRadius = 5;
+            this.alertPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.alertPanel.BorderRadius = 8;
             this.alertPanel.Controls.Add(this.siticoneCircleButton1);
             this.alertPanel.Controls.Add(this.alertMessageLabel);
             this.alertPanel.FillColor = System.Drawing.Color.Red;
-            this.alertPanel.Location = new System.Drawing.Point(213, 4);
+            this.alertPanel.Location = new System.Drawing.Point(981, 12);
             this.alertPanel.Name = "alertPanel";
-            this.alertPanel.Size = new System.Drawing.Size(778, 16);
+            this.alertPanel.Size = new System.Drawing.Size(376, 65);
             this.alertPanel.TabIndex = 11;
             this.alertPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.alertPanel_Paint);
             // 
             // siticoneCircleButton1
             // 
+            this.siticoneCircleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.siticoneCircleButton1.Animated = true;
-            this.siticoneCircleButton1.BorderThickness = 1;
             this.siticoneCircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.siticoneCircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.siticoneCircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.siticoneCircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.siticoneCircleButton1.FillColor = System.Drawing.Color.White;
-            this.siticoneCircleButton1.Font = new System.Drawing.Font("Arial Narrow", 8.25F);
-            this.siticoneCircleButton1.ForeColor = System.Drawing.Color.White;
+            this.siticoneCircleButton1.Font = new System.Drawing.Font("Segoe UI", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneCircleButton1.ForeColor = System.Drawing.Color.Black;
             this.siticoneCircleButton1.IndicateFocus = true;
-            this.siticoneCircleButton1.Location = new System.Drawing.Point(759, 0);
+            this.siticoneCircleButton1.Location = new System.Drawing.Point(340, 9);
             this.siticoneCircleButton1.Name = "siticoneCircleButton1";
             this.siticoneCircleButton1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.siticoneCircleButton1.Size = new System.Drawing.Size(16, 16);
+            this.siticoneCircleButton1.Size = new System.Drawing.Size(27, 27);
             this.siticoneCircleButton1.TabIndex = 1;
             this.siticoneCircleButton1.Text = "❌";
             this.siticoneCircleButton1.Click += new System.EventHandler(this.siticoneCircleButton1_Click);
@@ -658,11 +659,11 @@
             // alertMessageLabel
             // 
             this.alertMessageLabel.AutoSize = true;
-            this.alertMessageLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alertMessageLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alertMessageLabel.ForeColor = System.Drawing.Color.White;
-            this.alertMessageLabel.Location = new System.Drawing.Point(396, 3);
+            this.alertMessageLabel.Location = new System.Drawing.Point(15, 22);
             this.alertMessageLabel.Name = "alertMessageLabel";
-            this.alertMessageLabel.Size = new System.Drawing.Size(44, 13);
+            this.alertMessageLabel.Size = new System.Drawing.Size(66, 21);
             this.alertMessageLabel.TabIndex = 0;
             this.alertMessageLabel.Text = "label14";
             this.alertMessageLabel.Click += new System.EventHandler(this.alertMessageLabel_Click);
@@ -677,7 +678,7 @@
             this.siticonePanel5.FillColor = System.Drawing.Color.White;
             this.siticonePanel5.Location = new System.Drawing.Point(453, 381);
             this.siticonePanel5.Name = "siticonePanel5";
-            this.siticonePanel5.Size = new System.Drawing.Size(848, 461);
+            this.siticonePanel5.Size = new System.Drawing.Size(916, 461);
             this.siticonePanel5.TabIndex = 19;
             // 
             // label8
@@ -711,7 +712,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.salesPurchStackedColumn.Series.Add(series2);
-            this.salesPurchStackedColumn.Size = new System.Drawing.Size(814, 350);
+            this.salesPurchStackedColumn.Size = new System.Drawing.Size(882, 350);
             this.salesPurchStackedColumn.TabIndex = 19;
             this.salesPurchStackedColumn.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -733,7 +734,7 @@
             this.siticonePanel4.FillColor = System.Drawing.Color.White;
             this.siticonePanel4.Location = new System.Drawing.Point(21, 866);
             this.siticonePanel4.Name = "siticonePanel4";
-            this.siticonePanel4.Size = new System.Drawing.Size(1280, 335);
+            this.siticonePanel4.Size = new System.Drawing.Size(1348, 335);
             this.siticonePanel4.TabIndex = 20;
             // 
             // label7
@@ -767,7 +768,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dailyProfitLineChart.Series.Add(series3);
-            this.dailyProfitLineChart.Size = new System.Drawing.Size(1300, 210);
+            this.dailyProfitLineChart.Size = new System.Drawing.Size(1368, 210);
             this.dailyProfitLineChart.TabIndex = 20;
             this.dailyProfitLineChart.Text = "chart1";
             title3.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -824,7 +825,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.stockAlertDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.stockAlertDataGrid.ColumnHeadersHeight = 45;
-            this.stockAlertDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.stockAlertDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
@@ -877,7 +877,7 @@
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.stockAlertDataGrid.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.stockAlertDataGrid.ThemeStyle.HeaderStyle.Height = 45;
             this.stockAlertDataGrid.ThemeStyle.ReadOnly = true;
             this.stockAlertDataGrid.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
@@ -971,7 +971,7 @@
             this.siticonePanel8.FillColor = System.Drawing.Color.White;
             this.siticonePanel8.Location = new System.Drawing.Point(643, 1221);
             this.siticonePanel8.Name = "siticonePanel8";
-            this.siticonePanel8.Size = new System.Drawing.Size(658, 530);
+            this.siticonePanel8.Size = new System.Drawing.Size(726, 530);
             this.siticonePanel8.TabIndex = 23;
             // 
             // topCustomerPieChart
@@ -994,7 +994,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.topCustomerPieChart.Series.Add(series4);
-            this.topCustomerPieChart.Size = new System.Drawing.Size(628, 448);
+            this.topCustomerPieChart.Size = new System.Drawing.Size(696, 448);
             this.topCustomerPieChart.TabIndex = 45;
             this.topCustomerPieChart.Text = "chart2";
             title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -1067,7 +1067,7 @@
             this.siticonePanel9.FillColor = System.Drawing.Color.White;
             this.siticonePanel9.Location = new System.Drawing.Point(557, 1778);
             this.siticonePanel9.Name = "siticonePanel9";
-            this.siticonePanel9.Size = new System.Drawing.Size(744, 307);
+            this.siticonePanel9.Size = new System.Drawing.Size(812, 307);
             this.siticonePanel9.TabIndex = 48;
             // 
             // label12
@@ -1107,7 +1107,6 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.expireDateAlertGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.expireDateAlertGridView.ColumnHeadersHeight = 45;
-            this.expireDateAlertGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.expireDateAlertGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15,
@@ -1140,7 +1139,7 @@
             this.expireDateAlertGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expireDateAlertGridView.RowTemplate.Height = 35;
             this.expireDateAlertGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expireDateAlertGridView.Size = new System.Drawing.Size(719, 221);
+            this.expireDateAlertGridView.Size = new System.Drawing.Size(787, 221);
             this.expireDateAlertGridView.TabIndex = 45;
             this.expireDateAlertGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expireDateAlertGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1154,7 +1153,7 @@
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.expireDateAlertGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.expireDateAlertGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.expireDateAlertGridView.ThemeStyle.ReadOnly = true;
             this.expireDateAlertGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
@@ -1200,7 +1199,7 @@
             this.siticonePanel10.FillColor = System.Drawing.Color.White;
             this.siticonePanel10.Location = new System.Drawing.Point(21, 2114);
             this.siticonePanel10.Name = "siticonePanel10";
-            this.siticonePanel10.Size = new System.Drawing.Size(1280, 450);
+            this.siticonePanel10.Size = new System.Drawing.Size(1348, 450);
             this.siticonePanel10.TabIndex = 49;
             // 
             // label13
@@ -1240,7 +1239,6 @@
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.recentDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.recentDataGridView.ColumnHeadersHeight = 45;
-            this.recentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.recentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
@@ -1273,7 +1271,7 @@
             this.recentDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.recentDataGridView.RowTemplate.Height = 35;
             this.recentDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.recentDataGridView.Size = new System.Drawing.Size(1252, 366);
+            this.recentDataGridView.Size = new System.Drawing.Size(1320, 366);
             this.recentDataGridView.TabIndex = 45;
             this.recentDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.recentDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1287,7 +1285,7 @@
             this.recentDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.recentDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recentDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.recentDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.recentDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.recentDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.recentDataGridView.ThemeStyle.ReadOnly = true;
             this.recentDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));

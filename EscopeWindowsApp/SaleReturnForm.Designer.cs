@@ -299,6 +299,7 @@
             // 
             // filterResonsRefundCombo
             // 
+            this.filterResonsRefundCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filterResonsRefundCombo.BackColor = System.Drawing.Color.Transparent;
             this.filterResonsRefundCombo.BorderColor = System.Drawing.Color.Gray;
             this.filterResonsRefundCombo.BorderRadius = 8;
@@ -309,10 +310,9 @@
             this.filterResonsRefundCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.filterResonsRefundCombo.ForeColor = System.Drawing.Color.DimGray;
             this.filterResonsRefundCombo.ItemHeight = 36;
-            this.filterResonsRefundCombo.Location = new System.Drawing.Point(605, 30);
+            this.filterResonsRefundCombo.Location = new System.Drawing.Point(762, 30);
             this.filterResonsRefundCombo.Name = "filterResonsRefundCombo";
-            this.filterResonsRefundCombo.Size = new System.Drawing.Size(251, 42);
-            this.filterResonsRefundCombo.StartIndex = 0;
+            this.filterResonsRefundCombo.Size = new System.Drawing.Size(268, 42);
             this.filterResonsRefundCombo.TabIndex = 103;
             this.filterResonsRefundCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsRefundCombo_SelectedIndexChanged);
             // 
