@@ -24,6 +24,8 @@ namespace EscopeWindowsApp
         private System.Timers.Timer usbScanTimer;
         private const int USB_SCAN_TIMEOUT = 100; // 100ms timeout to detect end of USB scan
         private ListBox billSuggestionListBox; // ListBox for bill suggestions
+        private string selectedReason; // Store selected refund reason
+        private string refundNotes;    // Store refund notes
 
         public Refund()
         {
@@ -59,6 +61,11 @@ namespace EscopeWindowsApp
 
             // Subscribe to FormClosing event for cleanup
             this.FormClosing += Refund_FormClosing;
+
+            // Populate refund reasons and set the default selection to the first item (index 0)
+            resonsToRefundCombo.Items.AddRange(new string[] { "Wrong Product", "Damaged Product", "Poor Quality Product", "Other" });
+            resonsToRefundCombo.SelectedIndex = 0; // Set the first item as selected
+            selectedReason = resonsToRefundCombo.SelectedItem?.ToString(); // Initialize selectedReason
         }
 
         #region Keyboard Event Handling
@@ -685,6 +692,13 @@ namespace EscopeWindowsApp
             ClearProductDetails();
             refItemDataGridView.Rows.Clear();
             UpdateRefundTotals(); // Reset totals and totalRefundAmount
+            // Clear refund reason and notes, then reset to index 0
+            resonsToRefundCombo.SelectedIndex = -1;
+            refundNoteText.Text = "";
+            selectedReason = null;
+            refundNotes = null;
+            resonsToRefundCombo.SelectedIndex = 0; // Reset to first item
+            selectedReason = resonsToRefundCombo.SelectedItem?.ToString();
             Debug.WriteLine("Bill details cleared.");
         }
 
@@ -872,6 +886,16 @@ namespace EscopeWindowsApp
             // Displays total price of products to be refunded
         }
 
+        private void resonsToRefundCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedReason = resonsToRefundCombo.SelectedItem?.ToString();
+        }
+
+        private void refundNoteText_TextChanged(object sender, EventArgs e)
+        {
+            refundNotes = refundNoteText.Text;
+        }
+
         private void refBtn_Click(object sender, EventArgs e)
         {
             if (refItemDataGridView.Rows.Count == 0)
@@ -887,6 +911,12 @@ namespace EscopeWindowsApp
                 return;
             }
 
+            if (string.IsNullOrEmpty(selectedReason))
+            {
+                MessageBox.Show("Please select a reason for the refund.", "Missing Reason", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (MessageBox.Show("Are you sure you want to process this refund?", "Confirm Refund", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
                 return;
@@ -899,7 +929,6 @@ namespace EscopeWindowsApp
                     connection.Open();
                     using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
-                        // Updated: Lock stock rows for all products to prevent concurrent modifications
                         var stockKeys = refItemDataGridView.Rows.Cast<DataGridViewRow>()
                             .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString() })
                             .Distinct()
@@ -918,10 +947,9 @@ namespace EscopeWindowsApp
                             for (int i = 0; i < stockKeys.Count; i++)
                             {
                                 lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
-                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
                                 lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
                             }
-                            lockCmd.ExecuteNonQuery(); // Locks the rows
+                            lockCmd.ExecuteNonQuery();
                         }
 
                         foreach (DataGridViewRow row in refItemDataGridView.Rows)
@@ -933,10 +961,9 @@ namespace EscopeWindowsApp
                             decimal price = Convert.ToDecimal(row.Cells["price"].Value);
                             decimal totalPrice = Convert.ToDecimal(row.Cells["total_price"].Value);
 
-                            // Insert into refunds table
                             string refundQuery = @"
-                        INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date)
-                        VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW())";
+                                INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date, reason, notes)
+                                VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW(), @reason, @notes)";
                             using (MySqlCommand refundCommand = new MySqlCommand(refundQuery, connection, transaction))
                             {
                                 refundCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -947,16 +974,17 @@ namespace EscopeWindowsApp
                                 refundCommand.Parameters.AddWithValue("@quantity", quantity);
                                 refundCommand.Parameters.AddWithValue("@price", price);
                                 refundCommand.Parameters.AddWithValue("@totalPrice", totalPrice);
+                                refundCommand.Parameters.AddWithValue("@reason", selectedReason);
+                                refundCommand.Parameters.AddWithValue("@notes", refundNotes ?? "");
                                 refundCommand.ExecuteNonQuery();
                             }
 
-                            // Update stock
                             string updateStockQuery = @"
-                        UPDATE stock 
-                        SET stock = stock + @quantity 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                        LIMIT 1";
+                                UPDATE stock 
+                                SET stock = stock + @quantity 
+                                WHERE product_id = @productId 
+                                AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                LIMIT 1";
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);
@@ -974,9 +1002,7 @@ namespace EscopeWindowsApp
                         }
 
                         transaction.Commit();
-
                         SessionManager.TotalRefund += totalRefundAmount;
-
                         MessageBox.Show("Refund processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearBillDetails();
                         billSearchTextBox.Text = "";

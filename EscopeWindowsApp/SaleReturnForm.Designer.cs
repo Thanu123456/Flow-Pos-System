@@ -44,6 +44,7 @@
             this.saleReLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.selectSaleReDateTime = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
             this.saleReturnRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.filterResonsRefundCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.saleReDataGridView)).BeginInit();
             this.saleReBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +110,6 @@
             this.saleReDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.saleReDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -293,12 +293,32 @@
             this.saleReturnRefreshBtn.TabIndex = 39;
             this.saleReturnRefreshBtn.Click += new System.EventHandler(this.saleReturnRefreshBtn_Click);
             // 
+            // filterResonsRefundCombo
+            // 
+            this.filterResonsRefundCombo.BackColor = System.Drawing.Color.Transparent;
+            this.filterResonsRefundCombo.BorderColor = System.Drawing.Color.Gray;
+            this.filterResonsRefundCombo.BorderRadius = 8;
+            this.filterResonsRefundCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterResonsRefundCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterResonsRefundCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterResonsRefundCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterResonsRefundCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.filterResonsRefundCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.filterResonsRefundCombo.ItemHeight = 36;
+            this.filterResonsRefundCombo.Location = new System.Drawing.Point(605, 30);
+            this.filterResonsRefundCombo.Name = "filterResonsRefundCombo";
+            this.filterResonsRefundCombo.Size = new System.Drawing.Size(251, 42);
+            this.filterResonsRefundCombo.StartIndex = 0;
+            this.filterResonsRefundCombo.TabIndex = 103;
+            this.filterResonsRefundCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsRefundCombo_SelectedIndexChanged);
+            // 
             // SaleReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.filterResonsRefundCombo);
             this.Controls.Add(this.saleReturnRefreshBtn);
             this.Controls.Add(this.selectSaleReDateTime);
             this.Controls.Add(this.saleReBtnPanel);
@@ -334,5 +354,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker selectSaleReDateTime;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleReturnRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridViewStyler siticoneDataGridViewStyler1;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterResonsRefundCombo;
     }
 }
