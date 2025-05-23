@@ -126,11 +126,11 @@
             // 
             this.siticoneHtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.siticoneHtmlLabel1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(53, 169);
+            this.siticoneHtmlLabel1.Location = new System.Drawing.Point(57, 166);
             this.siticoneHtmlLabel1.Name = "siticoneHtmlLabel1";
-            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(285, 28);
+            this.siticoneHtmlLabel1.Size = new System.Drawing.Size(280, 28);
             this.siticoneHtmlLabel1.TabIndex = 74;
-            this.siticoneHtmlLabel1.Text = "Same Reference will replace the ";
+            this.siticoneHtmlLabel1.Text = "Same reference will replace the ";
             // 
             // siticoneHtmlLabel2
             // 

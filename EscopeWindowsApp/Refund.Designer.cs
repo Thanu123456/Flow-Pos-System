@@ -82,6 +82,10 @@
             this.refundBluToggleBtn = new Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch();
             this.refundUSBScanToggleBtn = new Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch();
             this.refuntWebcamScanBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.refundNoteText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.Resone = new System.Windows.Forms.Label();
+            this.resonsToRefundCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billProductDataGrid)).BeginInit();
@@ -183,7 +187,7 @@
             this.billProductDataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.billProductDataGrid.RowTemplate.Height = 35;
             this.billProductDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.billProductDataGrid.Size = new System.Drawing.Size(566, 438);
+            this.billProductDataGrid.Size = new System.Drawing.Size(566, 359);
             this.billProductDataGrid.TabIndex = 85;
             this.billProductDataGrid.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.billProductDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -874,11 +878,91 @@
             this.refuntWebcamScanBtn.Text = "Web Cam Scanner";
             this.refuntWebcamScanBtn.Click += new System.EventHandler(this.refuntWebcamScanBtn_Click);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(284, 491);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 23);
+            this.label3.TabIndex = 99;
+            this.label3.Text = "Note";
+            // 
+            // refundNoteText
+            // 
+            this.refundNoteText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.refundNoteText.BackColor = System.Drawing.Color.Transparent;
+            this.refundNoteText.BorderColor = System.Drawing.Color.Silver;
+            this.refundNoteText.BorderRadius = 8;
+            this.refundNoteText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.refundNoteText.DefaultText = "";
+            this.refundNoteText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.refundNoteText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.refundNoteText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.refundNoteText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.refundNoteText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.refundNoteText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.refundNoteText.ForeColor = System.Drawing.Color.Gray;
+            this.refundNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.refundNoteText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.refundNoteText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.refundNoteText.Location = new System.Drawing.Point(288, 519);
+            this.refundNoteText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.refundNoteText.Name = "refundNoteText";
+            this.refundNoteText.PasswordChar = '\0';
+            this.refundNoteText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.refundNoteText.PlaceholderText = "Enter Note";
+            this.refundNoteText.SelectedText = "";
+            this.refundNoteText.Size = new System.Drawing.Size(295, 42);
+            this.refundNoteText.TabIndex = 100;
+            this.refundNoteText.TextChanged += new System.EventHandler(this.refundNoteText_TextChanged);
+            // 
+            // Resone
+            // 
+            this.Resone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Resone.AutoSize = true;
+            this.Resone.BackColor = System.Drawing.Color.Transparent;
+            this.Resone.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Resone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.Resone.Location = new System.Drawing.Point(13, 488);
+            this.Resone.Name = "Resone";
+            this.Resone.Size = new System.Drawing.Size(66, 23);
+            this.Resone.TabIndex = 101;
+            this.Resone.Text = "Reason";
+            // 
+            // resonsToRefundCombo
+            // 
+            this.resonsToRefundCombo.BackColor = System.Drawing.Color.Transparent;
+            this.resonsToRefundCombo.BorderColor = System.Drawing.Color.Gray;
+            this.resonsToRefundCombo.BorderRadius = 8;
+            this.resonsToRefundCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.resonsToRefundCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.resonsToRefundCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.resonsToRefundCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.resonsToRefundCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.resonsToRefundCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.resonsToRefundCombo.ItemHeight = 36;
+            this.resonsToRefundCombo.Items.AddRange(new object[] {
+            "Select Your Reason"});
+            this.resonsToRefundCombo.Location = new System.Drawing.Point(17, 519);
+            this.resonsToRefundCombo.Name = "resonsToRefundCombo";
+            this.resonsToRefundCombo.Size = new System.Drawing.Size(251, 42);
+            this.resonsToRefundCombo.StartIndex = 0;
+            this.resonsToRefundCombo.TabIndex = 102;
+            this.resonsToRefundCombo.SelectedIndexChanged += new System.EventHandler(this.resonsToRefundCombo_SelectedIndexChanged);
+            // 
             // Refund
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 650);
+            this.Controls.Add(this.resonsToRefundCombo);
+            this.Controls.Add(this.Resone);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.refundNoteText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.refundBluToggleBtn);
@@ -961,5 +1045,9 @@
         private Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch refundBluToggleBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneToggleSwitch refundUSBScanToggleBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton refuntWebcamScanBtn;
+        private System.Windows.Forms.Label Resone;
+        private System.Windows.Forms.Label label3;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox refundNoteText;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox resonsToRefundCombo;
     }
 }

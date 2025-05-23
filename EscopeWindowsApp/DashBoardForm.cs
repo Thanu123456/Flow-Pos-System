@@ -70,6 +70,8 @@ namespace EscopeWindowsApp
             LoadDailyProfitData();
 
             todayBtn_Click(this, EventArgs.Empty);
+
+            UpdateAlertPanel();
         }
 
         private void ConfigureRecentSalesGridView()
@@ -1285,9 +1287,19 @@ namespace EscopeWindowsApp
                     dashTotSalePriceLabel.Text = $" {totalSales:#,##0.00}";
                     purAmountLabel.Text = $" {totalPurchases:#,##0.00}";
                     saleReAmountLabel.Text = $" {totalRefunds:#,##0.00}";
-                    profitAmoutLabel.Text = $" {profit:#,##0.00}";
 
-                    profitAmoutLabel.ForeColor = profit >= 0 ? Color.Green : Color.Red;
+                    if (profit < 0)
+                    {
+                        label6.Text = "LOSS";
+                        profitAmoutLabel.Text = $" {Math.Abs(profit):#,##0.00}";
+                        profitAmoutLabel.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        label6.Text = "PROFIT";
+                        profitAmoutLabel.Text = $" {profit:#,##0.00}";
+                        profitAmoutLabel.ForeColor = Color.Green;
+                    }
                 }
             }
             catch (Exception)
@@ -1297,6 +1309,7 @@ namespace EscopeWindowsApp
                 saleReAmountLabel.Text = " 0.00";
                 profitAmoutLabel.Text = " 0.00";
                 profitAmoutLabel.ForeColor = Color.Black;
+                label6.Text = "PROFIT";
             }
         }
 
@@ -1360,6 +1373,32 @@ namespace EscopeWindowsApp
             UpdateFinancialLabels("last 7 days", salesQuery, purchasesQuery, refundsQuery, expensesQuery, purchaseReturnsQuery);
         }
 
+        private void UpdateAlertPanel()
+        {
+            bool hasStockAlert = stockAlertDataGrid.RowCount > 0;
+            bool hasExpireAlert = expireDateAlertGridView.RowCount > 0;
+
+            if (hasStockAlert && hasExpireAlert)
+            {
+                alertMessageLabel.Text = "Check Stock Alert Table and Expire Date Table !";
+                alertPanel.Visible = true;
+            }
+            else if (hasStockAlert)
+            {
+                alertMessageLabel.Text = "Your stock is low, Check Stock Alert Table !";
+                alertPanel.Visible = true;
+            }
+            else if (hasExpireAlert)
+            {
+                alertMessageLabel.Text = "Check Expire Date Table !";
+                alertPanel.Visible = true;
+            }
+            else
+            {
+                alertPanel.Visible = false;
+            }
+        }
+
         private void dashTotSalePriceLabel_Click(object sender, EventArgs e) { }
         private void purAmountLabel_Click(object sender, EventArgs e) { }
         private void saleReAmountLabel_Click(object sender, EventArgs e) { }
@@ -1371,12 +1410,50 @@ namespace EscopeWindowsApp
         private void tNOPLabel_Click(object sender, EventArgs e) { }
         private void dashTotPurPanel_Paint(object sender, PaintEventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
-        private void profitAmoutLabel_Click(object sender, EventArgs e)
-        {
-           
-        }
+        private void profitAmoutLabel_Click(object sender, EventArgs e) { }
         private void siticonePanel11_Paint(object sender, PaintEventArgs e) { }
         private void siticonePanel3_Paint(object sender, PaintEventArgs e) { }
         private void siticonePanel7_Paint(object sender, PaintEventArgs e) { }
+
+        private void alertPanel_Paint(object sender, PaintEventArgs e)
+        {
+            // This panel is invisible by default but shown if stockAlertDataGrid or expireDateAlertGridView has at least one row
+        }
+
+        private void alertMessageLabel_Click(object sender, EventArgs e)
+        {
+            // This label is invisible by default but displays appropriate messages based on stockAlertDataGrid or expireDateAlertGridView row counts
+        }
+
+        private void siticoneCircleButton1_Click(object sender, EventArgs e)
+        {
+            alertPanel.Visible = false;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            string profitText = profitAmoutLabel.Text.Trim();
+            if (decimal.TryParse(profitText, out decimal profit))
+            {
+                if (profit < 0)
+                {
+                    label6.Text = "LOSS";
+                    profitAmoutLabel.Text = $" {Math.Abs(profit):#,##0.00}";
+                    profitAmoutLabel.ForeColor = Color.Red;
+                }
+                else
+                {
+                    label6.Text = "PROFIT";
+                    profitAmoutLabel.Text = $" {profit:#,##0.00}";
+                    profitAmoutLabel.ForeColor = Color.Green;
+                }
+            }
+            else
+            {
+                label6.Text = "PROFIT";
+                profitAmoutLabel.Text = " 0.00";
+                profitAmoutLabel.ForeColor = Color.Black;
+            }
+        }
     }
 }

@@ -42,6 +42,7 @@
             this.purRetPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.purRetNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.purRetLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.filterResonsPurchasReturnCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.purRetDataGridView)).BeginInit();
             this.expBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,6 @@
             this.purRetDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.purRetDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -124,6 +124,7 @@
             this.purRetDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.purRetDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purRetDataGridView_CellContentClick_1);
             // 
             // createPurRetBtn
             // 
@@ -276,11 +277,31 @@
             this.purRetLastBtn.TabIndex = 8;
             this.purRetLastBtn.Click += new System.EventHandler(this.purRetLastBtn_Click);
             // 
+            // filterResonsPurchasReturnCombo
+            // 
+            this.filterResonsPurchasReturnCombo.BackColor = System.Drawing.Color.Transparent;
+            this.filterResonsPurchasReturnCombo.BorderColor = System.Drawing.Color.Gray;
+            this.filterResonsPurchasReturnCombo.BorderRadius = 8;
+            this.filterResonsPurchasReturnCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.filterResonsPurchasReturnCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterResonsPurchasReturnCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterResonsPurchasReturnCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.filterResonsPurchasReturnCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.filterResonsPurchasReturnCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.filterResonsPurchasReturnCombo.ItemHeight = 36;
+            this.filterResonsPurchasReturnCombo.Location = new System.Drawing.Point(692, 30);
+            this.filterResonsPurchasReturnCombo.Name = "filterResonsPurchasReturnCombo";
+            this.filterResonsPurchasReturnCombo.Size = new System.Drawing.Size(366, 42);
+            this.filterResonsPurchasReturnCombo.StartIndex = 0;
+            this.filterResonsPurchasReturnCombo.TabIndex = 105;
+            this.filterResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsPurchasReturnCombo_SelectedIndexChanged);
+            // 
             // PurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.filterResonsPurchasReturnCombo);
             this.Controls.Add(this.expBtnPanel);
             this.Controls.Add(this.purRetDataGridView);
             this.Controls.Add(this.createPurRetBtn);
@@ -309,5 +330,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetPrevBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetLastBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterResonsPurchasReturnCombo;
     }
 }

@@ -19,6 +19,9 @@ namespace EscopeWindowsApp
             InitializeComponent();
             CustomizeDateTimePicker(); // Customize SiticoneDateTimePicker
             bindingSource = new BindingSource();
+            // Populate filterResonsRefundCombo
+            filterResonsRefundCombo.Items.AddRange(new string[] { "All Reasons", "Wrong Product", "Damaged Product", "Poor Quality Product", "Other" });
+            filterResonsRefundCombo.SelectedIndex = 0; // Default to "All Reasons"
             LoadSaleReturnsData();
             // Explicitly wire all events
             saleReDataGridView.CellFormatting += SaleReDataGridView_CellFormatting;
@@ -104,6 +107,14 @@ namespace EscopeWindowsApp
 
             saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
+                DataPropertyName = "reason",
+                Name = "reason",
+                HeaderText = "REASON",
+                Width = 120
+            });
+
+            saleReDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 DataPropertyName = "refund_date",
                 Name = "refund_date",
                 HeaderText = "REFUND DATE",
@@ -136,6 +147,7 @@ namespace EscopeWindowsApp
                             quantity,
                             price,
                             total_price,
+                            reason,
                             refund_date
                         FROM refunds
                         ORDER BY refund_date DESC";
@@ -188,6 +200,7 @@ namespace EscopeWindowsApp
                 refundsTable.Columns.Add("quantity", typeof(decimal));
                 refundsTable.Columns.Add("price", typeof(decimal));
                 refundsTable.Columns.Add("total_price", typeof(decimal));
+                refundsTable.Columns.Add("reason", typeof(string));
                 refundsTable.Columns.Add("refund_date", typeof(DateTime));
                 bindingSource.DataSource = refundsTable;
             }
@@ -226,7 +239,29 @@ namespace EscopeWindowsApp
             try
             {
                 DateTime selectedDate = selectSaleReDateTime.Value.Date;
-                bindingSource.Filter = $"refund_date >= #{selectedDate:yyyy-MM-dd}# AND refund_date < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+                string dateFilter = $"refund_date >= #{selectedDate:yyyy-MM-dd}# AND refund_date < #{selectedDate.AddDays(1):yyyy-MM-dd}#";
+                string currentFilter = bindingSource.Filter;
+
+                if (string.IsNullOrEmpty(currentFilter))
+                {
+                    bindingSource.Filter = dateFilter;
+                }
+                else if (currentFilter.Contains("refund_date"))
+                {
+                    if (currentFilter.Contains("reason"))
+                    {
+                        string reasonFilter = currentFilter.Substring(currentFilter.IndexOf("reason"));
+                        bindingSource.Filter = $"{dateFilter} AND {reasonFilter}";
+                    }
+                    else
+                    {
+                        bindingSource.Filter = dateFilter;
+                    }
+                }
+                else
+                {
+                    bindingSource.Filter = $"{dateFilter} AND {currentFilter}";
+                }
 
                 // Reset current index after filtering
                 if (saleReDataGridView.Rows.Count > 0)
@@ -247,6 +282,7 @@ namespace EscopeWindowsApp
             LoadSaleReturnsData();
             saleReSearchText.Text = string.Empty;
             selectSaleReDateTime.Value = DateTime.Now;
+            filterResonsRefundCombo.SelectedIndex = 0; // Reset to "All Reasons"
             bindingSource.Filter = null; // Clear any existing filter
 
             // Reset current index after refreshing
@@ -321,8 +357,7 @@ namespace EscopeWindowsApp
 
         private void saleReDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // this is the sales returns data from refunds table.
-            // cloumns are : billno, product name, variation type, unit, quantity, price, total price, refund date(date only)
+            // Columns: bill_no, product_name, variation_type, unit, quantity, price, total_price, reason, refund_date
         }
 
         private void saleReLastBtn_Click(object sender, EventArgs e)
@@ -342,6 +377,51 @@ namespace EscopeWindowsApp
         private void selectSaleReDateTime_ValueChanged(object sender, EventArgs e)
         {
             // No action needed; filtering is handled by saleReFilterBtn_Click
+        }
+
+        private void filterResonsRefundCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedReason = filterResonsRefundCombo.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedReason) || selectedReason == "All Reasons")
+                {
+                    string currentFilter = bindingSource.Filter;
+                    if (!string.IsNullOrEmpty(currentFilter) && currentFilter.Contains("reason"))
+                    {
+                        bindingSource.Filter = null;
+                    }
+                }
+                else
+                {
+                    string reasonFilter = $"reason = '{selectedReason}'";
+                    string currentFilter = bindingSource.Filter;
+
+                    if (string.IsNullOrEmpty(currentFilter))
+                    {
+                        bindingSource.Filter = reasonFilter;
+                    }
+                    else if (currentFilter.Contains("reason"))
+                    {
+                        bindingSource.Filter = reasonFilter;
+                    }
+                    else
+                    {
+                        bindingSource.Filter = $"{currentFilter} AND {reasonFilter}";
+                    }
+                }
+
+                if (saleReDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    saleReDataGridView.CurrentCell = saleReDataGridView.Rows[currentIndex].Cells[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying reason filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
+            }
         }
     }
 }
