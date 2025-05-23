@@ -604,11 +604,11 @@ namespace EscopeWindowsApp
                                 string productQuery = @"
                                     INSERT INTO products (
                                         name, category_id, image_path, unit_id, warehouse_id, 
-                                        supplier_id, brand_id, variation_type_id, stock, barcode
+                                        supplier_id, brand_id, variation_type_id, barcode
                                     ) VALUES (
                                         @name, (SELECT id FROM categories WHERE name = @category), 
                                         @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
-                                        @variationTypeId, @stock, @barcode
+                                        @variationTypeId, @barcode
                                     )";
                                 using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                                 {
@@ -621,11 +621,14 @@ namespace EscopeWindowsApp
                                     cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
                                     cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
                                     cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue);
-                                    cmd.Parameters.AddWithValue("@stock", 0);
                                     cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(detail.UPC) ? (object)DBNull.Value : detail.UPC);
                                     cmd.ExecuteNonQuery();
 
                                     int newProductId = (int)cmd.LastInsertedId;
+
+                                    // Initialize stock using StockManager
+                                    StockManager stockManager = new StockManager(connectionString);
+                                    stockManager.UpdateStock(newProductId, detail.TypeName, 0, creProUnitComboBox.Text, true);
 
                                     string pricingQuery = @"
                                         INSERT INTO pricing (
@@ -650,11 +653,11 @@ namespace EscopeWindowsApp
                             string productQuery = @"
                                 INSERT INTO products (
                                     name, category_id, image_path, unit_id, warehouse_id, 
-                                    supplier_id, brand_id, variation_type_id, stock, barcode
+                                    supplier_id, brand_id, variation_type_id, barcode
                                 ) VALUES (
                                     @name, (SELECT id FROM categories WHERE name = @category), 
                                     @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
-                                    @variationTypeId, @stock, @barcode
+                                    @variationTypeId, @barcode
                                 )";
                             using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                             {
@@ -666,11 +669,14 @@ namespace EscopeWindowsApp
                                 cmd.Parameters.AddWithValue("@supplierId", (int)creProSupComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProSupComboBox.SelectedValue);
                                 cmd.Parameters.AddWithValue("@brandId", (int)creProBrandComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProBrandComboBox.SelectedValue);
                                 cmd.Parameters.AddWithValue("@variationTypeId", (int)creProVarTypeComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProVarTypeComboBox.SelectedValue);
-                                cmd.Parameters.AddWithValue("@stock", 0);
                                 cmd.Parameters.AddWithValue("@barcode", string.IsNullOrEmpty(upcNumberText.Text.Trim()) ? (object)DBNull.Value : upcNumberText.Text.Trim());
                                 cmd.ExecuteNonQuery();
 
                                 int productId = (int)cmd.LastInsertedId;
+
+                                // Initialize stock using StockManager
+                                StockManager stockManager = new StockManager(connectionString);
+                                stockManager.UpdateStock(productId, null, 0, creProUnitComboBox.Text, true);
 
                                 string pricingQuery = @"
                                     INSERT INTO pricing (

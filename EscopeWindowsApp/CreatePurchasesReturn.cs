@@ -15,6 +15,7 @@ namespace EscopeWindowsApp
         private DataTable _grnTable = new DataTable();
         private DataTable _grnItemsTable = new DataTable();
         private string _returnNote = string.Empty;
+        private string selectedReason; // Store the selected reason
 
         public CreatePurchasesReturn()
         {
@@ -39,12 +40,16 @@ namespace EscopeWindowsApp
             grnProductDataGridView.CellContentClick += grnProductDataGridView_CellContentClick;
             grnProductDataGridView.CellPainting += grnProductDataGridView_CellPainting;
             grnSaveBtn.Click += grnSaveBtn_Click;
-            grnCancelBtn.Click += grnCancelBtn_Click;
+            grnCancelBtn.Click -= grnCancelBtn_Click;
             purReNoteText.TextChanged += purReNoteText_TextChanged;
 
             // Enable key preview to capture keyboard events at the form level
             this.KeyPreview = true;
             this.KeyDown += CreatePurchasesReturn_KeyDown;
+
+            // Populate ResonsPurchasReturnCombo
+            ResonsPurchasReturnCombo.Items.AddRange(new string[] { "Product Damaged or Defective", "Product Not as Described or Expected", "Late Delivery or Delivery Issues", "Other" });
+            ResonsPurchasReturnCombo.SelectedIndex = 0; // Default to first reason
         }
 
         private void CreatePurchasesReturn_KeyDown(object sender, KeyEventArgs e)
@@ -510,6 +515,13 @@ namespace EscopeWindowsApp
                 return;
             }
 
+            if (string.IsNullOrEmpty(selectedReason))
+            {
+                MessageBox.Show("Please select a reason for the return.", "Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ResonsPurchasReturnCombo.Focus();
+                return;
+            }
+
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
@@ -542,10 +554,10 @@ namespace EscopeWindowsApp
                             }
 
                             string insertReturnQuery = @"
-                        INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, created_at)
-                        VALUES (@grnNo, @returnNo, @note, @totalAmount, NOW());
-                        SELECT LAST_INSERT_ID();
-                    ";
+                                INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, reason, created_at)
+                                VALUES (@grnNo, @returnNo, @note, @totalAmount, @reason, NOW());
+                                SELECT LAST_INSERT_ID();
+                            ";
 
                             long returnId;
                             using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
@@ -554,10 +566,10 @@ namespace EscopeWindowsApp
                                 cmd.Parameters.AddWithValue("@returnNo", returnNo);
                                 cmd.Parameters.AddWithValue("@note", note ?? (object)DBNull.Value);
                                 cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
+                                cmd.Parameters.AddWithValue("@reason", selectedReason);
                                 returnId = Convert.ToInt64(cmd.ExecuteScalar());
                             }
 
-                            // Updated: Lock stock rows for all products to prevent concurrent modifications
                             var stockKeys = grnProductDataGridView.Rows.Cast<DataGridViewRow>()
                                 .Where(row => row.Cells["return_quantity"].Value != null && Convert.ToDecimal(row.Cells["return_quantity"].Value) > 0)
                                 .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString(), Unit = row.Cells["unit"].Value.ToString() })
@@ -577,7 +589,6 @@ namespace EscopeWindowsApp
                                 for (int i = 0; i < stockKeys.Count; i++)
                                 {
                                     lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
-                                    // Updated: Replace ternary with explicit check for C# 8.0 compatibility
                                     lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
                                     lockCmd.Parameters.AddWithValue($"@unit{i}", stockKeys[i].Unit == "N/A" ? (object)DBNull.Value : stockKeys[i].Unit);
                                 }
@@ -585,12 +596,11 @@ namespace EscopeWindowsApp
                             }
 
                             string insertDetailsQuery = @"
-                        INSERT INTO purchase_return_details 
-                        (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
-                        VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
-                    ";
+                                INSERT INTO purchase_return_details 
+                                (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                                VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
+                            ";
 
-                            // Track processed products to avoid duplicates
                             HashSet<string> processedProducts = new HashSet<string>();
 
                             foreach (DataGridViewRow row in grnProductDataGridView.Rows)
@@ -611,12 +621,10 @@ namespace EscopeWindowsApp
                                 if (string.IsNullOrEmpty(unit) || unit == "N/A")
                                     unit = null;
 
-                                // Updated: Changed returnQuantity to decimal for precise stock handling
                                 decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
                                 decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
                                 decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
 
-                                // Create a unique key for the product
                                 string productKey = $"{productId}{variationType ?? "null"}{unit ?? "null"}";
                                 if (processedProducts.Contains(productKey))
                                 {
@@ -625,14 +633,13 @@ namespace EscopeWindowsApp
                                 }
                                 processedProducts.Add(productKey);
 
-                                // Updated: Check stock using decimal for accurate quantity validation
                                 string checkStockQuery = @"
-                            SELECT stock 
-                            FROM stock 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
-                            LIMIT 1";
+                                    SELECT stock 
+                                    FROM stock 
+                                    WHERE product_id = @productId 
+                                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                    AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
+                                    LIMIT 1";
                                 using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
                                 {
                                     checkCmd.Parameters.AddWithValue("@productId", productId);
@@ -649,7 +656,6 @@ namespace EscopeWindowsApp
                                     }
                                 }
 
-                                // Insert purchase return details
                                 using (MySqlCommand cmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
                                 {
                                     cmd.Parameters.AddWithValue("@returnId", returnId);
@@ -662,13 +668,12 @@ namespace EscopeWindowsApp
                                     cmd.ExecuteNonQuery();
                                 }
 
-                                // Updated: Update stock using decimal quantity for precise reduction
                                 string updateStockQuery = @"
-                            UPDATE stock 
-                            SET stock = stock - @quantity 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
+                                    UPDATE stock 
+                                    SET stock = stock - @quantity 
+                                    WHERE product_id = @productId 
+                                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                    AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
                                 using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
                                 {
                                     cmd.Parameters.AddWithValue("@quantity", returnQuantity);
@@ -706,6 +711,7 @@ namespace EscopeWindowsApp
             grnProSearchText.Text = "";
             purReNoteText.Text = "";
             _returnNote = string.Empty;
+            ResonsPurchasReturnCombo.SelectedIndex = 0; // Reset to first reason
             _grnItemsTable.Clear();
             grnProductDataGridView.DataSource = null;
             LoadGRNData();
@@ -715,6 +721,11 @@ namespace EscopeWindowsApp
         private void purReNoteText_TextChanged(object sender, EventArgs e)
         {
             _returnNote = purReNoteText.Text.Trim();
+        }
+
+        private void ResonsPurchasReturnCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedReason = ResonsPurchasReturnCombo.SelectedItem?.ToString();
         }
     }
 }

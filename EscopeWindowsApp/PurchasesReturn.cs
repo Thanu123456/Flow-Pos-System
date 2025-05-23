@@ -18,6 +18,9 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             bindingSource = new BindingSource();
+            // Populate filterResonsPurchasReturnCombo
+            filterResonsPurchasReturnCombo.Items.AddRange(new string[] { "All Reasons", "Product Damaged or Defective", "Product Not as Described or Expected", "Late Delivery or Delivery Issues", "Other" });
+            filterResonsPurchasReturnCombo.SelectedIndex = 0; // Default to "All Reasons"
             LoadReturnsData();
             purRetDataGridView.CellFormatting += PurRetDataGridView_CellFormatting;
             purRetDataGridView.CellDoubleClick += PurRetDataGridView_CellContentClick; // Changed to double-click
@@ -26,7 +29,6 @@ namespace EscopeWindowsApp
 
         private void PurchasesReturn_Load(object sender, EventArgs e)
         {
-
         }
 
         private void ConfigureDataGridView()
@@ -51,9 +53,9 @@ namespace EscopeWindowsApp
             });
             purRetDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "note",
-                Name = "note",
-                HeaderText = "NOTE",
+                DataPropertyName = "reason",
+                Name = "reason",
+                HeaderText = "REASON",
                 Width = 200
             });
             purRetDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -69,7 +71,8 @@ namespace EscopeWindowsApp
                 DataPropertyName = "return_qty",
                 Name = "return_qty",
                 HeaderText = "RETURN QTY",
-                Width = 100
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "F2" }
             });
             purRetDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -84,11 +87,10 @@ namespace EscopeWindowsApp
             purRetDataGridView.AllowUserToAddRows = false;
             purRetDataGridView.ReadOnly = true;
             purRetDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-           // purRetDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             purRetDataGridView.RowTemplate.Height = 35;
             purRetDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             purRetDataGridView.BackgroundColor = Color.White;
-            purRetDataGridView.BorderStyle = BorderStyle.None; // From your previous request
+            purRetDataGridView.BorderStyle = BorderStyle.None;
         }
 
         private void LoadReturnsData()
@@ -103,7 +105,7 @@ namespace EscopeWindowsApp
                         SELECT 
                             pr.grn_no,
                             pr.return_no,
-                            pr.note,
+                            pr.reason,
                             pr.total_amount,
                             (SELECT SUM(prd.quantity) 
                              FROM purchase_return_details prd 
@@ -122,9 +124,9 @@ namespace EscopeWindowsApp
                 {
                     row["grn_no"] = row["grn_no"] ?? "";
                     row["return_no"] = row["return_no"] ?? "";
-                    row["note"] = row["note"] ?? "";
+                    row["reason"] = row["reason"] ?? "N/A";
                     row["total_amount"] = row["total_amount"] ?? 0.00m;
-                    row["return_qty"] = row["return_qty"] ?? 0; // Handle null return_qty
+                    row["return_qty"] = row["return_qty"] ?? 0.0m;
                     row["created_at"] = row["created_at"] ?? DateTime.Now;
                 }
 
@@ -133,15 +135,16 @@ namespace EscopeWindowsApp
                 purRetDataGridView.DataSource = bindingSource;
                 purRetDataGridView.Refresh();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Error loading returns data: {ex.Message}");
                 // Fallback: Create empty DataTable with structure
                 returnsTable = new DataTable();
                 returnsTable.Columns.Add("grn_no", typeof(string));
                 returnsTable.Columns.Add("return_no", typeof(string));
-                returnsTable.Columns.Add("note", typeof(string));
+                returnsTable.Columns.Add("reason", typeof(string));
                 returnsTable.Columns.Add("total_amount", typeof(decimal));
-                returnsTable.Columns.Add("return_qty", typeof(int));
+                returnsTable.Columns.Add("return_qty", typeof(decimal));
                 returnsTable.Columns.Add("created_at", typeof(DateTime));
                 bindingSource.DataSource = returnsTable;
                 purRetDataGridView.DataSource = bindingSource;
@@ -157,7 +160,7 @@ namespace EscopeWindowsApp
                 e.Value = "N/A";
                 e.FormattingApplied = true;
             }
-            else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "note")
+            else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "reason")
             {
                 string value = e.Value.ToString().Trim();
                 e.Value = string.IsNullOrWhiteSpace(value) ? "N/A" : value;
@@ -165,14 +168,14 @@ namespace EscopeWindowsApp
             }
             else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "return_qty")
             {
-                if (e.Value != null && int.TryParse(e.Value.ToString(), out int qty))
+                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal qty))
                 {
-                    e.Value = qty.ToString();
+                    e.Value = qty.ToString("F2");
                     e.FormattingApplied = true;
                 }
                 else
                 {
-                    e.Value = "0";
+                    e.Value = "0.00";
                     e.FormattingApplied = true;
                 }
             }
@@ -205,6 +208,7 @@ namespace EscopeWindowsApp
         {
             LoadReturnsData();
             purRetSearchText.Text = string.Empty;
+            filterResonsPurchasReturnCombo.SelectedIndex = 0; // Reset to "All Reasons"
             bindingSource.Filter = null;
             purRetDataGridView.Refresh();
         }
@@ -321,7 +325,7 @@ namespace EscopeWindowsApp
                 Form detailsForm = new Form
                 {
                     Text = $"Return Details - {returnNo}",
-                    Size = new Size(850, 300), // Increased width to 850
+                    Size = new Size(850, 300),
                     StartPosition = FormStartPosition.CenterScreen,
                     BackColor = Color.White,
                     MinimumSize = new Size(850, 300),
@@ -329,13 +333,11 @@ namespace EscopeWindowsApp
                     MaximizeBox = false,
                     MinimizeBox = false,
                     AutoScroll = false,
-                    
                 };
 
                 DataGridView detailsGrid = new DataGridView
                 {
                     Dock = DockStyle.Fill,
-                    
                     AutoGenerateColumns = false,
                     AllowUserToAddRows = false,
                     AllowUserToDeleteRows = false,
@@ -352,44 +354,44 @@ namespace EscopeWindowsApp
                 {
                     DataPropertyName = "product_id",
                     HeaderText = "PRODUCT ID",
-                    Width = 100 // Increased width
+                    Width = 100
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "product_name",
                     HeaderText = "PRODUCT NAME",
-                    Width = 180 // Increased width
+                    Width = 180
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "variation_type",
                     HeaderText = "VARIATION TYPE",
-                    Width = 120 // Increased width
+                    Width = 120
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "unit",
                     HeaderText = "UNIT",
-                    Width = 100 // Increased width
+                    Width = 100
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "quantity",
                     HeaderText = "QUANTITY",
-                    Width = 100 // Increased width
+                    Width = 100
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "cost_price",
                     HeaderText = "COST PRICE",
-                    Width = 100, // Increased width
+                    Width = 100,
                     DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
                 });
                 detailsGrid.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "net_price",
                     HeaderText = "NET PRICE",
-                    Width = 100, // Increased width
+                    Width = 100,
                     DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
                 });
 
@@ -430,6 +432,41 @@ namespace EscopeWindowsApp
             bindingSource.Filter = null; // Ensure no filter is applied
             purRetDataGridView.Refresh();
             purRetDataGridView.Invalidate(); // Force UI redraw
+        }
+
+        private void filterResonsPurchasReturnCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedReason = filterResonsPurchasReturnCombo.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedReason) || selectedReason == "All Reasons")
+                {
+                    bindingSource.Filter = null; // Clear the filter to show all records
+                }
+                else
+                {
+                    bindingSource.Filter = $"reason = '{selectedReason}'";
+                }
+
+                // Reset current index after filtering
+                if (purRetDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                    purRetDataGridView.Rows[currentIndex].Selected = true;
+                }
+                purRetDataGridView.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying reason filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
+                purRetDataGridView.Refresh();
+            }
+        }
+
+        private void purRetDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }

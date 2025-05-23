@@ -50,6 +50,7 @@
             this.grnCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.createPurRetLabel = new System.Windows.Forms.Label();
+            this.ResonsPurchasReturnCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.preReGRNDataGridView)).BeginInit();
@@ -313,14 +314,14 @@
             this.purReNoteText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.purReNoteText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.purReNoteText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.purReNoteText.Location = new System.Drawing.Point(22, 579);
+            this.purReNoteText.Location = new System.Drawing.Point(699, 577);
             this.purReNoteText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.purReNoteText.Name = "purReNoteText";
             this.purReNoteText.PasswordChar = '\0';
             this.purReNoteText.PlaceholderForeColor = System.Drawing.Color.Gray;
             this.purReNoteText.PlaceholderText = "Note";
             this.purReNoteText.SelectedText = "";
-            this.purReNoteText.Size = new System.Drawing.Size(1057, 42);
+            this.purReNoteText.Size = new System.Drawing.Size(380, 42);
             this.purReNoteText.TabIndex = 82;
             this.purReNoteText.TextChanged += new System.EventHandler(this.purReNoteText_TextChanged);
             // 
@@ -376,11 +377,33 @@
             this.createPurRetLabel.TabIndex = 85;
             this.createPurRetLabel.Text = "Purchases Return";
             // 
+            // ResonsPurchasReturnCombo
+            // 
+            this.ResonsPurchasReturnCombo.BackColor = System.Drawing.Color.Transparent;
+            this.ResonsPurchasReturnCombo.BorderColor = System.Drawing.Color.Gray;
+            this.ResonsPurchasReturnCombo.BorderRadius = 8;
+            this.ResonsPurchasReturnCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ResonsPurchasReturnCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ResonsPurchasReturnCombo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ResonsPurchasReturnCombo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.ResonsPurchasReturnCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ResonsPurchasReturnCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.ResonsPurchasReturnCombo.ItemHeight = 36;
+            this.ResonsPurchasReturnCombo.Items.AddRange(new object[] {
+            "Select Reason"});
+            this.ResonsPurchasReturnCombo.Location = new System.Drawing.Point(22, 577);
+            this.ResonsPurchasReturnCombo.Name = "ResonsPurchasReturnCombo";
+            this.ResonsPurchasReturnCombo.Size = new System.Drawing.Size(395, 42);
+            this.ResonsPurchasReturnCombo.StartIndex = 0;
+            this.ResonsPurchasReturnCombo.TabIndex = 104;
+            this.ResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.ResonsPurchasReturnCombo_SelectedIndexChanged);
+            // 
             // CreatePurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.ResonsPurchasReturnCombo);
             this.Controls.Add(this.createPurRetLabel);
             this.Controls.Add(this.grnCancelBtn);
             this.Controls.Add(this.grnSaveBtn);
@@ -419,5 +442,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnCancelBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
         private System.Windows.Forms.Label createPurRetLabel;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox ResonsPurchasReturnCombo;
     }
 }
