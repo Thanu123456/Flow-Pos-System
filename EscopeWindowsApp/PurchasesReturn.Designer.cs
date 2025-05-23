@@ -279,6 +279,7 @@
             // 
             // filterResonsPurchasReturnCombo
             // 
+            this.filterResonsPurchasReturnCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filterResonsPurchasReturnCombo.BackColor = System.Drawing.Color.Transparent;
             this.filterResonsPurchasReturnCombo.BorderColor = System.Drawing.Color.Gray;
             this.filterResonsPurchasReturnCombo.BorderRadius = 8;
@@ -289,10 +290,9 @@
             this.filterResonsPurchasReturnCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.filterResonsPurchasReturnCombo.ForeColor = System.Drawing.Color.DimGray;
             this.filterResonsPurchasReturnCombo.ItemHeight = 36;
-            this.filterResonsPurchasReturnCombo.Location = new System.Drawing.Point(692, 30);
+            this.filterResonsPurchasReturnCombo.Location = new System.Drawing.Point(782, 30);
             this.filterResonsPurchasReturnCombo.Name = "filterResonsPurchasReturnCombo";
-            this.filterResonsPurchasReturnCombo.Size = new System.Drawing.Size(366, 42);
-            this.filterResonsPurchasReturnCombo.StartIndex = 0;
+            this.filterResonsPurchasReturnCombo.Size = new System.Drawing.Size(360, 42);
             this.filterResonsPurchasReturnCombo.TabIndex = 105;
             this.filterResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsPurchasReturnCombo_SelectedIndexChanged);
             // 

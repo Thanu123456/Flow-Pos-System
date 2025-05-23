@@ -1307,16 +1307,16 @@
             this.grnBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grnBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Bold);
             this.grnBtn.ForeColor = System.Drawing.Color.White;
-            this.grnBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.grnBtn.HoverState.FillColor = System.Drawing.Color.Green;
             this.grnBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.grnBtn.ImageSize = new System.Drawing.Size(30, 30);
             this.grnBtn.Location = new System.Drawing.Point(3, 4);
             this.grnBtn.Name = "grnBtn";
             this.grnBtn.Size = new System.Drawing.Size(122, 45);
             this.grnBtn.TabIndex = 6;
-            this.grnBtn.Text = "      GRN";
+            this.grnBtn.Text = "GRN";
             this.grnBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.grnBtn.TextOffset = new System.Drawing.Point(4, 0);
+            this.grnBtn.TextOffset = new System.Drawing.Point(42, 0);
             this.grnBtn.Click += new System.EventHandler(this.grnBtn_Click);
             // 
             // posBtnPanel
