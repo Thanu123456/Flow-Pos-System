@@ -9,26 +9,33 @@ namespace EscopeWindowsApp
 {
     public partial class PurchasesReturn : Form
     {
-        private DataTable returnsTable; // Data source for purchase returns
-        private BindingSource bindingSource; // Binding source for filtering
-        private int currentIndex = 0; // Current index for navigation
+        private DataTable returnsTable;
+        private BindingSource bindingSource;
+        private int currentIndex = 0;
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"]?.ConnectionString;
 
         public PurchasesReturn()
         {
             InitializeComponent();
             bindingSource = new BindingSource();
-            // Populate filterResonsPurchasReturnCombo
-            filterResonsPurchasReturnCombo.Items.AddRange(new string[] { "All Reasons", "Product Damaged or Defective", "Product Not as Described or Expected", "Late Delivery or Delivery Issues", "Other" });
-            filterResonsPurchasReturnCombo.SelectedIndex = 0; // Default to "All Reasons"
+            filterResonsPurchasReturnCombo.Items.AddRange(new string[] { "All Reasons", "Product Damaged or Defective", "Product Not as Described or Expected", "Expired Products", "Other" });
+            filterResonsPurchasReturnCombo.SelectedIndex = 0;
             LoadReturnsData();
             purRetDataGridView.CellFormatting += PurRetDataGridView_CellFormatting;
-            purRetDataGridView.CellDoubleClick += PurRetDataGridView_CellContentClick; // Changed to double-click
+            purRetDataGridView.CellDoubleClick += PurRetDataGridView_CellContentClick;
+            purRetDataGridView.CellClick += PurRetDataGridView_CellClick; // Added for edit functionality
             this.Load += new System.EventHandler(this.PurchasesReturn_Load);
         }
 
         private void PurchasesReturn_Load(object sender, EventArgs e)
         {
+            ConfigureDataGridView();
+            purRetDataGridView.DataSource = null;
+            purRetDataGridView.DataSource = bindingSource;
+            purRetSearchText.Text = string.Empty;
+            bindingSource.Filter = null;
+            purRetDataGridView.Refresh();
+            purRetDataGridView.Invalidate();
         }
 
         private void ConfigureDataGridView()
@@ -36,7 +43,6 @@ namespace EscopeWindowsApp
             purRetDataGridView.AutoGenerateColumns = false;
             purRetDataGridView.Columns.Clear();
 
-            // Define columns matching purchase_returns table plus return_qty
             purRetDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "grn_no",
@@ -82,8 +88,23 @@ namespace EscopeWindowsApp
                 Width = 120,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" }
             });
+            purRetDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "status",
+                Name = "status",
+                HeaderText = "STATUS",
+                Width = 100
+            });
+            DataGridViewImageColumn editColumn = new DataGridViewImageColumn
+            {
+                Name = "edit",
+                HeaderText = "EDIT",
+                Width = 50,
+                Image = Properties.Resources.edit, // Ensure you have an edit icon in resources
+                ImageLayout = DataGridViewImageCellLayout.Zoom
+            };
+            purRetDataGridView.Columns.Add(editColumn);
 
-            // Styling and behavior
             purRetDataGridView.AllowUserToAddRows = false;
             purRetDataGridView.ReadOnly = true;
             purRetDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -103,6 +124,7 @@ namespace EscopeWindowsApp
                     connection.Open();
                     string query = @"
                         SELECT 
+                            pr.id,
                             pr.grn_no,
                             pr.return_no,
                             pr.reason,
@@ -110,7 +132,8 @@ namespace EscopeWindowsApp
                             (SELECT SUM(prd.quantity) 
                              FROM purchase_return_details prd 
                              WHERE prd.return_id = pr.id) AS return_qty,
-                            pr.created_at
+                            pr.created_at,
+                            pr.status
                         FROM purchase_returns pr
                         ORDER BY pr.created_at DESC";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
@@ -119,33 +142,35 @@ namespace EscopeWindowsApp
                     }
                 }
 
-                // Handle null values
                 foreach (DataRow row in returnsTable.Rows)
                 {
+                    row["id"] = row["id"] ?? 0;
                     row["grn_no"] = row["grn_no"] ?? "";
                     row["return_no"] = row["return_no"] ?? "";
                     row["reason"] = row["reason"] ?? "N/A";
                     row["total_amount"] = row["total_amount"] ?? 0.00m;
                     row["return_qty"] = row["return_qty"] ?? 0.0m;
                     row["created_at"] = row["created_at"] ?? DateTime.Now;
+                    row["status"] = row["status"] ?? "Pending";
                 }
 
                 bindingSource.DataSource = returnsTable;
-                purRetDataGridView.DataSource = null; // Reset binding
+                purRetDataGridView.DataSource = null;
                 purRetDataGridView.DataSource = bindingSource;
                 purRetDataGridView.Refresh();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error loading returns data: {ex.Message}");
-                // Fallback: Create empty DataTable with structure
                 returnsTable = new DataTable();
+                returnsTable.Columns.Add("id", typeof(int));
                 returnsTable.Columns.Add("grn_no", typeof(string));
                 returnsTable.Columns.Add("return_no", typeof(string));
                 returnsTable.Columns.Add("reason", typeof(string));
                 returnsTable.Columns.Add("total_amount", typeof(decimal));
                 returnsTable.Columns.Add("return_qty", typeof(decimal));
                 returnsTable.Columns.Add("created_at", typeof(DateTime));
+                returnsTable.Columns.Add("status", typeof(string));
                 bindingSource.DataSource = returnsTable;
                 purRetDataGridView.DataSource = bindingSource;
             }
@@ -155,124 +180,62 @@ namespace EscopeWindowsApp
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            if (e.Value == DBNull.Value || e.Value == null)
+            DataGridViewRow row = purRetDataGridView.Rows[e.RowIndex];
+            string status = row.Cells["status"].Value?.ToString();
+
+            if (purRetDataGridView.Columns[e.ColumnIndex].Name == "total_amount")
             {
-                e.Value = "N/A";
-                e.FormattingApplied = true;
-            }
-            else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "reason")
-            {
-                string value = e.Value.ToString().Trim();
-                e.Value = string.IsNullOrWhiteSpace(value) ? "N/A" : value;
-                e.FormattingApplied = true;
-            }
-            else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "return_qty")
-            {
-                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal qty))
+                if (status == "Pending")
                 {
-                    e.Value = qty.ToString("F2");
+                    e.Value = "Pending";
                     e.FormattingApplied = true;
                 }
-                else
+                else if (e.Value == null || e.Value == DBNull.Value)
                 {
                     e.Value = "0.00";
                     e.FormattingApplied = true;
                 }
             }
-        }
-
-        private void purRetSearchText_TextChanged(object sender, EventArgs e)
-        {
-            try
+            else if (purRetDataGridView.Columns[e.ColumnIndex].Name == "return_qty")
             {
-                string searchText = purRetSearchText.Text.Trim().ToLower();
-                if (!string.IsNullOrEmpty(searchText))
+                if (e.Value == null || e.Value == DBNull.Value)
                 {
-                    searchText = searchText.Replace("'", "''");
-                    bindingSource.Filter = $"grn_no LIKE '%{searchText}%' OR return_no LIKE '%{searchText}%'";
+                    e.Value = "0.00";
+                    e.FormattingApplied = true;
                 }
-                else
+                else if (decimal.TryParse(e.Value.ToString(), out decimal qty))
                 {
-                    bindingSource.Filter = null;
-                }
-                purRetDataGridView.Refresh();
-            }
-            catch (Exception)
-            {
-                bindingSource.Filter = null;
-                purRetDataGridView.Refresh();
-            }
-        }
-
-        private void purRetRefreshBtn_Click(object sender, EventArgs e)
-        {
-            LoadReturnsData();
-            purRetSearchText.Text = string.Empty;
-            filterResonsPurchasReturnCombo.SelectedIndex = 0; // Reset to "All Reasons"
-            bindingSource.Filter = null;
-            purRetDataGridView.Refresh();
-        }
-
-        private void createPurRetBtn_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is CreatePurchasesReturn)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                        form.WindowState = FormWindowState.Normal;
-                    form.BringToFront();
-                    form.Activate();
-                    return;
+                    e.Value = qty.ToString("F2");
+                    e.FormattingApplied = true;
                 }
             }
-            CreatePurchasesReturn createPurchasesReturn = new CreatePurchasesReturn();
-            createPurchasesReturn.FormClosed += (s, args) => LoadReturnsData(); // Refresh data after creating a return
-            createPurchasesReturn.Show();
-        }
-
-        private void purRetFirstBtn_Click(object sender, EventArgs e)
-        {
-            if (purRetDataGridView.Rows.Count > 0)
+            else if (e.Value == null || e.Value == DBNull.Value)
             {
-                currentIndex = 0;
-                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
-                purRetDataGridView.Rows[currentIndex].Selected = true;
+                e.Value = "N/A";
+                e.FormattingApplied = true;
             }
         }
 
-        private void purRetPrevBtn_Click(object sender, EventArgs e)
+        private void PurRetDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (currentIndex > 0)
+            if (e.RowIndex >= 0 && purRetDataGridView.Columns[e.ColumnIndex].Name == "edit")
             {
-                currentIndex--;
-                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
-                purRetDataGridView.Rows[currentIndex].Selected = true;
+                DataRowView rowView = (DataRowView)purRetDataGridView.Rows[e.RowIndex].DataBoundItem;
+                int returnId = Convert.ToInt32(rowView["id"]);
+                OpenEditForm(returnId);
             }
         }
 
-        private void purRetNextBtn_Click(object sender, EventArgs e)
+        private void OpenEditForm(int returnId)
         {
-            if (currentIndex < purRetDataGridView.Rows.Count - 1)
-            {
-                currentIndex++;
-                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
-                purRetDataGridView.Rows[currentIndex].Selected = true;
-            }
-        }
-
-        private void purRetLastBtn_Click(object sender, EventArgs e)
-        {
-            if (purRetDataGridView.Rows.Count > 0)
-            {
-                currentIndex = purRetDataGridView.Rows.Count - 1;
-                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
-                purRetDataGridView.Rows[currentIndex].Selected = true;
-            }
+            CreatePurchasesReturn editForm = new CreatePurchasesReturn(returnId);
+            editForm.FormClosed += (s, args) => LoadReturnsData();
+            editForm.Show();
         }
 
         private void PurRetDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Existing double-click details view logic remains unchanged
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             try
@@ -419,19 +382,98 @@ namespace EscopeWindowsApp
             }
             catch (Exception)
             {
-                // Silently fail as per request to remove MessageBox
+                // Silent failure as per original design
             }
         }
 
-        private void PurchasesReturn_Load_1(object sender, EventArgs e)
+        private void purRetSearchText_TextChanged(object sender, EventArgs e)
         {
-            ConfigureDataGridView();
-            purRetDataGridView.DataSource = null; // Reset to avoid binding issues
-            purRetDataGridView.DataSource = bindingSource;
-            purRetSearchText.Text = string.Empty; // Clear search filter
-            bindingSource.Filter = null; // Ensure no filter is applied
+            try
+            {
+                string searchText = purRetSearchText.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    searchText = searchText.Replace("'", "''");
+                    bindingSource.Filter = $"grn_no LIKE '%{searchText}%' OR return_no LIKE '%{searchText}%'";
+                }
+                else
+                {
+                    bindingSource.Filter = null;
+                }
+                purRetDataGridView.Refresh();
+            }
+            catch (Exception)
+            {
+                bindingSource.Filter = null;
+                purRetDataGridView.Refresh();
+            }
+        }
+
+        private void purRetRefreshBtn_Click(object sender, EventArgs e)
+        {
+            LoadReturnsData();
+            purRetSearchText.Text = string.Empty;
+            filterResonsPurchasReturnCombo.SelectedIndex = 0;
+            bindingSource.Filter = null;
             purRetDataGridView.Refresh();
-            purRetDataGridView.Invalidate(); // Force UI redraw
+        }
+
+        private void createPurRetBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is CreatePurchasesReturn)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                        form.WindowState = FormWindowState.Normal;
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            CreatePurchasesReturn createPurchasesReturn = new CreatePurchasesReturn();
+            createPurchasesReturn.FormClosed += (s, args) => LoadReturnsData();
+            createPurchasesReturn.Show();
+        }
+
+        private void purRetFirstBtn_Click(object sender, EventArgs e)
+        {
+            if (purRetDataGridView.Rows.Count > 0)
+            {
+                currentIndex = 0;
+                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                purRetDataGridView.Rows[currentIndex].Selected = true;
+            }
+        }
+
+        private void purRetPrevBtn_Click(object sender, EventArgs e)
+        {
+            if (currentIndex > 0)
+            {
+                currentIndex--;
+                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                purRetDataGridView.Rows[currentIndex].Selected = true;
+            }
+        }
+
+        private void purRetNextBtn_Click(object sender, EventArgs e)
+        {
+            if (currentIndex < purRetDataGridView.Rows.Count - 1)
+            {
+                currentIndex++;
+                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                purRetDataGridView.Rows[currentIndex].Selected = true;
+            }
+        }
+
+        private void purRetLastBtn_Click(object sender, EventArgs e)
+        {
+            if (purRetDataGridView.Rows.Count > 0)
+            {
+                currentIndex = purRetDataGridView.Rows.Count - 1;
+                purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                purRetDataGridView.Rows[currentIndex].Selected = true;
+            }
         }
 
         private void filterResonsPurchasReturnCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -441,14 +483,13 @@ namespace EscopeWindowsApp
                 string selectedReason = filterResonsPurchasReturnCombo.SelectedItem?.ToString();
                 if (string.IsNullOrEmpty(selectedReason) || selectedReason == "All Reasons")
                 {
-                    bindingSource.Filter = null; // Clear the filter to show all records
+                    bindingSource.Filter = null;
                 }
                 else
                 {
                     bindingSource.Filter = $"reason = '{selectedReason}'";
                 }
 
-                // Reset current index after filtering
                 if (purRetDataGridView.Rows.Count > 0)
                 {
                     currentIndex = 0;
@@ -463,10 +504,6 @@ namespace EscopeWindowsApp
                 bindingSource.Filter = null;
                 purRetDataGridView.Refresh();
             }
-        }
-
-        private void purRetDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

@@ -124,7 +124,7 @@
             this.purRetDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.purRetDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purRetDataGridView_CellContentClick_1);
+           // this.purRetDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purRetDataGridView_CellContentClick_1);
             // 
             // createPurRetBtn
             // 
@@ -312,7 +312,7 @@
             this.MaximumSize = new System.Drawing.Size(1920, 10880);
             this.Name = "PurchasesReturn";
             this.Text = "Purchases Returns";
-            this.Load += new System.EventHandler(this.PurchasesReturn_Load_1);
+           // this.Load += new System.EventHandler(this.PurchasesReturn_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.purRetDataGridView)).EndInit();
             this.expBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
