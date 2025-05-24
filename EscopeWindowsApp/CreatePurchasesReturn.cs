@@ -1,11 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace EscopeWindowsApp
 {
@@ -15,13 +14,14 @@ namespace EscopeWindowsApp
         private DataTable _grnTable = new DataTable();
         private DataTable _grnItemsTable = new DataTable();
         private string _returnNote = string.Empty;
-        private string selectedReason; // Store the selected reason
+        private string selectedReason;
+        private int? _returnId;
 
-        public CreatePurchasesReturn()
+        public CreatePurchasesReturn(int? returnId = null)
         {
             InitializeComponent();
+            _returnId = returnId;
 
-            // Clear any existing event handlers to prevent duplicates
             this.Load -= CreatePurchasesReturn_Load;
             grnProSearchText.TextChanged -= grnProSearchText_TextChanged;
             preReGRNDataGridView.CellContentClick -= preReGRNDataGridView_CellContentClick;
@@ -31,8 +31,8 @@ namespace EscopeWindowsApp
             grnSaveBtn.Click -= grnSaveBtn_Click;
             grnCancelBtn.Click -= grnCancelBtn_Click;
             purReNoteText.TextChanged -= purReNoteText_TextChanged;
+            StatusComboBox.SelectedIndexChanged -= StatusComboBox_SelectedIndexChanged;
 
-            // Subscribe to events
             this.Load += CreatePurchasesReturn_Load;
             grnProSearchText.TextChanged += grnProSearchText_TextChanged;
             preReGRNDataGridView.CellContentClick += preReGRNDataGridView_CellContentClick;
@@ -40,33 +40,26 @@ namespace EscopeWindowsApp
             grnProductDataGridView.CellContentClick += grnProductDataGridView_CellContentClick;
             grnProductDataGridView.CellPainting += grnProductDataGridView_CellPainting;
             grnSaveBtn.Click += grnSaveBtn_Click;
-            grnCancelBtn.Click -= grnCancelBtn_Click;
+            grnCancelBtn.Click += grnCancelBtn_Click;
             purReNoteText.TextChanged += purReNoteText_TextChanged;
+            StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
 
-            // Enable key preview to capture keyboard events at the form level
             this.KeyPreview = true;
             this.KeyDown += CreatePurchasesReturn_KeyDown;
 
-            // Populate ResonsPurchasReturnCombo
-            ResonsPurchasReturnCombo.Items.AddRange(new string[] { "Product Damaged or Defective", "Product Not as Described or Expected", "Late Delivery or Delivery Issues", "Other" });
-            ResonsPurchasReturnCombo.SelectedIndex = 0; // Default to first reason
-        }
+            ResonsPurchasReturnCombo.Items.AddRange(new string[] { "Product Damaged or Defective", "Product Not as Described or Expected", "Expired Products", "Other" });
+            ResonsPurchasReturnCombo.SelectedIndex = 0;
 
-        private void CreatePurchasesReturn_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Handle Enter key to trigger Save button
-            if (e.KeyCode == Keys.Enter)
+            StatusComboBox.Items.AddRange(new string[] { "Complete", "Pending" });
+            StatusComboBox.SelectedIndex = 0; // Default to "Complete"
+
+            if (_returnId.HasValue)
             {
-                e.Handled = true;
-                e.SuppressKeyPress = true; // Prevent beep sound
-                grnSaveBtn.PerformClick();
+                this.Text = "Edit Purchase Return";
             }
-            // Handle Escape key to trigger Cancel button
-            else if (e.KeyCode == Keys.Escape)
+            else
             {
-                e.Handled = true;
-                e.SuppressKeyPress = true; // Prevent beep sound
-                grnCancelBtn.PerformClick();
+                this.Text = "Create Purchase Return";
             }
         }
 
@@ -74,7 +67,152 @@ namespace EscopeWindowsApp
         {
             ConfigurePreReGRNDataGridView();
             ConfigureGrnProductDataGridView();
-            LoadGRNData();
+            if (_returnId.HasValue)
+            {
+                LoadExistingReturn(_returnId.Value);
+                if (preReGRNDataGridView.Columns.Contains("AddColumn"))
+                {
+                    preReGRNDataGridView.Columns["AddColumn"].Visible = false; // Hide "Add" button when editing
+                }
+            }
+            else
+            {
+                LoadGRNData();
+                if (preReGRNDataGridView.Columns.Contains("AddColumn"))
+                {
+                    preReGRNDataGridView.Columns["AddColumn"].Visible = true; // Show "Add" button when creating
+                }
+            }
+        }
+
+        private void CreatePurchasesReturn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                grnSaveBtn.PerformClick();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                grnCancelBtn.PerformClick();
+            }
+        }
+
+        private void LoadExistingReturn(int returnId)
+        {
+            try
+            {
+                using (var conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string returnQuery = @"
+                        SELECT grn_no, note, reason, status
+                        FROM purchase_returns
+                        WHERE id = @returnId";
+                    using (var cmd = new MySqlCommand(returnQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@returnId", returnId);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string grnNo = reader["grn_no"].ToString();
+                                _returnNote = reader["note"]?.ToString();
+                                selectedReason = reader["reason"].ToString();
+                                string status = reader["status"].ToString();
+
+                                purReNoteText.Text = _returnNote;
+                                ResonsPurchasReturnCombo.SelectedItem = selectedReason;
+                                StatusComboBox.SelectedItem = status;
+
+                                LoadGRNItems(grnNo);
+                                LoadSpecificGRN(grnNo); // Load the specific GRN
+                            }
+                            else
+                            {
+                                MessageBox.Show("Return not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+
+                    string detailsQuery = @"
+                        SELECT product_id, variation_type, unit, quantity
+                        FROM purchase_return_details
+                        WHERE return_id = @returnId";
+                    using (var cmd = new MySqlCommand(detailsQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@returnId", returnId);
+                        var detailsTable = new DataTable();
+                        using (var adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(detailsTable);
+                        }
+
+                        foreach (DataRow detailRow in detailsTable.Rows)
+                        {
+                            int productId = Convert.ToInt32(detailRow["product_id"]);
+                            string variationType = detailRow["variation_type"]?.ToString();
+                            string unit = detailRow["unit"]?.ToString();
+                            decimal returnQuantity = Convert.ToDecimal(detailRow["quantity"]);
+
+                            foreach (DataGridViewRow gridRow in grnProductDataGridView.Rows)
+                            {
+                                if (Convert.ToInt32(gridRow.Cells["product_id"].Value) == productId &&
+                                    (gridRow.Cells["variation_type"].Value?.ToString() ?? "") == (variationType ?? "") &&
+                                    (gridRow.Cells["unit"].Value?.ToString() ?? "") == (unit ?? ""))
+                                {
+                                    gridRow.Cells["return_quantity"].Value = returnQuantity;
+                                    decimal costPrice = Convert.ToDecimal(gridRow.Cells["cost_price"].Value);
+                                    gridRow.Cells["net_price"].Value = costPrice * returnQuantity;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading return data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadSpecificGRN(string grnNo)
+        {
+            try
+            {
+                string query = @"
+                    SELECT 
+                        grn_no,
+                        payment_method,
+                        total_amount,
+                        date
+                    FROM grn
+                    WHERE grn_no = @grnNo
+                ";
+
+                using (var conn = new MySqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@grnNo", grnNo);
+                        var adapter = new MySqlDataAdapter(cmd);
+                        _grnTable.Clear();
+                        adapter.Fill(_grnTable);
+                        preReGRNDataGridView.DataSource = _grnTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading specific GRN data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region preReGRNDataGridView Configuration and Loading
@@ -344,7 +482,7 @@ namespace EscopeWindowsApp
                 DataPropertyName = "return_quantity",
                 HeaderText = "Return Quantity",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "D2" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "F2" }
             });
         }
 
@@ -422,7 +560,7 @@ namespace EscopeWindowsApp
                         }
 
                         DataTable returnItemsTable = _grnItemsTable.Clone();
-                        returnItemsTable.Columns.Add("return_quantity", typeof(int));
+                        returnItemsTable.Columns.Add("return_quantity", typeof(decimal));
 
                         foreach (DataRow row in _grnItemsTable.Rows)
                         {
@@ -431,7 +569,7 @@ namespace EscopeWindowsApp
                             {
                                 newRow[col.ColumnName] = row[col.ColumnName];
                             }
-                            newRow["return_quantity"] = 0;
+                            newRow["return_quantity"] = 0m;
                             returnItemsTable.Rows.Add(newRow);
                         }
 
@@ -486,13 +624,12 @@ namespace EscopeWindowsApp
             if (e.RowIndex >= 0 && grnProductDataGridView.Columns[e.ColumnIndex].Name == "decrease")
             {
                 DataGridViewRow row = grnProductDataGridView.Rows[e.RowIndex];
-                int returnQuantity = Convert.ToInt32(row.Cells["return_quantity"].Value);
-                int originalQuantity = Convert.ToInt32(row.Cells["quantity"].Value);
+                decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
+                decimal originalQuantity = Convert.ToDecimal(row.Cells["quantity"].Value);
 
                 if (returnQuantity < originalQuantity)
                 {
                     row.Cells["return_quantity"].Value = returnQuantity + 1;
-
                     decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
                     decimal newNetPrice = costPrice * (returnQuantity + 1);
                     row.Cells["net_price"].Value = newNetPrice;
@@ -522,6 +659,13 @@ namespace EscopeWindowsApp
                 return;
             }
 
+            string status = StatusComboBox.SelectedItem.ToString();
+            decimal totalAmount = 0m;
+            if (status == "Complete")
+            {
+                totalAmount = CalculateTotalAmount();
+            }
+
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
@@ -531,165 +675,135 @@ namespace EscopeWindowsApp
                     {
                         try
                         {
-                            string returnNo = "PR_" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                            string grnNo = grnProductDataGridView.Rows[0].Cells["grn_no"].Value?.ToString();
-
-                            if (string.IsNullOrEmpty(grnNo))
+                            if (_returnId.HasValue)
                             {
-                                MessageBox.Show("Invalid GRN number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            // Use the stored note
-                            string note = _returnNote;
-                            if (string.IsNullOrEmpty(note)) note = null;
-
-                            decimal totalAmount = 0m;
-                            foreach (DataGridViewRow row in grnProductDataGridView.Rows)
-                            {
-                                if (row.Cells["net_price"].Value != null)
+                                // Update existing return
+                                string updateReturnQuery = @"
+                                    UPDATE purchase_returns
+                                    SET note = @note, reason = @reason, status = @status, total_amount = @totalAmount
+                                    WHERE id = @returnId";
+                                using (MySqlCommand cmd = new MySqlCommand(updateReturnQuery, connection, transaction))
                                 {
-                                    totalAmount += Convert.ToDecimal(row.Cells["net_price"].Value);
-                                }
-                            }
-
-                            string insertReturnQuery = @"
-                                INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, reason, created_at)
-                                VALUES (@grnNo, @returnNo, @note, @totalAmount, @reason, NOW());
-                                SELECT LAST_INSERT_ID();
-                            ";
-
-                            long returnId;
-                            using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
-                            {
-                                cmd.Parameters.AddWithValue("@grnNo", grnNo);
-                                cmd.Parameters.AddWithValue("@returnNo", returnNo);
-                                cmd.Parameters.AddWithValue("@note", note ?? (object)DBNull.Value);
-                                cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
-                                cmd.Parameters.AddWithValue("@reason", selectedReason);
-                                returnId = Convert.ToInt64(cmd.ExecuteScalar());
-                            }
-
-                            var stockKeys = grnProductDataGridView.Rows.Cast<DataGridViewRow>()
-                                .Where(row => row.Cells["return_quantity"].Value != null && Convert.ToDecimal(row.Cells["return_quantity"].Value) > 0)
-                                .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString(), Unit = row.Cells["unit"].Value.ToString() })
-                                .Distinct()
-                                .ToList();
-
-                            string lockQuery = "SELECT product_id, variation_type, unit, stock FROM stock WHERE ";
-                            for (int i = 0; i < stockKeys.Count; i++)
-                            {
-                                if (i > 0) lockQuery += " OR ";
-                                lockQuery += $"(product_id = @pid{i} AND variation_type = @vtype{i} AND unit = @unit{i})";
-                            }
-                            lockQuery += " FOR UPDATE";
-
-                            using (MySqlCommand lockCmd = new MySqlCommand(lockQuery, connection, transaction))
-                            {
-                                for (int i = 0; i < stockKeys.Count; i++)
-                                {
-                                    lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
-                                    lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
-                                    lockCmd.Parameters.AddWithValue($"@unit{i}", stockKeys[i].Unit == "N/A" ? (object)DBNull.Value : stockKeys[i].Unit);
-                                }
-                                lockCmd.ExecuteNonQuery();
-                            }
-
-                            string insertDetailsQuery = @"
-                                INSERT INTO purchase_return_details 
-                                (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
-                                VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)
-                            ";
-
-                            HashSet<string> processedProducts = new HashSet<string>();
-
-                            foreach (DataGridViewRow row in grnProductDataGridView.Rows)
-                            {
-                                if (row.Cells["product_id"].Value == null ||
-                                    row.Cells["return_quantity"].Value == null ||
-                                    Convert.ToDecimal(row.Cells["return_quantity"].Value) == 0)
-                                {
-                                    continue;
-                                }
-
-                                int productId = Convert.ToInt32(row.Cells["product_id"].Value);
-                                string variationType = row.Cells["variation_type"].Value?.ToString();
-                                if (string.IsNullOrEmpty(variationType) || variationType == "N/A")
-                                    variationType = null;
-
-                                string unit = row.Cells["unit"].Value?.ToString();
-                                if (string.IsNullOrEmpty(unit) || unit == "N/A")
-                                    unit = null;
-
-                                decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
-                                decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
-                                decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
-
-                                string productKey = $"{productId}{variationType ?? "null"}{unit ?? "null"}";
-                                if (processedProducts.Contains(productKey))
-                                {
-                                    System.Diagnostics.Debug.WriteLine($"Skipping duplicate product: {productKey}");
-                                    continue;
-                                }
-                                processedProducts.Add(productKey);
-
-                                string checkStockQuery = @"
-                                    SELECT stock 
-                                    FROM stock 
-                                    WHERE product_id = @productId 
-                                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                                    AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
-                                    LIMIT 1";
-                                using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
-                                {
-                                    checkCmd.Parameters.AddWithValue("@productId", productId);
-                                    checkCmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    checkCmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    var result = checkCmd.ExecuteScalar();
-                                    decimal currentStock = result != null ? Convert.ToDecimal(result) : 0m;
-
-                                    if (currentStock < returnQuantity)
-                                    {
-                                        transaction.Rollback();
-                                        MessageBox.Show($"Cannot return {returnQuantity} units of Product ID {productId}. Only {currentStock} units available.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        return;
-                                    }
-                                }
-
-                                using (MySqlCommand cmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@returnId", returnId);
-                                    cmd.Parameters.AddWithValue("@productId", productId);
-                                    cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                    cmd.Parameters.AddWithValue("@costPrice", costPrice);
-                                    cmd.Parameters.AddWithValue("@netPrice", netPrice);
+                                    cmd.Parameters.AddWithValue("@note", _returnNote ?? (object)DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@reason", selectedReason);
+                                    cmd.Parameters.AddWithValue("@status", status);
+                                    cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
+                                    cmd.Parameters.AddWithValue("@returnId", _returnId.Value);
                                     cmd.ExecuteNonQuery();
                                 }
+                            }
+                            else
+                            {
+                                // Insert new return
+                                string returnNo = "PR_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                                string grnNo = grnProductDataGridView.Rows[0].Cells["grn_no"].Value?.ToString();
 
-                                string updateStockQuery = @"
-                                    UPDATE stock 
-                                    SET stock = stock - @quantity 
-                                    WHERE product_id = @productId 
-                                    AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                                    AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
-                                using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
+                                if (string.IsNullOrEmpty(grnNo))
                                 {
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                    cmd.Parameters.AddWithValue("@productId", productId);
-                                    cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    int rowsAffected = cmd.ExecuteNonQuery();
-                                    System.Diagnostics.Debug.WriteLine($"Stock update for Product ID {productId}: Rows affected = {rowsAffected}, Reduced by {returnQuantity}");
+                                    MessageBox.Show("Invalid GRN number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                string note = _returnNote;
+                                if (string.IsNullOrEmpty(note)) note = null;
+
+                                string insertReturnQuery = @"
+                                    INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, reason, status, created_at)
+                                    VALUES (@grnNo, @returnNo, @note, @totalAmount, @reason, @status, NOW());
+                                    SELECT LAST_INSERT_ID();";
+                                using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@grnNo", grnNo);
+                                    cmd.Parameters.AddWithValue("@returnNo", returnNo);
+                                    cmd.Parameters.AddWithValue("@note", note ?? (object)DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
+                                    cmd.Parameters.AddWithValue("@reason", selectedReason);
+                                    cmd.Parameters.AddWithValue("@status", status);
+                                    _returnId = Convert.ToInt32(cmd.ExecuteScalar());
+                                }
+
+                                // Insert details for both Pending and Complete
+                                string insertDetailsQuery = @"
+                                    INSERT INTO purchase_return_details 
+                                    (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                                    VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)";
+                                HashSet<string> processedProducts = new HashSet<string>();
+
+                                foreach (DataGridViewRow row in grnProductDataGridView.Rows)
+                                {
+                                    if (row.Cells["return_quantity"].Value == null || Convert.ToDecimal(row.Cells["return_quantity"].Value) <= 0)
+                                        continue;
+
+                                    int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                                    string variationType = row.Cells["variation_type"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(variationType) || variationType == "N/A") variationType = null;
+                                    string unit = row.Cells["unit"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(unit) || unit == "N/A") unit = null;
+                                    decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
+                                    decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
+                                    decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
+
+                                    string productKey = $"{productId}{variationType ?? "null"}{unit ?? "null"}";
+                                    if (processedProducts.Contains(productKey))
+                                        continue;
+                                    processedProducts.Add(productKey);
+
+                                    string checkStockQuery = @"
+                                        SELECT stock 
+                                        FROM stock 
+                                        WHERE product_id = @productId 
+                                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))
+                                        LIMIT 1";
+                                    using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
+                                    {
+                                        checkCmd.Parameters.AddWithValue("@productId", productId);
+                                        checkCmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        checkCmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        var result = checkCmd.ExecuteScalar();
+                                        decimal currentStock = result != null ? Convert.ToDecimal(result) : 0m;
+
+                                        if (currentStock < returnQuantity)
+                                        {
+                                            transaction.Rollback();
+                                            MessageBox.Show($"Cannot return {returnQuantity} units of Product ID {productId}. Only {currentStock} units available.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+
+                                    using (MySqlCommand cmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@returnId", _returnId.Value);
+                                        cmd.Parameters.AddWithValue("@productId", productId);
+                                        cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@costPrice", costPrice);
+                                        cmd.Parameters.AddWithValue("@netPrice", netPrice);
+                                        cmd.ExecuteNonQuery();
+                                    }
+
+                                    string updateStockQuery = @"
+                                        UPDATE stock 
+                                        SET stock = stock - @quantity 
+                                        WHERE product_id = @productId 
+                                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
+                                    using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@productId", productId);
+                                        cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        cmd.ExecuteNonQuery();
+                                    }
                                 }
                             }
 
                             transaction.Commit();
                             MessageBox.Show("Purchase return processed successfully.", "Success",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            grnCancelBtn_Click(sender, e);
+                            this.Close();
                         }
                         catch (Exception ex)
                         {
@@ -706,16 +820,34 @@ namespace EscopeWindowsApp
             }
         }
 
+        private decimal CalculateTotalAmount()
+        {
+            decimal total = 0m;
+            foreach (DataGridViewRow row in grnProductDataGridView.Rows)
+            {
+                if (row.Cells["return_quantity"].Value != null &&
+                    Convert.ToDecimal(row.Cells["return_quantity"].Value) > 0)
+                {
+                    if (row.Cells["net_price"].Value != null)
+                    {
+                        total += Convert.ToDecimal(row.Cells["net_price"].Value);
+                    }
+                }
+            }
+            return total;
+        }
+
         private void grnCancelBtn_Click(object sender, EventArgs e)
         {
             grnProSearchText.Text = "";
             purReNoteText.Text = "";
             _returnNote = string.Empty;
-            ResonsPurchasReturnCombo.SelectedIndex = 0; // Reset to first reason
+            ResonsPurchasReturnCombo.SelectedIndex = 0;
+            StatusComboBox.SelectedIndex = 0;
             _grnItemsTable.Clear();
             grnProductDataGridView.DataSource = null;
             LoadGRNData();
-            this.Close(); // Close the form after resetting
+            this.Close();
         }
 
         private void purReNoteText_TextChanged(object sender, EventArgs e)
@@ -726,6 +858,18 @@ namespace EscopeWindowsApp
         private void ResonsPurchasReturnCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedReason = ResonsPurchasReturnCombo.SelectedItem?.ToString();
+        }
+
+        private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (StatusComboBox.SelectedItem.ToString() == "Pending")
+            {
+                grnSaveBtn.Text = "Process";
+            }
+            else
+            {
+                grnSaveBtn.Text = "Save";
+            }
         }
     }
 }

@@ -51,6 +51,7 @@
             this.grnSaveBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.createPurRetLabel = new System.Windows.Forms.Label();
             this.ResonsPurchasReturnCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.StatusComboBox = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.preReGRNDataGridView)).BeginInit();
@@ -121,7 +122,7 @@
             this.grnProSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.grnProSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grnProSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.grnProSearchText.ForeColor = System.Drawing.Color.Gray;
             this.grnProSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.grnProSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
@@ -132,7 +133,7 @@
             this.grnProSearchText.Name = "grnProSearchText";
             this.grnProSearchText.PasswordChar = '\0';
             this.grnProSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.grnProSearchText.PlaceholderText = "Search Products";
+            this.grnProSearchText.PlaceholderText = "Search GRN";
             this.grnProSearchText.SelectedText = "";
             this.grnProSearchText.Size = new System.Drawing.Size(400, 42);
             this.grnProSearchText.TabIndex = 32;
@@ -373,9 +374,9 @@
             this.createPurRetLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createPurRetLabel.Location = new System.Drawing.Point(18, 50);
             this.createPurRetLabel.Name = "createPurRetLabel";
-            this.createPurRetLabel.Size = new System.Drawing.Size(189, 29);
+            this.createPurRetLabel.Size = new System.Drawing.Size(260, 29);
             this.createPurRetLabel.TabIndex = 85;
-            this.createPurRetLabel.Text = "Purchases Return";
+            this.createPurRetLabel.Text = "Create Purchases Return";
             // 
             // ResonsPurchasReturnCombo
             // 
@@ -393,16 +394,38 @@
             "Select Reason"});
             this.ResonsPurchasReturnCombo.Location = new System.Drawing.Point(22, 577);
             this.ResonsPurchasReturnCombo.Name = "ResonsPurchasReturnCombo";
-            this.ResonsPurchasReturnCombo.Size = new System.Drawing.Size(395, 42);
+            this.ResonsPurchasReturnCombo.Size = new System.Drawing.Size(345, 42);
             this.ResonsPurchasReturnCombo.StartIndex = 0;
             this.ResonsPurchasReturnCombo.TabIndex = 104;
             this.ResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.ResonsPurchasReturnCombo_SelectedIndexChanged);
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.StatusComboBox.BorderColor = System.Drawing.Color.Gray;
+            this.StatusComboBox.BorderRadius = 8;
+            this.StatusComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.StatusComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.StatusComboBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.StatusComboBox.ForeColor = System.Drawing.Color.DimGray;
+            this.StatusComboBox.ItemHeight = 36;
+            this.StatusComboBox.Items.AddRange(new object[] {
+            "Select Reason"});
+            this.StatusComboBox.Location = new System.Drawing.Point(383, 577);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(300, 42);
+            this.StatusComboBox.StartIndex = 0;
+            this.StatusComboBox.TabIndex = 105;
+            this.StatusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
             // CreatePurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.Controls.Add(this.StatusComboBox);
             this.Controls.Add(this.ResonsPurchasReturnCombo);
             this.Controls.Add(this.createPurRetLabel);
             this.Controls.Add(this.grnCancelBtn);
@@ -443,5 +466,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton grnSaveBtn;
         private System.Windows.Forms.Label createPurRetLabel;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox ResonsPurchasReturnCombo;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox StatusComboBox;
     }
 }
