@@ -236,7 +236,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE suppliers SET name = @name, email = @email, phone = @phone, city = @city, address = @address, item = @item WHERE id = @supplierId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createSupNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createSupNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", createSupEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", createSupPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@city", createSupCityText.Text.Trim());
@@ -253,7 +253,7 @@ namespace EscopeWindowsApp
                                            "VALUES (@name, @email, @phone, @city, @address, @item)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createSupNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createSupNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", createSupEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", createSupPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@city", createSupCityText.Text.Trim());
@@ -285,6 +285,29 @@ namespace EscopeWindowsApp
         private void craeteSupItemLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // Add this helper method to the AddSupplierForm class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

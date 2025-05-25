@@ -27,6 +27,10 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             SetupErrorProviders();
+            
+            // Disable variation type combo box by default
+            creProVarTypeComboBox.Enabled = false;
+            enabalVTypeCheckBox.Checked = false;
 
             if (productId != -1)
             {
@@ -559,7 +563,7 @@ namespace EscopeWindowsApp
                             WHERE id = @productId";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                            cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
                             cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
                             cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
                             cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
@@ -612,8 +616,7 @@ namespace EscopeWindowsApp
                                     )";
                                 using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                                 {
-                                    string variationName = $"{createProductNameText.Text.Trim()} ({detail.TypeName})";
-                                    cmd.Parameters.AddWithValue("@name", variationName);
+                                    cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
                                     cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
                                     cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
                                     cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
@@ -661,7 +664,7 @@ namespace EscopeWindowsApp
                                 )";
                             using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                             {
-                                cmd.Parameters.AddWithValue("@name", createProductNameText.Text.Trim());
+                                cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
                                 cmd.Parameters.AddWithValue("@category", ProCatComboox.Text);
                                 cmd.Parameters.AddWithValue("@imagePath", productImageData ?? (object)DBNull.Value);
                                 cmd.Parameters.AddWithValue("@unitId", (int)creProUnitComboBox.SelectedValue == 0 ? (object)DBNull.Value : creProUnitComboBox.SelectedValue);
@@ -840,5 +843,28 @@ namespace EscopeWindowsApp
         private void createProductMainPanel_Paint(object sender, PaintEventArgs e) { }
         private void productImagePictureBox_Click(object sender, EventArgs e) { }
         private void varTypeLabel_Click(object sender, EventArgs e) { }
+
+        // Add this helper method to the CreateProduct class
+        private string CapitalizeProductName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
+        }
     }
 }
