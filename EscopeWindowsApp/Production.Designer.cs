@@ -42,6 +42,7 @@
             this.proRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productionSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.ProductDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.expireBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -272,12 +273,31 @@
             this.ProductDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.ProductDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductDataGridView_CellContentClick_1);
             // 
+            // expireBtn
+            // 
+            this.expireBtn.BorderRadius = 8;
+            this.expireBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.expireBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.expireBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.expireBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.expireBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.expireBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.expireBtn.ForeColor = System.Drawing.Color.White;
+            this.expireBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.expireBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.expireBtn.Location = new System.Drawing.Point(637, 30);
+            this.expireBtn.Name = "expireBtn";
+            this.expireBtn.Size = new System.Drawing.Size(42, 42);
+            this.expireBtn.TabIndex = 41;
+            this.expireBtn.Click += new System.EventHandler(this.expireBtn_Click);
+            // 
             // Production
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.expireBtn);
             this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.proRefreshBtn);
             this.Controls.Add(this.productBtnPanel);
@@ -310,5 +330,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton productLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton proRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ProductDataGridView;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton expireBtn;
     }
 }

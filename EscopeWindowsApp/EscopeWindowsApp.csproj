@@ -400,6 +400,12 @@
     <Compile Include="ExpensesForm.Designer.cs">
       <DependentUpon>ExpensesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExpiredProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpiredProductsForm.Designer.cs">
+      <DependentUpon>ExpiredProductsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GRNForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -695,6 +701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExpensesForm.resx">
       <DependentUpon>ExpensesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpiredProductsForm.resx">
+      <DependentUpon>ExpiredProductsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GRNForm.resx">
       <DependentUpon>GRNForm.cs</DependentUpon>

@@ -161,7 +161,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE variations SET name = @name, type1 = @type1, type2 = @type2, type3 = @type3, type4 = @type4, type5 = @type5 WHERE id = @variationId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createVarNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createVarNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@type1", addVarTypeTextBox.Text.Trim() ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@type2", addVarTypeTextBox2.Text.Trim() ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@type3", addVarTypeTextBox3.Text.Trim() ?? (object)DBNull.Value);
@@ -177,7 +177,7 @@ namespace EscopeWindowsApp
                             string query = "INSERT INTO variations (name, type1, type2, type3, type4, type5) VALUES (@name, @type1, @type2, @type3, @type4, @type5)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createVarNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createVarNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@type1", addVarTypeTextBox.Text.Trim() ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@type2", addVarTypeTextBox2.Text.Trim() ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@type3", addVarTypeTextBox3.Text.Trim() ?? (object)DBNull.Value);
@@ -204,6 +204,29 @@ namespace EscopeWindowsApp
         private void CreVarCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // Add this helper method to the AddVariationItem class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

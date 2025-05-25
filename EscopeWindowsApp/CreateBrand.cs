@@ -165,7 +165,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE brands SET name = @name, logo = @logo WHERE id = @brandId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createBrandsNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@brandId", editBrandId);
                                 command.ExecuteNonQuery();
@@ -177,7 +177,7 @@ namespace EscopeWindowsApp
                             string query = "INSERT INTO brands (name, logo) VALUES (@name, @logo)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createBrandsNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createBrandsNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
                                 command.ExecuteNonQuery();
                             }
@@ -196,6 +196,29 @@ namespace EscopeWindowsApp
                 MessageBox.Show("Please correct the errors before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
+        }
+
         private void creBrandsLogoBox_Click_1(object sender, EventArgs e)
         {
             // This method is empty and can be removed
