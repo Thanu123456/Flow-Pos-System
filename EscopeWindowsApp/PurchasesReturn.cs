@@ -99,9 +99,14 @@ namespace EscopeWindowsApp
             {
                 Name = "edit",
                 HeaderText = "EDIT",
-                Width = 50,
-                Image = Properties.Resources.edit, // Ensure you have an edit icon in resources
-                ImageLayout = DataGridViewImageCellLayout.Zoom
+                Width = 30,
+                Image = Properties.Resources.edit,
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Padding = new Padding(5), // Add padding to make the icon smaller within the cell
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                }
             };
             purRetDataGridView.Columns.Add(editColumn);
 
@@ -414,6 +419,7 @@ namespace EscopeWindowsApp
             LoadReturnsData();
             purRetSearchText.Text = string.Empty;
             filterResonsPurchasReturnCombo.SelectedIndex = 0;
+            checkPendingReturns.Checked = false; // Uncheck the pending returns checkbox
             bindingSource.Filter = null;
             purRetDataGridView.Refresh();
         }
@@ -501,6 +507,63 @@ namespace EscopeWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error applying reason filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bindingSource.Filter = null;
+                purRetDataGridView.Refresh();
+            }
+        }
+
+        private void checkPendingReturns_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get current search text and reason filter if any
+                string searchText = purRetSearchText.Text.Trim().ToLower();
+                string selectedReason = filterResonsPurchasReturnCombo.SelectedItem?.ToString();
+                string pendingFilter = checkPendingReturns.Checked ? "status = 'Pending'" : null;
+
+                // Build the complete filter expression
+                string filterExpression = null;
+
+                // Add search filter if exists
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    searchText = searchText.Replace("'", "''");
+                    filterExpression = $"(grn_no LIKE '%{searchText}%' OR return_no LIKE '%{searchText}%')";
+                }
+
+                // Add reason filter if selected
+                if (!string.IsNullOrEmpty(selectedReason) && selectedReason != "All Reasons")
+                {
+                    string reasonFilter = $"reason = '{selectedReason}'";
+                    filterExpression = string.IsNullOrEmpty(filterExpression)
+                        ? reasonFilter
+                        : $"{filterExpression} AND {reasonFilter}";
+                }
+
+                // Add pending filter if checkbox is checked
+                if (pendingFilter != null)
+                {
+                    filterExpression = string.IsNullOrEmpty(filterExpression)
+                        ? pendingFilter
+                        : $"{filterExpression} AND {pendingFilter}";
+                }
+
+                // Apply the combined filter to the binding source
+                bindingSource.Filter = filterExpression;
+
+                // Reset current index and select first row if available
+                if (purRetDataGridView.Rows.Count > 0)
+                {
+                    currentIndex = 0;
+                    purRetDataGridView.CurrentCell = purRetDataGridView.Rows[currentIndex].Cells[0];
+                    purRetDataGridView.Rows[currentIndex].Selected = true;
+                }
+
+                purRetDataGridView.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying pending filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bindingSource.Filter = null;
                 purRetDataGridView.Refresh();
             }

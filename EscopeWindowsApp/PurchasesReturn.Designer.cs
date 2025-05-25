@@ -43,6 +43,7 @@
             this.purRetNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.purRetLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.filterResonsPurchasReturnCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.checkPendingReturns = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.purRetDataGridView)).BeginInit();
             this.expBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -124,7 +125,6 @@
             this.purRetDataGridView.ThemeStyle.RowsStyle.Height = 35;
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(186)))), ((int)(((byte)(231)))));
             this.purRetDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-           // this.purRetDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purRetDataGridView_CellContentClick_1);
             // 
             // createPurRetBtn
             // 
@@ -296,11 +296,33 @@
             this.filterResonsPurchasReturnCombo.TabIndex = 105;
             this.filterResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsPurchasReturnCombo_SelectedIndexChanged);
             // 
+            // checkPendingReturns
+            // 
+            this.checkPendingReturns.AutoSize = true;
+            this.checkPendingReturns.BackColor = System.Drawing.Color.Transparent;
+            this.checkPendingReturns.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.checkPendingReturns.CheckedState.BorderRadius = 5;
+            this.checkPendingReturns.CheckedState.BorderThickness = 1;
+            this.checkPendingReturns.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
+            this.checkPendingReturns.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.checkPendingReturns.Location = new System.Drawing.Point(573, 67);
+            this.checkPendingReturns.Name = "checkPendingReturns";
+            this.checkPendingReturns.Size = new System.Drawing.Size(148, 25);
+            this.checkPendingReturns.TabIndex = 106;
+            this.checkPendingReturns.Text = "Pending Returns";
+            this.checkPendingReturns.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.checkPendingReturns.UncheckedState.BorderRadius = 5;
+            this.checkPendingReturns.UncheckedState.BorderThickness = 1;
+            this.checkPendingReturns.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.checkPendingReturns.UseVisualStyleBackColor = false;
+            this.checkPendingReturns.CheckedChanged += new System.EventHandler(this.checkPendingReturns_CheckedChanged);
+            // 
             // PurchasesReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.checkPendingReturns);
             this.Controls.Add(this.filterResonsPurchasReturnCombo);
             this.Controls.Add(this.expBtnPanel);
             this.Controls.Add(this.purRetDataGridView);
@@ -312,10 +334,10 @@
             this.MaximumSize = new System.Drawing.Size(1920, 10880);
             this.Name = "PurchasesReturn";
             this.Text = "Purchases Returns";
-           // this.Load += new System.EventHandler(this.PurchasesReturn_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.purRetDataGridView)).EndInit();
             this.expBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,5 +353,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetNextBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton purRetLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox filterResonsPurchasReturnCombo;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox checkPendingReturns;
     }
 }

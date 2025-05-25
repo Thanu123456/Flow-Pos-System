@@ -169,7 +169,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE categories SET name = @name, logo = @logo WHERE id = @categoryId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createCategoryNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createCategoryNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
                                 command.Parameters.AddWithValue("@categoryId", editCategoryId);
                                 int rowsAffected = command.ExecuteNonQuery();
@@ -185,7 +185,7 @@ namespace EscopeWindowsApp
                             string query = "INSERT INTO categories (name, logo) VALUES (@name, @logo)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createCategoryNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createCategoryNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@logo", imageBytes ?? (object)DBNull.Value);
                                 command.ExecuteNonQuery();
                             }
@@ -218,6 +218,29 @@ namespace EscopeWindowsApp
         {
             // Optional: Uncomment to trigger image upload on click
             // creCategoryImgUploadBtn_Click(sender, e);
+        }
+
+        // Add this helper method to the CreateCategory class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

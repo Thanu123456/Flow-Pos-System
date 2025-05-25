@@ -69,6 +69,7 @@ namespace EscopeWindowsApp
             ConfigureGrnProductDataGridView();
             if (_returnId.HasValue)
             {
+                grnProSearchText.Enabled = false; // Disable search bar in update mode
                 LoadExistingReturn(_returnId.Value);
                 if (preReGRNDataGridView.Columns.Contains("AddColumn"))
                 {
@@ -77,6 +78,7 @@ namespace EscopeWindowsApp
             }
             else
             {
+                grnProSearchText.Enabled = true; // Enable search bar in create mode
                 LoadGRNData();
                 if (preReGRNDataGridView.Columns.Contains("AddColumn"))
                 {

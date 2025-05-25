@@ -330,8 +330,8 @@ namespace EscopeWindowsApp
 
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@firstName", createUserFirstText.Text.Trim());
-                                command.Parameters.AddWithValue("@lastName", createUserLastText.Text.Trim());
+                                command.Parameters.AddWithValue("@firstName", CapitalizeName(createUserFirstText.Text.Trim()));
+                                command.Parameters.AddWithValue("@lastName", CapitalizeName(createUserLastText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", createUserEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phoneNumber", createUserPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@role", CreateUserRoleCombo.SelectedItem.ToString());
@@ -355,8 +355,8 @@ namespace EscopeWindowsApp
                                            "VALUES (@firstName, @lastName, @email, @phoneNumber, @password, @role)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@firstName", createUserFirstText.Text.Trim());
-                                command.Parameters.AddWithValue("@lastName", createUserLastText.Text.Trim());
+                                command.Parameters.AddWithValue("@firstName", CapitalizeName(createUserFirstText.Text.Trim()));
+                                command.Parameters.AddWithValue("@lastName", CapitalizeName(createUserLastText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", createUserEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phoneNumber", createUserPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@password", hashedPassword);
@@ -403,6 +403,29 @@ namespace EscopeWindowsApp
         {
             // Toggle password visibility for createUserCpassText based on checkbox state
             createUserCpassText.UseSystemPasswordChar = !cPassShowCheckBox.Checked;
+        }
+
+        // Add this helper method to the AddUserForm class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

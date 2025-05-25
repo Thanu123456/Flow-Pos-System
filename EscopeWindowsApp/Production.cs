@@ -510,5 +510,25 @@ namespace EscopeWindowsApp
         {
 
         }
+
+        private void expireBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is ExpiredProductsForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            ExpiredProductsForm expiredProductsForm = new ExpiredProductsForm();
+            expiredProductsForm.FormClosed += (s, args) => LoadProductsData();
+            expiredProductsForm.Show();
+        }
     }
 }

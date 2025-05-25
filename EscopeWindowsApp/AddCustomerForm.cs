@@ -257,7 +257,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE customers SET name = @name, email = @email, phone = @phone, dob = @dob, city = @city, address = @address WHERE id = @customerId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createCusNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createCusNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", addCusEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", CreateCusPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@dob", createCusDateTime.Value.ToString("yyyy-MM-dd"));
@@ -274,7 +274,7 @@ namespace EscopeWindowsApp
                                            "VALUES (@name, @email, @phone, @dob, @city, @address)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createCusNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createCusNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", addCusEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", CreateCusPhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@dob", createCusDateTime.Value.ToString("yyyy-MM-dd"));
@@ -301,6 +301,29 @@ namespace EscopeWindowsApp
         private void cusCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // Add this helper method to the AddCustomerForm class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }
