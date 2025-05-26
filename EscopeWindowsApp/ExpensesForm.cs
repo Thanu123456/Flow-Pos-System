@@ -49,7 +49,7 @@ namespace EscopeWindowsApp
                 DataPropertyName = "expense_date",
                 Name = "expense_date",
                 HeaderText = "DATE",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Date format matching Sales form
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" } // Date format matching Sales form
             });
             expDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -111,7 +111,7 @@ namespace EscopeWindowsApp
             {
                 if (e.Value is DateTime date && date != DateTime.MinValue)
                 {
-                    e.Value = date.ToString("yyyy-MM-dd HH:mm:ss");
+                    e.Value = date.ToString("yyyy-MM-dd"); // Changed: Remove time component
                     e.FormattingApplied = true;
                 }
                 else

@@ -173,7 +173,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE units SET unit_name = @unitName, short_name = @shortName, base_unit_id = @baseUnitId WHERE id = @unitId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@unitName", createUnitNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@unitName", CapitalizeName(createUnitNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@shortName", shortUnitNameTextBox.Text.Trim());
                                 command.Parameters.AddWithValue("@baseUnitId", baseUnitIdParam);
                                 command.Parameters.AddWithValue("@unitId", editUnitId);
@@ -197,7 +197,7 @@ namespace EscopeWindowsApp
                             string query = "INSERT INTO units (unit_name, short_name, base_unit_id) VALUES (@unitName, @shortName, @baseUnitId)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@unitName", createUnitNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@unitName", CapitalizeName(createUnitNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@shortName", shortUnitNameTextBox.Text.Trim());
                                 command.Parameters.AddWithValue("@baseUnitId", baseUnitIdParam);
                                 command.ExecuteNonQuery();
@@ -240,6 +240,29 @@ namespace EscopeWindowsApp
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        // Add this helper method to the CreateUnits class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

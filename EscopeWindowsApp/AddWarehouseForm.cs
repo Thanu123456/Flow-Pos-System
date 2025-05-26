@@ -242,7 +242,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE warehouses SET name = @name, email = @email, phone = @phone, city = @city, address = @address, zip_code = @zipCode WHERE id = @warehouseId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", addWarehouseNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(addWarehouseNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", addWarehouseEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", addWarehousePhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@city", addWarehouseCityText.Text.Trim());
@@ -259,7 +259,7 @@ namespace EscopeWindowsApp
                                            "VALUES (@name, @email, @phone, @city, @address, @zipCode)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", addWarehouseNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(addWarehouseNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@email", addWarehouseEmailText.Text.Trim());
                                 command.Parameters.AddWithValue("@phone", addWarehousePhoneText.Text.Trim());
                                 command.Parameters.AddWithValue("@city", addWarehouseCityText.Text.Trim());
@@ -286,6 +286,29 @@ namespace EscopeWindowsApp
         private void addWarehouseCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // Add this helper method to the AddWarehouseForm class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }
