@@ -258,6 +258,31 @@ namespace EscopeWindowsApp
             return document;
         }
 
+        // New method for Sales Return Report
+        public Document CreateSalesReturnReportDocument(DataTable salesReturnTable, string filterDescription)
+        {
+            document = new Document();
+            document.Info.Title = "Sales Return Report";
+            document.Info.Author = "EscopeWindowsApp";
+
+            DefineStyles();
+            section = document.AddSection();
+            section.PageSetup = document.DefaultPageSetup.Clone();
+            section.PageSetup.TopMargin = Unit.FromCentimeter(4);
+            section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
+            section.PageSetup.RightMargin = Unit.FromCentimeter(2);
+            section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
+
+            AddHeader();
+            AddReportTitle("Sales Return Report", filterDescription);
+            AddSalesReturnSummaryTable(salesReturnTable);
+            AddSpacer();
+            AddSalesReturnTable(salesReturnTable);
+            AddFooter();
+
+            return document;
+        }
+
         public void DefineStyles()
         {
             Style style = document.Styles["Normal"];
@@ -386,6 +411,32 @@ namespace EscopeWindowsApp
             headerRow.Shading.Color = Colors.SkyBlue;
             headerRow.Cells[0].AddParagraph("Total Expenses");
             headerRow.Cells[1].AddParagraph(totalExpenses.ToString("N2"));
+
+            summaryTable.Format.SpaceAfter = 0;
+        }
+
+        // New method for Sales Return Summary Table
+        private void AddSalesReturnSummaryTable(DataTable salesReturnTable)
+        {
+            int totalReturns = salesReturnTable.Rows.Count;
+            decimal totalReturnAmount = salesReturnTable.AsEnumerable().Sum(row => Convert.ToDecimal(row["total_price"]));
+
+            Table summaryTable = section.AddTable();
+            summaryTable.Borders.Width = 0.5;
+            summaryTable.AddColumn(Unit.FromCentimeter(5));
+            summaryTable.AddColumn(Unit.FromCentimeter(5));
+
+            Row headerRow = summaryTable.AddRow();
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Colors.SkyBlue;
+            headerRow.Cells[0].AddParagraph("Total Returns");
+            headerRow.Cells[1].AddParagraph("Total Return Amount");
+
+            Row dataRow = summaryTable.AddRow();
+            dataRow.Style = "SummaryTable";
+            dataRow.Cells[0].AddParagraph(totalReturns.ToString());
+            dataRow.Cells[1].AddParagraph(totalReturnAmount.ToString("N2"));
 
             summaryTable.Format.SpaceAfter = 0;
         }
@@ -562,12 +613,11 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            // Define columns without placeholders (total 17.5 cm)
-            table.AddColumn(Unit.FromCentimeter(4));    // Customer Name (was 3, now 4)
-            table.AddColumn(Unit.FromCentimeter(4));    // Phone Number (was 3, now 4)
-            table.AddColumn(Unit.FromCentimeter(3.5));  // Total Sales (was 3, now 3.5)
-            table.AddColumn(Unit.FromCentimeter(3));    // Amount (was 2.5, now 3)
-            table.AddColumn(Unit.FromCentimeter(3));    // Paid (was 2, now 3)
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(3.5));
+            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(3));
 
             Row headerRow = table.AddRow();
             headerRow.HeadingFormat = true;
@@ -593,13 +643,12 @@ namespace EscopeWindowsApp
                 dataRow.Cells[4].AddParagraph(paid.ToString("N2"));
             }
 
-            // Add total row
             decimal totalAmount = customersTable.AsEnumerable().Sum(row => row["amount"] != DBNull.Value ? Convert.ToDecimal(row["amount"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TableHeader";
             totalRow.Shading.Color = Colors.SkyBlue;
-            totalRow.Cells[0].MergeRight = 2; // Adjusted to merge across 3 columns (0 to 2)
+            totalRow.Cells[0].MergeRight = 2;
             totalRow.Cells[0].AddParagraph("Total");
             totalRow.Cells[3].AddParagraph(totalAmount.ToString("N2"));
             totalRow.Cells[4].AddParagraph("");
@@ -612,11 +661,10 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            // Define columns (removed the placeholder columns)
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Supplier Name
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Phone Number
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Purchases
-            table.AddColumn(Unit.FromCentimeter(4));    // Total Amount
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4));
 
             Row headerRow = table.AddRow();
             headerRow.HeadingFormat = true;
@@ -639,13 +687,12 @@ namespace EscopeWindowsApp
                 dataRow.Cells[3].AddParagraph(totalAmount.ToString("N2"));
             }
 
-            // Add total row
             decimal totalAmountSum = suppliersTable.AsEnumerable().Sum(row => row["total_amount"] != DBNull.Value ? Convert.ToDecimal(row["total_amount"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TableHeader";
             totalRow.Shading.Color = Colors.SkyBlue;
-            totalRow.Cells[0].MergeRight = 2; // Merge across 3 columns (0 to 2)
+            totalRow.Cells[0].MergeRight = 2;
             totalRow.Cells[0].AddParagraph("Total");
             totalRow.Cells[3].AddParagraph(totalAmountSum.ToString("N2"));
         }
@@ -657,11 +704,10 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            // Define columns (total 17.5 cm to match other tables)
-            table.AddColumn(Unit.FromCentimeter(4.5));  // GRN Number
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Payment Method
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Total Amount
-            table.AddColumn(Unit.FromCentimeter(4));    // Date
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4));
 
             Row headerRow = table.AddRow();
             headerRow.HeadingFormat = true;
@@ -684,13 +730,12 @@ namespace EscopeWindowsApp
                 dataRow.Cells[3].AddParagraph(row["date"] != DBNull.Value ? Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd") : "N/A");
             }
 
-            // Add total row
             decimal totalAmountSum = purchasesTable.AsEnumerable().Sum(row => row["total_amount"] != DBNull.Value ? Convert.ToDecimal(row["total_amount"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TableHeader";
             totalRow.Shading.Color = Colors.SkyBlue;
-            totalRow.Cells[0].MergeRight = 2; // Merge across 3 columns (0 to 2)
+            totalRow.Cells[0].MergeRight = 2;
             totalRow.Cells[0].AddParagraph("Total");
             totalRow.Cells[3].AddParagraph(totalAmountSum.ToString("N2"));
         }
@@ -702,11 +747,10 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            // Define columns (total 17.5 cm to match other tables)
-            table.AddColumn(Unit.FromCentimeter(4.5));  // GRN Number
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Supplier Name
-            table.AddColumn(Unit.FromCentimeter(4.5));  // Credit Amount
-            table.AddColumn(Unit.FromCentimeter(4));    // Date
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4.5));
+            table.AddColumn(Unit.FromCentimeter(4));
 
             Row headerRow = table.AddRow();
             headerRow.HeadingFormat = true;
@@ -729,13 +773,12 @@ namespace EscopeWindowsApp
                 dataRow.Cells[3].AddParagraph(row["date"] != DBNull.Value ? Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd HH:mm:ss") : "N/A");
             }
 
-            // Add total row
             decimal totalAmountSum = grnCreditTable.AsEnumerable().Sum(row => row["credit_amount"] != DBNull.Value ? Convert.ToDecimal(row["credit_amount"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TableHeader";
             totalRow.Shading.Color = Colors.SkyBlue;
-            totalRow.Cells[0].MergeRight = 2; // Merge across 3 columns (0 to 2)
+            totalRow.Cells[0].MergeRight = 2;
             totalRow.Cells[0].AddParagraph("Total");
             totalRow.Cells[3].AddParagraph(totalAmountSum.ToString("N2"));
         }
@@ -747,13 +790,12 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            // Define columns (total 17.5 cm to match other tables)
-            table.AddColumn(Unit.FromCentimeter(4));    // Product Name
-            table.AddColumn(Unit.FromCentimeter(3));    // Variation Type
-            table.AddColumn(Unit.FromCentimeter(2.5));  // Unit
-            table.AddColumn(Unit.FromCentimeter(2.5));  // Quantity
-            table.AddColumn(Unit.FromCentimeter(2.5));  // Cost Price
-            table.AddColumn(Unit.FromCentimeter(3));    // Total Price
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(3));
 
             Row headerRow = table.AddRow();
             headerRow.HeadingFormat = true;
@@ -781,16 +823,74 @@ namespace EscopeWindowsApp
                 dataRow.Cells[5].AddParagraph(totalPrice.ToString("N2"));
             }
 
-            // Add total row
             decimal totalAmountSum = grnDetailsTable.AsEnumerable().Sum(row => row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TableHeader";
             totalRow.Shading.Color = Colors.SkyBlue;
-            totalRow.Cells[0].MergeRight = 3; // Merge across 4 columns (0 to 3)
+            totalRow.Cells[0].MergeRight = 3;
             totalRow.Cells[0].AddParagraph("Total");
-            totalRow.Cells[4].AddParagraph(""); // Empty cell under Cost Price
+            totalRow.Cells[4].AddParagraph("");
             totalRow.Cells[5].AddParagraph(totalAmountSum.ToString("N2"));
+        }
+
+        // New method for Sales Return Table
+        private void AddSalesReturnTable(DataTable salesReturnTable)
+        {
+            Table table = section.AddTable();
+            table.Borders.Width = 0.5;
+            table.Rows.Height = 10;
+            table.KeepTogether = false;
+
+            table.AddColumn(Unit.FromCentimeter(2));   // Bill No
+            table.AddColumn(Unit.FromCentimeter(3));   // Product Name
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Variation Type
+            table.AddColumn(Unit.FromCentimeter(2));   // Unit
+            table.AddColumn(Unit.FromCentimeter(2));   // Quantity
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Total Price
+            table.AddColumn(Unit.FromCentimeter(3));   // Reason
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Date
+
+            Row headerRow = table.AddRow();
+            headerRow.HeadingFormat = true;
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Colors.SkyBlue;
+            headerRow.Cells[0].AddParagraph("Bill No");
+            headerRow.Cells[1].AddParagraph("Product Name");
+            headerRow.Cells[2].AddParagraph("Variation Type");
+            headerRow.Cells[3].AddParagraph("Unit");
+            headerRow.Cells[4].AddParagraph("Quantity");
+            headerRow.Cells[5].AddParagraph("Total Price");
+            headerRow.Cells[6].AddParagraph("Reason");
+            headerRow.Cells[7].AddParagraph("Date");
+
+            foreach (DataRow row in salesReturnTable.Rows)
+            {
+                Row dataRow = table.AddRow();
+                dataRow.Style = "TableCell";
+                dataRow.Cells[0].AddParagraph(row["bill_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[1].AddParagraph(row["product_name"]?.ToString() ?? "N/A");
+                dataRow.Cells[2].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
+                dataRow.Cells[3].AddParagraph(row["unit"]?.ToString() ?? "N/A");
+                decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
+                dataRow.Cells[4].AddParagraph(quantity.ToString("N2"));
+                decimal totalPrice = row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0;
+                dataRow.Cells[5].AddParagraph(totalPrice.ToString("N2"));
+                dataRow.Cells[6].AddParagraph(row["reason"]?.ToString() ?? "N/A");
+                dataRow.Cells[7].AddParagraph(row["refund_date"] != DBNull.Value ? Convert.ToDateTime(row["refund_date"]).ToString("yyyy-MM-dd") : "N/A");
+            }
+
+            decimal totalAmount = salesReturnTable.AsEnumerable().Sum(row => row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0);
+            Row totalRow = table.AddRow();
+            totalRow.Height = Unit.FromCentimeter(0.8);
+            totalRow.Style = "TableHeader";
+            totalRow.Shading.Color = Colors.SkyBlue;
+            totalRow.Cells[0].MergeRight = 4;
+            totalRow.Cells[0].AddParagraph("Total");
+            totalRow.Cells[5].AddParagraph(totalAmount.ToString("N2"));
+            totalRow.Cells[6].AddParagraph("");
+            totalRow.Cells[7].AddParagraph("");
         }
 
         public void AddCustomerHistoryTable(DataTable customerSales, DataTable customerDetails)
@@ -800,7 +900,6 @@ namespace EscopeWindowsApp
                 throw new ArgumentNullException("customerSales or customerDetails cannot be null");
             }
 
-            // Verify required columns in customerSales
             string[] requiredSalesColumns = { "bill_no", "user_name", "quantity_of_items", "payment_method", "total_price", "sale_date" };
             foreach (var column in requiredSalesColumns)
             {
@@ -810,7 +909,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Verify required columns in customerDetails
             string[] requiredDetailsColumns = { "bill_no", "product_name", "variation_type", "unit", "quantity", "price", "total_price" };
             foreach (var column in requiredDetailsColumns)
             {
@@ -854,13 +952,12 @@ namespace EscopeWindowsApp
                 table.Rows.Height = 10;
                 table.KeepTogether = false;
 
-                // Define columns (removed the placeholder column)
-                table.AddColumn(Unit.FromCentimeter(3));    // Product Name
-                table.AddColumn(Unit.FromCentimeter(3));    // Variation Type
-                table.AddColumn(Unit.FromCentimeter(3));    // Unit
-                table.AddColumn(Unit.FromCentimeter(2));    // Quantity
-                table.AddColumn(Unit.FromCentimeter(2.5));  // Price
-                table.AddColumn(Unit.FromCentimeter(2));    // Total Price
+                table.AddColumn(Unit.FromCentimeter(3));
+                table.AddColumn(Unit.FromCentimeter(3));
+                table.AddColumn(Unit.FromCentimeter(3));
+                table.AddColumn(Unit.FromCentimeter(2));
+                table.AddColumn(Unit.FromCentimeter(2.5));
+                table.AddColumn(Unit.FromCentimeter(2));
 
                 Row headerRow = table.AddRow();
                 headerRow.HeadingFormat = true;
@@ -894,9 +991,9 @@ namespace EscopeWindowsApp
                 totalRow.Height = Unit.FromCentimeter(0.8);
                 totalRow.Style = "TableHeader";
                 totalRow.Shading.Color = Colors.SkyBlue;
-                totalRow.Cells[0].MergeRight = 3; // Adjusted to merge across 4 columns (0 to 3)
+                totalRow.Cells[0].MergeRight = 3;
                 totalRow.Cells[0].AddParagraph("Total");
-                totalRow.Cells[4].AddParagraph(""); // Empty cell under Price
+                totalRow.Cells[4].AddParagraph("");
                 totalRow.Cells[5].AddParagraph($"LKR {billTotal.ToString("N2")}");
 
                 section.AddParagraph("").Format.SpaceAfter = 10;
@@ -910,7 +1007,6 @@ namespace EscopeWindowsApp
                 throw new ArgumentNullException("supplierPurchases or purchaseDetails cannot be null");
             }
 
-            // Verify required columns in supplierPurchases
             string[] requiredPurchasesColumns = { "grn_id", "product_name", "quantity", "cost_price", "net_price" };
             foreach (var column in requiredPurchasesColumns)
             {
@@ -920,7 +1016,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Verify required columns in purchaseDetails
             string[] requiredDetailsColumns = { "grn_id", "product_name", "variation_type", "unit", "quantity", "cost_price", "net_price", "expiry_date", "warranty" };
             foreach (var column in requiredDetailsColumns)
             {
@@ -952,15 +1047,14 @@ namespace EscopeWindowsApp
                 table.Rows.Height = 10;
                 table.KeepTogether = false;
 
-                // Define columns (total 17.5 cm to match other tables)
-                table.AddColumn(Unit.FromCentimeter(3));    // Product Name
-                table.AddColumn(Unit.FromCentimeter(2.5));  // Variation Type
-                table.AddColumn(Unit.FromCentimeter(2));    // Unit
-                table.AddColumn(Unit.FromCentimeter(2));    // Quantity
-                table.AddColumn(Unit.FromCentimeter(2.5));  // Cost Price
-                table.AddColumn(Unit.FromCentimeter(2.5));  // Net Price
-                table.AddColumn(Unit.FromCentimeter(1.5));  // Expiry Date
-                table.AddColumn(Unit.FromCentimeter(1.5));  // Warranty
+                table.AddColumn(Unit.FromCentimeter(3));
+                table.AddColumn(Unit.FromCentimeter(2.5));
+                table.AddColumn(Unit.FromCentimeter(2));
+                table.AddColumn(Unit.FromCentimeter(2));
+                table.AddColumn(Unit.FromCentimeter(2.5));
+                table.AddColumn(Unit.FromCentimeter(2.5));
+                table.AddColumn(Unit.FromCentimeter(1.5));
+                table.AddColumn(Unit.FromCentimeter(1.5));
 
                 Row headerRow = table.AddRow();
                 headerRow.HeadingFormat = true;

@@ -346,5 +346,23 @@ namespace EscopeWindowsApp
             CreaditReport creaditReport = new CreaditReport();
             creaditReport.Show();
         }
+
+        private void saleRetReportBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is SalesReturnReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            SalesReturnReport salesReturnReport = new SalesReturnReport();
+            salesReturnReport.Show();}
     }
 }

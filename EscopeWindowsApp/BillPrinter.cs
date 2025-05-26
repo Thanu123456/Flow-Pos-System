@@ -93,7 +93,8 @@ namespace EscopeWindowsApp
                 Options = new EncodingOptions
                 {
                     Height = 50,
-                    Width = 200
+                    Width = 200,
+                    PureBarcode = true // This prevents text from being displayed below the barcode
                 }
             };
             using (Bitmap bitmap = writer.Write(billNo))
@@ -119,11 +120,67 @@ namespace EscopeWindowsApp
             section.PageSetup.TopMargin = Unit.FromMillimeter(5);
             section.PageSetup.BottomMargin = Unit.FromMillimeter(5);
 
-            // Calculate dynamic height based on content (2 rows per item)
+            // Calculate dynamic height based on content
             int itemCount = cartItems.Count;
-            double baseHeight = 120;
-            double bottomSpace = 80;
-            double totalHeight = baseHeight + (itemCount * 44) + bottomSpace; // 44mm for 2 rows per item
+            double baseHeight = 66; // Header (logo, company details, bill details)
+            double bottomSpace = 50; // Summary, barcode, footer, buffer
+            if (paymentMethod == "Cash") baseHeight += 5; // Add 5 mm for cash payment rows
+
+            double totalHeight;
+
+            if (itemCount == 0)
+            {
+                totalHeight = baseHeight + bottomSpace; // No items
+            }
+            else if (itemCount >= 1 && itemCount <= 5)
+            {
+                totalHeight = 150 + (10 * (itemCount - 1)); // 150 mm for 1 item, 170 mm for 3 items, 190 mm for 5 items
+            }
+            else if (itemCount > 5 && itemCount <= 10)
+            {
+                totalHeight = 190 + (5 * (itemCount - 5)); // 190 mm for 5 items, 215 mm for 10 items
+            }
+            else if (itemCount > 10 && itemCount <= 15)
+            {
+                totalHeight = 215 + (5 * (itemCount - 10)); // 215 mm for 10 items, 240 mm for 15 items
+            }
+            else if (itemCount > 15 && itemCount <= 20)
+            {
+                totalHeight = 240 + (5 * (itemCount - 15)); // 240 mm for 15 items, 265 mm for 20 items
+            }
+            else if (itemCount > 20 && itemCount <= 30)
+            {
+                totalHeight = 265 + (10 * (itemCount - 20) / 2); // 265 mm for 20 items, 315 mm for 30 items
+            }
+            else if (itemCount > 30 && itemCount <= 40)
+            {
+                totalHeight = 315 + (10 * (itemCount - 30) / 2); // 315 mm for 30 items, 365 mm for 40 items
+            }
+            else if (itemCount > 40 && itemCount <= 50)
+            {
+                totalHeight = 365 + (10 * (itemCount - 40) / 2); // 365 mm for 40 items, 415 mm for 50 items
+            }
+            else if (itemCount > 50 && itemCount <= 60)
+            {
+                totalHeight = 415 + (10 * (itemCount - 50) / 2); // 415 mm for 50 items, 465 mm for 60 items
+            }
+            else if (itemCount > 60 && itemCount <= 70)
+            {
+                totalHeight = 465 + (10 * (itemCount - 60) / 2); // 465 mm for 60 items, 515 mm for 70 items
+            }
+            else if (itemCount > 70 && itemCount <= 80)
+            {
+                totalHeight = 515 + (10 * (itemCount - 70) / 2); // 515 mm for 70 items, 565 mm for 80 items
+            }
+            else if (itemCount > 80 && itemCount <= 100)
+            {
+                totalHeight = 565 + (15 * (itemCount - 80) / 4); // 565 mm for 80 items, 640 mm for 100 items
+            }
+            else
+            {
+                totalHeight = 640; // Cap at 640 mm for >100 items
+            }
+
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
 
             // Define professional styles for thermal receipt
@@ -137,7 +194,7 @@ namespace EscopeWindowsApp
             Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
             bodyStyle.Font.Name = "Courier New";
             bodyStyle.Font.Size = 8;
-            bodyStyle.ParagraphFormat.SpaceAfter = 2;
+            bodyStyle.ParagraphFormat.SpaceAfter = 0; // Reduced from 2 to remove extra gap
 
             Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
             boldBodyStyle.Font.Bold = true;
@@ -206,14 +263,13 @@ namespace EscopeWindowsApp
 
             // Top separator
             Paragraph separator1 = section.AddParagraph();
-            separator1.AddText("========================================");
+            separator1.AddText("============================================");
             separator1.Style = "Center";
 
             // Bill details section
             Paragraph dateTimePara = section.AddParagraph();
             dateTimePara.Style = "Body";
-            dateTimePara.AddText($"DATE: {DateTime.Now:dd/MM/yyyy}  " +
-                $"TIME: {DateTime.Now:HH:mm:ss}");
+            dateTimePara.AddText($"DATE: {DateTime.Now:dd/MM/yyyy}  TIME: {DateTime.Now:HH:mm:ss}");
 
             Paragraph invoicePara = section.AddParagraph();
             invoicePara.Style = "Body";
@@ -232,7 +288,7 @@ namespace EscopeWindowsApp
 
             // Items section separator
             Paragraph separator2 = section.AddParagraph();
-            separator2.AddText("========================================");
+            separator2.AddText("============================================");
             separator2.Style = "Center";
 
             // Create professional table with separate columns
@@ -261,7 +317,7 @@ namespace EscopeWindowsApp
             headerRow1.Format.Font.Size = 7;
             headerRow1.Format.Font.Name = "Courier New";
             headerRow1.Format.Font.Bold = false;
-           // headerRow1.Shading.Color = Colors.LightGray;
+            // headerRow1.Shading.Color = Colors.LightGray;
             headerRow1.Cells[0].MergeRight = 2; // Merge all 3 columns for DESCRIPTION
             headerRow1.Cells[0].AddParagraph("");
             headerRow1.Cells[0].Format.Alignment = ParagraphAlignment.Left;
@@ -271,7 +327,7 @@ namespace EscopeWindowsApp
             headerRow2.Format.Font.Size = 8;
             headerRow2.Format.Font.Name = "Courier New";
             headerRow2.Format.Font.Bold = true;
-           // headerRow2.Shading.Color = Colors.LightGray;
+            // headerRow2.Shading.Color = Colors.LightGray;
             headerRow2.Cells[0].AddParagraph("QTY");
             headerRow2.Cells[0].Format.Alignment = ParagraphAlignment.Right;
             headerRow2.Cells[1].AddParagraph("PRICE");
@@ -284,6 +340,7 @@ namespace EscopeWindowsApp
             {
                 // First row: Description
                 Row descRow = itemsTable.AddRow();
+                descRow.Height = Unit.FromMillimeter(6); // Reduced from 9 mm
                 descRow.Format.Font.Size = 8;
                 descRow.Format.Font.Name = "Courier New";
                 descRow.Cells[0].MergeRight = 2; // Merge all 3 columns for description
@@ -304,6 +361,7 @@ namespace EscopeWindowsApp
 
                 // Second row: QTY, PRICE, AMOUNT
                 Row dataRow = itemsTable.AddRow();
+                dataRow.Height = Unit.FromMillimeter(6); // Reduced from 9 mm
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
@@ -337,57 +395,77 @@ namespace EscopeWindowsApp
 
             // Summary section separator
             Paragraph separator3 = section.AddParagraph();
-            separator3.AddText("========================================");
+            separator3.AddText("============================================");
             separator3.Style = "Center";
 
-            // Professional summary section - all amounts right aligned
+            // Professional summary section with labels left-aligned and values right-aligned
             decimal subTotal = totalPrice + discount;
 
-            Paragraph subTotalPara = section.AddParagraph();
-            subTotalPara.Style = "Body";
-            subTotalPara.Format.Alignment = ParagraphAlignment.Right;
-            subTotalPara.AddText($"SUB TOTAL: LKR {subTotal:0.00}");
+            Table summaryTable = section.AddTable();
+            summaryTable.Borders.Width = 0; // No borders
+            summaryTable.AddColumn("3.5cm");
+            summaryTable.AddColumn("3.9cm");
 
+            // Sub Total row
+            Row row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Cells[0].AddParagraph("SUB TOTAL:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph($"LKR {subTotal:0.00}").Format.Alignment = ParagraphAlignment.Right;
+
+            // Discount row if applicable
             if (discount > 0)
             {
-                Paragraph discountPara = section.AddParagraph();
-                discountPara.Style = "Body";
-                discountPara.Format.Alignment = ParagraphAlignment.Right;
-                discountPara.AddText($"DISCOUNT: LKR {discount:0.00}");
+                row = summaryTable.AddRow();
+                row.Format.Font.Name = "Courier New";
+                row.Format.Font.Size = 8;
+                row.Cells[0].AddParagraph("DISCOUNT:").Format.Alignment = ParagraphAlignment.Left;
+                row.Cells[1].AddParagraph($"LKR {discount:0.00}").Format.Alignment = ParagraphAlignment.Right;
             }
 
-            Paragraph totalPara = section.AddParagraph();
-            totalPara.Style = "BoldBody";
-            totalPara.Format.Alignment = ParagraphAlignment.Right;
-            totalPara.AddText($"TOTAL: LKR {totalPrice:0.00}");
+            // Total row
+            row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Format.Font.Bold = true; // Make total bold
+            row.Cells[0].AddParagraph("TOTAL:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph($"LKR {totalPrice:0.00}").Format.Alignment = ParagraphAlignment.Right;
 
-            // Payment details section
-            Paragraph paymentPara = section.AddParagraph();
-            paymentPara.Style = "Body";
-            paymentPara.Format.Alignment = ParagraphAlignment.Right;
-            paymentPara.AddText($"PAYMENT: {paymentMethod.ToUpper()}");
+            // Payment method row
+            row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Cells[0].AddParagraph("PAYMENT:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph(paymentMethod.ToUpper()).Format.Alignment = ParagraphAlignment.Right;
 
             if (paymentMethod == "Cash")
             {
-                Paragraph cashPara = section.AddParagraph();
-                cashPara.Style = "Body";
-                cashPara.Format.Alignment = ParagraphAlignment.Right;
-                cashPara.AddText($"CASH PAID: LKR {cashPaid:0.00}");
+                // Cash paid row
+                row = summaryTable.AddRow();
+                row.Format.Font.Name = "Courier New";
+                row.Format.Font.Size = 8;
+                row.Cells[0].AddParagraph("CASH PAID:").Format.Alignment = ParagraphAlignment.Left;
+                row.Cells[1].AddParagraph($"LKR {cashPaid:0.00}").Format.Alignment = ParagraphAlignment.Right;
 
-                Paragraph balancePara = section.AddParagraph();
-                balancePara.Style = "BoldBody";
-                balancePara.Format.Alignment = ParagraphAlignment.Right;
-                balancePara.AddText($"BALANCE: LKR {balance:0.00}");
+                // Balance row
+                row = summaryTable.AddRow();
+                row.Format.Font.Name = "Courier New";
+                row.Format.Font.Size = 8;
+                row.Format.Font.Bold = true; // Make balance bold
+                row.Cells[0].AddParagraph("BALANCE:").Format.Alignment = ParagraphAlignment.Left;
+                row.Cells[1].AddParagraph($"LKR {balance:0.00}").Format.Alignment = ParagraphAlignment.Right;
             }
 
-            Paragraph itemsPara = section.AddParagraph();
-            itemsPara.Style = "Body";
-            itemsPara.Format.Alignment = ParagraphAlignment.Right;
-            itemsPara.AddText($"TOTAL ITEMS: {totalItems}");
+            // Total items row
+            row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Cells[0].AddParagraph("TOTAL ITEMS:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph(totalItems.ToString()).Format.Alignment = ParagraphAlignment.Right;
 
             // Final separator
             Paragraph separator4 = section.AddParagraph();
-            separator4.AddText("========================================");
+            separator4.AddText("============================================");
             separator4.Style = "Center";
 
             // Barcode section
@@ -403,6 +481,11 @@ namespace EscopeWindowsApp
             Paragraph thankYou = section.AddParagraph();
             thankYou.Style = "Title";
             thankYou.AddText("THANK YOU FOR YOUR VISIT!");
+
+            Paragraph softwareCompany = section.AddParagraph();
+            softwareCompany.Style = "Center";
+            softwareCompany.Format.Font.Size = 7; // Slightly smaller text
+            softwareCompany.AddText("Software by E-Scope International - 077 198 6400");
 
             // Save PDF with proper resource cleanup
             try

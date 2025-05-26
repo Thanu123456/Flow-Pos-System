@@ -1155,12 +1155,15 @@ namespace EscopeWindowsApp
             PreviousGRN previousGRN = new PreviousGRN();
             previousGRN.Show();
         }
-        #endregion
-
-        #region Expiry Date and Miscellaneous
         private void expireDateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             grnExpireDatePicker.Enabled = expireDateCheckBox.Checked;
+
+            if (expireDateCheckBox.Checked)
+            {
+                // Set date to one month from today when checkbox is checked
+                grnExpireDatePicker.Value = DateTime.Now.AddMonths(1);
+            }
         }
 
         private int GetNextGRNId()

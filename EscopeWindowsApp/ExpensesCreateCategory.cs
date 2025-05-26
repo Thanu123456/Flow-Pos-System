@@ -103,7 +103,7 @@ namespace EscopeWindowsApp
                             string query = "UPDATE expenses_categories SET name = @name WHERE id = @categoryId";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createExpNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createExpNameText.Text.Trim()));
                                 command.Parameters.AddWithValue("@categoryId", editCategoryId);
                                 int rowsAffected = command.ExecuteNonQuery();
                                 if (rowsAffected == 0)
@@ -118,7 +118,7 @@ namespace EscopeWindowsApp
                             string query = "INSERT INTO expenses_categories (name) VALUES (@name)";
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
-                                command.Parameters.AddWithValue("@name", createExpNameText.Text.Trim());
+                                command.Parameters.AddWithValue("@name", CapitalizeName(createExpNameText.Text.Trim()));
                                 command.ExecuteNonQuery();
                             }
                             MessageBox.Show("Expense category created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -144,6 +144,29 @@ namespace EscopeWindowsApp
         private void creExpCancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // Add this helper method to the ExpensesCreateCategory class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }
