@@ -237,7 +237,7 @@ namespace EscopeWindowsApp
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@date", creExpDateTimePicker.Value);
-                                command.Parameters.AddWithValue("@title", creExpTitleText.Text.Trim());
+                                command.Parameters.AddWithValue("@title", CapitalizeName(creExpTitleText.Text.Trim()));
                                 command.Parameters.AddWithValue("@warehouseId", warehouseId == 0 ? DBNull.Value : (object)warehouseId);
                                 command.Parameters.AddWithValue("@categoryId", categoryId == 0 ? DBNull.Value : (object)categoryId);
                                 command.Parameters.AddWithValue("@amount", amount);
@@ -267,7 +267,7 @@ namespace EscopeWindowsApp
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@date", creExpDateTimePicker.Value);
-                                command.Parameters.AddWithValue("@title", creExpTitleText.Text.Trim());
+                                command.Parameters.AddWithValue("@title", CapitalizeName(creExpTitleText.Text.Trim()));
                                 command.Parameters.AddWithValue("@warehouseId", warehouseId == 0 ? DBNull.Value : (object)warehouseId);
                                 command.Parameters.AddWithValue("@categoryId", categoryId == 0 ? DBNull.Value : (object)categoryId);
                                 command.Parameters.AddWithValue("@amount", amount);
@@ -317,6 +317,29 @@ namespace EscopeWindowsApp
         private void creExpDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             // choose date for expense
+        }
+
+        // Add this helper method to the CreateExpenses class
+        private string CapitalizeName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return name;
+            
+            // Split the name by spaces
+            string[] words = name.Split(' ');
+            
+            // Capitalize the first letter of each word
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(words[i]))
+                {
+                    words[i] = char.ToUpper(words[i][0]) + 
+                              (words[i].Length > 1 ? words[i].Substring(1).ToLower() : "");
+                }
+            }
+            
+            // Join the words back together
+            return string.Join(" ", words);
         }
     }
 }

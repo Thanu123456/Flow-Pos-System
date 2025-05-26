@@ -48,6 +48,7 @@
             this.supReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.logHistoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.creditReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.saleRetReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
             this.SuspendLayout();
@@ -328,12 +329,34 @@
             this.creditReportBtn.Text = "CREADIT REPORT";
             this.creditReportBtn.Click += new System.EventHandler(this.creditReportBtn_Click);
             // 
+            // saleRetReportBtn
+            // 
+            this.saleRetReportBtn.Animated = true;
+            this.saleRetReportBtn.BorderRadius = 8;
+            this.saleRetReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.saleRetReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.saleRetReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saleRetReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.saleRetReportBtn.FillColor = System.Drawing.Color.Teal;
+            this.saleRetReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.saleRetReportBtn.ForeColor = System.Drawing.Color.White;
+            this.saleRetReportBtn.HoverState.FillColor = System.Drawing.Color.DarkSlateGray;
+            this.saleRetReportBtn.Location = new System.Drawing.Point(203, 617);
+            this.saleRetReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
+            this.saleRetReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
+            this.saleRetReportBtn.Name = "saleRetReportBtn";
+            this.saleRetReportBtn.Size = new System.Drawing.Size(297, 129);
+            this.saleRetReportBtn.TabIndex = 20;
+            this.saleRetReportBtn.Text = "SALES RETURN REPORT";
+            this.saleRetReportBtn.Click += new System.EventHandler(this.saleRetReportBtn_Click);
+            // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.saleRetReportBtn);
             this.Controls.Add(this.creditReportBtn);
             this.Controls.Add(this.logHistoryBtn);
             this.Controls.Add(this.purchasesReportBtn);
@@ -374,5 +397,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton supReportBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton logHistoryBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton creditReportBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton saleRetReportBtn;
     }
 }

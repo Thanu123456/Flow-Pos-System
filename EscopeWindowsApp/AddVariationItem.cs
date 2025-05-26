@@ -162,11 +162,11 @@ namespace EscopeWindowsApp
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@name", CapitalizeName(createVarNameText.Text.Trim()));
-                                command.Parameters.AddWithValue("@type1", addVarTypeTextBox.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type2", addVarTypeTextBox2.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type3", addVarTypeTextBox3.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type4", addVarTypeTextBox4.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type5", addVarTypeTextBox5.Text.Trim() ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@type1", string.IsNullOrWhiteSpace(addVarTypeTextBox.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox.Text.Trim()));
+                                command.Parameters.AddWithValue("@type2", string.IsNullOrWhiteSpace(addVarTypeTextBox2.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox2.Text.Trim()));
+                                command.Parameters.AddWithValue("@type3", string.IsNullOrWhiteSpace(addVarTypeTextBox3.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox3.Text.Trim()));
+                                command.Parameters.AddWithValue("@type4", string.IsNullOrWhiteSpace(addVarTypeTextBox4.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox4.Text.Trim()));
+                                command.Parameters.AddWithValue("@type5", string.IsNullOrWhiteSpace(addVarTypeTextBox5.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox5.Text.Trim()));
                                 command.Parameters.AddWithValue("@variationId", editVariationId);
                                 command.ExecuteNonQuery();
                             }
@@ -178,11 +178,11 @@ namespace EscopeWindowsApp
                             using (MySqlCommand command = new MySqlCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@name", CapitalizeName(createVarNameText.Text.Trim()));
-                                command.Parameters.AddWithValue("@type1", addVarTypeTextBox.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type2", addVarTypeTextBox2.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type3", addVarTypeTextBox3.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type4", addVarTypeTextBox4.Text.Trim() ?? (object)DBNull.Value);
-                                command.Parameters.AddWithValue("@type5", addVarTypeTextBox5.Text.Trim() ?? (object)DBNull.Value);
+                                command.Parameters.AddWithValue("@type1", string.IsNullOrWhiteSpace(addVarTypeTextBox.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox.Text.Trim()));
+                                command.Parameters.AddWithValue("@type2", string.IsNullOrWhiteSpace(addVarTypeTextBox2.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox2.Text.Trim()));
+                                command.Parameters.AddWithValue("@type3", string.IsNullOrWhiteSpace(addVarTypeTextBox3.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox3.Text.Trim()));
+                                command.Parameters.AddWithValue("@type4", string.IsNullOrWhiteSpace(addVarTypeTextBox4.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox4.Text.Trim()));
+                                command.Parameters.AddWithValue("@type5", string.IsNullOrWhiteSpace(addVarTypeTextBox5.Text) ? (object)DBNull.Value : CapitalizeName(addVarTypeTextBox5.Text.Trim()));
                                 command.ExecuteNonQuery();
                             }
                             MessageBox.Show("Variation created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

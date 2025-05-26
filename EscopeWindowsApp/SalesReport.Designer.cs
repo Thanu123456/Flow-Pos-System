@@ -37,7 +37,6 @@
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
-            this.salesSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.dateFilterSaleCombo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.salesReportDataGrid = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.salesTotAmontLabel = new Siticone.Desktop.UI.WinForms.SiticoneHtmlLabel();
@@ -45,6 +44,7 @@
             this.generateSalesPdfBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.generateSalesExcelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.salesRepBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
+            this.salesSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesReportDataGrid)).BeginInit();
@@ -82,34 +82,6 @@
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(26, 26);
             this.closeBtn.TabIndex = 0;
-            // 
-            // salesSearchText
-            // 
-            this.salesSearchText.BorderColor = System.Drawing.Color.Silver;
-            this.salesSearchText.BorderRadius = 8;
-            this.salesSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.salesSearchText.DefaultText = "";
-            this.salesSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.salesSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.salesSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.salesSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.salesSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.salesSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.salesSearchText.ForeColor = System.Drawing.Color.Gray;
-            this.salesSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.salesSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.salesSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.salesSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.salesSearchText.Location = new System.Drawing.Point(12, 53);
-            this.salesSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.salesSearchText.Name = "salesSearchText";
-            this.salesSearchText.PasswordChar = '\0';
-            this.salesSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.salesSearchText.PlaceholderText = "Search Sales";
-            this.salesSearchText.SelectedText = "";
-            this.salesSearchText.Size = new System.Drawing.Size(310, 42);
-            this.salesSearchText.TabIndex = 32;
-            this.salesSearchText.TextChanged += new System.EventHandler(this.salesSearchText_TextChanged);
             // 
             // dateFilterSaleCombo
             // 
@@ -274,6 +246,34 @@
             this.salesRepBorderlessForm.ContainerControl = this;
             this.salesRepBorderlessForm.DockIndicatorTransparencyValue = 0.6D;
             this.salesRepBorderlessForm.TransparentWhileDrag = true;
+            // 
+            // salesSearchText
+            // 
+            this.salesSearchText.BorderColor = System.Drawing.Color.Silver;
+            this.salesSearchText.BorderRadius = 8;
+            this.salesSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.salesSearchText.DefaultText = "";
+            this.salesSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.salesSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.salesSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.salesSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.salesSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.salesSearchText.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.salesSearchText.ForeColor = System.Drawing.Color.Gray;
+            this.salesSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.salesSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.salesSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.salesSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
+            this.salesSearchText.Location = new System.Drawing.Point(12, 53);
+            this.salesSearchText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.salesSearchText.Name = "salesSearchText";
+            this.salesSearchText.PasswordChar = '\0';
+            this.salesSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.salesSearchText.PlaceholderText = "Search Sales";
+            this.salesSearchText.SelectedText = "";
+            this.salesSearchText.Size = new System.Drawing.Size(310, 42);
+            this.salesSearchText.TabIndex = 32;
+            this.salesSearchText.TextChanged += new System.EventHandler(this.salesSearchText_TextChanged);
             // 
             // SalesReport
             // 
