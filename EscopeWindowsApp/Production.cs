@@ -298,6 +298,7 @@ namespace EscopeWindowsApp
 
                 if (columnName == "EditColumn")
                 {
+                    // Existing edit logic remains unchanged
                     int productId = Convert.ToInt32(row.Cells["id"].Value);
                     string productName = row.Cells["product_name"].Value.ToString();
                     string category = row.Cells["category_name"].Value.ToString();
@@ -324,15 +325,9 @@ namespace EscopeWindowsApp
                     string variationType = row.Cells["variation_type"].Value.ToString();
                     string formattedId = $"pro{productId:D3}";
 
-                    string deleteMessage;
-                    if (variationType == "N/A")
-                    {
-                        deleteMessage = $"Are you sure you want to delete product {formattedId} entirely?";
-                    }
-                    else
-                    {
-                        deleteMessage = $"Are you sure you want to delete variation '{variationType}' of product {formattedId}?";
-                    }
+                    string deleteMessage = variationType == "N/A"
+                        ? $"Are you sure you want to delete product {formattedId} entirely?"
+                        : $"Are you sure you want to delete variation '{variationType}' of product {formattedId}?";
 
                     DialogResult result = MessageBox.Show(
                         deleteMessage,
@@ -354,29 +349,61 @@ namespace EscopeWindowsApp
                                     {
                                         if (variationType == "N/A")
                                         {
-                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId";
-                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId";
-                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId";
-                                            string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
+                                            // Delete from expired_items
+                                            string deleteExpiredItemsQuery = @"
+                                        DELETE FROM expired_items 
+                                        WHERE stock_details_id IN (
+                                            SELECT sd.id 
+                                            FROM stock_details sd 
+                                            JOIN grn_items gi ON sd.grn_items_id = gi.id 
+                                            WHERE gi.product_id = @productId
+                                        )";
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteExpiredItemsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
 
+                                            // Delete from stock_details
+                                            string deleteStockDetailsQuery = @"
+                                        DELETE FROM stock_details 
+                                        WHERE grn_items_id IN (
+                                            SELECT id 
+                                            FROM grn_items 
+                                            WHERE product_id = @productId
+                                        )";
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteStockDetailsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Delete from grn_items
+                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId";
                                             using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
+                                            // Delete from pricing
+                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId";
                                             using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
+                                            // Delete from stock
+                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId";
                                             using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
                                                 cmd.ExecuteNonQuery();
                                             }
 
+                                            // Delete from products
+                                            string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
                                             using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -385,11 +412,39 @@ namespace EscopeWindowsApp
                                         }
                                         else
                                         {
-                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId AND variation_type = @variationType";
-                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_type = @variationType";
-                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId AND variation_type = @variationType";
-                                            string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
+                                            // Delete from expired_items for specific variation
+                                            string deleteExpiredItemsQuery = @"
+                                        DELETE FROM expired_items 
+                                        WHERE stock_details_id IN (
+                                            SELECT sd.id 
+                                            FROM stock_details sd 
+                                            JOIN grn_items gi ON sd.grn_items_id = gi.id 
+                                            WHERE gi.product_id = @productId AND gi.variation_type = @variationType
+                                        )";
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteExpiredItemsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
 
+                                            // Delete from stock_details for specific variation
+                                            string deleteStockDetailsQuery = @"
+                                        DELETE FROM stock_details 
+                                        WHERE grn_items_id IN (
+                                            SELECT id 
+                                            FROM grn_items 
+                                            WHERE product_id = @productId AND variation_type = @variationType
+                                        )";
+                                            using (MySqlCommand cmd = new MySqlCommand(deleteStockDetailsQuery, connection, transaction))
+                                            {
+                                                cmd.Parameters.AddWithValue("@productId", productId);
+                                                cmd.Parameters.AddWithValue("@variationType", variationType);
+                                                cmd.ExecuteNonQuery();
+                                            }
+
+                                            // Delete from grn_items for specific variation
+                                            string deleteGrnItemsQuery = "DELETE FROM grn_items WHERE product_id = @productId AND variation_type = @variationType";
                                             using (MySqlCommand cmd = new MySqlCommand(deleteGrnItemsQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -397,6 +452,8 @@ namespace EscopeWindowsApp
                                                 cmd.ExecuteNonQuery();
                                             }
 
+                                            // Delete from pricing for specific variation
+                                            string deletePricingQuery = "DELETE FROM pricing WHERE product_id = @productId AND variation_type = @variationType";
                                             using (MySqlCommand cmd = new MySqlCommand(deletePricingQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -404,6 +461,8 @@ namespace EscopeWindowsApp
                                                 cmd.ExecuteNonQuery();
                                             }
 
+                                            // Delete from stock for specific variation
+                                            string deleteStockQuery = "DELETE FROM stock WHERE product_id = @productId AND variation_type = @variationType";
                                             using (MySqlCommand cmd = new MySqlCommand(deleteStockQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
@@ -411,10 +470,22 @@ namespace EscopeWindowsApp
                                                 cmd.ExecuteNonQuery();
                                             }
 
-                                            using (MySqlCommand cmd = new MySqlCommand(deleteProductQuery, connection, transaction))
+                                            // Check if any pricing records remain for the product
+                                            string checkPricingQuery = "SELECT COUNT(*) FROM pricing WHERE product_id = @productId";
+                                            using (MySqlCommand cmd = new MySqlCommand(checkPricingQuery, connection, transaction))
                                             {
                                                 cmd.Parameters.AddWithValue("@productId", productId);
-                                                cmd.ExecuteNonQuery();
+                                                long count = (long)cmd.ExecuteScalar();
+                                                if (count == 0)
+                                                {
+                                                    // Delete product only if no variations remain
+                                                    string deleteProductQuery = "DELETE FROM products WHERE id = @productId";
+                                                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteProductQuery, connection, transaction))
+                                                    {
+                                                        deleteCmd.Parameters.AddWithValue("@productId", productId);
+                                                        deleteCmd.ExecuteNonQuery();
+                                                    }
+                                                }
                                             }
                                         }
 

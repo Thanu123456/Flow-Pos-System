@@ -33,21 +33,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpiredProductsForm));
             this.supplierSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.expiredBorderlessForm = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.expiredProductsDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.expiredRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.expBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.exFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.exPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.exNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.exLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.headerPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.controlPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.minimumBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.exCancelBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.expiredLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.expiredProductsDataGridView)).BeginInit();
-            this.expBtnPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +66,7 @@
             this.supplierSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.supplierSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.supplierSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.supplierSearchText.Location = new System.Drawing.Point(12, 41);
+            this.supplierSearchText.Location = new System.Drawing.Point(17, 82);
             this.supplierSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.supplierSearchText.Name = "supplierSearchText";
             this.supplierSearchText.PasswordChar = '\0';
@@ -122,7 +119,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.expiredProductsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.expiredProductsDataGridView.GridColor = System.Drawing.Color.White;
-            this.expiredProductsDataGridView.Location = new System.Drawing.Point(12, 94);
+            this.expiredProductsDataGridView.Location = new System.Drawing.Point(12, 141);
             this.expiredProductsDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.expiredProductsDataGridView.Name = "expiredProductsDataGridView";
             this.expiredProductsDataGridView.ReadOnly = true;
@@ -140,7 +137,7 @@
             this.expiredProductsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.expiredProductsDataGridView.RowTemplate.Height = 35;
             this.expiredProductsDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.expiredProductsDataGridView.Size = new System.Drawing.Size(918, 314);
+            this.expiredProductsDataGridView.Size = new System.Drawing.Size(906, 265);
             this.expiredProductsDataGridView.TabIndex = 49;
             this.expiredProductsDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.expiredProductsDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -179,95 +176,11 @@
             this.expiredRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.expiredRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.expiredRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.expiredRefreshBtn.Location = new System.Drawing.Point(420, 44);
+            this.expiredRefreshBtn.Location = new System.Drawing.Point(409, 82);
             this.expiredRefreshBtn.Name = "expiredRefreshBtn";
             this.expiredRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.expiredRefreshBtn.TabIndex = 50;
             this.expiredRefreshBtn.Click += new System.EventHandler(this.expiredRefreshBtn_Click);
-            // 
-            // expBtnPanel
-            // 
-            this.expBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.expBtnPanel.BackColor = System.Drawing.Color.Transparent;
-            this.expBtnPanel.BorderRadius = 8;
-            this.expBtnPanel.Controls.Add(this.exFirstBtn);
-            this.expBtnPanel.Controls.Add(this.exPrevBtn);
-            this.expBtnPanel.Controls.Add(this.exNextBtn);
-            this.expBtnPanel.Controls.Add(this.exLastBtn);
-            this.expBtnPanel.Location = new System.Drawing.Point(776, 422);
-            this.expBtnPanel.Name = "expBtnPanel";
-            this.expBtnPanel.Size = new System.Drawing.Size(154, 37);
-            this.expBtnPanel.TabIndex = 51;
-            // 
-            // exFirstBtn
-            // 
-            this.exFirstBtn.BorderRadius = 6;
-            this.exFirstBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.exFirstBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.exFirstBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.exFirstBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.exFirstBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.exFirstBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.exFirstBtn.ForeColor = System.Drawing.Color.White;
-            this.exFirstBtn.Image = global::EscopeWindowsApp.Properties.Resources.firstBtn1;
-            this.exFirstBtn.Location = new System.Drawing.Point(3, 8);
-            this.exFirstBtn.Name = "exFirstBtn";
-            this.exFirstBtn.Size = new System.Drawing.Size(26, 26);
-            this.exFirstBtn.TabIndex = 11;
-            this.exFirstBtn.Click += new System.EventHandler(this.exFirstBtn_Click);
-            // 
-            // exPrevBtn
-            // 
-            this.exPrevBtn.BorderRadius = 6;
-            this.exPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.exPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.exPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.exPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.exPrevBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.exPrevBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.exPrevBtn.ForeColor = System.Drawing.Color.White;
-            this.exPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
-            this.exPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.exPrevBtn.Location = new System.Drawing.Point(45, 8);
-            this.exPrevBtn.Name = "exPrevBtn";
-            this.exPrevBtn.Size = new System.Drawing.Size(26, 26);
-            this.exPrevBtn.TabIndex = 11;
-            this.exPrevBtn.Click += new System.EventHandler(this.exPrevBtn_Click);
-            // 
-            // exNextBtn
-            // 
-            this.exNextBtn.BorderRadius = 6;
-            this.exNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.exNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.exNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.exNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.exNextBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.exNextBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.exNextBtn.ForeColor = System.Drawing.Color.White;
-            this.exNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
-            this.exNextBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.exNextBtn.Location = new System.Drawing.Point(87, 8);
-            this.exNextBtn.Name = "exNextBtn";
-            this.exNextBtn.Size = new System.Drawing.Size(26, 26);
-            this.exNextBtn.TabIndex = 9;
-            this.exNextBtn.Click += new System.EventHandler(this.exNextBtn_Click);
-            // 
-            // exLastBtn
-            // 
-            this.exLastBtn.BorderRadius = 6;
-            this.exLastBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.exLastBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.exLastBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.exLastBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.exLastBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.exLastBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.exLastBtn.ForeColor = System.Drawing.Color.White;
-            this.exLastBtn.Image = global::EscopeWindowsApp.Properties.Resources.lastoBtn1;
-            this.exLastBtn.Location = new System.Drawing.Point(130, 8);
-            this.exLastBtn.Name = "exLastBtn";
-            this.exLastBtn.Size = new System.Drawing.Size(26, 26);
-            this.exLastBtn.TabIndex = 8;
-            this.exLastBtn.Click += new System.EventHandler(this.exLastBtn_Click);
             // 
             // headerPanel
             // 
@@ -284,12 +197,25 @@
             // 
             this.controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.controlPanel.BackColor = System.Drawing.Color.White;
+            this.controlPanel.Controls.Add(this.minimumBtn);
             this.controlPanel.Controls.Add(this.closeBtn);
             this.controlPanel.FillColor = System.Drawing.Color.White;
-            this.controlPanel.Location = new System.Drawing.Point(891, 3);
+            this.controlPanel.Location = new System.Drawing.Point(846, 3);
             this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Size = new System.Drawing.Size(48, 30);
-            this.controlPanel.TabIndex = 1;
+            this.controlPanel.Size = new System.Drawing.Size(93, 30);
+            this.controlPanel.TabIndex = 2;
+            // 
+            // minimumBtn
+            // 
+            this.minimumBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimumBtn.BorderRadius = 8;
+            this.minimumBtn.ControlBoxType = Siticone.Desktop.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
+            this.minimumBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.minimumBtn.IconColor = System.Drawing.Color.White;
+            this.minimumBtn.Location = new System.Drawing.Point(15, 2);
+            this.minimumBtn.Name = "minimumBtn";
+            this.minimumBtn.Size = new System.Drawing.Size(26, 26);
+            this.minimumBtn.TabIndex = 2;
             // 
             // closeBtn
             // 
@@ -297,7 +223,7 @@
             this.closeBtn.BorderRadius = 8;
             this.closeBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeBtn.IconColor = System.Drawing.Color.White;
-            this.closeBtn.Location = new System.Drawing.Point(10, 2);
+            this.closeBtn.Location = new System.Drawing.Point(46, 2);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(26, 26);
             this.closeBtn.TabIndex = 0;
@@ -315,33 +241,50 @@
             this.exCancelBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
             this.exCancelBtn.ForeColor = System.Drawing.Color.White;
             this.exCancelBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.exCancelBtn.Location = new System.Drawing.Point(832, 474);
+            this.exCancelBtn.Location = new System.Drawing.Point(823, 422);
             this.exCancelBtn.Name = "exCancelBtn";
             this.exCancelBtn.Size = new System.Drawing.Size(95, 45);
             this.exCancelBtn.TabIndex = 83;
             this.exCancelBtn.Text = "Cancel";
             this.exCancelBtn.Click += new System.EventHandler(this.exCancelBtn_Click);
             // 
+            // expiredLabel
+            // 
+            this.expiredLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.expiredLabel.AutoSize = true;
+            this.expiredLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expiredLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.expiredLabel.Location = new System.Drawing.Point(12, 41);
+            this.expiredLabel.Name = "expiredLabel";
+            this.expiredLabel.Size = new System.Drawing.Size(183, 29);
+            this.expiredLabel.TabIndex = 84;
+            this.expiredLabel.Text = "Expired Products";
+            // 
             // ExpiredProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 531);
+            this.ClientSize = new System.Drawing.Size(939, 489);
+            this.Controls.Add(this.expiredLabel);
             this.Controls.Add(this.exCancelBtn);
             this.Controls.Add(this.headerPanel);
-            this.Controls.Add(this.expBtnPanel);
             this.Controls.Add(this.expiredRefreshBtn);
             this.Controls.Add(this.expiredProductsDataGridView);
             this.Controls.Add(this.supplierSearchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(939, 489);
+            this.MinimumSize = new System.Drawing.Size(939, 489);
             this.Name = "ExpiredProductsForm";
-            this.Text = "ExpiredProductsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Expired Products";
             this.Load += new System.EventHandler(this.ExpiredProductsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.expiredProductsDataGridView)).EndInit();
-            this.expBtnPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -351,14 +294,11 @@
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm expiredBorderlessForm;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView expiredProductsDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expiredRefreshBtn;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel expBtnPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton exFirstBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton exPrevBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton exNextBtn;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton exLastBtn;
         private Siticone.Desktop.UI.WinForms.SiticonePanel headerPanel;
-        private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
-        private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton exCancelBtn;
+        private System.Windows.Forms.Label expiredLabel;
+        private Siticone.Desktop.UI.WinForms.SiticonePanel controlPanel;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox minimumBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
     }
 }

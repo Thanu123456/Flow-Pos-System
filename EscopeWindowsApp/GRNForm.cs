@@ -288,7 +288,7 @@ namespace EscopeWindowsApp
                     DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
                     {
                         Name = "Delete",
-                        HeaderText = "DELETE",
+                        HeaderText = "",
                         Text = ""
                     };
                     grnDataGridView.Columns.Add(deleteColumn);
@@ -1020,6 +1020,20 @@ namespace EscopeWindowsApp
                                     itemCmd.Parameters.AddWithValue("@unit", unit == "N/A" ? (object)DBNull.Value : unit);
                                     itemCmd.Parameters.AddWithValue("@serialNumbers", serialNumberFlag);
                                     itemCmd.ExecuteNonQuery();
+
+                                    // Get last inserted grn_items id
+                                    long grnItemsId = itemCmd.LastInsertedId;
+
+                                    // Insert into stock_details
+                                    string stockDetailsQuery = @"
+                                INSERT INTO stock_details (grn_items_id, remaining_qty)
+                                VALUES (@grnItemsId, @quantity)";
+                                    using (MySqlCommand stockDetailsCmd = new MySqlCommand(stockDetailsQuery, conn, transaction))
+                                    {
+                                        stockDetailsCmd.Parameters.AddWithValue("@grnItemsId", grnItemsId);
+                                        stockDetailsCmd.Parameters.AddWithValue("@quantity", quantity);
+                                        stockDetailsCmd.ExecuteNonQuery();
+                                    }
                                 }
 
                                 // Update stock using StockManager
@@ -1048,6 +1062,7 @@ namespace EscopeWindowsApp
                 Console.WriteLine($"Save GRN error: {ex}");
             }
         }
+
 
         private void ClearProductDetails()
         {

@@ -1544,9 +1544,13 @@ namespace EscopeWindowsApp
                             salesCommand.ExecuteNonQuery();
                         }
 
-                        // Updated: Lock stock rows for all products to prevent concurrent modifications
+                        // Lock stock rows (excluding expired stock)
                         var stockKeys = supDataGridView.Rows.Cast<DataGridViewRow>()
-                            .Select(row => new { ProductId = Convert.ToInt32(row.Cells["product_id"].Value), VariationType = row.Cells["variation_type"].Value.ToString() })
+                            .Select(row => new
+                            {
+                                ProductId = Convert.ToInt32(row.Cells["product_id"].Value),
+                                VariationType = row.Cells["variation_type"].Value.ToString()
+                            })
                             .Distinct()
                             .ToList();
 
@@ -1563,13 +1567,12 @@ namespace EscopeWindowsApp
                             for (int i = 0; i < stockKeys.Count; i++)
                             {
                                 lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
-                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
                                 lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
                             }
-                            lockCmd.ExecuteNonQuery(); // Locks the rows
+                            lockCmd.ExecuteNonQuery();
                         }
 
-                        // Insert sales details and update stock
+                        // Insert sales details and reduce stock from batches
                         string detailsQuery = @"
                     INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
                     VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
@@ -1580,59 +1583,49 @@ namespace EscopeWindowsApp
                             string variationType = row.Cells["variation_type"].Value.ToString();
                             if (variationType == "N/A") variationType = null;
                             decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                            string unit = row.Cells["unit"].Value.ToString();
 
-                            // Updated: Check stock availability before updating
+                            // Check available non-expired stock
                             string checkStockQuery = @"
-                        SELECT stock 
-                        FROM stock 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                        LIMIT 1";
+                        SELECT COALESCE((SELECT SUM(sd.remaining_qty) 
+                                         FROM stock_details sd
+                                         JOIN grn_items gi ON sd.grn_items_id = gi.id
+                                         WHERE gi.product_id = @productId
+                                         AND (gi.variation_type = @variationType OR (gi.variation_type IS NULL AND @variationType IS NULL))
+                                         AND (gi.unit = @unit OR (gi.unit IS NULL AND @unit IS NULL))
+                                         AND sd.is_expired = 0
+                                         AND sd.remaining_qty > 0), 0) AS available_stock";
                             using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
                             {
                                 checkCmd.Parameters.AddWithValue("@productId", productId);
-                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
                                 checkCmd.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
-                                // Updated: Fix typo from 'objectld' to 'object'
-                                object result = checkCmd.ExecuteScalar();
-                                if (result == null || Convert.ToDecimal(result) < quantity)
+                                checkCmd.Parameters.AddWithValue("@unit", unit);
+                                decimal availableStock = Convert.ToDecimal(checkCmd.ExecuteScalar());
+                                if (availableStock < quantity)
                                 {
                                     transaction.Rollback();
-                                    MessageBox.Show($"Insufficient stock for product {row.Cells["product_name"].Value}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show($"Insufficient non-expired stock for product {row.Cells["product_name"].Value}. Available: {availableStock}, Required: {quantity}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
                             }
 
-                            // Insert sales details with product_id
+                            // Insert sales details
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
                             {
                                 detailsCommand.Parameters.AddWithValue("@billNo", billNo);
                                 detailsCommand.Parameters.AddWithValue("@productId", productId);
                                 detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
-                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
                                 detailsCommand.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
-                                detailsCommand.Parameters.AddWithValue("@unit", row.Cells["unit"].Value.ToString());
+                                detailsCommand.Parameters.AddWithValue("@unit", unit);
                                 detailsCommand.Parameters.AddWithValue("@quantity", quantity);
                                 detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
                                 detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
                                 detailsCommand.ExecuteNonQuery();
                             }
 
-                            // Updated: Update stock with locked rows
-                            string updateStockQuery = @"
-                        UPDATE stock 
-                        SET stock = stock - @quantity 
-                        WHERE product_id = @productId 
-                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))";
-                            using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
-                            {
-                                stockCommand.Parameters.AddWithValue("@quantity", quantity);
-                                stockCommand.Parameters.AddWithValue("@productId", productId);
-                                // Updated: Replace ternary with explicit check for C# 8.0 compatibility
-                                stockCommand.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
-                                int rowsAffected = stockCommand.ExecuteNonQuery();
-                                Debug.WriteLine($"Stock update for Product ID {productId}, Variation: {variationType ?? "NULL"}, Quantity: {quantity}, Rows Affected: {rowsAffected}");
-                            }
+                            // Reduce stock from non-expired batches
+                            StockManager stockManager = new StockManager(connectionString);
+                            stockManager.ReduceStockFromBatches(productId, variationType, unit, quantity, connection, transaction);
                         }
 
                         transaction.Commit();

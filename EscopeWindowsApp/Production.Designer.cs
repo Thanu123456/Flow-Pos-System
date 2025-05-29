@@ -50,6 +50,7 @@
             // createProductBtn
             // 
             this.createProductBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createProductBtn.Animated = true;
             this.createProductBtn.BorderRadius = 8;
             this.createProductBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.createProductBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -275,20 +276,22 @@
             // 
             // expireBtn
             // 
+            this.expireBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.expireBtn.Animated = true;
             this.expireBtn.BorderRadius = 8;
             this.expireBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.expireBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.expireBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.expireBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.expireBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.expireBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.expireBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expireBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireBtn.ForeColor = System.Drawing.Color.White;
-            this.expireBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.expireBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.expireBtn.Location = new System.Drawing.Point(637, 30);
+            this.expireBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expireBtn.Location = new System.Drawing.Point(935, 30);
             this.expireBtn.Name = "expireBtn";
-            this.expireBtn.Size = new System.Drawing.Size(42, 42);
+            this.expireBtn.Size = new System.Drawing.Size(209, 42);
             this.expireBtn.TabIndex = 41;
+            this.expireBtn.Text = "Expired Products";
             this.expireBtn.Click += new System.EventHandler(this.expireBtn_Click);
             // 
             // Production

@@ -8,7 +8,6 @@ namespace EscopeWindowsApp
 {
     public partial class ExpiredProductsForm : Form
     {
-        private readonly StockManager _stockManager;
         private readonly string _connectionString;
         private int currentPage = 1;
         private const int PageSize = 10;
@@ -18,7 +17,6 @@ namespace EscopeWindowsApp
         {
             InitializeComponent();
             _connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
-            _stockManager = new StockManager(_connectionString);
         }
 
         private void ExpiredProductsForm_Load(object sender, EventArgs e)
@@ -44,21 +42,26 @@ namespace EscopeWindowsApp
             if (e.ColumnIndex == expiredProductsDataGridView.Columns["addButtonColumn"].Index && e.RowIndex >= 0)
             {
                 DataGridViewRow row = expiredProductsDataGridView.Rows[e.RowIndex];
-                string grnNo = row.Cells["grn_no"].Value.ToString();
+                int stockDetailsId = Convert.ToInt32(row.Cells["stock_details_id"].Value);
                 int productId = Convert.ToInt32(row.Cells["product_id_raw"].Value);
-                decimal expiredQuantity = Convert.ToDecimal(row.Cells["expired_quantity"].Value);
                 string variationType = row.Cells["variation_type"].Value?.ToString() ?? "N/A";
+                if (variationType == "N/A") variationType = null;
                 string unit = row.Cells["unit"].Value?.ToString() ?? "N/A";
+                if (unit == "N/A") unit = null;
+                decimal expiredQuantity = Convert.ToDecimal(row.Cells["expired_quantity"].Value);
+                string grnNo = row.Cells["grn_no"].Value.ToString();
+                string productName = row.Cells["product_name"].Value.ToString();
+                string supplierName = row.Cells["supplier_name"].Value.ToString();
 
                 try
                 {
-                    _stockManager.UpdateStock(productId, variationType, expiredQuantity, unit, false);
+                    CreatePurchasesReturn returnForm = new CreatePurchasesReturn(_connectionString, stockDetailsId, productId, productName, supplierName, expiredQuantity, variationType, unit, grnNo);
+                    returnForm.ShowDialog();
                     LoadExpiredProducts(supplierSearchText.Text);
-                    MessageBox.Show($"Removed {expiredQuantity} expired units from stock for GRN: {grnNo}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error updating stock: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error opening return form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -73,53 +76,51 @@ namespace EscopeWindowsApp
             string query = @"
                 SELECT 
                     grn.grn_no,
-                    grn_items.product_id AS product_id_raw,
-                    CONCAT('PRO', LPAD(grn_items.product_id, 3, '0')) AS product_id,
+                    sd.id AS stock_details_id,
+                    gi.product_id AS product_id_raw,
+                    CONCAT('PRO', LPAD(gi.product_id, 3, '0')) AS product_id,
                     products.name AS product_name,
                     suppliers.name AS supplier_name,
-                    grn_items.quantity AS expired_quantity,
+                    sd.remaining_qty AS expired_quantity,
                     DATE(grn.date) AS grn_created_date,
-                    grn_items.expiry_date,
-                    grn_items.variation_type,
-                    grn_items.unit
+                    gi.expiry_date,
+                    gi.variation_type,
+                    gi.unit
                 FROM 
-                    grn_items
+                    stock_details sd
                 JOIN 
-                    grn ON grn_items.grn_id = grn.id
+                    grn_items gi ON sd.grn_items_id = gi.id
                 JOIN 
-                    products ON grn_items.product_id = products.id
+                    grn ON gi.grn_id = grn.id
+                JOIN 
+                    products ON gi.product_id = products.id
                 JOIN 
                     suppliers ON products.supplier_id = suppliers.id
-                LEFT JOIN 
-                    stock s ON grn_items.product_id = s.product_id 
-                    AND (grn_items.variation_type = s.variation_type OR (grn_items.variation_type IS NULL AND s.variation_type IS NULL))
-                    AND (grn_items.unit = s.unit OR (grn_items.unit IS NULL AND s.unit IS NULL))
                 WHERE 
-                    grn_items.expiry_date <= CURDATE()
-                    AND grn_items.expiry_date IS NOT NULL";
+                    sd.is_expired = 1
+                    AND sd.remaining_qty > 0";
 
             if (!string.IsNullOrEmpty(searchText))
             {
                 query += " AND (suppliers.name LIKE @searchText OR grn.grn_no LIKE @searchText)";
             }
 
-            // Add pagination
-            query += " ORDER BY grn_items.expiry_date ASC LIMIT @Offset, @PageSize";
+            query += " ORDER BY gi.expiry_date ASC LIMIT @Offset, @PageSize";
 
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     conn.Open();
-                    // Count total records for pagination
                     string countQuery = @"
                         SELECT COUNT(*) 
-                        FROM grn_items
-                        JOIN grn ON grn_items.grn_id = grn.id
-                        JOIN products ON grn_items.product_id = products.id
+                        FROM stock_details sd
+                        JOIN grn_items gi ON sd.grn_items_id = gi.id
+                        JOIN grn ON gi.grn_id = grn.id
+                        JOIN products ON gi.product_id = products.id
                         JOIN suppliers ON products.supplier_id = suppliers.id
-                        WHERE grn_items.expiry_date <= CURDATE()
-                        AND grn_items.expiry_date IS NOT NULL";
+                        WHERE sd.is_expired = 1
+                        AND sd.remaining_qty > 0";
                     if (!string.IsNullOrEmpty(searchText))
                     {
                         countQuery += " AND (suppliers.name LIKE @searchText OR grn.grn_no LIKE @searchText)";
@@ -153,7 +154,7 @@ namespace EscopeWindowsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading expired products: {ex.Message}");
+                MessageBox.Show($"Error loading expired products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -168,6 +169,14 @@ namespace EscopeWindowsApp
                 Name = "grn_no",
                 HeaderText = "GRN No",
                 ReadOnly = true
+            });
+            expiredProductsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "stock_details_id",
+                Name = "stock_details_id",
+                HeaderText = "Stock Details ID",
+                ReadOnly = true,
+                Visible = false
             });
             expiredProductsDataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -242,7 +251,7 @@ namespace EscopeWindowsApp
                 {
                     Name = "addButtonColumn",
                     HeaderText = "Action",
-                    Text = "Add",
+                    Text = "Return",
                     UseColumnTextForButtonValue = true,
                     Width = 50
                 };
@@ -252,12 +261,7 @@ namespace EscopeWindowsApp
 
         private void UpdatePaginationUI()
         {
-            int totalPages = (int)Math.Ceiling((double)totalRecords / PageSize);
-            exFirstBtn.Enabled = currentPage > 1;
-            exPrevBtn.Enabled = currentPage > 1;
-            exNextBtn.Enabled = currentPage < totalPages;
-            exLastBtn.Enabled = currentPage < totalPages;
-            // Optionally update a label or status bar with page info if available
+            
         }
 
         private void exFirstBtn_Click(object sender, EventArgs e)

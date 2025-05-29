@@ -164,7 +164,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.preReGRNDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.preReGRNDataGridView.ColumnHeadersHeight = 25;
+            this.preReGRNDataGridView.ColumnHeadersHeight = 45;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,7 +208,7 @@
             this.preReGRNDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preReGRNDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.preReGRNDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.preReGRNDataGridView.ThemeStyle.HeaderStyle.Height = 25;
+            this.preReGRNDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.preReGRNDataGridView.ThemeStyle.ReadOnly = true;
             this.preReGRNDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             this.preReGRNDataGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
