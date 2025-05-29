@@ -982,5 +982,29 @@ namespace EscopeWindowsApp
             GRNForm gRNForm = new GRNForm();
             gRNForm.Show();
         }
+
+        private void siticonePictureBox1_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is GRNForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            GRNForm gRNForm = new GRNForm();
+            gRNForm.Show();
+        }
+
+        private void siticonePanel4_Paint(object sender, PaintEventArgs e)
+        {
+           
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Configuration;
 using System.IO.Ports;
 using System.Timers;
+using System.Collections.Generic;
 
 namespace EscopeWindowsApp
 {
@@ -980,11 +981,11 @@ namespace EscopeWindowsApp
                             }
 
                             string updateStockQuery = @"
-                                UPDATE stock 
-                                SET stock = stock + @quantity 
-                                WHERE product_id = @productId 
-                                AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                                LIMIT 1";
+                            UPDATE stock 
+                            SET stock = stock + @quantity 
+                            WHERE product_id = @productId 
+                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                            LIMIT 1";
                             using (MySqlCommand stockCommand = new MySqlCommand(updateStockQuery, connection, transaction))
                             {
                                 stockCommand.Parameters.AddWithValue("@quantity", quantity);
@@ -1002,11 +1003,42 @@ namespace EscopeWindowsApp
                         }
 
                         transaction.Commit();
+
+                        // --- Printing logic starts here ---
+                        string refundBillNo = $"REF_{DateTime.Now:yyyyMMddHHmmss}";
+                        List<BillPrinter.CartItem> refundItems = new List<BillPrinter.CartItem>();
+                        int itemNumber = 1;
+                        foreach (DataGridViewRow row in refItemDataGridView.Rows)
+                        {
+                            refundItems.Add(new BillPrinter.CartItem
+                            {
+                                ItemNumber = itemNumber++,
+                                ProductName = row.Cells["product_name"].Value.ToString(),
+                                VariationType = row.Cells["variation_type"].Value.ToString(),
+                                Unit = row.Cells["unit"].Value.ToString(),
+                                Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
+                                Price = Convert.ToDecimal(row.Cells["price"].Value),
+                                TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
+                            });
+                        }
+
+                        BillPrinter.PrintRefundBill(
+                            originalBillNo: billNo,
+                            refundBillNo: refundBillNo,
+                            userName: "System", // You can replace with actual user if available
+                            totalItems: refItemDataGridView.Rows.Count,
+                            totalRefundAmount: totalRefundAmount,
+                            refundItems: refundItems,
+                            refundReason: selectedReason,
+                            refundNotes: refundNotes ?? ""
+                        );
+                        // --- Printing logic ends here ---
+
                         SessionManager.TotalRefund += totalRefundAmount;
-                        MessageBox.Show("Refund processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Refund processed successfully and receipt printed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearBillDetails();
                         billSearchTextBox.Text = "";
-                        Debug.WriteLine($"Refund processed for bill {billNo}.");
+                        Debug.WriteLine($"Refund processed and printed for bill {billNo}, refund bill {refundBillNo}.");
                     }
                 }
             }

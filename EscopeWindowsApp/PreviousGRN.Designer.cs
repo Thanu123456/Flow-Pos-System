@@ -247,9 +247,9 @@
             this.filterDateComboBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterDateComboBox.ForeColor = System.Drawing.Color.Black;
             this.filterDateComboBox.ItemHeight = 36;
-            this.filterDateComboBox.Location = new System.Drawing.Point(768, 82);
+            this.filterDateComboBox.Location = new System.Drawing.Point(697, 82);
             this.filterDateComboBox.Name = "filterDateComboBox";
-            this.filterDateComboBox.Size = new System.Drawing.Size(150, 42);
+            this.filterDateComboBox.Size = new System.Drawing.Size(221, 42);
             this.filterDateComboBox.TabIndex = 85;
             this.filterDateComboBox.SelectedIndexChanged += new System.EventHandler(this.filterDateComboBox_SelectedIndexChanged);
             // 
@@ -291,9 +291,9 @@
             this.filterPaymentComboBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterPaymentComboBox.ForeColor = System.Drawing.Color.Black;
             this.filterPaymentComboBox.ItemHeight = 36;
-            this.filterPaymentComboBox.Location = new System.Drawing.Point(598, 82);
+            this.filterPaymentComboBox.Location = new System.Drawing.Point(393, 82);
             this.filterPaymentComboBox.Name = "filterPaymentComboBox";
-            this.filterPaymentComboBox.Size = new System.Drawing.Size(150, 42);
+            this.filterPaymentComboBox.Size = new System.Drawing.Size(293, 42);
             this.filterPaymentComboBox.TabIndex = 87;
             this.filterPaymentComboBox.SelectedIndexChanged += new System.EventHandler(this.filterPaymentComboBox_SelectedIndexChanged);
             // 
@@ -312,6 +312,8 @@
             this.Controls.Add(this.preGRNDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(939, 489);
+            this.MinimumSize = new System.Drawing.Size(939, 489);
             this.Name = "PreviousGRN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Previous GRN";

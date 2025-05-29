@@ -79,6 +79,9 @@
             this.dashTotalSalesLabel = new System.Windows.Forms.Label();
             this.topProductsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.siticonePanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.alertPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneCircleButton1 = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
+            this.alertMessageLabel = new System.Windows.Forms.Label();
             this.thisYearBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dashTotPurPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.siticonePictureBox3 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
@@ -88,9 +91,6 @@
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.label4 = new System.Windows.Forms.Label();
             this.siticonePanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.alertPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.siticoneCircleButton1 = new Siticone.Desktop.UI.WinForms.SiticoneCircleButton();
-            this.alertMessageLabel = new System.Windows.Forms.Label();
             this.siticonePanel5 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.label8 = new System.Windows.Forms.Label();
             this.salesPurchStackedColumn = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -142,11 +142,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
             this.siticonePanel2.SuspendLayout();
+            this.alertPanel.SuspendLayout();
             this.dashTotPurPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox3)).BeginInit();
             this.siticonePanel1.SuspendLayout();
             this.siticonePanel3.SuspendLayout();
-            this.alertPanel.SuspendLayout();
             this.siticonePanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesPurchStackedColumn)).BeginInit();
             this.siticonePanel4.SuspendLayout();
@@ -484,6 +484,54 @@
             this.siticonePanel2.Size = new System.Drawing.Size(1369, 80);
             this.siticonePanel2.TabIndex = 11;
             // 
+            // alertPanel
+            // 
+            this.alertPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.alertPanel.BorderRadius = 8;
+            this.alertPanel.Controls.Add(this.siticoneCircleButton1);
+            this.alertPanel.Controls.Add(this.alertMessageLabel);
+            this.alertPanel.FillColor = System.Drawing.Color.Red;
+            this.alertPanel.Location = new System.Drawing.Point(980, 12);
+            this.alertPanel.Name = "alertPanel";
+            this.alertPanel.Size = new System.Drawing.Size(377, 65);
+            this.alertPanel.TabIndex = 11;
+            this.alertPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.alertPanel_Paint);
+            // 
+            // siticoneCircleButton1
+            // 
+            this.siticoneCircleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneCircleButton1.Animated = true;
+            this.siticoneCircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneCircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneCircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneCircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneCircleButton1.FillColor = System.Drawing.Color.White;
+            this.siticoneCircleButton1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.siticoneCircleButton1.ForeColor = System.Drawing.Color.Black;
+            this.siticoneCircleButton1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.siticoneCircleButton1.HoverState.ForeColor = System.Drawing.Color.White;
+            this.siticoneCircleButton1.IndicateFocus = true;
+            this.siticoneCircleButton1.Location = new System.Drawing.Point(350, -7);
+            this.siticoneCircleButton1.Name = "siticoneCircleButton1";
+            this.siticoneCircleButton1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
+            this.siticoneCircleButton1.Size = new System.Drawing.Size(32, 32);
+            this.siticoneCircleButton1.TabIndex = 1;
+            this.siticoneCircleButton1.Text = "❌";
+            this.siticoneCircleButton1.UseTransparentBackground = true;
+            this.siticoneCircleButton1.Click += new System.EventHandler(this.siticoneCircleButton1_Click);
+            // 
+            // alertMessageLabel
+            // 
+            this.alertMessageLabel.AutoSize = true;
+            this.alertMessageLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alertMessageLabel.ForeColor = System.Drawing.Color.White;
+            this.alertMessageLabel.Location = new System.Drawing.Point(15, 22);
+            this.alertMessageLabel.Name = "alertMessageLabel";
+            this.alertMessageLabel.Size = new System.Drawing.Size(66, 21);
+            this.alertMessageLabel.TabIndex = 0;
+            this.alertMessageLabel.Text = "label14";
+            this.alertMessageLabel.Click += new System.EventHandler(this.alertMessageLabel_Click);
+            // 
             // thisYearBtn
             // 
             this.thisYearBtn.BorderRadius = 8;
@@ -563,7 +611,6 @@
             this.label6.Size = new System.Drawing.Size(67, 23);
             this.label6.TabIndex = 19;
             this.label6.Text = "PROFIT";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -622,51 +669,6 @@
             this.siticonePanel3.Size = new System.Drawing.Size(1369, 289);
             this.siticonePanel3.TabIndex = 15;
             this.siticonePanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel3_Paint);
-            // 
-            // alertPanel
-            // 
-            this.alertPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.alertPanel.BorderRadius = 8;
-            this.alertPanel.Controls.Add(this.siticoneCircleButton1);
-            this.alertPanel.Controls.Add(this.alertMessageLabel);
-            this.alertPanel.FillColor = System.Drawing.Color.Red;
-            this.alertPanel.Location = new System.Drawing.Point(981, 12);
-            this.alertPanel.Name = "alertPanel";
-            this.alertPanel.Size = new System.Drawing.Size(376, 65);
-            this.alertPanel.TabIndex = 11;
-            this.alertPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.alertPanel_Paint);
-            // 
-            // siticoneCircleButton1
-            // 
-            this.siticoneCircleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneCircleButton1.Animated = true;
-            this.siticoneCircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneCircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneCircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneCircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneCircleButton1.FillColor = System.Drawing.Color.White;
-            this.siticoneCircleButton1.Font = new System.Drawing.Font("Segoe UI", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneCircleButton1.ForeColor = System.Drawing.Color.Black;
-            this.siticoneCircleButton1.IndicateFocus = true;
-            this.siticoneCircleButton1.Location = new System.Drawing.Point(340, 9);
-            this.siticoneCircleButton1.Name = "siticoneCircleButton1";
-            this.siticoneCircleButton1.ShadowDecoration.Mode = Siticone.Desktop.UI.WinForms.Enums.ShadowMode.Circle;
-            this.siticoneCircleButton1.Size = new System.Drawing.Size(27, 27);
-            this.siticoneCircleButton1.TabIndex = 1;
-            this.siticoneCircleButton1.Text = "❌";
-            this.siticoneCircleButton1.Click += new System.EventHandler(this.siticoneCircleButton1_Click);
-            // 
-            // alertMessageLabel
-            // 
-            this.alertMessageLabel.AutoSize = true;
-            this.alertMessageLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alertMessageLabel.ForeColor = System.Drawing.Color.White;
-            this.alertMessageLabel.Location = new System.Drawing.Point(15, 22);
-            this.alertMessageLabel.Name = "alertMessageLabel";
-            this.alertMessageLabel.Size = new System.Drawing.Size(66, 21);
-            this.alertMessageLabel.TabIndex = 0;
-            this.alertMessageLabel.Text = "label14";
-            this.alertMessageLabel.Click += new System.EventHandler(this.alertMessageLabel_Click);
             // 
             // siticonePanel5
             // 
@@ -1406,14 +1408,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashTotSaleIconPicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).EndInit();
             this.siticonePanel2.ResumeLayout(false);
+            this.alertPanel.ResumeLayout(false);
+            this.alertPanel.PerformLayout();
             this.dashTotPurPanel.ResumeLayout(false);
             this.dashTotPurPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox3)).EndInit();
             this.siticonePanel1.ResumeLayout(false);
             this.siticonePanel1.PerformLayout();
             this.siticonePanel3.ResumeLayout(false);
-            this.alertPanel.ResumeLayout(false);
-            this.alertPanel.PerformLayout();
             this.siticonePanel5.ResumeLayout(false);
             this.siticonePanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salesPurchStackedColumn)).EndInit();

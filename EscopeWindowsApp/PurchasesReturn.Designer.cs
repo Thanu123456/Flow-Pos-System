@@ -159,7 +159,7 @@
             this.purRetRefreshBtn.ForeColor = System.Drawing.Color.White;
             this.purRetRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
             this.purRetRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.purRetRefreshBtn.Location = new System.Drawing.Point(427, 30);
+            this.purRetRefreshBtn.Location = new System.Drawing.Point(299, 30);
             this.purRetRefreshBtn.Name = "purRetRefreshBtn";
             this.purRetRefreshBtn.Size = new System.Drawing.Size(42, 42);
             this.purRetRefreshBtn.TabIndex = 46;
@@ -189,7 +189,7 @@
             this.purRetSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.purRetSearchText.PlaceholderText = "Search";
             this.purRetSearchText.SelectedText = "";
-            this.purRetSearchText.Size = new System.Drawing.Size(400, 42);
+            this.purRetSearchText.Size = new System.Drawing.Size(271, 42);
             this.purRetSearchText.TabIndex = 45;
             this.purRetSearchText.TextChanged += new System.EventHandler(this.purRetSearchText_TextChanged);
             // 
@@ -290,14 +290,15 @@
             this.filterResonsPurchasReturnCombo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.filterResonsPurchasReturnCombo.ForeColor = System.Drawing.Color.DimGray;
             this.filterResonsPurchasReturnCombo.ItemHeight = 36;
-            this.filterResonsPurchasReturnCombo.Location = new System.Drawing.Point(782, 30);
+            this.filterResonsPurchasReturnCombo.Location = new System.Drawing.Point(817, 30);
             this.filterResonsPurchasReturnCombo.Name = "filterResonsPurchasReturnCombo";
-            this.filterResonsPurchasReturnCombo.Size = new System.Drawing.Size(360, 42);
+            this.filterResonsPurchasReturnCombo.Size = new System.Drawing.Size(325, 42);
             this.filterResonsPurchasReturnCombo.TabIndex = 105;
             this.filterResonsPurchasReturnCombo.SelectedIndexChanged += new System.EventHandler(this.filterResonsPurchasReturnCombo_SelectedIndexChanged);
             // 
             // checkPendingReturns
             // 
+            this.checkPendingReturns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkPendingReturns.AutoSize = true;
             this.checkPendingReturns.BackColor = System.Drawing.Color.Transparent;
             this.checkPendingReturns.CheckedState.BorderColor = System.Drawing.Color.White;
@@ -305,7 +306,7 @@
             this.checkPendingReturns.CheckedState.BorderThickness = 1;
             this.checkPendingReturns.CheckedState.FillColor = System.Drawing.Color.ForestGreen;
             this.checkPendingReturns.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.checkPendingReturns.Location = new System.Drawing.Point(573, 67);
+            this.checkPendingReturns.Location = new System.Drawing.Point(654, 47);
             this.checkPendingReturns.Name = "checkPendingReturns";
             this.checkPendingReturns.Size = new System.Drawing.Size(148, 25);
             this.checkPendingReturns.TabIndex = 106;
