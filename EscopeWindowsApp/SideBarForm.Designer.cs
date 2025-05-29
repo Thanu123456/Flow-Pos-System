@@ -1280,6 +1280,7 @@
             this.siticonePanel4.Name = "siticonePanel4";
             this.siticonePanel4.Size = new System.Drawing.Size(40, 37);
             this.siticonePanel4.TabIndex = 8;
+            this.siticonePanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.siticonePanel4_Paint);
             // 
             // siticonePictureBox1
             // 
@@ -1294,6 +1295,7 @@
             this.siticonePictureBox1.TabIndex = 7;
             this.siticonePictureBox1.TabStop = false;
             this.siticonePictureBox1.UseTransparentBackground = true;
+            this.siticonePictureBox1.Click += new System.EventHandler(this.siticonePictureBox1_Click);
             // 
             // grnBtn
             // 

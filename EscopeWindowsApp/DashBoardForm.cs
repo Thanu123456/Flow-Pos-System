@@ -514,7 +514,7 @@ namespace EscopeWindowsApp
                     connection.Open();
                     string query = @"
                         SELECT 
-                            gi.product_id,
+                            CONCAT('PRO', LPAD(gi.product_id, 3, '0')) AS product_id,
                             p.name AS product_name,
                             gi.variation_type,
                             g.date AS purchase_date,
@@ -577,7 +577,7 @@ namespace EscopeWindowsApp
                     connection.Open();
                     string query = @"
                         SELECT 
-                            CONCAT('pro', LPAD(p.id, 3, '0')) AS product_id,
+                            CONCAT('PRO', LPAD(p.id, 3, '0')) AS product_id,
                             p.name AS product_name,
                             COALESCE(b.name, 'N/A') AS brand_name,
                             COALESCE(pr.variation_type, 'N/A') AS variation_type,
@@ -590,7 +590,7 @@ namespace EscopeWindowsApp
                         LEFT JOIN stock s ON p.id = s.product_id AND 
                             (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
                         GROUP BY p.id, p.name, b.name, pr.variation_type, u.unit_name
-                        HAVING SUM(COALESCE(s.stock, 0)) > 0 AND SUM(COALESCE(s.stock, 0)) < 11
+                        HAVING SUM(COALESCE(s.stock, 0)) > 0 AND SUM(COALESCE(s.stock, 0)) < 21
                         ORDER BY stock ASC";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {

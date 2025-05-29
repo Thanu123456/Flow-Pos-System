@@ -85,6 +85,12 @@ namespace EscopeWindowsApp
             PrintPDF(receiptPath);
         }
 
+        public static void PrintRefundBill(string originalBillNo, string refundBillNo, string userName, int totalItems, decimal totalRefundAmount, List<CartItem> refundItems, string refundReason, string refundNotes)
+        {
+            string receiptPath = GenerateProfessionalRefundBillPDF(originalBillNo, refundBillNo, userName, totalItems, totalRefundAmount, refundItems, refundReason, refundNotes);
+            PrintPDF(receiptPath);
+        }
+
         private static string GenerateBarcodeImage(string billNo)
         {
             BarcodeWriter writer = new BarcodeWriter
@@ -94,7 +100,7 @@ namespace EscopeWindowsApp
                 {
                     Height = 50,
                     Width = 200,
-                    PureBarcode = true // This prevents text from being displayed below the barcode
+                    PureBarcode = true
                 }
             };
             using (Bitmap bitmap = writer.Write(billNo))
@@ -113,77 +119,20 @@ namespace EscopeWindowsApp
             Document document = new Document();
             Section section = document.AddSection();
 
-            // Set terminal size (80mm width) - Professional thermal receipt size
             section.PageSetup.PageWidth = Unit.FromMillimeter(80);
             section.PageSetup.LeftMargin = Unit.FromMillimeter(3);
             section.PageSetup.RightMargin = Unit.FromMillimeter(3);
             section.PageSetup.TopMargin = Unit.FromMillimeter(5);
             section.PageSetup.BottomMargin = Unit.FromMillimeter(5);
 
-            // Calculate dynamic height based on content
             int itemCount = cartItems.Count;
-            double baseHeight = 66; // Header (logo, company details, bill details)
-            double bottomSpace = 50; // Summary, barcode, footer, buffer
-            if (paymentMethod == "Cash") baseHeight += 5; // Add 5 mm for cash payment rows
-
-            double totalHeight;
-
-            if (itemCount == 0)
-            {
-                totalHeight = baseHeight + bottomSpace; // No items
-            }
-            else if (itemCount >= 1 && itemCount <= 5)
-            {
-                totalHeight = 150 + (10 * (itemCount - 1)); // 150 mm for 1 item, 170 mm for 3 items, 190 mm for 5 items
-            }
-            else if (itemCount > 5 && itemCount <= 10)
-            {
-                totalHeight = 190 + (5 * (itemCount - 5)); // 190 mm for 5 items, 215 mm for 10 items
-            }
-            else if (itemCount > 10 && itemCount <= 15)
-            {
-                totalHeight = 215 + (5 * (itemCount - 10)); // 215 mm for 10 items, 240 mm for 15 items
-            }
-            else if (itemCount > 15 && itemCount <= 20)
-            {
-                totalHeight = 240 + (5 * (itemCount - 15)); // 240 mm for 15 items, 265 mm for 20 items
-            }
-            else if (itemCount > 20 && itemCount <= 30)
-            {
-                totalHeight = 265 + (10 * (itemCount - 20) / 2); // 265 mm for 20 items, 315 mm for 30 items
-            }
-            else if (itemCount > 30 && itemCount <= 40)
-            {
-                totalHeight = 315 + (10 * (itemCount - 30) / 2); // 315 mm for 30 items, 365 mm for 40 items
-            }
-            else if (itemCount > 40 && itemCount <= 50)
-            {
-                totalHeight = 365 + (10 * (itemCount - 40) / 2); // 365 mm for 40 items, 415 mm for 50 items
-            }
-            else if (itemCount > 50 && itemCount <= 60)
-            {
-                totalHeight = 415 + (10 * (itemCount - 50) / 2); // 415 mm for 50 items, 465 mm for 60 items
-            }
-            else if (itemCount > 60 && itemCount <= 70)
-            {
-                totalHeight = 465 + (10 * (itemCount - 60) / 2); // 465 mm for 60 items, 515 mm for 70 items
-            }
-            else if (itemCount > 70 && itemCount <= 80)
-            {
-                totalHeight = 515 + (10 * (itemCount - 70) / 2); // 515 mm for 70 items, 565 mm for 80 items
-            }
-            else if (itemCount > 80 && itemCount <= 100)
-            {
-                totalHeight = 565 + (15 * (itemCount - 80) / 4); // 565 mm for 80 items, 640 mm for 100 items
-            }
-            else
-            {
-                totalHeight = 640; // Cap at 640 mm for >100 items
-            }
-
+            double baseHeight = 66;
+            double bottomSpace = 50;
+            if (paymentMethod == "Cash") baseHeight += 5;
+            double totalHeight = baseHeight + bottomSpace + 10 + (10 * itemCount);
+            if (totalHeight > 640) totalHeight = 640;
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
 
-            // Define professional styles for thermal receipt
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
             titleStyle.Font.Name = "Courier New";
             titleStyle.Font.Size = 12;
@@ -194,7 +143,7 @@ namespace EscopeWindowsApp
             Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
             bodyStyle.Font.Name = "Courier New";
             bodyStyle.Font.Size = 8;
-            bodyStyle.ParagraphFormat.SpaceAfter = 0; // Reduced from 2 to remove extra gap
+            bodyStyle.ParagraphFormat.SpaceAfter = 0;
 
             Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
             boldBodyStyle.Font.Bold = true;
@@ -207,34 +156,21 @@ namespace EscopeWindowsApp
 
             CompanyDetails company = LoadCompanyDetails();
 
-            // Logo section
             Paragraph logoPara = section.AddParagraph();
             logoPara.Format.Alignment = ParagraphAlignment.Center;
             if (company.Logo != null && company.Logo.Length > 0)
             {
                 try
                 {
-                    MemoryStream ms = new MemoryStream(company.Logo);
-                    try
+                    using (MemoryStream ms = new MemoryStream(company.Logo))
+                    using (Image image = Image.FromStream(ms))
                     {
-                        Image image = Image.FromStream(ms);
-                        try
-                        {
-                            string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
-                            image.Save(tempImagePath, ImageFormat.Png);
-                            tempFiles.Add(tempImagePath);
-                            var pdfImage = logoPara.AddImage(tempImagePath);
-                            pdfImage.Width = Unit.FromMillimeter(45);
-                            pdfImage.LockAspectRatio = true;
-                        }
-                        finally
-                        {
-                            image.Dispose();
-                        }
-                    }
-                    finally
-                    {
-                        ms.Dispose();
+                        string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
+                        image.Save(tempImagePath, ImageFormat.Png);
+                        tempFiles.Add(tempImagePath);
+                        var pdfImage = logoPara.AddImage(tempImagePath);
+                        pdfImage.Width = Unit.FromMillimeter(45);
+                        pdfImage.LockAspectRatio = true;
                     }
                 }
                 catch (Exception ex)
@@ -244,11 +180,10 @@ namespace EscopeWindowsApp
             }
             else
             {
-                logoPara.AddText("SEVEN SUPER CITY");
+                logoPara.AddText("E SCOPE INTERNATIONAL");
                 logoPara.Style = "Title";
             }
 
-            // Company information section
             Paragraph storeName = section.AddParagraph();
             storeName.Style = "Title";
             storeName.AddText(company.Name);
@@ -261,15 +196,20 @@ namespace EscopeWindowsApp
             phone.Style = "Center";
             phone.AddText($"CONTACT: {company.PhoneNumber}");
 
-            // Top separator
             Paragraph separator1 = section.AddParagraph();
             separator1.AddText("============================================");
             separator1.Style = "Center";
 
-            // Bill details section
-            Paragraph dateTimePara = section.AddParagraph();
-            dateTimePara.Style = "Body";
-            dateTimePara.AddText($"DATE: {DateTime.Now:dd/MM/yyyy}  TIME: {DateTime.Now:HH:mm:ss}");
+            Table dateTimeTable = section.AddTable();
+            dateTimeTable.Borders.Width = 0;
+            dateTimeTable.AddColumn("3.5cm");
+            dateTimeTable.AddColumn("3.9cm");
+
+            Row dateTimeRow = dateTimeTable.AddRow();
+            dateTimeRow.Format.Font.Name = "Courier New";
+            dateTimeRow.Format.Font.Size = 8;
+            dateTimeRow.Cells[0].AddParagraph($"DATE: {DateTime.Now:dd/MM/yyyy}").Format.Alignment = ParagraphAlignment.Left;
+            dateTimeRow.Cells[1].AddParagraph($"TIME: {DateTime.Now:HH:mm:ss}").Format.Alignment = ParagraphAlignment.Right;
 
             Paragraph invoicePara = section.AddParagraph();
             invoicePara.Style = "Body";
@@ -286,12 +226,10 @@ namespace EscopeWindowsApp
                 customerPara.AddText($"CUSTOMER: {customerName}");
             }
 
-            // Items section separator
             Paragraph separator2 = section.AddParagraph();
             separator2.AddText("============================================");
             separator2.Style = "Center";
 
-            // Create professional table with separate columns
             Table itemsTable = section.AddTable();
             itemsTable.Style = "Table";
             itemsTable.Borders.Width = 0.25;
@@ -301,24 +239,19 @@ namespace EscopeWindowsApp
             itemsTable.Borders.Bottom.Width = 0;
             itemsTable.Rows.LeftIndent = 0;
 
-            // Define column widths for 80mm thermal receipt (total 74mm printable)
-            Column column = itemsTable.AddColumn("1.8cm"); // Quantity
+            Column column = itemsTable.AddColumn("1.8cm");
+            column.Format.Alignment = ParagraphAlignment.Right;
+            column = itemsTable.AddColumn("2.8cm");
+            column.Format.Alignment = ParagraphAlignment.Right;
+            column = itemsTable.AddColumn("2.8cm");
             column.Format.Alignment = ParagraphAlignment.Right;
 
-            column = itemsTable.AddColumn("2.8cm"); // Unit Price
-            column.Format.Alignment = ParagraphAlignment.Right;
-
-            column = itemsTable.AddColumn("2.8cm"); // Amount
-            column.Format.Alignment = ParagraphAlignment.Right;
-
-            // Add table header rows
             Row headerRow1 = itemsTable.AddRow();
             headerRow1.HeadingFormat = true;
             headerRow1.Format.Font.Size = 7;
             headerRow1.Format.Font.Name = "Courier New";
             headerRow1.Format.Font.Bold = false;
-            // headerRow1.Shading.Color = Colors.LightGray;
-            headerRow1.Cells[0].MergeRight = 2; // Merge all 3 columns for DESCRIPTION
+            headerRow1.Cells[0].MergeRight = 2;
             headerRow1.Cells[0].AddParagraph("");
             headerRow1.Cells[0].Format.Alignment = ParagraphAlignment.Left;
 
@@ -327,7 +260,6 @@ namespace EscopeWindowsApp
             headerRow2.Format.Font.Size = 8;
             headerRow2.Format.Font.Name = "Courier New";
             headerRow2.Format.Font.Bold = true;
-            // headerRow2.Shading.Color = Colors.LightGray;
             headerRow2.Cells[0].AddParagraph("QTY");
             headerRow2.Cells[0].Format.Alignment = ParagraphAlignment.Right;
             headerRow2.Cells[1].AddParagraph("PRICE");
@@ -335,85 +267,53 @@ namespace EscopeWindowsApp
             headerRow2.Cells[2].AddParagraph("AMOUNT");
             headerRow2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
 
-            // Add items to table (2 rows per item)
             foreach (var item in cartItems)
             {
-                // First row: Description
                 Row descRow = itemsTable.AddRow();
-                descRow.Height = Unit.FromMillimeter(6); // Reduced from 9 mm
+                descRow.Height = Unit.FromMillimeter(5);
                 descRow.Format.Font.Size = 8;
                 descRow.Format.Font.Name = "Courier New";
-                descRow.Cells[0].MergeRight = 2; // Merge all 3 columns for description
+                descRow.Cells[0].MergeRight = 2;
 
-                // Product name and variation
                 string productDisplay = item.ProductName.ToUpper();
                 if (!string.IsNullOrEmpty(item.VariationType) && item.VariationType != "N/A")
                 {
                     productDisplay += $" ({item.VariationType})";
                 }
-
-                // Truncate if too long (adjusted for wider space)
-                if (productDisplay.Length > 40)
-                    productDisplay = productDisplay.Substring(0, 37) + "...";
-
+                if (productDisplay.Length > 40) productDisplay = productDisplay.Substring(0, 37) + "...";
                 descRow.Cells[0].AddParagraph(productDisplay);
                 descRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
 
-                // Second row: QTY, PRICE, AMOUNT
                 Row dataRow = itemsTable.AddRow();
-                dataRow.Height = Unit.FromMillimeter(6); // Reduced from 9 mm
+                dataRow.Height = Unit.FromMillimeter(5);
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
-                // Format quantity based on unit type
-                string qtyText;
-                if (item.Unit == "Pieces")
-                {
-                    qtyText = item.Quantity.ToString("0");
-                }
-                else
-                {
-                    string unitAbbrev = item.Unit switch
-                    {
-                        "Kilogram" => "KG",
-                        "Liter" => "L",
-                        "Meter" => "M",
-                        _ => item.Unit.Substring(0, Math.Min(2, item.Unit.Length))
-                    };
-                    qtyText = $"{item.Quantity:0.00}{unitAbbrev}";
-                }
-
+                string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("0") : $"{item.Quantity:0.00}{item.Unit.Substring(0, Math.Min(2, item.Unit.Length))}";
                 dataRow.Cells[0].AddParagraph(qtyText);
                 dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-
                 dataRow.Cells[1].AddParagraph(item.Price.ToString("0.00"));
                 dataRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
-
                 dataRow.Cells[2].AddParagraph(item.TotalPrice.ToString("0.00"));
                 dataRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
             }
 
-            // Summary section separator
             Paragraph separator3 = section.AddParagraph();
             separator3.AddText("============================================");
             separator3.Style = "Center";
 
-            // Professional summary section with labels left-aligned and values right-aligned
             decimal subTotal = totalPrice + discount;
-
             Table summaryTable = section.AddTable();
-            summaryTable.Borders.Width = 0; // No borders
+            summaryTable.Borders.Width = 0;
             summaryTable.AddColumn("3.5cm");
             summaryTable.AddColumn("3.9cm");
 
-            // Sub Total row
             Row row = summaryTable.AddRow();
             row.Format.Font.Name = "Courier New";
             row.Format.Font.Size = 8;
             row.Cells[0].AddParagraph("SUB TOTAL:").Format.Alignment = ParagraphAlignment.Left;
             row.Cells[1].AddParagraph($"LKR {subTotal:0.00}").Format.Alignment = ParagraphAlignment.Right;
 
-            // Discount row if applicable
             if (discount > 0)
             {
                 row = summaryTable.AddRow();
@@ -423,15 +323,13 @@ namespace EscopeWindowsApp
                 row.Cells[1].AddParagraph($"LKR {discount:0.00}").Format.Alignment = ParagraphAlignment.Right;
             }
 
-            // Total row
             row = summaryTable.AddRow();
             row.Format.Font.Name = "Courier New";
             row.Format.Font.Size = 8;
-            row.Format.Font.Bold = true; // Make total bold
+            row.Format.Font.Bold = true;
             row.Cells[0].AddParagraph("TOTAL:").Format.Alignment = ParagraphAlignment.Left;
             row.Cells[1].AddParagraph($"LKR {totalPrice:0.00}").Format.Alignment = ParagraphAlignment.Right;
 
-            // Payment method row
             row = summaryTable.AddRow();
             row.Format.Font.Name = "Courier New";
             row.Format.Font.Size = 8;
@@ -440,35 +338,30 @@ namespace EscopeWindowsApp
 
             if (paymentMethod == "Cash")
             {
-                // Cash paid row
                 row = summaryTable.AddRow();
                 row.Format.Font.Name = "Courier New";
                 row.Format.Font.Size = 8;
                 row.Cells[0].AddParagraph("CASH PAID:").Format.Alignment = ParagraphAlignment.Left;
                 row.Cells[1].AddParagraph($"LKR {cashPaid:0.00}").Format.Alignment = ParagraphAlignment.Right;
 
-                // Balance row
                 row = summaryTable.AddRow();
                 row.Format.Font.Name = "Courier New";
                 row.Format.Font.Size = 8;
-                row.Format.Font.Bold = true; // Make balance bold
+                row.Format.Font.Bold = true;
                 row.Cells[0].AddParagraph("BALANCE:").Format.Alignment = ParagraphAlignment.Left;
                 row.Cells[1].AddParagraph($"LKR {balance:0.00}").Format.Alignment = ParagraphAlignment.Right;
             }
 
-            // Total items row
             row = summaryTable.AddRow();
             row.Format.Font.Name = "Courier New";
             row.Format.Font.Size = 8;
             row.Cells[0].AddParagraph("TOTAL ITEMS:").Format.Alignment = ParagraphAlignment.Left;
             row.Cells[1].AddParagraph(totalItems.ToString()).Format.Alignment = ParagraphAlignment.Right;
 
-            // Final separator
             Paragraph separator4 = section.AddParagraph();
             separator4.AddText("============================================");
             separator4.Style = "Center";
 
-            // Barcode section
             string barcodePath = GenerateBarcodeImage(billNo);
             tempFiles.Add(barcodePath);
             Paragraph barcodePara = section.AddParagraph();
@@ -477,17 +370,17 @@ namespace EscopeWindowsApp
             barcodeImage.Width = Unit.FromMillimeter(55);
             barcodeImage.LockAspectRatio = true;
 
-            // Professional footer section
             Paragraph thankYou = section.AddParagraph();
             thankYou.Style = "Title";
             thankYou.AddText("THANK YOU FOR YOUR VISIT!");
 
             Paragraph softwareCompany = section.AddParagraph();
             softwareCompany.Style = "Center";
-            softwareCompany.Format.Font.Size = 7; // Slightly smaller text
+            softwareCompany.Format.Font.Size = 7;
+            softwareCompany.Format.Font.Color = Colors.Black;
+            softwareCompany.Format.Font.Bold = true;
             softwareCompany.AddText("Software by E-Scope International - 077 198 6400");
 
-            // Save PDF with proper resource cleanup
             try
             {
                 PdfDocumentRenderer renderer = new PdfDocumentRenderer();
@@ -497,7 +390,290 @@ namespace EscopeWindowsApp
             }
             finally
             {
-                // Clean up temporary files
+                foreach (string tempFile in tempFiles)
+                {
+                    if (File.Exists(tempFile))
+                    {
+                        try
+                        {
+                            File.Delete(tempFile);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error deleting temporary file: {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+
+            return pdfPath;
+        }
+
+        private static string GenerateProfessionalRefundBillPDF(string originalBillNo, string refundBillNo, string userName, int totalItems, decimal totalRefundAmount, List<CartItem> refundItems, string refundReason, string refundNotes)
+        {
+            string pdfPath = Path.Combine(Environment.CurrentDirectory, $"{refundBillNo}_refund_receipt.pdf");
+            List<string> tempFiles = new List<string>();
+
+            Document document = new Document();
+            Section section = document.AddSection();
+
+            section.PageSetup.PageWidth = Unit.FromMillimeter(80);
+            section.PageSetup.LeftMargin = Unit.FromMillimeter(3);
+            section.PageSetup.RightMargin = Unit.FromMillimeter(3);
+            section.PageSetup.TopMargin = Unit.FromMillimeter(5);
+            section.PageSetup.BottomMargin = Unit.FromMillimeter(5);
+
+            int itemCount = refundItems.Count;
+            double baseHeight = 66;
+            double bottomSpace = 50;
+            double totalHeight = baseHeight + bottomSpace + 10 + (10 * itemCount);
+            if (totalHeight > 640) totalHeight = 640;
+            section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
+
+            Style titleStyle = document.Styles.AddStyle("Title", "Normal");
+            titleStyle.Font.Name = "Courier New";
+            titleStyle.Font.Size = 12;
+            titleStyle.Font.Bold = true;
+            titleStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+            titleStyle.ParagraphFormat.SpaceAfter = 4;
+
+            Style bodyStyle = document.Styles.AddStyle("Body", "Normal");
+            bodyStyle.Font.Name = "Courier New";
+            bodyStyle.Font.Size = 8;
+            bodyStyle.ParagraphFormat.SpaceAfter = 0;
+
+            Style boldBodyStyle = document.Styles.AddStyle("BoldBody", "Body");
+            boldBodyStyle.Font.Bold = true;
+
+            Style rightAlignStyle = document.Styles.AddStyle("RightAlign", "Body");
+            rightAlignStyle.ParagraphFormat.Alignment = ParagraphAlignment.Right;
+
+            Style centerStyle = document.Styles.AddStyle("Center", "Body");
+            centerStyle.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+            CompanyDetails company = LoadCompanyDetails();
+
+            Paragraph logoPara = section.AddParagraph();
+            logoPara.Format.Alignment = ParagraphAlignment.Center;
+            if (company.Logo != null && company.Logo.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(company.Logo))
+                    using (Image image = Image.FromStream(ms))
+                    {
+                        string tempImagePath = Path.Combine(Path.GetTempPath(), $"logo_{Guid.NewGuid()}.png");
+                        image.Save(tempImagePath, ImageFormat.Png);
+                        tempFiles.Add(tempImagePath);
+                        var pdfImage = logoPara.AddImage(tempImagePath);
+                        pdfImage.Width = Unit.FromMillimeter(45);
+                        pdfImage.LockAspectRatio = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logoPara.AddText($"[Error loading logo: {ex.Message}]");
+                }
+            }
+            else
+            {
+                logoPara.AddText("SEVEN SUPER CITY");
+                logoPara.Style = "Title";
+            }
+
+            Paragraph storeName = section.AddParagraph();
+            storeName.Style = "Title";
+            storeName.AddText(company.Name);
+
+            Paragraph address = section.AddParagraph();
+            address.Style = "Center";
+            address.AddText(company.Address);
+
+            Paragraph phone = section.AddParagraph();
+            phone.Style = "Center";
+            phone.AddText($"CONTACT: {company.PhoneNumber}");
+
+            Paragraph separator1 = section.AddParagraph();
+            separator1.AddText("============================================");
+            separator1.Style = "Center";
+
+            Paragraph refundHeader = section.AddParagraph();
+            refundHeader.Style = "Title";
+            refundHeader.AddText("REFUND RECEIPT");
+
+            Table dateTimeTable = section.AddTable();
+            dateTimeTable.Borders.Width = 0;
+            dateTimeTable.AddColumn("3.5cm");
+            dateTimeTable.AddColumn("3.9cm");
+
+            Row dateTimeRow = dateTimeTable.AddRow();
+            dateTimeRow.Format.Font.Name = "Courier New";
+            dateTimeRow.Format.Font.Size = 8;
+            dateTimeRow.Cells[0].AddParagraph($"DATE: {DateTime.Now:dd/MM/yyyy}").Format.Alignment = ParagraphAlignment.Left;
+            dateTimeRow.Cells[1].AddParagraph($"TIME: {DateTime.Now:HH:mm:ss}").Format.Alignment = ParagraphAlignment.Right;
+
+            Table invoiceTable = section.AddTable();
+            invoiceTable.Borders.Width = 0;
+            invoiceTable.AddColumn("3.5cm");
+            invoiceTable.AddColumn("3.9cm");
+
+            Row originalInvoiceRow = invoiceTable.AddRow();
+            originalInvoiceRow.Format.Font.Name = "Courier New";
+            originalInvoiceRow.Format.Font.Size = 8;
+            originalInvoiceRow.Cells[0].AddParagraph("ORIGINAL BILL NO:").Format.Alignment = ParagraphAlignment.Left;
+            originalInvoiceRow.Cells[1].AddParagraph(originalBillNo).Format.Alignment = ParagraphAlignment.Right;
+
+            Row refundInvoiceRow = invoiceTable.AddRow();
+            refundInvoiceRow.Format.Font.Name = "Courier New";
+            refundInvoiceRow.Format.Font.Size = 8;
+            refundInvoiceRow.Cells[0].AddParagraph("REFUND INVOICE NO:").Format.Alignment = ParagraphAlignment.Left;
+            refundInvoiceRow.Cells[1].AddParagraph(refundBillNo).Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph cashierPara = section.AddParagraph();
+            cashierPara.Style = "Body";
+            cashierPara.AddText($"CASHIER: {userName}");
+
+            Paragraph separator2 = section.AddParagraph();
+            separator2.AddText("============================================");
+            separator2.Style = "Center";
+
+            Table itemsTable = section.AddTable();
+            itemsTable.Style = "Table";
+            itemsTable.Borders.Width = 0.25;
+            itemsTable.Borders.Left.Width = 0;
+            itemsTable.Borders.Right.Width = 0;
+            itemsTable.Borders.Top.Width = 0;
+            itemsTable.Borders.Bottom.Width = 0;
+            itemsTable.Rows.LeftIndent = 0;
+
+            Column column = itemsTable.AddColumn("1.8cm");
+            column.Format.Alignment = ParagraphAlignment.Right;
+            column = itemsTable.AddColumn("2.8cm");
+            column.Format.Alignment = ParagraphAlignment.Right;
+            column = itemsTable.AddColumn("2.8cm");
+            column.Format.Alignment = ParagraphAlignment.Right;
+
+            Row headerRow1 = itemsTable.AddRow();
+            headerRow1.HeadingFormat = true;
+            headerRow1.Format.Font.Size = 7;
+            headerRow1.Format.Font.Name = "Courier New";
+            headerRow1.Format.Font.Bold = false;
+            headerRow1.Cells[0].MergeRight = 2;
+            headerRow1.Cells[0].AddParagraph("");
+            headerRow1.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+
+            Row headerRow2 = itemsTable.AddRow();
+            headerRow2.HeadingFormat = true;
+            headerRow2.Format.Font.Size = 8;
+            headerRow2.Format.Font.Name = "Courier New";
+            headerRow2.Format.Font.Bold = true;
+            headerRow2.Cells[0].AddParagraph("QTY");
+            headerRow2.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+            headerRow2.Cells[1].AddParagraph("PRICE");
+            headerRow2.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+            headerRow2.Cells[2].AddParagraph("AMOUNT");
+            headerRow2.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+
+            foreach (var item in refundItems)
+            {
+                Row descRow = itemsTable.AddRow();
+                descRow.Height = Unit.FromMillimeter(5);
+                descRow.Format.Font.Size = 8;
+                descRow.Format.Font.Name = "Courier New";
+                descRow.Cells[0].MergeRight = 2;
+
+                string productDisplay = item.ProductName.ToUpper();
+                if (!string.IsNullOrEmpty(item.VariationType) && item.VariationType != "N/A")
+                {
+                    productDisplay += $" ({item.VariationType})";
+                }
+                if (productDisplay.Length > 40) productDisplay = productDisplay.Substring(0, 37) + "...";
+                descRow.Cells[0].AddParagraph(productDisplay);
+                descRow.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+
+                Row dataRow = itemsTable.AddRow();
+                dataRow.Height = Unit.FromMillimeter(5);
+                dataRow.Format.Font.Size = 8;
+                dataRow.Format.Font.Name = "Courier New";
+
+                string qtyText = item.Unit == "Pieces" ? (-item.Quantity).ToString("0") : $"{(-item.Quantity):0.00}{item.Unit.Substring(0, Math.Min(2, item.Unit.Length))}";
+                dataRow.Cells[0].AddParagraph(qtyText);
+                dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+                dataRow.Cells[1].AddParagraph(item.Price.ToString("0.00"));
+                dataRow.Cells[1].Format.Alignment = ParagraphAlignment.Right;
+                dataRow.Cells[2].AddParagraph(item.TotalPrice.ToString("0.00"));
+                dataRow.Cells[2].Format.Alignment = ParagraphAlignment.Right;
+            }
+
+            Paragraph separator3 = section.AddParagraph();
+            separator3.AddText("============================================");
+            separator3.Style = "Center";
+
+            Table summaryTable = section.AddTable();
+            summaryTable.Borders.Width = 0;
+            summaryTable.AddColumn("3.5cm");
+            summaryTable.AddColumn("3.9cm");
+
+            Row row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Format.Font.Bold = true;
+            row.Cells[0].AddParagraph("REFUND TOTAL:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph($"LKR {totalRefundAmount:0.00}").Format.Alignment = ParagraphAlignment.Right;
+
+            row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Cells[0].AddParagraph("TOTAL ITEMS:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph(totalItems.ToString()).Format.Alignment = ParagraphAlignment.Right;
+
+            row = summaryTable.AddRow();
+            row.Format.Font.Name = "Courier New";
+            row.Format.Font.Size = 8;
+            row.Cells[0].AddParagraph("REASON:").Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].AddParagraph(refundReason).Format.Alignment = ParagraphAlignment.Right;
+
+            if (!string.IsNullOrEmpty(refundNotes))
+            {
+                row = summaryTable.AddRow();
+                row.Format.Font.Name = "Courier New";
+                row.Format.Font.Size = 8;
+                row.Cells[0].AddParagraph("NOTES:").Format.Alignment = ParagraphAlignment.Left;
+                row.Cells[1].AddParagraph(refundNotes).Format.Alignment = ParagraphAlignment.Right;
+            }
+
+            Paragraph separator4 = section.AddParagraph();
+            separator4.AddText("============================================");
+            separator4.Style = "Center";
+
+            string barcodePath = GenerateBarcodeImage(refundBillNo);
+            tempFiles.Add(barcodePath);
+            Paragraph barcodePara = section.AddParagraph();
+            barcodePara.Format.Alignment = ParagraphAlignment.Center;
+            var barcodeImage = barcodePara.AddImage(barcodePath);
+            barcodeImage.Width = Unit.FromMillimeter(55);
+            barcodeImage.LockAspectRatio = true;
+
+            Paragraph thankYou = section.AddParagraph();
+            thankYou.Style = "Title";
+            thankYou.AddText("THANK YOU FOR YOUR VISIT!");
+
+            Paragraph softwareCompany = section.AddParagraph();
+            softwareCompany.Style = "Center";
+            softwareCompany.Format.Font.Size = 7;
+            softwareCompany.Format.Font.Color = Colors.Black;
+            softwareCompany.Format.Font.Bold = true;
+            softwareCompany.AddText("Software by E-Scope International - 077 198 6400");
+
+            try
+            {
+                PdfDocumentRenderer renderer = new PdfDocumentRenderer();
+                renderer.Document = document;
+                renderer.RenderDocument();
+                renderer.PdfDocument.Save(pdfPath);
+            }
+            finally
+            {
                 foreach (string tempFile in tempFiles)
                 {
                     if (File.Exists(tempFile))
