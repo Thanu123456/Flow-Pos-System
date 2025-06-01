@@ -50,7 +50,6 @@
             this.creditReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.saleRetReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.testBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
             this.SuspendLayout();
@@ -373,34 +372,12 @@
             this.siticoneButton1.Text = "PURCHASES RETURN REPORT";
             this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click);
             // 
-            // testBtn
-            // 
-            this.testBtn.Animated = true;
-            this.testBtn.BorderRadius = 8;
-            this.testBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.testBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.testBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.testBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.testBtn.FillColor = System.Drawing.Color.Goldenrod;
-            this.testBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.testBtn.ForeColor = System.Drawing.Color.White;
-            this.testBtn.HoverState.FillColor = System.Drawing.Color.DarkSlateGray;
-            this.testBtn.Location = new System.Drawing.Point(530, 405);
-            this.testBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.testBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.testBtn.Name = "testBtn";
-            this.testBtn.Size = new System.Drawing.Size(297, 129);
-            this.testBtn.TabIndex = 22;
-            this.testBtn.Text = "PURCHASES RETURN REPORT";
-            this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
-            // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
-            this.Controls.Add(this.testBtn);
             this.Controls.Add(this.siticoneButton1);
             this.Controls.Add(this.saleRetReportBtn);
             this.Controls.Add(this.creditReportBtn);
@@ -445,6 +422,5 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton creditReportBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton saleRetReportBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton testBtn;
     }
 }

@@ -383,24 +383,5 @@ namespace EscopeWindowsApp
             PurchasesReturnReport purchasesReturnReport = new PurchasesReturnReport();
             purchasesReturnReport.Show();
         }
-
-        private void testBtn_Click(object sender, EventArgs e)
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is TextForm)
-                {
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-                    form.BringToFront();
-                    form.Activate();
-                    return;
-                }
-            }
-            TextForm textForm = new TextForm();
-            textForm.Show();
-        }
     }
 }
