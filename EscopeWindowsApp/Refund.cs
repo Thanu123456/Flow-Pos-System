@@ -27,6 +27,8 @@ namespace EscopeWindowsApp
         private ListBox billSuggestionListBox; // ListBox for bill suggestions
         private string selectedReason; // Store selected refund reason
         private string refundNotes;    // Store refund notes
+        private System.Windows.Forms.Timer searchTimer; // Timer for delayed search
+        private bool isSelectingSuggestion = false; // Flag to prevent recursive TextChanged events
 
         public Refund()
         {
@@ -53,6 +55,13 @@ namespace EscopeWindowsApp
             // Initialize suggestion ListBox
             InitializeBillSuggestionListBox();
 
+            // Initialize search timer
+            searchTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 300 // Delay in milliseconds
+            };
+            searchTimer.Tick += SearchTimer_Tick;
+
             // Subscribe to form key press event for USB scanner input
             this.KeyPreview = true;
             this.KeyPress += Refund_KeyPress;
@@ -67,6 +76,13 @@ namespace EscopeWindowsApp
             resonsToRefundCombo.Items.AddRange(new string[] { "Wrong Product", "Damaged Product", "Poor Quality Product", "Other" });
             resonsToRefundCombo.SelectedIndex = 0; // Set the first item as selected
             selectedReason = resonsToRefundCombo.SelectedItem?.ToString(); // Initialize selectedReason
+
+            // Subscribe to additional events
+            billSearchTextBox.TextChanged += billSearchTextBox_TextChanged;
+            billSearchTextBox.KeyDown += billSearchTextBox_KeyDown;
+            billSearchTextBox.Enter += billSearchTextBox_Enter;
+            billSearchTextBox.Leave += billSearchTextBox_Leave;
+            billSuggestionListBox.SelectedIndexChanged += BillSuggestionListBox_SelectedIndexChanged;
         }
 
         #region Keyboard Event Handling
@@ -310,6 +326,11 @@ namespace EscopeWindowsApp
                 usbScanTimer.Dispose();
                 usbScanTimer = null;
             }
+            if (searchTimer != null)
+            {
+                searchTimer.Dispose();
+                searchTimer = null;
+            }
             Debug.WriteLine("Scanner resources cleaned up in Refund_FormClosing.");
         }
         #endregion
@@ -467,7 +488,21 @@ namespace EscopeWindowsApp
         }
         #endregion
 
+        #region Product Search
         private void billSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (isSelectingSuggestion) return;
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
+
+        private void SearchTimer_Tick(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            PerformBillSearch();
+        }
+
+        private void PerformBillSearch()
         {
             string searchText = billSearchTextBox.Text.Trim();
             billSuggestionListBox.Items.Clear();
@@ -547,17 +582,42 @@ namespace EscopeWindowsApp
         {
             if (billSuggestionListBox.SelectedItem != null)
             {
+                isSelectingSuggestion = true;
                 string selectedBillNo = billSuggestionListBox.SelectedItem.ToString();
                 billSearchTextBox.Text = selectedBillNo;
                 LoadBillDetails(selectedBillNo);
                 billSuggestionListBox.Visible = false;
                 billSearchTextBox.Focus();
+                isSelectingSuggestion = false;
+            }
+        }
+
+        private void BillSuggestionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (billSuggestionListBox.SelectedItem != null)
+            {
+                isSelectingSuggestion = true;
+                billSearchTextBox.Text = billSuggestionListBox.SelectedItem.ToString();
+                isSelectingSuggestion = false;
             }
         }
 
         private void billSearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (billSuggestionListBox.Visible)
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (billSuggestionListBox.Visible && billSuggestionListBox.SelectedItem != null)
+                {
+                    SelectBillSuggestion();
+                }
+                else if (!string.IsNullOrEmpty(billSearchTextBox.Text))
+                {
+                    LoadBillDetails(billSearchTextBox.Text.Trim());
+                }
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Prevent beep sound
+            }
+            else if (billSuggestionListBox.Visible)
             {
                 if (e.KeyCode == Keys.Down)
                 {
@@ -575,16 +635,21 @@ namespace EscopeWindowsApp
                         e.Handled = true;
                     }
                 }
-                else if (e.KeyCode == Keys.Enter && billSuggestionListBox.SelectedItem != null)
-                {
-                    SelectBillSuggestion();
-                    e.Handled = true;
-                }
                 else if (e.KeyCode == Keys.Escape)
                 {
                     billSuggestionListBox.Visible = false;
+                    billSearchTextBox.Text = "";
+                    ClearBillDetails();
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void billSearchTextBox_Enter(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(billSearchTextBox.Text))
+            {
+                PerformBillSearch();
             }
         }
 
@@ -599,6 +664,7 @@ namespace EscopeWindowsApp
             };
             timer.Start();
         }
+        #endregion
 
         private void LoadBillDetails(string billNo)
         {

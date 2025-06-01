@@ -25,6 +25,7 @@ namespace EscopeWindowsApp
         private string scannedBarcodeBuffer = "";
         private System.Timers.Timer usbScanTimer;
         private const int USB_SCAN_TIMEOUT = 100; // 100ms timeout to detect end of USB scan
+        private System.Windows.Forms.Timer searchTimer;
 
         public GRNForm()
         {
@@ -33,6 +34,13 @@ namespace EscopeWindowsApp
             InitializeBluetoothScanner();
             InitializeUsbScanTimer();
             CustomizeDateTimePicker();
+
+            // Initialize search timer
+            searchTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 300 // Delay in milliseconds
+            };
+            searchTimer.Tick += SearchTimer_Tick;
 
             // Disable DateTimePicker by default
             grnExpireDatePicker.Enabled = false;
@@ -47,23 +55,26 @@ namespace EscopeWindowsApp
             grnCostPriText.KeyPress += NumericTextBox_KeyPress;
             grnRetPriText.KeyPress += NumericTextBox_KeyPress;
             grnNetPriceText.KeyPress += NumericTextBox_KeyPress;
+
+            // Subscribe to additional events
+            grnProSearchText.TextChanged += grnProSearchText_TextChanged;
+            grnProSearchText.KeyDown += grnProSearchText_KeyDown;
+            grnProSearchText.Enter += grnProSearchText_Enter;
+            grnProSearchText.Leave += grnProSearchText_Leave;
         }
 
         #region Numeric Input Validation
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow control characters (like backspace), digits, and a single decimal point
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
-                e.Handled = true; // Prevent non-numeric input
+                e.Handled = true;
                 return;
             }
-
-            // Allow only one decimal point
             TextBox textBox = sender as TextBox;
             if (e.KeyChar == '.' && textBox.Text.Contains("."))
             {
-                e.Handled = true; // Prevent additional decimal points
+                e.Handled = true;
             }
         }
         #endregion
@@ -284,7 +295,6 @@ namespace EscopeWindowsApp
                     grnDataGridView.Columns.Add("Unit", "Unit");
                     grnDataGridView.Columns.Add("SerialNumber", "Serial Number");
 
-                    // Add Delete column with icon
                     DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
                     {
                         Name = "Delete",
@@ -293,7 +303,6 @@ namespace EscopeWindowsApp
                     };
                     grnDataGridView.Columns.Add(deleteColumn);
 
-                    // Subscribe to CellPainting event for custom icon rendering
                     grnDataGridView.CellPainting += grnDataGridView_CellPainting;
                 }
 
@@ -358,7 +367,18 @@ namespace EscopeWindowsApp
         private void grnProSearchText_TextChanged(object sender, EventArgs e)
         {
             if (isFormLoading || isUsbScannerEnabled || isBluetoothScannerEnabled) return;
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
 
+        private void SearchTimer_Tick(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            PerformProductSearch();
+        }
+
+        private void PerformProductSearch()
+        {
             string searchText = grnProSearchText.Text.Trim();
             suggestionListBox.Items.Clear();
             suggestionListBox.Visible = false;
@@ -494,32 +514,45 @@ namespace EscopeWindowsApp
         {
             if (suggestionListBox.Visible)
             {
-                if (e.KeyCode == Keys.Down)
+                switch (e.KeyCode)
                 {
-                    if (suggestionListBox.Items.Count > 0)
-                    {
-                        suggestionListBox.SelectedIndex = Math.Min(suggestionListBox.SelectedIndex + 1, suggestionListBox.Items.Count - 1);
+                    case Keys.Down:
+                        if (suggestionListBox.SelectedIndex < suggestionListBox.Items.Count - 1)
+                        {
+                            suggestionListBox.SelectedIndex++;
+                        }
                         e.Handled = true;
-                    }
-                }
-                else if (e.KeyCode == Keys.Up)
-                {
-                    if (suggestionListBox.Items.Count > 0)
-                    {
-                        suggestionListBox.SelectedIndex = Math.Max(suggestionListBox.SelectedIndex - 1, 0);
+                        break;
+                    case Keys.Up:
+                        if (suggestionListBox.SelectedIndex > 0)
+                        {
+                            suggestionListBox.SelectedIndex--;
+                        }
                         e.Handled = true;
-                    }
+                        break;
+                    case Keys.Enter:
+                        if (suggestionListBox.SelectedItem != null)
+                        {
+                            SelectSuggestion();
+                        }
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                        break;
+                    case Keys.Escape:
+                        suggestionListBox.Visible = false;
+                        grnProSearchText.Text = "";
+                        ClearProductDetails();
+                        e.Handled = true;
+                        break;
                 }
-                else if (e.KeyCode == Keys.Enter && suggestionListBox.SelectedItem != null)
-                {
-                    SelectSuggestion();
-                    e.Handled = true;
-                }
-                else if (e.KeyCode == Keys.Escape)
-                {
-                    suggestionListBox.Visible = false;
-                    e.Handled = true;
-                }
+            }
+        }
+
+        private void grnProSearchText_Enter(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(grnProSearchText.Text))
+            {
+                PerformProductSearch();
             }
         }
 
@@ -973,7 +1006,6 @@ namespace EscopeWindowsApp
                     conn.Open();
                     using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
-                        // Insert into grn table
                         string grnQuery = "INSERT INTO grn (grn_no, payment_method, total_amount, date) " +
                                           "VALUES (@grnNo, @paymentMethod, @totalAmount, @date)";
                         using (MySqlCommand cmd = new MySqlCommand(grnQuery, conn, transaction))
@@ -1003,7 +1035,6 @@ namespace EscopeWindowsApp
                                 string unit = row.Cells["Unit"].Value?.ToString();
                                 string serialNumberFlag = row.Cells["SerialNumber"].Value.ToString();
 
-                                // Insert into grn_items
                                 string itemQuery = @"
                             INSERT INTO grn_items (grn_id, product_id, variation_type, quantity, cost_price, net_price, expiry_date, warranty, unit, serial_numbers)
                             VALUES (@grnId, @productId, @variationType, @quantity, @costPrice, @netPrice, @expiryDate, @warranty, @unit, @serialNumbers)";
@@ -1021,10 +1052,8 @@ namespace EscopeWindowsApp
                                     itemCmd.Parameters.AddWithValue("@serialNumbers", serialNumberFlag);
                                     itemCmd.ExecuteNonQuery();
 
-                                    // Get last inserted grn_items id
                                     long grnItemsId = itemCmd.LastInsertedId;
 
-                                    // Insert into stock_details
                                     string stockDetailsQuery = @"
                                 INSERT INTO stock_details (grn_items_id, remaining_qty)
                                 VALUES (@grnItemsId, @quantity)";
@@ -1036,7 +1065,6 @@ namespace EscopeWindowsApp
                                     }
                                 }
 
-                                // Update stock using StockManager
                                 stockManager.UpdateStock(productId, varType, quantity, unit, true);
                             }
 
@@ -1062,7 +1090,6 @@ namespace EscopeWindowsApp
                 Console.WriteLine($"Save GRN error: {ex}");
             }
         }
-
 
         private void ClearProductDetails()
         {
@@ -1176,7 +1203,6 @@ namespace EscopeWindowsApp
 
             if (expireDateCheckBox.Checked)
             {
-                // Set date to one month from today when checkbox is checked
                 grnExpireDatePicker.Value = DateTime.Now.AddMonths(1);
             }
         }

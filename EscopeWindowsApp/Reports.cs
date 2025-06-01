@@ -364,5 +364,43 @@ namespace EscopeWindowsApp
             }
             SalesReturnReport salesReturnReport = new SalesReturnReport();
             salesReturnReport.Show();}
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is PurchasesReturnReport)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            PurchasesReturnReport purchasesReturnReport = new PurchasesReturnReport();
+            purchasesReturnReport.Show();
+        }
+
+        private void testBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is TextForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            TextForm textForm = new TextForm();
+            textForm.Show();
+        }
     }
 }
