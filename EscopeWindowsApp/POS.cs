@@ -14,19 +14,26 @@ namespace EscopeWindowsApp
 {
     public partial class POS : Form
     {
-        private Timer timeTimer;       // Timer for time updates
-        private Timer dateTimer;       // Timer for date updates
+        private Timer timeTimer;
+        private Timer dateTimer;
         private DataTable productsTable;
-        private BindingSource bindingSource;
         private string connectionString = ConfigurationManager.ConnectionStrings["PosSystemConnection"].ConnectionString;
-        private int itemNumberCounter = 1; // To assign unique item numbers in supDataGridView
-        private ListBox suggestionListBox; // ListBox for autocomplete suggestions
-        private Panel suggestionPanel;      // Panel to wrap ListBox for border
-        private Timer searchTimer;         // Timer for delayed search
-        private bool suppressTextChanged;  // Flag to prevent recursive TextChanged events
-        private string username; // Store username
+        private int itemNumberCounter = 1;
+        private ListBox suggestionListBox;
+        private Panel suggestionPanel;
+        private Timer searchTimer;
+        private bool suppressTextChanged;
+        private string username;
         private string userEmail;
-        private TextBox scannerInputTextBox; // Hidden TextBox for scanner input
+        private TextBox scannerInputTextBox;
+
+        // Panel-related fields for product display
+        private int currentPage = 0;
+        private const int itemsPerPage = 6;
+        private Panel[] proPanels;
+        private PictureBox[] productPictureBoxes;
+        private Label[] productLabels;
+        private Label[] proPriceLabels;
 
         public POS(string username, string userEmail)
         {
@@ -37,149 +44,383 @@ namespace EscopeWindowsApp
             this.username = username;
             this.userEmail = userEmail;
 
-            // Display company name on load
             LoadCompanyDetails();
 
-            // Initialize and start the time timer
             timeTimer = new Timer();
             timeTimer.Interval = 1000;
             timeTimer.Tick += TimeTimer_Tick;
             timeTimer.Start();
 
-            // Initialize and start the date timer
             dateTimer = new Timer();
             dateTimer.Interval = 1000;
             dateTimer.Tick += DateTimer_Tick;
             dateTimer.Start();
 
-            // Ensure labels can display their content
             posTimeLabel.AutoSize = false;
             posDateLabel.AutoSize = false;
 
-            // Initialize BindingSource and DataTable for products
-            bindingSource = new BindingSource();
             productsTable = new DataTable();
 
-            // Disable discountText and payNowBtn by default
             discountText.Enabled = false;
             payNowBtn.Enabled = false;
 
             posCashRadioBtn.Enabled = true;
-            posCashRadioBtn.Checked = true; // Optional: Check by default
+            posCashRadioBtn.Checked = true;
             paymentText.Enabled = true;
 
-            // Initialize suggestion ListBox and Panel
             suggestionListBox = new ListBox
             {
-                Size = new Size(posCusSearchText.Width, 100), // Match search bar width
+                Size = new Size(posCusSearchText.Width, 100),
                 Font = new Font("Calibri", 12),
                 Visible = true,
-                BorderStyle = BorderStyle.None // No border on ListBox
+                BorderStyle = BorderStyle.None
             };
             suggestionListBox.SelectedIndexChanged += SuggestionListBox_SelectedIndexChanged;
             suggestionListBox.MouseClick += SuggestionListBox_MouseClick;
             suggestionListBox.LostFocus += SuggestionListBox_LostFocus;
 
-            // Create a Panel to wrap the ListBox with a border
             suggestionPanel = new Panel
             {
-                Size = new Size(posCusSearchText.Width, 102), // +2 for border
+                Size = new Size(posCusSearchText.Width, 102),
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false
             };
 
-            // Position the panel directly below the search bar
             Point searchBarLocation = posCusSearchText.Location;
             Point panelLocation = new Point(
                 searchBarLocation.X,
-                searchBarLocation.Y + posCusSearchText.Height // Attach directly to the bottom
+                searchBarLocation.Y + posCusSearchText.Height
             );
 
-            // Adjust for parent container if posCusSearchText is not directly on the form
             if (posCusSearchText.Parent != this)
             {
                 panelLocation = this.PointToClient(posCusSearchText.Parent.PointToScreen(panelLocation));
             }
 
             suggestionPanel.Location = panelLocation;
-            suggestionListBox.Location = new Point(1, 1); // Offset inside panel for border
+            suggestionListBox.Location = new Point(1, 1);
             suggestionListBox.Size = new Size(suggestionPanel.Width - 2, suggestionPanel.Height - 2);
             suggestionPanel.Controls.Add(suggestionListBox);
             this.Controls.Add(suggestionPanel);
 
-            // Ensure panel repositions if search bar moves or resizes
             posCusSearchText.LocationChanged += (s, e) => UpdateSuggestionPanelPosition();
             posCusSearchText.SizeChanged += (s, e) => UpdateSuggestionPanelPosition();
 
-            // Debug panel position
-            Debug.WriteLine($"suggestionPanel.Location: {suggestionPanel.Location}, posCusSearchText: {posCusSearchText.Location}, Height: {posCusSearchText.Height}");
-
-            // Initialize search timer
             searchTimer = new Timer
             {
-                Interval = 300 // Delay in milliseconds
+                Interval = 300
             };
             searchTimer.Tick += SearchTimer_Tick;
 
-            // Subscribe to posCusSearchText events
             posCusSearchText.TextChanged += PosCusSearchText_TextChanged;
             posCusSearchText.KeyDown += PosCusSearchText_KeyDown;
             posCusSearchText.GotFocus += PosCusSearchText_GotFocus;
             posCusSearchText.LostFocus += PosCusSearchText_LostFocus;
 
-            // Initialize hidden TextBox for scanner input
             scannerInputTextBox = new TextBox
             {
-                Location = new Point(-100, -100), // Off-screen
-                Size = new Size(0, 0), // Invisible
+                Location = new Point(-100, -100),
+                Size = new Size(0, 0),
                 Multiline = false
             };
             scannerInputTextBox.KeyPress += ScannerInputTextBox_KeyPress;
             this.Controls.Add(scannerInputTextBox);
 
-            // Load product data on form load
             this.Load += POS_Load;
             ConfigureSupDataGridView();
 
-            // Subscribe to events
-            posProductDataGrid.CellPainting += posProductDataGrid_CellPainting;
-            posProductDataGrid.CellFormatting += posProductDataGrid_CellFormatting;
-            supDataGridView.CellFormatting += supDataGridView_CellFormatting;
-
-            // Add KeyPress handlers for numerical input
             discountText.KeyPress += TextBox_NumericalKeyPress;
             paymentText.KeyPress += TextBox_NumericalKeyPress;
 
             UpdatePayNowButtonState();
+
+            InitializeProductPanels();
         }
 
-        private void DisplayCompanyName()
+        private void InitializeProductPanels()
+        {
+            proPanels = new Panel[] { proPanel1, proPanel2, proPanel3, proPanel4, proPanel5, proPanel6 };
+            productPictureBoxes = new PictureBox[] { productPictureBox1, productPictureBox2, productPictureBox3, productPictureBox4, productPictureBox5, productPictureBox6 };
+            productLabels = new Label[] { productLabel1, productLabel2, productLabel3, productLabel4, productLabel5, productLabel6 };
+            proPriceLabels = new Label[] { proPriceLabel1, proPriceLabel2, proPriceLabel3, proPriceLabel4, proPriceLabel5, proPriceLabel6 };
+
+            foreach (var panel in proPanels)
+            {
+                panel.Click += ProductPanel_Click;
+            }
+            foreach (var pb in productPictureBoxes)
+            {
+                pb.Click += ProductPanel_Click;
+            }
+            foreach (var label in productLabels)
+            {
+                label.Click += ProductPanel_Click;
+            }
+            foreach (var priceLabel in proPriceLabels)
+            {
+                priceLabel.Click += ProductPanel_Click;
+            }
+        }
+
+        private void POS_Load(object sender, EventArgs e)
+        {
+            LoadProductsData();
+            DisplayProducts();
+        }
+
+        private void LoadProductsData()
         {
             try
             {
+                productsTable = new DataTable();
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT name FROM company_details LIMIT 1";
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    string query = @"
+                SELECT 
+                    p.id,
+                    p.name AS product_name,
+                    pr.variation_type,
+                    u.unit_name,
+                    SUM(COALESCE(s.stock, 0)) AS stock,
+                    pr.retail_price,
+                    p.image_path
+                FROM products p
+                LEFT JOIN units u ON p.unit_id = u.id
+                LEFT JOIN pricing pr ON p.id = pr.product_id
+                LEFT JOIN stock s ON p.id = s.product_id AND 
+                    (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
+                GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
+                ORDER BY p.id, pr.variation_type";
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
-                        object result = command.ExecuteScalar();
-                        if (result != null)
+                        adapter.Fill(productsTable);
+                    }
+                }
+
+                if (productsTable.Columns["stock"].DataType != typeof(decimal))
+                {
+                    DataTable tempTable = productsTable.Clone();
+                    tempTable.Columns["stock"].DataType = typeof(decimal);
+                    foreach (DataRow row in productsTable.Rows)
+                    {
+                        tempTable.ImportRow(row);
+                    }
+                    productsTable = tempTable;
+                }
+
+                foreach (DataRow row in productsTable.Rows)
+                {
+                    for (int i = 0; i < productsTable.Columns.Count; i++)
+                    {
+                        if (row.IsNull(i))
                         {
-                            companyNameLabel.Text = result.ToString();
-                        }
-                        else
-                        {
-                            companyNameLabel.Text = "Company Name Not Found";
+                            if (productsTable.Columns[i].ColumnName != "image_path")
+                            {
+                                if (productsTable.Columns[i].DataType == typeof(string))
+                                    row[i] = "N/A";
+                                else if (productsTable.Columns[i].DataType == typeof(decimal))
+                                    row[i] = 0.00m;
+                                else if (productsTable.Columns[i].DataType == typeof(int))
+                                    row[i] = 0;
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading company name: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                companyNameLabel.Text = "Error";
+                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                productsTable = new DataTable();
+                productsTable.Columns.Add("id", typeof(int));
+                productsTable.Columns.Add("product_name", typeof(string));
+                productsTable.Columns.Add("variation_type", typeof(string));
+                productsTable.Columns.Add("unit_name", typeof(string));
+                productsTable.Columns.Add("stock", typeof(decimal));
+                productsTable.Columns.Add("retail_price", typeof(decimal));
+                productsTable.Columns.Add("image_path", typeof(byte[]));
             }
+        }
+
+        private void DisplayProducts()
+        {
+            int startIndex = currentPage * itemsPerPage;
+            for (int i = 0; i < itemsPerPage; i++)
+            {
+                int rowIndex = startIndex + i;
+                if (rowIndex < productsTable.DefaultView.Count)
+                {
+                    DataRowView rowView = productsTable.DefaultView[rowIndex];
+                    DataRow row = rowView.Row;
+                    proPanels[i].Tag = rowIndex;
+                    productPictureBoxes[i].Image = GetProductImage(row);
+                    productLabels[i].Text = row["product_name"].ToString();
+                    proPriceLabels[i].Text = Convert.ToDecimal(row["retail_price"]).ToString("N2");
+                    proPanels[i].Visible = true;
+                }
+                else
+                {
+                    proPanels[i].Tag = null;
+                    productPictureBoxes[i].Image = null;
+                    productLabels[i].Text = "";
+                    proPriceLabels[i].Text = "";
+                    proPanels[i].Visible = false;
+                }
+            }
+            productPrevBtn.Enabled = currentPage > 0;
+            productNextBtn.Enabled = (startIndex + itemsPerPage < productsTable.DefaultView.Count);
+        }
+
+        private Image GetProductImage(DataRow row)
+        {
+            if (row["image_path"] != DBNull.Value && row["image_path"] is byte[] imageData && imageData.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        return Image.FromStream(ms);
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        private void ProductPanel_Click(object sender, EventArgs e)
+        {
+            Panel panel = null;
+            if (sender is Panel)
+            {
+                panel = sender as Panel;
+            }
+            else if (sender is Control)
+            {
+                panel = (sender as Control).Parent as Panel;
+            }
+            if (panel != null && panel.Tag != null)
+            {
+                int index = (int)panel.Tag;
+                DataRowView rowView = productsTable.DefaultView[index];
+                DataRow row = rowView.Row;
+                int productId = Convert.ToInt32(row["id"]);
+                string productName = row["product_name"].ToString();
+                string variationType = row["variation_type"].ToString();
+                string unit = row["unit_name"].ToString();
+                decimal price = Convert.ToDecimal(row["retail_price"]);
+                decimal stock = Convert.ToDecimal(row["stock"]);
+
+                if (stock <= 0)
+                {
+                    MessageBox.Show($"Cannot add {productName} ({variationType}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (unit == "Kilogram" || unit == "Liter" || unit == "Meter")
+                {
+                    using (POSWeightForm weightForm = new POSWeightForm(unit, stock, productName, variationType))
+                    {
+                        if (weightForm.ShowDialog() == DialogResult.OK)
+                        {
+                            decimal quantity = weightForm.GetQuantity();
+                            AddToCart(productId, productName, variationType, unit, price, stock, quantity);
+                        }
+                    }
+                }
+                else
+                {
+                    AddToCart(productId, productName, variationType, unit, price, stock, 1m);
+                }
+            }
+        }
+
+        private void AddToCart(int productId, string productName, string variationType, string unit, decimal price, decimal stock, decimal quantity)
+        {
+            bool itemExists = false;
+            DataGridViewRow existingRow = null;
+
+            foreach (DataGridViewRow cartRow in supDataGridView.Rows)
+            {
+                int cartProductId = Convert.ToInt32(cartRow.Cells["product_id"].Value);
+                string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
+
+                if (cartProductId == productId && cartVariationType == variationType)
+                {
+                    itemExists = true;
+                    existingRow = cartRow;
+                    break;
+                }
+            }
+
+            if (itemExists && existingRow != null)
+            {
+                decimal currentQuantity = Convert.ToDecimal(existingRow.Cells["quantity"].Value);
+                decimal newQuantity = currentQuantity + quantity;
+
+                if (newQuantity > stock)
+                {
+                    MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                existingRow.Cells["quantity"].Value = newQuantity;
+                UpdateTotalPrice(existingRow);
+            }
+            else
+            {
+                supDataGridView.Rows.Add(
+                    itemNumberCounter++,
+                    productId,
+                    productName,
+                    variationType,
+                    unit,
+                    null,
+                    quantity,
+                    null,
+                    price,
+                    price * quantity,
+                    null
+                );
+            }
+
+            UpdateAllLabels();
+        }
+
+        private void productNextBtn_Click(object sender, EventArgs e)
+        {
+            if ((currentPage + 1) * itemsPerPage < productsTable.DefaultView.Count)
+            {
+                currentPage++;
+                DisplayProducts();
+            }
+        }
+
+        private void productPrevBtn_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 0)
+            {
+                currentPage--;
+                DisplayProducts();
+            }
+        }
+
+        private void siticoneTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = siticoneTextBox1.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                productsTable.DefaultView.RowFilter = null;
+            }
+            else
+            {
+                productsTable.DefaultView.RowFilter = $"product_name LIKE '%{searchText}%'";
+            }
+            currentPage = 0;
+            DisplayProducts();
         }
 
         private void ScannerInputTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -227,49 +468,33 @@ namespace EscopeWindowsApp
                         {
                             if (reader.Read())
                             {
-                                // Create a temporary DataRow to mimic posProductDataGrid row
-                                DataTable tempTable = productsTable.Clone();
-                                DataRow tempRow = tempTable.NewRow();
-                                tempRow["id"] = reader["id"];
-                                tempRow["product_name"] = reader["product_name"];
-                                tempRow["variation_type"] = reader["variation_type"] != DBNull.Value ? reader["variation_type"] : "N/A";
-                                tempRow["unit_name"] = reader["unit_name"] != DBNull.Value ? reader["unit_name"] : "N/A";
-                                tempRow["stock"] = reader["stock"];
-                                tempRow["retail_price"] = reader["retail_price"];
-                                tempRow["image_path"] = reader["image_path"] != DBNull.Value ? reader["image_path"] : null;
-                                tempTable.Rows.Add(tempRow);
+                                int productId = reader.GetInt32("id");
+                                string productName = reader.GetString("product_name");
+                                string variationType = reader["variation_type"] != DBNull.Value ? reader.GetString("variation_type") : "N/A";
+                                string unitName = reader["unit_name"] != DBNull.Value ? reader.GetString("unit_name") : "N/A";
+                                decimal stock = reader.GetDecimal("stock");
+                                decimal price = reader.GetDecimal("retail_price");
 
-                                // Find matching row in posProductDataGrid
-                                foreach (DataGridViewRow row in posProductDataGrid.Rows)
+                                if (stock <= 0)
                                 {
-                                    if (Convert.ToInt32(row.Cells["id"].Value) == Convert.ToInt32(tempRow["id"]) &&
-                                        row.Cells["variation_type"].Value.ToString() == tempRow["variation_type"].ToString())
-                                    {
-                                        decimal stock = Convert.ToDecimal(tempRow["stock"]);
-                                        if (stock <= 0)
-                                        {
-                                            MessageBox.Show($"Cannot add {tempRow["product_name"]} ({tempRow["variation_type"]}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            return;
-                                        }
+                                    MessageBox.Show($"Cannot add {productName} ({variationType}) to cart. Stock is 0.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
 
-                                        string unitName = tempRow["unit_name"].ToString();
-                                        if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
+                                if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
+                                {
+                                    using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, productName, variationType))
+                                    {
+                                        if (weightForm.ShowDialog() == DialogResult.OK)
                                         {
-                                            using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, tempRow["product_name"].ToString(), tempRow["variation_type"].ToString()))
-                                            {
-                                                if (weightForm.ShowDialog() == DialogResult.OK)
-                                                {
-                                                    decimal quantity = weightForm.GetQuantity();
-                                                    AddToCart(row, quantity);
-                                                }
-                                            }
+                                            decimal quantity = weightForm.GetQuantity();
+                                            AddToCart(productId, productName, variationType, unitName, price, stock, quantity);
                                         }
-                                        else
-                                        {
-                                            AddToCart(row, 1m);
-                                        }
-                                        break;
                                     }
+                                }
+                                else
+                                {
+                                    AddToCart(productId, productName, variationType, unitName, price, stock, 1m);
                                 }
                             }
                             else
@@ -284,6 +509,12 @@ namespace EscopeWindowsApp
             {
                 MessageBox.Show($"Error processing barcode: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private decimal GetStock(int productId, string variationType)
+        {
+            DataRow[] rows = productsTable.Select($"id = {productId} AND variation_type = '{variationType}'");
+            return rows.Length > 0 ? Convert.ToDecimal(rows[0]["stock"]) : 0m;
         }
 
         private void UpdateSuggestionPanelPosition()
@@ -316,7 +547,6 @@ namespace EscopeWindowsApp
 
         private void PosCusSearchText_LostFocus(object sender, EventArgs e)
         {
-            // Delay hiding to allow click on ListBox
             Timer hideTimer = new Timer { Interval = 200 };
             hideTimer.Tick += (s, args) =>
             {
@@ -387,15 +617,12 @@ namespace EscopeWindowsApp
 
                 if (suggestionListBox.Items.Count > 0)
                 {
-                    // Update panel position and size
                     UpdateSuggestionPanelPosition();
-
                     suggestionPanel.Visible = true;
                     suggestionPanel.BringToFront();
-                    // Adjust Panel height based on items, max 5 visible items
                     int itemHeight = suggestionListBox.ItemHeight;
                     int maxVisibleItems = Math.Min(suggestionListBox.Items.Count, 5);
-                    int newHeight = maxVisibleItems * itemHeight + 2; // +2 for border
+                    int newHeight = maxVisibleItems * itemHeight + 2;
                     suggestionPanel.Height = newHeight;
                     suggestionListBox.Height = newHeight - 2;
                     suggestionListBox.Width = suggestionPanel.Width - 2;
@@ -502,420 +729,16 @@ namespace EscopeWindowsApp
 
         private void TextBox_NumericalKeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow digits, decimal point, and control keys (like backspace)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
 
-            // Allow only one decimal point
             if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
             {
                 e.Handled = true;
             }
         }
-
-        private void POS_Load(object sender, EventArgs e)
-        {
-            LoadProductsData();
-            ConfigureDataGridView();
-            posProductDataGrid.DataSource = bindingSource;
-        }
-
-        #region posProductDataGrid Methods
-
-        private void ConfigureDataGridView()
-        {
-            posProductDataGrid.AutoGenerateColumns = false;
-            posProductDataGrid.Columns.Clear();
-
-            // Add image column
-            DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
-            {
-                DataPropertyName = "image_path",
-                Name = "image_path",
-                HeaderText = "Image",
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
-                Width = 80
-            };
-            posProductDataGrid.Columns.Add(imageColumn);
-
-            // Add product ID column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "id",
-                Name = "id",
-                HeaderText = "Product ID",
-                Width = 80
-            });
-
-            // Add product name column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "product_name",
-                Name = "product_name",
-                HeaderText = "Product Name",
-                Width = 150
-            });
-
-            // Add variation type column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "variation_type",
-                Name = "variation_type",
-                HeaderText = "Variation Type",
-                Width = 100
-            });
-
-            // Add unit column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "unit_name",
-                Name = "unit_name",
-                HeaderText = "Unit",
-                Width = 80
-            });
-
-            // Add stock column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "stock",
-                Name = "stock",
-                HeaderText = "Stock",
-                Width = 80
-            });
-
-            // Add retail price column
-            posProductDataGrid.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "retail_price",
-                Name = "retail_price",
-                HeaderText = "Retail Price",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
-                Width = 100
-            });
-
-            // Add "Add" button column
-            DataGridViewButtonColumn addColumn = new DataGridViewButtonColumn
-            {
-                Name = "AddColumn",
-                HeaderText = "",
-                Text = "",
-                UseColumnTextForButtonValue = false,
-                Width = 50
-            };
-            posProductDataGrid.Columns.Add(addColumn);
-
-            posProductDataGrid.AllowUserToAddRows = false;
-        }
-
-        private void LoadProductsData()
-        {
-            try
-            {
-                productsTable = new DataTable();
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = @"
-                SELECT 
-                    p.id,
-                    p.name AS product_name,
-                    pr.variation_type,
-                    u.unit_name,
-                    SUM(COALESCE(s.stock, 0)) AS stock,
-                    pr.retail_price,
-                    p.image_path
-                FROM products p
-                LEFT JOIN units u ON p.unit_id = u.id
-                LEFT JOIN pricing pr ON p.id = pr.product_id
-                LEFT JOIN stock s ON p.id = s.product_id AND 
-                    (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
-                GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
-                ORDER BY p.id, pr.variation_type";
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
-                    {
-                        adapter.Fill(productsTable);
-                    }
-                }
-
-                // Ensure the stock column is of type decimal
-                if (productsTable.Columns["stock"].DataType != typeof(decimal))
-                {
-                    DataTable tempTable = productsTable.Clone();
-                    tempTable.Columns["stock"].DataType = typeof(decimal);
-                    foreach (DataRow row in productsTable.Rows)
-                    {
-                        tempTable.ImportRow(row);
-                    }
-                    productsTable = tempTable;
-                }
-
-                foreach (DataRow row in productsTable.Rows)
-                {
-                    for (int i = 0; i < productsTable.Columns.Count; i++)
-                    {
-                        if (row.IsNull(i))
-                        {
-                            if (productsTable.Columns[i].ColumnName != "image_path")
-                            {
-                                if (productsTable.Columns[i].DataType == typeof(string))
-                                {
-                                    row[i] = "N/A";
-                                }
-                                else if (productsTable.Columns[i].DataType == typeof(decimal))
-                                {
-                                    row[i] = 0.00m;
-                                }
-                                else if (productsTable.Columns[i].DataType == typeof(int))
-                                {
-                                    row[i] = 0;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                bindingSource.DataSource = productsTable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                productsTable = new DataTable();
-                productsTable.Columns.Add("id", typeof(int));
-                productsTable.Columns.Add("product_name", typeof(string));
-                productsTable.Columns.Add("variation_type", typeof(string));
-                productsTable.Columns.Add("unit_name", typeof(string));
-                productsTable.Columns.Add("stock", typeof(decimal));
-                productsTable.Columns.Add("retail_price", typeof(decimal));
-                productsTable.Columns.Add("image_path", typeof(byte[]));
-                bindingSource.DataSource = productsTable;
-            }
-        }
-
-        private void posProductDataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            if (posProductDataGrid.Columns[e.ColumnIndex].Name == "id")
-            {
-                if (e.Value != null)
-                {
-                    int productId = Convert.ToInt32(e.Value);
-                    e.Value = $"pro{productId:D3}";
-                    e.FormattingApplied = true;
-                }
-            }
-            else if (posProductDataGrid.Columns[e.ColumnIndex].Name == "stock")
-            {
-                if (e.Value != null)
-                {
-                    decimal stock = Convert.ToDecimal(e.Value);
-                    string unit = posProductDataGrid.Rows[e.RowIndex].Cells["unit_name"].Value?.ToString();
-
-                    if (unit == "Pieces")
-                    {
-                        e.Value = stock.ToString("F0");
-                    }
-                    else
-                    {
-                        e.Value = stock.ToString("F2");
-                    }
-                    e.FormattingApplied = true;
-                }
-            }
-            else if (posProductDataGrid.Columns[e.ColumnIndex].Name != "image_path")
-            {
-                if (e.Value == DBNull.Value || e.Value == null)
-                {
-                    e.Value = "N/A";
-                    e.FormattingApplied = true;
-                }
-            }
-        }
-
-        private void posProductDataGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (posProductDataGrid.Columns[e.ColumnIndex].Name == "image_path")
-                {
-                    e.PaintBackground(e.CellBounds, true);
-                    object cellValue = posProductDataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-
-                    byte[] imageData = cellValue as byte[];
-
-                    if (cellValue == null || cellValue == DBNull.Value || (imageData != null && imageData.Length == 0))
-                    {
-                        string text = "Null";
-                        using (Font font = new Font("Arial", 10))
-                        {
-                            SizeF size = e.Graphics.MeasureString(text, font);
-                            PointF location = new PointF(
-                                e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
-                                e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
-                            );
-                            e.Graphics.DrawString(text, font, Brushes.Black, location);
-                        }
-                    }
-                    else if (imageData != null && imageData.Length > 0)
-                    {
-                        try
-                        {
-                            using (MemoryStream ms = new MemoryStream(imageData))
-                            {
-                                Image image = Image.FromStream(ms);
-                                e.Graphics.DrawImage(image, e.CellBounds);
-                            }
-                        }
-                        catch
-                        {
-                            string text = "Null";
-                            using (Font font = new Font("Arial", 10))
-                            {
-                                SizeF size = e.Graphics.MeasureString(text, font);
-                                PointF location = new PointF(
-                                    e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
-                                    e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
-                                );
-                                e.Graphics.DrawString(text, font, Brushes.Black, location);
-                            }
-                        }
-                    }
-                    e.Handled = true;
-                }
-                else if (posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn")
-                {
-                    e.PaintBackground(e.CellBounds, true);
-
-                    try
-                    {
-                        Image addIcon = Properties.Resources.posadd_;
-                        int iconSize = 24;
-                        int x = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
-                        int y = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
-                        e.Graphics.DrawImage(addIcon, x, y, iconSize, iconSize);
-                    }
-                    catch (Exception ex)
-                    {
-                        string text = "Add";
-                        using (Font font = new Font("Arial", 8))
-                        {
-                            SizeF size = e.Graphics.MeasureString(text, font);
-                            PointF location = new PointF(
-                                e.CellBounds.Left + (e.CellBounds.Width - size.Width) / 2,
-                                e.CellBounds.Top + (e.CellBounds.Height - size.Height) / 2
-                            );
-                            e.Graphics.DrawString(text, font, Brushes.Black, location);
-                        }
-                        System.Diagnostics.Debug.WriteLine($"Error loading Add icon: {ex.Message}");
-                    }
-
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void posProductDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 &&
-                (posProductDataGrid.Columns[e.ColumnIndex].Name == "AddColumn" ||
-                 posProductDataGrid.Columns[e.ColumnIndex].Name == "image_path"))
-            {
-                DataGridViewRow row = posProductDataGrid.Rows[e.RowIndex];
-                decimal stock = Convert.ToDecimal(row.Cells["stock"].Value);
-                if (stock <= 0)
-                {
-                    MessageBox.Show($"Cannot add {row.Cells["product_name"].Value} ({row.Cells["variation_type"].Value}) to cart. Stock is 0.",
-                        "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                string unitName = row.Cells["unit_name"].Value.ToString();
-                string productName = row.Cells["product_name"].Value.ToString();
-                string variationType = row.Cells["variation_type"].Value.ToString();
-
-                if (unitName == "Kilogram" || unitName == "Liter" || unitName == "Meter")
-                {
-                    using (POSWeightForm weightForm = new POSWeightForm(unitName, stock, productName, variationType))
-                    {
-                        if (weightForm.ShowDialog() == DialogResult.OK)
-                        {
-                            decimal quantity = weightForm.GetQuantity();
-                            AddToCart(row, quantity);
-                        }
-                    }
-                }
-                else
-                {
-                    AddToCart(row, 1m);
-                }
-            }
-        }
-
-        private void AddToCart(DataGridViewRow productRow, decimal quantity)
-        {
-            int productId = Convert.ToInt32(productRow.Cells["id"].Value);
-            string productName = productRow.Cells["product_name"].Value.ToString();
-            string variationType = productRow.Cells["variation_type"].Value.ToString();
-            string unit = productRow.Cells["unit_name"].Value.ToString();
-            decimal price = Convert.ToDecimal(productRow.Cells["retail_price"].Value);
-            decimal stock = Convert.ToDecimal(productRow.Cells["stock"].Value);
-
-            bool itemExists = false;
-            DataGridViewRow existingRow = null;
-
-            foreach (DataGridViewRow cartRow in supDataGridView.Rows)
-            {
-                int cartProductId = Convert.ToInt32(cartRow.Cells["product_id"].Value);
-                string cartVariationType = cartRow.Cells["variation_type"].Value.ToString();
-
-                if (cartProductId == productId && cartVariationType == variationType)
-                {
-                    itemExists = true;
-                    existingRow = cartRow;
-                    break;
-                }
-            }
-
-            if (itemExists && existingRow != null)
-            {
-                decimal currentQuantity = Convert.ToDecimal(existingRow.Cells["quantity"].Value);
-                decimal newQuantity = currentQuantity + quantity;
-
-                if (newQuantity > stock)
-                {
-                    MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                existingRow.Cells["quantity"].Value = newQuantity;
-                UpdateTotalPrice(existingRow);
-            }
-            else
-            {
-                supDataGridView.Rows.Add(
-                    itemNumberCounter++,
-                    productId,
-                    productName,
-                    variationType,
-                    unit,
-                    null,
-                    quantity,
-                    null,
-                    price,
-                    price * quantity,
-                    null
-                );
-            }
-
-            UpdateAllLabels();
-        }
-
-        #endregion
-
-        #region Timer Methods
 
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
@@ -927,16 +750,11 @@ namespace EscopeWindowsApp
             posDateLabel.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy");
         }
 
-        #endregion
-
-        #region supDataGridView Configuration and Event Handling
-
         private void ConfigureSupDataGridView()
         {
             supDataGridView.AutoGenerateColumns = false;
             supDataGridView.Columns.Clear();
 
-            // Set the row height to 35 pixels
             supDataGridView.RowTemplate.Height = 35;
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -1007,10 +825,7 @@ namespace EscopeWindowsApp
                 Name = "price",
                 HeaderText = "Price",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle
-                {
-                    Format = "N2"
-                }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
 
             supDataGridView.Columns.Add(new DataGridViewTextBoxColumn
@@ -1034,6 +849,8 @@ namespace EscopeWindowsApp
             supDataGridView.AllowUserToAddRows = false;
 
             supDataGridView.CellPainting += supDataGridView_CellPainting;
+            supDataGridView.CellFormatting += supDataGridView_CellFormatting;
+            supDataGridView.CellContentClick += supDataGridView_CellContentClick;
         }
 
         private void supDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -1180,18 +997,7 @@ namespace EscopeWindowsApp
 
                     int productId = Convert.ToInt32(row.Cells["product_id"].Value);
                     string variationType = row.Cells["variation_type"].Value.ToString();
-
-                    decimal stock = 0m;
-                    foreach (DataGridViewRow productRow in posProductDataGrid.Rows)
-                    {
-                        if (Convert.ToInt32(productRow.Cells["id"].Value) == productId &&
-                            productRow.Cells["variation_type"].Value.ToString() == variationType)
-                        {
-                            stock = Convert.ToDecimal(productRow.Cells["stock"].Value);
-                            break;
-                        }
-                    }
-
+                    decimal stock = GetStock(productId, variationType);
                     decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
                     decimal newQuantity = quantity + 1m;
 
@@ -1239,10 +1045,6 @@ namespace EscopeWindowsApp
             discountText_TextChanged(null, null);
             paymentText_TextChanged(null, null);
         }
-
-        #endregion
-
-        #region Discount Handling
 
         private void disFixedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
@@ -1328,10 +1130,6 @@ namespace EscopeWindowsApp
             paymentText_TextChanged(null, null);
         }
 
-        #endregion
-
-        #region Payment Handling
-
         private void posCashRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (posCashRadioBtn.Checked)
@@ -1370,10 +1168,6 @@ namespace EscopeWindowsApp
             }
         }
 
-        #endregion
-
-        #region Label Updates
-
         private void totQtyCountLabel_Click(object sender, EventArgs e)
         {
             int totalItems = supDataGridView.Rows.Count;
@@ -1398,10 +1192,6 @@ namespace EscopeWindowsApp
         {
         }
 
-        #endregion
-
-        #region Reset Functionality
-
         private void resetBtn_Click(object sender, EventArgs e)
         {
             supDataGridView.Rows.Clear();
@@ -1419,8 +1209,8 @@ namespace EscopeWindowsApp
             posCashRadioBtn.Enabled = true;
             itemNumberCounter = 1;
             paymentText.Enabled = true;
-            posCusSearchText.Text = ""; // Clear the search text
-            suggestionPanel.Visible = false; // Hide the suggestion Panel
+            posCusSearchText.Text = "";
+            suggestionPanel.Visible = false;
             UpdatePayNowButtonState();
         }
 
@@ -1451,20 +1241,6 @@ namespace EscopeWindowsApp
             addCustomerForm.Show();
         }
 
-        private void siticoneTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            string searchText = siticoneTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(searchText))
-            {
-                bindingSource.Filter = null;
-            }
-            else
-            {
-                bindingSource.Filter = $"product_name LIKE '%{searchText}%'";
-            }
-        }
-
         private void posDateLabel_Click(object sender, EventArgs e)
         {
             posDateLabel.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy");
@@ -1488,13 +1264,12 @@ namespace EscopeWindowsApp
             HoldForm holdForm = new HoldForm(this);
             holdForm.Show();
         }
+
         private void posTimeLabel_Click(object sender, EventArgs e) { }
 
         private void companyNameLabel_Click(object sender, EventArgs e)
         {
         }
-
-        #endregion
 
         private void headerPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -1529,7 +1304,6 @@ namespace EscopeWindowsApp
                         string userName = "Cashier";
                         int totalItems = supDataGridView.Rows.Count;
 
-                        // Insert sale record
                         string salesQuery = @"
                     INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
                     VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
@@ -1544,7 +1318,6 @@ namespace EscopeWindowsApp
                             salesCommand.ExecuteNonQuery();
                         }
 
-                        // Lock stock rows (excluding expired stock)
                         var stockKeys = supDataGridView.Rows.Cast<DataGridViewRow>()
                             .Select(row => new
                             {
@@ -1572,7 +1345,6 @@ namespace EscopeWindowsApp
                             lockCmd.ExecuteNonQuery();
                         }
 
-                        // Insert sales details and reduce stock from batches
                         string detailsQuery = @"
                     INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
                     VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
@@ -1585,7 +1357,6 @@ namespace EscopeWindowsApp
                             decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
                             string unit = row.Cells["unit"].Value.ToString();
 
-                            // Check available non-expired stock
                             string checkStockQuery = @"
                         SELECT COALESCE((SELECT SUM(sd.remaining_qty) 
                                          FROM stock_details sd
@@ -1609,7 +1380,6 @@ namespace EscopeWindowsApp
                                 }
                             }
 
-                            // Insert sales details
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
                             {
                                 detailsCommand.Parameters.AddWithValue("@billNo", billNo);
@@ -1623,7 +1393,6 @@ namespace EscopeWindowsApp
                                 detailsCommand.ExecuteNonQuery();
                             }
 
-                            // Reduce stock from non-expired batches
                             StockManager stockManager = new StockManager(connectionString);
                             stockManager.ReduceStockFromBatches(productId, variationType, unit, quantity, connection, transaction);
                         }
@@ -1632,7 +1401,6 @@ namespace EscopeWindowsApp
 
                         UpdateSessionManager(paymentMethod, totalPrice);
 
-                        // Prepare cart items for printing
                         List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
                         foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
@@ -1656,6 +1424,7 @@ namespace EscopeWindowsApp
 
                         resetBtn_Click(sender, e);
                         LoadProductsData();
+                        DisplayProducts();
                     }
                 }
             }
@@ -1812,7 +1581,6 @@ namespace EscopeWindowsApp
         {
         }
 
-        // Single definition of DisplayCompanyName
         private void LoadCompanyDetails()
         {
             try
@@ -1827,10 +1595,8 @@ namespace EscopeWindowsApp
                         {
                             if (reader.Read())
                             {
-                                // Set company name
                                 companyNameLabel.Text = reader["name"] != DBNull.Value ? reader["name"].ToString() : "Company Name Not Found";
 
-                                // Set company logo
                                 if (reader["logo"] != DBNull.Value)
                                 {
                                     byte[] logoData = (byte[])reader["logo"];
@@ -1867,46 +1633,46 @@ namespace EscopeWindowsApp
                 Debug.WriteLine($"Error loading company details: {ex.Message}");
             }
         }
+
         private void LoadCompanyLogo()
-{
-    try
-    {
-        using (MySqlConnection connection = new MySqlConnection(connectionString))
         {
-            connection.Open();
-            string query = "SELECT logo FROM company_details LIMIT 1"; // Adjust column name if different
-            using (MySqlCommand command = new MySqlCommand(query, connection))
+            try
             {
-                object result = command.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    byte[] logoData = (byte[])result;
-                    using (MemoryStream ms = new MemoryStream(logoData))
+                    connection.Open();
+                    string query = "SELECT logo FROM company_details LIMIT 1";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        logoPicBox.Image = Image.FromStream(ms);
-                        logoPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        object result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            byte[] logoData = (byte[])result;
+                            using (MemoryStream ms = new MemoryStream(logoData))
+                            {
+                                logoPicBox.Image = Image.FromStream(ms);
+                                logoPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                        }
+                        else
+                        {
+                            logoPicBox.Image = null;
+                            Debug.WriteLine("No logo found in company_details.");
+                        }
                     }
                 }
-                else
-                {
-                    logoPicBox.Image = null;
-                    Debug.WriteLine("No logo found in company_details.");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading company logo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logoPicBox.Image = null;
+                Debug.WriteLine($"Error loading logo: {ex.Message}");
             }
         }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"Error loading company logo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        logoPicBox.Image = null;
-        Debug.WriteLine($"Error loading logo: {ex.Message}");
-    }
-}
 
-        // Updated logoPicBox_Click method
         private void logoPicBox_Click(object sender, EventArgs e)
         {
-            LoadCompanyLogo(); // Reload the logo when the PictureBox is clicked
+            LoadCompanyLogo();
         }
 
         private void SaveHeldSale(string referenceNumber)
@@ -1924,7 +1690,6 @@ namespace EscopeWindowsApp
                     connection.Open();
                     using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
-                        // Insert into held_sales
                         string insertHeaderQuery = "INSERT INTO held_sales (reference_number, hold_date) VALUES (@refNumber, @holdDate)";
                         using (MySqlCommand cmd = new MySqlCommand(insertHeaderQuery, connection, transaction))
                         {
@@ -1933,7 +1698,6 @@ namespace EscopeWindowsApp
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Get the hold_id
                         string getHoldIdQuery = "SELECT LAST_INSERT_ID()";
                         long holdId;
                         using (MySqlCommand cmd = new MySqlCommand(getHoldIdQuery, connection, transaction))
@@ -1941,7 +1705,6 @@ namespace EscopeWindowsApp
                             holdId = Convert.ToInt64(cmd.ExecuteScalar());
                         }
 
-                        // Insert details
                         string insertDetailQuery = @"
                     INSERT INTO held_sale_details (hold_id, product_id, variation_type, quantity, price)
                     VALUES (@holdId, @productId, @variationType, @quantity, @price)";
@@ -1972,7 +1735,7 @@ namespace EscopeWindowsApp
                     }
                 }
             }
-            catch (MySqlException ex) when (ex.Number == 1062) // Duplicate entry
+            catch (MySqlException ex) when (ex.Number == 1062)
             {
                 MessageBox.Show("Reference number already exists. Please choose a different one.", "Duplicate Reference", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1981,7 +1744,6 @@ namespace EscopeWindowsApp
                 MessageBox.Show($"Error holding sale: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         public void LoadHeldSale(int holdId)
         {
@@ -2031,7 +1793,6 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Delete the held sale after retrieving
                     string deleteDetailsQuery = "DELETE FROM held_sale_details WHERE hold_id = @holdId";
                     using (MySqlCommand cmd = new MySqlCommand(deleteDetailsQuery, connection))
                     {
@@ -2055,8 +1816,6 @@ namespace EscopeWindowsApp
             }
         }
 
-
-
         private void holdBtn_Click(object sender, EventArgs e)
         {
             using (HoldReference holdReference = new HoldReference())
@@ -2067,6 +1826,102 @@ namespace EscopeWindowsApp
                     SaveHeldSale(referenceNumber);
                 }
             }
+        }
+
+        private void proPanel1_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPanel2_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPanel3_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPanel4_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPanel5_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPanel6_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void productPictureBox6_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void productLabel6_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void proPriceLabel6_Click(object sender, EventArgs e)
+        {
         }
     }
 }
