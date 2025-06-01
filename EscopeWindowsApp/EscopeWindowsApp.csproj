@@ -597,12 +597,6 @@
     <Compile Include="SuppliersReport.Designer.cs">
       <DependentUpon>SuppliersReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="TextForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TextForm.Designer.cs">
-      <DependentUpon>TextForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Units.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -814,9 +808,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SuppliersReport.resx">
       <DependentUpon>SuppliersReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TextForm.resx">
-      <DependentUpon>TextForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Units.resx">
       <DependentUpon>Units.cs</DependentUpon>
