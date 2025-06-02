@@ -837,6 +837,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-initiate-money-transfer-48.png" />
+    <None Include="Resources\icons8-login-64.png" />
+    <None Include="Resources\icons8-return-purchase-64.png" />
+    <None Include="Resources\icons8-buy-64.png" />
+    <None Include="Resources\icons8-open-box-50.png" />
+    <None Include="Resources\icons8-supplier-64.png" />
+    <None Include="Resources\icons8-customer-50.png" />
+    <None Include="Resources\icons8-stock-64.png" />
+    <None Include="Resources\icons8-credit-50.png" />
+    <None Include="Resources\icons8-depreciation-48.png" />
+    <None Include="Resources\icons8-total-sales-50 %282%29.png" />
+    <None Include="Resources\icons8-total-sales-501.png" />
+    <None Include="Resources\icons8-total-sales-50 %281%29.png" />
+    <None Include="Resources\icons8-total-sales-50.png" />
     <None Include="Resources\icons8-sell-stock-48.png" />
     <None Include="Resources\icons8-warning-48.png" />
     <None Include="Resources\FlowPOS Logo-032.png" />
