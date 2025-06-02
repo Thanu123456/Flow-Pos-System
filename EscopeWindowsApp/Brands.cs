@@ -137,7 +137,7 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT id, name FROM brands ORDER BY id ASC";
+                    string query = "SELECT id, name FROM brands ORDER BY name ASC";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
                         adapter.Fill(brandsTable);

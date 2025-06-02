@@ -518,6 +518,15 @@ namespace EscopeWindowsApp
 
         private void creProSaveBtn_Click(object sender, EventArgs e)
         {
+            // Early validation for single pricing fields when variations are not enabled
+            if (!enabalVTypeCheckBox.Checked && (string.IsNullOrWhiteSpace(singleCostPriText.Text) || string.IsNullOrWhiteSpace(singleRetPriText.Text)))
+            {
+                MessageBox.Show("Please fill in both cost price and retail price.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Existing validation for product name, category, and UPC
             if (!ValidateProductName() || !ValidateCategory() || !ValidateUPC())
             {
                 MessageBox.Show("Please correct the errors before saving.", "Validation Error",
@@ -531,6 +540,7 @@ namespace EscopeWindowsApp
                 {
                     conn.Open();
 
+                    // UPC uniqueness check (unchanged)
                     if (!enabalVTypeCheckBox.Checked && !string.IsNullOrEmpty(upcNumberText.Text.Trim()))
                     {
                         string checkQuery = "SELECT COUNT(*) FROM products WHERE barcode = @barcode AND id != @productId";
@@ -547,20 +557,22 @@ namespace EscopeWindowsApp
                         }
                     }
 
+                    // Rest of the method remains unchanged
                     if (isEditMode)
                     {
+                        // Update logic (unchanged)
                         string query = @"
-                            UPDATE products 
-                            SET name = @name, 
-                                category_id = (SELECT id FROM categories WHERE name = @category), 
-                                image_path = @imagePath, 
-                                unit_id = @unitId, 
-                                warehouse_id = @warehouseId, 
-                                supplier_id = @supplierId, 
-                                brand_id = @brandId, 
-                                variation_type_id = @variationTypeId, 
-                                barcode = @barcode 
-                            WHERE id = @productId";
+                    UPDATE products 
+                    SET name = @name, 
+                        category_id = (SELECT id FROM categories WHERE name = @category), 
+                        image_path = @imagePath, 
+                        unit_id = @unitId, 
+                        warehouse_id = @warehouseId, 
+                        supplier_id = @supplierId, 
+                        brand_id = @brandId, 
+                        variation_type_id = @variationTypeId, 
+                        barcode = @barcode 
+                    WHERE id = @productId";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
@@ -582,13 +594,6 @@ namespace EscopeWindowsApp
 
                         using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
                         {
-                            if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
-                                string.IsNullOrWhiteSpace(singleRetPriText.Text))
-                            {
-                                MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
                             pricingCmd.Parameters.AddWithValue("@productId", editProductId);
                             pricingCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
                             pricingCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
@@ -601,19 +606,20 @@ namespace EscopeWindowsApp
                     }
                     else
                     {
+                        // Insert logic (unchanged)
                         if ((int)creProVarTypeComboBox.SelectedValue != 0 && pricingDetails != null && pricingDetails.Count > 0)
                         {
                             foreach (var detail in pricingDetails)
                             {
                                 string productQuery = @"
-                                    INSERT INTO products (
-                                        name, category_id, image_path, unit_id, warehouse_id, 
-                                        supplier_id, brand_id, variation_type_id, barcode
-                                    ) VALUES (
-                                        @name, (SELECT id FROM categories WHERE name = @category), 
-                                        @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
-                                        @variationTypeId, @barcode
-                                    )";
+                            INSERT INTO products (
+                                name, category_id, image_path, unit_id, warehouse_id, 
+                                supplier_id, brand_id, variation_type_id, barcode
+                            ) VALUES (
+                                @name, (SELECT id FROM categories WHERE name = @category), 
+                                @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
+                                @variationTypeId, @barcode
+                            )";
                                 using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                                 {
                                     cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
@@ -629,16 +635,15 @@ namespace EscopeWindowsApp
 
                                     int newProductId = (int)cmd.LastInsertedId;
 
-                                    // Initialize stock using StockManager
                                     StockManager stockManager = new StockManager(connectionString);
                                     stockManager.UpdateStock(newProductId, detail.TypeName, 0, creProUnitComboBox.Text, true);
 
                                     string pricingQuery = @"
-                                        INSERT INTO pricing (
-                                            product_id, variation_id, variation_type, cost_price, retail_price
-                                        ) VALUES (
-                                            @productId, @variationId, @variationType, @costPrice, @retailPrice
-                                        )";
+                                INSERT INTO pricing (
+                                    product_id, variation_id, variation_type, cost_price, retail_price
+                                ) VALUES (
+                                    @productId, @variationId, @variationType, @costPrice, @retailPrice
+                                )";
                                     using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
                                     {
                                         pricingCmd.Parameters.AddWithValue("@productId", newProductId);
@@ -654,14 +659,14 @@ namespace EscopeWindowsApp
                         else
                         {
                             string productQuery = @"
-                                INSERT INTO products (
-                                    name, category_id, image_path, unit_id, warehouse_id, 
-                                    supplier_id, brand_id, variation_type_id, barcode
-                                ) VALUES (
-                                    @name, (SELECT id FROM categories WHERE name = @category), 
-                                    @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
-                                    @variationTypeId, @barcode
-                                )";
+                        INSERT INTO products (
+                            name, category_id, image_path, unit_id, warehouse_id, 
+                            supplier_id, brand_id, variation_type_id, barcode
+                        ) VALUES (
+                            @name, (SELECT id FROM categories WHERE name = @category), 
+                            @imagePath, @unitId, @warehouseId, @supplierId, @brandId, 
+                            @variationTypeId, @barcode
+                        )";
                             using (MySqlCommand cmd = new MySqlCommand(productQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@name", CapitalizeProductName(createProductNameText.Text.Trim()));
@@ -677,25 +682,17 @@ namespace EscopeWindowsApp
 
                                 int productId = (int)cmd.LastInsertedId;
 
-                                // Initialize stock using StockManager
                                 StockManager stockManager = new StockManager(connectionString);
                                 stockManager.UpdateStock(productId, null, 0, creProUnitComboBox.Text, true);
 
                                 string pricingQuery = @"
-                                    INSERT INTO pricing (
-                                        product_id, variation_id, variation_type, cost_price, retail_price
-                                    ) VALUES (
-                                        @productId, @variationId, @variationType, @costPrice, @retailPrice
-                                    )";
+                            INSERT INTO pricing (
+                                product_id, variation_id, variation_type, cost_price, retail_price
+                            ) VALUES (
+                                @productId, @variationId, @variationType, @costPrice, @retailPrice
+                            )";
                                 using (MySqlCommand pricingCmd = new MySqlCommand(pricingQuery, conn))
                                 {
-                                    if (string.IsNullOrWhiteSpace(singleCostPriText.Text) ||
-                                        string.IsNullOrWhiteSpace(singleRetPriText.Text))
-                                    {
-                                        MessageBox.Show("Please fill in all single pricing fields.", "Validation Error",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        return;
-                                    }
                                     pricingCmd.Parameters.AddWithValue("@productId", productId);
                                     pricingCmd.Parameters.AddWithValue("@costPrice", decimal.Parse(singleCostPriText.Text));
                                     pricingCmd.Parameters.AddWithValue("@retailPrice", decimal.Parse(singleRetPriText.Text));
