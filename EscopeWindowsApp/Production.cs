@@ -210,7 +210,7 @@ namespace EscopeWindowsApp
                         LEFT JOIN stock s ON p.id = s.product_id AND 
                             (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
                         GROUP BY p.id, p.variation_type_id, p.name, c.name, u.unit_name, b.name, v.name, pr.variation_type, p.barcode, pr.retail_price
-                        ORDER BY p.id, pr.variation_type";
+                        ORDER BY p.name ASC, pr.variation_type";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {

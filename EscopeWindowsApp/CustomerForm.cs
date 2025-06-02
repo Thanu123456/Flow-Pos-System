@@ -170,7 +170,7 @@ namespace EscopeWindowsApp
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT id, name, email, phone, city, address, created_at FROM customers";
+                    string query = "SELECT id, name, email, phone, city, address, created_at FROM customers ORDER BY name ASC";
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
                         adapter.Fill(customersTable);
