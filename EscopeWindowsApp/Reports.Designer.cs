@@ -37,105 +37,22 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
-            this.expReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.saleReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.stockReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.cusReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.topProductsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.saleRetReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.creditReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.logHistoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.purchasesReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.supReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.logHistoryBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.creditReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.saleRetReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.cusReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.stockReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.saleReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.expReportBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topProductsPieChart)).BeginInit();
             this.SuspendLayout();
-            // 
-            // expReportBtn
-            // 
-            this.expReportBtn.Animated = true;
-            this.expReportBtn.BorderRadius = 8;
-            this.expReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.expReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.expReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.expReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.expReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.expReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expReportBtn.ForeColor = System.Drawing.Color.White;
-            this.expReportBtn.HoverState.FillColor = System.Drawing.Color.Maroon;
-            this.expReportBtn.Location = new System.Drawing.Point(358, 31);
-            this.expReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.expReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.expReportBtn.Name = "expReportBtn";
-            this.expReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.expReportBtn.TabIndex = 0;
-            this.expReportBtn.Text = "EXPENSES REPORT";
-            this.expReportBtn.Click += new System.EventHandler(this.expReportBtn_Click);
-            // 
-            // saleReportBtn
-            // 
-            this.saleReportBtn.Animated = true;
-            this.saleReportBtn.BorderRadius = 8;
-            this.saleReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.saleReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.saleReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.saleReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.saleReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.saleReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleReportBtn.ForeColor = System.Drawing.Color.White;
-            this.saleReportBtn.HoverState.FillColor = System.Drawing.Color.Green;
-            this.saleReportBtn.Location = new System.Drawing.Point(29, 31);
-            this.saleReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.saleReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.saleReportBtn.Name = "saleReportBtn";
-            this.saleReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.saleReportBtn.TabIndex = 1;
-            this.saleReportBtn.Text = "SALES REPORT";
-            this.saleReportBtn.Click += new System.EventHandler(this.saleReportBtn_Click);
-            // 
-            // stockReportBtn
-            // 
-            this.stockReportBtn.Animated = true;
-            this.stockReportBtn.BorderRadius = 8;
-            this.stockReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.stockReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.stockReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.stockReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.stockReportBtn.FillColor = System.Drawing.Color.Indigo;
-            this.stockReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockReportBtn.ForeColor = System.Drawing.Color.White;
-            this.stockReportBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.stockReportBtn.Location = new System.Drawing.Point(29, 182);
-            this.stockReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.stockReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.stockReportBtn.Name = "stockReportBtn";
-            this.stockReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.stockReportBtn.TabIndex = 2;
-            this.stockReportBtn.Text = "STOCK REPORT";
-            this.stockReportBtn.Click += new System.EventHandler(this.stockReportBtn_Click);
-            // 
-            // cusReportBtn
-            // 
-            this.cusReportBtn.Animated = true;
-            this.cusReportBtn.BorderRadius = 8;
-            this.cusReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.cusReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.cusReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.cusReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.cusReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.cusReportBtn.ForeColor = System.Drawing.Color.White;
-            this.cusReportBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.cusReportBtn.Location = new System.Drawing.Point(358, 182);
-            this.cusReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.cusReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.cusReportBtn.Name = "cusReportBtn";
-            this.cusReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.cusReportBtn.TabIndex = 4;
-            this.cusReportBtn.Text = "CUSTOMERS REPORT";
-            this.cusReportBtn.Click += new System.EventHandler(this.cusReportBtn_Click);
             // 
             // chart1
             // 
@@ -215,7 +132,7 @@
             this.topProductsPieChart.Location = new System.Drawing.Point(706, 347);
             this.topProductsPieChart.Margin = new System.Windows.Forms.Padding(0);
             this.topProductsPieChart.Name = "topProductsPieChart";
-            this.topProductsPieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.topProductsPieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -246,131 +163,266 @@
             this.siticonePanel1.Size = new System.Drawing.Size(1386, 37);
             this.siticonePanel1.TabIndex = 15;
             // 
+            // siticoneButton1
+            // 
+            this.siticoneButton1.Animated = true;
+            this.siticoneButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.siticoneButton1.BorderRadius = 8;
+            this.siticoneButton1.BorderThickness = 2;
+            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.siticoneButton1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton1.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.siticoneButton1.Image = global::EscopeWindowsApp.Properties.Resources.icons8_return_purchase_64;
+            this.siticoneButton1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.siticoneButton1.ImageOffset = new System.Drawing.Point(5, 0);
+            this.siticoneButton1.ImageSize = new System.Drawing.Size(50, 50);
+            this.siticoneButton1.Location = new System.Drawing.Point(358, 607);
+            this.siticoneButton1.Name = "siticoneButton1";
+            this.siticoneButton1.Size = new System.Drawing.Size(297, 125);
+            this.siticoneButton1.TabIndex = 21;
+            this.siticoneButton1.Text = "    PURCHASES RETURN REPORT";
+            this.siticoneButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click);
+            // 
+            // saleRetReportBtn
+            // 
+            this.saleRetReportBtn.Animated = true;
+            this.saleRetReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.saleRetReportBtn.BorderRadius = 8;
+            this.saleRetReportBtn.BorderThickness = 2;
+            this.saleRetReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.saleRetReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.saleRetReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saleRetReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.saleRetReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.saleRetReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleRetReportBtn.ForeColor = System.Drawing.Color.White;
+            this.saleRetReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.saleRetReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_depreciation_48;
+            this.saleRetReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.saleRetReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.saleRetReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.saleRetReportBtn.Location = new System.Drawing.Point(29, 607);
+            this.saleRetReportBtn.Name = "saleRetReportBtn";
+            this.saleRetReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.saleRetReportBtn.TabIndex = 20;
+            this.saleRetReportBtn.Text = "SALES RETURN REPORT";
+            this.saleRetReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.saleRetReportBtn.Click += new System.EventHandler(this.saleRetReportBtn_Click);
+            // 
+            // creditReportBtn
+            // 
+            this.creditReportBtn.Animated = true;
+            this.creditReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.creditReportBtn.BorderRadius = 8;
+            this.creditReportBtn.BorderThickness = 2;
+            this.creditReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.creditReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.creditReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.creditReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.creditReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.creditReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creditReportBtn.ForeColor = System.Drawing.Color.White;
+            this.creditReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.creditReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_credit_50;
+            this.creditReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.creditReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.creditReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.creditReportBtn.Location = new System.Drawing.Point(358, 466);
+            this.creditReportBtn.Name = "creditReportBtn";
+            this.creditReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.creditReportBtn.TabIndex = 19;
+            this.creditReportBtn.Text = "CREADIT REPORT";
+            this.creditReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.creditReportBtn.Click += new System.EventHandler(this.creditReportBtn_Click);
+            // 
+            // logHistoryBtn
+            // 
+            this.logHistoryBtn.Animated = true;
+            this.logHistoryBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.logHistoryBtn.BorderRadius = 8;
+            this.logHistoryBtn.BorderThickness = 2;
+            this.logHistoryBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.logHistoryBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.logHistoryBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.logHistoryBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.logHistoryBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.logHistoryBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logHistoryBtn.ForeColor = System.Drawing.Color.White;
+            this.logHistoryBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.logHistoryBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_login_64;
+            this.logHistoryBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.logHistoryBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.logHistoryBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.logHistoryBtn.Location = new System.Drawing.Point(29, 466);
+            this.logHistoryBtn.Name = "logHistoryBtn";
+            this.logHistoryBtn.Size = new System.Drawing.Size(297, 125);
+            this.logHistoryBtn.TabIndex = 18;
+            this.logHistoryBtn.Text = "LOGS HISTORY";
+            this.logHistoryBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.logHistoryBtn.Click += new System.EventHandler(this.logHistoryBtn_Click);
+            // 
             // purchasesReportBtn
             // 
             this.purchasesReportBtn.Animated = true;
+            this.purchasesReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.purchasesReportBtn.BorderRadius = 8;
+            this.purchasesReportBtn.BorderThickness = 2;
             this.purchasesReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.purchasesReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.purchasesReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.purchasesReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.purchasesReportBtn.FillColor = System.Drawing.Color.Tomato;
-            this.purchasesReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.purchasesReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.purchasesReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchasesReportBtn.ForeColor = System.Drawing.Color.White;
-            this.purchasesReportBtn.HoverState.FillColor = System.Drawing.Color.OrangeRed;
-            this.purchasesReportBtn.Location = new System.Drawing.Point(358, 337);
-            this.purchasesReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.purchasesReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
+            this.purchasesReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.purchasesReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_buy_64;
+            this.purchasesReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.purchasesReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.purchasesReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.purchasesReportBtn.Location = new System.Drawing.Point(358, 323);
             this.purchasesReportBtn.Name = "purchasesReportBtn";
-            this.purchasesReportBtn.Size = new System.Drawing.Size(297, 129);
+            this.purchasesReportBtn.Size = new System.Drawing.Size(297, 125);
             this.purchasesReportBtn.TabIndex = 17;
-            this.purchasesReportBtn.Text = "PURCHASES REPORT";
+            this.purchasesReportBtn.Text = "        PURCHASES REPORT";
+            this.purchasesReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.purchasesReportBtn.Click += new System.EventHandler(this.purchasesReportBtn_Click);
             // 
             // supReportBtn
             // 
             this.supReportBtn.Animated = true;
+            this.supReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.supReportBtn.BorderRadius = 8;
+            this.supReportBtn.BorderThickness = 2;
             this.supReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.supReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.supReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.supReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.supReportBtn.FillColor = System.Drawing.Color.Teal;
-            this.supReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.supReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.supReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supReportBtn.ForeColor = System.Drawing.Color.White;
-            this.supReportBtn.HoverState.FillColor = System.Drawing.Color.DarkSlateGray;
-            this.supReportBtn.Location = new System.Drawing.Point(29, 337);
-            this.supReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.supReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
+            this.supReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.supReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_supplier_64;
+            this.supReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.supReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.supReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.supReportBtn.Location = new System.Drawing.Point(29, 323);
             this.supReportBtn.Name = "supReportBtn";
-            this.supReportBtn.Size = new System.Drawing.Size(297, 129);
+            this.supReportBtn.Size = new System.Drawing.Size(297, 125);
             this.supReportBtn.TabIndex = 16;
-            this.supReportBtn.Text = "SUPPLIERS REPORT";
+            this.supReportBtn.Text = "         SUPPLIERS REPORT";
+            this.supReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.supReportBtn.Click += new System.EventHandler(this.supReportBtn_Click);
             // 
-            // logHistoryBtn
+            // cusReportBtn
             // 
-            this.logHistoryBtn.Animated = true;
-            this.logHistoryBtn.BorderRadius = 8;
-            this.logHistoryBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.logHistoryBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.logHistoryBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.logHistoryBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.logHistoryBtn.FillColor = System.Drawing.Color.DarkOrange;
-            this.logHistoryBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.logHistoryBtn.ForeColor = System.Drawing.Color.White;
-            this.logHistoryBtn.HoverState.FillColor = System.Drawing.Color.DarkGoldenrod;
-            this.logHistoryBtn.Location = new System.Drawing.Point(29, 503);
-            this.logHistoryBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.logHistoryBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.logHistoryBtn.Name = "logHistoryBtn";
-            this.logHistoryBtn.Size = new System.Drawing.Size(297, 129);
-            this.logHistoryBtn.TabIndex = 18;
-            this.logHistoryBtn.Text = "LOGS HISTORY";
-            this.logHistoryBtn.Click += new System.EventHandler(this.logHistoryBtn_Click);
+            this.cusReportBtn.Animated = true;
+            this.cusReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cusReportBtn.BorderRadius = 8;
+            this.cusReportBtn.BorderThickness = 2;
+            this.cusReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.cusReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.cusReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.cusReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.cusReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.cusReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cusReportBtn.ForeColor = System.Drawing.Color.White;
+            this.cusReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.cusReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_customer_50;
+            this.cusReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cusReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.cusReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.cusReportBtn.Location = new System.Drawing.Point(358, 176);
+            this.cusReportBtn.Name = "cusReportBtn";
+            this.cusReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.cusReportBtn.TabIndex = 4;
+            this.cusReportBtn.Text = "     CUSTOMERS REPORT";
+            this.cusReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.cusReportBtn.Click += new System.EventHandler(this.cusReportBtn_Click);
             // 
-            // creditReportBtn
+            // stockReportBtn
             // 
-            this.creditReportBtn.Animated = true;
-            this.creditReportBtn.BorderRadius = 8;
-            this.creditReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.creditReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.creditReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.creditReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.creditReportBtn.FillColor = System.Drawing.Color.Purple;
-            this.creditReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.creditReportBtn.ForeColor = System.Drawing.Color.White;
-            this.creditReportBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.creditReportBtn.Location = new System.Drawing.Point(358, 503);
-            this.creditReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.creditReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.creditReportBtn.Name = "creditReportBtn";
-            this.creditReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.creditReportBtn.TabIndex = 19;
-            this.creditReportBtn.Text = "CREADIT REPORT";
-            this.creditReportBtn.Click += new System.EventHandler(this.creditReportBtn_Click);
+            this.stockReportBtn.Animated = true;
+            this.stockReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.stockReportBtn.BorderRadius = 8;
+            this.stockReportBtn.BorderThickness = 2;
+            this.stockReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.stockReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.stockReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.stockReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.stockReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.stockReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockReportBtn.ForeColor = System.Drawing.Color.White;
+            this.stockReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.stockReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_stock_64;
+            this.stockReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.stockReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.stockReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.stockReportBtn.Location = new System.Drawing.Point(29, 176);
+            this.stockReportBtn.Name = "stockReportBtn";
+            this.stockReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.stockReportBtn.TabIndex = 2;
+            this.stockReportBtn.Text = "STOCK REPORT";
+            this.stockReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stockReportBtn.Click += new System.EventHandler(this.stockReportBtn_Click);
             // 
-            // saleRetReportBtn
+            // saleReportBtn
             // 
-            this.saleRetReportBtn.Animated = true;
-            this.saleRetReportBtn.BorderRadius = 8;
-            this.saleRetReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.saleRetReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.saleRetReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.saleRetReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.saleRetReportBtn.FillColor = System.Drawing.Color.Teal;
-            this.saleRetReportBtn.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.saleRetReportBtn.ForeColor = System.Drawing.Color.White;
-            this.saleRetReportBtn.HoverState.FillColor = System.Drawing.Color.DarkSlateGray;
-            this.saleRetReportBtn.Location = new System.Drawing.Point(203, 617);
-            this.saleRetReportBtn.MaximumSize = new System.Drawing.Size(297, 129);
-            this.saleRetReportBtn.MinimumSize = new System.Drawing.Size(297, 129);
-            this.saleRetReportBtn.Name = "saleRetReportBtn";
-            this.saleRetReportBtn.Size = new System.Drawing.Size(297, 129);
-            this.saleRetReportBtn.TabIndex = 20;
-            this.saleRetReportBtn.Text = "SALES RETURN REPORT";
-            this.saleRetReportBtn.Click += new System.EventHandler(this.saleRetReportBtn_Click);
+            this.saleReportBtn.Animated = true;
+            this.saleReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.saleReportBtn.BorderRadius = 8;
+            this.saleReportBtn.BorderThickness = 2;
+            this.saleReportBtn.CustomBorderColor = System.Drawing.Color.Silver;
+            this.saleReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.saleReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.saleReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.saleReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.saleReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.saleReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleReportBtn.ForeColor = System.Drawing.Color.White;
+            this.saleReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.saleReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_total_sales_50__2_;
+            this.saleReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.saleReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.saleReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.saleReportBtn.Location = new System.Drawing.Point(29, 31);
+            this.saleReportBtn.Name = "saleReportBtn";
+            this.saleReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.saleReportBtn.TabIndex = 1;
+            this.saleReportBtn.Text = "SALES REPORT";
+            this.saleReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.saleReportBtn.Click += new System.EventHandler(this.saleReportBtn_Click);
             // 
-            // siticoneButton1
+            // expReportBtn
             // 
-            this.siticoneButton1.Animated = true;
-            this.siticoneButton1.BorderRadius = 8;
-            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.siticoneButton1.FillColor = System.Drawing.Color.Goldenrod;
-            this.siticoneButton1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
-            this.siticoneButton1.HoverState.FillColor = System.Drawing.Color.DarkSlateGray;
-            this.siticoneButton1.Location = new System.Drawing.Point(540, 561);
-            this.siticoneButton1.MaximumSize = new System.Drawing.Size(297, 129);
-            this.siticoneButton1.MinimumSize = new System.Drawing.Size(297, 129);
-            this.siticoneButton1.Name = "siticoneButton1";
-            this.siticoneButton1.Size = new System.Drawing.Size(297, 129);
-            this.siticoneButton1.TabIndex = 21;
-            this.siticoneButton1.Text = "PURCHASES RETURN REPORT";
-            this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click);
+            this.expReportBtn.Animated = true;
+            this.expReportBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.expReportBtn.BorderRadius = 8;
+            this.expReportBtn.BorderThickness = 2;
+            this.expReportBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.expReportBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.expReportBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.expReportBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.expReportBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.expReportBtn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expReportBtn.ForeColor = System.Drawing.Color.White;
+            this.expReportBtn.HoverState.FillColor = System.Drawing.Color.MediumSlateBlue;
+            this.expReportBtn.Image = global::EscopeWindowsApp.Properties.Resources.icons8_initiate_money_transfer_48;
+            this.expReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.expReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
+            this.expReportBtn.ImageSize = new System.Drawing.Size(50, 50);
+            this.expReportBtn.Location = new System.Drawing.Point(358, 31);
+            this.expReportBtn.Name = "expReportBtn";
+            this.expReportBtn.Size = new System.Drawing.Size(297, 125);
+            this.expReportBtn.TabIndex = 0;
+            this.expReportBtn.Text = "          EXPENSES REPORT";
+            this.expReportBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.expReportBtn.Click += new System.EventHandler(this.expReportBtn_Click);
             // 
             // Reports
             // 
