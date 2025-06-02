@@ -1103,6 +1103,120 @@ namespace EscopeWindowsApp
             }
         }
 
+        public Document CreatePurchaseReturnReportDocument(DataTable purchaseReturnTable, string filterDescription)
+        {
+            document = new Document();
+            document.Info.Title = "Purchase Return Report";
+            document.Info.Author = "EscopeWindowsApp";
+
+            DefineStyles();
+            section = document.AddSection();
+            section.PageSetup = document.DefaultPageSetup.Clone();
+            section.PageSetup.TopMargin = Unit.FromCentimeter(4);
+            section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
+            section.PageSetup.RightMargin = Unit.FromCentimeter(2);
+            section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
+
+            AddHeader();
+            AddReportTitle("Purchase Return Report", filterDescription);
+            AddPurchaseReturnSummaryTable(purchaseReturnTable);
+            AddSpacer();
+            AddPurchaseReturnTable(purchaseReturnTable);
+            AddFooter();
+
+            return document;
+        }
+
+        private void AddPurchaseReturnSummaryTable(DataTable purchaseReturnTable)
+        {
+            int totalReturnedItems = purchaseReturnTable.Rows.Count;
+            decimal totalReturnAmount = purchaseReturnTable.AsEnumerable().Sum(row => Convert.ToDecimal(row["net_price"]));
+
+            Table summaryTable = section.AddTable();
+            summaryTable.Borders.Width = 0.5;
+            summaryTable.AddColumn(Unit.FromCentimeter(5));
+            summaryTable.AddColumn(Unit.FromCentimeter(5));
+
+            Row headerRow = summaryTable.AddRow();
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Colors.SkyBlue;
+            headerRow.Cells[0].AddParagraph("Total Returned Items");
+            headerRow.Cells[1].AddParagraph("Total Return Amount");
+
+            Row dataRow = summaryTable.AddRow();
+            dataRow.Style = "SummaryTable";
+            dataRow.Cells[0].AddParagraph(totalReturnedItems.ToString());
+            dataRow.Cells[1].AddParagraph(totalReturnAmount.ToString("N2"));
+
+            summaryTable.Format.SpaceAfter = 0;
+        }
+
+        private void AddPurchaseReturnTable(DataTable purchaseReturnTable)
+        {
+            Table table = section.AddTable();
+            table.Borders.Width = 0.5;
+            table.Rows.Height = 10;
+            table.KeepTogether = false;
+
+            table.AddColumn(Unit.FromCentimeter(2));   // Return No
+            table.AddColumn(Unit.FromCentimeter(2));   // GRN No
+            table.AddColumn(Unit.FromCentimeter(3));   // Product Name
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Variation Type
+            table.AddColumn(Unit.FromCentimeter(2));   // Unit
+            table.AddColumn(Unit.FromCentimeter(2));   // Quantity
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Cost Price
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Net Price
+            table.AddColumn(Unit.FromCentimeter(3));   // Reason
+            table.AddColumn(Unit.FromCentimeter(2.5)); // Date
+
+            Row headerRow = table.AddRow();
+            headerRow.HeadingFormat = true;
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Colors.SkyBlue;
+            headerRow.Cells[0].AddParagraph("Return No");
+            headerRow.Cells[1].AddParagraph("GRN No");
+            headerRow.Cells[2].AddParagraph("Product Name");
+            headerRow.Cells[3].AddParagraph("Variation Type");
+            headerRow.Cells[4].AddParagraph("Unit");
+            headerRow.Cells[5].AddParagraph("Quantity");
+            headerRow.Cells[6].AddParagraph("Cost Price");
+            headerRow.Cells[7].AddParagraph("Net Price");
+            headerRow.Cells[8].AddParagraph("Reason");
+            headerRow.Cells[9].AddParagraph("Date");
+
+            foreach (DataRow row in purchaseReturnTable.Rows)
+            {
+                Row dataRow = table.AddRow();
+                dataRow.Style = "TableCell";
+                dataRow.Cells[0].AddParagraph(row["return_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[1].AddParagraph(row["grn_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[2].AddParagraph(row["product_name"]?.ToString() ?? "N/A");
+                dataRow.Cells[3].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
+                dataRow.Cells[4].AddParagraph(row["unit"]?.ToString() ?? "N/A");
+                decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
+                dataRow.Cells[5].AddParagraph(quantity.ToString("N2"));
+                decimal costPrice = row["cost_price"] != DBNull.Value ? Convert.ToDecimal(row["cost_price"]) : 0;
+                dataRow.Cells[6].AddParagraph(costPrice.ToString("N2"));
+                decimal netPrice = row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0;
+                dataRow.Cells[7].AddParagraph(netPrice.ToString("N2"));
+                dataRow.Cells[8].AddParagraph(row["reason"]?.ToString() ?? "N/A");
+                dataRow.Cells[9].AddParagraph(row["created_at"] != DBNull.Value ? Convert.ToDateTime(row["created_at"]).ToString("yyyy-MM-dd") : "N/A");
+            }
+
+            decimal totalAmount = purchaseReturnTable.AsEnumerable().Sum(row => row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0);
+            Row totalRow = table.AddRow();
+            totalRow.Height = Unit.FromCentimeter(0.8);
+            totalRow.Style = "TableHeader";
+            totalRow.Shading.Color = Colors.SkyBlue;
+            totalRow.Cells[0].MergeRight = 6;
+            totalRow.Cells[0].AddParagraph("Total");
+            totalRow.Cells[7].AddParagraph(totalAmount.ToString("N2"));
+            totalRow.Cells[8].AddParagraph("");
+            totalRow.Cells[9].AddParagraph("");
+        }
+
         public void AddFooter()
         {
             Paragraph footer = section.Footers.Primary.AddParagraph();
