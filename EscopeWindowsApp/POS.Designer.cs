@@ -97,33 +97,39 @@
             this.cashBooktimer = new System.Windows.Forms.Timer(this.components);
             this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.productsMainPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.proPanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel3 = new System.Windows.Forms.Label();
-            this.productPictureBox3 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.proPanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel2 = new System.Windows.Forms.Label();
-            this.productPictureBox2 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.proPanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel1 = new System.Windows.Forms.Label();
-            this.productPictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.proPanel6 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel6 = new System.Windows.Forms.Label();
-            this.productPictureBox6 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.proPanel5 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel5 = new System.Windows.Forms.Label();
-            this.productPictureBox5 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
-            this.proPanel4 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
-            this.productLabel4 = new System.Windows.Forms.Label();
-            this.productPictureBox4 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.productBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.productPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.proPriceLabel1 = new System.Windows.Forms.Label();
-            this.proPriceLabel2 = new System.Windows.Forms.Label();
-            this.proPriceLabel3 = new System.Windows.Forms.Label();
-            this.proPriceLabel4 = new System.Windows.Forms.Label();
-            this.proPriceLabel5 = new System.Windows.Forms.Label();
+            this.proPanel6 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label6 = new System.Windows.Forms.Label();
             this.proPriceLabel6 = new System.Windows.Forms.Label();
+            this.productLabel6 = new System.Windows.Forms.Label();
+            this.productPictureBox6 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.proPanel5 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.proPriceLabel5 = new System.Windows.Forms.Label();
+            this.productLabel5 = new System.Windows.Forms.Label();
+            this.productPictureBox5 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.proPanel4 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.proPriceLabel4 = new System.Windows.Forms.Label();
+            this.productLabel4 = new System.Windows.Forms.Label();
+            this.productPictureBox4 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.proPanel3 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.proPriceLabel3 = new System.Windows.Forms.Label();
+            this.productLabel3 = new System.Windows.Forms.Label();
+            this.productPictureBox3 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.proPanel2 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.proPriceLabel2 = new System.Windows.Forms.Label();
+            this.productLabel2 = new System.Windows.Forms.Label();
+            this.productPictureBox2 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
+            this.proPanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.proPriceLabel1 = new System.Windows.Forms.Label();
+            this.productLabel1 = new System.Windows.Forms.Label();
+            this.productPictureBox1 = new Siticone.Desktop.UI.WinForms.SiticonePictureBox();
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.posBillPanel.SuspendLayout();
@@ -135,19 +141,19 @@
             this.posTimePanel.SuspendLayout();
             this.cashBookFlowPanel.SuspendLayout();
             this.productsMainPanel.SuspendLayout();
-            this.proPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox3)).BeginInit();
-            this.proPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox2)).BeginInit();
-            this.proPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox1)).BeginInit();
+            this.productBtnPanel.SuspendLayout();
             this.proPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox6)).BeginInit();
             this.proPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox5)).BeginInit();
             this.proPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox4)).BeginInit();
-            this.productBtnPanel.SuspendLayout();
+            this.proPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox3)).BeginInit();
+            this.proPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox2)).BeginInit();
+            this.proPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -1183,7 +1189,7 @@
             this.siticoneTextBox1.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.siticoneTextBox1.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.siticoneTextBox1.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.siticoneTextBox1.Location = new System.Drawing.Point(7, 201);
+            this.siticoneTextBox1.Location = new System.Drawing.Point(7, 196);
             this.siticoneTextBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.siticoneTextBox1.Name = "siticoneTextBox1";
             this.siticoneTextBox1.PasswordChar = '\0';
@@ -1196,6 +1202,10 @@
             // 
             // productsMainPanel
             // 
+            this.productsMainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.productsMainPanel.BackColor = System.Drawing.Color.Transparent;
+            this.productsMainPanel.BorderRadius = 8;
             this.productsMainPanel.Controls.Add(this.productBtnPanel);
             this.productsMainPanel.Controls.Add(this.proPanel6);
             this.productsMainPanel.Controls.Add(this.proPanel5);
@@ -1203,217 +1213,24 @@
             this.productsMainPanel.Controls.Add(this.proPanel3);
             this.productsMainPanel.Controls.Add(this.proPanel2);
             this.productsMainPanel.Controls.Add(this.proPanel1);
-            this.productsMainPanel.Location = new System.Drawing.Point(7, 251);
+            this.productsMainPanel.FillColor = System.Drawing.Color.White;
+            this.productsMainPanel.Location = new System.Drawing.Point(7, 247);
             this.productsMainPanel.Name = "productsMainPanel";
-            this.productsMainPanel.Size = new System.Drawing.Size(687, 522);
+            this.productsMainPanel.Size = new System.Drawing.Size(687, 546);
             this.productsMainPanel.TabIndex = 85;
-            // 
-            // proPanel3
-            // 
-            this.proPanel3.BorderRadius = 8;
-            this.proPanel3.Controls.Add(this.proPriceLabel3);
-            this.proPanel3.Controls.Add(this.productLabel3);
-            this.proPanel3.Controls.Add(this.productPictureBox3);
-            this.proPanel3.Location = new System.Drawing.Point(468, 15);
-            this.proPanel3.Name = "proPanel3";
-            this.proPanel3.Size = new System.Drawing.Size(208, 177);
-            this.proPanel3.TabIndex = 39;
-            this.proPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel3_Paint);
-            // 
-            // productLabel3
-            // 
-            this.productLabel3.AutoSize = true;
-            this.productLabel3.Location = new System.Drawing.Point(79, 134);
-            this.productLabel3.Name = "productLabel3";
-            this.productLabel3.Size = new System.Drawing.Size(35, 13);
-            this.productLabel3.TabIndex = 1;
-            this.productLabel3.Text = "label1";
-            this.productLabel3.Click += new System.EventHandler(this.productLabel3_Click);
-            // 
-            // productPictureBox3
-            // 
-            this.productPictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.productPictureBox3.ImageRotate = 0F;
-            this.productPictureBox3.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox3.Name = "productPictureBox3";
-            this.productPictureBox3.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox3.TabIndex = 0;
-            this.productPictureBox3.TabStop = false;
-            this.productPictureBox3.UseTransparentBackground = true;
-            this.productPictureBox3.Click += new System.EventHandler(this.productPictureBox3_Click);
-            // 
-            // proPanel2
-            // 
-            this.proPanel2.BorderRadius = 8;
-            this.proPanel2.Controls.Add(this.proPriceLabel2);
-            this.proPanel2.Controls.Add(this.productLabel2);
-            this.proPanel2.Controls.Add(this.productPictureBox2);
-            this.proPanel2.Location = new System.Drawing.Point(237, 15);
-            this.proPanel2.Name = "proPanel2";
-            this.proPanel2.Size = new System.Drawing.Size(208, 177);
-            this.proPanel2.TabIndex = 38;
-            this.proPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel2_Paint);
-            // 
-            // productLabel2
-            // 
-            this.productLabel2.AutoSize = true;
-            this.productLabel2.Location = new System.Drawing.Point(79, 131);
-            this.productLabel2.Name = "productLabel2";
-            this.productLabel2.Size = new System.Drawing.Size(75, 13);
-            this.productLabel2.TabIndex = 1;
-            this.productLabel2.Text = "productLabel1";
-            this.productLabel2.Click += new System.EventHandler(this.productLabel2_Click);
-            // 
-            // productPictureBox2
-            // 
-            this.productPictureBox2.ImageRotate = 0F;
-            this.productPictureBox2.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox2.Name = "productPictureBox2";
-            this.productPictureBox2.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox2.TabIndex = 0;
-            this.productPictureBox2.TabStop = false;
-            this.productPictureBox2.Click += new System.EventHandler(this.productPictureBox2_Click);
-            // 
-            // proPanel1
-            // 
-            this.proPanel1.BorderRadius = 8;
-            this.proPanel1.Controls.Add(this.proPriceLabel1);
-            this.proPanel1.Controls.Add(this.productLabel1);
-            this.proPanel1.Controls.Add(this.productPictureBox1);
-            this.proPanel1.Location = new System.Drawing.Point(5, 15);
-            this.proPanel1.Name = "proPanel1";
-            this.proPanel1.Size = new System.Drawing.Size(208, 177);
-            this.proPanel1.TabIndex = 37;
-            this.proPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel1_Paint);
-            // 
-            // productLabel1
-            // 
-            this.productLabel1.AutoSize = true;
-            this.productLabel1.Location = new System.Drawing.Point(79, 130);
-            this.productLabel1.Name = "productLabel1";
-            this.productLabel1.Size = new System.Drawing.Size(35, 13);
-            this.productLabel1.TabIndex = 1;
-            this.productLabel1.Text = "label1";
-            this.productLabel1.Click += new System.EventHandler(this.productLabel1_Click);
-            // 
-            // productPictureBox1
-            // 
-            this.productPictureBox1.ImageRotate = 0F;
-            this.productPictureBox1.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox1.Name = "productPictureBox1";
-            this.productPictureBox1.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox1.TabIndex = 0;
-            this.productPictureBox1.TabStop = false;
-            this.productPictureBox1.Click += new System.EventHandler(this.productPictureBox1_Click);
-            // 
-            // proPanel6
-            // 
-            this.proPanel6.BorderRadius = 8;
-            this.proPanel6.Controls.Add(this.proPriceLabel6);
-            this.proPanel6.Controls.Add(this.productLabel6);
-            this.proPanel6.Controls.Add(this.productPictureBox6);
-            this.proPanel6.Location = new System.Drawing.Point(468, 248);
-            this.proPanel6.Name = "proPanel6";
-            this.proPanel6.Size = new System.Drawing.Size(208, 177);
-            this.proPanel6.TabIndex = 42;
-            this.proPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel6_Paint);
-            // 
-            // productLabel6
-            // 
-            this.productLabel6.AutoSize = true;
-            this.productLabel6.Location = new System.Drawing.Point(79, 132);
-            this.productLabel6.Name = "productLabel6";
-            this.productLabel6.Size = new System.Drawing.Size(35, 13);
-            this.productLabel6.TabIndex = 1;
-            this.productLabel6.Text = "label1";
-            this.productLabel6.Click += new System.EventHandler(this.productLabel6_Click);
-            // 
-            // productPictureBox6
-            // 
-            this.productPictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.productPictureBox6.ImageRotate = 0F;
-            this.productPictureBox6.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox6.Name = "productPictureBox6";
-            this.productPictureBox6.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox6.TabIndex = 0;
-            this.productPictureBox6.TabStop = false;
-            this.productPictureBox6.UseTransparentBackground = true;
-            this.productPictureBox6.Click += new System.EventHandler(this.productPictureBox6_Click);
-            // 
-            // proPanel5
-            // 
-            this.proPanel5.BorderRadius = 8;
-            this.proPanel5.Controls.Add(this.proPriceLabel5);
-            this.proPanel5.Controls.Add(this.productLabel5);
-            this.proPanel5.Controls.Add(this.productPictureBox5);
-            this.proPanel5.Location = new System.Drawing.Point(237, 248);
-            this.proPanel5.Name = "proPanel5";
-            this.proPanel5.Size = new System.Drawing.Size(208, 177);
-            this.proPanel5.TabIndex = 41;
-            this.proPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel5_Paint);
-            // 
-            // productLabel5
-            // 
-            this.productLabel5.AutoSize = true;
-            this.productLabel5.Location = new System.Drawing.Point(79, 131);
-            this.productLabel5.Name = "productLabel5";
-            this.productLabel5.Size = new System.Drawing.Size(75, 13);
-            this.productLabel5.TabIndex = 1;
-            this.productLabel5.Text = "productLabel1";
-            this.productLabel5.Click += new System.EventHandler(this.productLabel5_Click);
-            // 
-            // productPictureBox5
-            // 
-            this.productPictureBox5.ImageRotate = 0F;
-            this.productPictureBox5.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox5.Name = "productPictureBox5";
-            this.productPictureBox5.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox5.TabIndex = 0;
-            this.productPictureBox5.TabStop = false;
-            this.productPictureBox5.Click += new System.EventHandler(this.productPictureBox5_Click);
-            // 
-            // proPanel4
-            // 
-            this.proPanel4.BorderRadius = 8;
-            this.proPanel4.Controls.Add(this.proPriceLabel4);
-            this.proPanel4.Controls.Add(this.productLabel4);
-            this.proPanel4.Controls.Add(this.productPictureBox4);
-            this.proPanel4.Location = new System.Drawing.Point(5, 248);
-            this.proPanel4.Name = "proPanel4";
-            this.proPanel4.Size = new System.Drawing.Size(208, 177);
-            this.proPanel4.TabIndex = 40;
-            this.proPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel4_Paint);
-            // 
-            // productLabel4
-            // 
-            this.productLabel4.AutoSize = true;
-            this.productLabel4.Location = new System.Drawing.Point(79, 133);
-            this.productLabel4.Name = "productLabel4";
-            this.productLabel4.Size = new System.Drawing.Size(35, 13);
-            this.productLabel4.TabIndex = 1;
-            this.productLabel4.Text = "label1";
-            this.productLabel4.Click += new System.EventHandler(this.productLabel4_Click);
-            // 
-            // productPictureBox4
-            // 
-            this.productPictureBox4.ImageRotate = 0F;
-            this.productPictureBox4.Location = new System.Drawing.Point(35, 14);
-            this.productPictureBox4.Name = "productPictureBox4";
-            this.productPictureBox4.Size = new System.Drawing.Size(131, 106);
-            this.productPictureBox4.TabIndex = 0;
-            this.productPictureBox4.TabStop = false;
-            this.productPictureBox4.Click += new System.EventHandler(this.productPictureBox4_Click);
+            this.productsMainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.productsMainPanel_Paint);
             // 
             // productBtnPanel
             // 
-            this.productBtnPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.productBtnPanel.BorderRadius = 8;
             this.productBtnPanel.Controls.Add(this.productPrevBtn);
             this.productBtnPanel.Controls.Add(this.productNextBtn);
-            this.productBtnPanel.Location = new System.Drawing.Point(522, 464);
+            this.productBtnPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.productBtnPanel.Location = new System.Drawing.Point(0, 504);
             this.productBtnPanel.Name = "productBtnPanel";
-            this.productBtnPanel.Size = new System.Drawing.Size(154, 42);
+            this.productBtnPanel.Size = new System.Drawing.Size(687, 42);
             this.productBtnPanel.TabIndex = 43;
+            this.productBtnPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.productBtnPanel_Paint);
             // 
             // productPrevBtn
             // 
@@ -1427,7 +1244,7 @@
             this.productPrevBtn.ForeColor = System.Drawing.Color.White;
             this.productPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
             this.productPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.productPrevBtn.Location = new System.Drawing.Point(45, 8);
+            this.productPrevBtn.Location = new System.Drawing.Point(11, 6);
             this.productPrevBtn.Name = "productPrevBtn";
             this.productPrevBtn.Size = new System.Drawing.Size(26, 26);
             this.productPrevBtn.TabIndex = 11;
@@ -1445,83 +1262,428 @@
             this.productNextBtn.ForeColor = System.Drawing.Color.White;
             this.productNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
             this.productNextBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.productNextBtn.Location = new System.Drawing.Point(87, 8);
+            this.productNextBtn.Location = new System.Drawing.Point(639, 6);
             this.productNextBtn.Name = "productNextBtn";
             this.productNextBtn.Size = new System.Drawing.Size(26, 26);
             this.productNextBtn.TabIndex = 9;
             this.productNextBtn.Click += new System.EventHandler(this.productNextBtn_Click);
             // 
-            // proPriceLabel1
+            // proPanel6
             // 
-            this.proPriceLabel1.AutoSize = true;
-            this.proPriceLabel1.Location = new System.Drawing.Point(79, 151);
-            this.proPriceLabel1.Name = "proPriceLabel1";
-            this.proPriceLabel1.Size = new System.Drawing.Size(35, 13);
-            this.proPriceLabel1.TabIndex = 2;
-            this.proPriceLabel1.Text = "label4";
-            this.proPriceLabel1.Click += new System.EventHandler(this.proPriceLabel1_Click);
+            this.proPanel6.BackColor = System.Drawing.Color.Transparent;
+            this.proPanel6.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel6.BorderRadius = 8;
+            this.proPanel6.BorderThickness = 1;
+            this.proPanel6.Controls.Add(this.label6);
+            this.proPanel6.Controls.Add(this.proPriceLabel6);
+            this.proPanel6.Controls.Add(this.productLabel6);
+            this.proPanel6.Controls.Add(this.productPictureBox6);
+            this.proPanel6.Location = new System.Drawing.Point(463, 251);
+            this.proPanel6.Name = "proPanel6";
+            this.proPanel6.Size = new System.Drawing.Size(202, 231);
+            this.proPanel6.TabIndex = 42;
+            this.proPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel6_Paint);
             // 
-            // proPriceLabel2
+            // label6
             // 
-            this.proPriceLabel2.AutoSize = true;
-            this.proPriceLabel2.Location = new System.Drawing.Point(91, 151);
-            this.proPriceLabel2.Name = "proPriceLabel2";
-            this.proPriceLabel2.Size = new System.Drawing.Size(35, 13);
-            this.proPriceLabel2.TabIndex = 3;
-            this.proPriceLabel2.Text = "label4";
-            this.proPriceLabel2.Click += new System.EventHandler(this.proPriceLabel2_Click);
-            // 
-            // proPriceLabel3
-            // 
-            this.proPriceLabel3.AutoSize = true;
-            this.proPriceLabel3.Location = new System.Drawing.Point(79, 151);
-            this.proPriceLabel3.Name = "proPriceLabel3";
-            this.proPriceLabel3.Size = new System.Drawing.Size(35, 13);
-            this.proPriceLabel3.TabIndex = 3;
-            this.proPriceLabel3.Text = "label4";
-            this.proPriceLabel3.Click += new System.EventHandler(this.proPriceLabel3_Click);
-            // 
-            // proPriceLabel4
-            // 
-            this.proPriceLabel4.AutoSize = true;
-            this.proPriceLabel4.Location = new System.Drawing.Point(82, 152);
-            this.proPriceLabel4.Name = "proPriceLabel4";
-            this.proPriceLabel4.Size = new System.Drawing.Size(35, 13);
-            this.proPriceLabel4.TabIndex = 3;
-            this.proPriceLabel4.Text = "label4";
-            this.proPriceLabel4.Click += new System.EventHandler(this.proPriceLabel4_Click);
-            // 
-            // proPriceLabel5
-            // 
-            this.proPriceLabel5.AutoSize = true;
-            this.proPriceLabel5.Location = new System.Drawing.Point(91, 152);
-            this.proPriceLabel5.Name = "proPriceLabel5";
-            this.proPriceLabel5.Size = new System.Drawing.Size(35, 13);
-            this.proPriceLabel5.TabIndex = 3;
-            this.proPriceLabel5.Text = "label4";
-            this.proPriceLabel5.Click += new System.EventHandler(this.proPriceLabel5_Click);
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Green;
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label6.Location = new System.Drawing.Point(6, 201);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 25);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "LKR :";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // proPriceLabel6
             // 
             this.proPriceLabel6.AutoSize = true;
-            this.proPriceLabel6.Location = new System.Drawing.Point(79, 152);
+            this.proPriceLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel6.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel6.Location = new System.Drawing.Point(60, 201);
             this.proPriceLabel6.Name = "proPriceLabel6";
-            this.proPriceLabel6.Size = new System.Drawing.Size(35, 13);
+            this.proPriceLabel6.Size = new System.Drawing.Size(64, 25);
             this.proPriceLabel6.TabIndex = 3;
             this.proPriceLabel6.Text = "label4";
             this.proPriceLabel6.Click += new System.EventHandler(this.proPriceLabel6_Click);
+            // 
+            // productLabel6
+            // 
+            this.productLabel6.AutoSize = true;
+            this.productLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel6.Location = new System.Drawing.Point(7, 156);
+            this.productLabel6.Name = "productLabel6";
+            this.productLabel6.Size = new System.Drawing.Size(52, 21);
+            this.productLabel6.TabIndex = 1;
+            this.productLabel6.Text = "label1";
+            this.productLabel6.Click += new System.EventHandler(this.productLabel6_Click);
+            // 
+            // productPictureBox6
+            // 
+            this.productPictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.productPictureBox6.BorderRadius = 8;
+            this.productPictureBox6.ImageRotate = 0F;
+            this.productPictureBox6.Location = new System.Drawing.Point(26, 9);
+            this.productPictureBox6.Name = "productPictureBox6";
+            this.productPictureBox6.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox6.TabIndex = 0;
+            this.productPictureBox6.TabStop = false;
+            this.productPictureBox6.UseTransparentBackground = true;
+            this.productPictureBox6.Click += new System.EventHandler(this.productPictureBox6_Click);
+            // 
+            // proPanel5
+            // 
+            this.proPanel5.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel5.BorderRadius = 8;
+            this.proPanel5.BorderThickness = 1;
+            this.proPanel5.Controls.Add(this.label5);
+            this.proPanel5.Controls.Add(this.proPriceLabel5);
+            this.proPanel5.Controls.Add(this.productLabel5);
+            this.proPanel5.Controls.Add(this.productPictureBox5);
+            this.proPanel5.Location = new System.Drawing.Point(237, 251);
+            this.proPanel5.Name = "proPanel5";
+            this.proPanel5.Size = new System.Drawing.Size(202, 231);
+            this.proPanel5.TabIndex = 41;
+            this.proPanel5.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel5_Paint);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Green;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label5.Location = new System.Drawing.Point(6, 201);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 25);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "LKR :";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // proPriceLabel5
+            // 
+            this.proPriceLabel5.AutoSize = true;
+            this.proPriceLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel5.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel5.Location = new System.Drawing.Point(61, 201);
+            this.proPriceLabel5.Name = "proPriceLabel5";
+            this.proPriceLabel5.Size = new System.Drawing.Size(64, 25);
+            this.proPriceLabel5.TabIndex = 3;
+            this.proPriceLabel5.Text = "label4";
+            this.proPriceLabel5.Click += new System.EventHandler(this.proPriceLabel5_Click);
+            // 
+            // productLabel5
+            // 
+            this.productLabel5.AutoSize = true;
+            this.productLabel5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel5.Location = new System.Drawing.Point(7, 156);
+            this.productLabel5.Name = "productLabel5";
+            this.productLabel5.Size = new System.Drawing.Size(110, 21);
+            this.productLabel5.TabIndex = 1;
+            this.productLabel5.Text = "productLabel1";
+            this.productLabel5.Click += new System.EventHandler(this.productLabel5_Click);
+            // 
+            // productPictureBox5
+            // 
+            this.productPictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.productPictureBox5.BorderRadius = 8;
+            this.productPictureBox5.ImageRotate = 0F;
+            this.productPictureBox5.Location = new System.Drawing.Point(28, 9);
+            this.productPictureBox5.Name = "productPictureBox5";
+            this.productPictureBox5.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox5.TabIndex = 0;
+            this.productPictureBox5.TabStop = false;
+            this.productPictureBox5.Click += new System.EventHandler(this.productPictureBox5_Click);
+            // 
+            // proPanel4
+            // 
+            this.proPanel4.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel4.BorderRadius = 8;
+            this.proPanel4.BorderThickness = 1;
+            this.proPanel4.Controls.Add(this.label4);
+            this.proPanel4.Controls.Add(this.proPriceLabel4);
+            this.proPanel4.Controls.Add(this.productLabel4);
+            this.proPanel4.Controls.Add(this.productPictureBox4);
+            this.proPanel4.Location = new System.Drawing.Point(11, 251);
+            this.proPanel4.Name = "proPanel4";
+            this.proPanel4.Size = new System.Drawing.Size(202, 231);
+            this.proPanel4.TabIndex = 40;
+            this.proPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel4_Paint);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Green;
+            this.label4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label4.Location = new System.Drawing.Point(5, 201);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 25);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "LKR :";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // proPriceLabel4
+            // 
+            this.proPriceLabel4.AutoSize = true;
+            this.proPriceLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel4.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel4.Location = new System.Drawing.Point(57, 201);
+            this.proPriceLabel4.Name = "proPriceLabel4";
+            this.proPriceLabel4.Size = new System.Drawing.Size(64, 25);
+            this.proPriceLabel4.TabIndex = 3;
+            this.proPriceLabel4.Text = "label4";
+            this.proPriceLabel4.Click += new System.EventHandler(this.proPriceLabel4_Click);
+            // 
+            // productLabel4
+            // 
+            this.productLabel4.AutoSize = true;
+            this.productLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel4.Location = new System.Drawing.Point(6, 156);
+            this.productLabel4.Name = "productLabel4";
+            this.productLabel4.Size = new System.Drawing.Size(52, 21);
+            this.productLabel4.TabIndex = 1;
+            this.productLabel4.Text = "label1";
+            this.productLabel4.Click += new System.EventHandler(this.productLabel4_Click);
+            // 
+            // productPictureBox4
+            // 
+            this.productPictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.productPictureBox4.BorderRadius = 8;
+            this.productPictureBox4.ImageRotate = 0F;
+            this.productPictureBox4.Location = new System.Drawing.Point(26, 9);
+            this.productPictureBox4.Name = "productPictureBox4";
+            this.productPictureBox4.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox4.TabIndex = 0;
+            this.productPictureBox4.TabStop = false;
+            this.productPictureBox4.Click += new System.EventHandler(this.productPictureBox4_Click);
+            // 
+            // proPanel3
+            // 
+            this.proPanel3.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel3.BorderRadius = 8;
+            this.proPanel3.BorderThickness = 1;
+            this.proPanel3.Controls.Add(this.label3);
+            this.proPanel3.Controls.Add(this.proPriceLabel3);
+            this.proPanel3.Controls.Add(this.productLabel3);
+            this.proPanel3.Controls.Add(this.productPictureBox3);
+            this.proPanel3.Location = new System.Drawing.Point(463, 9);
+            this.proPanel3.Name = "proPanel3";
+            this.proPanel3.Size = new System.Drawing.Size(202, 231);
+            this.proPanel3.TabIndex = 39;
+            this.proPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel3_Paint);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Green;
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label3.Location = new System.Drawing.Point(6, 202);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "LKR :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // proPriceLabel3
+            // 
+            this.proPriceLabel3.AutoSize = true;
+            this.proPriceLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel3.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel3.Location = new System.Drawing.Point(63, 202);
+            this.proPriceLabel3.Name = "proPriceLabel3";
+            this.proPriceLabel3.Size = new System.Drawing.Size(64, 25);
+            this.proPriceLabel3.TabIndex = 3;
+            this.proPriceLabel3.Text = "label4";
+            this.proPriceLabel3.Click += new System.EventHandler(this.proPriceLabel3_Click);
+            // 
+            // productLabel3
+            // 
+            this.productLabel3.AutoSize = true;
+            this.productLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel3.Location = new System.Drawing.Point(7, 154);
+            this.productLabel3.Name = "productLabel3";
+            this.productLabel3.Size = new System.Drawing.Size(52, 21);
+            this.productLabel3.TabIndex = 1;
+            this.productLabel3.Text = "label1";
+            this.productLabel3.Click += new System.EventHandler(this.productLabel3_Click);
+            // 
+            // productPictureBox3
+            // 
+            this.productPictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.productPictureBox3.BorderRadius = 8;
+            this.productPictureBox3.ImageRotate = 0F;
+            this.productPictureBox3.Location = new System.Drawing.Point(26, 9);
+            this.productPictureBox3.Name = "productPictureBox3";
+            this.productPictureBox3.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox3.TabIndex = 0;
+            this.productPictureBox3.TabStop = false;
+            this.productPictureBox3.UseTransparentBackground = true;
+            this.productPictureBox3.Click += new System.EventHandler(this.productPictureBox3_Click);
+            // 
+            // proPanel2
+            // 
+            this.proPanel2.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel2.BorderRadius = 8;
+            this.proPanel2.BorderThickness = 1;
+            this.proPanel2.Controls.Add(this.label2);
+            this.proPanel2.Controls.Add(this.proPriceLabel2);
+            this.proPanel2.Controls.Add(this.productLabel2);
+            this.proPanel2.Controls.Add(this.productPictureBox2);
+            this.proPanel2.Location = new System.Drawing.Point(237, 9);
+            this.proPanel2.Name = "proPanel2";
+            this.proPanel2.Size = new System.Drawing.Size(202, 231);
+            this.proPanel2.TabIndex = 38;
+            this.proPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel2_Paint);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Green;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label2.Location = new System.Drawing.Point(6, 202);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 25);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "LKR :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // proPriceLabel2
+            // 
+            this.proPriceLabel2.AutoSize = true;
+            this.proPriceLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel2.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel2.Location = new System.Drawing.Point(61, 202);
+            this.proPriceLabel2.Name = "proPriceLabel2";
+            this.proPriceLabel2.Size = new System.Drawing.Size(64, 25);
+            this.proPriceLabel2.TabIndex = 3;
+            this.proPriceLabel2.Text = "label4";
+            this.proPriceLabel2.Click += new System.EventHandler(this.proPriceLabel2_Click);
+            // 
+            // productLabel2
+            // 
+            this.productLabel2.AutoSize = true;
+            this.productLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.productLabel2.Location = new System.Drawing.Point(7, 154);
+            this.productLabel2.Name = "productLabel2";
+            this.productLabel2.Size = new System.Drawing.Size(110, 21);
+            this.productLabel2.TabIndex = 1;
+            this.productLabel2.Text = "productLabel1";
+            this.productLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.productLabel2.Click += new System.EventHandler(this.productLabel2_Click);
+            // 
+            // productPictureBox2
+            // 
+            this.productPictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.productPictureBox2.BorderRadius = 8;
+            this.productPictureBox2.ImageRotate = 0F;
+            this.productPictureBox2.Location = new System.Drawing.Point(28, 9);
+            this.productPictureBox2.Name = "productPictureBox2";
+            this.productPictureBox2.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.productPictureBox2.TabIndex = 0;
+            this.productPictureBox2.TabStop = false;
+            this.productPictureBox2.Click += new System.EventHandler(this.productPictureBox2_Click);
+            // 
+            // proPanel1
+            // 
+            this.proPanel1.BorderColor = System.Drawing.Color.Silver;
+            this.proPanel1.BorderRadius = 8;
+            this.proPanel1.BorderThickness = 1;
+            this.proPanel1.Controls.Add(this.label1);
+            this.proPanel1.Controls.Add(this.proPriceLabel1);
+            this.proPanel1.Controls.Add(this.productLabel1);
+            this.proPanel1.Controls.Add(this.productPictureBox1);
+            this.proPanel1.FillColor = System.Drawing.Color.Transparent;
+            this.proPanel1.Location = new System.Drawing.Point(11, 9);
+            this.proPanel1.Name = "proPanel1";
+            this.proPanel1.Size = new System.Drawing.Size(202, 231);
+            this.proPanel1.TabIndex = 37;
+            this.proPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.proPanel1_Paint);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Green;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label1.Location = new System.Drawing.Point(5, 202);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "LKR :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // proPriceLabel1
+            // 
+            this.proPriceLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.proPriceLabel1.AutoSize = true;
+            this.proPriceLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proPriceLabel1.ForeColor = System.Drawing.Color.Green;
+            this.proPriceLabel1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.proPriceLabel1.Location = new System.Drawing.Point(57, 202);
+            this.proPriceLabel1.Margin = new System.Windows.Forms.Padding(0);
+            this.proPriceLabel1.Name = "proPriceLabel1";
+            this.proPriceLabel1.Size = new System.Drawing.Size(64, 25);
+            this.proPriceLabel1.TabIndex = 2;
+            this.proPriceLabel1.Text = "label4";
+            this.proPriceLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.proPriceLabel1.Click += new System.EventHandler(this.proPriceLabel1_Click);
+            // 
+            // productLabel1
+            // 
+            this.productLabel1.AutoSize = true;
+            this.productLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.productLabel1.Location = new System.Drawing.Point(6, 154);
+            this.productLabel1.Margin = new System.Windows.Forms.Padding(0);
+            this.productLabel1.Name = "productLabel1";
+            this.productLabel1.Size = new System.Drawing.Size(52, 21);
+            this.productLabel1.TabIndex = 1;
+            this.productLabel1.Text = "label1";
+            this.productLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.productLabel1.Click += new System.EventHandler(this.productLabel1_Click);
+            // 
+            // productPictureBox1
+            // 
+            this.productPictureBox1.BorderRadius = 8;
+            this.productPictureBox1.ImageRotate = 0F;
+            this.productPictureBox1.Location = new System.Drawing.Point(26, 9);
+            this.productPictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.productPictureBox1.Name = "productPictureBox1";
+            this.productPictureBox1.Size = new System.Drawing.Size(150, 137);
+            this.productPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.productPictureBox1.TabIndex = 0;
+            this.productPictureBox1.TabStop = false;
+            this.productPictureBox1.Click += new System.EventHandler(this.productPictureBox1_Click);
             // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
-            this.Controls.Add(this.productsMainPanel);
             this.Controls.Add(this.cashBookFlowPanel);
             this.Controls.Add(this.posTimingPanel);
             this.Controls.Add(this.posBillPanel);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.siticoneTextBox1);
+            this.Controls.Add(this.productsMainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
@@ -1546,15 +1708,7 @@
             this.posTimePanel.PerformLayout();
             this.cashBookFlowPanel.ResumeLayout(false);
             this.productsMainPanel.ResumeLayout(false);
-            this.proPanel3.ResumeLayout(false);
-            this.proPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox3)).EndInit();
-            this.proPanel2.ResumeLayout(false);
-            this.proPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox2)).EndInit();
-            this.proPanel1.ResumeLayout(false);
-            this.proPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox1)).EndInit();
+            this.productBtnPanel.ResumeLayout(false);
             this.proPanel6.ResumeLayout(false);
             this.proPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox6)).EndInit();
@@ -1564,7 +1718,15 @@
             this.proPanel4.ResumeLayout(false);
             this.proPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox4)).EndInit();
-            this.productBtnPanel.ResumeLayout(false);
+            this.proPanel3.ResumeLayout(false);
+            this.proPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox3)).EndInit();
+            this.proPanel2.ResumeLayout(false);
+            this.proPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox2)).EndInit();
+            this.proPanel1.ResumeLayout(false);
+            this.proPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1661,5 +1823,11 @@
         private System.Windows.Forms.Label proPriceLabel3;
         private System.Windows.Forms.Label proPriceLabel2;
         private System.Windows.Forms.Label proPriceLabel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
     }
 }

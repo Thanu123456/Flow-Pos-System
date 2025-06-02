@@ -35,6 +35,10 @@ namespace EscopeWindowsApp
         private Label[] productLabels;
         private Label[] proPriceLabels;
 
+        // P/Invoke declaration for rounded corners
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
         public POS(string username, string userEmail)
         {
             InitializeComponent();
@@ -151,6 +155,19 @@ namespace EscopeWindowsApp
             foreach (var pb in productPictureBoxes)
             {
                 pb.Click += ProductPanel_Click;
+                pb.SizeMode = PictureBoxSizeMode.Zoom; // Optional: Adjusts image to fit within rounded corners
+                // Set initial region with 8px border radius (16px diameter)
+                pb.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pb.Width, pb.Height, 16, 16));
+                // Handle size changes to maintain rounded corners
+                pb.SizeChanged += (s, e) =>
+                {
+                    PictureBox pictureBox = s as PictureBox;
+                    if (pictureBox.Region != null)
+                    {
+                        pictureBox.Region.Dispose(); // Dispose old region to prevent memory leak
+                    }
+                    pictureBox.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox.Width, pictureBox.Height, 16, 16));
+                };
             }
             foreach (var label in productLabels)
             {
@@ -255,7 +272,79 @@ namespace EscopeWindowsApp
                     DataRow row = rowView.Row;
                     proPanels[i].Tag = rowIndex;
                     productPictureBoxes[i].Image = GetProductImage(row);
-                    productLabels[i].Text = row["product_name"].ToString();
+
+                    // Construct label text
+                    string productName = row["product_name"].ToString();
+                    string variationType = row["variation_type"] != DBNull.Value ? row["variation_type"].ToString() : "";
+                    string labelText;
+
+                    // Only include variation if it exists and is not "N/A"
+                    if (!string.IsNullOrEmpty(variationType) && variationType != "N/A")
+                    {
+                        labelText = $"{productName} ({variationType})";
+                    }
+                    else
+                    {
+                        labelText = productName;
+                    }
+
+                    // Check if text exceeds panel width and wrap if needed
+                    using (Graphics g = proPanels[i].CreateGraphics())
+                    {
+                        float panelWidth = proPanels[i].Width - 10; // 10px margin
+                        SizeF textSize = g.MeasureString(labelText, productLabels[i].Font);
+
+                        if (textSize.Width > panelWidth)
+                        {
+                            // Split the text into words
+                            string[] words;
+                            if (labelText.Contains(" ("))
+                            {
+                                // Split at the variation part
+                                string namePart = labelText.Substring(0, labelText.IndexOf(" ("));
+                                string variationPart = labelText.Substring(labelText.IndexOf(" ("));
+                                words = namePart.Split(' ');
+                                // Add variation as the last "word"
+                                words = words.Concat(new[] { variationPart }).ToArray();
+                            }
+                            else
+                            {
+                                words = labelText.Split(' ');
+                            }
+
+                            // Build the first line by adding words until it exceeds the width
+                            string firstLine = "";
+                            string secondLine = "";
+                            bool firstLineDone = false;
+
+                            foreach (string word in words)
+                            {
+                                if (!firstLineDone)
+                                {
+                                    string testLine = string.IsNullOrEmpty(firstLine) ? word : $"{firstLine} {word}";
+                                    SizeF testSize = g.MeasureString(testLine, productLabels[i].Font);
+                                    if (testSize.Width <= panelWidth)
+                                    {
+                                        firstLine = testLine;
+                                    }
+                                    else
+                                    {
+                                        firstLineDone = true;
+                                        secondLine = word;
+                                    }
+                                }
+                                else
+                                {
+                                    secondLine += $" {word}";
+                                }
+                            }
+
+                            // Combine the lines with a newline
+                            labelText = $"{firstLine}\n{secondLine.Trim()}";
+                        }
+                    }
+
+                    productLabels[i].Text = labelText;
                     proPriceLabels[i].Text = Convert.ToDecimal(row["retail_price"]).ToString("N2");
                     proPanels[i].Visible = true;
                 }
@@ -965,7 +1054,8 @@ namespace EscopeWindowsApp
 
         private void supDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Validate that the row index is within bounds
+            if (e.RowIndex >= 0 && e.RowIndex < supDataGridView.Rows.Count)
             {
                 DataGridViewRow row = supDataGridView.Rows[e.RowIndex];
                 string unit = row.Cells["unit"].Value?.ToString();
@@ -1922,6 +2012,35 @@ namespace EscopeWindowsApp
 
         private void proPriceLabel6_Click(object sender, EventArgs e)
         {
+        }
+
+        private void productsMainPanel_Paint(object sender, PaintEventArgs e)
+        {
+            // Ensure the panel has AutoScroll enabled
+            productsMainPanel.AutoScroll = true;
+
+            // Hide scrollbars by setting the panel's scroll properties
+            productsMainPanel.VerticalScroll.Visible = false;
+            productsMainPanel.HorizontalScroll.Visible = false;
+
+            // Smooth scrolling logic to display all six products
+            if (proPanels != null && proPanels.Length >= itemsPerPage)
+            {
+                // Calculate the total height needed to show all six products
+                int totalHeight = 480;
+                foreach (var panel in proPanels)
+                {
+                    if (panel.Visible)
+                    {
+                        totalHeight += panel.Height + panel.Margin.Vertical;
+                    }
+                }
+            }
+        }
+
+        private void productBtnPanel_Paint(object sender, PaintEventArgs e)
+        {
+            //no need to scroll this panel, it should fit all buttons
         }
     }
 }
