@@ -181,7 +181,7 @@
             this.siticoneButton1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.siticoneButton1.ImageOffset = new System.Drawing.Point(5, 0);
             this.siticoneButton1.ImageSize = new System.Drawing.Size(50, 50);
-            this.siticoneButton1.Location = new System.Drawing.Point(358, 607);
+            this.siticoneButton1.Location = new System.Drawing.Point(358, 176);
             this.siticoneButton1.Name = "siticoneButton1";
             this.siticoneButton1.Size = new System.Drawing.Size(297, 125);
             this.siticoneButton1.TabIndex = 21;
@@ -207,7 +207,7 @@
             this.saleRetReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.saleRetReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.saleRetReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.saleRetReportBtn.Location = new System.Drawing.Point(29, 607);
+            this.saleRetReportBtn.Location = new System.Drawing.Point(358, 31);
             this.saleRetReportBtn.Name = "saleRetReportBtn";
             this.saleRetReportBtn.Size = new System.Drawing.Size(297, 125);
             this.saleRetReportBtn.TabIndex = 20;
@@ -233,7 +233,7 @@
             this.creditReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.creditReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.creditReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.creditReportBtn.Location = new System.Drawing.Point(358, 466);
+            this.creditReportBtn.Location = new System.Drawing.Point(29, 608);
             this.creditReportBtn.Name = "creditReportBtn";
             this.creditReportBtn.Size = new System.Drawing.Size(297, 125);
             this.creditReportBtn.TabIndex = 19;
@@ -259,7 +259,7 @@
             this.logHistoryBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.logHistoryBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.logHistoryBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.logHistoryBtn.Location = new System.Drawing.Point(29, 466);
+            this.logHistoryBtn.Location = new System.Drawing.Point(358, 608);
             this.logHistoryBtn.Name = "logHistoryBtn";
             this.logHistoryBtn.Size = new System.Drawing.Size(297, 125);
             this.logHistoryBtn.TabIndex = 18;
@@ -285,7 +285,7 @@
             this.purchasesReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.purchasesReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.purchasesReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.purchasesReportBtn.Location = new System.Drawing.Point(358, 323);
+            this.purchasesReportBtn.Location = new System.Drawing.Point(29, 176);
             this.purchasesReportBtn.Name = "purchasesReportBtn";
             this.purchasesReportBtn.Size = new System.Drawing.Size(297, 125);
             this.purchasesReportBtn.TabIndex = 17;
@@ -311,7 +311,7 @@
             this.supReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.supReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.supReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.supReportBtn.Location = new System.Drawing.Point(29, 323);
+            this.supReportBtn.Location = new System.Drawing.Point(29, 466);
             this.supReportBtn.Name = "supReportBtn";
             this.supReportBtn.Size = new System.Drawing.Size(297, 125);
             this.supReportBtn.TabIndex = 16;
@@ -337,7 +337,7 @@
             this.cusReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.cusReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.cusReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.cusReportBtn.Location = new System.Drawing.Point(358, 176);
+            this.cusReportBtn.Location = new System.Drawing.Point(358, 466);
             this.cusReportBtn.Name = "cusReportBtn";
             this.cusReportBtn.Size = new System.Drawing.Size(297, 125);
             this.cusReportBtn.TabIndex = 4;
@@ -363,7 +363,7 @@
             this.stockReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.stockReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.stockReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.stockReportBtn.Location = new System.Drawing.Point(29, 176);
+            this.stockReportBtn.Location = new System.Drawing.Point(358, 323);
             this.stockReportBtn.Name = "stockReportBtn";
             this.stockReportBtn.Size = new System.Drawing.Size(297, 125);
             this.stockReportBtn.TabIndex = 2;
@@ -416,7 +416,7 @@
             this.expReportBtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.expReportBtn.ImageOffset = new System.Drawing.Point(5, 0);
             this.expReportBtn.ImageSize = new System.Drawing.Size(50, 50);
-            this.expReportBtn.Location = new System.Drawing.Point(358, 31);
+            this.expReportBtn.Location = new System.Drawing.Point(29, 323);
             this.expReportBtn.Name = "expReportBtn";
             this.expReportBtn.Size = new System.Drawing.Size(297, 125);
             this.expReportBtn.TabIndex = 0;
