@@ -514,6 +514,7 @@
     <Compile Include="PurchasesReturnReport.Designer.cs">
       <DependentUpon>PurchasesReturnReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuotationDesigner.cs" />
     <Compile Include="QuotationsForm.cs">
       <SubType>Form</SubType>
     </Compile>

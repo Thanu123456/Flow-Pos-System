@@ -1054,9 +1054,17 @@ namespace EscopeWindowsApp
                 return;
             }
 
+            // Declare variables at method level to ensure accessibility throughout
             string quotationNo = "QUOT_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            string customerName = createQuoText.Text;
+            DateTime quotationDate = createQuotaDateTime.Value;
+            int totalItems = addQuotaDataGridView.Rows.Count;
+            decimal subTotal = CalculateSubTotal();
+            decimal discountAmount = 0m;
+            decimal shippingCharge = 0m;
+            string shippingAddress = siticoneTextBox4.Text;
+            string notes = createQuotaNoteText.Text;
 
-            // Step 1: Save data to the database
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -1064,19 +1072,13 @@ namespace EscopeWindowsApp
                     connection.Open();
                     using (MySqlTransaction transaction = connection.BeginTransaction())
                     {
-                        string customerName = createQuoText.Text;
-                        DateTime quotationDate = createQuotaDateTime.Value;
-                        int totalItems = addQuotaDataGridView.Rows.Count;
-                        decimal subTotal = CalculateSubTotal();
-                        decimal discountAmount = decimal.TryParse(addQuoDisCostLabel.Text, out decimal discount) ? discount : 0m;
-                        decimal shippingCharge = decimal.TryParse(quotaShippingCharge.Text, out decimal shipping) ? shipping : 0m;
-                        string shippingAddress = siticoneTextBox4.Text;
-                        string notes = createQuotaNoteText.Text;
+                        // Use temporary variables to avoid scope conflicts
+                        discountAmount = decimal.TryParse(addQuoDisCostLabel.Text, out decimal tempDiscount) ? tempDiscount : 0m;
+                        shippingCharge = decimal.TryParse(quotaShippingCharge.Text, out decimal tempShipping) ? tempShipping : 0m;
 
-                        // Insert quotation record
                         string quotationQuery = @"
-                            INSERT INTO quotations (quotation_no, customer_name, quotation_date, quantity_of_items, subtotal, discount_amount, shipping_charge, total_amount, shipping_address, notes)
-                            VALUES (@quotationNo, @customerName, @quotationDate, @quantityOfItems, @subtotal, @discountAmount, @shippingCharge, @totalAmount, @shippingAddress, @notes)";
+                INSERT INTO quotations (quotation_no, customer_name, quotation_date, quantity_of_items, subtotal, discount_amount, shipping_charge, total_amount, shipping_address, notes)
+                VALUES (@quotationNo, @customerName, @quotationDate, @quantityOfItems, @subtotal, @discountAmount, @shippingCharge, @totalAmount, @shippingAddress, @notes)";
                         using (MySqlCommand quotationCommand = new MySqlCommand(quotationQuery, connection, transaction))
                         {
                             quotationCommand.Parameters.AddWithValue("@quotationNo", quotationNo);
@@ -1092,10 +1094,9 @@ namespace EscopeWindowsApp
                             quotationCommand.ExecuteNonQuery();
                         }
 
-                        // Insert quotation details
                         string detailsQuery = @"
-                            INSERT INTO quotation_details (quotation_no, product_name, variation_type, unit, quantity, price, total_price)
-                            VALUES (@quotationNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
+                INSERT INTO quotation_details (quotation_no, product_name, variation_type, unit, quantity, price, total_price)
+                VALUES (@quotationNo, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
                         foreach (DataGridViewRow row in addQuotaDataGridView.Rows)
                         {
                             string variationType = row.Cells["variation_type"].Value.ToString();
@@ -1118,148 +1119,80 @@ namespace EscopeWindowsApp
                         transaction.Commit();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving quotation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit if saving fails
-            }
 
-            // Step 2: Generate and print the PDF
-            try
-            {
-                // Show SaveFileDialog to let the user choose the save location
+                // PDF generation outside the try block using method-level variables
+                List<QuotationDesigner.QuotationItem> items = new List<QuotationDesigner.QuotationItem>();
+                foreach (DataGridViewRow row in addQuotaDataGridView.Rows)
+                {
+                    items.Add(new QuotationDesigner.QuotationItem
+                    {
+                        ItemNumber = Convert.ToInt32(row.Cells["item_number"].Value),
+                        ProductName = row.Cells["product_name"].Value.ToString(),
+                        VariationType = row.Cells["variation_type"].Value.ToString(),
+                        Unit = row.Cells["unit"].Value.ToString(),
+                        Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
+                        Price = Convert.ToDecimal(row.Cells["price"].Value),
+                        TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
+                    });
+                }
+
+                QuotationDesigner designer = new QuotationDesigner();
+                Document document = designer.CreateQuotationDocument(quotationNo, customerName, quotationDate, shippingAddress, notes, items, subTotal, discountAmount, shippingCharge, totalAmount);
+
+                PdfDocumentRenderer renderer = new PdfDocumentRenderer
+                {
+                    Document = document
+                };
+                renderer.RenderDocument();  // Render the document only once
+
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "PDF Files (.pdf)|.pdf";
+                    saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
                     saveFileDialog.FileName = $"Quotation_{quotationNo}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
                     saveFileDialog.Title = "Save Quotation PDF";
 
-                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        return; // User cancelled the dialog
-                    }
+                        renderer.PdfDocument.Save(saveFileDialog.FileName);
+                        MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Create a new MigraDoc document
-                    Document document = new Document();
-                    document.Info.Title = "Quotation";
-                    document.Info.Author = "EscopeWindowsApp";
-
-                    // Add a section to the document
-                    Section section = document.AddSection();
-
-                    // Add a title
-                    string reportTitle = $"Quotation - {quotationNo} ({DateTime.Now.ToString("yyyy-MM-dd")})";
-                    Paragraph title = section.AddParagraph(reportTitle);
-                    title.Format.Font.Size = 14;
-                    title.Format.Font.Bold = true;
-                    title.Format.SpaceAfter = 10;
-
-                    // Add quotation details
-                    section.AddParagraph($"Customer Name: {createQuoText.Text}");
-                    section.AddParagraph($"Quotation Date: {createQuotaDateTime.Value.ToString("yyyy-MM-dd")}");
-                    section.AddParagraph($"Shipping Address: {(string.IsNullOrEmpty(siticoneTextBox4.Text) ? "N/A" : siticoneTextBox4.Text)}");
-                    section.AddParagraph($"Notes: {(string.IsNullOrEmpty(createQuotaNoteText.Text) ? "N/A" : createQuotaNoteText.Text)}");
-                    section.AddParagraph().Format.SpaceAfter = 10;
-
-                    // Create a table for items
-                    Table table = section.AddTable();
-                    table.Borders.Width = 0.5;
-                    table.Rows.Height = 10;
-
-                    // Define columns
-                    table.AddColumn(Unit.FromCentimeter(1));  // No
-                    table.AddColumn(Unit.FromCentimeter(4));  // Product Name
-                    table.AddColumn(Unit.FromCentimeter(2));  // Variation Type
-                    table.AddColumn(Unit.FromCentimeter(2));  // Unit
-                    table.AddColumn(Unit.FromCentimeter(2));  // Quantity
-                    table.AddColumn(Unit.FromCentimeter(2));  // Price
-                    table.AddColumn(Unit.FromCentimeter(2));  // Total Price
-
-                    // Add header row
-                    Row headerRow = table.AddRow();
-                    headerRow.HeadingFormat = true;
-                    headerRow.Format.Font.Bold = true;
-                    headerRow.Cells[0].AddParagraph("No");
-                    headerRow.Cells[1].AddParagraph("Product Name");
-                    headerRow.Cells[2].AddParagraph("Variation Type");
-                    headerRow.Cells[3].AddParagraph("Unit");
-                    headerRow.Cells[4].AddParagraph("Quantity");
-                    headerRow.Cells[5].AddParagraph("Price");
-                    headerRow.Cells[6].AddParagraph("Total Price");
-
-                    // Add data rows
-                    foreach (DataGridViewRow row in addQuotaDataGridView.Rows)
-                    {
-                        Row dataRow = table.AddRow();
-                        dataRow.Cells[0].AddParagraph(row.Cells["item_number"].Value.ToString());
-                        dataRow.Cells[1].AddParagraph(row.Cells["product_name"].Value.ToString());
-                        dataRow.Cells[2].AddParagraph(row.Cells["variation_type"].Value.ToString());
-                        dataRow.Cells[3].AddParagraph(row.Cells["unit"].Value.ToString());
-                        dataRow.Cells[4].AddParagraph(Convert.ToDecimal(row.Cells["quantity"].Value).ToString(row.Cells["unit"].Value.ToString() == "Pieces" ? "F0" : "F2"));
-                        dataRow.Cells[5].AddParagraph(Convert.ToDecimal(row.Cells["price"].Value).ToString("F2"));
-                        dataRow.Cells[6].AddParagraph(Convert.ToDecimal(row.Cells["total_price"].Value).ToString("F2"));
-                    }
-
-                    // Add summary section
-                    section.AddParagraph().Format.SpaceBefore = 10;
-                    section.AddParagraph($"Subtotal: {quotaSubTotLabel.Text}");
-                    section.AddParagraph($"Discount Amount: {addQuoDisCostLabel.Text}");
-                    section.AddParagraph($"Shipping Charge: {addQuoShipCostLabel.Text}");
-                    section.AddParagraph($"Total Amount: {AddQuoTotAmoCostLabel.Text}").Format.Font.Bold = true;
-
-                    // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
-                    renderer.Document = document;
-                    renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
-                    renderer.PdfDocument.Save(saveFileDialog.FileName);
-
-                    MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Open the PDF in the default browser
-                    try
-                    {
-                        string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
-                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        try
                         {
-                            FileName = fileUrl,
-                            UseShellExecute = true
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please ensure a default browser is set.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    // Print the PDF using the default printer via the default PDF viewer
-                    try
-                    {
-                        System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                UseShellExecute = true
+                            });
+                        }
+                        catch (Exception ex)
                         {
-                            FileName = saveFileDialog.FileName,
-                            Verb = "print",
-                            CreateNoWindow = true,
-                            WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                            UseShellExecute = true
-                        };
-
-                        using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
-                        {
-                            printProcess.WaitForExit(); // Wait for the printing process to complete
+                            MessageBox.Show($"Error opening PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
-                        MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            System.Diagnostics.ProcessStartInfo printInfo = new System.Diagnostics.ProcessStartInfo
+                            {
+                                FileName = saveFileDialog.FileName,
+                                Verb = "print",
+                                CreateNoWindow = true,
+                                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                                UseShellExecute = true
+                            };
+                            using (System.Diagnostics.Process printProcess = System.Diagnostics.Process.Start(printInfo))
+                            {
+                                printProcess.WaitForExit();
+                            }
+                            MessageBox.Show("PDF sent to printer successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error printing PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error printing PDF: {ex.Message}. Ensure a default printer is configured and a PDF viewer supporting printing is installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    // Reset form after successful save and print
-                    quotaCancelBtn_Click(sender, e);
                 }
+
+                quotaCancelBtn_Click(sender, e);
             }
             catch (Exception ex)
             {
