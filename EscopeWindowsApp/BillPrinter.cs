@@ -131,7 +131,10 @@ namespace EscopeWindowsApp
             if (paymentMethod == "Cash") baseHeight += 5;
             double totalHeight = baseHeight + bottomSpace + 10 + (10 * itemCount);
             if (totalHeight > 640) totalHeight = 640;
+            totalHeight -= 10; // Cut 1cm from the bottom of the bill
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
+
+            // Rest of the method remains unchanged
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
             titleStyle.Font.Name = "Courier New";
@@ -428,7 +431,10 @@ namespace EscopeWindowsApp
             double bottomSpace = 50;
             double totalHeight = baseHeight + bottomSpace + 10 + (10 * itemCount);
             if (totalHeight > 640) totalHeight = 640;
+            totalHeight -= 10; // Cut 1cm from the bottom of the bill
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
+
+            // Rest of the method remains unchanged
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
             titleStyle.Font.Name = "Courier New";

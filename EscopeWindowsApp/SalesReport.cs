@@ -24,8 +24,8 @@ namespace EscopeWindowsApp
             // Initialize DataTable for sales
             salesTable = new DataTable();
 
-            // Set up the date filter combo box
-            dateFilterSaleCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
+            // Set up the date filter combo box with new options
+            dateFilterSaleCombo.Items.AddRange(new string[] { "Daily", "This Week", "Last Week", "Last Month", "Yearly" });
             dateFilterSaleCombo.SelectedIndex = 0; // Default to Daily
 
             // Load all sales initially and update total amount
@@ -44,7 +44,7 @@ namespace EscopeWindowsApp
                     string query = @"
                         SELECT bill_no, customer, user_name, quantity_of_items, payment_method, total_price, sale_date
                         FROM sales
-                        WHERE 1=1";
+                        WHERE sale_date >= @start AND sale_date < @end";
 
                     if (!string.IsNullOrEmpty(searchText))
                     {
@@ -52,49 +52,46 @@ namespace EscopeWindowsApp
                     }
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime start;
+                    DateTime end;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(sale_date) = @today";
-                    }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND sale_date >= @weekStart AND sale_date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(sale_date) = @month AND YEAR(sale_date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(sale_date) = @year";
+                        case "Daily":
+                            start = now.Date;
+                            end = start.AddDays(1);
+                            break;
+                        case "This Week":
+                            start = now.Date.AddDays(-(int)now.DayOfWeek); // Start from Sunday
+                            end = start.AddDays(7); // End at next Sunday
+                            break;
+                        case "Last Week":
+                            start = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            end = start.AddDays(7); // End at this Sunday
+                            break;
+                        case "Last Month":
+                            DateTime firstDayOfCurrentMonth = new DateTime(now.Year, now.Month, 1);
+                            start = firstDayOfCurrentMonth.AddMonths(-1); // First day of last month
+                            end = firstDayOfCurrentMonth; // First day of this month
+                            break;
+                        case "Yearly":
+                            start = new DateTime(now.Year, 1, 1); // January 1st of this year
+                            end = new DateTime(now.Year + 1, 1, 1); // January 1st of next year
+                            break;
+                        default:
+                            start = DateTime.MinValue;
+                            end = DateTime.MaxValue;
+                            break;
                     }
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@start", start);
+                        command.Parameters.AddWithValue("@end", end);
+
                         if (!string.IsNullOrEmpty(searchText))
                         {
                             command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
-                        }
-
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
                         }
 
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
@@ -187,48 +184,45 @@ namespace EscopeWindowsApp
                     string query = @"
                         SELECT SUM(total_price)
                         FROM sales
-                        WHERE 1=1";
+                        WHERE sale_date >= @start AND sale_date < @end";
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime start;
+                    DateTime end;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(sale_date) = @today";
-                    }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND sale_date >= @weekStart AND sale_date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(sale_date) = @month AND YEAR(sale_date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(sale_date) = @year";
+                        case "Daily":
+                            start = now.Date;
+                            end = start.AddDays(1);
+                            break;
+                        case "This Week":
+                            start = now.Date.AddDays(-(int)now.DayOfWeek); // Start from Sunday
+                            end = start.AddDays(7); // End at next Sunday
+                            break;
+                        case "Last Week":
+                            start = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            end = start.AddDays(7); // End at this Sunday
+                            break;
+                        case "Last Month":
+                            DateTime firstDayOfCurrentMonth = new DateTime(now.Year, now.Month, 1);
+                            start = firstDayOfCurrentMonth.AddMonths(-1); // First day of last month
+                            end = firstDayOfCurrentMonth; // First day of this month
+                            break;
+                        case "Yearly":
+                            start = new DateTime(now.Year, 1, 1); // January 1st of this year
+                            end = new DateTime(now.Year + 1, 1, 1); // January 1st of next year
+                            break;
+                        default:
+                            start = DateTime.MinValue;
+                            end = DateTime.MaxValue;
+                            break;
                     }
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
+                        command.Parameters.AddWithValue("@start", start);
+                        command.Parameters.AddWithValue("@end", end);
 
                         object result = command.ExecuteScalar();
                         if (result != DBNull.Value && result != null)
@@ -265,7 +259,8 @@ namespace EscopeWindowsApp
                     ReportDesigner designer = new ReportDesigner();
                     var document = designer.CreateSalesReportDocument(salesTable, dateFilterSaleCombo.SelectedItem?.ToString() ?? "Daily");
 
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
                     renderer.PdfDocument.Save(saveFileDialog.FileName);

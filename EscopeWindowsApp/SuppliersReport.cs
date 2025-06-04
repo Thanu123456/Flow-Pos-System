@@ -261,7 +261,7 @@ namespace EscopeWindowsApp
                     reportDesigner.AddFooter();
 
                     // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
 
@@ -307,7 +307,7 @@ namespace EscopeWindowsApp
                     Document document = reportDesigner.CreateSuppliersReportDocument(suppliersTable, "All Time");
 
                     // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
 
