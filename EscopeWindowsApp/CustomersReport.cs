@@ -281,7 +281,8 @@ namespace EscopeWindowsApp
                     // Add footer
                     reportDesigner.AddFooter();
 
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
@@ -323,7 +324,8 @@ namespace EscopeWindowsApp
                     string dateFilter = dateFilterCusCombo.SelectedItem?.ToString() ?? "Daily";
                     Document document = reportDesigner.CreateCustomersReportDocument(customersTable, dateFilter);
 
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
                     renderer.PdfDocument.Save(saveFileDialog.FileName);

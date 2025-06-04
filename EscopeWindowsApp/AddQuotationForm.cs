@@ -173,6 +173,9 @@ namespace EscopeWindowsApp
             createQuotaDateTime.FillColor = System.Drawing.Color.White;
             createQuotaDateTime.HoverState.FillColor = System.Drawing.Color.White; // Maintain white on hover
             createQuotaDateTime.BorderColor = System.Drawing.Color.Gray; // Subtle border
+            
+            // Set the default value to today's date
+            createQuotaDateTime.Value = DateTime.Today;
         }
         #endregion
 

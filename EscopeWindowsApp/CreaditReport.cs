@@ -3,7 +3,6 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using ClosedXML.Excel;
 using System.Configuration;
@@ -19,14 +18,13 @@ namespace EscopeWindowsApp
         public CreaditReport()
         {
             InitializeComponent();
-            // Hook up CellFormatting event
+            grnCreditTable = new DataTable();
             supCreaditsReportDataGrid.CellFormatting += SupCreaditsReportDataGrid_CellFormatting;
         }
 
         private void CreaditReport_Load(object sender, EventArgs e)
         {
-            grnCreditTable = new DataTable();
-            dateFilterSupCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
+            dateFilterSupCombo.Items.AddRange(new string[] { "Daily", "This Week", "Last Week", "Last Month", "Yearly" });
             dateFilterSupCombo.SelectedIndex = 0; // Default to Daily
             LoadGRNCreditData();
             UpdateTotalCreditAmount();
@@ -54,14 +52,14 @@ namespace EscopeWindowsApp
                 Name = "credit_amount",
                 DataPropertyName = "credit_amount",
                 HeaderText = "CREDIT AMOUNT",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" } // Format as numeric with 2 decimal places
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
             });
             supCreaditsReportDataGrid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "date",
                 DataPropertyName = "date",
                 HeaderText = "DATE",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" } // Format matching Sales table
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd HH:mm:ss" }
             });
             supCreaditsReportDataGrid.Columns.Add(new DataGridViewImageColumn
             {
@@ -114,21 +112,21 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                    SELECT 
-                        g.grn_no,
-                        (
-                            SELECT s.name
-                            FROM grn_items gi
-                            JOIN products p ON gi.product_id = p.id
-                            JOIN suppliers s ON p.supplier_id = s.id
-                            WHERE gi.grn_id = g.id
-                            ORDER BY gi.id
-                            LIMIT 1
-                        ) AS supplier_name,
-                        g.total_amount AS credit_amount,
-                        g.date
-                    FROM grn g
-                    WHERE g.payment_method = 'Credit'";
+                        SELECT 
+                            g.grn_no,
+                            COALESCE((
+                                SELECT s.name
+                                FROM grn_items gi
+                                JOIN products p ON gi.product_id = p.id
+                                JOIN suppliers s ON p.supplier_id = s.id
+                                WHERE gi.grn_id = g.id
+                                ORDER BY gi.id
+                                LIMIT 1
+                            ), 'N/A') AS supplier_name,
+                            g.total_amount AS credit_amount,
+                            g.date
+                        FROM grn g
+                        WHERE g.payment_method = 'Credit'";
 
                     if (!string.IsNullOrEmpty(searchText))
                     {
@@ -136,22 +134,34 @@ namespace EscopeWindowsApp
                     }
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime startDate = DateTime.MinValue;
+                    DateTime endDate = DateTime.MaxValue;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(g.date) = @today";
+                        case "Daily":
+                            startDate = now.Date;
+                            endDate = startDate.AddDays(1);
+                            break;
+                        case "This Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek); // Sunday of this week
+                            endDate = startDate.AddDays(7); // Sunday of next week
+                            break;
+                        case "Last Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            endDate = startDate.AddDays(7); // Sunday of this week
+                            break;
+                        case "Last Month":
+                            startDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1); // First day of last month
+                            endDate = new DateTime(now.Year, now.Month, 1); // First day of this month
+                            break;
+                        case "Yearly":
+                            startDate = new DateTime(now.Year, 1, 1); // Start of current year
+                            endDate = new DateTime(now.Year + 1, 1, 1); // Start of next year
+                            break;
                     }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND g.date >= @weekStart AND g.date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(g.date) = @month AND YEAR(g.date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(g.date) = @year";
-                    }
+
+                    query += " AND g.date >= @startDate AND g.date < @endDate";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -159,27 +169,8 @@ namespace EscopeWindowsApp
                         {
                             command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
                         }
-
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
 
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
@@ -214,9 +205,9 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                    SELECT SUM(g.total_amount)
-                    FROM grn g
-                    WHERE g.payment_method = 'Credit'";
+                        SELECT SUM(g.total_amount)
+                        FROM grn g
+                        WHERE g.payment_method = 'Credit'";
 
                     if (!string.IsNullOrEmpty(searchText))
                     {
@@ -224,22 +215,34 @@ namespace EscopeWindowsApp
                     }
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime startDate = DateTime.MinValue;
+                    DateTime endDate = DateTime.MaxValue;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(g.date) = @today";
+                        case "Daily":
+                            startDate = now.Date;
+                            endDate = startDate.AddDays(1);
+                            break;
+                        case "This Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek); // Sunday of this week
+                            endDate = startDate.AddDays(7); // Sunday of next week
+                            break;
+                        case "Last Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            endDate = startDate.AddDays(7); // Sunday of this week
+                            break;
+                        case "Last Month":
+                            startDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1); // First day of last month
+                            endDate = new DateTime(now.Year, now.Month, 1); // First day of this month
+                            break;
+                        case "Yearly":
+                            startDate = new DateTime(now.Year, 1, 1); // Start of current year
+                            endDate = new DateTime(now.Year + 1, 1, 1); // Start of next year
+                            break;
                     }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND g.date >= @weekStart AND g.date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(g.date) = @month AND YEAR(g.date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(g.date) = @year";
-                    }
+
+                    query += " AND g.date >= @startDate AND g.date < @endDate";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -247,27 +250,8 @@ namespace EscopeWindowsApp
                         {
                             command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
                         }
-
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
 
                         object result = command.ExecuteScalar();
                         if (result != DBNull.Value && result != null)
@@ -336,12 +320,12 @@ namespace EscopeWindowsApp
                     {
                         connection.Open();
                         string query = @"
-                        SELECT 
-                            gi.product_id, p.name AS product_name, gi.variation_type, gi.unit, 
-                            gi.quantity, gi.cost_price, (gi.quantity * gi.cost_price) AS total_price
-                        FROM grn_items gi
-                        JOIN products p ON gi.product_id = p.id
-                        WHERE gi.grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
+                            SELECT 
+                                gi.product_id, p.name AS product_name, COALESCE(gi.variation_type, 'N/A') AS variation_type, gi.unit, 
+                                gi.quantity, gi.cost_price, (gi.quantity * gi.cost_price) AS total_price
+                            FROM grn_items gi
+                            JOIN products p ON gi.product_id = p.id
+                            WHERE gi.grn_id = (SELECT id FROM grn WHERE grn_no = @grnNo)";
                         using (MySqlCommand command = new MySqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@grnNo", grnNo);
@@ -352,21 +336,17 @@ namespace EscopeWindowsApp
                         }
                     }
 
-                    // Use ReportDesigner to generate the PDF
                     ReportDesigner reportDesigner = new ReportDesigner();
                     Document document = reportDesigner.CreateGRNCreditDetailReportDocument(grnDetails, grnNo);
 
-                    // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Attempt to open in browser
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -381,7 +361,6 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Optional printing with user confirmation
                     if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
@@ -428,22 +407,18 @@ namespace EscopeWindowsApp
                         return;
                     }
 
-                    // Use ReportDesigner to generate the PDF
                     ReportDesigner reportDesigner = new ReportDesigner();
                     string dateFilter = dateFilterSupCombo.SelectedItem?.ToString() ?? "Daily";
                     Document document = reportDesigner.CreateSuppliersCreditReportDocument(grnCreditTable, dateFilter);
 
-                    // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
-
-                    // Save the PDF to the user-selected location
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Attempt to open in browser
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -458,7 +433,6 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Optional printing with user confirmation
                     if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
@@ -523,10 +497,8 @@ namespace EscopeWindowsApp
                             DataRow row = grnCreditTable.Rows[i];
                             worksheet.Cell(i + 3, 1).Value = row["grn_no"].ToString();
                             worksheet.Cell(i + 3, 2).Value = row["supplier_name"]?.ToString() ?? "N/A";
-                            worksheet.Cell(i + 3, 3).Value = row["credit_amount"] is decimal amount ? amount.ToString("N2") : "N/A";
-                            worksheet.Cell(i + 3, 4).Value = row["date"] is DateTime date && date != DateTime.MinValue
-                                ? date.ToString("yyyy-MM-dd HH:mm:ss")
-                                : "N/A";
+                            worksheet.Cell(i + 3, 3).Value = Convert.ToDecimal(row["credit_amount"]).ToString("N2");
+                            worksheet.Cell(i + 3, 4).Value = Convert.ToDateTime(row["date"]).ToString("yyyy-MM-dd HH:mm:ss");
                         }
 
                         worksheet.Columns().AdjustToContents();
@@ -544,7 +516,7 @@ namespace EscopeWindowsApp
 
         private void headerPanel_Paint(object sender, PaintEventArgs e)
         {
-            // Placeholder for header panel painting if needed
+            // Placeholder for custom header panel painting if needed
         }
     }
 }

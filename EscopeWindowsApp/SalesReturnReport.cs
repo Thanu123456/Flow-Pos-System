@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using MySql.Data.MySqlClient;
 using System;
@@ -28,7 +27,7 @@ namespace EscopeWindowsApp
             resonsFilterSaleRetCombo.Items.AddRange(new string[] { "All Reasons", "Wrong Product", "Damaged Product", "Poor Quality Product", "Other" });
             resonsFilterSaleRetCombo.SelectedIndex = 0;
 
-            dateFilterSaleRetCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
+            dateFilterSaleRetCombo.Items.AddRange(new string[] { "Daily", "This Week", "Last Week", "Last Month", "Yearly" });
             dateFilterSaleRetCombo.SelectedIndex = 0;
 
             LoadSalesReturnData();
@@ -59,22 +58,34 @@ namespace EscopeWindowsApp
                     }
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime startDate = DateTime.MinValue;
+                    DateTime endDate = DateTime.MaxValue;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(refund_date) = @today";
+                        case "Daily":
+                            startDate = now.Date;
+                            endDate = startDate.AddDays(1);
+                            break;
+                        case "This Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek); // Sunday of this week
+                            endDate = startDate.AddDays(7); // Sunday of next week
+                            break;
+                        case "Last Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            endDate = startDate.AddDays(7); // Sunday of this week
+                            break;
+                        case "Last Month":
+                            startDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1); // First day of last month
+                            endDate = new DateTime(now.Year, now.Month, 1); // First day of this month
+                            break;
+                        case "Yearly":
+                            startDate = new DateTime(now.Year, 1, 1); // Start of current year
+                            endDate = new DateTime(now.Year + 1, 1, 1); // Start of next year
+                            break;
                     }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND refund_date >= @weekStart AND refund_date <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(refund_date) = @month AND YEAR(refund_date) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(refund_date) = @year";
-                    }
+
+                    query += " AND refund_date >= @startDate AND refund_date < @endDate";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -87,26 +98,8 @@ namespace EscopeWindowsApp
                             command.Parameters.AddWithValue("@reasonFilter", reasonFilter);
                         }
 
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6).AddHours(23).AddMinutes(59).AddSeconds(59);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
 
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
@@ -201,21 +194,21 @@ namespace EscopeWindowsApp
             {
                 DataGridViewRow row = salesRetReportDataGrid.Rows[e.RowIndex];
                 string details = $@"Sales Return Details:
-                    Bill No: {row.Cells["bill_no"].Value}
-                    Product Name: {row.Cells["product_name"].Value}
-                    Variation Type: {row.Cells["variation_type"].Value}
-                    Unit: {row.Cells["unit"].Value}
-                    Quantity: {row.Cells["quantity"].Value}
-                    Total Price: {row.Cells["total_price"].Value}
-                    Reason: {row.Cells["reason"].Value}
-                    Date: {row.Cells["refund_date"].Value}";
+Bill No: {row.Cells["bill_no"].Value}
+Product Name: {row.Cells["product_name"].Value}
+Variation Type: {row.Cells["variation_type"].Value}
+Unit: {row.Cells["unit"].Value}
+Quantity: {row.Cells["quantity"].Value}
+Total Price: {row.Cells["total_price"].Value}
+Reason: {row.Cells["reason"].Value}
+Date: {row.Cells["refund_date"].Value}";
                 MessageBox.Show(details, "Sales Return Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void salesRetTotAmontLabel_Click(object sender, EventArgs e)
         {
-            // This is the event handler for the salesRetTotAmontLabel Label.
+            // Empty event handler for the label
         }
 
         private void generateSalesRetPdfBtn_Click(object sender, EventArgs e)
@@ -236,18 +229,17 @@ namespace EscopeWindowsApp
                     ReportDesigner designer = new ReportDesigner();
                     string dateFilter = dateFilterSaleRetCombo.SelectedItem?.ToString() ?? "Daily";
                     string reasonFilter = resonsFilterSaleRetCombo.SelectedItem?.ToString() ?? "All Reasons";
-                    // Combine dateFilter and reasonFilter into a single filterDescription
                     string filterDescription = $"{dateFilter} - {reasonFilter}";
                     var document = designer.CreateSalesReturnReportDocument(salesReturnTable, filterDescription);
 
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Attempt to open in browser
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -262,7 +254,6 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Optional printing with user confirmation
                     if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
@@ -312,7 +303,6 @@ namespace EscopeWindowsApp
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Sales Return Report");
-
                         string reportTitle = $"Sales Return Report ({dateFilterSaleRetCombo.SelectedItem?.ToString() ?? "Daily"} - {resonsFilterSaleRetCombo.SelectedItem?.ToString() ?? "All Reasons"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 8).Merge().Style.Font.Bold = true;
