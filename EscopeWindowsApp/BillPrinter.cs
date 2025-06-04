@@ -292,7 +292,8 @@ namespace EscopeWindowsApp
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
-                string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("0") : $"{item.Quantity:0.00}{item.Unit.Substring(0, Math.Min(2, item.Unit.Length))}";
+
+                string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("0") : $"{item.Quantity:0.00}{GetStandardUnitAbbreviation(item.Unit)}";
                 dataRow.Cells[0].AddParagraph(qtyText);
                 dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
                 dataRow.Cells[1].AddParagraph(item.Price.ToString("0.00"));
@@ -431,7 +432,7 @@ namespace EscopeWindowsApp
             double bottomSpace = 50;
             double totalHeight = baseHeight + bottomSpace + 10 + (10 * itemCount);
             if (totalHeight > 640) totalHeight = 640;
-            totalHeight -= 10; // Cut 1cm from the bottom of the bill
+            totalHeight -= 5; // Cut 0.5cm from the bottom of the bill
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
 
             // Rest of the method remains unchanged
@@ -602,7 +603,9 @@ namespace EscopeWindowsApp
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
-                string qtyText = item.Unit == "Pieces" ? (-item.Quantity).ToString("0") : $"{(-item.Quantity):0.00}{item.Unit.Substring(0, Math.Min(2, item.Unit.Length))}";
+                string qtyText = item.Unit == "Pieces"
+            ? (-item.Quantity).ToString("0")
+            : $"{(-item.Quantity):0.00}{GetStandardUnitAbbreviation(item.Unit)}";
                 dataRow.Cells[0].AddParagraph(qtyText);
                 dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
                 dataRow.Cells[1].AddParagraph(item.Price.ToString("0.00"));
@@ -697,6 +700,25 @@ namespace EscopeWindowsApp
             }
 
             return pdfPath;
+        }
+
+        private static string GetStandardUnitAbbreviation(string unitName)
+        {
+            if (string.IsNullOrEmpty(unitName))
+                return "";
+
+            switch (unitName.ToLower())
+            {
+                case "kilogram":
+                    return "KG";
+                case "meter":
+                    return "M";
+                case "liter":
+                    return "L";
+                default:
+                    // For other units, return the first character
+                    return unitName.Length > 0 ? unitName.Substring(0, 1).ToUpper() : "";
+            }
         }
 
         private static void PrintPDF(string pdfPath)
