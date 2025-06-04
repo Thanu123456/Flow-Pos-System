@@ -285,8 +285,8 @@ namespace EscopeWindowsApp
                     bool zeroStock = checkZeroStocks.Checked;
                     Document document = reportDesigner.CreateStockReportDocument(stockTable, category, zeroStock);
 
-                    // Render the document to PDF
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
 

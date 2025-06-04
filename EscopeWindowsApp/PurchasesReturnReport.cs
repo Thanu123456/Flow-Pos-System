@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
 using System.Data;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 
 namespace EscopeWindowsApp
@@ -26,7 +26,7 @@ namespace EscopeWindowsApp
             resonsFilterPurRetCombo.Items.AddRange(new string[] { "All Reasons", "Product Damaged or Defective", "Product Not as Described or Expected", "Expired Products", "Other" });
             resonsFilterPurRetCombo.SelectedIndex = 0;
 
-            dateFilterPurRetCombo.Items.AddRange(new string[] { "Daily", "Weekly", "Monthly", "Yearly" });
+            dateFilterPurRetCombo.Items.AddRange(new string[] { "Daily", "This Week", "Last Week", "Last Month", "Yearly" });
             dateFilterPurRetCombo.SelectedIndex = 0;
 
             LoadPurchaseReturnData();
@@ -42,12 +42,12 @@ namespace EscopeWindowsApp
                 {
                     connection.Open();
                     string query = @"
-                SELECT pr.return_no, pr.grn_no, p.name AS product_name, prd.variation_type, prd.unit, 
-                       prd.quantity, prd.cost_price, prd.net_price, pr.reason, pr.created_at
-                FROM purchase_return_details prd
-                JOIN purchase_returns pr ON prd.return_id = pr.id
-                JOIN products p ON prd.product_id = p.id
-                WHERE 1=1";
+                        SELECT pr.return_no, pr.grn_no, p.name AS product_name, COALESCE(prd.variation_type, 'N/A') AS variation_type, prd.unit, 
+                               prd.quantity, prd.cost_price, prd.net_price, pr.reason, pr.created_at
+                        FROM purchase_return_details prd
+                        JOIN purchase_returns pr ON prd.return_id = pr.id
+                        JOIN products p ON prd.product_id = p.id
+                        WHERE 1=1";
 
                     if (!string.IsNullOrEmpty(searchText))
                     {
@@ -59,22 +59,34 @@ namespace EscopeWindowsApp
                     }
 
                     DateTime now = DateTime.Now;
-                    if (dateFilter == "Daily")
+                    DateTime startDate = DateTime.MinValue;
+                    DateTime endDate = DateTime.MaxValue;
+
+                    switch (dateFilter)
                     {
-                        query += " AND DATE(pr.created_at) = @today";
+                        case "Daily":
+                            startDate = now.Date;
+                            endDate = startDate.AddDays(1);
+                            break;
+                        case "This Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek); // Sunday of this week
+                            endDate = startDate.AddDays(7); // Sunday of next week
+                            break;
+                        case "Last Week":
+                            startDate = now.Date.AddDays(-(int)now.DayOfWeek - 7); // Sunday of last week
+                            endDate = startDate.AddDays(7); // Sunday of this week
+                            break;
+                        case "Last Month":
+                            startDate = new DateTime(now.Year, now.Month, 1).AddMonths(-1); // First day of last month
+                            endDate = new DateTime(now.Year, now.Month, 1); // First day of this month
+                            break;
+                        case "Yearly":
+                            startDate = new DateTime(now.Year, 1, 1); // Start of current year
+                            endDate = new DateTime(now.Year + 1, 1, 1); // Start of next year
+                            break;
                     }
-                    else if (dateFilter == "Weekly")
-                    {
-                        query += " AND pr.created_at >= @weekStart AND pr.created_at <= @weekEnd";
-                    }
-                    else if (dateFilter == "Monthly")
-                    {
-                        query += " AND MONTH(pr.created_at) = @month AND YEAR(pr.created_at) = @year";
-                    }
-                    else if (dateFilter == "Yearly")
-                    {
-                        query += " AND YEAR(pr.created_at) = @year";
-                    }
+
+                    query += " AND pr.created_at >= @startDate AND pr.created_at < @endDate";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -87,26 +99,8 @@ namespace EscopeWindowsApp
                             command.Parameters.AddWithValue("@reasonFilter", reasonFilter);
                         }
 
-                        if (dateFilter == "Daily")
-                        {
-                            command.Parameters.AddWithValue("@today", now.Date);
-                        }
-                        else if (dateFilter == "Weekly")
-                        {
-                            DateTime weekStart = now.Date.AddDays(-(int)now.DayOfWeek);
-                            DateTime weekEnd = weekStart.AddDays(6).AddHours(23).AddMinutes(59).AddSeconds(59);
-                            command.Parameters.AddWithValue("@weekStart", weekStart);
-                            command.Parameters.AddWithValue("@weekEnd", weekEnd);
-                        }
-                        else if (dateFilter == "Monthly")
-                        {
-                            command.Parameters.AddWithValue("@month", now.Month);
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
-                        else if (dateFilter == "Yearly")
-                        {
-                            command.Parameters.AddWithValue("@year", now.Year);
-                        }
+                        command.Parameters.AddWithValue("@startDate", startDate);
+                        command.Parameters.AddWithValue("@endDate", endDate);
 
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
@@ -158,8 +152,14 @@ namespace EscopeWindowsApp
         {
             try
             {
-                decimal totalAmount = purchaseReturnTable.AsEnumerable()
-                    .Sum(row => Convert.ToDecimal(row["net_price"]));
+                decimal totalAmount = 0;
+                foreach (DataRow row in purchaseReturnTable.Rows)
+                {
+                    if (row["net_price"] != DBNull.Value)
+                    {
+                        totalAmount += Convert.ToDecimal(row["net_price"]);
+                    }
+                }
                 purRetTotAmontLabel.Text = totalAmount.ToString("N2");
             }
             catch (Exception ex)
@@ -205,16 +205,16 @@ namespace EscopeWindowsApp
             {
                 DataGridViewRow row = purRetReportDataGrid.Rows[e.RowIndex];
                 string details = $@"Purchase Return Details:
-                    Return No: {row.Cells["return_no"].Value}
-                    GRN No: {row.Cells["grn_no"].Value}
-                    Product Name: {row.Cells["product_name"].Value}
-                    Variation Type: {row.Cells["variation_type"].Value}
-                    Unit: {row.Cells["unit"].Value}
-                    Quantity: {row.Cells["quantity"].Value}
-                    Cost Price: {row.Cells["cost_price"].Value}
-                    Net Price: {row.Cells["net_price"].Value}
-                    Reason: {row.Cells["reason"].Value}
-                    Date: {row.Cells["created_at"].Value}";
+Return No: {row.Cells["return_no"].Value}
+GRN No: {row.Cells["grn_no"].Value}
+Product Name: {row.Cells["product_name"].Value}
+Variation Type: {row.Cells["variation_type"].Value}
+Unit: {row.Cells["unit"].Value}
+Quantity: {row.Cells["quantity"].Value}
+Cost Price: {row.Cells["cost_price"].Value}
+Net Price: {row.Cells["net_price"].Value}
+Reason: {row.Cells["reason"].Value}
+Date: {row.Cells["created_at"].Value}";
                 MessageBox.Show(details, "Purchase Return Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -245,14 +245,14 @@ namespace EscopeWindowsApp
                     string filterDescription = $"{dateFilter} - {reasonFilter}";
                     var document = designer.CreatePurchaseReturnReportDocument(purchaseReturnTable, filterDescription);
 
-                    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
+                    // Replace the obsolete constructor with the parameterless constructor
+                    PdfDocumentRenderer renderer = new PdfDocumentRenderer();
                     renderer.Document = document;
                     renderer.RenderDocument();
                     renderer.PdfDocument.Save(saveFileDialog.FileName);
 
                     MessageBox.Show($"PDF generated successfully at {saveFileDialog.FileName}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Attempt to open in browser
                     try
                     {
                         string fileUrl = $"file:///{saveFileDialog.FileName.Replace("\\", "/")}";
@@ -267,7 +267,6 @@ namespace EscopeWindowsApp
                         MessageBox.Show($"Error opening PDF in browser: {ex.Message}. Please open the file manually at {saveFileDialog.FileName} using a PDF viewer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    // Optional printing with user confirmation
                     if (MessageBox.Show("Would you like to print the PDF now?", "Print PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
@@ -317,7 +316,6 @@ namespace EscopeWindowsApp
                     using (var workbook = new XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Purchase Return Report");
-
                         string reportTitle = $"Purchase Return Report ({dateFilterPurRetCombo.SelectedItem?.ToString() ?? "Daily"} - {resonsFilterPurRetCombo.SelectedItem?.ToString() ?? "All Reasons"}) - {DateTime.Now:yyyy-MM-dd}";
                         worksheet.Cell(1, 1).Value = reportTitle;
                         worksheet.Range(1, 1, 1, 10).Merge().Style.Font.Bold = true;
