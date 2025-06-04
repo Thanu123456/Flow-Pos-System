@@ -4,7 +4,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MySql.Data.MySqlClient;
-using System.Data; // Use System.Data for DataTable
+using System.Data;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -206,10 +206,12 @@ namespace EscopeWindowsApp
             DefineStyles();
             section = document.AddSection();
             section.PageSetup = document.DefaultPageSetup.Clone();
-            section.PageSetup.TopMargin = Unit.FromCentimeter(4);
+            section.PageSetup.PageFormat = PageFormat.A4;
+            section.PageSetup.Orientation = Orientation.Landscape;
+            section.PageSetup.TopMargin = Unit.FromCentimeter(2);
             section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
             section.PageSetup.RightMargin = Unit.FromCentimeter(2);
-            section.PageSetup.BottomMargin = Unit.FromCentimeter(2.5);
+            section.PageSetup.BottomMargin = Unit.FromCentimeter(2);
             section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
 
             AddHeader();
@@ -275,18 +277,21 @@ namespace EscopeWindowsApp
             DefineStyles();
             section = document.AddSection();
             section.PageSetup = document.DefaultPageSetup.Clone();
+            section.PageSetup.PageFormat = PageFormat.A4;
+            section.PageSetup.Orientation = Orientation.Landscape;
             section.PageSetup.TopMargin = Unit.FromCentimeter(4);
-            section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
-            section.PageSetup.RightMargin = Unit.FromCentimeter(2);
-            section.PageSetup.BottomMargin = Unit.FromCentimeter(2.5);
+            section.PageSetup.LeftMargin = Unit.FromCentimeter(1.5);
+            section.PageSetup.RightMargin = Unit.FromCentimeter(1.5);
+            section.PageSetup.BottomMargin = Unit.FromCentimeter(2.5); // Changed from 1.5 to 2.5
             section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
+            section.PageSetup.FooterDistance = Unit.FromCentimeter(1); // Added to ensure 1 cm gap
 
-            AddHeader();
+            AddHeaderLandscape();
             AddReportTitle("Sales Return Report", filterDescription);
             AddSalesReturnSummaryTable(salesReturnTable);
             AddSpacer();
-            AddSalesReturnTable(salesReturnTable);
-            AddFooter();
+            AddSalesReturnTableLandscape(salesReturnTable);
+            AddFooterLandscape();
 
             return document;
         }
@@ -300,18 +305,21 @@ namespace EscopeWindowsApp
             DefineStyles();
             section = document.AddSection();
             section.PageSetup = document.DefaultPageSetup.Clone();
+            section.PageSetup.PageFormat = PageFormat.A4;
+            section.PageSetup.Orientation = Orientation.Landscape;
             section.PageSetup.TopMargin = Unit.FromCentimeter(4);
-            section.PageSetup.LeftMargin = Unit.FromCentimeter(2);
-            section.PageSetup.RightMargin = Unit.FromCentimeter(2);
-            section.PageSetup.BottomMargin = Unit.FromCentimeter(2.5);
+            section.PageSetup.LeftMargin = Unit.FromCentimeter(1.5);
+            section.PageSetup.RightMargin = Unit.FromCentimeter(1.5);
+            section.PageSetup.BottomMargin = Unit.FromCentimeter(2.5); // Changed from 1.5 to 2.5
             section.PageSetup.HeaderDistance = Unit.FromCentimeter(1);
+            section.PageSetup.FooterDistance = Unit.FromCentimeter(1); // Added to ensure 1 cm gap
 
-            AddHeader();
+            AddHeaderLandscape();
             AddReportTitle("Purchase Return Report", filterDescription);
             AddPurchaseReturnSummaryTable(purchaseReturnTable);
             AddSpacer();
-            AddPurchaseReturnTable(purchaseReturnTable);
-            AddFooter();
+            AddPurchaseReturnTableLandscape(purchaseReturnTable);
+            AddFooterLandscape();
 
             return document;
         }
@@ -389,6 +397,64 @@ namespace EscopeWindowsApp
 
             Paragraph namePara = row.Cells[1].AddParagraph(details.Name);
             namePara.Format.Font.Size = 14;
+            namePara.Format.Font.Bold = true;
+            namePara.Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph addressPara = row.Cells[1].AddParagraph(details.Address);
+            addressPara.Format.Font.Size = 10;
+            addressPara.Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph emailPara = row.Cells[1].AddParagraph(details.Email);
+            emailPara.Format.Font.Size = 10;
+            emailPara.Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph phonePara = row.Cells[1].AddParagraph(details.PhoneNumber);
+            phonePara.Format.Font.Size = 10;
+            phonePara.Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph websitePara = row.Cells[1].AddParagraph(details.Website);
+            websitePara.Format.Font.Size = 10;
+            websitePara.Format.Alignment = ParagraphAlignment.Right;
+
+            Paragraph line = section.Headers.Primary.AddParagraph();
+            line.Format.Borders.Bottom.Width = 0.5;
+            line.Format.Borders.Bottom.Color = Color.FromRgb(0, 51, 102);
+            line.Format.SpaceAfter = 10;
+        }
+
+        private void AddHeaderLandscape()
+        {
+            CompanyDetails details = GetCompanyDetails();
+            Table headerTable = section.Headers.Primary.AddTable();
+            headerTable.AddColumn(Unit.FromCentimeter(5));
+            headerTable.AddColumn(Unit.FromCentimeter(20));
+
+            Row row = headerTable.AddRow();
+            row.Format.Alignment = ParagraphAlignment.Left;
+
+            if (details.Logo != null && details.Logo.Length > 0)
+            {
+                try
+                {
+                    string tempPath = Path.Combine(Path.GetTempPath(), "company_logo.png");
+                    File.WriteAllBytes(tempPath, details.Logo);
+                    Image image = row.Cells[0].AddImage(tempPath);
+                    image.Width = Unit.FromCentimeter(5);
+                    image.LockAspectRatio = true;
+                    image.RelativeVertical = RelativeVertical.Line;
+                    image.RelativeHorizontal = RelativeHorizontal.Margin;
+                    image.Left = ShapePosition.Left;
+                }
+                catch
+                {
+                    Paragraph placeholder = row.Cells[0].AddParagraph("Company Logo");
+                    placeholder.Format.Font.Size = 8;
+                    placeholder.Format.Alignment = ParagraphAlignment.Center;
+                }
+            }
+
+            Paragraph namePara = row.Cells[1].AddParagraph(details.Name);
+            namePara.Format.Font.Size = 16;
             namePara.Format.Font.Bold = true;
             namePara.Format.Alignment = ParagraphAlignment.Right;
 
@@ -983,13 +1049,13 @@ namespace EscopeWindowsApp
             table.Rows.Height = 10;
             table.KeepTogether = false;
 
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(3));
             table.AddColumn(Unit.FromCentimeter(2.5));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2));
+            table.AddColumn(Unit.FromCentimeter(3.0));
             table.AddColumn(Unit.FromCentimeter(2.5));
-            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(2.0));
+            table.AddColumn(Unit.FromCentimeter(2.0));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(3.0));
             table.AddColumn(Unit.FromCentimeter(2.5));
 
             Row headerRow = table.AddRow();
@@ -1020,15 +1086,145 @@ namespace EscopeWindowsApp
                 dataRow.Cells[2].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
                 dataRow.Cells[3].AddParagraph(row["unit"]?.ToString() ?? "N/A");
                 decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
-                dataRow.Cells[4].AddParagraph(quantity.ToString("N2"));
+                dataRow.Cells[4].AddParagraph(quantity.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
                 decimal totalPrice = row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0;
                 dataRow.Cells[5].AddParagraph(totalPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
                 dataRow.Cells[6].AddParagraph(row["reason"]?.ToString() ?? "N/A");
-                dataRow.Cells[7].AddParagraph(row["refund_date"] != DBNull.Value ? Convert.ToDateTime(row["refund_date"]).ToString("yyyy-MM-dd HH:mm") : "N/A");
+                dataRow.Cells[7].AddParagraph(row["refund_date"] != DBNull.Value ? Convert.ToDateTime(row["refund_date"]).ToString("yyyy-MM-dd HH:mm") : "N/A").Format.Alignment = ParagraphAlignment.Right;
                 rowIndex++;
             }
 
             decimal totalAmount = salesReturnTable.AsEnumerable().Sum(row => row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0);
+            Row totalRow = table.AddRow();
+            totalRow.Height = Unit.FromCentimeter(0.8);
+            totalRow.Style = "TotalRow";
+            totalRow.Shading.Color = Color.FromRgb(173, 216, 230);
+            totalRow.Cells[0].MergeRight = 4;
+            totalRow.Cells[0].AddParagraph("Total");
+            totalRow.Cells[5].AddParagraph(totalAmount.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+            totalRow.Cells[6].AddParagraph("");
+            totalRow.Cells[7].AddParagraph("");
+            table.Format.SpaceAfter = Unit.FromCentimeter(1);
+        }
+
+        private void AddSalesReturnTableLandscape(System.Data.DataTable salesReturnTable)
+        {
+            Table table = section.AddTable();
+            table.Borders.Width = 0.5;
+            table.Rows.Height = 10;
+            table.KeepTogether = false;
+
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(5));
+            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(1.5));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(4));
+
+            Row headerRow = table.AddRow();
+            headerRow.HeadingFormat = true;
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Color.FromRgb(0, 51, 102);
+            headerRow.Cells[0].AddParagraph("Bill No");
+            headerRow.Cells[1].AddParagraph("Product Name");
+            headerRow.Cells[2].AddParagraph("Variation Type");
+            headerRow.Cells[3].AddParagraph("Unit");
+            headerRow.Cells[4].AddParagraph("Quantity");
+            headerRow.Cells[5].AddParagraph("Total Price (LKR)");
+            headerRow.Cells[6].AddParagraph("Reason");
+            headerRow.Cells[7].AddParagraph("Date");
+
+            int rowIndex = 0;
+            foreach (DataRow row in salesReturnTable.Rows)
+            {
+                Row dataRow = table.AddRow();
+                dataRow.Style = "TableCell";
+                if (rowIndex % 2 == 0)
+                {
+                    dataRow.Shading.Color = Color.FromRgb(240, 240, 240);
+                }
+                dataRow.Cells[0].AddParagraph(row["bill_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[1].AddParagraph(row["product_name"]?.ToString() ?? "N/A");
+                dataRow.Cells[2].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
+                dataRow.Cells[3].AddParagraph(row["unit"]?.ToString() ?? "N/A");
+                decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
+                dataRow.Cells[4].AddParagraph(quantity.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+                decimal totalPrice = row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0;
+                dataRow.Cells[5].AddParagraph(totalPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+                dataRow.Cells[6].AddParagraph(row["reason"]?.ToString() ?? "N/A");
+                dataRow.Cells[7].AddParagraph(row["refund_date"] != DBNull.Value ? Convert.ToDateTime(row["refund_date"]).ToString("yyyy-MM-dd HH:mm") : "N/A").Format.Alignment = ParagraphAlignment.Right;
+                rowIndex++;
+            }
+
+            decimal totalAmount = salesReturnTable.AsEnumerable().Sum(row => row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0);
+            Row totalRow = table.AddRow();
+            totalRow.Height = Unit.FromCentimeter(0.8);
+            totalRow.Style = "TotalRow";
+            totalRow.Shading.Color = Color.FromRgb(173, 216, 230);
+            totalRow.Cells[0].MergeRight = 4;
+            totalRow.Cells[0].AddParagraph("Total");
+            totalRow.Cells[5].AddParagraph(totalAmount.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+            totalRow.Cells[6].AddParagraph("");
+            totalRow.Cells[7].AddParagraph("");
+            table.Format.SpaceAfter = Unit.FromCentimeter(1);
+        }
+
+        private void AddPurchaseReturnTableLandscape(System.Data.DataTable purchaseReturnTable)
+        {
+            Table table = section.AddTable();
+            table.Borders.Width = 0.5;
+            table.Rows.Height = 10;
+            table.KeepTogether = false;
+
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(5));
+            table.AddColumn(Unit.FromCentimeter(2));
+            table.AddColumn(Unit.FromCentimeter(2.5));
+            table.AddColumn(Unit.FromCentimeter(3));
+            table.AddColumn(Unit.FromCentimeter(4));
+            table.AddColumn(Unit.FromCentimeter(3));
+
+            Row headerRow = table.AddRow();
+            headerRow.HeadingFormat = true;
+            headerRow.Height = Unit.FromCentimeter(0.8);
+            headerRow.Style = "TableHeader";
+            headerRow.Shading.Color = Color.FromRgb(0, 51, 102);
+            headerRow.Cells[0].AddParagraph("Return No");
+            headerRow.Cells[1].AddParagraph("GRN No");
+            headerRow.Cells[2].AddParagraph("Product Name");
+            headerRow.Cells[3].AddParagraph("Variation Type");
+            headerRow.Cells[4].AddParagraph("Quantity");
+            headerRow.Cells[5].AddParagraph("Net Price (LKR)");
+            headerRow.Cells[6].AddParagraph("Reason");
+            headerRow.Cells[7].AddParagraph("Date");
+
+            int rowIndex = 0;
+            foreach (DataRow row in purchaseReturnTable.Rows)
+            {
+                Row dataRow = table.AddRow();
+                dataRow.Style = "TableCell";
+                if (rowIndex % 2 == 0)
+                {
+                    dataRow.Shading.Color = Color.FromRgb(240, 240, 240);
+                }
+                dataRow.Cells[0].AddParagraph(row["return_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[1].AddParagraph(row["grn_no"]?.ToString() ?? "N/A");
+                dataRow.Cells[2].AddParagraph(row["product_name"]?.ToString() ?? "N/A");
+                dataRow.Cells[3].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
+                decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
+                dataRow.Cells[4].AddParagraph(quantity.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+                decimal netPrice = row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0;
+                dataRow.Cells[5].AddParagraph(netPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
+                dataRow.Cells[6].AddParagraph(row["reason"]?.ToString() ?? "N/A");
+                dataRow.Cells[7].AddParagraph(row["created_at"] != DBNull.Value ? Convert.ToDateTime(row["created_at"]).ToString("yyyy-MM-dd HH:mm") : "N/A").Format.Alignment = ParagraphAlignment.Right;
+                rowIndex++;
+            }
+
+            decimal totalAmount = purchaseReturnTable.AsEnumerable().Sum(row => row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0);
             Row totalRow = table.AddRow();
             totalRow.Height = Unit.FromCentimeter(0.8);
             totalRow.Style = "TotalRow";
@@ -1066,7 +1262,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Group by bill_no to ensure one table per bill
             var billGroups = customerSales.AsEnumerable()
                 .GroupBy(row => row["bill_no"]?.ToString())
                 .Where(g => g.Key != null);
@@ -1074,7 +1269,7 @@ namespace EscopeWindowsApp
             foreach (var billGroup in billGroups)
             {
                 string billNo = billGroup.Key ?? "N/A";
-                var sale = billGroup.First(); // Get the first sale for this bill_no (should be only one)
+                var sale = billGroup.First();
 
                 string saleDateStr = "N/A";
                 try
@@ -1101,7 +1296,6 @@ namespace EscopeWindowsApp
                 table.AddColumn(Unit.FromCentimeter(2.5));
                 table.AddColumn(Unit.FromCentimeter(2));
 
-                // Add Bill Number and Date as header
                 Row idRow = table.AddRow();
                 idRow.HeadingFormat = true;
                 idRow.Height = Unit.FromCentimeter(0.8);
@@ -1110,7 +1304,6 @@ namespace EscopeWindowsApp
                 idRow.Cells[0].MergeRight = 5;
                 idRow.Cells[0].AddParagraph($"Bill Number: {billNo} (Date: {saleDateStr})");
 
-                // Add summary with products and variations
                 DataRow[] detailsRows = customerDetails.Select($"bill_no = '{billNo}'");
                 StringBuilder productsSummary = new StringBuilder("Products: ");
                 foreach (DataRow detail in detailsRows)
@@ -1121,21 +1314,15 @@ namespace EscopeWindowsApp
                 }
                 if (productsSummary.Length > 2)
                 {
-                    productsSummary.Length -= 2; // Remove trailing comma and space
+                    productsSummary.Length -= 2;
                 }
 
-                decimal totalCostPrice = detailsRows.Sum(row => row["price"] != DBNull.Value ? Convert.ToDecimal(row["price"]) * Convert.ToDecimal(row["quantity"]) : 0);
                 decimal totalPrice = detailsRows.Sum(row => row["total_price"] != DBNull.Value ? Convert.ToDecimal(row["total_price"]) : 0);
 
                 Row summaryRow = table.AddRow();
                 summaryRow.Style = "TableCell";
                 summaryRow.Cells[0].MergeRight = 5;
                 summaryRow.Cells[0].AddParagraph(productsSummary.ToString());
-
-                Row costPriceRow = table.AddRow();
-                costPriceRow.Style = "TableCell";
-                costPriceRow.Cells[0].MergeRight = 5;
-                costPriceRow.Cells[0].AddParagraph($"Total Cost Price: {totalCostPrice.ToString("N2")} LKR");
 
                 Row netPriceRow = table.AddRow();
                 netPriceRow.Style = "TableCell";
@@ -1185,7 +1372,7 @@ namespace EscopeWindowsApp
                 totalRow.Cells[0].AddParagraph("Total");
                 totalRow.Cells[4].AddParagraph("");
                 totalRow.Cells[5].AddParagraph(billTotal.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
-                table.Format.SpaceAfter = Unit.FromCentimeter(0.5); // Set 0.5cm gap
+                table.Format.SpaceAfter = Unit.FromCentimeter(0.5);
             }
         }
 
@@ -1214,7 +1401,6 @@ namespace EscopeWindowsApp
                 }
             }
 
-            // Group by grn_id to ensure one table per GRN
             var grnGroups = supplierPurchases.AsEnumerable()
                 .GroupBy(row => row["grn_id"]?.ToString())
                 .Where(g => g.Key != null);
@@ -1237,18 +1423,16 @@ namespace EscopeWindowsApp
                 table.AddColumn(Unit.FromCentimeter(1.5));
                 table.AddColumn(Unit.FromCentimeter(1.5));
 
-                // Add GRN ID as header
                 Row idRow = table.AddRow();
                 idRow.HeadingFormat = true;
                 idRow.Height = Unit.FromCentimeter(0.8);
                 idRow.Style = "TableHeader";
-                idRow.Shading.Color = Color.FromRgb(255, 255, 255); // Use RGB values for white color
-                idRow.Cells[0].Format.Font.Color = Color.FromRgb(0, 0, 0); // Set font color to black
+                idRow.Shading.Color = Color.FromRgb(255, 255, 255);
+                idRow.Cells[0].Format.Font.Color = Color.FromRgb(0, 0, 0);
 
                 idRow.Cells[0].MergeRight = 7;
                 idRow.Cells[0].AddParagraph($"GRN ID: {grnId}");
 
-                // Add summary with products and variations
                 DataRow[] detailsRows = purchaseDetails.Select($"grn_id = '{grnId}'");
                 StringBuilder productsSummary = new StringBuilder("Products: ");
                 foreach (DataRow detail in detailsRows)
@@ -1259,7 +1443,7 @@ namespace EscopeWindowsApp
                 }
                 if (productsSummary.Length > 2)
                 {
-                    productsSummary.Length -= 2; // Remove trailing comma and space
+                    productsSummary.Length -= 2;
                 }
 
                 decimal totalNetPrice = detailsRows.Sum(row => row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0);
@@ -1322,80 +1506,8 @@ namespace EscopeWindowsApp
                 totalRow.Cells[5].AddParagraph(grnTotalNetPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
                 totalRow.Cells[6].AddParagraph("");
                 totalRow.Cells[7].AddParagraph("");
-                table.Format.SpaceAfter = Unit.FromCentimeter(0.5); // Set 0.5cm gap between tables
+                table.Format.SpaceAfter = Unit.FromCentimeter(0.5);
             }
-        }
-
-        private void AddPurchaseReturnTable(System.Data.DataTable purchaseReturnTable)
-        {
-            Table table = section.AddTable();
-            table.Borders.Width = 0.5;
-            table.Rows.Height = 10;
-            table.KeepTogether = false;
-
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2.5));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2));
-            table.AddColumn(Unit.FromCentimeter(2.5));
-            table.AddColumn(Unit.FromCentimeter(3));
-            table.AddColumn(Unit.FromCentimeter(2.5));
-
-            Row headerRow = table.AddRow();
-            headerRow.HeadingFormat = true;
-            headerRow.Height = Unit.FromCentimeter(0.8);
-            headerRow.Style = "TableHeader";
-            headerRow.Shading.Color = Color.FromRgb(0, 51, 102);
-            headerRow.Cells[0].AddParagraph("Return No");
-            headerRow.Cells[1].AddParagraph("GRN No");
-            headerRow.Cells[2].AddParagraph("Product Name");
-            headerRow.Cells[3].AddParagraph("Variation Type");
-            headerRow.Cells[4].AddParagraph("Unit");
-            headerRow.Cells[5].AddParagraph("Quantity");
-            headerRow.Cells[6].AddParagraph("Cost Price (LKR)");
-            headerRow.Cells[7].AddParagraph("Net Price (LKR)");
-            headerRow.Cells[8].AddParagraph("Reason");
-            headerRow.Cells[9].AddParagraph("Date");
-
-            int rowIndex = 0;
-            foreach (DataRow row in purchaseReturnTable.Rows)
-            {
-                Row dataRow = table.AddRow();
-                dataRow.Style = "TableCell";
-                if (rowIndex % 2 == 0)
-                {
-                    dataRow.Shading.Color = Color.FromRgb(240, 240, 240);
-                }
-                dataRow.Cells[0].AddParagraph(row["return_no"]?.ToString() ?? "N/A");
-                dataRow.Cells[1].AddParagraph(row["grn_no"]?.ToString() ?? "N/A");
-                dataRow.Cells[2].AddParagraph(row["product_name"]?.ToString() ?? "N/A");
-                dataRow.Cells[3].AddParagraph(row["variation_type"]?.ToString() ?? "N/A");
-                dataRow.Cells[4].AddParagraph(row["unit"]?.ToString() ?? "N/A");
-                decimal quantity = row["quantity"] != DBNull.Value ? Convert.ToDecimal(row["quantity"]) : 0;
-                dataRow.Cells[5].AddParagraph(quantity.ToString("N2"));
-                decimal costPrice = row["cost_price"] != DBNull.Value ? Convert.ToDecimal(row["cost_price"]) : 0;
-                dataRow.Cells[6].AddParagraph(costPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
-                decimal netPrice = row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0;
-                dataRow.Cells[7].AddParagraph(netPrice.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
-                dataRow.Cells[8].AddParagraph(row["reason"]?.ToString() ?? "N/A");
-                dataRow.Cells[9].AddParagraph(row["created_at"] != DBNull.Value ? Convert.ToDateTime(row["created_at"]).ToString("yyyy-MM-dd HH:mm") : "N/A");
-                rowIndex++;
-            }
-
-            decimal totalAmount = purchaseReturnTable.AsEnumerable().Sum(row => row["net_price"] != DBNull.Value ? Convert.ToDecimal(row["net_price"]) : 0);
-            Row totalRow = table.AddRow();
-            totalRow.Height = Unit.FromCentimeter(0.8);
-            totalRow.Style = "TotalRow";
-            totalRow.Shading.Color = Color.FromRgb(173, 216, 230);
-            totalRow.Cells[0].MergeRight = 6;
-            totalRow.Cells[0].AddParagraph("Total");
-            totalRow.Cells[7].AddParagraph(totalAmount.ToString("N2")).Format.Alignment = ParagraphAlignment.Right;
-            totalRow.Cells[8].AddParagraph("");
-            totalRow.Cells[9].AddParagraph("");
-            table.Format.SpaceAfter = Unit.FromCentimeter(1);
         }
 
         public void AddFooter()
@@ -1413,6 +1525,29 @@ namespace EscopeWindowsApp
             Paragraph pageNumber = section.Footers.Primary.AddParagraph();
             pageNumber.Format.Font.Name = "Times New Roman";
             pageNumber.Format.Font.Size = 9;
+            pageNumber.Format.Alignment = ParagraphAlignment.Center;
+            pageNumber.AddText("Page No: ");
+            pageNumber.AddPageField();
+            pageNumber.AddText(" / ");
+            pageNumber.AddNumPagesField();
+            pageNumber.Format.SpaceBefore = 5;
+        }
+
+        private void AddFooterLandscape()
+        {
+            Paragraph footer = section.Footers.Primary.AddParagraph();
+            footer.Format.Font.Name = "Times New Roman";
+            footer.Format.Font.Size = 9;
+            footer.Format.Alignment = ParagraphAlignment.Center;
+            footer.AddText($"Generated on {DateTime.Now:yyyy-MM-dd HH:mm} - Flow POS by E Scope International (Pvt) Ltd. " +
+                $"© 2020 All rights reserved. | Contact Us: 075 - 7119340");
+            footer.Format.SpaceBefore = 0.5;
+            footer.Format.Borders.Top.Width = 0.5;
+            footer.Format.Borders.Top.Color = Color.FromRgb(0, 51, 102);
+
+            Paragraph pageNumber = section.Footers.Primary.AddParagraph();
+            pageNumber.Format.Font.Name = "Times New Roman";
+            pageNumber.Format.Font.Size = 10;
             pageNumber.Format.Alignment = ParagraphAlignment.Center;
             pageNumber.AddText("Page No: ");
             pageNumber.AddPageField();
