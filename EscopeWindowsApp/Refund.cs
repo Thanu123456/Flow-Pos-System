@@ -29,12 +29,18 @@ namespace EscopeWindowsApp
         private string refundNotes;    // Store refund notes
         private System.Windows.Forms.Timer searchTimer; // Timer for delayed search
         private bool isSelectingSuggestion = false; // Flag to prevent recursive TextChanged events
+        private string username; // Store the username
 
-        public Refund()
+        // Modify constructor to accept username
+        public Refund(string username)
         {
             InitializeComponent();
             ConfigureBillProductDataGridView();
             ConfigureRefItemDataGridView();
+
+            // Store the username
+            this.username = username;
+
             billProductDataGrid.SelectionChanged += billProductDataGrid_SelectionChanged;
             refQTYText.KeyPress += refQTYText_KeyPress;
 
@@ -1091,7 +1097,7 @@ namespace EscopeWindowsApp
                         BillPrinter.PrintRefundBill(
                             originalBillNo: billNo,
                             refundBillNo: refundBillNo,
-                            userName: "System", // You can replace with actual user if available
+                            userName: this.username, // Use the stored username
                             totalItems: refItemDataGridView.Rows.Count,
                             totalRefundAmount: totalRefundAmount,
                             refundItems: refundItems,
@@ -1137,6 +1143,25 @@ namespace EscopeWindowsApp
         private void Refund_Load(object sender, EventArgs e)
         {
             ClearBillDetails();
+        }
+        // Wherever the Refund form is opened, such as in the POS class:
+        private void refundBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Refund)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            Refund refund = new Refund(this.username); // Pass the current username
+            refund.Show();
         }
     }
 }
