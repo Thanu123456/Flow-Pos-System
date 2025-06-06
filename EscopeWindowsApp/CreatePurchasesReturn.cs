@@ -653,7 +653,12 @@ namespace EscopeWindowsApp
             }
         }
 
-        #endregion
+        // Pseudocode plan:
+        // 1. In grnSaveBtn_Click, when updating an existing return (_returnId.HasValue), 
+        //    do NOT insert new purchase_return_details records for products that already exist for this return.
+        // 2. Instead, update the quantity, cost_price, and net_price in purchase_return_details for those products.
+        // 3. Only insert new purchase_return_details if a new product is being returned (not already in details).
+        // 4. Never insert a new purchase_returns record if _returnId.HasValue; only update status and details.
 
         private void grnSaveBtn_Click(object sender, EventArgs e)
         {
@@ -671,10 +676,12 @@ namespace EscopeWindowsApp
             }
 
             string status = StatusComboBox.SelectedItem.ToString();
-            decimal totalAmount = status == "Complete" ? CalculateTotalAmount() : 0m;
+            decimal totalAmount = CalculateTotalAmount();
 
-            // Debug: Show _returnId value to diagnose the issue
-            System.Diagnostics.Debug.WriteLine($"Saving Purchase Return - _returnId: {(_returnId.HasValue ? _returnId.Value.ToString() : "null")}");
+            if (status == "Pending")
+            {
+                totalAmount = 0m;
+            }
 
             try
             {
@@ -689,11 +696,25 @@ namespace EscopeWindowsApp
                             string grnNo = grnProductDataGridView.Rows[0].Cells["grn_no"].Value?.ToString();
                             if (_returnId.HasValue)
                             {
-                                // Update existing purchase return
+                                // Only update the status, note, reason, and total_amount in purchase_returns
+                                string previousStatus = "";
+                                using (MySqlCommand getStatusCmd = new MySqlCommand(
+                                    "SELECT status FROM purchase_returns WHERE id = @returnId",
+                                    connection, transaction))
+                                {
+                                    getStatusCmd.Parameters.AddWithValue("@returnId", _returnId.Value);
+                                    previousStatus = getStatusCmd.ExecuteScalar()?.ToString() ?? "";
+                                }
+
+                                if (previousStatus == "Pending" && status == "Complete")
+                                {
+                                    totalAmount = CalculateTotalAmount();
+                                }
+
                                 string updateReturnQuery = @"
-                            UPDATE purchase_returns
-                            SET note = @note, reason = @reason, status = @status, total_amount = @totalAmount
-                            WHERE id = @returnId";
+                                    UPDATE purchase_returns
+                                    SET note = @note, reason = @reason, status = @status, total_amount = @totalAmount
+                                    WHERE id = @returnId";
                                 using (MySqlCommand cmd = new MySqlCommand(updateReturnQuery, connection, transaction))
                                 {
                                     cmd.Parameters.AddWithValue("@note", _returnNote ?? (object)DBNull.Value);
@@ -708,10 +729,130 @@ namespace EscopeWindowsApp
                                     }
                                 }
                                 returnId = _returnId.Value;
+
+                                // Update or insert purchase_return_details as needed
+                                foreach (DataGridViewRow row in grnProductDataGridView.Rows)
+                                {
+                                    if (row.Cells["return_quantity"].Value == null || Convert.ToDecimal(row.Cells["return_quantity"].Value) <= 0)
+                                        continue;
+
+                                    int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                                    string variationType = row.Cells["variation_type"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(variationType) || variationType == "N/A") variationType = null;
+                                    string unit = row.Cells["unit"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(unit) || unit == "N/A") unit = null;
+                                    decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
+                                    int grnItemsId = Convert.ToInt32(row.Cells["grn_items_id"].Value);
+                                    decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
+                                    decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
+
+                                    // Check if detail exists
+                                    string checkDetailQuery = @"
+                                        SELECT COUNT(*) FROM purchase_return_details
+                                        WHERE return_id = @returnId AND product_id = @productId
+                                        AND ((variation_type = @variationType) OR (variation_type IS NULL AND @variationType IS NULL))
+                                        AND ((unit = @unit) OR (unit IS NULL AND @unit IS NULL))";
+                                    int detailExists = 0;
+                                    using (MySqlCommand checkCmd = new MySqlCommand(checkDetailQuery, connection, transaction))
+                                    {
+                                        checkCmd.Parameters.AddWithValue("@returnId", returnId);
+                                        checkCmd.Parameters.AddWithValue("@productId", productId);
+                                        checkCmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
+                                        checkCmd.Parameters.AddWithValue("@unit", (object)unit ?? DBNull.Value);
+                                        detailExists = Convert.ToInt32(checkCmd.ExecuteScalar());
+                                    }
+
+                                    if (detailExists > 0)
+                                    {
+                                        // Update existing detail
+                                        string updateDetailQuery = @"
+                                            UPDATE purchase_return_details
+                                            SET quantity = @quantity, cost_price = @costPrice, net_price = @netPrice
+                                            WHERE return_id = @returnId AND product_id = @productId
+                                            AND ((variation_type = @variationType) OR (variation_type IS NULL AND @variationType IS NULL))
+                                            AND ((unit = @unit) OR (unit IS NULL AND @unit IS NULL))";
+                                        using (MySqlCommand updateCmd = new MySqlCommand(updateDetailQuery, connection, transaction))
+                                        {
+                                            updateCmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                            updateCmd.Parameters.AddWithValue("@costPrice", costPrice);
+                                            updateCmd.Parameters.AddWithValue("@netPrice", netPrice);
+                                            updateCmd.Parameters.AddWithValue("@returnId", returnId);
+                                            updateCmd.Parameters.AddWithValue("@productId", productId);
+                                            updateCmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
+                                            updateCmd.Parameters.AddWithValue("@unit", (object)unit ?? DBNull.Value);
+                                            updateCmd.ExecuteNonQuery();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Insert new detail if not exists (optional, or skip if you never want new details)
+                                        string insertDetailsQuery = @"
+                                            INSERT INTO purchase_return_details 
+                                            (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                                            VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)";
+                                        using (MySqlCommand insertCmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
+                                        {
+                                            insertCmd.Parameters.AddWithValue("@returnId", returnId);
+                                            insertCmd.Parameters.AddWithValue("@productId", productId);
+                                            insertCmd.Parameters.AddWithValue("@variationType", (object)variationType ?? DBNull.Value);
+                                            insertCmd.Parameters.AddWithValue("@unit", (object)unit ?? DBNull.Value);
+                                            insertCmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                            insertCmd.Parameters.AddWithValue("@costPrice", costPrice);
+                                            insertCmd.Parameters.AddWithValue("@netPrice", netPrice);
+                                            insertCmd.ExecuteNonQuery();
+                                        }
+                                    }
+
+                                    // Always update stock_details
+                                    string reduceStockDetailsQuery = @"
+                                        UPDATE stock_details
+                                        SET remaining_qty = remaining_qty - @quantity
+                                        WHERE grn_items_id = @grnItemsId AND remaining_qty >= @quantity";
+                                    using (MySqlCommand cmd = new MySqlCommand(reduceStockDetailsQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@grnItemsId", grnItemsId);
+                                        cmd.ExecuteNonQuery();
+                                    }
+
+                                    // Always update stock
+                                    string updateStockQuery = @"
+                                        UPDATE stock 
+                                        SET stock = stock - @quantity 
+                                        WHERE product_id = @productId 
+                                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
+                                    using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@productId", productId);
+                                        cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+
+                                // If status is "Complete", update total_amount to match net price sum
+                                if (status == "Complete")
+                                {
+                                    string updateTotalAmountQuery = @"
+                                        UPDATE purchase_returns
+                                        SET total_amount = (
+                                            SELECT COALESCE(SUM(net_price), 0)
+                                            FROM purchase_return_details
+                                            WHERE return_id = @returnId
+                                        )
+                                        WHERE id = @returnId";
+                                    using (MySqlCommand cmd = new MySqlCommand(updateTotalAmountQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@returnId", returnId);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
                             }
                             else
                             {
-                                // Insert new purchase return
+                                // Insert new purchase return (no change)
                                 string returnNo = "PR_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                                 if (string.IsNullOrEmpty(grnNo))
                                 {
@@ -720,9 +861,9 @@ namespace EscopeWindowsApp
                                 }
                                 string note = string.IsNullOrEmpty(_returnNote) ? null : _returnNote;
                                 string insertReturnQuery = @"
-                            INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, reason, status, created_at)
-                            VALUES (@grnNo, @returnNo, @note, @totalAmount, @reason, @status, NOW());
-                            SELECT LAST_INSERT_ID();";
+                                    INSERT INTO purchase_returns (grn_no, return_no, note, total_amount, reason, status, created_at)
+                                    VALUES (@grnNo, @returnNo, @note, @totalAmount, @reason, @status, NOW());
+                                    SELECT LAST_INSERT_ID();";
                                 using (MySqlCommand cmd = new MySqlCommand(insertReturnQuery, connection, transaction))
                                 {
                                     cmd.Parameters.AddWithValue("@grnNo", grnNo);
@@ -733,95 +874,64 @@ namespace EscopeWindowsApp
                                     cmd.Parameters.AddWithValue("@status", status);
                                     returnId = Convert.ToInt32(cmd.ExecuteScalar());
                                 }
-                            }
 
-                            string insertDetailsQuery = @"
-                        INSERT INTO purchase_return_details 
-                        (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
-                        VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)";
-                            HashSet<string> processedProducts = new HashSet<string>();
-
-                            foreach (DataGridViewRow row in grnProductDataGridView.Rows)
-                            {
-                                if (row.Cells["return_quantity"].Value == null || Convert.ToDecimal(row.Cells["return_quantity"].Value) <= 0)
-                                    continue;
-
-                                int productId = Convert.ToInt32(row.Cells["product_id"].Value);
-                                string variationType = row.Cells["variation_type"].Value?.ToString();
-                                if (string.IsNullOrEmpty(variationType) || variationType == "N/A") variationType = null;
-                                string unit = row.Cells["unit"].Value?.ToString();
-                                if (string.IsNullOrEmpty(unit) || unit == "N/A") unit = null;
-                                decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
-                                int grnItemsId = Convert.ToInt32(row.Cells["grn_items_id"].Value);
-                                decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
-                                decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
-
-                                string productKey = $"{productId}{variationType ?? "null"}{unit ?? "null"}";
-                                if (processedProducts.Contains(productKey))
-                                    continue;
-                                processedProducts.Add(productKey);
-
-                                // Reduce remaining_qty in stock_details
-                                string reduceStockDetailsQuery = @"
-                            UPDATE stock_details
-                            SET remaining_qty = remaining_qty - @quantity
-                            WHERE grn_items_id = @grnItemsId AND remaining_qty >= @quantity";
-                                using (MySqlCommand cmd = new MySqlCommand(reduceStockDetailsQuery, connection, transaction))
+                                string insertDetailsQuery = @"
+                                    INSERT INTO purchase_return_details 
+                                    (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
+                                    VALUES (@returnId, @productId, @variationType, @unit, @quantity, @costPrice, @netPrice)";
+                                foreach (DataGridViewRow row in grnProductDataGridView.Rows)
                                 {
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                    cmd.Parameters.AddWithValue("@grnItemsId", grnItemsId);
-                                    int rowsAffected = cmd.ExecuteNonQuery();
-                                    if (rowsAffected == 0)
+                                    if (row.Cells["return_quantity"].Value == null || Convert.ToDecimal(row.Cells["return_quantity"].Value) <= 0)
+                                        continue;
+
+                                    int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                                    string variationType = row.Cells["variation_type"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(variationType) || variationType == "N/A") variationType = null;
+                                    string unit = row.Cells["unit"].Value?.ToString();
+                                    if (string.IsNullOrEmpty(unit) || unit == "N/A") unit = null;
+                                    decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
+                                    int grnItemsId = Convert.ToInt32(row.Cells["grn_items_id"].Value);
+                                    decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
+                                    decimal netPrice = Convert.ToDecimal(row.Cells["net_price"].Value);
+
+                                    using (MySqlCommand cmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
                                     {
-                                        throw new Exception($"Insufficient remaining quantity for GRN item ID {grnItemsId}");
+                                        cmd.Parameters.AddWithValue("@returnId", returnId);
+                                        cmd.Parameters.AddWithValue("@productId", productId);
+                                        cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@costPrice", costPrice);
+                                        cmd.Parameters.AddWithValue("@netPrice", netPrice);
+                                        cmd.ExecuteNonQuery();
                                     }
-                                }
 
-                                // Update stock
-                                string updateStockQuery = @"
-                            UPDATE stock 
-                            SET stock = stock - @quantity 
-                            WHERE product_id = @productId 
-                            AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
-                            AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
-                                using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                    cmd.Parameters.AddWithValue("@productId", productId);
-                                    cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    cmd.ExecuteNonQuery();
-                                }
-
-                                // Insert into purchase_return_details
-                                using (MySqlCommand cmd = new MySqlCommand(insertDetailsQuery, connection, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@returnId", returnId);
-                                    cmd.Parameters.AddWithValue("@productId", productId);
-                                    cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                    cmd.Parameters.AddWithValue("@costPrice", costPrice);
-                                    cmd.Parameters.AddWithValue("@netPrice", netPrice);
-                                    cmd.ExecuteNonQuery();
-                                }
-
-                                // If from ExpiredProductsForm, update expired_items
-                                if (_stockDetailsId.HasValue)
-                                {
-                                    string updateExpiredItemsQuery = @"
-                                UPDATE expired_items
-                                SET expired_qty = expired_qty - @quantity
-                                WHERE stock_details_id = @stockDetailsId AND expired_qty >= @quantity";
-                                    using (MySqlCommand cmd = new MySqlCommand(updateExpiredItemsQuery, connection, transaction))
+                                    // Always update stock_details
+                                    string reduceStockDetailsQuery = @"
+                                        UPDATE stock_details
+                                        SET remaining_qty = remaining_qty - @quantity
+                                        WHERE grn_items_id = @grnItemsId AND remaining_qty >= @quantity";
+                                    using (MySqlCommand cmd = new MySqlCommand(reduceStockDetailsQuery, connection, transaction))
                                     {
                                         cmd.Parameters.AddWithValue("@quantity", returnQuantity);
-                                        cmd.Parameters.AddWithValue("@stockDetailsId", _stockDetailsId.Value);
-                                        int rowsAffected = cmd.ExecuteNonQuery();
-                                        if (rowsAffected == 0)
-                                        {
-                                            throw new Exception($"Insufficient expired quantity for stock details ID {_stockDetailsId.Value}");
-                                        }
+                                        cmd.Parameters.AddWithValue("@grnItemsId", grnItemsId);
+                                        cmd.ExecuteNonQuery();
+                                    }
+
+                                    // Always update stock
+                                    string updateStockQuery = @"
+                                        UPDATE stock 
+                                        SET stock = stock - @quantity 
+                                        WHERE product_id = @productId 
+                                        AND (variation_type = @variationType OR (variation_type IS NULL AND @variationType IS NULL))
+                                        AND (unit = @unit OR (unit IS NULL AND @unit IS NULL))";
+                                    using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, connection, transaction))
+                                    {
+                                        cmd.Parameters.AddWithValue("@quantity", returnQuantity);
+                                        cmd.Parameters.AddWithValue("@productId", productId);
+                                        cmd.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
+                                        cmd.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
+                                        cmd.ExecuteNonQuery();
                                     }
                                 }
                             }
@@ -965,3 +1075,4 @@ namespace EscopeWindowsApp
         }
     }
 }
+#endregion
