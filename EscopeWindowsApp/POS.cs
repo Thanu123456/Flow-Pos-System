@@ -39,6 +39,8 @@ namespace EscopeWindowsApp
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
+        private bool isProcessingClick = false; // Add this field to the class
+
         public POS(string username, string userEmail)
         {
             InitializeComponent();
@@ -208,7 +210,7 @@ namespace EscopeWindowsApp
                 LEFT JOIN stock s ON p.id = s.product_id AND 
                     (pr.variation_type IS NULL OR pr.variation_type = s.variation_type)
                 GROUP BY p.id, p.name, pr.variation_type, u.unit_name, pr.retail_price, p.image_path
-                ORDER BY p.id, pr.variation_type";
+                ORDER BY p.name ASC, pr.variation_type ASC";
 
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                     {
@@ -1054,59 +1056,78 @@ namespace EscopeWindowsApp
 
         private void supDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Validate that the row index is within bounds
-            if (e.RowIndex >= 0 && e.RowIndex < supDataGridView.Rows.Count)
+            // Guard against processing multiple clicks
+            if (isProcessingClick) return;
+            isProcessingClick = true;
+            
+            try
             {
-                DataGridViewRow row = supDataGridView.Rows[e.RowIndex];
-                string unit = row.Cells["unit"].Value?.ToString();
-                bool isUnitDisabled = unit == "Kilogram" || unit == "Meter" || unit == "Liter";
-
-                if (supDataGridView.Columns[e.ColumnIndex].Name == "decrease")
+                // Validate that the row index is within bounds
+                if (e.RowIndex >= 0 && e.RowIndex < supDataGridView.Rows.Count)
                 {
-                    if (isUnitDisabled)
-                    {
-                        MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                    DataGridViewRow row = supDataGridView.Rows[e.RowIndex];
+                    string unit = row.Cells["unit"].Value?.ToString();
+                    bool isUnitDisabled = unit == "Kilogram" || unit == "Meter" || unit == "Liter";
 
-                    decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
-                    if (quantity > 1m)
+                    if (supDataGridView.Columns[e.ColumnIndex].Name == "decrease")
                     {
-                        quantity -= 1m;
-                        row.Cells["quantity"].Value = quantity;
+                        if (isUnitDisabled)
+                        {
+                            MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                        if (quantity > 1m)
+                        {
+                            quantity -= 1m;
+                            row.Cells["quantity"].Value = quantity;
+                            UpdateTotalPrice(row);
+                        }
+                    }
+                    else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
+                    {
+                        if (isUnitDisabled)
+                        {
+                            MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        int productId = Convert.ToInt32(row.Cells["product_id"].Value);
+                        string variationType = row.Cells["variation_type"].Value.ToString();
+                        decimal stock = GetStock(productId, variationType);
+                        decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
+                        decimal newQuantity = quantity + 1m;
+
+                        if (newQuantity > stock)
+                        {
+                            string productName = row.Cells["product_name"].Value.ToString();
+                            MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        row.Cells["quantity"].Value = newQuantity;
                         UpdateTotalPrice(row);
                     }
-                }
-                else if (supDataGridView.Columns[e.ColumnIndex].Name == "increase")
-                {
-                    if (isUnitDisabled)
+                    else if (supDataGridView.Columns[e.ColumnIndex].Name == "remove")
                     {
-                        MessageBox.Show("Cannot modify quantity for items measured in Kilogram, Meter, or Liter directly. Please remove and re-add the item with the correct quantity.", "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
+                        supDataGridView.Rows.RemoveAt(e.RowIndex);
+                        ReassignItemNumbers();
+                        UpdateAllLabels();
                     }
-
-                    int productId = Convert.ToInt32(row.Cells["product_id"].Value);
-                    string variationType = row.Cells["variation_type"].Value.ToString();
-                    decimal stock = GetStock(productId, variationType);
-                    decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
-                    decimal newQuantity = quantity + 1m;
-
-                    if (newQuantity > stock)
-                    {
-                        string productName = row.Cells["product_name"].Value.ToString();
-                        MessageBox.Show($"Cannot add more {productName} ({variationType}). Only {stock} in stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    row.Cells["quantity"].Value = newQuantity;
-                    UpdateTotalPrice(row);
                 }
-                else if (supDataGridView.Columns[e.ColumnIndex].Name == "remove")
+            }
+            finally
+            {
+                // Reset the flag after a short delay to prevent rapid clicking issues
+                Timer resetTimer = new Timer { Interval = 300 };
+                resetTimer.Tick += (s, args) => 
                 {
-                    supDataGridView.Rows.RemoveAt(e.RowIndex);
-                    ReassignItemNumbers();
-                    UpdateAllLabels();
-                }
+                    isProcessingClick = false;
+                    resetTimer.Stop();
+                    resetTimer.Dispose();
+                };
+                resetTimer.Start();
             }
         }
 
@@ -1391,7 +1412,7 @@ namespace EscopeWindowsApp
                     {
                         string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                         string customerName = posClientNameLabel.Text;
-                        string userName = "Cashier";
+                        string userName = this.username; // Use the actual username instead of hardcoded "Cashier"
                         int totalItems = supDataGridView.Rows.Count;
 
                         string salesQuery = @"
@@ -1613,7 +1634,7 @@ namespace EscopeWindowsApp
                     return;
                 }
             }
-            Refund refund = new Refund();
+            Refund refund = new Refund(this.username); // Pass the 'username' parameter
             refund.Show();
         }
 

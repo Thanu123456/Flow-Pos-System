@@ -673,6 +673,9 @@ namespace EscopeWindowsApp
             string status = StatusComboBox.SelectedItem.ToString();
             decimal totalAmount = status == "Complete" ? CalculateTotalAmount() : 0m;
 
+            // Debug: Show _returnId value to diagnose the issue
+            System.Diagnostics.Debug.WriteLine($"Saving Purchase Return - _returnId: {(_returnId.HasValue ? _returnId.Value.ToString() : "null")}");
+
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
@@ -686,6 +689,7 @@ namespace EscopeWindowsApp
                             string grnNo = grnProductDataGridView.Rows[0].Cells["grn_no"].Value?.ToString();
                             if (_returnId.HasValue)
                             {
+                                // Update existing purchase return
                                 string updateReturnQuery = @"
                             UPDATE purchase_returns
                             SET note = @note, reason = @reason, status = @status, total_amount = @totalAmount
@@ -697,12 +701,17 @@ namespace EscopeWindowsApp
                                     cmd.Parameters.AddWithValue("@status", status);
                                     cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
                                     cmd.Parameters.AddWithValue("@returnId", _returnId.Value);
-                                    cmd.ExecuteNonQuery();
+                                    int rowsAffected = cmd.ExecuteNonQuery();
+                                    if (rowsAffected == 0)
+                                    {
+                                        throw new Exception($"No purchase return found with ID {_returnId.Value} to update.");
+                                    }
                                 }
                                 returnId = _returnId.Value;
                             }
                             else
                             {
+                                // Insert new purchase return
                                 string returnNo = "PR_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                                 if (string.IsNullOrEmpty(grnNo))
                                 {
@@ -836,7 +845,7 @@ namespace EscopeWindowsApp
         }
 
 
-private decimal CalculateTotalAmount()
+        private decimal CalculateTotalAmount()
         {
             decimal total = 0m;
             foreach (DataGridViewRow row in grnProductDataGridView.Rows)

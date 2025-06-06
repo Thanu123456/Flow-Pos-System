@@ -67,8 +67,8 @@ namespace EscopeWindowsApp
                 totRefAmount.Text = SessionManager.TotalRefund.ToString("F2");
                 subTotAmount.Text = (SessionManager.TotalSales - SessionManager.TotalRefund).ToString("F2");
 
-                // Calculate total cash (cash + cash_in_hand, since refunds are subtracted in subtotal)
-                decimal totalCash = SessionManager.Cash + SessionManager.CashInHand;
+                // Calculate total cash, accounting for refunds
+                decimal totalCash = SessionManager.CashInHand + SessionManager.Cash - SessionManager.TotalRefund;
                 totCashText.Text = totalCash.ToString("F2");
 
                 // Force UI update
