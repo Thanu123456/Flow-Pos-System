@@ -133,8 +133,13 @@ namespace EscopeWindowsApp
                             pr.grn_no,
                             pr.return_no,
                             pr.reason,
-                            pr.total_amount,
-                            (SELECT SUM(prd.quantity) 
+                            CASE
+                                WHEN pr.status = 'Pending' THEN 0
+                                ELSE (SELECT COALESCE(SUM(prd.net_price), 0) 
+                                      FROM purchase_return_details prd 
+                                      WHERE prd.return_id = pr.id)
+                            END AS total_amount,
+                            (SELECT COALESCE(SUM(prd.quantity), 0) 
                              FROM purchase_return_details prd 
                              WHERE prd.return_id = pr.id) AS return_qty,
                             pr.created_at,
@@ -198,6 +203,11 @@ namespace EscopeWindowsApp
                 else if (e.Value == null || e.Value == DBNull.Value)
                 {
                     e.Value = "0.00";
+                    e.FormattingApplied = true;
+                }
+                else if (decimal.TryParse(e.Value.ToString(), out decimal amount))
+                {
+                    e.Value = amount.ToString("N2");
                     e.FormattingApplied = true;
                 }
             }
