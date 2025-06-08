@@ -601,5 +601,25 @@ namespace EscopeWindowsApp
             expiredProductsForm.FormClosed += (s, args) => LoadProductsData();
             expiredProductsForm.Show();
         }
+
+        private void adjBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Adjsments)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            Adjsments adjsments = new Adjsments();
+            adjsments.FormClosed += (s, args) => LoadProductsData();
+            adjsments.Show();
+        }
     }
 }
