@@ -261,6 +261,12 @@
     <Compile Include="AddWarehouseForm.Designer.cs">
       <DependentUpon>AddWarehouseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Adjsments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adjsments.Designer.cs">
+      <DependentUpon>Adjsments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Barcode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +321,12 @@
     </Compile>
     <Compile Include="CreaditReport.Designer.cs">
       <DependentUpon>CreaditReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAdjesments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAdjesments.Designer.cs">
+      <DependentUpon>CreateAdjesments.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateBaseUnit.cs">
       <SubType>Form</SubType>
@@ -643,6 +655,9 @@
     <EmbeddedResource Include="AddWarehouseForm.resx">
       <DependentUpon>AddWarehouseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Adjsments.resx">
+      <DependentUpon>Adjsments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Barcode.resx">
       <DependentUpon>Barcode.cs</DependentUpon>
     </EmbeddedResource>
@@ -672,6 +687,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreaditReport.resx">
       <DependentUpon>CreaditReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateAdjesments.resx">
+      <DependentUpon>CreateAdjesments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBaseUnit.resx">
       <DependentUpon>CreateBaseUnit.cs</DependentUpon>

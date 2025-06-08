@@ -35,14 +35,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Production));
             this.createProductBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+            this.ProductDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.expireBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.adjBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.proRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productFirstBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productPrevBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productNextBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productLastBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.proRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productionSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.ProductDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.expireBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -79,121 +80,6 @@
             this.productBtnPanel.Name = "productBtnPanel";
             this.productBtnPanel.Size = new System.Drawing.Size(154, 42);
             this.productBtnPanel.TabIndex = 16;
-            // 
-            // productFirstBtn
-            // 
-            this.productFirstBtn.BorderRadius = 6;
-            this.productFirstBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productFirstBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productFirstBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productFirstBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productFirstBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.productFirstBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.productFirstBtn.ForeColor = System.Drawing.Color.White;
-            this.productFirstBtn.Image = global::EscopeWindowsApp.Properties.Resources.firstBtn1;
-            this.productFirstBtn.Location = new System.Drawing.Point(3, 8);
-            this.productFirstBtn.Name = "productFirstBtn";
-            this.productFirstBtn.Size = new System.Drawing.Size(26, 26);
-            this.productFirstBtn.TabIndex = 11;
-            this.productFirstBtn.Click += new System.EventHandler(this.productFirstBtn_Click);
-            // 
-            // productPrevBtn
-            // 
-            this.productPrevBtn.BorderRadius = 6;
-            this.productPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productPrevBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.productPrevBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.productPrevBtn.ForeColor = System.Drawing.Color.White;
-            this.productPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
-            this.productPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.productPrevBtn.Location = new System.Drawing.Point(45, 8);
-            this.productPrevBtn.Name = "productPrevBtn";
-            this.productPrevBtn.Size = new System.Drawing.Size(26, 26);
-            this.productPrevBtn.TabIndex = 11;
-            this.productPrevBtn.Click += new System.EventHandler(this.productPrevBtn_Click);
-            // 
-            // productNextBtn
-            // 
-            this.productNextBtn.BorderRadius = 6;
-            this.productNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productNextBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.productNextBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.productNextBtn.ForeColor = System.Drawing.Color.White;
-            this.productNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
-            this.productNextBtn.ImageSize = new System.Drawing.Size(25, 25);
-            this.productNextBtn.Location = new System.Drawing.Point(87, 8);
-            this.productNextBtn.Name = "productNextBtn";
-            this.productNextBtn.Size = new System.Drawing.Size(26, 26);
-            this.productNextBtn.TabIndex = 9;
-            this.productNextBtn.Click += new System.EventHandler(this.productNextBtn_Click);
-            // 
-            // productLastBtn
-            // 
-            this.productLastBtn.BorderRadius = 6;
-            this.productLastBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.productLastBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.productLastBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.productLastBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.productLastBtn.FillColor = System.Drawing.SystemColors.Control;
-            this.productLastBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.productLastBtn.ForeColor = System.Drawing.Color.White;
-            this.productLastBtn.Image = global::EscopeWindowsApp.Properties.Resources.lastoBtn1;
-            this.productLastBtn.Location = new System.Drawing.Point(130, 8);
-            this.productLastBtn.Name = "productLastBtn";
-            this.productLastBtn.Size = new System.Drawing.Size(26, 26);
-            this.productLastBtn.TabIndex = 8;
-            this.productLastBtn.Click += new System.EventHandler(this.productLastBtn_Click);
-            // 
-            // proRefreshBtn
-            // 
-            this.proRefreshBtn.BorderRadius = 8;
-            this.proRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.proRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.proRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.proRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.proRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.proRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.proRefreshBtn.ForeColor = System.Drawing.Color.White;
-            this.proRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.proRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.proRefreshBtn.Location = new System.Drawing.Point(427, 30);
-            this.proRefreshBtn.Name = "proRefreshBtn";
-            this.proRefreshBtn.Size = new System.Drawing.Size(42, 42);
-            this.proRefreshBtn.TabIndex = 22;
-            this.proRefreshBtn.Click += new System.EventHandler(this.proRefreshBtn_Click);
-            // 
-            // productionSearchText
-            // 
-            this.productionSearchText.BorderColor = System.Drawing.Color.Gray;
-            this.productionSearchText.BorderRadius = 8;
-            this.productionSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.productionSearchText.DefaultText = "";
-            this.productionSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.productionSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.productionSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.productionSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.productionSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.productionSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productionSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.productionSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.productionSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
-            this.productionSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.productionSearchText.Location = new System.Drawing.Point(17, 30);
-            this.productionSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.productionSearchText.Name = "productionSearchText";
-            this.productionSearchText.PasswordChar = '\0';
-            this.productionSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.productionSearchText.PlaceholderText = "Search";
-            this.productionSearchText.SelectedText = "";
-            this.productionSearchText.Size = new System.Drawing.Size(400, 42);
-            this.productionSearchText.TabIndex = 8;
-            this.productionSearchText.TextChanged += new System.EventHandler(this.productionSearchText_TextChanged);
             // 
             // ProductDataGridView
             // 
@@ -287,12 +173,147 @@
             this.expireBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expireBtn.ForeColor = System.Drawing.Color.White;
             this.expireBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.expireBtn.Location = new System.Drawing.Point(935, 30);
+            this.expireBtn.Location = new System.Drawing.Point(957, 30);
             this.expireBtn.Name = "expireBtn";
-            this.expireBtn.Size = new System.Drawing.Size(209, 42);
+            this.expireBtn.Size = new System.Drawing.Size(194, 42);
             this.expireBtn.TabIndex = 41;
             this.expireBtn.Text = "Expired Products";
             this.expireBtn.Click += new System.EventHandler(this.expireBtn_Click);
+            // 
+            // adjBtn
+            // 
+            this.adjBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.adjBtn.Animated = true;
+            this.adjBtn.BorderRadius = 8;
+            this.adjBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.adjBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.adjBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.adjBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.adjBtn.FillColor = System.Drawing.Color.Green;
+            this.adjBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjBtn.ForeColor = System.Drawing.Color.White;
+            this.adjBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.adjBtn.Location = new System.Drawing.Point(781, 30);
+            this.adjBtn.Name = "adjBtn";
+            this.adjBtn.Size = new System.Drawing.Size(160, 42);
+            this.adjBtn.TabIndex = 42;
+            this.adjBtn.Text = "Adjestments";
+            this.adjBtn.Click += new System.EventHandler(this.adjBtn_Click);
+            // 
+            // proRefreshBtn
+            // 
+            this.proRefreshBtn.BorderRadius = 8;
+            this.proRefreshBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.proRefreshBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.proRefreshBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.proRefreshBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.proRefreshBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.proRefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.proRefreshBtn.ForeColor = System.Drawing.Color.White;
+            this.proRefreshBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.proRefreshBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.proRefreshBtn.Location = new System.Drawing.Point(427, 30);
+            this.proRefreshBtn.Name = "proRefreshBtn";
+            this.proRefreshBtn.Size = new System.Drawing.Size(42, 42);
+            this.proRefreshBtn.TabIndex = 22;
+            this.proRefreshBtn.Click += new System.EventHandler(this.proRefreshBtn_Click);
+            // 
+            // productFirstBtn
+            // 
+            this.productFirstBtn.BorderRadius = 6;
+            this.productFirstBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.productFirstBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.productFirstBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.productFirstBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.productFirstBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.productFirstBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.productFirstBtn.ForeColor = System.Drawing.Color.White;
+            this.productFirstBtn.Image = global::EscopeWindowsApp.Properties.Resources.firstBtn1;
+            this.productFirstBtn.Location = new System.Drawing.Point(3, 8);
+            this.productFirstBtn.Name = "productFirstBtn";
+            this.productFirstBtn.Size = new System.Drawing.Size(26, 26);
+            this.productFirstBtn.TabIndex = 11;
+            this.productFirstBtn.Click += new System.EventHandler(this.productFirstBtn_Click);
+            // 
+            // productPrevBtn
+            // 
+            this.productPrevBtn.BorderRadius = 6;
+            this.productPrevBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.productPrevBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.productPrevBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.productPrevBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.productPrevBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.productPrevBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.productPrevBtn.ForeColor = System.Drawing.Color.White;
+            this.productPrevBtn.Image = global::EscopeWindowsApp.Properties.Resources.backBtn;
+            this.productPrevBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.productPrevBtn.Location = new System.Drawing.Point(45, 8);
+            this.productPrevBtn.Name = "productPrevBtn";
+            this.productPrevBtn.Size = new System.Drawing.Size(26, 26);
+            this.productPrevBtn.TabIndex = 11;
+            this.productPrevBtn.Click += new System.EventHandler(this.productPrevBtn_Click);
+            // 
+            // productNextBtn
+            // 
+            this.productNextBtn.BorderRadius = 6;
+            this.productNextBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.productNextBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.productNextBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.productNextBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.productNextBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.productNextBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.productNextBtn.ForeColor = System.Drawing.Color.White;
+            this.productNextBtn.Image = global::EscopeWindowsApp.Properties.Resources.nextBtn;
+            this.productNextBtn.ImageSize = new System.Drawing.Size(25, 25);
+            this.productNextBtn.Location = new System.Drawing.Point(87, 8);
+            this.productNextBtn.Name = "productNextBtn";
+            this.productNextBtn.Size = new System.Drawing.Size(26, 26);
+            this.productNextBtn.TabIndex = 9;
+            this.productNextBtn.Click += new System.EventHandler(this.productNextBtn_Click);
+            // 
+            // productLastBtn
+            // 
+            this.productLastBtn.BorderRadius = 6;
+            this.productLastBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.productLastBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.productLastBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.productLastBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.productLastBtn.FillColor = System.Drawing.SystemColors.Control;
+            this.productLastBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.productLastBtn.ForeColor = System.Drawing.Color.White;
+            this.productLastBtn.Image = global::EscopeWindowsApp.Properties.Resources.lastoBtn1;
+            this.productLastBtn.Location = new System.Drawing.Point(130, 8);
+            this.productLastBtn.Name = "productLastBtn";
+            this.productLastBtn.Size = new System.Drawing.Size(26, 26);
+            this.productLastBtn.TabIndex = 8;
+            this.productLastBtn.Click += new System.EventHandler(this.productLastBtn_Click);
+            // 
+            // productionSearchText
+            // 
+            this.productionSearchText.BorderColor = System.Drawing.Color.Gray;
+            this.productionSearchText.BorderRadius = 8;
+            this.productionSearchText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.productionSearchText.DefaultText = "";
+            this.productionSearchText.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.productionSearchText.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.productionSearchText.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.productionSearchText.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.productionSearchText.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.productionSearchText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productionSearchText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.productionSearchText.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.productionSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
+            this.productionSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.productionSearchText.Location = new System.Drawing.Point(17, 30);
+            this.productionSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.productionSearchText.Name = "productionSearchText";
+            this.productionSearchText.PasswordChar = '\0';
+            this.productionSearchText.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.productionSearchText.PlaceholderText = "Search";
+            this.productionSearchText.SelectedText = "";
+            this.productionSearchText.Size = new System.Drawing.Size(400, 42);
+            this.productionSearchText.TabIndex = 8;
+            this.productionSearchText.TextChanged += new System.EventHandler(this.productionSearchText_TextChanged);
             // 
             // Production
             // 
@@ -300,6 +321,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.adjBtn);
             this.Controls.Add(this.expireBtn);
             this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.proRefreshBtn);
@@ -334,5 +356,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton proRefreshBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ProductDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expireBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton adjBtn;
     }
 }
