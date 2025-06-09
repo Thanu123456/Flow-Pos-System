@@ -838,6 +838,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\noproduct.jpg" />
     <None Include="Resources\icons8-initiate-money-transfer-48.png" />
     <None Include="Resources\icons8-login-64.png" />
     <None Include="Resources\icons8-return-purchase-64.png" />
