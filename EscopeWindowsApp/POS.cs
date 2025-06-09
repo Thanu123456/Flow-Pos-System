@@ -376,10 +376,38 @@ namespace EscopeWindowsApp
                 }
                 catch
                 {
-                    return null;
+                    // If there's an error loading the product image, fall through to return the default image
                 }
             }
-            return null;
+
+            // Return default "no product" image
+            try
+            {
+                // First try to load from resources if available
+                if (Properties.Resources.ResourceManager.GetObject("noproduct") is Image resourceImage)
+                {
+                    return resourceImage;
+                }
+
+                // If not in resources, try to load from file
+                string defaultImagePath = Path.Combine(Application.StartupPath, "Images", "noproduct.jpg");
+                if (File.Exists(defaultImagePath))
+                {
+                    return Image.FromFile(defaultImagePath);
+                }
+
+                // If neither method works, check in the current directory
+                if (File.Exists("noproduct.jpg"))
+                {
+                    return Image.FromFile("noproduct.jpg");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading default product image: {ex.Message}");
+            }
+
+            return null; // Return null as last resort if no image could be loaded
         }
 
         private void ProductPanel_Click(object sender, EventArgs e)
