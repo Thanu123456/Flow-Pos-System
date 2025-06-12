@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Linq;
 
 namespace EscopeWindowsApp
 {
@@ -22,6 +23,7 @@ namespace EscopeWindowsApp
         private void ExpiredProductsForm_Load(object sender, EventArgs e)
         {
             ConfigureDataGridView();
+            // Just load existing expired products, don't process new ones automatically
             LoadExpiredProducts();
         }
 
@@ -33,8 +35,144 @@ namespace EscopeWindowsApp
 
         private void expiredRefreshBtn_Click(object sender, EventArgs e)
         {
-            currentPage = 1;
-            LoadExpiredProducts(supplierSearchText.Text);
+            try
+            {
+                // Process any newly expired items
+                int processedCount = ProcessExpiredItems();
+
+                // Reload the grid
+                currentPage = 1;
+                LoadExpiredProducts(supplierSearchText.Text);
+
+                string message = processedCount > 0
+                    ? $"Processed {processedCount} newly expired item(s) and refreshed the list."
+                    : "No new expired items found. List refreshed.";
+
+                MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing expired items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int ProcessExpiredItems()
+        {
+            int processedCount = 0;
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (MySqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1. First, identify all expired items that haven't been processed yet
+                        string identifyExpiredQuery = @"
+                            SELECT 
+                                sd.id as stock_details_id,
+                                gi.product_id,
+                                gi.variation_type,
+                                gi.unit,
+                                sd.remaining_qty as expired_qty,
+                                gi.expiry_date
+                            FROM stock_details sd
+                            JOIN grn_items gi ON sd.grn_items_id = gi.id
+                            WHERE gi.expiry_date < CURDATE()
+                              AND sd.remaining_qty > 0
+                              AND sd.is_expired = 0";
+
+                        DataTable expiredItems = new DataTable();
+                        using (MySqlCommand cmd = new MySqlCommand(identifyExpiredQuery, conn, transaction))
+                        {
+                            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                            {
+                                adapter.Fill(expiredItems);
+                            }
+                        }
+
+                        processedCount = expiredItems.Rows.Count;
+
+                        if (expiredItems.Rows.Count > 0)
+                        {
+                            // 2. Insert expired items into the expired_items log table
+                            foreach (DataRow row in expiredItems.Rows)
+                            {
+                                string insertExpiredQuery = @"
+                                    INSERT INTO expired_items (stock_details_id, product_id, variation_type, unit, expired_qty, expiry_date, removed_date)
+                                    VALUES (@stockDetailsId, @productId, @variationType, @unit, @expiredQty, @expiryDate, CURDATE())";
+
+                                using (MySqlCommand cmd = new MySqlCommand(insertExpiredQuery, conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@stockDetailsId", row["stock_details_id"]);
+                                    cmd.Parameters.AddWithValue("@productId", row["product_id"]);
+                                    cmd.Parameters.AddWithValue("@variationType", row["variation_type"] == DBNull.Value ? null : row["variation_type"]);
+                                    cmd.Parameters.AddWithValue("@unit", row["unit"] == DBNull.Value ? null : row["unit"]);
+                                    cmd.Parameters.AddWithValue("@expiredQty", row["expired_qty"]);
+                                    cmd.Parameters.AddWithValue("@expiryDate", row["expiry_date"]);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+
+                            // 3. Mark the stock details records as expired
+                            string updateStockDetailsQuery = @"
+                                UPDATE stock_details sd
+                                JOIN grn_items gi ON sd.grn_items_id = gi.id
+                                SET sd.is_expired = 1
+                                WHERE gi.expiry_date < CURDATE()
+                                  AND sd.remaining_qty > 0
+                                  AND sd.is_expired = 0";
+
+                            using (MySqlCommand cmd = new MySqlCommand(updateStockDetailsQuery, conn, transaction))
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // 4. Update the main stock table by grouping and subtracting totals
+                            var groupedItems = expiredItems.AsEnumerable()
+                                .GroupBy(r => new
+                                {
+                                    ProductId = r["product_id"],
+                                    VariationType = r["variation_type"] == DBNull.Value ? null : r["variation_type"].ToString(),
+                                    Unit = r["unit"] == DBNull.Value ? null : r["unit"].ToString()
+                                })
+                                .Select(g => new
+                                {
+                                    g.Key.ProductId,
+                                    g.Key.VariationType,
+                                    g.Key.Unit,
+                                    TotalExpired = g.Sum(r => Convert.ToDecimal(r["expired_qty"]))
+                                });
+
+                            foreach (var item in groupedItems)
+                            {
+                                string updateStockQuery = @"
+                                    UPDATE stock 
+                                    SET stock = GREATEST(0, stock - @totalExpired)
+                                    WHERE product_id = @productId
+                                      AND (variation_type <=> @variationType)
+                                      AND (unit <=> @unit)";
+
+                                using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, conn, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@productId", item.ProductId);
+                                    cmd.Parameters.AddWithValue("@variationType", item.VariationType ?? (object)DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@unit", item.Unit ?? (object)DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@totalExpired", item.TotalExpired);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            return processedCount;
         }
 
         private void expiredProductsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -261,7 +399,7 @@ namespace EscopeWindowsApp
 
         private void UpdatePaginationUI()
         {
-            
+            // Add your pagination UI update logic here if needed
         }
 
         private void exFirstBtn_Click(object sender, EventArgs e)
