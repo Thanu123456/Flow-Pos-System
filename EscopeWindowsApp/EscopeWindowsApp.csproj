@@ -591,6 +591,12 @@
     <Compile Include="SideBarForm.Designer.cs">
       <DependentUpon>SideBarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm.Designer.cs">
+      <DependentUpon>StockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StockManager.cs" />
     <Compile Include="StockReport.cs">
       <SubType>Form</SubType>
@@ -818,6 +824,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SideBarForm.resx">
       <DependentUpon>SideBarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockForm.resx">
+      <DependentUpon>StockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockReport.resx">
       <DependentUpon>StockReport.cs</DependentUpon>
