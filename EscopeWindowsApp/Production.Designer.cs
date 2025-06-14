@@ -44,6 +44,7 @@
             this.adjBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.proRefreshBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productionSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.stockFormBtn = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.productBtnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -316,12 +317,31 @@
             this.productionSearchText.TabIndex = 8;
             this.productionSearchText.TextChanged += new System.EventHandler(this.productionSearchText_TextChanged);
             // 
+            // stockFormBtn
+            // 
+            this.stockFormBtn.BorderRadius = 8;
+            this.stockFormBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.stockFormBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.stockFormBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.stockFormBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.stockFormBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
+            this.stockFormBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.stockFormBtn.ForeColor = System.Drawing.Color.White;
+            this.stockFormBtn.HoverState.FillColor = System.Drawing.Color.Navy;
+            this.stockFormBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
+            this.stockFormBtn.Location = new System.Drawing.Point(513, 30);
+            this.stockFormBtn.Name = "stockFormBtn";
+            this.stockFormBtn.Size = new System.Drawing.Size(42, 42);
+            this.stockFormBtn.TabIndex = 43;
+            this.stockFormBtn.Click += new System.EventHandler(this.stockFormBtn_Click);
+            // 
             // Production
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.ControlBox = false;
+            this.Controls.Add(this.stockFormBtn);
             this.Controls.Add(this.adjBtn);
             this.Controls.Add(this.expireBtn);
             this.Controls.Add(this.ProductDataGridView);
@@ -358,5 +378,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ProductDataGridView;
         private Siticone.Desktop.UI.WinForms.SiticoneButton expireBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneButton adjBtn;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton stockFormBtn;
     }
 }
