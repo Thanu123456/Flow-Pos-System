@@ -137,20 +137,25 @@ namespace EscopeWindowsApp
                 if (e.Value != null && e.Value != DBNull.Value)
                 {
                     decimal stockValue = Convert.ToDecimal(e.Value);
-                    if (stockValue < 10) // Low stock threshold
+                    if (stockValue < 20) // Low stock threshold
                     {
-                        e.CellStyle.BackColor = Color.LightPink;
-                        e.CellStyle.ForeColor = Color.DarkRed;
+                        e.CellStyle.BackColor = Color.Red;
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+
                     }
                     else if (stockValue < 50) // Medium stock
                     {
-                        e.CellStyle.BackColor = Color.LightYellow;
-                        e.CellStyle.ForeColor = Color.DarkGoldenrod;
+                        e.CellStyle.BackColor = Color.Yellow;
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+
                     }
                     else // Good stock
                     {
-                        e.CellStyle.BackColor = Color.LightGreen;
-                        e.CellStyle.ForeColor = Color.DarkGreen;
+                        e.CellStyle.BackColor = Color.LimeGreen;
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                     }
                 }
             }
