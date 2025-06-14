@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,6 +38,7 @@
             this.closeBtn = new Siticone.Desktop.UI.WinForms.SiticoneControlBox();
             this.ProStockSearchText = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.ProStockDataGridView = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(this.components);
             this.headerPanel.SuspendLayout();
             this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProStockDataGridView)).BeginInit();
@@ -92,14 +94,14 @@
             this.ProStockSearchText.IconLeft = global::EscopeWindowsApp.Properties.Resources.search;
             this.ProStockSearchText.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.ProStockSearchText.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.ProStockSearchText.Location = new System.Drawing.Point(12, 41);
+            this.ProStockSearchText.Location = new System.Drawing.Point(12, 52);
             this.ProStockSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ProStockSearchText.Name = "ProStockSearchText";
             this.ProStockSearchText.PasswordChar = '\0';
             this.ProStockSearchText.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.ProStockSearchText.PlaceholderText = "Search Products";
             this.ProStockSearchText.SelectedText = "";
-            this.ProStockSearchText.Size = new System.Drawing.Size(689, 42);
+            this.ProStockSearchText.Size = new System.Drawing.Size(403, 42);
             this.ProStockSearchText.TabIndex = 30;
             this.ProStockSearchText.TextChanged += new System.EventHandler(this.ProStockSearchText_TextChanged);
             // 
@@ -119,9 +121,10 @@
             this.ProStockDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProStockDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -129,6 +132,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ProStockDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.ProStockDataGridView.ColumnHeadersHeight = 45;
+            this.ProStockDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -138,7 +142,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ProStockDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.ProStockDataGridView.GridColor = System.Drawing.Color.White;
-            this.ProStockDataGridView.Location = new System.Drawing.Point(12, 127);
+            this.ProStockDataGridView.Location = new System.Drawing.Point(12, 116);
             this.ProStockDataGridView.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.ProStockDataGridView.Name = "ProStockDataGridView";
             this.ProStockDataGridView.ReadOnly = true;
@@ -156,7 +160,7 @@
             this.ProStockDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ProStockDataGridView.RowTemplate.Height = 35;
             this.ProStockDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ProStockDataGridView.Size = new System.Drawing.Size(1076, 514);
+            this.ProStockDataGridView.Size = new System.Drawing.Size(1076, 453);
             this.ProStockDataGridView.TabIndex = 41;
             this.ProStockDataGridView.Theme = Siticone.Desktop.UI.WinForms.Enums.DataGridViewPresetThemes.FeterRiver;
             this.ProStockDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -168,9 +172,9 @@
             this.ProStockDataGridView.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.ProStockDataGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.ProStockDataGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.ProStockDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProStockDataGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProStockDataGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.ProStockDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.ProStockDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.ProStockDataGridView.ThemeStyle.HeaderStyle.Height = 45;
             this.ProStockDataGridView.ThemeStyle.ReadOnly = true;
             this.ProStockDataGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(234)))), ((int)(((byte)(247)))));
@@ -182,16 +186,26 @@
             this.ProStockDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.ProStockDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProStockDataGridView_CellContentClick);
             // 
+            // siticoneBorderlessForm1
+            // 
+            this.siticoneBorderlessForm1.BorderRadius = 25;
+            this.siticoneBorderlessForm1.ContainerControl = this;
+            this.siticoneBorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            this.siticoneBorderlessForm1.TransparentWhileDrag = true;
+            // 
             // StockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 710);
+            this.ClientSize = new System.Drawing.Size(1100, 600);
             this.Controls.Add(this.ProStockDataGridView);
             this.Controls.Add(this.ProStockSearchText);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1100, 600);
+            this.MinimumSize = new System.Drawing.Size(1100, 600);
             this.Name = "StockForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StockForm";
             this.Load += new System.EventHandler(this.StockForm_Load);
             this.headerPanel.ResumeLayout(false);
@@ -208,5 +222,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneControlBox closeBtn;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox ProStockSearchText;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView ProStockDataGridView;
+        private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
     }
 }

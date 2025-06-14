@@ -264,7 +264,7 @@
             this.adjBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adjBtn.ForeColor = System.Drawing.Color.White;
             this.adjBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.adjBtn.Location = new System.Drawing.Point(781, 30);
+            this.adjBtn.Location = new System.Drawing.Point(492, 30);
             this.adjBtn.Name = "adjBtn";
             this.adjBtn.Size = new System.Drawing.Size(160, 42);
             this.adjBtn.TabIndex = 42;
@@ -319,20 +319,21 @@
             // 
             // stockFormBtn
             // 
+            this.stockFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.stockFormBtn.BorderRadius = 8;
             this.stockFormBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.stockFormBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.stockFormBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.stockFormBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.stockFormBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(113)))), ((int)(((byte)(254)))));
-            this.stockFormBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.stockFormBtn.FillColor = System.Drawing.Color.Green;
+            this.stockFormBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockFormBtn.ForeColor = System.Drawing.Color.White;
-            this.stockFormBtn.HoverState.FillColor = System.Drawing.Color.Navy;
-            this.stockFormBtn.Image = global::EscopeWindowsApp.Properties.Resources.refresh1;
-            this.stockFormBtn.Location = new System.Drawing.Point(513, 30);
+            this.stockFormBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.stockFormBtn.Location = new System.Drawing.Point(782, 30);
             this.stockFormBtn.Name = "stockFormBtn";
-            this.stockFormBtn.Size = new System.Drawing.Size(42, 42);
+            this.stockFormBtn.Size = new System.Drawing.Size(160, 42);
             this.stockFormBtn.TabIndex = 43;
+            this.stockFormBtn.Text = "Stock";
             this.stockFormBtn.Click += new System.EventHandler(this.stockFormBtn_Click);
             // 
             // Production
