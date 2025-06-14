@@ -621,5 +621,25 @@ namespace EscopeWindowsApp
             adjsments.FormClosed += (s, args) => LoadProductsData();
             adjsments.Show();
         }
+
+        private void stockFormBtn_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is StockForm)
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+                    form.BringToFront();
+                    form.Activate();
+                    return;
+                }
+            }
+            StockForm stockform = new StockForm();
+            stockform.FormClosed += (s, args) => LoadProductsData();
+            stockform.Show();
+        }
     }
 }
