@@ -10,6 +10,7 @@ using MigraDoc.Rendering;
 using MySql.Data.MySqlClient;
 using ZXing;
 using ZXing.Common;
+using System.Diagnostics;
 
 namespace EscopeWindowsApp
 {
@@ -133,8 +134,6 @@ namespace EscopeWindowsApp
             if (totalHeight > 640) totalHeight = 640;
             totalHeight -= 10; // Cut 1cm from the bottom of the bill
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
-
-            // Rest of the method remains unchanged
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
             titleStyle.Font.Name = "Courier New";
@@ -292,7 +291,6 @@ namespace EscopeWindowsApp
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
-
                 string qtyText = item.Unit == "Pieces" ? item.Quantity.ToString("0") : $"{item.Quantity:0.00}{GetStandardUnitAbbreviation(item.Unit)}";
                 dataRow.Cells[0].AddParagraph(qtyText);
                 dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
@@ -434,8 +432,6 @@ namespace EscopeWindowsApp
             if (totalHeight > 640) totalHeight = 640;
             totalHeight -= 5; // Cut 0.5cm from the bottom of the bill
             section.PageSetup.PageHeight = Unit.FromMillimeter(totalHeight);
-
-            // Rest of the method remains unchanged
 
             Style titleStyle = document.Styles.AddStyle("Title", "Normal");
             titleStyle.Font.Name = "Courier New";
@@ -603,9 +599,7 @@ namespace EscopeWindowsApp
                 dataRow.Format.Font.Size = 8;
                 dataRow.Format.Font.Name = "Courier New";
 
-                string qtyText = item.Unit == "Pieces"
-            ? (-item.Quantity).ToString("0")
-            : $"{(-item.Quantity):0.00}{GetStandardUnitAbbreviation(item.Unit)}";
+                string qtyText = item.Unit == "Pieces" ? (-item.Quantity).ToString("0") : $"{(-item.Quantity):0.00}{GetStandardUnitAbbreviation(item.Unit)}";
                 dataRow.Cells[0].AddParagraph(qtyText);
                 dataRow.Cells[0].Format.Alignment = ParagraphAlignment.Right;
                 dataRow.Cells[1].AddParagraph(item.Price.ToString("0.00"));
@@ -716,7 +710,6 @@ namespace EscopeWindowsApp
                 case "liter":
                     return "L";
                 default:
-                    // For other units, return the first character
                     return unitName.Length > 0 ? unitName.Substring(0, 1).ToUpper() : "";
             }
         }
@@ -725,15 +718,49 @@ namespace EscopeWindowsApp
         {
             try
             {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                if (!File.Exists(pdfPath))
+                {
+                    MessageBox.Show($"Receipt file not found: {pdfPath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Attempt to print directly to the default printer using the "print" verb
+                ProcessStartInfo printInfo = new ProcessStartInfo
                 {
                     FileName = pdfPath,
-                    UseShellExecute = true
-                });
+                    Verb = "print",
+                    UseShellExecute = true,
+                    CreateNoWindow = true
+                };
+
+                using (Process printProcess = Process.Start(printInfo))
+                {
+                    // Wait for the process to exit to ensure printing is initiated
+                    printProcess.WaitForExit(5000); // Timeout after 5 seconds
+                    if (!printProcess.HasExited)
+                    {
+                        printProcess.Kill();
+                        throw new Exception("Printing process did not complete in time.");
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error printing PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Fallback: Open the PDF in the default viewer if direct printing fails
+                try
+                {
+                    ProcessStartInfo openInfo = new ProcessStartInfo
+                    {
+                        FileName = pdfPath,
+                        UseShellExecute = true
+                    };
+                    Process.Start(openInfo);
+                    MessageBox.Show($"Unable to print receipt directly: {ex.Message}. The receipt has been opened for manual printing.", "Printing Issue", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception openEx)
+                {
+                    MessageBox.Show($"Error opening receipt: {openEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
