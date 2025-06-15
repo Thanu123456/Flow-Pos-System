@@ -126,41 +126,6 @@ namespace EscopeWindowsApp
                             {
                                 cmd.ExecuteNonQuery();
                             }
-
-                            // 4. Update the main stock table by grouping and subtracting totals
-                            var groupedItems = expiredItems.AsEnumerable()
-                                .GroupBy(r => new
-                                {
-                                    ProductId = r["product_id"],
-                                    VariationType = r["variation_type"] == DBNull.Value ? null : r["variation_type"].ToString(),
-                                    Unit = r["unit"] == DBNull.Value ? null : r["unit"].ToString()
-                                })
-                                .Select(g => new
-                                {
-                                    g.Key.ProductId,
-                                    g.Key.VariationType,
-                                    g.Key.Unit,
-                                    TotalExpired = g.Sum(r => Convert.ToDecimal(r["expired_qty"]))
-                                });
-
-                            foreach (var item in groupedItems)
-                            {
-                                string updateStockQuery = @"
-                                    UPDATE stock 
-                                    SET stock = GREATEST(0, stock - @totalExpired)
-                                    WHERE product_id = @productId
-                                      AND (variation_type <=> @variationType)
-                                      AND (unit <=> @unit)";
-
-                                using (MySqlCommand cmd = new MySqlCommand(updateStockQuery, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@productId", item.ProductId);
-                                    cmd.Parameters.AddWithValue("@variationType", item.VariationType ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@unit", item.Unit ?? (object)DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@totalExpired", item.TotalExpired);
-                                    cmd.ExecuteNonQuery();
-                                }
-                            }
                         }
 
                         transaction.Commit();

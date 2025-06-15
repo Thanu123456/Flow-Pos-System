@@ -390,10 +390,24 @@ namespace EscopeWindowsApp
                 {
                     foreach (DataRow row in products.Rows)
                     {
+                        string displayText;
+                        string variationType = row["variation_type"] != DBNull.Value ? row["variation_type"].ToString() : null;
+
+                        if (!string.IsNullOrEmpty(variationType))
+                        {
+                            // Include variation type in display text if available
+                            displayText = $"PRO{row["id"]:D3} - {row["name"]} - {variationType}";
+                        }
+                        else
+                        {
+                            displayText = $"PRO{row["id"]:D3} - {row["name"]}";
+                        }
+
                         suggestionListBox.Items.Add(new ProductSuggestion
                         {
                             ProductId = Convert.ToInt32(row["id"]),
-                            DisplayText = $"PRO{row["id"]:D3} - {row["name"]}"
+                            DisplayText = displayText,
+                            VariationType = variationType
                         });
                     }
                     suggestionListBox.Visible = suggestionListBox.Items.Count > 0;
@@ -423,6 +437,7 @@ namespace EscopeWindowsApp
                         SELECT p.id, p.name, p.barcode, 
                                c.name AS category, 
                                v.name AS variation_name, 
+                               pr.variation_type,
                                u.unit_name, 
                                pr.cost_price, pr.retail_price
                         FROM products p
@@ -448,10 +463,6 @@ namespace EscopeWindowsApp
                         Console.WriteLine($"Query executed: {query}");
                         Console.WriteLine($"Parameters: searchText='{searchText}', searchTextLike='%{searchText}%', searchId={searchId}");
                         Console.WriteLine($"Rows returned: {dt.Rows.Count}");
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            Console.WriteLine($"Found: ID={row["id"]}, Name={row["name"]}, Barcode={row["barcode"]}, Unit={row["unit_name"]}, CostPrice={row["cost_price"]}");
-                        }
 
                         return dt;
                     }
@@ -472,6 +483,7 @@ namespace EscopeWindowsApp
         {
             public int ProductId { get; set; }
             public string DisplayText { get; set; }
+            public string VariationType { get; set; }
 
             public override string ToString() => DisplayText;
         }
@@ -505,6 +517,13 @@ namespace EscopeWindowsApp
             {
                 grnProSearchText.Text = suggestion.DisplayText;
                 FillProductDetails(suggestion.ProductId);
+
+                // If variation type is available, select it in the dropdown
+                if (!string.IsNullOrEmpty(suggestion.VariationType) && grnVarTypCombo.Items.Contains(suggestion.VariationType))
+                {
+                    grnVarTypCombo.SelectedItem = suggestion.VariationType;
+                }
+
                 suggestionListBox.Visible = false;
                 grnProSearchText.Focus();
             }

@@ -1025,6 +1025,8 @@ namespace EscopeWindowsApp
                             lockCmd.ExecuteNonQuery();
                         }
 
+                        string refundBillNo = $"REF_{DateTime.Now:yyyyMMddHHmmss}";
+
                         foreach (DataGridViewRow row in refItemDataGridView.Rows)
                         {
                             int productId = Convert.ToInt32(row.Cells["product_id"].Value);
@@ -1035,11 +1037,12 @@ namespace EscopeWindowsApp
                             decimal totalPrice = Convert.ToDecimal(row.Cells["total_price"].Value);
 
                             string refundQuery = @"
-                                INSERT INTO refunds (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date, reason, notes)
-                                VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW(), @reason, @notes)";
+                                INSERT INTO refunds (bill_no, refund_bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price, refund_date, reason, notes)
+                                VALUES (@billNo, @refundBillNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice, NOW(), @reason, @notes)";
                             using (MySqlCommand refundCommand = new MySqlCommand(refundQuery, connection, transaction))
                             {
                                 refundCommand.Parameters.AddWithValue("@billNo", billNo);
+                                refundCommand.Parameters.AddWithValue("@refundBillNo", refundBillNo);
                                 refundCommand.Parameters.AddWithValue("@productId", productId);
                                 refundCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
                                 refundCommand.Parameters.AddWithValue("@variationType", variationType ?? (object)DBNull.Value);
@@ -1076,8 +1079,7 @@ namespace EscopeWindowsApp
 
                         transaction.Commit();
 
-                        // --- Printing logic starts here ---
-                        string refundBillNo = $"REF_{DateTime.Now:yyyyMMddHHmmss}";
+                        // Prepare refund items for printing
                         List<BillPrinter.CartItem> refundItems = new List<BillPrinter.CartItem>();
                         int itemNumber = 1;
                         foreach (DataGridViewRow row in refItemDataGridView.Rows)
@@ -1094,20 +1096,27 @@ namespace EscopeWindowsApp
                             });
                         }
 
-                        BillPrinter.PrintRefundBill(
-                            originalBillNo: billNo,
-                            refundBillNo: refundBillNo,
-                            userName: this.username, // Use the stored username
-                            totalItems: refItemDataGridView.Rows.Count,
-                            totalRefundAmount: totalRefundAmount,
-                            refundItems: refundItems,
-                            refundReason: selectedReason,
-                            refundNotes: refundNotes ?? ""
-                        );
-                        // --- Printing logic ends here ---
+                        // Print refund bill
+                        try
+                        {
+                            BillPrinter.PrintRefundBill(
+                                originalBillNo: billNo,
+                                refundBillNo: refundBillNo,
+                                userName: this.username,
+                                totalItems: refItemDataGridView.Rows.Count,
+                                totalRefundAmount: totalRefundAmount,
+                                refundItems: refundItems,
+                                refundReason: selectedReason,
+                                refundNotes: refundNotes ?? ""
+                            );
+                            SessionManager.TotalRefund += totalRefundAmount;
+                            //MessageBox.Show($"Refund processed successfully. Refund receipt ({refundBillNo}) sent to printer.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception printEx)
+                        {
+                            MessageBox.Show($"Refund processed, but error printing receipt: {printEx.Message}. Please check the generated PDF manually.", "Printing Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
 
-                        SessionManager.TotalRefund += totalRefundAmount;
-                        MessageBox.Show("Refund processed successfully and receipt printed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearBillDetails();
                         billSearchTextBox.Text = "";
                         Debug.WriteLine($"Refund processed and printed for bill {billNo}, refund bill {refundBillNo}.");
@@ -1144,6 +1153,7 @@ namespace EscopeWindowsApp
         {
             ClearBillDetails();
         }
+
         // Wherever the Refund form is opened, such as in the POS class:
         private void refundBtn_Click(object sender, EventArgs e)
         {
