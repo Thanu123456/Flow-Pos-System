@@ -1422,9 +1422,13 @@ namespace EscopeWindowsApp
                 return;
             }
 
-            decimal totalPrice = decimal.Parse(totPriceCountLabel.Text);
-            string paymentMethod = posCashRadioBtn.Checked ? "Cash" : posCardRadioBtn.Checked ? "Card" : "Not Specified";
+            if (!decimal.TryParse(totPriceCountLabel.Text, out decimal totalPrice))
+            {
+                MessageBox.Show("Invalid total price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            string paymentMethod = posCashRadioBtn.Checked ? "Cash" : posCardRadioBtn.Checked ? "Card" : "Not Specified";
             if (posCashRadioBtn.Checked && (!decimal.TryParse(paymentText.Text, out decimal paymentAmount) || paymentAmount < totalPrice))
             {
                 MessageBox.Show("Please enter a valid payment amount greater than or equal to the total price.", "Invalid Payment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1440,16 +1444,17 @@ namespace EscopeWindowsApp
                     {
                         string billNo = "BILL_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                         string customerName = posClientNameLabel.Text;
-                        string userName = this.username; // Use the actual username instead of hardcoded "Cashier"
+                        string userName = this.username;
                         int totalItems = supDataGridView.Rows.Count;
 
+                        // Insert into sales table
                         string salesQuery = @"
                     INSERT INTO sales (bill_no, customer, user_name, quantity_of_items, payment_method, total_price)
                     VALUES (@billNo, @customer, @userName, @quantityOfItems, @paymentMethod, @totalPrice)";
                         using (MySqlCommand salesCommand = new MySqlCommand(salesQuery, connection, transaction))
                         {
                             salesCommand.Parameters.AddWithValue("@billNo", billNo);
-                            salesCommand.Parameters.AddWithValue("@customer", customerName);
+                            salesCommand.Parameters.AddWithValue("@customer", string.IsNullOrEmpty(customerName) ? "Walk-In Customer" : customerName);
                             salesCommand.Parameters.AddWithValue("@userName", userName);
                             salesCommand.Parameters.AddWithValue("@quantityOfItems", totalItems);
                             salesCommand.Parameters.AddWithValue("@paymentMethod", paymentMethod);
@@ -1457,82 +1462,122 @@ namespace EscopeWindowsApp
                             salesCommand.ExecuteNonQuery();
                         }
 
+                        // Group items for stock checking
                         var stockKeys = supDataGridView.Rows.Cast<DataGridViewRow>()
                             .Select(row => new
                             {
                                 ProductId = Convert.ToInt32(row.Cells["product_id"].Value),
-                                VariationType = row.Cells["variation_type"].Value.ToString()
+                                VariationType = row.Cells["variation_type"].Value?.ToString() ?? "N/A",
+                                Unit = row.Cells["unit"].Value?.ToString(),
+                                Quantity = Convert.ToDecimal(row.Cells["quantity"].Value)
                             })
-                            .Distinct()
+                            .GroupBy(x => new { x.ProductId, x.VariationType, x.Unit })
+                            .Select(g => new
+                            {
+                                g.Key.ProductId,
+                                g.Key.VariationType,
+                                g.Key.Unit,
+                                TotalQuantity = g.Sum(x => x.Quantity)
+                            })
                             .ToList();
 
-                        string lockQuery = "SELECT product_id, variation_type, stock FROM stock WHERE ";
+                        // Check total stock availability
+                        foreach (var key in stockKeys)
+                        {
+                            string checkStockQuery = @"
+                        SELECT COALESCE(SUM(sd.remaining_qty), 0) AS available_stock
+                        FROM stock_details sd
+                        JOIN grn_items gi ON sd.grn_items_id = gi.id
+                        WHERE gi.product_id = @productId
+                        AND (gi.variation_type = @variationType OR (gi.variation_type IS NULL AND @variationType IS NULL))
+                        AND (gi.unit = @unit OR (gi.unit IS NULL AND @unit IS NULL))
+                        AND sd.remaining_qty > 0";
+                            using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
+                            {
+                                checkCmd.Parameters.AddWithValue("@productId", key.ProductId);
+                                checkCmd.Parameters.AddWithValue("@variationType", key.VariationType == "N/A" ? (object)DBNull.Value : key.VariationType);
+                                checkCmd.Parameters.AddWithValue("@unit", key.Unit ?? (object)DBNull.Value);
+                                decimal availableStock = Convert.ToDecimal(checkCmd.ExecuteScalar());
+                                if (availableStock < key.TotalQuantity)
+                                {
+                                    transaction.Rollback();
+                                    string productName = supDataGridView.Rows.Cast<DataGridViewRow>()
+                                        .First(r => Convert.ToInt32(r.Cells["product_id"].Value) == key.ProductId &&
+                                                    (r.Cells["variation_type"].Value?.ToString() ?? "N/A") == key.VariationType &&
+                                                    (r.Cells["unit"].Value?.ToString() ?? "") == (key.Unit ?? ""))
+                                        .Cells["product_name"].Value.ToString();
+                                    MessageBox.Show($"Insufficient stock for {productName} ({key.VariationType}, {key.Unit ?? "N/A"}). Available: {availableStock}, Required: {key.TotalQuantity}", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+                        }
+
+                        // Lock stock and stock_details tables
+                        string lockStockQuery = "SELECT product_id, variation_type, unit, stock FROM stock WHERE ";
+                        string lockDetailsQuery = "SELECT sd.id FROM stock_details sd JOIN grn_items gi ON sd.grn_items_id = gi.id WHERE ";
                         for (int i = 0; i < stockKeys.Count; i++)
                         {
-                            if (i > 0) lockQuery += " OR ";
-                            lockQuery += $"(product_id = @pid{i} AND variation_type = @vtype{i})";
+                            if (i > 0)
+                            {
+                                lockStockQuery += " OR ";
+                                lockDetailsQuery += " OR ";
+                            }
+                            lockStockQuery += $"(product_id = @pid{i} AND (variation_type = @vtype{i} OR (variation_type IS NULL AND @vtype{i} IS NULL)) AND (unit = @unit{i} OR (unit IS NULL AND @unit{i} IS NULL)))";
+                            lockDetailsQuery += $"(gi.product_id = @pid{i} AND (gi.variation_type = @vtype{i} OR (gi.variation_type IS NULL AND @vtype{i} IS NULL)) AND (gi.unit = @unit{i} OR (gi.unit IS NULL AND @unit{i} IS NULL)))";
                         }
-                        lockQuery += " FOR UPDATE";
+                        lockStockQuery += " FOR UPDATE";
+                        lockDetailsQuery += " FOR UPDATE";
 
-                        using (MySqlCommand lockCmd = new MySqlCommand(lockQuery, connection, transaction))
+                        using (MySqlCommand lockStockCmd = new MySqlCommand(lockStockQuery, connection, transaction))
                         {
                             for (int i = 0; i < stockKeys.Count; i++)
                             {
-                                lockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
-                                lockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                                lockStockCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
+                                lockStockCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                                lockStockCmd.Parameters.AddWithValue($"@unit{i}", stockKeys[i].Unit ?? (object)DBNull.Value);
                             }
-                            lockCmd.ExecuteNonQuery();
+                            lockStockCmd.ExecuteNonQuery();
                         }
 
+                        using (MySqlCommand lockDetailsCmd = new MySqlCommand(lockDetailsQuery, connection, transaction))
+                        {
+                            for (int i = 0; i < stockKeys.Count; i++)
+                            {
+                                lockDetailsCmd.Parameters.AddWithValue($"@pid{i}", stockKeys[i].ProductId);
+                                lockDetailsCmd.Parameters.AddWithValue($"@vtype{i}", stockKeys[i].VariationType == "N/A" ? (object)DBNull.Value : stockKeys[i].VariationType);
+                                lockDetailsCmd.Parameters.AddWithValue($"@unit{i}", stockKeys[i].Unit ?? (object)DBNull.Value);
+                            }
+                            lockDetailsCmd.ExecuteNonQuery();
+                        }
+
+                        // Insert sales details and reduce stock
                         string detailsQuery = @"
                     INSERT INTO sales_details (bill_no, product_id, product_name, variation_type, unit, quantity, price, total_price)
                     VALUES (@billNo, @productId, @productName, @variationType, @unit, @quantity, @price, @totalPrice)";
+                        StockManager stockManager = new StockManager(connectionString);
 
                         foreach (DataGridViewRow row in supDataGridView.Rows)
                         {
                             int productId = Convert.ToInt32(row.Cells["product_id"].Value);
-                            string variationType = row.Cells["variation_type"].Value.ToString();
-                            if (variationType == "N/A") variationType = null;
+                            string variationType = row.Cells["variation_type"].Value?.ToString() ?? "N/A";
+                            string unit = row.Cells["unit"].Value?.ToString();
                             decimal quantity = Convert.ToDecimal(row.Cells["quantity"].Value);
-                            string unit = row.Cells["unit"].Value.ToString();
-
-                            string checkStockQuery = @"
-                        SELECT COALESCE((SELECT SUM(sd.remaining_qty) 
-                                         FROM stock_details sd
-                                         JOIN grn_items gi ON sd.grn_items_id = gi.id
-                                         WHERE gi.product_id = @productId
-                                         AND (gi.variation_type = @variationType OR (gi.variation_type IS NULL AND @variationType IS NULL))
-                                         AND (gi.unit = @unit OR (gi.unit IS NULL AND @unit IS NULL))
-                                         AND sd.is_expired = 0
-                                         AND sd.remaining_qty > 0), 0) AS available_stock";
-                            using (MySqlCommand checkCmd = new MySqlCommand(checkStockQuery, connection, transaction))
-                            {
-                                checkCmd.Parameters.AddWithValue("@productId", productId);
-                                checkCmd.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
-                                checkCmd.Parameters.AddWithValue("@unit", unit);
-                                decimal availableStock = Convert.ToDecimal(checkCmd.ExecuteScalar());
-                                if (availableStock < quantity)
-                                {
-                                    transaction.Rollback();
-                                    MessageBox.Show($"Insufficient non-expired stock for product {row.Cells["product_name"].Value}. Available: {availableStock}, Required: {quantity}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
-                            }
+                            decimal price = Convert.ToDecimal(row.Cells["price"].Value);
+                            decimal totalRowPrice = Convert.ToDecimal(row.Cells["total_price"].Value);
 
                             using (MySqlCommand detailsCommand = new MySqlCommand(detailsQuery, connection, transaction))
                             {
                                 detailsCommand.Parameters.AddWithValue("@billNo", billNo);
                                 detailsCommand.Parameters.AddWithValue("@productId", productId);
                                 detailsCommand.Parameters.AddWithValue("@productName", row.Cells["product_name"].Value.ToString());
-                                detailsCommand.Parameters.AddWithValue("@variationType", variationType == null ? (object)DBNull.Value : variationType);
-                                detailsCommand.Parameters.AddWithValue("@unit", unit);
+                                detailsCommand.Parameters.AddWithValue("@variationType", variationType == "N/A" ? (object)DBNull.Value : variationType);
+                                detailsCommand.Parameters.AddWithValue("@unit", unit ?? (object)DBNull.Value);
                                 detailsCommand.Parameters.AddWithValue("@quantity", quantity);
-                                detailsCommand.Parameters.AddWithValue("@price", Convert.ToDecimal(row.Cells["price"].Value));
-                                detailsCommand.Parameters.AddWithValue("@totalPrice", Convert.ToDecimal(row.Cells["total_price"].Value));
+                                detailsCommand.Parameters.AddWithValue("@price", price);
+                                detailsCommand.Parameters.AddWithValue("@totalPrice", totalRowPrice);
                                 detailsCommand.ExecuteNonQuery();
                             }
 
-                            StockManager stockManager = new StockManager(connectionString);
                             stockManager.ReduceStockFromBatches(productId, variationType, unit, quantity, connection, transaction);
                         }
 
@@ -1540,24 +1585,22 @@ namespace EscopeWindowsApp
 
                         UpdateSessionManager(paymentMethod, totalPrice);
 
-                        List<BillPrinter.CartItem> cartItems = new List<BillPrinter.CartItem>();
-                        foreach (DataGridViewRow row in supDataGridView.Rows)
-                        {
-                            cartItems.Add(new BillPrinter.CartItem
+                        List<BillPrinter.CartItem> cartItems = supDataGridView.Rows.Cast<DataGridViewRow>()
+                            .Select(row => new BillPrinter.CartItem
                             {
                                 ItemNumber = Convert.ToInt32(row.Cells["item_number"].Value),
                                 ProductName = row.Cells["product_name"].Value.ToString(),
-                                VariationType = row.Cells["variation_type"].Value.ToString(),
-                                Unit = row.Cells["unit"].Value.ToString(),
+                                VariationType = row.Cells["variation_type"].Value?.ToString() ?? "N/A",
+                                Unit = row.Cells["unit"].Value?.ToString(),
                                 Quantity = Convert.ToDecimal(row.Cells["quantity"].Value),
                                 Price = Convert.ToDecimal(row.Cells["price"].Value),
                                 TotalPrice = Convert.ToDecimal(row.Cells["total_price"].Value)
-                            });
-                        }
+                            })
+                            .ToList();
 
-                        decimal discount = decimal.Parse(discountPriLabel.Text);
-                        decimal cashPaid = posCashRadioBtn.Checked ? decimal.Parse(paymentText.Text) : 0m;
-                        decimal balance = posCashRadioBtn.Checked ? decimal.Parse(balancePriceCountLabel.Text) : 0m;
+                        decimal discount = decimal.TryParse(discountPriLabel.Text, out decimal disc) ? disc : 0m;
+                        decimal cashPaid = posCashRadioBtn.Checked && decimal.TryParse(paymentText.Text, out decimal paid) ? paid : 0m;
+                        decimal balance = posCashRadioBtn.Checked && decimal.TryParse(balancePriceCountLabel.Text, out decimal bal) ? bal : 0m;
 
                         BillPrinter.PrintBill(billNo, customerName, userName, totalItems, paymentMethod, totalPrice, discount, cashPaid, balance, cartItems, paymentMethod == "Card");
 
