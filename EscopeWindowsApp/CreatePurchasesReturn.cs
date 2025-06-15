@@ -1,10 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace EscopeWindowsApp
 {
@@ -17,6 +16,7 @@ namespace EscopeWindowsApp
         private string selectedReason;
         private int? _returnId;
         private readonly int? _stockDetailsId;
+        private readonly decimal? _expiredQuantity;
 
         public CreatePurchasesReturn(int? returnId = null)
         {
@@ -62,6 +62,58 @@ namespace EscopeWindowsApp
             {
                 this.Text = "Create Purchase Return";
             }
+        }
+
+        public CreatePurchasesReturn(string connectionString, int stockDetailsId, int productId, string productName, string supplierName, decimal quantity, string variationType, string unit, string grnNo)
+        {
+            InitializeComponent();
+            _connectionString = connectionString;
+            _stockDetailsId = stockDetailsId;
+            _expiredQuantity = quantity;
+            _returnId = null;
+
+            this.Load -= CreatePurchasesReturn_Load;
+            grnProSearchText.TextChanged -= grnProSearchText_TextChanged;
+            preReGRNDataGridView.CellContentClick -= preReGRNDataGridView_CellContentClick;
+            preReGRNDataGridView.CellPainting -= preReGRNDataGridView_CellPainting;
+            grnProductDataGridView.CellContentClick -= grnProductDataGridView_CellContentClick;
+            grnProductDataGridView.CellPainting -= grnProductDataGridView_CellPainting;
+            grnSaveBtn.Click -= grnSaveBtn_Click;
+            grnCancelBtn.Click -= grnCancelBtn_Click;
+            purReNoteText.TextChanged -= purReNoteText_TextChanged;
+            StatusComboBox.SelectedIndexChanged -= StatusComboBox_SelectedIndexChanged;
+
+            this.Load += CreatePurchasesReturn_Load;
+            grnProSearchText.TextChanged += grnProSearchText_TextChanged;
+            preReGRNDataGridView.CellContentClick += preReGRNDataGridView_CellContentClick;
+            preReGRNDataGridView.CellPainting += preReGRNDataGridView_CellPainting;
+            grnProductDataGridView.CellContentClick += grnProductDataGridView_CellContentClick;
+            grnProductDataGridView.CellPainting += grnProductDataGridView_CellPainting;
+            grnSaveBtn.Click += grnSaveBtn_Click;
+            grnCancelBtn.Click += grnCancelBtn_Click;
+            purReNoteText.TextChanged += purReNoteText_TextChanged;
+            StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
+
+            this.KeyPreview = true;
+            this.KeyDown += CreatePurchasesReturn_KeyDown;
+
+            ResonsPurchasReturnCombo.Items.AddRange(new string[] { "Product Damaged or Defective", "Product Not as Described or Expected", "Expired Products", "Other" });
+            ResonsPurchasReturnCombo.SelectedIndex = 2; // Default to "Expired Products"
+            StatusComboBox.Items.AddRange(new string[] { "Complete", "Pending" });
+            StatusComboBox.SelectedIndex = 0; // Default to "Complete"
+
+            this.Text = "Create Purchase Return";
+
+            // Populate and disable the search bar with the GRN number
+            grnProSearchText.Text = grnNo;
+            grnProSearchText.Enabled = false; // Disable the search bar to prevent changes
+
+            // Pre-fill form with expired product details
+            ConfigurePreReGRNDataGridView();
+            ConfigureGrnProductDataGridView();
+            LoadSpecificGRN(grnNo);
+            LoadGRNItems(grnNo, stockDetailsId, quantity, productId, variationType, unit);
+            PreFillExpiredItem(productId, productName, supplierName, quantity, variationType, unit);
         }
 
         private void CreatePurchasesReturn_Load(object sender, EventArgs e)
@@ -496,7 +548,7 @@ namespace EscopeWindowsApp
             });
         }
 
-        private void LoadGRNItems(string grnNo)
+        private void LoadGRNItems(string grnNo, int? stockDetailsId = null, decimal? expiredQuantity = null, int? productId = null, string variationType = null, string unit = null)
         {
             try
             {
@@ -536,36 +588,47 @@ namespace EscopeWindowsApp
                     }
 
                     string query = @"
-                SELECT 
-                g.grn_no,
-                gi.id AS grn_items_id,
-                gi.product_id,
-                COALESCE(p.name, 'N/A') AS product_name,
-                COALESCE(s.name, 'N/A') AS supplier_name,
-                COALESCE(b.name, 'N/A') AS brand,
-                COALESCE(gi.variation_type, 'N/A') AS variation_type,
-                COALESCE(gi.unit, 'N/A') AS unit,
-                gi.quantity,
-                gi.cost_price,
-                gi.net_price
-            FROM grn g
-            JOIN grn_items gi ON g.id = gi.grn_id
-            LEFT JOIN products p ON gi.product_id = p.id
-            LEFT JOIN suppliers s ON p.supplier_id = s.id
-            LEFT JOIN brands b ON p.brand_id = b.id
-            WHERE g.grn_no = @grnNo
-            ";
+                        SELECT 
+                            g.grn_no,
+                            gi.id AS grn_items_id,
+                            gi.product_id,
+                            COALESCE(p.name, 'N/A') AS product_name,
+                            COALESCE(s.name, 'N/A') AS supplier_name,
+                            COALESCE(b.name, 'N/A') AS brand,
+                            COALESCE(gi.variation_type, 'N/A') AS variation_type,
+                            COALESCE(gi.unit, 'N/A') AS unit,
+                            sd.remaining_qty AS quantity,
+                            gi.cost_price,
+                            gi.net_price
+                        FROM grn g
+                        JOIN grn_items gi ON g.id = gi.grn_id
+                        JOIN stock_details sd ON gi.id = sd.grn_items_id
+                        LEFT JOIN products p ON gi.product_id = p.id
+                        LEFT JOIN suppliers s ON p.supplier_id = s.id
+                        LEFT JOIN brands b ON p.brand_id = b.id
+                        WHERE g.grn_no = @grnNo
+                        AND sd.is_expired = 1
+                        AND sd.remaining_qty > 0";
+
+                    if (stockDetailsId.HasValue)
+                    {
+                        query += " AND sd.id = @stockDetailsId";
+                    }
 
                     using (var cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@grnNo", grnNo);
+                        if (stockDetailsId.HasValue)
+                        {
+                            cmd.Parameters.AddWithValue("@stockDetailsId", stockDetailsId.Value);
+                        }
                         var adapter = new MySqlDataAdapter(cmd);
                         _grnItemsTable.Clear();
                         adapter.Fill(_grnItemsTable);
 
                         if (_grnItemsTable.Rows.Count == 0)
                         {
-                            MessageBox.Show("No items found for this GRN.", "Information",
+                            MessageBox.Show("No expired items found for this GRN.", "Information",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
@@ -580,11 +643,34 @@ namespace EscopeWindowsApp
                             {
                                 newRow[col.ColumnName] = row[col.ColumnName];
                             }
-                            newRow["return_quantity"] = 0m;
+                            // Set return_quantity to expired quantity if the row matches the specific expired item
+                            if (stockDetailsId.HasValue &&
+                                Convert.ToInt32(row["grn_items_id"]) == stockDetailsId &&
+                                Convert.ToInt32(row["product_id"]) == productId &&
+                                (row["variation_type"]?.ToString() ?? "N/A") == (variationType ?? "N/A") &&
+                                (row["unit"]?.ToString() ?? "N/A") == (unit ?? "N/A"))
+                            {
+                                newRow["return_quantity"] = expiredQuantity ?? 0m;
+                            }
+                            else
+                            {
+                                newRow["return_quantity"] = 0m;
+                            }
                             returnItemsTable.Rows.Add(newRow);
                         }
 
                         grnProductDataGridView.DataSource = returnItemsTable;
+
+                        // Update net_price for rows with non-zero return_quantity
+                        foreach (DataGridViewRow row in grnProductDataGridView.Rows)
+                        {
+                            decimal returnQuantity = Convert.ToDecimal(row.Cells["return_quantity"].Value);
+                            if (returnQuantity > 0)
+                            {
+                                decimal costPrice = Convert.ToDecimal(row.Cells["cost_price"].Value);
+                                row.Cells["net_price"].Value = costPrice * returnQuantity;
+                            }
+                        }
                     }
                 }
             }
@@ -647,18 +733,11 @@ namespace EscopeWindowsApp
                 }
                 else
                 {
-                    MessageBox.Show("Cannot return more than the original quantity.",
+                    MessageBox.Show("Cannot return more than the expired quantity.",
                         "Maximum Quantity", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
-
-        // Pseudocode plan:
-        // 1. In grnSaveBtn_Click, when updating an existing return (_returnId.HasValue), 
-        //    do NOT insert new purchase_return_details records for products that already exist for this return.
-        // 2. Instead, update the quantity, cost_price, and net_price in purchase_return_details for those products.
-        // 3. Only insert new purchase_return_details if a new product is being returned (not already in details).
-        // 4. Never insert a new purchase_returns record if _returnId.HasValue; only update status and details.
 
         private void grnSaveBtn_Click(object sender, EventArgs e)
         {
@@ -785,7 +864,7 @@ namespace EscopeWindowsApp
                                     }
                                     else
                                     {
-                                        // Insert new detail if not exists (optional, or skip if you never want new details)
+                                        // Insert new detail if not exists
                                         string insertDetailsQuery = @"
                                             INSERT INTO purchase_return_details 
                                             (return_id, product_id, variation_type, unit, quantity, cost_price, net_price)
@@ -852,7 +931,7 @@ namespace EscopeWindowsApp
                             }
                             else
                             {
-                                // Insert new purchase return (no change)
+                                // Insert new purchase return
                                 string returnNo = "PR_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                                 if (string.IsNullOrEmpty(grnNo))
                                 {
@@ -954,7 +1033,6 @@ namespace EscopeWindowsApp
             }
         }
 
-
         private decimal CalculateTotalAmount()
         {
             decimal total = 0m;
@@ -1005,57 +1083,6 @@ namespace EscopeWindowsApp
             {
                 grnSaveBtn.Text = "Save";
             }
-        }
-
-        public CreatePurchasesReturn(string connectionString, int stockDetailsId, int productId, string productName, string supplierName, decimal quantity, string variationType, string unit, string grnNo)
-        {
-            InitializeComponent();
-            _connectionString = connectionString;
-            _stockDetailsId = stockDetailsId;
-            _returnId = null;
-
-            this.Load -= CreatePurchasesReturn_Load;
-            grnProSearchText.TextChanged -= grnProSearchText_TextChanged;
-            preReGRNDataGridView.CellContentClick -= preReGRNDataGridView_CellContentClick;
-            preReGRNDataGridView.CellPainting -= preReGRNDataGridView_CellPainting;
-            grnProductDataGridView.CellContentClick -= grnProductDataGridView_CellContentClick;
-            grnProductDataGridView.CellPainting -= grnProductDataGridView_CellPainting;
-            grnSaveBtn.Click -= grnSaveBtn_Click;
-            grnCancelBtn.Click -= grnCancelBtn_Click;
-            purReNoteText.TextChanged -= purReNoteText_TextChanged;
-            StatusComboBox.SelectedIndexChanged -= StatusComboBox_SelectedIndexChanged;
-
-            this.Load += CreatePurchasesReturn_Load;
-            grnProSearchText.TextChanged += grnProSearchText_TextChanged;
-            preReGRNDataGridView.CellContentClick += preReGRNDataGridView_CellContentClick;
-            preReGRNDataGridView.CellPainting += preReGRNDataGridView_CellPainting;
-            grnProductDataGridView.CellContentClick += grnProductDataGridView_CellContentClick;
-            grnProductDataGridView.CellPainting += grnProductDataGridView_CellPainting;
-            grnSaveBtn.Click += grnSaveBtn_Click;
-            grnCancelBtn.Click += grnCancelBtn_Click;
-            purReNoteText.TextChanged += purReNoteText_TextChanged;
-            StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
-
-            this.KeyPreview = true;
-            this.KeyDown += CreatePurchasesReturn_KeyDown;
-
-            ResonsPurchasReturnCombo.Items.AddRange(new string[] { "Product Damaged or Defective", "Product Not as Described or Expected", "Expired Products", "Other" });
-            ResonsPurchasReturnCombo.SelectedIndex = 3; // Default to "Expired Products"
-            StatusComboBox.Items.AddRange(new string[] { "Complete", "Pending" });
-            StatusComboBox.SelectedIndex = 1; // Default to "Complete"
-
-            this.Text = "Create Purchase Return";
-
-            // Populate and disable the search bar with the GRN number
-            grnProSearchText.Text = grnNo;
-            grnProSearchText.Enabled = false; // Disable the search bar to prevent changes
-
-            // Pre-fill form with expired product details
-            ConfigurePreReGRNDataGridView();
-            ConfigureGrnProductDataGridView();
-            LoadSpecificGRN(grnNo);
-            LoadGRNItems(grnNo);
-            PreFillExpiredItem(productId, productName, supplierName, quantity, variationType, unit);
         }
 
         private void PreFillExpiredItem(int productId, string productName, string supplierName, decimal quantity, string variationType, string unit)
