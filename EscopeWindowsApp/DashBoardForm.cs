@@ -1380,23 +1380,28 @@ namespace EscopeWindowsApp
 
             if (hasStockAlert && hasExpireAlert)
             {
-                alertMessageLabel.Text = "Check Stock Alert Table and Expire Date Table !";
+                alertMessageLabel.Text = "  Stock is low, Check Stock Alert Table!\n  Products expiring soon, Check Expire Date Table!";
                 alertPanel.Visible = true;
             }
             else if (hasStockAlert)
             {
-                alertMessageLabel.Text = "Your stock is low, Check Stock Alert Table !";
+                alertMessageLabel.Text = "  Your stock is low, Check Stock Alert Table!";
                 alertPanel.Visible = true;
             }
             else if (hasExpireAlert)
             {
-                alertMessageLabel.Text = "Check Expire Date Table !";
+                alertMessageLabel.Text = "Check Expire Date Table!";
                 alertPanel.Visible = true;
             }
             else
             {
                 alertPanel.Visible = false;
             }
+
+            alertMessageLabel.TextAlign = ContentAlignment.MiddleLeft;
+            alertMessageLabel.Dock = DockStyle.Fill;
+            alertMessageLabel.AutoSize = false;
+            alertMessageLabel.MaximumSize = new Size(alertPanel.Width, 0); // Optional: wrap text if needed
         }
 
         private void dashTotSalePriceLabel_Click(object sender, EventArgs e) { }
